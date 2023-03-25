@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Frais_supp.init({
+    id:{
+      type:DataTypes.INTEGER,
+      primaryKey:true
+    },
     com_id: DataTypes.INTEGER,
     auf_id: DataTypes.INTEGER
   }, {

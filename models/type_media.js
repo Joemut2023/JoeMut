@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Type_media',
+    timestamps:false
   });
   return Type_media;
 };

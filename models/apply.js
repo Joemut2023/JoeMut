@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Apply.init({
+    id:{
+      type:DataTypes.INTEGER,
+      primaryKey:true
+    },
     prm_id: DataTypes.INTEGER,
     pro_id: DataTypes.INTEGER
   }, {
