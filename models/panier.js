@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Panier.belongsTo(models.Commande,{
+        foreignKey:'com_id'
+      })
     }
   }
   Panier.init({

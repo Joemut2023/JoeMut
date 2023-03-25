@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Essayage.belongsTo(models.Commande,{
+        foreignKey:'com_id'
+      })
     }
   }
   Essayage.init({

@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Commande.hasMany(models.Panier,{
+        foreignKey:'com_id'
+      })
+      Commande.hasMany(models.Essayage,{
+        foreignKey:'com_id'
+      })
     }
   }
   Commande.init({
