@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Tarif extends Model {
     /**
@@ -11,27 +9,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+<<<<<<< HEAD
       Tarif.hasMany(models.Panier,{
         foreignKey:'tar_id'
       });
       Tarif.belongsTo(models.Produit,{
         foreignKey: "pro_id"
       })
+=======
+      Tarif.hasMany(models.Panier, {
+        foreignKey: "tar_id",
+      });
+>>>>>>> migration/client
     }
   }
-  Tarif.init({
-    tar_id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true
+  Tarif.init(
+    {
+      tar_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      pro_id: DataTypes.INTEGER,
+      tar_debut: DataTypes.DATEONLY,
+      tar_fin: DataTypes.DATEONLY,
+      tar_montant: DataTypes.DECIMAL,
     },
-    pro_id: DataTypes.INTEGER,
-    tar_debut: DataTypes.DATEONLY,
-    tar_fin: DataTypes.DATEONLY,
-    tar_montant: DataTypes.DECIMAL
-  }, {
-    sequelize,
-    modelName: 'Tarif',
-    timestamps:false
-  });
+    {
+      sequelize,
+      modelName: "Tarif",
+      timestamps: false,
+    }
+  );
   return Tarif;
 };

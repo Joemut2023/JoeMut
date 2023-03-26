@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Apply extends Model {
     /**
@@ -19,18 +17,21 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Apply.init({
-    app_id:{
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement: true,
+  Apply.init(
+    {
+      app_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      prm_id: DataTypes.INTEGER,
+      pro_id: DataTypes.INTEGER,
     },
-    prm_id: DataTypes.INTEGER,
-    pro_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Apply',
-    timestamps:false
-  });
+    {
+      sequelize,
+      modelName: "Apply",
+      timestamps: false,
+    }
+  );
   return Apply;
 };
