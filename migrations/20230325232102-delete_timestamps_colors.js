@@ -11,10 +11,10 @@ module.exports = {
      */
     await queryInterface.removeColumn('Couleurs', 'createdAt');
     await queryInterface.removeColumn('Couleurs', 'updatedAt');
-    await queryInterface.removeColumn('type_categories', 'createdAt');
-    await queryInterface.removeColumn('type_categories', 'updatedAt');
-    await queryInterface.removeColumn('type_media', 'createdAt');
-    await queryInterface.removeColumn('type_media', 'updatedAt');
+    await queryInterface.removeColumn('Type_categories', 'createdAt');
+    await queryInterface.removeColumn('Type_categories', 'updatedAt');
+    await queryInterface.removeColumn('Type_media', 'createdAt');
+    await queryInterface.removeColumn('Type_media', 'updatedAt');
   },
 
   async down (queryInterface, Sequelize) {
