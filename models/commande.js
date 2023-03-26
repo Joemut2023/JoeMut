@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       Commande.hasMany(models.Essayage,{
         foreignKey:'com_id'
       })
+      Commande.belongsTo(models.Frais_port,{
+        foreignKey:'frp_id'
+      })
     }
   }
   Commande.init({
@@ -41,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Commande',
+    timestamps:false
   });
   return Commande;
 };

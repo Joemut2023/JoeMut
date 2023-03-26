@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Panier.belongsTo(models.Commande,{
         foreignKey:'com_id'
       })
+      Panier.belongsTo(models.Tarif,{
+        foreignKey:'tar_id'
+      })
     }
   }
   Panier.init({

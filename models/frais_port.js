@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Commande.hasMany(models.Commande,{
+        foreignKey:'frp_id'
+      })
     }
   }
   Frais_port.init({

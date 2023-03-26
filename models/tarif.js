@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Tarif.hasMany(models.Panier,{
+        foreignKey:'tar_id'
+      })
     }
   }
   Tarif.init({
