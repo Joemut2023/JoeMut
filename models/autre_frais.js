@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Autre_frais extends Model {
     /**
@@ -13,20 +11,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Autre_frais.init({
-    auf_id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true
+  Autre_frais.init(
+    {
+      auf_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      auf_libelle: DataTypes.TEXT,
+      auf_montant: DataTypes.DECIMAL,
+      auf_debut: DataTypes.DATEONLY,
+      auf_fin: DataTypes.DATEONLY,
+      auf_actif: DataTypes.BOOLEAN,
     },
-    auf_libelle: DataTypes.TEXT,
-    auf_montant: DataTypes.DECIMAL,
-    auf_debut: DataTypes.DATEONLY,
-    auf_fin: DataTypes.DATEONLY,
-    auf_actif: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Autre_frais',
-    timestamps:false
-  });
+    {
+      sequelize,
+      modelName: "Autre_frais",
+      timestamps: false,
+    }
+  );
   return Autre_frais;
 };

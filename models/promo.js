@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Promo extends Model {
     /**
@@ -13,21 +11,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Promo.init({
-    prm_id: {
-      type:DataTypes.INTEGER,
-      primaryKey:true
+  Promo.init(
+    {
+      prm_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      prm_code: DataTypes.TEXT,
+      prm_pourcent: DataTypes.INTEGER,
+      prm_valeur: DataTypes.DOUBLE,
+      prm_debut: DataTypes.DATEONLY,
+      prm_fin: DataTypes.DATEONLY,
+      prm_actif: DataTypes.BOOLEAN,
     },
-    prm_code: DataTypes.TEXT,
-    prm_pourcent: DataTypes.INTEGER,
-    prm_valeur: DataTypes.DOUBLE,
-    prm_debut: DataTypes.DATEONLY,
-    prm_fin: DataTypes.DATEONLY,
-    prm_actif: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Promo',
-    timestamps:false
-  });
+    {
+      sequelize,
+      modelName: "Promo",
+      timestamps: false,
+    }
+  );
   return Promo;
 };
