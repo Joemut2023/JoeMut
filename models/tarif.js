@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Tarif.hasMany(models.Panier,{
         foreignKey:'tar_id'
+      });
+      Tarif.belongsTo(models.Produit,{
+        foreignKey: "pro_id"
       })
     }
   }
