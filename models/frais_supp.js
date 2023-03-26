@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Frais_supp.belongsTo(models.Autre_frais,{
+        foreignKey:"auf_id"
+      })
+      Frais_supp.belongsTo(models.Commande,{
+        foreignKey:"com_id"
+      })
     }
   }
   Frais_supp.init(

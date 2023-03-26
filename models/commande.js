@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       Commande.belongsTo(models.Frais_port,{
         foreignKey:'frp_id'
       })
+      Commande.hasMany(models.Frais_supp,{
+        foreignKey:'com_id'
+      })
     }
   }
   Commande.init({
