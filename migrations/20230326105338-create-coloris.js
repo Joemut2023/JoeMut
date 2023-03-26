@@ -20,14 +20,6 @@ module.exports = {
       },
       col_nbre: {
         type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
     await queryInterface.addConstraint('Coloris',{

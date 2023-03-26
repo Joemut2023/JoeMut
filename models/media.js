@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Media.belongsTo(models.Produit, {
         foreignKey: "pro_id",
       });
+      Media.belongsTo(models.Type_media, {
+        foreignKey: "tym_id",
+      });
     }
   }
   Media.init(
