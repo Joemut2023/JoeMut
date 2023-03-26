@@ -14,9 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Apply.init({
-    id:{
+    app_id:{
       type:DataTypes.INTEGER,
-      primaryKey:true
+      primaryKey:true,
+      autoIncrement: true,
     },
     prm_id: DataTypes.INTEGER,
     pro_id: DataTypes.INTEGER

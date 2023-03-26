@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Type_media extends Model {
     /**
@@ -13,13 +11,20 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Type_media.init({
-    tym_id: DataTypes.INTEGER,
-    tym_libelle: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'Type_media',
-    timestamps:false
-  });
+  Type_media.init(
+    {
+      tym_id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      tym_libelle: DataTypes.TEXT,
+    },
+    {
+      sequelize,
+      modelName: "Type_media",
+      timestamps: false,
+    }
+  );
   return Type_media;
 };
