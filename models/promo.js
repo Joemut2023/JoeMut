@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Promo.hasMany(models.Apply,{
+        foreignKey:"prm_id"
+      })
     }
   }
   Promo.init({
