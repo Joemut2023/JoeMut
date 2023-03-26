@@ -1,0 +1,36 @@
+$color-primary: #a0b21f;
+$color-secondary: #7a7a7a;
+$color-important: #363a42;
+$color-black: #232323;
+$color-white: #fff;
+$typograohie: "Manrope", sans-serif;
+
+$breakpoints: (
+  header: 1000px,
+  mobil: 680px,
+);
+$tablette: 1000px;
+$mobil: 680px;
+
+@mixin breakpoint($point) {
+  @if $point == tablette {
+    @media (max-width: $tablette) {
+      @content;
+    }
+  } @else if $point == mobil {
+    @media (max-width: $mobil) {
+      @content;
+    }
+  }
+}
+
+@mixin cover($bkgImage) {
+  background-image: url($bkgImage);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+@mixin font($family: $typographie, $size: sizeHeading) {
+  font-family: $family;
+  font-size: $size;
+}
