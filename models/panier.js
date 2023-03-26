@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       })
       Panier.belongsTo(models.Tarif,{
         foreignKey:'tar_id'
+      });
+      Panier.belongsTo(models.Produit,{
+        foreignKey: "pro_id",
       })
     }
   }
