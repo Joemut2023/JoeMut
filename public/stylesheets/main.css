@@ -1,5 +1,12 @@
+@import url("../variables.scss");
 body {
   background-color: red;
+}
+
+#bloc-footer {
+  width: 100%;
+  background-color: #a0b21f;
+  height: 400px;
 }
 
 /*# sourceMappingURL=main.css.map */
