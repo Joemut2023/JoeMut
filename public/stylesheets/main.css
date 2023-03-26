@@ -6,7 +6,76 @@ body {
 #bloc-footer {
   width: 100%;
   background-color: #a0b21f;
-  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 35px;
+}
+@media (max-width: 680px) {
+  #bloc-footer {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 1000px) {
+  #bloc-footer {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+#bloc-footer .logo-footer {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 680px) {
+  #bloc-footer .logo-footer {
+    display: none;
+  }
+}
+#bloc-footer .spoon-buttom {
+  width: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#bloc-footer .menu-footer {
+  width: 30%;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media (max-width: 1000px) {
+  #bloc-footer .menu-footer {
+    width: 50%;
+    padding: 20px 35px;
+  }
+}
+@media (max-width: 680px) {
+  #bloc-footer .menu-footer {
+    width: 90%;
+    padding: 20px 5px;
+  }
+}
+#bloc-footer .menu-footer a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 1rem;
+  font-weight: 300;
+}
+@media (max-width: 680px) {
+  #bloc-footer .menu-footer a {
+    font-size: 0.8rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
