@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       })
       Commande.hasMany(models.Frais_supp,{
         foreignKey:'com_id'
+      });
+      Commande.belongsTo(models.Client,{
+        foreignKey:'cli_id'
       })
     }
   }

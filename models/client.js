@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       Client.hasMany(models.Adresse, {
         foreignKey: "cli_id",
       });
+      Client.hasMany(models.Commande, {
+        foreignKey: "cli_id",
+      });
     }
   }
   Client.init(
