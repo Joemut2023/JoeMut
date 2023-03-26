@@ -50,6 +50,16 @@
   justify-content: center;
   align-items: center;
 }
+#bloc-footer .spoon-buttom .icon-chevron {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+}
+@media (max-width: 680px) {
+  #bloc-footer .spoon-buttom {
+    font-weight: 10px;
+  }
+}
 #bloc-footer .menu-footer {
   width: 30%;
   padding: 20px 10px;
@@ -65,7 +75,7 @@
 }
 @media (max-width: 680px) {
   #bloc-footer .menu-footer {
-    width: 90%;
+    width: 70%;
     padding: 20px 5px;
   }
 }

@@ -35,6 +35,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+     .icon-chevron{
+        color: $color-white;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    @include breakpoint(mobil){
+        font-weight: 10px;
+    }
   }
   .menu-footer{
     width: 30%;
@@ -47,7 +55,7 @@
         padding:20px 35px;
     }
     @include breakpoint(mobil){
-        width: 90%;
+        width:70%;
         padding:20px 5px;
     }
     a{
