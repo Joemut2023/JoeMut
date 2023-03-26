@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Type_media.hasMany(models.Media,{
+        foreignKey:"tym_id"
+      })
     }
   }
   Type_media.init(
