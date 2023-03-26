@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Suggestion.belongsTo(models.Client, {
         foreignKey: "cli_id",
       });
+      Suggestion.belongsTo(models.Produit, {
+        foreignKey: "prod_id",
+      });
     }
   }
   Suggestion.init(
@@ -21,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      prod_id: DataTypes.INTEGER,
+      pro_id: DataTypes.INTEGER,
       cli_id: DataTypes.INTEGER,
       sug_comment: DataTypes.INTEGER,
       sug_date: DataTypes.DATE,
