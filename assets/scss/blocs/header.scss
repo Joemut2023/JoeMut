@@ -1,3 +1,10 @@
+@import '../variables';
+
 #bloc-header{
-    
+    .navbar{
+        background-color: $color-white;
+    }
+    h1{
+        color: green;
+    }
 }

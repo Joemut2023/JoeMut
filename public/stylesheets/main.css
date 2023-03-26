@@ -1,6 +1,9 @@
 @import url("../variables.scss");
-body {
-  background-color: red;
+#bloc-header .navbar {
+  background-color: #fff;
+}
+#bloc-header h1 {
+  color: green;
 }
 
 #bloc-footer {
