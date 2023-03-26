@@ -9,18 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-<<<<<<< HEAD
       Tarif.hasMany(models.Panier,{
         foreignKey:'tar_id'
       });
       Tarif.belongsTo(models.Produit,{
         foreignKey: "pro_id"
       })
-=======
-      Tarif.hasMany(models.Panier, {
-        foreignKey: "tar_id",
-      });
->>>>>>> migration/client
     }
   }
   Tarif.init(

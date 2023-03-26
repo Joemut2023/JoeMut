@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-<<<<<<< HEAD
       Panier.belongsTo(models.Commande,{
         foreignKey:'com_id'
       })
@@ -19,14 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       Panier.belongsTo(models.Produit,{
         foreignKey: "pro_id",
       })
-=======
-      Panier.belongsTo(models.Commande, {
-        foreignKey: "com_id",
-      });
-      Panier.belongsTo(models.Tarif, {
-        foreignKey: "tar_id",
-      });
->>>>>>> migration/client
     }
   }
   Panier.init(
