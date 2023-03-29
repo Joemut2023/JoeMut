@@ -1,4 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,100&display=swap");
 @import url("../variables.scss");
+@font-face {
+  font-family: Byciclette;
+  src: url(fonts/Bicyclette-Black.woff);
+}
+@font-face {
+  font-family: BycicletteThin;
+  src: url(fonts/Bicyclette-Thin.woff);
+}
 #bloc-header .navbar {
   background-color: #fff;
 }
@@ -93,39 +102,70 @@
 
 #pages-home {
   margin-top: 130px;
-  /*    #carrousel-suggestions{
-         height: 200px;
-         border: solid red 1px;
-         .carousel-inner{
-             .carousel-item{
-                 img{
-                     height: 200px;
-                 }
-             }
-         }
-     } */
 }
 @media (max-width: 767px) {
-  #pages-home .carousel-inner .carousel-item > div {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item > div {
     display: none;
   }
-  #pages-home .carousel-inner .carousel-item > div:first-child {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item > div:first-child {
     display: block;
   }
 }
-#pages-home .carousel-inner .carousel-item.active, #pages-home .carousel-inner .carousel-item-next, #pages-home .carousel-inner .carousel-item-prev {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item.active,
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next,
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
   display: flex;
 }
 @media (min-width: 768px) {
-  #pages-home .carousel-inner .carousel-item-end.active, #pages-home .carousel-inner .carousel-item-next {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
-  #pages-home .carousel-inner .carousel-item-start.active, #pages-home .carousel-inner .carousel-item-prev {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
-#pages-home .carousel-inner .carousel-item-end, #pages-home .carousel-inner .carousel-item-start {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-end,
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-start {
   transform: translateX(0);
+}
+#pages-home .element-slider-suggestion .font-weight-light {
+  margin-bottom: 20px;
+  font-family: "Byciclette";
+}
+#pages-home .element-slider-suggestion #suggestion-carousel {
+  margin-bottom: 1.5rem;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item {
+  height: 400px;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-img {
+  margin-bottom: 1.563rem;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  font-family: "Poppins";
+  font-size: 0.875rem;
+  text-align: center;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price {
+  max-width: max-content;
+  font-weight: 800;
+  position: relative;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price::after {
+  content: "";
+  height: 10px;
+  width: 5px;
+  border-right: solid 5px green;
+  position: absolute;
+  right: -10px;
+  top: 5px;
 }
 
 /*# sourceMappingURL=main.css.map */
