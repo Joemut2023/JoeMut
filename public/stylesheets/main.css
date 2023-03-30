@@ -800,4 +800,84 @@
   margin-bottom: 50px;
 }
 
+#page-creation {
+  padding: 6% 8%;
+}
+#page-creation .breadcrumb-link {
+  text-decoration: none;
+  color: #232323;
+}
+#page-creation .page-creation-content {
+  padding: 3% 3% 1% 3%;
+  color: #7a7a7a;
+  font-weight: 300;
+}
+#page-creation .page-creation-content :nth-child(1) {
+  font-weight: 500;
+}
+#page-creation .page-creation-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30%;
+  padding-bottom: 2%;
+}
+@media (max-width: 680px) {
+  #page-creation .page-creation-button {
+    flex-direction: column;
+  }
+}
+@media (max-width: 680px) {
+  #page-creation .page-creation-button .btn1 {
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+#page-creation .page-creation-button button {
+  background-color: #61ce70;
+  color: #fff;
+}
+@media (max-width: 680px) {
+  #page-creation .page-creation-button {
+    width: 60%;
+    margin: auto;
+  }
+}
+#page-creation .etape-creation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2%;
+  gap: 4%;
+}
+@media (max-width: 680px) {
+  #page-creation .etape-creation {
+    flex-direction: column;
+  }
+}
+#page-creation .etape-creation .etape-creation-content {
+  text-align: center;
+  width: 22%;
+}
+@media (max-width: 680px) {
+  #page-creation .etape-creation .etape-creation-content {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+#page-creation .etape-creation .etape-creation-content .etape-img {
+  width: 40%;
+}
+#page-creation .etape-creation .etape-creation-content h6 {
+  color: #a0b21f;
+  padding-top: 4%;
+}
+#page-creation .etape-creation .etape-creation-content p {
+  font-size: 0.8rem;
+  color: #7a7a7a;
+}
+
 /*# sourceMappingURL=main.css.map */
