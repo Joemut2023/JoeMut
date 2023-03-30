@@ -453,5 +453,40 @@
   display: block;
   float: right;
 }
+#pages-home .section-newsletters {
+  background-color: #a0b21f;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 40px 10px 40px 10px;
+}
+#pages-home .section-newsletters .text {
+  color: #fff;
+  width: 40%;
+}
+#pages-home .section-newsletters .text p {
+  font-size: 1.5rem;
+}
+#pages-home .section-newsletters .form {
+  width: 60%;
+}
+#pages-home .section-newsletters .form .input {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 20px;
+}
+#pages-home .section-newsletters .form .input input {
+  outline: none;
+  border: none;
+  width: 80%;
+  border-bottom: solid 1px #fff;
+  background-color: #a0b21f;
+  color: #fff;
+}
 
 /*# sourceMappingURL=main.css.map */
