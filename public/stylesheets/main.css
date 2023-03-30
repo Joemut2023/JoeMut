@@ -190,7 +190,7 @@
   border: 0;
   outline: 0;
   padding-left: 4%;
-  width: 70%;
+  width: 60%;
 }
 #headerSticky .second-search-div .search-input::placeholder {
   font-weight: 200;
@@ -213,6 +213,7 @@
   margin: 2% 0;
   gap: 2%;
   justify-content: center;
+  box-shadow: 4px 4px #ece9e9;
 }
 @media (max-width: 680px) {
   #details-infos {
@@ -241,6 +242,31 @@
 .nav-link:hover {
   color: #a0b21f;
   border-top: 1px solid #a0b21f;
+}
+
+.dropdown-main-content {
+  display: none;
+  position: absolute;
+  width: auto;
+  background-color: #fff;
+}
+.dropdown-main-content .dropdown-main-content {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+}
+.dropdown-main-content .dropdown-main-content .dropdown-content-title {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+.dropdown-main-content .dropdown-main-content .dropdown-content {
+  display: flex;
+  width: auto;
+}
+
+.dropdown:hover .dropdown-main-content {
+  display: flex;
 }
 
 /*# sourceMappingURL=main.css.map */

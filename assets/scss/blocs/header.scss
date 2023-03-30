@@ -202,7 +202,7 @@
             border: 0;
             outline: 0;
             padding-left: 4%;
-            width: 70%;
+            width: 60%;
         }
 
         .search-input::placeholder {
@@ -229,6 +229,7 @@
     margin: 2% 0;
     gap: 2%;
     justify-content: center;
+    box-shadow: 4px 4px #ece9e9;
 
     @include breakpoint(mobil) {
         gap: 1%;
@@ -258,4 +259,30 @@
 .nav-link:hover {
     color: $color-primary;
     border-top: 1px solid $color-primary;
+}
+
+.dropdown-main-content {
+    display: none;
+    position: absolute;
+    width: auto;
+    background-color: $color-white;
+
+    .dropdown-main-content {
+        display: flex;
+        flex-direction: row;
+        width: max-content;
+        .dropdown-content-title {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+        }
+        .dropdown-content{
+            display: flex;
+            width: auto;
+        }
+    }
+}
+
+.dropdown:hover .dropdown-main-content {
+    display: flex;
 }
