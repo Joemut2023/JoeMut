@@ -726,12 +726,22 @@
   align-content: center;
   padding: 40px 10px 40px 10px;
 }
+@media (max-width: 680px) {
+  #pages-home .section-newsletters {
+    flex-direction: column;
+  }
+}
 #pages-home .section-newsletters .text {
   color: #fff;
   width: 40%;
 }
 #pages-home .section-newsletters .text p {
   font-size: 1.5rem;
+}
+@media (max-width: 680px) {
+  #pages-home .section-newsletters .text {
+    width: 100%;
+  }
 }
 #pages-home .section-newsletters .form {
   width: 60%;
@@ -741,6 +751,8 @@
   display: flex;
   flex-direction: row;
   justify-content: end;
+  align-items: center;
+  align-content: center;
   gap: 20px;
 }
 #pages-home .section-newsletters .form .input input {
@@ -750,6 +762,42 @@
   border-bottom: solid 1px #fff;
   background-color: #a0b21f;
   color: #fff;
+}
+#pages-home .section-newsletters .form .input button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+@media (max-width: 680px) {
+  #pages-home .section-newsletters .form {
+    width: 100%;
+  }
+}
+#pages-home .section-testimonials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+#pages-home .section-testimonials h1 {
+  font-family: "Byciclette";
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 29px;
+  padding-bottom: 20px;
+}
+#pages-home .section-testimonials .actions {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+#pages-home .section-contact {
+  margin-bottom: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */

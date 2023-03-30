@@ -352,11 +352,17 @@
     align-items: center;
     align-content: center;
     padding: 40px 10px 40px 10px;
+    @include breakpoint(mobil){
+        flex-direction: column;
+    }
     .text{
         color: $color-white;
         width: 40%;
         p{
             font-size: 1.5rem;
+        }
+        @include breakpoint(mobil){
+            width: 100%;
         }
     }
     .form{
@@ -366,6 +372,8 @@
             display: flex;
             flex-direction: row;
             justify-content: end;
+            align-items: center;
+            align-content: center;
             gap: 20px;
             input{
                 outline: none;
@@ -375,7 +383,41 @@
                 background-color: $color-primary;
                 color: $color-white;
             }
+            button{
+                background-color: transparent;
+                border: none;
+                color: $color-white;
+                outline: none;
+            }
+        }
+        @include breakpoint(mobil){
+            width: 100%;
         }
     }
+  }
+  .section-testimonials{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    h1{
+        font-family: 'Byciclette';
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 29px;
+        padding-bottom: 20px;
+    }
+    .actions{
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+  }
+  .section-contact{
+    margin-bottom: 50px;
   }
 }
