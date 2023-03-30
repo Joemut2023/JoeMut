@@ -6,6 +6,7 @@ var logger = require('morgan');
 const ejsLayout = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var creationRouter = require('./routes/creation')
 var app = express();
 require("./config/db").sync();
 // view engine setup
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/creation',creationRouter);
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
