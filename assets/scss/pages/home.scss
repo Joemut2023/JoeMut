@@ -172,4 +172,94 @@
     }
     
   }
+  .section-cta{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    h1{
+        font-family: 'Byciclette';
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: center;
+        font-size: 29px;
+        padding-bottom: 15px;
+    }
+    .cta-items{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3%;
+        .cta-item{
+            position: relative;
+            width: 30%;
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 300ms;
+            margin-bottom: 20px;
+            @include breakpoint(mobil){
+                width: 100%;
+            }
+            &:hover{
+                .cta-item-img{
+                    transform: scale(1.3);
+                }
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+                background-color: rgba(0, 0, 0, 0.372);
+                z-index: 2;
+            }
+            .cta-item-img{
+                position: absolute;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+                z-index: 1;
+                transition: all 500ms;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+
+            }
+            .cta-item-content{
+                height: max-content;
+                width: 100%;
+                position: absolute;
+                z-index: 3;
+                top: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .cta-item-content-title{
+                    color: $color-white;
+                    font-size: 1.2em;
+                    width: max-content;
+                    margin-bottom: 10px;
+                    font-weight: 600;
+                    font-family: 'Byciclette';
+                }
+                .cta-item-btn{
+                    background-color: $color-primary;
+                    display: block;
+                    color: $color-white;
+                    padding: 10px;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-family: 'Cardo';
+                }
+            }
+        }
+    }
+  }
 }
