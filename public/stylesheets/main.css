@@ -27,6 +27,10 @@
     display: none;
   }
 }
+#bloc-header .top-bar .link-content a {
+  text-decoration: none;
+  color: #232323;
+}
 #bloc-header .top-bar .social-link {
   gap: 1rem;
 }
@@ -144,6 +148,10 @@
     width: 25%;
   }
 }
+#bloc-header .nav-main-content .user-div a {
+  text-decoration: none;
+  color: #232323;
+}
 
 #headerSticky {
   position: sticky;
@@ -186,6 +194,53 @@
 }
 #headerSticky .second-search-div .search-input::placeholder {
   font-weight: 200;
+}
+
+#header-banner {
+  width: 100%;
+  height: auto;
+}
+#header-banner #barner-img {
+  position: relative;
+  width: 30%;
+  max-height: 100%;
+}
+
+#details-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2% 0;
+  gap: 2%;
+  justify-content: center;
+}
+@media (max-width: 680px) {
+  #details-infos {
+    gap: 1%;
+  }
+}
+#details-infos .infos-content {
+  width: 18%;
+  text-align: center;
+}
+@media (max-width: 680px) {
+  #details-infos .infos-content {
+    width: 48%;
+  }
+}
+#details-infos .infos-content h6 {
+  color: #a0b21f;
+  margin: 2% 0;
+  font-size: 0.9rem;
+}
+#details-infos .infos-content p {
+  font-weight: 400;
+  color: #7a7a7a;
+}
+
+.nav-link:hover {
+  color: #a0b21f;
+  border-top: 1px solid #a0b21f;
 }
 
 /*# sourceMappingURL=main.css.map */

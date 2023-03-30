@@ -3,7 +3,6 @@
 var topBar = document.querySelector(".top-bar");
 var sentinal = document.querySelector(".sentinal");
 var headerSticky = document.querySelector("#headerSticky");
-console.log(headerSticky);
 var handler = function handler(entries) {
   if (!entries[0].isIntersecting) {
     headerSticky.style.display = "block";
