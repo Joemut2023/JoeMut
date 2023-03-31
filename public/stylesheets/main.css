@@ -880,4 +880,76 @@
   color: #7a7a7a;
 }
 
+#page-contact {
+  padding: 6% 9%;
+}
+#page-contact .breadcrumb-link {
+  text-decoration: none;
+  color: #232323;
+}
+#page-contact .page-contact-content {
+  display: flex;
+  flex-direction: row;
+  padding: 3%;
+}
+#page-contact .page-contact-content .page-contact-informations {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+#page-contact .page-contact-content .page-contact-informations .adresse-infos,
+#page-contact .page-contact-content .page-contact-informations .mail-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10%;
+}
+#page-contact .page-contact-content .page-contact-informations .adresse-infos p,
+#page-contact .page-contact-content .page-contact-informations .mail-infos p {
+  width: 60%;
+  font-weight: 300;
+}
+#page-contact .page-contact-content .page-contact-informations .adresse-infos .fa-location-dot,
+#page-contact .page-contact-content .page-contact-informations .adresse-infos .fa-envelope,
+#page-contact .page-contact-content .page-contact-informations .mail-infos .fa-location-dot,
+#page-contact .page-contact-content .page-contact-informations .mail-infos .fa-envelope {
+  color: #a0b21f;
+}
+#page-contact .page-contact-content .page-contact-informations .mail-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5%;
+  overflow-wrap: break-word;
+}
+#page-contact .page-contact-content .page-contact-informations .mail-infos a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous {
+  width: 75%;
+  padding: 0 7%;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous .form-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 5%;
+  padding-top: 3%;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous .form-label {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 30%;
+  gap: 15%;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous .form-input {
+  border: solid red;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  gap: 10%;
+}
+
 /*# sourceMappingURL=main.css.map */
