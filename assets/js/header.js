@@ -13,6 +13,7 @@ const handler = (entries) => {
   }
 };
 
+
 // create the observer
 const observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
