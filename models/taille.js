@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       Taille.hasMany(models.Coloris, {
         foreignKey: "tai_id",
       });
+      Taille.hasMany(models.Mouvement, {
+        foreignKey: "tai_id",
+      });
     }
   }
   Taille.init(
