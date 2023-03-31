@@ -1,9 +1,14 @@
 #page-contact {
     padding: 6% 9%;
 
+    @include breakpoint(mobil) {
+        padding: 2%;
+    }
+
     .breadcrumb-link {
         text-decoration: none;
         color: $color-black;
+
     }
 
     .page-contact-content {
@@ -11,10 +16,21 @@
         flex-direction: row;
         padding: 3%;
 
+        @include breakpoint(mobil) {
+            flex-direction: column;
+            padding: 0;
+        }
+
         .page-contact-informations {
             display: flex;
             flex-direction: column;
             width: 25%;
+
+            @include breakpoint(mobil) {
+                flex-direction: column;
+                width: 100%;
+                padding: 2%;
+            }
 
             .adresse-infos,
             .mail-infos {
@@ -55,6 +71,10 @@
             width: 75%;
             padding: 0 7%;
 
+            @include breakpoint(mobil) {
+                width: 100%;
+                padding: 2%;
+            }
 
             form {
                 .form-content {
@@ -71,6 +91,11 @@
                     align-items: end;
                     width: 20%;
                     gap: 17%;
+
+                    @include breakpoint(mobil) {
+                        align-items: flex-start;
+                        gap: 12%;
+                    }
                 }
 
                 .form-input {
@@ -86,14 +111,15 @@
                         width: 80%;
                     }
                 }
-                button{
-                   width: 20%;
-                   border: 0.3px solid $color-primary;
-                   background-color: $color-primary;
-                   color: $color-white;
-                   padding: 1%;
-                   margin: 3% ;
-                   float: right;
+
+                button {
+                    width: 20%;
+                    border: 0.3px solid $color-primary;
+                    background-color: $color-primary;
+                    color: $color-white;
+                    padding: 1%;
+                    margin: 3%;
+                    float: right;
                 }
             }
 
