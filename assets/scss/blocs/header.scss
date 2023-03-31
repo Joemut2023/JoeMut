@@ -42,6 +42,11 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+
+            .fa-facebook,
+            .fa-instagram {
+                color: $color-white;
+            }
         }
 
         p {
@@ -180,6 +185,14 @@
         @include breakpoint(mobil) {
             width: 10%;
         }
+
+        .btn-canva {
+            display: none;
+
+            @include breakpoint(mobil) {
+               display: block;
+            }
+        }
     }
 
     .second-search-div {
@@ -187,14 +200,15 @@
 
         @include breakpoint(mobil) {
             width: 50%;
-            padding-top: 4%;
+            padding-top: 2%;
+            padding-left: 20%;
         }
 
         .second-glass {
             color: $color-primary;
 
             @include breakpoint(mobil) {
-                padding-top: 4.3%;
+                padding-top: 5%;
             }
         }
 
@@ -203,6 +217,10 @@
             outline: 0;
             padding-left: 4%;
             width: 60%;
+
+            @include breakpoint(mobil) {
+                width: 90%;
+            }
         }
 
         .search-input::placeholder {
@@ -271,12 +289,14 @@
         display: flex;
         flex-direction: row;
         width: max-content;
+
         .dropdown-content-title {
             display: flex;
             flex-direction: row;
             width: auto;
         }
-        .dropdown-content{
+
+        .dropdown-content {
             display: flex;
             width: auto;
         }
