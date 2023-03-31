@@ -921,6 +921,11 @@
 #page-contact {
   padding: 6% 9%;
 }
+@media (max-width: 680px) {
+  #page-contact {
+    padding: 2%;
+  }
+}
 #page-contact .breadcrumb-link {
   text-decoration: none;
   color: #232323;
@@ -930,10 +935,23 @@
   flex-direction: row;
   padding: 3%;
 }
+@media (max-width: 680px) {
+  #page-contact .page-contact-content {
+    flex-direction: column;
+    padding: 0;
+  }
+}
 #page-contact .page-contact-content .page-contact-informations {
   display: flex;
   flex-direction: column;
   width: 25%;
+}
+@media (max-width: 680px) {
+  #page-contact .page-contact-content .page-contact-informations {
+    flex-direction: column;
+    width: 100%;
+    padding: 2%;
+  }
 }
 #page-contact .page-contact-content .page-contact-informations .adresse-infos,
 #page-contact .page-contact-content .page-contact-informations .mail-infos {
@@ -968,26 +986,52 @@
   width: 75%;
   padding: 0 7%;
 }
-#page-contact .page-contact-content .page-contact-contactez-nous .form-content {
+@media (max-width: 680px) {
+  #page-contact .page-contact-content .page-contact-contactez-nous {
+    width: 100%;
+    padding: 2%;
+  }
+}
+#page-contact .page-contact-content .page-contact-contactez-nous form .form-content {
   display: flex;
   flex-direction: row;
   width: 100%;
   gap: 5%;
   padding-top: 3%;
 }
-#page-contact .page-contact-content .page-contact-contactez-nous .form-label {
+#page-contact .page-contact-content .page-contact-contactez-nous form .form-label {
   display: flex;
   flex-direction: column;
   align-items: end;
-  width: 30%;
-  gap: 15%;
+  width: 20%;
+  gap: 17%;
 }
-#page-contact .page-contact-content .page-contact-contactez-nous .form-input {
-  border: solid red;
+@media (max-width: 680px) {
+  #page-contact .page-contact-content .page-contact-contactez-nous form .form-label {
+    align-items: flex-start;
+    gap: 12%;
+  }
+}
+#page-contact .page-contact-content .page-contact-contactez-nous form .form-input {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 75%;
   gap: 10%;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous form .form-input input,
+#page-contact .page-contact-content .page-contact-contactez-nous form .form-input textarea {
+  border: 0.3px solid #a0b21f;
+  padding: 2%;
+  width: 80%;
+}
+#page-contact .page-contact-content .page-contact-contactez-nous form button {
+  width: 20%;
+  border: 0.3px solid #a0b21f;
+  background-color: #a0b21f;
+  color: #fff;
+  padding: 1%;
+  margin: 3%;
+  float: right;
 }
 
 #pages-catalogue {

@@ -1,9 +1,14 @@
 #page-contact {
     padding: 6% 9%;
 
+    @include breakpoint(mobil) {
+        padding: 2%;
+    }
+
     .breadcrumb-link {
         text-decoration: none;
         color: $color-black;
+
     }
 
     .page-contact-content {
@@ -11,10 +16,21 @@
         flex-direction: row;
         padding: 3%;
 
+        @include breakpoint(mobil) {
+            flex-direction: column;
+            padding: 0;
+        }
+
         .page-contact-informations {
             display: flex;
             flex-direction: column;
             width: 25%;
+
+            @include breakpoint(mobil) {
+                flex-direction: column;
+                width: 100%;
+                padding: 2%;
+            }
 
             .adresse-infos,
             .mail-infos {
@@ -55,32 +71,59 @@
             width: 75%;
             padding: 0 7%;
 
-
-            form {}
-
-            .form-content {
-                display: flex;
-                flex-direction: row;
+            @include breakpoint(mobil) {
                 width: 100%;
-                gap: 5%;
-                padding-top: 3%;
+                padding: 2%;
             }
 
-            .form-label {
-                display: flex;
-                flex-direction: column;
-                align-items: end;
-                width: 30%;
-                gap: 15%;
+            form {
+                .form-content {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    gap: 5%;
+                    padding-top: 3%;
+                }
+
+                .form-label {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    width: 20%;
+                    gap: 17%;
+
+                    @include breakpoint(mobil) {
+                        align-items: flex-start;
+                        gap: 12%;
+                    }
+                }
+
+                .form-input {
+                    display: flex;
+                    flex-direction: column;
+                    width: 75%;
+                    gap: 10%;
+
+                    input,
+                    textarea {
+                        border: 0.3px solid $color-primary;
+                        padding: 2%;
+                        width: 80%;
+                    }
+                }
+
+                button {
+                    width: 20%;
+                    border: 0.3px solid $color-primary;
+                    background-color: $color-primary;
+                    color: $color-white;
+                    padding: 1%;
+                    margin: 3%;
+                    float: right;
+                }
             }
-            
-            .form-input {
-                border: solid red;
-                display: flex;
-                flex-direction: column;
-                width: 65%;
-                gap: 10%;
-            }
+
+
         }
     }
 }
