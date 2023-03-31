@@ -1048,7 +1048,7 @@
 #page-contact .page-contact-content .page-contact-contactez-nous form .form-input textarea {
   border: 0.3px solid #a0b21f;
   padding: 2%;
-  width: 80%;
+  width: 100%;
 }
 #page-contact .page-contact-content .page-contact-contactez-nous form button {
   width: 20%;
@@ -1056,7 +1056,7 @@
   background-color: #a0b21f;
   color: #fff;
   padding: 1%;
-  margin: 3%;
+  margin: 3% 0;
   float: right;
 }
 
