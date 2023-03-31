@@ -50,6 +50,10 @@
     margin-right: auto;
   }
 }
+#bloc-header .top-bar .social-link .fa-facebook,
+#bloc-header .top-bar .social-link .fa-instagram {
+  color: #fff;
+}
 #bloc-header .top-bar p {
   color: #fff;
 }

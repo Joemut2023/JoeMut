@@ -42,6 +42,11 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+
+            .fa-facebook,
+            .fa-instagram {
+                color: $color-white;
+            }
         }
 
         p {
@@ -271,12 +276,14 @@
         display: flex;
         flex-direction: row;
         width: max-content;
+
         .dropdown-content-title {
             display: flex;
             flex-direction: row;
             width: auto;
         }
-        .dropdown-content{
+
+        .dropdown-content {
             display: flex;
             width: auto;
         }
