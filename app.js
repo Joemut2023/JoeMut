@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-app.use('/',catalogueRouter)
+app.use('/catalogue',catalogueRouter)
 
 
 
