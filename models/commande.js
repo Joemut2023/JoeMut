@@ -9,24 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Commande.hasMany(models.Panier, {
-        foreignKey: "com_id",
-      });
-      Commande.hasMany(models.Essayage, {
-        foreignKey: "com_id",
-      });
-      Commande.belongsTo(models.Frais_port, {
-        foreignKey: "frp_id",
-      });
-      Commande.hasMany(models.Frais_supp, {
-        foreignKey: "com_id",
-      });
       Commande.hasMany(models.Mouvement, {
         foreignKey: "com_id",
       });
-      Commande.belongsTo(models.Client, {
-        foreignKey: "cli_id",
+      Commande.hasMany(models.Essayage,{
+        foreignKey:'com_id'
+      })
+      Commande.belongsTo(models.Frais_port,{
+        foreignKey:'frp_id'
+      })
+      Commande.hasMany(models.Frais_supp,{
+        foreignKey:'com_id'
       });
+      Commande.belongsTo(models.Client,{
+        foreignKey:'cli_id'
+      })
+      Commande.belongsTo(models.Panier,{
+        foreignKey:'pan_id'
+      })
+
     }
   }
   Commande.init(

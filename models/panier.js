@@ -9,11 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Panier.belongsTo(models.Commande,{
-        foreignKey:'com_id'
+      Panier.hasMany(models.Panier_detail,{
+        foreignKey:"pan_id"
       })
-      Panier.belongsTo(models.Tarif,{
-        foreignKey:'tar_id'
+      Panier.hasMany(models.Commande,{
+        foreignKey:"pan_id"
+      })
+      Panier.belongsTo(models.Client,{
+        foreignKey:'cli_id'
       });
       Panier.belongsTo(models.Produit,{
         foreignKey: "pro_id",
@@ -27,12 +30,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      pro_id: DataTypes.INTEGER,
-      com_id: DataTypes.INTEGER,
-      tar_id: DataTypes.INTEGER,
-      pan_qte: DataTypes.INTEGER,
-      pan_ht: DataTypes.DECIMAL,
-      pan_remise: DataTypes.DECIMAL,
+      pan_date: DataTypes.Date,
+      cli_id: DataTypes.INTEGER,
     },
     {
       sequelize,

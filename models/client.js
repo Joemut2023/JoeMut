@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       });
       Client.hasMany(models.Temoignage,{
         foreignKey:'cli_id'
+      });
+      Client.hasMany(models.Panier_detail,{
+        foreignKey: "cli_id",
       })
     }
   }
