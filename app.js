@@ -10,6 +10,7 @@ var logger = require('morgan');
 const ejsLayout = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
 var catalogueRouter = require('./routes/catalogue')
+var promotionRouter = require('./routes/promotion')
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -32,6 +33,7 @@ app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
 app.use('/catalogue',catalogueRouter)
+app.use('/promotion',promotionRouter)
 
 
 
