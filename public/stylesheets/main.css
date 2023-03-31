@@ -837,6 +837,14 @@
 #pages-home .section-contact {
   margin-bottom: 50px;
 }
+#pages-home .section-contact h1 {
+  font-family: "Byciclette";
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  font-size: 29px;
+  padding-bottom: 15px;
+}
 
 #page-creation {
   padding: 6% 8%;
@@ -1457,6 +1465,10 @@
   #pages-catalogue .catalogue .cat-pagination .pagination .page-item a {
     text-align: center;
   }
+}
+
+#page-promotion {
+  background-color: #a0b21f;
 }
 
 /*# sourceMappingURL=main.css.map */
