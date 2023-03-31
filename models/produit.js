@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       Produit.hasMany(models.Tarifs, {
         foreignKey: "pro_id",
       });
+      Produit.hasMany(models.Mouvement, {
+        foreignKey: "pro_id",
+      });
     }
   }
   Produit.init(
