@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Temoignage.belongsTo(models.Client,{
+        foreignKey:'cli_id'
+      })
     }
   }
   Temoignage.init({
