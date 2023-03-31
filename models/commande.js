@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       Commande.belongsTo(models.Client,{
         foreignKey:'cli_id'
       })
+      Commande.belongsTo(models.Panier,{
+        foreignKey:'pan_id'
+      })
     }
   }
   Commande.init({
@@ -32,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     frp_id: DataTypes.INTEGER,
     cli_id: DataTypes.INTEGER,
+    pan_id: DataTypes.INTEGER,
     com_num: DataTypes.STRING,
     com_date: DataTypes.DATE,
     com_debut_spectacle: DataTypes.DATEONLY,

@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Panier.hasMany(models.Panier_detail,{
         foreignKey:"pan_id"
       })
+      Panier.hasMany(models.Commande,{
+        foreignKey:"pan_id"
+      })
       Panier.belongsTo(models.Client,{
         foreignKey:'cli_id'
       });
