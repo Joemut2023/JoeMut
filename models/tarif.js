@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Tarif.hasMany(models.Panier,{
+      Tarif.hasMany(models.Panier_detail,{
         foreignKey:'tar_id'
       });
       Tarif.belongsTo(models.Produit,{

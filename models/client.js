@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       Client.hasMany(models.Commande, {
         foreignKey: "cli_id",
       });
+      Client.hasMany(models.Panier_detail,{
+        foreignKey: "cli_id",
+      })
     }
   }
   Client.init(

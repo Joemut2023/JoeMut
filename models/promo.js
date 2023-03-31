@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Promo.hasMany(models.Apply,{
         foreignKey:"prm_id"
       })
+      Promo.hasMany(models.Panier_detail,{
+        foreignKey:"prm_id"
+      })
     }
   }
   Promo.init(
