@@ -44,5 +44,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps:false
     }
   );
-  return Panier - detail;
+  return Panier_detail;
 };

@@ -30,7 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      pan_date: DataTypes.Date,
+      pan_date: {
+        type:DataTypes.DATE
+      },
       cli_id: DataTypes.INTEGER,
     },
     {

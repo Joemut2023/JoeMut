@@ -12,9 +12,20 @@ var catalogueRouter = require('./routes/catalogue')
 var promotionRouter = require('./routes/promotion')
 var newCollectionRouter = require('./routes/nouvelleCollection')
 var usersRouter = require('./routes/users');
+const AdminJS = require('adminjs')
+const AdminJSExpress = require('@adminjs/express')
+const AdminJSSequelize = require('@adminjs/sequelize')
+const {db}= require("./models");
 
 var app = express();
 require("./config/db").sync();
+//AdminJS.registerAdapter(AdminJSSequelize)
+const admin = new AdminJS({
+   databases: [db],
+  //resource:[Categorie]
+})
+const adminRouter = AdminJSExpress.buildRouter(admin);
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -26,9 +37,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(admin.options.rootPath, adminRouter)
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);

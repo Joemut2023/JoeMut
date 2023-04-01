@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Coloris.belongsTo(models.Product, {
+      Coloris.belongsTo(models.Produit, {
         foreignKey: "pro_id",
       });
       Coloris.belongsTo(models.Taille, {
