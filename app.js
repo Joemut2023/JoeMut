@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var catalogueRouter = require('./routes/catalogue');
 var promotionRouter = require('./routes/promotion');
 var rechercheRouter = require('./routes/recherche');
+var panierRouter = require('./routes/panier')
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
 var connexionUser = require('./routes/connexion')
@@ -65,7 +66,7 @@ app.use('/recherche', rechercheRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
 app.use('/connexion', connexionUser)
-
+app.use('/panier',panierRouter)
 
 
 // catch 404 and forward to error handler
