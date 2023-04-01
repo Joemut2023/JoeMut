@@ -62,7 +62,9 @@ app.use("/contact", contactRouter);
 app.use('/catalogue',catalogueRouter)
 app.use('/promotion',promotionRouter)
 app.use('/recherche', rechercheRouter)
-app.use('/nouvelleCollection', nouvelleCollectionRouter)
+app.use('/nouvelleCollection', nouvelleCollectionRouter);
+app.use('/mon-compte', usersRouter);
+
 
 
 // catch 404 and forward to error handler
