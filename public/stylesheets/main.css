@@ -223,6 +223,27 @@
 #headerSticky .second-search-div .search-input::placeholder {
   font-weight: 200;
 }
+#headerSticky .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+#headerSticky .dropdown:hover .dropdown-main-content {
+  display: flex;
+}
+#headerSticky .menu-title {
+  display: flex;
+  width: max-content;
+  height: max-content;
+  border: none;
+}
+#headerSticky .title-catalogue {
+  margin: 5px;
+  padding: 10px;
+}
+#headerSticky .title-catalogue > ul > li {
+  padding: 7px;
+  margin-left: -10px;
+  cursor: pointer;
+}
 
 #header-banner {
   width: 100%;

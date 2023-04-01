@@ -180,6 +180,30 @@
             font-weight: 200;
         }
     }
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+    .dropdown:hover .dropdown-main-content {
+        display: flex;
+    }
+    // .dropdown-parents {
+    //     left: -200;
+    // }
+    .menu-title {
+        display: flex;
+        width: max-content;
+        height: max-content;
+        border: none;
+    }
+    .title-catalogue {
+        margin: 5px;
+        padding: 10px;
+    }
+    .title-catalogue>ul>li {
+        padding: 7px;
+        margin-left: -10px;
+        cursor: pointer;
+    }
 }
 
 #header-banner {
