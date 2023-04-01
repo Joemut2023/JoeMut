@@ -1,0 +1,44 @@
+#identite {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10% 0 5% 0;
+
+    form {
+        padding: 3%;
+        border: 0.3px solid $color-primary;
+
+        .row-form {
+            display: flex;
+            flex-direction: row;
+            gap: 5%;
+            margin: 2% 0;
+            input{
+                border: 0.3px solid $color-primary;
+                padding: 1%;
+            }
+            .col-label {
+                width: 20%;
+                text-align: end;
+            }
+
+            .col-input {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            }
+            .checkbox-label{
+                display: flex;
+                width: 50%;
+                gap:3%;
+                input{
+                    padding-top: 10px;
+                }
+                label{
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}

@@ -2527,4 +2527,45 @@
   padding-top: 20px;
 }
 
+#identite {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10% 0 5% 0;
+}
+#identite form {
+  padding: 3%;
+  border: 0.3px solid #a0b21f;
+}
+#identite form .row-form {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin: 2% 0;
+}
+#identite form .row-form input {
+  border: 0.3px solid #a0b21f;
+  padding: 1%;
+}
+#identite form .row-form .col-label {
+  width: 20%;
+  text-align: end;
+}
+#identite form .row-form .col-input {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+#identite form .row-form .checkbox-label {
+  display: flex;
+  width: 50%;
+  gap: 3%;
+}
+#identite form .row-form .checkbox-label input {
+  padding-top: 10px;
+}
+#identite form .row-form .checkbox-label label {
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */
