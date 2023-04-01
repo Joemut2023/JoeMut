@@ -35,6 +35,7 @@ app.use("/contact", contactRouter);
 app.use('/catalogue', catalogueRouter)
 app.use('/promotion', promotionRouter)
 app.use('/nouvelleCollection', newCollectionRouter)
+app.use('/mon-compte', usersRouter)
 
 
 
