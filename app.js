@@ -12,6 +12,7 @@ var catalogueRouter = require('./routes/catalogue')
 var promotionRouter = require('./routes/promotion')
 var newCollectionRouter = require('./routes/nouvelleCollection')
 var usersRouter = require('./routes/users');
+var connexionUser = require('./routes/connexion')
 
 var app = express();
 require("./config/db").sync();
@@ -36,6 +37,7 @@ app.use('/catalogue', catalogueRouter)
 app.use('/promotion', promotionRouter)
 app.use('/nouvelleCollection', newCollectionRouter)
 app.use('/mon-compte', usersRouter)
+app.use('/connexion', connexionUser)
 
 
 
