@@ -12,6 +12,7 @@
   "dependencies": {
     "@adminjs/express": "^5.1.0",
     "@adminjs/sequelize": "^3.0.0",
+    "adminjs": "^6.8.7",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",

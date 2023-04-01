@@ -15,14 +15,25 @@ var usersRouter = require('./routes/users');
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
-const {db}= require("./models");
-
+const {Categorie}= require("./models");
+const db = require("./models");
 var app = express();
 require("./config/db").sync();
-//AdminJS.registerAdapter(AdminJSSequelize)
+
+AdminJS.registerAdapter({
+    Resource: AdminJSSequelize.Resource,
+    Database: AdminJSSequelize.Database,
+});
+
 const admin = new AdminJS({
    databases: [db],
-  //resource:[Categorie]
+   //resources:[Categorie]
+   branding: {
+    companyName: "AES",
+    withMadeWithLove:false,
+    logo: "/images/logo.png",
+    favicon:"/images/favicon.ico"
+  }
 })
 const adminRouter = AdminJSExpress.buildRouter(admin);
 
