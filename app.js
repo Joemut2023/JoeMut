@@ -11,6 +11,7 @@ const ejsLayout = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
 var catalogueRouter = require('./routes/catalogue')
 var promotionRouter = require('./routes/promotion')
+var rechercheRouter = require('./routes/recherche')
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -34,7 +35,7 @@ app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
 app.use('/catalogue',catalogueRouter)
 app.use('/promotion',promotionRouter)
-
+app.use('/recherche', rechercheRouter)
 
 
 // catch 404 and forward to error handler
