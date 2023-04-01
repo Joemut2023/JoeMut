@@ -1,130 +1,123 @@
 #page-contact {
-    padding: 6% 9%;
+  padding: 6% 9%;
+
+  @include breakpoint(mobil) {
+    padding: 2%;
+  }
+
+  .breadcrumb-link {
+    text-decoration: none;
+    color: $color-black;
+  }
+
+  .page-contact-content {
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
 
     @include breakpoint(mobil) {
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .page-contact-informations {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+
+      @include breakpoint(mobil) {
+        flex-direction: column;
+        width: 100%;
         padding: 2%;
-    }
+      }
 
-    .breadcrumb-link {
-        text-decoration: none;
-        color: $color-black;
-
-    }
-
-    .page-contact-content {
+      .adresse-infos,
+      .mail-infos {
         display: flex;
         flex-direction: row;
-        padding: 3%;
+        flex-wrap: wrap;
+        gap: 10%;
 
-        @include breakpoint(mobil) {
-            flex-direction: column;
-            padding: 0;
+        p {
+          width: 60%;
+          font-weight: 300;
         }
 
-        .page-contact-informations {
-            display: flex;
-            flex-direction: column;
-            width: 25%;
-
-            @include breakpoint(mobil) {
-                flex-direction: column;
-                width: 100%;
-                padding: 2%;
-            }
-
-            .adresse-infos,
-            .mail-infos {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10%;
-
-                p {
-                    width: 60%;
-                    font-weight: 300;
-                }
-
-                .fa-location-dot,
-                .fa-envelope {
-                    color: $color-primary;
-                }
-
-
-            }
-
-            .mail-infos {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 5%;
-                overflow-wrap: break-word;
-
-                a {
-                    text-decoration: none;
-                    color: $color-primary;
-                }
-
-            }
+        .fa-location-dot,
+        .fa-envelope {
+          color: $color-primary;
         }
+      }
 
-        .page-contact-contactez-nous {
-            width: 75%;
-            padding: 0 7%;
+      .mail-infos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5%;
+        overflow-wrap: break-word;
 
-            @include breakpoint(mobil) {
-                width: 100%;
-                padding: 2%;
-            }
-
-            form {
-                .form-content {
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-                    gap: 5%;
-                    padding-top: 3%;
-                }
-
-                .form-label {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: end;
-                    width: 20%;
-                    gap: 17%;
-
-                    @include breakpoint(mobil) {
-                        align-items: flex-start;
-                        gap: 12%;
-                    }
-                }
-
-                .form-input {
-                    display: flex;
-                    flex-direction: column;
-                    width: 75%;
-                    gap: 10%;
-
-                    input,
-                    textarea {
-                        border: 0.3px solid $color-primary;
-                        padding: 2% 2%;
-                        width: 100%;
-                    }
-
-                }
-
-                button {
-                    width: 20%;
-                    border: 0.3px solid $color-primary;
-                    background-color: $color-primary;
-                    color: $color-white;
-                    padding: 1%;
-                    margin: 3% 0;
-                    float: right;
-                }
-            }
-
-
+        a {
+          text-decoration: none;
+          color: $color-primary;
         }
+      }
     }
+
+    .page-contact-contactez-nous {
+      width: 75%;
+      padding: 0 7%;
+
+      @include breakpoint(mobil) {
+        width: 100%;
+        padding: 2%;
+      }
+
+      form {
+        .form-content {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          gap: 5%;
+          padding-top: 3%;
+        }
+
+        .form-label {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          width: 20%;
+          gap: 17%;
+
+          @include breakpoint(mobil) {
+            align-items: flex-start;
+            gap: 12%;
+          }
+        }
+
+        .form-input {
+          display: flex;
+          flex-direction: column;
+          width: 75%;
+          gap: 10%;
+
+          input,
+          textarea {
+            border: 0.3px solid $color-primary;
+            padding: 2% 2%;
+            width: 100%;
+          }
+        }
+
+        button {
+          width: 20%;
+          border: 0.3px solid $color-primary;
+          background-color: $color-primary;
+          color: $color-white;
+          padding: 1%;
+          margin: 3% 0;
+          float: right;
+        }
+      }
+    }
+  }
 }

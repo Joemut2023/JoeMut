@@ -1,0 +1,145 @@
+#page-recherche {
+  padding: 8% 9%;
+  font-family: $typograohie;
+  .title-recherche {
+    margin-bottom: 5px;
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-size: 16px;
+    }
+
+    span {
+      color: $color-secondary;
+      font-size: 16px;
+    }
+  }
+
+  .resultat {
+    p {
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+
+  .resultat_choix {
+    display: flex;
+    margin-bottom: 30px;
+    div .title {
+      color: $color-secondary;
+    }
+
+    div span {
+      font-size: 14px;
+    }
+
+    .filtre-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .input {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $color-secondary;
+        padding: 5px 20px;
+        cursor: pointer;
+        position: relative;
+        .icon {
+          color: $color-primary;
+        }
+
+        .content-hide {
+          display: none;
+        }
+        .content {
+          position: absolute;
+          left: 0;
+          top: 32px;
+          background-color: rgba(238, 238, 238, 0.9);
+          width: 80%;
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+          ul {
+            padding: 0px;
+            margin: 0px;
+          }
+          ul li {
+            list-style: none;
+            padding: 8px 20px;
+            color: rgba(0, 0, 0, 0.6);
+            font-weight: 200;
+
+            &:hover {
+              background-color: $color-primary;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .resultat_image {
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+
+    .image {
+      padding-bottom: 10px;
+    }
+    .details {
+      text-align: center;
+      margin: 15px 0px;
+
+      p {
+        margin: 0;
+
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .ref {
+        color: $color-secondary;
+        font-weight: 100;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        .price {
+          font-weight: 600;
+        }
+
+        .btn {
+          padding: 0;
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+
+        .bar {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
+  .affichage {
+    margin-top: 30px;
+
+    p {
+      color: $color-secondary;
+      font-size: 14px;
+    }
+  }
+}
