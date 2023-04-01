@@ -1,5 +1,4 @@
 @import '../variables';
-
 #bloc-header {
     .top-bar {
         background-color: $color-primary;
@@ -9,165 +8,130 @@
         padding-top: 2vh;
         color: $color-white;
         font-weight: 300;
-
         .title-content {
             display: flex;
             flex-direction: row;
             gap: 3rem;
-
             @include breakpoint(mobil) {
                 display: none;
                 border: solid green;
             }
         }
-
         .link-content {
             display: flex;
             flex-direction: row;
-
             @include breakpoint(mobil) {
                 display: none;
             }
-
             a {
                 text-decoration: none;
                 color: $color-black;
             }
         }
-
         .social-link {
             gap: 1rem;
-
             @include breakpoint(mobil) {
                 margin-left: auto;
                 margin-right: auto;
             }
-
             .fa-facebook,
             .fa-instagram {
                 color: $color-white;
             }
         }
-
         p {
             color: $color-white;
         }
-
         @include breakpoint(mobil) {}
     }
-
     .nav-main-content {
         display: flex;
         gap: 2%;
         flex-direction: row;
         padding: 0 2%;
-
         @include breakpoint(mobil) {
             flex-direction: column;
         }
-
         .logo-img {
             margin-top: 12%;
-
             @include breakpoint(mobil) {
                 margin-left: 15%;
                 margin-top: 0;
             }
         }
-
         .nav-content {
             display: flex;
             flex-direction: row;
-
             @include breakpoint(mobil) {
                 display: flex;
                 flex-direction: row;
                 width: 20%;
             }
-
             .menu-button {
                 display: none;
-
                 @include breakpoint(mobil) {
                     display: flex;
                 }
             }
         }
-
         .navbar {
             background-color: $color-white;
             width: 95%;
-
             @include breakpoint(mobil) {
                 width: 10%;
             }
         }
-
         .nav-content {
             display: flex;
             flex-direction: row;
-
             @include breakpoint(mobil) {
                 display: flex;
                 flex-direction: row;
                 width: 99%;
             }
-
             .menu-button {
                 display: none;
-
                 @include breakpoint(mobil) {
                     display: flex;
                     padding: 2%;
                 }
             }
         }
-
         .search-div {
             margin-left: 2%;
             padding-top: 5.5%;
-
             @include breakpoint(mobil) {
                 width: 50%;
                 padding-top: 4%;
             }
-
             .fa-magnifying-glass {
                 color: $color-primary;
-
                 @include breakpoint(mobil) {
                     padding-top: 4.3%;
                 }
             }
-
             .search-input {
                 border: 0;
                 outline: 0;
                 padding-left: 4%;
                 width: 70%;
             }
-
             .search-input::placeholder {
                 font-weight: 200;
             }
         }
-
         .user-div {
             width: 10%;
             gap: 1rem;
             padding-top: 5.5%;
-
             @include breakpoint(mobil) {
                 width: 25%;
             }
-
             a {
                 text-decoration: none;
                 color: $color-black;
             }
-
         }
-
     }
 }
 
@@ -177,62 +141,74 @@
     padding-left: 2%;
     z-index: 10;
     transition: all 300ms;
-    background-color: $color-white ;
-
+    background-color: $color-white;
     .second-navbar {
         width: 100%;
-
         @include breakpoint(mobil) {
             width: 10%;
         }
-
         .btn-canva {
             display: none;
-
             @include breakpoint(mobil) {
-               display: block;
+                display: block;
             }
         }
     }
-
     .second-search-div {
         padding-top: 1%;
-
         @include breakpoint(mobil) {
             width: 50%;
             padding-top: 2%;
             padding-left: 20%;
         }
-
         .second-glass {
             color: $color-primary;
-
             @include breakpoint(mobil) {
                 padding-top: 5%;
             }
         }
-
         .search-input {
             border: 0;
             outline: 0;
             padding-left: 4%;
             width: 60%;
-
             @include breakpoint(mobil) {
                 width: 90%;
             }
         }
-
         .search-input::placeholder {
             font-weight: 200;
         }
+    }
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+    .dropdown:hover .dropdown-main-content {
+        display: flex;
+    }
+    // .dropdown-parents {
+    //     left: -200;
+    // }
+    .menu-title {
+        display: flex;
+        width: max-content;
+        height: max-content;
+        border: none;
+    }
+    .title-catalogue {
+        margin: 5px;
+        padding: 10px;
+    }
+    .title-catalogue>ul>li {
+        padding: 7px;
+        margin-left: -10px;
+        cursor: pointer;
     }
 }
 
 #header-banner {
     width: 100%;
     height: auto;
-
     #barner-img {
         position: relative;
         width: 30%;
@@ -248,25 +224,20 @@
     gap: 2%;
     justify-content: center;
     box-shadow: 4px 4px #ece9e9;
-
     @include breakpoint(mobil) {
         gap: 1%;
     }
-
     .infos-content {
         width: 18%;
         text-align: center;
-
         @include breakpoint(mobil) {
             width: 48%;
         }
-
         h6 {
             color: $color-primary;
             margin: 2% 0;
             font-size: 0.9rem;
         }
-
         p {
             font-weight: 400;
             color: $color-secondary;
@@ -274,35 +245,36 @@
     }
 }
 
-.nav-link:hover {
-    color: $color-primary;
-    border-top: 1px solid $color-primary;
-}
-
-.dropdown-main-content {
-    display: none;
-    position: absolute;
-    width: auto;
-    background-color: $color-white;
-
-    .dropdown-main-content {
-        display: flex;
-        flex-direction: row;
-        width: max-content;
-
-        .dropdown-content-title {
-            display: flex;
-            flex-direction: row;
-            width: auto;
-        }
-
-        .dropdown-content {
-            display: flex;
-            width: auto;
-        }
-    }
+.dropdown:hover>.dropdown-menu {
+    display: block;
 }
 
 .dropdown:hover .dropdown-main-content {
     display: flex;
+}
+
+.dropdown-parent {
+    position: relative;
+    width: max-content;
+    margin: auto;
+    left: -300px;
+    border: none;
+}
+
+.menu-title {
+    display: flex;
+    width: max-content;
+    height: max-content;
+    border: none;
+}
+
+.title-catalogue {
+    margin: 5px;
+    padding: 10px;
+}
+
+.title-catalogue>ul>li {
+    padding: 7px;
+    margin-left: -10px;
+    cursor: pointer;
 }
