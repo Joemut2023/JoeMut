@@ -10,7 +10,7 @@ const ejsLayout = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
 var catalogueRouter = require('./routes/catalogue')
 var promotionRouter = require('./routes/promotion')
-var newCollectionRouter = require('./routes/nouvelleCollection')
+var rechercheRouter = require('./routes/recherche')
 var usersRouter = require('./routes/users');
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
@@ -53,11 +53,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-app.use('/catalogue', catalogueRouter)
-app.use('/promotion', promotionRouter)
-app.use('/nouvelleCollection', newCollectionRouter)
-app.use('/mon-compte', usersRouter)
-
+app.use('/catalogue',catalogueRouter)
+app.use('/promotion',promotionRouter)
+app.use('/recherche', rechercheRouter)
 
 
 // catch 404 and forward to error handler
