@@ -2590,4 +2590,126 @@
   font-size: 14px;
 }
 
+#page-recherche {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-recherche .title-recherche {
+  margin-bottom: 5px;
+}
+#page-recherche .title-recherche a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-recherche .title-recherche span {
+  color: #7a7a7a;
+  font-size: 16px;
+}
+#page-recherche .resultat p {
+  font-weight: 500;
+  font-size: 20px;
+}
+#page-recherche .resultat_choix {
+  display: flex;
+  margin-bottom: 30px;
+}
+#page-recherche .resultat_choix div .title {
+  color: #7a7a7a;
+}
+#page-recherche .resultat_choix div span {
+  font-size: 14px;
+}
+#page-recherche .resultat_choix .filtre-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#page-recherche .resultat_choix .filtre-content .input {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #7a7a7a;
+  padding: 5px 20px;
+  cursor: pointer;
+  position: relative;
+}
+#page-recherche .resultat_choix .filtre-content .input .icon {
+  color: #a0b21f;
+}
+#page-recherche .resultat_choix .filtre-content .input .content-hide {
+  display: none;
+}
+#page-recherche .resultat_choix .filtre-content .input .content {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  background-color: rgba(238, 238, 238, 0.9);
+  width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+#page-recherche .resultat_choix .filtre-content .input .content ul {
+  padding: 0px;
+  margin: 0px;
+}
+#page-recherche .resultat_choix .filtre-content .input .content ul li {
+  list-style: none;
+  padding: 8px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 200;
+}
+#page-recherche .resultat_choix .filtre-content .input .content ul li:hover {
+  background-color: #a0b21f;
+  color: white;
+}
+#page-recherche .resultat_image .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#page-recherche .resultat_image .image {
+  padding-bottom: 10px;
+}
+#page-recherche .resultat_image .details {
+  text-align: center;
+  margin: 15px 0px;
+}
+#page-recherche .resultat_image .details p {
+  margin: 0;
+}
+#page-recherche .resultat_image .details p span {
+  font-size: 12px;
+}
+#page-recherche .resultat_image .details .ref {
+  color: #7a7a7a;
+  font-weight: 100;
+}
+#page-recherche .resultat_image .details div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+#page-recherche .resultat_image .details div .price {
+  font-weight: 600;
+}
+#page-recherche .resultat_image .details div .btn {
+  padding: 0;
+}
+#page-recherche .resultat_image .details div .btn:hover {
+  color: #7a7a7a;
+}
+#page-recherche .resultat_image .details div .bar {
+  color: #a0b21f;
+}
+#page-recherche .affichage {
+  margin-top: 30px;
+}
+#page-recherche .affichage p {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+
 /*# sourceMappingURL=main.css.map */
