@@ -82,6 +82,7 @@
   }
 
   .resultat_image {
+    
     .item {
       display: flex;
       flex-direction: column;
@@ -90,8 +91,8 @@
       padding: 0;
     }
 
-    .image {
-      padding-bottom: 10px;
+    .image{
+      padding-bottom: 10px ;
     }
     .details {
       text-align: center;
@@ -134,10 +135,10 @@
     }
   }
 
-  .affichage {
+  .affichage{
     margin-top: 30px;
 
-    p {
+    p{
       color: $color-secondary;
       font-size: 14px;
     }
