@@ -13,17 +13,12 @@ var promotionRouter = require('./routes/promotion');
 var rechercheRouter = require('./routes/recherche');
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
-<<<<<<< HEAD
+var connexionUser = require('./routes/connexion')
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
-const {Categorie}= require("./models");
 const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
-=======
-var connexionUser = require('./routes/connexion')
-
->>>>>>> feature/connexion
 var app = express();
 require("./config/db").sync();
 
@@ -64,19 +59,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-<<<<<<< HEAD
 app.use('/catalogue',catalogueRouter)
 app.use('/promotion',promotionRouter)
 app.use('/recherche', rechercheRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
-=======
-app.use('/catalogue', catalogueRouter)
-app.use('/promotion', promotionRouter)
-app.use('/nouvelleCollection', newCollectionRouter)
-app.use('/mon-compte', usersRouter)
 app.use('/connexion', connexionUser)
->>>>>>> feature/connexion
 
 
 
