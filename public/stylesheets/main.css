@@ -2527,4 +2527,137 @@
   padding-top: 20px;
 }
 
+#page-panier {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-panier .panier-content {
+  margin-bottom: 60px;
+}
+#page-panier .panier-details .title,
+#page-panier .panier-details .comment {
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+#page-panier .panier-details h1 {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+#page-panier .panier-details .comment {
+  display: flex;
+  flex-direction: column;
+}
+#page-panier .panier-details .comment span {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+#page-panier .panier-details .comment .link {
+  font-size: 14px;
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment a {
+  text-decoration: none;
+}
+#page-panier .panier-details .comment a .icon {
+  margin-right: 10px;
+  font-size: 12px;
+  color: #a0b21f;
+}
+#page-panier .panier-price .frais {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (max-width: 1000px) {
+  #page-panier .panier-price .frais {
+    padding-left: 12px;
+  }
+}
+#page-panier .panier-price .frais .item {
+  display: flex;
+  justify-content: space-between;
+}
+#page-panier .panier-price .frais .item .title {
+  font-size: 16px;
+  font-weight: 400;
+}
+#page-panier .panier-price .frais .item .price {
+  font-weight: 600;
+}
+#page-panier .panier-price .total {
+  margin-bottom: 20px;
+}
+#page-panier .panier-price .item {
+  display: flex;
+  justify-content: space-between;
+}
+#page-panier .panier-price .item span {
+  font-weight: 600;
+}
+#page-panier .button button {
+  width: 100%;
+  border: none;
+  padding: 8px;
+  background: rgba(238, 238, 238, 0.9);
+  color: #7a7a7a;
+}
+#page-panier .button button:hover {
+  cursor: not-allowed;
+}
+#page-panier .products .title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#page-panier .products .title h2 {
+  font-size: 20px;
+}
+#page-panier .products .row .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#page-panier .products .row .image {
+  padding-bottom: 10px;
+}
+#page-panier .products .row .details {
+  text-align: center;
+  margin: 15px 0px;
+}
+#page-panier .products .row .details p {
+  margin: 0;
+}
+#page-panier .products .row .details p span {
+  font-size: 12px;
+}
+#page-panier .products .row .details p a {
+  text-decoration: none;
+  color: #232323;
+}
+#page-panier .products .row .details .ref {
+  color: #7a7a7a;
+  font-weight: 100;
+}
+#page-panier .products .row .details div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+#page-panier .products .row .details div .price {
+  font-weight: 600;
+}
+#page-panier .products .row .details div .btn {
+  padding: 0;
+}
+#page-panier .products .row .details div .btn:hover {
+  color: #7a7a7a;
+}
+#page-panier .products .row .details div .bar {
+  color: #a0b21f;
+}
+
 /*# sourceMappingURL=main.css.map */
