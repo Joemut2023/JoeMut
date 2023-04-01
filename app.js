@@ -31,7 +31,7 @@ console.log(Components.Dashboard);
 const admin = new AdminJS({
    //resources:[Categorie]
    dashboard: {
-    component: AdminJS.bundle('admin/pages-components/Dashboard'),
+    component: AdminJS.bundle('admin/pages-components/dashboard'),
    },
    databases: [db],
    branding: {

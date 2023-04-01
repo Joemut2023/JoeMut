@@ -2477,4 +2477,52 @@
 #page-recherche .affichage p {
   color: #7a7a7a;
   font-size: 14px;
+}
+
+#page-connexion .formulaire-connexion .text-connexion {
+  margin-left: 15%;
+  margin-top: 7%;
+}
+#page-connexion .formulaire-connexion .text-connexion p > span {
+  color: #7a7a7a;
+}
+#page-connexion .formulaire-connexion .form {
+  text-align: center;
+  width: 50%;
+  height: max-content;
+  margin: auto;
+  border: 1px solid #a0b21f;
+}
+#page-connexion .formulaire-connexion .form .form-outline {
+  width: 60%;
+  margin: auto;
+  display: flex;
+}
+#page-connexion .formulaire-connexion .form .form-outline input {
+  border: 1px solid #a0b21f;
+  border-radius: 0px;
+}
+#page-connexion .formulaire-connexion .form .form-outline label span {
+  color: red;
+}
+#page-connexion .formulaire-connexion .form .form-outline label,
+#page-connexion .formulaire-connexion .form .form-outline input {
+  margin: 5px;
+}
+#page-connexion .formulaire-connexion .form .motdepasse p,
+#page-connexion .formulaire-connexion .form .newCompte p {
+  color: #a0b21f;
+}
+#page-connexion .formulaire-connexion .form .btn button {
+  background-color: #a0b21f;
+  border: none;
+  border-radius: 0px;
+  width: 150px;
+}
+#page-connexion .formulaire-connexion .form .bordure hr {
+  width: 95%;
+  margin: auto;
+}
+#page-connexion .formulaire-connexion .form .form-content {
+  padding-top: 20px;
 }/*# sourceMappingURL=main.css.map */
