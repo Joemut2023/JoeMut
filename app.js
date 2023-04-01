@@ -17,6 +17,7 @@ const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
 const {Categorie}= require("./models");
 const db = require("./models");
+const { Components, componentLoader } = require("./admin/ComponentLoader");
 var app = express();
 require("./config/db").sync();
 
@@ -25,9 +26,13 @@ AdminJS.registerAdapter({
     Database: AdminJSSequelize.Database,
 });
 
+console.log(Components.Dashboard);
 const admin = new AdminJS({
-   databases: [db],
    //resources:[Categorie]
+   dashboard: {
+    component: AdminJS.bundle('admin/pages-components/Dashboard'),
+   },
+   databases: [db],
    branding: {
     companyName: "AES",
     withMadeWithLove:false,
