@@ -267,34 +267,38 @@
   color: #7a7a7a;
 }
 
-.nav-link:hover {
-  color: #a0b21f;
-  border-top: 1px solid #a0b21f;
-}
-
-.dropdown-main-content {
-  display: none;
-  position: absolute;
-  width: auto;
-  background-color: #fff;
-}
-.dropdown-main-content .dropdown-main-content {
-  display: flex;
-  flex-direction: row;
-  width: max-content;
-}
-.dropdown-main-content .dropdown-main-content .dropdown-content-title {
-  display: flex;
-  flex-direction: row;
-  width: auto;
-}
-.dropdown-main-content .dropdown-main-content .dropdown-content {
-  display: flex;
-  width: auto;
+.dropdown:hover > .dropdown-menu {
+  display: block;
 }
 
 .dropdown:hover .dropdown-main-content {
   display: flex;
+}
+
+.dropdown-parent {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  left: -300px;
+  border: none;
+}
+
+.menu-title {
+  display: flex;
+  width: max-content;
+  height: max-content;
+  border: none;
+}
+
+.title-catalogue {
+  margin: 5px;
+  padding: 10px;
+}
+
+.title-catalogue > ul > li {
+  padding: 7px;
+  margin-left: -10px;
+  cursor: pointer;
 }
 
 #bloc-footer {
