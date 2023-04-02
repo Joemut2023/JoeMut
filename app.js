@@ -16,6 +16,7 @@ var usersRouter = require("./routes/users");
 var connexionUser = require("./routes/connexion");
 var identiteRoutes = require("./routes/identite");
 var adresseRoutes = require("./routes/adresse");
+var donneeRoutes = require("./routes/donnee");
 const AdminJS = require("adminjs");
 const AdminJSExpress = require("@adminjs/express");
 const AdminJSSequelize = require("@adminjs/sequelize");
@@ -69,6 +70,7 @@ app.use("/mon-compte", usersRouter);
 app.use("/connexion", connexionUser);
 app.use("/identite", identiteRoutes);
 app.use("/adresse", adresseRoutes);
+app.use("/donnee", donneeRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
