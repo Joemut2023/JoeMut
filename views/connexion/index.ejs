@@ -6,30 +6,32 @@
             </p>
             <h4>Connectez vous à votre compte</h4>
         </div>
-        <form>
-            <div class="form">
-                <div class="form-content">
-                    <div class="form-outline mb-4">
-                        <div class="label"> <label class="form-label" for="form2Example1"> <span>*</span> E-mail</label></div>
-                        <div class="input"> <input type="email" id="form2Example1" class="form-control" /></div>
-                    </div>
 
-                    <div class="form-outline mb-4">
-                        <div class="label"> <label class="form-label" for="form2Example2"> <span>*</span>Mot de passe</label></div>
-                        <div class="input"><input type="password" id="form2Example2" class="form-control" /></div>
-                    </div>
-                    <div class="motdepasse">
-                        <p>Mot de passe oublié ?</p>
-                    </div>
-                    <div class="btn"> <button type="button" class="btn btn-primary btn-block mb-4">Connexion</button></div>
-                    <div class="bordure">
-                        <hr>
-                    </div>
-                    <div class="newCompte">
-                        <p> Pas de compte ? Créez-en un</p>
+        <div class="form-parent">
+            <form class="pt-3 formulaire">
+                <div class="form-group py-2 bloc-mail">
+                    <div class="input-field">
+                        <span class="required">*</span>
+                        <span>E-mail</span>
+                        <input type="text" required>
                     </div>
                 </div>
-            </div>
-        </form>
+                <div class="form-group py-1 pb-2 bloc-password">
+                    <div class="input-field">
+                        <span class="required">*</span>
+                        <span>Mot de passe</span>
+
+                        <input type="text" required> <button class="btn showPassword "> <span>Montrer</span> </button></input>
+
+                    </div>
+                </div>
+                <div class="forgot"> <a href="#" id="forgot">Mot de passe oublié?</a> </div>
+
+                <button class="btn btn-connexion btn-block text-center my-3">Connexion</button>
+                <hr>
+                <div class="pt-3 newCompte">Pas de compte ? <a href="#"> Créez-en un</a></div>
+            </form>
+        </div>
+
     </div>
 </div>
