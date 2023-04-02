@@ -5,7 +5,7 @@
     padding: 10% 0 5% 0;
 
     form {
-        padding: 3%;
+        padding: 3% 3% 5% 3%;
         border: 0.3px solid $color-primary;
 
         .row-form {
@@ -13,10 +13,12 @@
             flex-direction: row;
             gap: 5%;
             margin: 2% 0;
-            input{
+
+            input {
                 border: 0.3px solid $color-primary;
                 padding: 1%;
             }
+
             .col-label {
                 width: 20%;
                 text-align: end;
@@ -27,18 +29,54 @@
                 display: flex;
                 flex-direction: column;
             }
-            .checkbox-label{
+
+            .checkbox-label {
                 display: flex;
                 width: 50%;
-                gap:3%;
-                input{
-                    padding-top: 10px;
+                gap: 3%;
+
+                input {
+                    padding: 0;
                 }
-                label{
+
+                label {
                     width: 100%;
                 }
             }
         }
 
+        .btn-submit {
+            float: right;
+
+            button {
+                background-color: $color-primary;
+                color: $color-white;
+            }
+        }
+
+    }
+
+    .link-div {
+        gap: 2%;
+        padding: 1%;
+
+        a {
+            text-decoration: none;
+            color: $color-primary;
+        }
+    }
+
+    label {
+        span {
+            color: red;
+        }
+    }
+
+    .form-check-label {
+        color: $color-primary;
+
+        .checkbox-label {
+            background-color: $color-primary;
+        }
     }
 }

@@ -2534,7 +2534,7 @@
   padding: 10% 0 5% 0;
 }
 #identite form {
-  padding: 3%;
+  padding: 3% 3% 5% 3%;
   border: 0.3px solid #a0b21f;
 }
 #identite form .row-form {
@@ -2562,10 +2562,34 @@
   gap: 3%;
 }
 #identite form .row-form .checkbox-label input {
-  padding-top: 10px;
+  padding: 0;
 }
 #identite form .row-form .checkbox-label label {
   width: 100%;
+}
+#identite form .btn-submit {
+  float: right;
+}
+#identite form .btn-submit button {
+  background-color: #a0b21f;
+  color: #fff;
+}
+#identite .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+#identite .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#identite label span {
+  color: red;
+}
+#identite .form-check-label {
+  color: #a0b21f;
+}
+#identite .form-check-label .checkbox-label {
+  background-color: #a0b21f;
 }
 
 /*# sourceMappingURL=main.css.map */
