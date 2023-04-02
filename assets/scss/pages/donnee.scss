@@ -1,0 +1,85 @@
+#donnee {
+    padding: 7%;
+
+    .breadcrumb-item {
+        @include breakpoint(mobil) {
+            display: none;
+        }
+    }
+
+    .donnee-main-content {
+        border: 0.3px solid $color-primary;
+        padding: 2% 3%;
+        margin: 2% 0;
+
+        @include breakpoint(mobil) {
+            padding: 5%;
+
+        }
+
+        .donnee-content1 {
+            background-color: rgb(231, 227, 227);
+            padding: 3%;
+            color: $color-secondary;
+
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                gap: 3%;
+                justify-content: end;
+
+                @include breakpoint(mobil) {
+                    flex-direction: column;
+                }
+
+                button {
+                    background-color: $color-primary;
+                    border: none;
+                    color: $color-white;
+                    padding: 1%;
+
+                    &:hover {
+                        background-color: $color-button-primary;
+                    }
+
+                    @include breakpoint(mobil) {
+                        margin-top: 3%;
+                        padding: 2%;
+                    }
+                }
+
+            }
+        }
+
+        .donnee-content2 {
+            background-color: rgb(231, 227, 227);
+            padding: 2% 3%;
+            color: $color-secondary;
+            margin-top: 2%;
+
+            @include breakpoint(mobil) {
+                margin-top: 5%;
+            }
+
+            a {
+                text-decoration: none;
+                color: $color-primary;
+            }
+        }
+    }
+
+    .link-div {
+        gap: 2%;
+        padding: 1%;
+
+        @include breakpoint(mobil) {
+            padding: 3% 1%;
+        }
+
+        a {
+            text-decoration: none;
+            color: $color-primary;
+        }
+    }
+
+}
