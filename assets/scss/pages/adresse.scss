@@ -1,13 +1,15 @@
-#identite {
+#adresse {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding: 10% 0 5% 0;
+
     @include breakpoint(mobil) {
         padding: 1%;
         width: 95%;
     }
-    .breadcrumb-item{
+
+    .breadcrumb-item {
 
         @include breakpoint(mobil) {
             display: none;
@@ -15,8 +17,9 @@
     }
 
     form {
-        padding: 3% 3% 5% 3%;
+        padding: 2% 1% 5% 1%;
         border: 0.3px solid $color-primary;
+
         @include breakpoint(mobil) {
             padding: 3% 3% 15% 3%;
         }
@@ -26,6 +29,7 @@
             flex-direction: row;
             gap: 5%;
             margin: 2% 0;
+
             @include breakpoint(mobil) {
                 flex-direction: column;
                 margin: 4% 0;
@@ -33,15 +37,16 @@
 
             input {
                 border: 0.3px solid $color-primary;
-                padding: 1%;
+                padding: 0.5% 1%;
             }
 
             .col-label {
                 width: 20%;
                 text-align: end;
+
                 @include breakpoint(mobil) {
-                   text-align: start;
-                   width: 100%;
+                    text-align: start;
+                    width: 100%;
                 }
             }
 
@@ -49,30 +54,17 @@
                 width: 50%;
                 display: flex;
                 flex-direction: column;
+
                 @include breakpoint(mobil) {
                     width: 100%;
                 }
             }
-
-            .checkbox-label {
-                display: flex;
-                width: 50%;
-                gap: 3%;
-                @include breakpoint(mobil) {
-                    width: 100%;
-                }
-
-                input {
-                    padding: 0;
-                }
-
-                label {
-                    width: 100%;
-                }
+            .col-label-end{
+                text-align: start;
+                color: $color-secondary;
             }
-        }
-        input[type="password"]{
-            width: 95%;
+
+
         }
 
         .btn-submit {
@@ -89,8 +81,9 @@
     .link-div {
         gap: 2%;
         padding: 1%;
+
         @include breakpoint(mobil) {
-            padding: 3% 1%  ;
+            padding: 3% 1%;
         }
 
         a {
