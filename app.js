@@ -1,23 +1,24 @@
 var createError = require("http-errors");
 var creationRouter = require("./routes/creation");
 var contactRouter = require("./routes/contact");
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-const ejsLayout = require("express-ejs-layouts");
-var indexRouter = require("./routes/index");
-var catalogueRouter = require("./routes/catalogue");
-var promotionRouter = require("./routes/promotion");
-var rechercheRouter = require("./routes/recherche");
-var panierRouter = require("./routes/panier");
-var nouvelleCollectionRouter = require("./routes/nouvelleCollection");
-var usersRouter = require("./routes/users");
-var connexionUser = require("./routes/connexion");
-const AdminJS = require("adminjs");
-const AdminJSExpress = require("@adminjs/express");
-const AdminJSSequelize = require("@adminjs/sequelize");
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+const ejsLayout = require('express-ejs-layouts');
+var indexRouter = require('./routes/index');
+var catalogueRouter = require('./routes/catalogue');
+var promotionRouter = require('./routes/promotion');
+var rechercheRouter = require('./routes/recherche');
+var panierRouter = require('./routes/panier')
+var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
+var usersRouter = require('./routes/users');
+var connexionUser = require('./routes/connexion')
+var inscriptionRouter = require('./routes/inscription')
+const AdminJS = require('adminjs')
+const AdminJSExpress = require('@adminjs/express')
+const AdminJSSequelize = require('@adminjs/sequelize')
 const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
 var app = express();
@@ -60,13 +61,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-app.use("/catalogue", catalogueRouter);
-app.use("/promotion", promotionRouter);
-app.use("/recherche", rechercheRouter);
-app.use("/nouvelleCollection", nouvelleCollectionRouter);
-app.use("/mon-compte", usersRouter);
-app.use("/connexion", connexionUser);
-app.use("/panier", panierRouter);
+app.use('/catalogue',catalogueRouter)
+app.use('/promotion',promotionRouter)
+app.use('/recherche', rechercheRouter)
+app.use('/nouvelleCollection', nouvelleCollectionRouter);
+app.use('/mon-compte', usersRouter);
+app.use('/connexion', connexionUser)
+app.use('/panier',panierRouter)
+app.use('/inscription', inscriptionRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
