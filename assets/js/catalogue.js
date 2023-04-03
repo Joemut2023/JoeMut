@@ -7,6 +7,11 @@ const btn_minus_acc = document.getElementById("minus-acc")
 const btn_plus_grand = document.getElementById("plus-grand")
 const btn_minus_grand = document.getElementById("minus-grand")
 
+const input_choix = document.getElementById("input");
+const choix = document.querySelector("#choix");
+const content = document.getElementById("content");
+const item_select = document.querySelectorAll(".item-choice");
+
 
 btn_plus_petit.addEventListener("click",function(){
     btn_minus_petit.style.display = "block"
@@ -42,3 +47,15 @@ btn_minus_grand.addEventListener("click",function(){
     btn_minus_grand.style.display = "none"
     btn_plus_grand.style.display = "block"
 })
+
+//SELECT
+input_choix.addEventListener("click", function () {
+  content.classList.toggle("content-hide");
+  content.classList.add("content");
+});
+
+item_select.forEach((element) => {
+    element.addEventListener("click", function(){
+        choix.textContent = element.textContent
+    })
+});

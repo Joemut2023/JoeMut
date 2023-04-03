@@ -188,10 +188,21 @@
 
       <div class="filter">
         <label for="">Trier par : </label>
-        <select name="" id="">
+        <!-- <select name="" id="">
           <option value="">Pertinence</option>
           <option value="">Ventes, ordre décroissant</option>
-        </select>
+        </select> -->
+        <div class="input" id="input">
+          <span id="choix">Choisir</span>
+          <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
+          <div class="content content-hide" id="content">
+            <ul>
+              <li class="item-choice">Pertinente</li>
+              <li class="item-choice">Nom, A à Z</li>
+              <li class="item-choice">Nom, Z à A</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cat-body">
