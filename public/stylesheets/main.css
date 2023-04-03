@@ -153,7 +153,7 @@
   font-weight: 200;
 }
 #bloc-header .nav-main-content .user-div {
-  width: 10%;
+  width: 15%;
   gap: 1rem;
   padding-top: 5.5%;
 }
@@ -321,6 +321,24 @@
   .btn-canva {
     display: block;
   }
+}
+
+#user-menu-Dropdown {
+  position: relative;
+  top: -800px;
+  z-index: 2;
+  float: right;
+  width: 21%;
+  display: none;
+  border: solid red;
+  opacity: 0;
+  transition: all 0.5s linear;
+  background-color: #fff;
+  transform: scaleY(0);
+}
+
+#user-title-Dropdown:hover > #user-menu-Dropdown {
+  display: block;
 }
 
 #bloc-footer {
