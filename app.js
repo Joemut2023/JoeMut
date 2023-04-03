@@ -15,6 +15,7 @@ var panierRouter = require('./routes/panier')
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
 var connexionUser = require('./routes/connexion')
+var inscriptionRouter = require('./routes/inscription')
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
@@ -67,6 +68,7 @@ app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
 app.use('/connexion', connexionUser)
 app.use('/panier',panierRouter)
+app.use('/inscription', inscriptionRouter)
 
 
 // catch 404 and forward to error handler

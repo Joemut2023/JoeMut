@@ -1,0 +1,130 @@
+#page-inscription {
+  padding: 8% 9%;
+  font-family: $typograohie;
+  .title-recherche {
+    margin-bottom: 5px;
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-size: 16px;
+    }
+
+    span {
+      color: $color-secondary;
+      font-size: 16px;
+    }
+  }
+
+  .resultat {
+    margin-bottom: 20px;
+    p {
+      font-weight: 600;
+      font-size: 24px;
+    }
+  }
+
+  .content {
+    max-width: 670px;
+    margin: 0 auto;
+    border: 1px solid $color-primary;
+    padding: 20px;
+    .register-form {
+      .title {
+        color: $color-secondary;
+        margin-bottom: 20px;
+        a {
+          text-decoration: none;
+          color: $color-primary;
+        }
+      }
+
+      form {
+        .form-group {
+          margin-bottom: 20px;
+          .label {
+            font-weight: 600;
+          }
+
+          .item {
+            text-align: right;
+            @include breakpoint(tablette) {
+              text-align: left;
+            }
+          }
+
+          .input input {
+            width: 100%;
+            background-color: white;
+            border: 1px solid $color-primary;
+            padding: 5px 15px;
+            outline: none;
+
+            &:focus {
+              border: 2px solid $color-primary;
+            }
+          }
+
+          .input label {
+            color: $color-secondary;
+            font-size: 14px;
+          }
+
+          .btn-hide {
+            display: flex;
+
+            input {
+              width: 100%;
+              background-color: white;
+              border: 1px solid $color-primary;
+              padding: 5px 15px;
+              outline: none;
+            }
+
+            button {
+              padding: 5px 15px;
+              border: 1px solid gray;
+              color: white;
+              background-color: gray;
+            }
+          }
+          .check input {
+            width: 20px;
+            height: 20px;
+          }
+
+          .check .text {
+            color: $color-primary;
+          }
+        }
+
+        .radios {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+
+          div input {
+            font-size: 30px;
+            transform: scale(1.5);
+          }
+
+          div input::-ms-check {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      
+      align-self: flex-end;
+      padding: 5px 15px;
+      border: none;
+      background: $color-primary;
+      color: white;
+    }
+  }
+}

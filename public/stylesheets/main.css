@@ -498,11 +498,11 @@
 }
 @media (min-width: 768px) {
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
@@ -2685,6 +2685,118 @@
 }
 #page-panier .products .row .details div .bar {
   color: #a0b21f;
+}
+
+#page-inscription {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-inscription .title-recherche {
+  margin-bottom: 5px;
+}
+#page-inscription .title-recherche a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-inscription .title-recherche span {
+  color: #7a7a7a;
+  font-size: 16px;
+}
+#page-inscription .resultat {
+  margin-bottom: 20px;
+}
+#page-inscription .resultat p {
+  font-weight: 600;
+  font-size: 24px;
+}
+#page-inscription .content {
+  max-width: 670px;
+  margin: 0 auto;
+  border: 1px solid #a0b21f;
+  padding: 20px;
+}
+#page-inscription .content .register-form .title {
+  color: #7a7a7a;
+  margin-bottom: 20px;
+}
+#page-inscription .content .register-form .title a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-inscription .content .register-form form .form-group {
+  margin-bottom: 20px;
+}
+#page-inscription .content .register-form form .form-group .label {
+  font-weight: 600;
+}
+#page-inscription .content .register-form form .form-group .item {
+  text-align: right;
+}
+@media (max-width: 1000px) {
+  #page-inscription .content .register-form form .form-group .item {
+    text-align: left;
+  }
+}
+#page-inscription .content .register-form form .form-group .input input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .content .register-form form .form-group .input input:focus {
+  border: 2px solid #a0b21f;
+}
+#page-inscription .content .register-form form .form-group .input label {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-inscription .content .register-form form .form-group .btn-hide {
+  display: flex;
+}
+#page-inscription .content .register-form form .form-group .btn-hide input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .content .register-form form .form-group .btn-hide button {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  color: white;
+  background-color: gray;
+}
+#page-inscription .content .register-form form .form-group .check input {
+  width: 20px;
+  height: 20px;
+}
+#page-inscription .content .register-form form .form-group .check .text {
+  color: #a0b21f;
+}
+#page-inscription .content .register-form form .radios {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+#page-inscription .content .register-form form .radios div input {
+  font-size: 30px;
+  transform: scale(1.5);
+}
+#page-inscription .content .register-form form .radios div input::-ms-check {
+  color: #a0b21f;
+}
+#page-inscription .button {
+  display: flex;
+  justify-content: flex-end;
+}
+#page-inscription .button button {
+  align-self: flex-end;
+  padding: 5px 15px;
+  border: none;
+  background: #a0b21f;
+  color: white;
 }
 
 /*# sourceMappingURL=main.css.map */
