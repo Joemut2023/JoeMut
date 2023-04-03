@@ -15,6 +15,9 @@
         align-content: b;
         flex-wrap: wrap;
         gap: 2.5%;
+        a{
+            text-decoration: none;
+        }
         .menus-item{
             width: 20%;
             background-color: $color-primary;

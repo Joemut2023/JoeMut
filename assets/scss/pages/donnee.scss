@@ -2,9 +2,14 @@
     padding: 7%;
 
     .breadcrumb-item {
+        a{
+            text-decoration: none;
+            color: $color-black;
+        }
         @include breakpoint(mobil) {
             display: none;
         }
+
     }
 
     .donnee-main-content {

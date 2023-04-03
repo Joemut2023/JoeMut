@@ -10,8 +10,8 @@ router.get("/identite", function (req, res, next) {
   res.render("users/identite");
 });
 
-router.get("/adresse", function (req, res, next) {
-  res.render("users/adresse");
+router.get("/nouvelleAdresse", function (req, res, next) {
+  res.render("users/nouvelleAdresse");
 });
 
 router.get("/donnee", function (req, res, next) {
@@ -22,6 +22,9 @@ router.get("/historique", function (req, res, next) {
 });
 router.get("/bons", function (req, res, next) {
   res.render("users/bons");
+});
+router.get("/adresses", function (req, res, next) {
+  res.render("users/adresses");
 });
 
 module.exports = router;
