@@ -183,14 +183,6 @@
     width: 10%;
   }
 }
-#headerSticky .second-navbar .btn-canva {
-  display: none;
-}
-@media (max-width: 680px) {
-  #headerSticky .second-navbar .btn-canva {
-    display: block;
-  }
-}
 #headerSticky .second-search-div {
   padding-top: 1%;
 }
@@ -320,6 +312,15 @@
   padding: 7px;
   margin-left: -10px;
   cursor: pointer;
+}
+
+.btn-canva {
+  display: none;
+}
+@media (max-width: 680px) {
+  .btn-canva {
+    display: block;
+  }
 }
 
 #bloc-footer {
