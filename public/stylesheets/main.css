@@ -3039,4 +3039,30 @@
   }
 }
 
+#alert {
+  padding: 7%;
+}
+#alert .breadcrumb-item a {
+  text-decoration: none;
+  color: #232323;
+}
+@media (max-width: 680px) {
+  #alert .breadcrumb-item {
+    display: none;
+  }
+}
+#alert .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #alert .link-div {
+    padding: 3% 1%;
+  }
+}
+#alert .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+
 /*# sourceMappingURL=main.css.map */
