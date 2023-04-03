@@ -1,0 +1,35 @@
+#menu-mobil-canva {
+    width: 75%;
+    background-color: $color-white-secondary;
+
+    .offcanvas-header {
+        background-color: $color-black;
+        height: 7vh;
+        color: $color-white;
+    }
+
+    li {
+        margin: 6% 0;
+    }
+
+    .accordion-header {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .accordion-button {
+        margin: 6% 0;
+    }
+
+    .accordion-body {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        ul {
+            list-style-type: none;
+        }
+    }
+}

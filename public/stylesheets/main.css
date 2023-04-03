@@ -426,6 +426,36 @@
   }
 }
 
+#menu-mobil-canva {
+  width: 75%;
+  background-color: #eeeeee;
+}
+#menu-mobil-canva .offcanvas-header {
+  background-color: #232323;
+  height: 7vh;
+  color: #fff;
+}
+#menu-mobil-canva li {
+  margin: 6% 0;
+}
+#menu-mobil-canva .accordion-header {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+#menu-mobil-canva .accordion-button {
+  margin: 6% 0;
+}
+#menu-mobil-canva .accordion-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#menu-mobil-canva .accordion-body ul {
+  list-style-type: none;
+}
+
 #bloc-panier .offcanvas-body .kart-items .kart-item {
   display: flex;
   flex-direction: row;

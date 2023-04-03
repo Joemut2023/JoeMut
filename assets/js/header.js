@@ -23,8 +23,8 @@ userIcone.addEventListener(
   (event) => {
     dropDown.style.display = "block";
     dropDown.style.opacity = "1";
-    dropDown.style.transform="scaleY(1)";
-    dropDown.style.transformOrigin="top";
+    dropDown.style.transform = "scaleY(1)";
+    dropDown.style.transformOrigin = "top";
   }
   // highlight the mouseenter target
 );
@@ -37,4 +37,3 @@ dropDown.addEventListener(
   }
   // highlight the mouseenter target
 );
-
