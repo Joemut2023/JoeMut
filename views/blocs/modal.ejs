@@ -1,34 +1,50 @@
-<div id="myModal" class="modal">
+<div id="parent-modal" >
+  <div id="myModal" class="modal" tabindex="-1">
     <div class="title-modal modal-header">
-        <div class="title-modal-message">
-            <div class="modal-product-valid">
-                <!-- <div class="close"> -->
-                    <i class="fa fa-check icon-check"></i>
-                <!-- </div> -->
-                <p>Produit ajouté au panier avec succès</p>
-            </div>
-            <div class="close" id="close">
-                <i class="fa-solid fa-xmark icon-xmark"></i>
-            </div>
+      <div class="title-modal-message">
+        <div class="modal-product-valid">
+          <!-- <div class="close"> -->
+          <i class="fa fa-check icon-check"></i>
+          <!-- </div> -->
+          <p>Produit ajouté au panier avec succès</p>
         </div>
-        <div class="title-modal-border"></div>
+        <div class="close" id="close">
+          <i class="fa-solid fa-xmark icon-xmark"></i>
+        </div>
+      </div>
+      <div class="title-modal-border"></div>
     </div>
     <div class="body-modal">
-        <div class="body-modal-detail">
-            <img src="/images/sommaire-3.jpg" alt="" srcset="">
-            <div class="info-product">
-                <h4>GH31D - Haut col mao bleu canard</h4>
-                <div class="product-montant">7,00 €</div>
-                <div class="product-quantity">Quantité : <span> 3 </span></div>
-            </div>
+      <div class="body-modal-detail">
+        <img src="/images/sommaire-3.jpg" alt="" srcset="" />
+        <div class="info-product">
+          <h4>GH31D - Haut col mao bleu canard</h4>
+          <div class="product-montant">7,00 €</div>
+          <div class="product-quantity">Quantité : <span> 3 </span></div>
         </div>
-        <div class="modal-body-commande">
-           <h5>Il y a 11 articles dans votre panier.</h5>
-           <div class="sous-total"><span class="sous-total-titre">Sous-total :</span> <span class="sous-total-montant">87,50 €</span></div>
-           <div class="transport"><span class="transport-titre">transport:</span> <span class="transport-montant">87,50 €</span></div>
-           <div class="total"><span class="total-titre">total:</span> <span class="total-montant">87,50 €</span></div>
-           <div class="btn-achat"><button class="continuer">Continuer mes achats</button> <button class="finaliser"> <i class="fa fa-check icon-succes"></i> <span>Finaliser le devis</span> </button></div>
+      </div>
+      <div class="modal-body-commande">
+        <h5>Il y a 11 articles dans votre panier.</h5>
+        <div class="sous-total">
+          <span class="sous-total-titre">Sous-total :</span>
+          <span class="sous-total-montant">87,50 €</span>
         </div>
+        <div class="transport">
+          <span class="transport-titre">transport:</span>
+          <span class="transport-montant">87,50 €</span>
+        </div>
+        <div class="total">
+          <span class="total-titre">total:</span>
+          <span class="total-montant">87,50 €</span>
+        </div>
+        <div class="btn-achat">
+          <button class="continuer">Continuer mes achats</button>
+          <button class="finaliser">
+            <i class="fa fa-check icon-succes"></i>
+            <span>Finaliser le devis</span>
+          </button>
+        </div>
+      </div>
     </div>
-
   </div>
+</div>
