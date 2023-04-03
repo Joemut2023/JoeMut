@@ -1,7 +1,13 @@
-var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
+const myModal = document.getElementById("myModal");
+const close = document.getElementById("close");
+const btn_add = document.querySelectorAll(".button-ajouter");
 
-myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-alert("modal")
-})
+close.addEventListener("click", () => {
+  myModal.style.display = "none";
+});
+
+btn_add.forEach((element) => {
+  element.addEventListener("click", function () {
+    myModal.style.display = "flex";
+  });
+});

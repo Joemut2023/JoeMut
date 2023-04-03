@@ -1,17 +1,17 @@
 #myModal{
     width:75%;
     height:25rem;
-    border:2px solid $color-primary;
+    border:1px solid $color-primary;
     background-color:$color-white;
     position:fixed;
     left:10rem;
     top: 5rem;
     z-index:1000;
-    display:flex;
+    display:none;
     flex-direction: column;
     @include breakpoint(mobil) {
        left: 3rem;
-    width:75%;
+        width:75%;
        height: 30rem;
       }
       .title-modal{
@@ -43,6 +43,7 @@
                     color:$color-primary;
                     font-size: 20px;
                     font-weight: 300;
+                    // cursor: pointer;
                 }
                 p{
                     font-size:14px;
@@ -52,10 +53,14 @@
                     }
                 }
             }
-            .icon-xmark{
-                color:$color-primary;
-                font-size: 20px;
-                font-weight: 300;
+            .close{
+                cursor: pointer;
+                // background-color: red;
+                .icon-xmark{
+                    color:$color-primary;
+                    font-size: 20px;
+                    font-weight: 300;
+                }
             }
             // background-color: aqua;
         }
@@ -69,13 +74,13 @@
       .body-modal{
         width: 100%;
         height:100%;
-        padding: 3px 25px;
+        padding:1px 25px;
         display: flex;
         flex-direction: row;
         @include breakpoint(mobil){
             flex-direction: column;
             padding: 0px 10px;
-            gap:10pxpx;
+            gap:1px;
         }
         .body-modal-detail{
             // background-color: aqua;
@@ -130,6 +135,10 @@
             justify-content: center;
             padding: 25px 5px 0 5px;
             gap:15px;
+            @include breakpoint(mobil){
+                width: 100%;
+                padding-bottom:10px;
+            }
            h5{
             font-size: 15px;
             color: $color-important;
@@ -160,6 +169,13 @@
             button{
                 padding: 7px 20px;
                 font-size: 13px;
+                @include breakpoint(mobil){
+                    font-size: 10px;
+                    padding: 3px 25px;
+                    font-weight:500;
+
+                }
+
             }
             .continuer{
                 color: $color-black;
