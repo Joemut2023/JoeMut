@@ -153,7 +153,7 @@
         }
 
         .user-div {
-            width: 10%;
+            width: 15%;
             gap: 1rem;
             padding-top: 5.5%;
 
@@ -333,4 +333,24 @@
     @include breakpoint(mobil) {
         display: block;
     }
+}
+#user-dropdown{
+  
+}
+#user-menu-Dropdown{
+    position: relative;
+    top:-800px;
+    z-index: 2;
+    float: right;
+    width: 21%;
+    display:none;    
+    border : solid red;
+    opacity: 0;
+    transition: all 0.5s linear;
+    background-color: $color-white;
+    transform: scaleY(0);
+
+}
+#user-title-Dropdown:hover>#user-menu-Dropdown{
+    display: block;
 }

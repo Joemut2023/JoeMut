@@ -29,5 +29,8 @@ router.get("/avoirs", function (req, res, next) {
 router.get("/adresses", function (req, res, next) {
   res.render("users/adresses");
 });
+router.get("/alert", function (req, res, next) {
+  res.render("users/alert");
+});
 
 module.exports = router;
