@@ -23,6 +23,9 @@ router.get("/historique", function (req, res, next) {
 router.get("/reduction", function (req, res, next) {
   res.render("users/reduction");
 });
+router.get("/avoirs", function (req, res, next) {
+  res.render("users/avoirs");
+});
 router.get("/adresses", function (req, res, next) {
   res.render("users/adresses");
 });
