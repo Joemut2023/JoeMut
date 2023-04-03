@@ -1,0 +1,112 @@
+#page-article {
+  padding: 8% 9%;
+  font-family: $typograohie;
+
+  .title-article {
+    margin-bottom: 15px;
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-size: 16px;
+    }
+
+    span {
+      color: $color-secondary;
+      font-size: 16px;
+    }
+  }
+
+  .content {
+    .left-content {
+      .image-content {
+        width: 80%;
+        margin: 0 auto;
+        .image {
+          position: relative;
+          margin-bottom: 10px;
+          padding: 0 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+
+          .search-icon {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.6);
+            span {
+              color: $color-primary;
+              font-size: 30px;
+              font-weight: 800;
+            }
+          }
+
+          &:hover .search-icon {
+            opacity: 1 !important;
+          }
+        }
+
+        .small-images {
+        }
+      }
+    }
+
+    .right-content {
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .ref {
+        font-weight: 300;
+      }
+
+      .price {
+        .number {
+          color: $color-primary;
+          font-weight: 600;
+          font-size: 16px;
+        }
+
+        .title {
+          color: $color-secondary;
+          font-weight: 200;
+        }
+      }
+
+      .informations {
+        margin-bottom: 40px;
+        span {
+          font-size: 12px;
+        }
+        .description {
+          p {
+            margin-bottom: 5px;
+            font-size: 14px;
+          }
+          .utile {
+            font-weight: 600;
+          }
+        }
+      }
+
+      .add-cart{
+        
+      }
+    }
+  }
+}

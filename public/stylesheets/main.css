@@ -499,11 +499,11 @@
 }
 @media (min-width: 768px) {
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
@@ -3145,6 +3145,92 @@
 #page-avoir .link-div a {
   text-decoration: none;
   color: #a0b21f;
+}
+
+#page-article {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-article .title-article {
+  margin-bottom: 15px;
+}
+#page-article .title-article a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-article .title-article span {
+  color: #7a7a7a;
+  font-size: 16px;
+}
+#page-article .content .left-content .image-content {
+  width: 80%;
+  margin: 0 auto;
+}
+#page-article .content .left-content .image-content .image {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#page-article .content .left-content .image-content .image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+#page-article .content .left-content .image-content .image .search-icon {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+#page-article .content .left-content .image-content .image .search-icon span {
+  color: #a0b21f;
+  font-size: 30px;
+  font-weight: 800;
+}
+#page-article .content .left-content .image-content .image:hover .search-icon {
+  opacity: 1 !important;
+}
+#page-article .content .right-content h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+#page-article .content .right-content .ref {
+  font-weight: 300;
+}
+#page-article .content .right-content .price .number {
+  color: #a0b21f;
+  font-weight: 600;
+  font-size: 16px;
+}
+#page-article .content .right-content .price .title {
+  color: #7a7a7a;
+  font-weight: 200;
+}
+#page-article .content .right-content .informations {
+  margin-bottom: 40px;
+}
+#page-article .content .right-content .informations span {
+  font-size: 12px;
+}
+#page-article .content .right-content .informations .description p {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+#page-article .content .right-content .informations .description .utile {
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.css.map */
