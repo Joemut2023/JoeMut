@@ -1,0 +1,51 @@
+#page-avoir{
+    padding: 7%;
+
+    .breadcrumb-item {
+        a{
+            text-decoration: none;
+            color: $color-black;
+        }
+        @include breakpoint(mobil) {
+            display: none;
+        }
+
+    }
+
+    .donnee-main-content {
+        border: 0.3px solid $color-primary;
+        padding: 2% 3%;
+        margin: 2% 0;
+
+        @include breakpoint(mobil) {
+            padding: 5%;
+
+        }
+        ul{
+            width: 100%;
+            text-decoration: none;
+            padding: 0;
+            li{
+                text-decoration:none;
+                list-style: none;
+                color: $color-important;
+            }
+        }
+
+    }
+
+    .link-div {
+        gap: 2%;
+        padding: 1%;
+
+        @include breakpoint(mobil) {
+            padding: 3% 1%;
+        }
+
+        a {
+            text-decoration: none;
+            color: $color-primary;
+        }
+    }
+
+}
