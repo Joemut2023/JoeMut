@@ -10,12 +10,16 @@
 
   <div class="content">
     <div class="register-form">
-      <p class="title">Vous avez déjà un compte ? <a href="#">Connectez - vous !</a></p>
+      <p class="title">
+        Vous avez déjà un compte ? <a href="#">Connectez - vous !</a>
+      </p>
 
-      <form action="">
+      <form id="form">
         <div>
           <div class="form-group row">
-            <div class="col-md-3 item"><label for="" class="label">Civilité</label></div>
+            <div class="col-md-3 item">
+              <label for="" class="label">Civilité</label>
+            </div>
             <div class="col-md-6 radios">
               <div class="radio">
                 <input type="radio" name="civilite" id="homme" value="M" />
@@ -30,7 +34,11 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-3 item"><label class="required label" for="prenom"><span>*</span>Prenom</label></div>
+            <div class="col-md-3 item">
+              <label class="required label" for="prenom"
+                ><span>*</span>Prenom</label
+              >
+            </div>
             <div class="col-md-6 input">
               <input type="text" name="prenom" id="prenom" required />
               <label for=""
@@ -42,7 +50,9 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-3 item"><label class="required label" for="nom"><span>*</span>Nom</label></div>
+            <div class="col-md-3 item">
+              <label class="required label" for="nom"><span>*</span>Nom</label>
+            </div>
             <div class="col-md-6 input">
               <input type="text" name="nom" id="nom" required />
               <label for=""
@@ -54,18 +64,28 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-3 item"><label class="required label" for="password"
-              ><span>*</span>Mot de passe</label
-            ></div>
+            <div class="col-md-3 item">
+              <label class="required label" for="password"
+                ><span>*</span>Mot de passe</label
+              >
+            </div>
             <div class="col-md-6 btn-hide">
-              <input type="password" name="password" id="password" required />
-              <button>Montrer</button>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input-password"
+                required
+              />
+              <div id="btn-action" class="btn-action">Montrer</div>
             </div>
             <div></div>
           </div>
 
           <div class="form-group row">
-           <div class="col-md-3 item"> <label class="required" for="nom"><span>*</span></label></div>
+            <div class="col-md-3 item">
+              <label class="required" for="nom"><span>*</span></label>
+            </div>
             <div class="col-md-6 input check">
               <input type="checkbox" id="scales" name="scales" checked />
               <label for="scales" class="text"
@@ -83,7 +103,9 @@
           </div>
 
           <div class="form-group row">
-           <div class="col-md-3 item"> <label class="required" for="nom"><span></span></label></div>
+            <div class="col-md-3 item">
+              <label class="required" for="nom"><span></span></label>
+            </div>
             <div class="col-md-6 input check">
               <input type="checkbox" id="scales" name="scales" checked />
               <label for="scales" class="text">
@@ -100,22 +122,24 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-3 item"> <label class="required" for="nom"><span>*</span></label></div>
+            <div class="col-md-3 item">
+              <label class="required" for="nom"><span>*</span></label>
+            </div>
             <div class="col-md-6 input check">
               <input type="checkbox" id="scales" name="scales" checked />
               <label for="scales" class="text"
-                >J'accepte les conditions générales et la politique de confidentialité
+                >J'accepte les conditions générales et la politique de
+                confidentialité
               </label>
             </div>
             <div class="col-md-3"></div>
           </div>
         </div>
         <div class="button">
-            <button>Enregistrer</button>
+          <button>Enregistrer</button>
         </div>
       </form>
     </div>
   </div>
+  <script src="javascripts/inscription.js"></script>
 </div>
-
-

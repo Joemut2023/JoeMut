@@ -50,6 +50,10 @@
             @include breakpoint(tablette) {
               text-align: left;
             }
+
+            label span {
+              color: red;
+            }
           }
 
           .input input {
@@ -80,11 +84,18 @@
               outline: none;
             }
 
-            button {
+            // button {
+            //   padding: 5px 15px;
+            //   border: 1px solid gray;
+            //   color: white;
+            //   background-color: gray;
+            // }
+            .btn-action {
               padding: 5px 15px;
               border: 1px solid gray;
               color: white;
               background-color: gray;
+              cursor: pointer;
             }
           }
           .check input {
@@ -119,7 +130,6 @@
     display: flex;
     justify-content: flex-end;
     button {
-      
       align-self: flex-end;
       padding: 5px 15px;
       border: none;

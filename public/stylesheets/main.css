@@ -498,11 +498,11 @@
 }
 @media (min-width: 768px) {
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
+  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
@@ -2738,6 +2738,9 @@
     text-align: left;
   }
 }
+#page-inscription .content .register-form form .form-group .item label span {
+  color: red;
+}
 #page-inscription .content .register-form form .form-group .input input {
   width: 100%;
   background-color: white;
@@ -2762,11 +2765,12 @@
   padding: 5px 15px;
   outline: none;
 }
-#page-inscription .content .register-form form .form-group .btn-hide button {
+#page-inscription .content .register-form form .form-group .btn-hide .btn-action {
   padding: 5px 15px;
   border: 1px solid gray;
   color: white;
   background-color: gray;
+  cursor: pointer;
 }
 #page-inscription .content .register-form form .form-group .check input {
   width: 20px;
