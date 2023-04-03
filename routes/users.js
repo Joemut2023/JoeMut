@@ -20,8 +20,8 @@ router.get("/donnee", function (req, res, next) {
 router.get("/historique", function (req, res, next) {
   res.render("users/historique");
 });
-router.get("/bons", function (req, res, next) {
-  res.render("users/bons");
+router.get("/reduction", function (req, res, next) {
+  res.render("users/reduction");
 });
 router.get("/adresses", function (req, res, next) {
   res.render("users/adresses");

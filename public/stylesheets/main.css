@@ -3065,4 +3065,40 @@
   }
 }
 
+#page-reduction {
+  padding: 7%;
+}
+#page-reduction .breadcrumb-item a {
+  text-decoration: none;
+  color: #232323;
+}
+@media (max-width: 680px) {
+  #page-reduction .breadcrumb-item {
+    display: none;
+  }
+}
+#page-reduction .donnee-main-content {
+  border: 0.3px solid #a0b21f;
+  padding: 2% 3%;
+  margin: 2% 0;
+}
+@media (max-width: 680px) {
+  #page-reduction .donnee-main-content {
+    padding: 5%;
+  }
+}
+#page-reduction .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #page-reduction .link-div {
+    padding: 3% 1%;
+  }
+}
+#page-reduction .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+
 /*# sourceMappingURL=main.css.map */
