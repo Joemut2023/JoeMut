@@ -84,12 +84,6 @@
               outline: none;
             }
 
-            // button {
-            //   padding: 5px 15px;
-            //   border: 1px solid gray;
-            //   color: white;
-            //   background-color: gray;
-            // }
             .btn-action {
               padding: 5px 15px;
               border: 1px solid gray;
@@ -106,6 +100,7 @@
           .check .text {
             color: $color-primary;
           }
+
         }
 
         .radios {
@@ -113,13 +108,29 @@
           gap: 15px;
           align-items: center;
 
-          div input {
-            font-size: 30px;
-            transform: scale(1.5);
+          .radio {
+            display: flex;
+            align-items: center;
+            gap: 5px;
           }
 
-          div input::-ms-check {
-            color: $color-primary;
+          div input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 3px;
+
+            background-clip: content-box;
+            border: 1px solid #bbbbbb;
+            border-radius: 50%;
+          }
+
+          div input[type="radio"]:checked {
+            background-color: $color-primary;
           }
         }
       }

@@ -2784,12 +2784,25 @@
   gap: 15px;
   align-items: center;
 }
-#page-inscription .content .register-form form .radios div input {
-  font-size: 30px;
-  transform: scale(1.5);
+#page-inscription .content .register-form form .radios .radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-#page-inscription .content .register-form form .radios div input::-ms-check {
-  color: #a0b21f;
+#page-inscription .content .register-form form .radios div input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background-clip: content-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 50%;
+}
+#page-inscription .content .register-form form .radios div input[type=radio]:checked {
+  background-color: #a0b21f;
 }
 #page-inscription .button {
   display: flex;
