@@ -2687,4 +2687,289 @@
   color: #a0b21f;
 }
 
+#identite {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10% 0 5% 0;
+}
+@media (max-width: 680px) {
+  #identite {
+    padding: 1%;
+    width: 95%;
+  }
+}
+@media (max-width: 680px) {
+  #identite .breadcrumb-item {
+    display: none;
+  }
+}
+#identite form {
+  padding: 3% 3% 5% 3%;
+  border: 0.3px solid #a0b21f;
+}
+@media (max-width: 680px) {
+  #identite form {
+    padding: 3% 3% 15% 3%;
+  }
+}
+#identite form .row-form {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin: 2% 0;
+}
+@media (max-width: 680px) {
+  #identite form .row-form {
+    flex-direction: column;
+    margin: 4% 0;
+  }
+}
+#identite form .row-form input {
+  border: 0.3px solid #a0b21f;
+  padding: 1%;
+}
+#identite form .row-form .col-label {
+  width: 20%;
+  text-align: end;
+}
+@media (max-width: 680px) {
+  #identite form .row-form .col-label {
+    text-align: start;
+    width: 100%;
+  }
+}
+#identite form .row-form .col-input {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 680px) {
+  #identite form .row-form .col-input {
+    width: 100%;
+  }
+}
+#identite form .row-form .checkbox-label {
+  display: flex;
+  width: 50%;
+  gap: 3%;
+}
+@media (max-width: 680px) {
+  #identite form .row-form .checkbox-label {
+    width: 100%;
+  }
+}
+#identite form .row-form .checkbox-label input {
+  padding: 0;
+}
+#identite form .row-form .checkbox-label label {
+  width: 100%;
+}
+#identite form input[type=password] {
+  width: 95%;
+}
+#identite form .btn-submit {
+  float: right;
+}
+#identite form .btn-submit button {
+  background-color: #a0b21f;
+  color: #fff;
+}
+#identite .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #identite .link-div {
+    padding: 3% 1%;
+  }
+}
+#identite .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#identite label span {
+  color: red;
+}
+#identite .form-check-label {
+  color: #a0b21f;
+}
+#identite .form-check-label .checkbox-label {
+  background-color: #a0b21f;
+}
+
+#adresse {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10% 0 5% 0;
+}
+@media (max-width: 680px) {
+  #adresse {
+    padding: 1%;
+    width: 95%;
+  }
+}
+@media (max-width: 680px) {
+  #adresse .breadcrumb-item {
+    display: none;
+  }
+}
+#adresse form {
+  padding: 2% 1% 5% 1%;
+  border: 0.3px solid #a0b21f;
+}
+@media (max-width: 680px) {
+  #adresse form {
+    padding: 3% 3% 15% 3%;
+  }
+}
+#adresse form .row-form {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin: 2% 0;
+}
+@media (max-width: 680px) {
+  #adresse form .row-form {
+    flex-direction: column;
+    margin: 4% 0;
+  }
+}
+#adresse form .row-form input {
+  border: 0.3px solid #a0b21f;
+  padding: 0.5% 1%;
+}
+#adresse form .row-form .col-label {
+  width: 20%;
+  text-align: end;
+}
+@media (max-width: 680px) {
+  #adresse form .row-form .col-label {
+    text-align: start;
+    width: 100%;
+  }
+}
+#adresse form .row-form .col-input {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 680px) {
+  #adresse form .row-form .col-input {
+    width: 100%;
+  }
+}
+#adresse form .row-form .col-label-end {
+  text-align: start;
+  color: #7a7a7a;
+}
+#adresse form .btn-submit {
+  float: right;
+}
+#adresse form .btn-submit button {
+  background-color: #a0b21f;
+  color: #fff;
+}
+#adresse .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #adresse .link-div {
+    padding: 3% 1%;
+  }
+}
+#adresse .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#adresse label span {
+  color: red;
+}
+#adresse .form-check-label {
+  color: #a0b21f;
+}
+#adresse .form-check-label .checkbox-label {
+  background-color: #a0b21f;
+}
+
+#donnee {
+  padding: 7%;
+}
+@media (max-width: 680px) {
+  #donnee .breadcrumb-item {
+    display: none;
+  }
+}
+#donnee .donnee-main-content {
+  border: 0.3px solid #a0b21f;
+  padding: 2% 3%;
+  margin: 2% 0;
+}
+@media (max-width: 680px) {
+  #donnee .donnee-main-content {
+    padding: 5%;
+  }
+}
+#donnee .donnee-main-content .donnee-content1 {
+  background-color: rgb(231, 227, 227);
+  padding: 3%;
+  color: #7a7a7a;
+}
+#donnee .donnee-main-content .donnee-content1 .button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+  justify-content: end;
+}
+@media (max-width: 680px) {
+  #donnee .donnee-main-content .donnee-content1 .button-container {
+    flex-direction: column;
+  }
+}
+#donnee .donnee-main-content .donnee-content1 .button-container button {
+  background-color: #a0b21f;
+  border: none;
+  color: #fff;
+  padding: 1%;
+}
+#donnee .donnee-main-content .donnee-content1 .button-container button:hover {
+  background-color: rgb(75, 119, 216);
+}
+@media (max-width: 680px) {
+  #donnee .donnee-main-content .donnee-content1 .button-container button {
+    margin-top: 3%;
+    padding: 2%;
+  }
+}
+#donnee .donnee-main-content .donnee-content2 {
+  background-color: rgb(231, 227, 227);
+  padding: 2% 3%;
+  color: #7a7a7a;
+  margin-top: 2%;
+}
+@media (max-width: 680px) {
+  #donnee .donnee-main-content .donnee-content2 {
+    margin-top: 5%;
+  }
+}
+#donnee .donnee-main-content .donnee-content2 a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#donnee .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #donnee .link-div {
+    padding: 3% 1%;
+  }
+}
+#donnee .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+
 /*# sourceMappingURL=main.css.map */
