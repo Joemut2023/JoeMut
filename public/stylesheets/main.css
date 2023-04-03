@@ -2972,4 +2972,37 @@
   color: #a0b21f;
 }
 
+#page-historique {
+  margin-top: 150px;
+}
+#page-historique .breadcrumb a {
+  color: #232323;
+  text-decoration: none;
+}
+#page-historique h2 {
+  font-size: 1.375rem;
+  font-family: "Byciclette";
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#page-historique .msg-error {
+  width: 100%;
+  height: 150px;
+  border: solid 1px #a0b21f;
+  margin-bottom: 100px;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+#page-historique .msg-error h6 {
+  font-size: 0.9375rem;
+}
+@media (max-width: 680px) {
+  #page-historique {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 50px;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
