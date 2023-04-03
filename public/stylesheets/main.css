@@ -2117,52 +2117,35 @@
     display: none;
   }
 }
-#nouvelleCollection .catalogue .cat-filter .filter .input {
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #7a7a7a;
-  padding: 5px 20px;
-  cursor: pointer;
-  position: relative;
+#nouvelleCollection .catalogue .cat-filter .filter select {
+  height: 40px;
+  width: 60%;
+  padding: 0 5px;
+  outline: none;
+  color: #232323;
 }
 @media (max-width: 680px) {
-  #nouvelleCollection .catalogue .cat-filter .filter .input {
+  #nouvelleCollection .catalogue .cat-filter .filter select {
     width: 100%;
   }
 }
 @media (max-width: 1000px) {
-  #nouvelleCollection .catalogue .cat-filter .filter .input {
+  #nouvelleCollection .catalogue .cat-filter .filter select {
     width: 100%;
   }
 }
-#nouvelleCollection .catalogue .cat-filter .filter .input .icon {
-  color: #a0b21f;
+#nouvelleCollection .catalogue .cat-filter .filter select option {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 10px 25px 10px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #a0a0a0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  outline: none;
 }
-#nouvelleCollection .catalogue .cat-filter .filter .input .content-hide {
-  display: none;
-}
-#nouvelleCollection .catalogue .cat-filter .filter .input .content {
-  position: absolute;
-  left: 0;
-  top: 32px;
-  background-color: rgba(238, 238, 238, 0.9);
-  width: 80%;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-}
-#nouvelleCollection .catalogue .cat-filter .filter .input .content ul {
-  padding: 0px;
-  margin: 0px;
-}
-#nouvelleCollection .catalogue .cat-filter .filter .input .content ul li {
-  list-style: none;
-  padding: 8px 20px;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 200;
-}
-#nouvelleCollection .catalogue .cat-filter .filter .input .content ul li:hover {
-  background-color: #a0b21f;
-  color: white;
+#nouvelleCollection .catalogue .cat-filter .filter select option option:hover {
+  background-color: aquamarine !important;
 }
 #nouvelleCollection .catalogue .cat-body {
   width: 100%;
@@ -2219,7 +2202,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  object-fit: fill;
 }
 #nouvelleCollection .catalogue .cat-body .produit .image-cadre:hover {
   border-bottom: 2px solid #232323;
