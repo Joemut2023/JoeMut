@@ -297,7 +297,7 @@
           img {
             width: 100%;
             height: 85%;
-            object-fit: fill;
+            object-fit:fill;
             @include breakpoint(mobil){
               width: 100%;
               height:90%;
