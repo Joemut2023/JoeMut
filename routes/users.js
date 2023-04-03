@@ -17,5 +17,11 @@ router.get("/adresse", function (req, res, next) {
 router.get("/donnee", function (req, res, next) {
   res.render("users/donnee");
 });
+router.get("/historique", function (req, res, next) {
+  res.render("users/historique");
+});
+router.get("/bons", function (req, res, next) {
+  res.render("users/bons");
+});
 
 module.exports = router;
