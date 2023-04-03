@@ -325,7 +325,8 @@
             color: $color-important;
             font-weight: 300;
             @include breakpoint(mobil) {
-              font-size: 13px;
+              font-size:12px;
+              
             }
             @include breakpoint(tablette) {
               font-size: 13px;
@@ -338,11 +339,18 @@
             justify-content: center;
             align-items: center;
             gap: 5px;
+            @include breakpoint(mobil) {
+              flex-direction: column;
+              gap:3px;
+              justify-content:space-around;
+
+              
+            }
             div {
               color: $color-black;
               font-weight: 700;
               @include breakpoint(mobil) {
-                font-size: 13px;
+                font-size:12px;
               }
               @include breakpoint(tablette) {
                 font-size: 13px;
