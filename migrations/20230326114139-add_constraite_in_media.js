@@ -14,7 +14,7 @@ module.exports = {
       type:"foreign key",
       name:"tym_id_from_type_media",
       references:{
-        table:"Type_media",
+        table:"Type_medias",
         field:"tym_id"
       }
     })

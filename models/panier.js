@@ -18,9 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       Panier.belongsTo(models.Client,{
         foreignKey:'cli_id'
       });
-      Panier.belongsTo(models.Produit,{
-        foreignKey: "pro_id",
-      })
     }
   }
   Panier.init(
@@ -38,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Panier",
+      timestamps:false
     }
   );
   return Panier;

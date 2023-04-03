@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "cli_id",
       });
       Suggestion.belongsTo(models.Produit, {
-        foreignKey: "prod_id",
+        foreignKey: "pro_id",
       });
     }
   }
@@ -26,12 +26,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       pro_id: DataTypes.INTEGER,
       cli_id: DataTypes.INTEGER,
-      sug_comment: DataTypes.INTEGER,
+      sug_comment: DataTypes.TEXT,
       sug_date: DataTypes.DATE,
     },
     {
       sequelize,
       modelName: "Suggestion",
+      timestamps:false
     }
   );
   return Suggestion;

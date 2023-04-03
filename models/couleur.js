@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Couleur",
+      timestamps:false
     }
   );
   return Couleur;

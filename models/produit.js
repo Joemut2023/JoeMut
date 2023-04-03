@@ -24,9 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       Produit.hasMany(models.Suggestion, {
         foreignKey: "pro_id",
       });
-      Produit.hasMany(models.Panier, {
-        foreignKey: "pro_id",
-      });
       Produit.hasMany(models.Apply, {
         foreignKey: "pro_id",
       });

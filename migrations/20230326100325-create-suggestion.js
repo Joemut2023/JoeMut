@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       sug_comment: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       sug_date: {
