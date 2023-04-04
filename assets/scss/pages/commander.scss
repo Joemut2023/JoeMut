@@ -1,6 +1,10 @@
-#page-inscription {
+#page-commander {
     padding: 8% 9%;
     font-family: $typograohie;
+    #btnDisable {
+        pointer-events: none;
+        opacity: 0.4;
+    }
     .row {
         .bloc-1 {
             .informations {
@@ -27,7 +31,8 @@
                 }
             }
             .adresses {
-                .big-title {
+                .big-title,
+                .adresse-title {
                     display: flex;
                     align-items: center;
                     gap: 20px;
@@ -84,7 +89,8 @@
                     font-size: 24px;
                 }
             }
-            .content {
+            .content,
+            .adresse-content {
                 max-width: 670px;
                 padding: 20px;
                 .register-form {
@@ -200,6 +206,7 @@
                     color: white;
                 }
             }
+            .adresse-content {}
         }
         .bloc-2 {
             .title-article {
@@ -255,5 +262,18 @@
                 }
             }
         }
+    }
+    #divFinalisation,
+    #divLivraison,
+    #divAdress,
+    #info-mod-btn,
+    #faCheck {
+        display: none;
+    }
+    #finalisation,
+    #livraison,
+    #adresse {
+        opacity: 0.7;
+        cursor: not-allow;
     }
 }

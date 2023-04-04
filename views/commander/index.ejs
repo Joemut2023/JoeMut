@@ -1,16 +1,20 @@
-<div id="page-inscription">
+<div id="page-commander">
     <div class="row">
         <div class="col-md-8 bloc-1">
             <div class="informations">
-                <div class="big-title" onclick="toggle_visibility('myDIV')">
+                <div class="big-title">
                     <div class="border-number ">1</div>
-                    <div class="title-h4">
-                        <h4>INFORMATIONS PERSONNELLES</h4>
+                    <div class="title-h4 d-flex">
+                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
+                        <div class="titre">
+                            <h4>INFORMATIONS PERSONNELLES</h4>
+                        </div>
+                        <div class="btn bnt-primary" id="info-mod-btn">Modier</div>
                     </div>
                 </div>
                 <hr>
 
-                <div class="content" id="myDIV">
+                <div class="content" id="info-content">
                     <div class="register-form">
                         <p class="title">
                             <span id="creer-compte">Creez votre compte</span>
@@ -18,7 +22,7 @@
                             <span>Connexion</span>
                         </p>
 
-                        <form id='show'>
+                        <form id='info-form'>
                             <div>
                                 <div class="form-group row ">
                                     <div class="col-md-3 item ">
@@ -124,7 +128,7 @@
                                 </div>
                             </div>
                             <div class=" button ">
-                                <button>Continuer</button>
+                                <button type="submit">Continuer</button>
                             </div>
                         </form>
                     </div>
@@ -132,16 +136,18 @@
             </div>
 
 
-            <div class="adresses">
-                <div class="big-title" onclick="toggle_visibility('divAdress')">
+            <div class="adresses" id="adresse">
+                <div class="adresse-title">
                     <div class="border-number ">2</div>
                     <div class="title-h4">
+                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
                         <h4>ADRESSES</h4>
                     </div>
+                    <div class="btn bnt-primary" id="adresse-mod-btn">Modier</div>
                 </div>
                 <hr>
 
-                <div class="content" id="divAdress">
+                <div class="adresse-content" id="divAdress">
                     <div class="text-contents">
                         <div class="text-1">
                             <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
@@ -150,7 +156,7 @@
                     </div>
                     <div class="register-form">
 
-                        <form id='show'>
+                        <form id='adresse-form'>
                             <div class="form-parent">
                                 <div class="form-group row ">
                                     <div class="col-md-3 "></div>
@@ -277,12 +283,14 @@
                 </div>
             </div>
 
-            <div class="adresses">
-                <div class="big-title" onclick="toggle_visibility('divLivraison')">
+            <div class="adresses" id="livraison">
+                <div class="big-title">
                     <div class="border-number ">3</div>
                     <div class="title-h4">
+                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
                         <h4>MODE DE LIVRAISON</h4>
                     </div>
+                    <div class="btn bnt-primary" id="livraison-mod-btn">Modier</div>
                 </div>
                 <hr>
 
@@ -295,7 +303,7 @@
                     </div>
                     <div class="register-form">
 
-                        <form id='show'>
+                        <form id='livraison-form'>
                             <div class="form-parent">
                                 <div class="form-group row ">
                                     <div class="col-md-3 "></div>
@@ -422,12 +430,14 @@
                 </div>
             </div>
 
-            <div class="adresses">
+            <div class="adresses" id="finalisation">
                 <div class="big-title" onclick="toggle_visibility('divFinalisation')">
                     <div class="border-number ">4</div>
                     <div class="title-h4">
+                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
                         <h4>FINALISATION</h4>
                     </div>
+                    <div class="btn bnt-primary" id="finalisation-mod-btn">Modier</div>
                 </div>
                 <hr>
 
@@ -440,7 +450,7 @@
                     </div>
                     <div class="register-form">
 
-                        <form id='show'>
+                        <form id='finalisation-form'>
                             <div class="form-parent">
                                 <div class="form-group row ">
                                     <div class="col-md-3 "></div>
@@ -629,15 +639,3 @@
     </div>
 
 </div>
-
-<!-- //Event show/none -->
-<script>
-    function toggle_visibility(id) {
-        var element = document.getElementById(id);
-        if (element.style.display === "none") {
-            element.style.display = "block";
-        } else {
-            element.style.display = "none";
-        }
-    }
-</script>
