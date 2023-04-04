@@ -3,7 +3,6 @@ const navlink_two = document.querySelector(".btn-tab-two");
 
 const btn_up = document.querySelector(".btn-up");
 const btn_down = document.querySelector(".btn-down");
-const number = parseInt(document.querySelector(".number-value").value);
 const input = document.querySelector(".number-value");
 
 const image_grand = document.querySelector(".img-grand");
@@ -19,19 +18,26 @@ navlink_two.addEventListener("click", function () {
   navlink_one.classList.remove("button-add");
 });
 
-// Incrementation
 btn_up.addEventListener("click", function () {
-  number = parseInt(isNaN(number)) ? 1 : parseInt(number);
-  number++;
-  input.value = number
-  
+  let compteur = parseInt(document.querySelector(".number-value").value);
+  compteur = isNaN(compteur) ? 1 : compteur;
+  compteur++;
+  input.value = compteur;
 });
 
-// Images
-image_small.forEach(element => {
+btn_down.addEventListener("click", function () {
+  let compteur = parseInt(document.querySelector(".number-value").value);
+  compteur = isNaN(compteur) ? 1 : compteur;
+  if (compteur > 1) compteur--;
+  input.value = compteur;
+});
+
+image_small.forEach((element) => {
   element.addEventListener("click", function () {
-    // alert("click yes !")
-    image_grand.src = element.src
+    image_grand.src = element.src;
   });
 });
 
+input.addEventListener("input", function () {
+  input.value = input.value.replace(/[^0-9]/gi, "1");
+});
