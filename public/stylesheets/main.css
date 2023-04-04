@@ -2585,79 +2585,127 @@
   font-size: 14px;
 }
 
-#page-connexion .formulaire-connexion {
-  margin-left: 10%;
+#page-inscription {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
 }
-#page-connexion .formulaire-connexion .text-connexion {
-  margin-left: 10%;
-  margin-top: 5%;
+#page-inscription .title-recherche {
+  margin-bottom: 5px;
 }
-#page-connexion .formulaire-connexion .text-connexion p > span {
+#page-inscription .title-recherche a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-inscription .title-recherche span {
   color: #7a7a7a;
+  font-size: 16px;
 }
-#page-connexion .formulaire-connexion .form-parent {
+#page-inscription .resultat {
+  margin-bottom: 20px;
+}
+#page-inscription .resultat p {
+  font-weight: 600;
+  font-size: 24px;
+}
+#page-inscription .content {
+  max-width: 670px;
+  margin: 0 auto;
   border: 1px solid #a0b21f;
-  width: 50%;
-  margin-left: 10%;
-  margin-bottom: 3%;
   padding: 20px;
-  text-align: center;
 }
-#page-connexion .formulaire-connexion .form-parent .formulaire {
-  text-align: center;
+#page-inscription .content .register-form .title {
+  color: #7a7a7a;
+  margin-bottom: 20px;
 }
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-mail .input-field input {
-  border: 1px solid #a0b21f;
-  padding: 10px;
-  width: 350px;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-mail .input-field .required {
-  color: red;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-password {
-  margin-left: -50px;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-password .input-field input {
-  border: 1px solid #a0b21f;
-  padding: 10px;
-  width: 270px;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-password .input-field .required {
-  color: red;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .bloc-password .input-field .showPassword {
-  color: #fff;
-  background-color: #7a7a7a;
-  border-radius: 0px;
-  padding: 10px;
-  margin-left: -5px;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .forgot a {
+#page-inscription .content .register-form .title a {
   text-decoration: none;
   color: #a0b21f;
 }
-#page-connexion .formulaire-connexion .form-parent .formulaire .btn-connexion {
-  color: #fff;
-  background-color: #a0b21f;
-  border-radius: 0px;
-  padding: 7px;
+#page-inscription .content .register-form form {
+  margin-top: 20px;
+}
+#page-inscription .content .register-form form .form-group {
+  margin-bottom: 20px;
+}
+#page-inscription .content .register-form form .form-group .label {
+  font-weight: 600;
+}
+#page-inscription .content .register-form form .form-group .item {
+  text-align: right;
+}
+@media (max-width: 1000px) {
+  #page-inscription .content .register-form form .form-group .item {
+    text-align: left;
+  }
+}
+#page-inscription .content .register-form form .form-group .item label span {
+  color: red;
+  margin: 5px;
+}
+#page-inscription .content .register-form form .form-group .input input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .content .register-form form .form-group .input input:focus {
+  border: 2px solid #a0b21f;
+}
+@media (max-width: 680px) {
+  #page-inscription .content .register-form form .form-group .input input {
+    margin-top: 4%;
+  }
+}
+#page-inscription .content .register-form form .form-group .input label {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-inscription .content .register-form form .form-group .btn-hide {
+  display: flex;
+}
+@media (max-width: 680px) {
+  #page-inscription .content .register-form form .form-group .btn-hide {
+    margin-top: 4%;
+  }
+}
+#page-inscription .content .register-form form .form-group .btn-hide input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .content .register-form form .form-group .btn-hide .btn-action {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  color: white;
+  background-color: gray;
+  cursor: pointer;
+}
+#page-inscription .create-account,
+#page-inscription .forgot-password {
+  text-align: center;
+  color: #a0b21f;
+  font-size: large;
+}
+#page-inscription .button {
+  display: flex;
+  justify-content: center;
+}
+#page-inscription .button button {
   width: 20%;
-  font-size: 18px;
-  text-align: center;
+  padding: 10px;
+  border: none;
+  background: #a0b21f;
+  color: white;
 }
-#page-connexion .formulaire-connexion .form-parent .formulaire .btn-connexion:hover {
-  background-color: #6699CC;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire hr {
-  width: 95%;
-  margin: auto;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .newCompte {
-  color: #a0b21f;
-}
-#page-connexion .formulaire-connexion .form-parent .formulaire .newCompte a {
-  color: #a0b21f;
-  text-decoration: none;
+@media (max-width: 680px) {
+  #page-inscription .button button {
+    text-align: center;
+    width: 50%;
+  }
 }
 
 #page-panier {

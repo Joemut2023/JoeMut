@@ -1,83 +1,115 @@
-#page-connexion {
-    .formulaire-connexion {
-        margin-left: 10%;
-        .text-connexion {
-            margin-left: 10%;
-            margin-top: 5%;
-            p>span {
-                color: $color-secondary
+#page-inscription {
+    padding: 8% 9%;
+    font-family: $typograohie;
+    .title-recherche {
+        margin-bottom: 5px;
+        a {
+            text-decoration: none;
+            color: $color-black;
+            font-size: 16px;
+        }
+        span {
+            color: $color-secondary;
+            font-size: 16px;
+        }
+    }
+    .resultat {
+        margin-bottom: 20px;
+        p {
+            font-weight: 600;
+            font-size: 24px;
+        }
+    }
+    .content {
+        max-width: 670px;
+        margin: 0 auto;
+        border: 1px solid $color-primary;
+        padding: 20px;
+        .register-form {
+            .title {
+                color: $color-secondary;
+                margin-bottom: 20px;
+                a {
+                    text-decoration: none;
+                    color: $color-primary;
+                }
+            }
+            form {
+                margin-top: 20px;
+                .form-group {
+                    margin-bottom: 20px;
+                    .label {
+                        font-weight: 600;
+                    }
+                    .item {
+                        text-align: right;
+                        @include breakpoint(tablette) {
+                            text-align: left;
+                        }
+                        label span {
+                            color: red;
+                            margin: 5px;
+                        }
+                    }
+                    .input input {
+                        width: 100%;
+                        background-color: white;
+                        border: 1px solid $color-primary;
+                        padding: 5px 15px;
+                        outline: none;
+                        &:focus {
+                            border: 2px solid $color-primary;
+                        }
+                        @include breakpoint(mobil) {
+                            margin-top: 4%;
+                        }
+                    }
+                    .input label {
+                        color: $color-secondary;
+                        font-size: 14px;
+                    }
+                    .btn-hide {
+                        display: flex;
+                        @include breakpoint(mobil) {
+                            margin-top: 4%;
+                        }
+                        input {
+                            width: 100%;
+                            background-color: white;
+                            border: 1px solid $color-primary;
+                            padding: 5px 15px;
+                            outline: none;
+                        }
+                        .btn-action {
+                            padding: 5px 15px;
+                            border: 1px solid gray;
+                            color: white;
+                            background-color: gray;
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
         }
-        .form-parent {
-            border: 1px solid $color-primary;
-            width: 50%;
-            margin-left: 10%;
-            margin-bottom: 3%;
-            padding: 20px;
-            text-align: center;
-            .formulaire {
+    }
+    .create-account,
+    .forgot-password {
+        text-align: center;
+        color: $color-primary;
+        font-size: large;
+    }
+    .button {
+        display: flex;
+        justify-content: center;
+        button {
+            width: 20%;
+            padding: 10px;
+            border: none;
+            background: $color-primary;
+            color: white;
+            @include breakpoint(mobil) {
                 text-align: center;
-                .bloc-mail {
-                    .input-field {
-                        input {
-                            border: 1px solid $color-primary;
-                            padding: 10px;
-                            width: 350px;
-                        }
-                        .required {
-                            color: red;
-                        }
-                    }
-                }
-                .bloc-password {
-                    margin-left: -50px;
-                    .input-field {
-                        input {
-                            border: 1px solid $color-primary;
-                            padding: 10px;
-                            width: 270px;
-                        }
-                        .required {
-                            color: red;
-                        }
-                        .showPassword {
-                            color: $color-white;
-                            background-color: $color-secondary;
-                            border-radius: 0px;
-                            padding: 10px;
-                            margin-left: -5px;
-                        }
-                    }
-                }
-                .forgot {
-                    a {
-                        text-decoration: none;
-                        color: $color-primary;
-                    }
-                }
-                .btn-connexion {
-                    color: $color-white;
-                    background-color: $color-primary;
-                    border-radius: 0px;
-                    padding: 7px;
-                    width: 20%;
-                    font-size: 18px;
-                    text-align: center;
-                }
-                .btn-connexion:hover {
-                    background-color: #6699CC;
-                }
-                hr {
-                    width: 95%;
-                    margin: auto;
-                }
-                .newCompte {
-                    color: $color-primary;
-                    a {
-                        color: $color-primary;
-                        text-decoration: none;
-                    }
-                }
+                width: 50%;
             }
         }
     }
