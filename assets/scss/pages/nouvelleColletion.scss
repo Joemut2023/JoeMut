@@ -1,411 +1,416 @@
 #nouvelleCollection {
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 20px $padding-L-R;
+  margin-top: 130px;
+  @include breakpoint(mobil) {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @include breakpoint(tablette) {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .group-catalogue {
+    width: 25%;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    padding: 20px $padding-L-R;
-    margin-top: 130px;
+    flex-direction: column;
     @include breakpoint(mobil) {
-        padding: 10px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      width: 100%;
     }
     @include breakpoint(tablette) {
-        padding: 10px 0;
+      width: 100%;
+    }
+    .title {
+      width: 100%;
+      display: flex;
+      gap: 8px;
+      @include breakpoint(mobil) {
+        display: none;
+      }
+      @include breakpoint(tablette) {
+        display: none;
+      }
+      a {
+        text-decoration: none;
+        color: $color-black;
+      }
+      p {
+        color: $color-important;
+        opacity: 0.6;
+      }
+    }
+    .list {
+      width: 100%;
+      padding: 5px 0px 0px 15px;
+      @include breakpoint(mobil) {
+        padding: 5px 15px 0px 15px;
+      }
+      .border {
+        width: 100%;
+        height: 3px;
+        border: 1px solid $color-primary !important;
+      }
+      .list-body {
+        width: 100%;
+        padding: 25px 0px 25px 10px;
+        font-weight: 400;
         display: flex;
         flex-direction: column;
+        gap: 5px;
+        p {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+  .catalogue {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px;
+    @include breakpoint(mobil) {
+      width: 100%;
+      padding: 0px 13px;
+    }
+    @include breakpoint(tablette) {
+      width: 100%;
+    }
+    .cat-title {
+      width: 100%;
+      padding-top: 45px;
+      h2 {
+        font-size: 22px;
+        @include breakpoint(mobil) {
+          font-size: 19px;
+        }
+      }
+    }
+    .cat-filter {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 5px 0;
+      p {
+        font-size: 17px;
+        color: $color-important;
+        @include breakpoint(mobil) {
+          display: none;
+        }
+        @include breakpoint(tablette) {
+          display: none;
+        }
+      }
+      // .filter {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: flex-end;
+      //     align-items: center;
+      //     gap: 8px;
+      //     width: 50%;
+      //     @include breakpoint(mobil) {
+      //         width: 100%;
+      //     }
+      //     @include breakpoint(tablette) {
+      //         width: 100%;
+      //     }
+      //     label {
+      //         font-size: 17px;
+      //         color: $color-important;
+      //         @include breakpoint(mobil) {
+      //             display: none;
+      //         }
+      //         @include breakpoint(tablette) {
+      //             display: none;
+      //         }
+      //     }
+      //     select {
+      //         height: 40px;
+      //         width: 60%;
+      //         padding: 0 5px;
+      //         outline: none;
+      //         color: $color-black;
+      //         @include breakpoint(mobil) {
+      //             width: 100%;
+      //         }
+      //         @include breakpoint(tablette) {
+      //             width: 100%;
+      //         }
+      //         option {
+      //             font-size: 16px;
+      //             font-weight: 400;
+      //             padding: 10px 25px 10px 10px;
+      //             background-color: #f0f0f0;
+      //             border: 1px solid #a0a0a0;
+      //             border-radius: 5px;
+      //             transition: all 0.3s ease;
+      //             outline: none;
+      //             option:hover {
+      //                 background-color: aquamarine !important;
+      //             }
+      //         }
+      //     }
+      // }
+      .filter {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
         align-items: center;
-    }
-    .group-catalogue {
-        width: 25%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
+        gap: 8px;
+        width: 50%;
         @include breakpoint(mobil) {
-            width: 100%;
+          width: 100%;
         }
         @include breakpoint(tablette) {
-            width: 100%;
+          width: 100%;
         }
-        .title {
-            width: 100%;
-            display: flex;
-            gap: 8px;
-            @include breakpoint(mobil) {
-                display: none;
-            }
-            @include breakpoint(tablette) {
-                display: none;
-            }
-            a {
-                text-decoration: none;
-                color: $color-black;
-            }
-            p {
-                color: $color-important;
-                opacity: 0.6;
-            }
+        label {
+          font-size: 17px;
+          color: $color-important;
+          @include breakpoint(mobil) {
+            display: none;
+          }
+          @include breakpoint(tablette) {
+            display: none;
+          }
         }
-        .list {
+        .input {
+          width: 70%;
+          display: flex;
+          justify-content: space-between;
+          border: 1px solid $color-secondary;
+          padding: 5px 20px;
+          cursor: pointer;
+          position: relative;
+          @include breakpoint(mobil) {
             width: 100%;
-            padding: 5px 0px 0px 15px;
-            @include breakpoint(mobil) {
-                padding: 5px 15px 0px 15px;
-            }
-            .border {
-                width: 100%;
-                height: 3px;
-                border: 1px solid $color-primary !important;
-            }
-            .list-body {
-                width: 100%;
-                padding: 25px 0px 25px 10px;
-                font-weight: 400;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                p {
-                    color: $color-primary;
-                }
-            }
-        }
-    }
-    .catalogue {
-        width: 75%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 0px 30px;
-        @include breakpoint(mobil) {
+          }
+          @include breakpoint(tablette) {
             width: 100%;
-            padding: 0px 13px;
-        }
-        @include breakpoint(tablette) {
+          }
+          .icon {
+            color: $color-primary;
+          }
+          .content-hide {
+            display: none;
+          }
+          .content {
+            position: absolute;
+            left: 0;
+            top: 34px;
+            background-color: #f6f6f6;
             width: 100%;
-        }
-        .cat-title {
-            width: 100%;
-            padding-top: 45px;
-            h2 {
-                font-size: 22px;
-                @include breakpoint(mobil) {
-                    font-size: 19px;
-                }
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+            ul {
+              padding: 0px;
+              margin: 0px;
             }
-        }
-        .cat-filter {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 5px 0;
-            p {
-                font-size: 17px;
-                color: $color-important;
-                @include breakpoint(mobil) {
-                    display: none;
-                }
-                @include breakpoint(tablette) {
-                    display: none;
-                }
-            }
-            // .filter {
-            //     display: flex;
-            //     flex-direction: row;
-            //     justify-content: flex-end;
-            //     align-items: center;
-            //     gap: 8px;
-            //     width: 50%;
-            //     @include breakpoint(mobil) {
-            //         width: 100%;
-            //     }
-            //     @include breakpoint(tablette) {
-            //         width: 100%;
-            //     }
-            //     label {
-            //         font-size: 17px;
-            //         color: $color-important;
-            //         @include breakpoint(mobil) {
-            //             display: none;
-            //         }
-            //         @include breakpoint(tablette) {
-            //             display: none;
-            //         }
-            //     }
-            //     select {
-            //         height: 40px;
-            //         width: 60%;
-            //         padding: 0 5px;
-            //         outline: none;
-            //         color: $color-black;
-            //         @include breakpoint(mobil) {
-            //             width: 100%;
-            //         }
-            //         @include breakpoint(tablette) {
-            //             width: 100%;
-            //         }
-            //         option {
-            //             font-size: 16px;
-            //             font-weight: 400;
-            //             padding: 10px 25px 10px 10px;
-            //             background-color: #f0f0f0;
-            //             border: 1px solid #a0a0a0;
-            //             border-radius: 5px;
-            //             transition: all 0.3s ease;
-            //             outline: none;
-            //             option:hover {
-            //                 background-color: aquamarine !important;
-            //             }
-            //         }
-            //     }
-            // }
-            .filter {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: center;
-                gap: 8px;
-                width: 50%;
-                @include breakpoint(mobil) {
-                  width: 100%;
-                }
-                @include breakpoint(tablette) {
-                  width: 100%;
-                }
-                label {
-                  font-size: 17px;
-                  color: $color-important;
-                  @include breakpoint(mobil) {
-                    display: none;
-                  }
-                  @include breakpoint(tablette) {
-                    display: none;
-                  }
-                }
-                .input {
-                  width: 70%;
-                  display: flex;
-                  justify-content: space-between;
-                  border: 1px solid $color-secondary;
-                  padding: 5px 20px;
-                  cursor: pointer;
-                  position: relative;
-                  @include breakpoint(mobil) {
-                    width: 100%;
-                  }
-                  @include breakpoint(tablette) {
-                    width: 100%;
-                  }
-                  .icon {
-                    color: $color-primary;
-                  }
-                  .content-hide {
-                    display: none;
-                  }
-                  .content {
-                    position: absolute;
-                    left: 0;
-                    top: 34px;
-                    background-color: #f6f6f6;
-                    width:100%;
-                    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;;
-        
-                    ul {
-                      padding: 0px;
-                      margin: 0px;
-                    }
-                    ul li {
-                      list-style: none;
-                      padding: 8px 20px;
-                      color: rgba(0, 0, 0, 0.6);
-                      font-weight: 200;
-        
-                      &:hover {
-                        background-color: $color-primary;
-                        color: white;
-                      }
-                    }
-                  }
-                }
-                // select {
-                //   height: 40px;
-                //   width: 60%;
-                //   padding: 0 5px;
-                //   outline: none;
-                //   color: $color-black;
-                //   @include breakpoint(mobil) {
-                //     width: 100%;
-                //   }
-                //   @include breakpoint(tablette) {
-                //     width: 100%;
-                //   }
-                //   option {
-                //     font-size: 16px;
-                //     font-weight: 400;
-                //     padding: 10px 25px 10px 10px;
-                //     background-color: #f0f0f0;
-                //     border: 1px solid #a0a0a0;
-                //     border-radius: 5px;
-                //     transition: all 0.3s ease;
-                //     outline: none;
-                //   }
-                // }
+            ul li {
+              list-style: none;
+              padding: 8px 20px;
+              color: rgba(0, 0, 0, 0.6);
+              font-weight: 200;
+
+              &:hover {
+                background-color: $color-primary;
+                color: white;
               }
+            }
+          }
         }
-        .cat-body {
+        // select {
+        //   height: 40px;
+        //   width: 60%;
+        //   padding: 0 5px;
+        //   outline: none;
+        //   color: $color-black;
+        //   @include breakpoint(mobil) {
+        //     width: 100%;
+        //   }
+        //   @include breakpoint(tablette) {
+        //     width: 100%;
+        //   }
+        //   option {
+        //     font-size: 16px;
+        //     font-weight: 400;
+        //     padding: 10px 25px 10px 10px;
+        //     background-color: #f0f0f0;
+        //     border: 1px solid #a0a0a0;
+        //     border-radius: 5px;
+        //     transition: all 0.3s ease;
+        //     outline: none;
+        //   }
+        // }
+      }
+    }
+    .cat-body {
+      width: 100%;
+      padding: 25px 50px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 14rem;
+      @include breakpoint(mobil) {
+        padding: 10px 5px;
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.5rem;
+        row-gap: 0.7rem;
+      }
+      @include breakpoint(tablette) {
+        padding: 10px 10px;
+        display: flex;
+        flex-direction: row;
+        column-gap: 4rem;
+        row-gap: 1rem;
+      }
+      .produit {
+        width: 25%;
+        height: 22rem;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        @include breakpoint(mobil) {
+          height: 15rem;
+          width: 8%;
+        }
+        @include breakpoint(tablette) {
+          height: 15rem;
+          width: 40%;
+        }
+        .image-cadre {
+          width: 100%;
+          height: 70%;
+          @include breakpoint(mobil) {
             width: 100%;
-            padding: 25px 50px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            column-gap: 14rem;
+            height: 50%;
+          }
+          img {
+            width: 100%;
+            height: 85%;
+            object-fit: fill;
             @include breakpoint(mobil) {
-                padding: 10px 5px;
-                display: flex;
-                flex-direction: row;
-                column-gap: 0.5rem;
-                row-gap: 0.7rem;
+              width: 100%;
+              height: 90%;
+            }
+          }
+          &:hover {
+            border-bottom: 2px solid $color-black;
+          }
+        }
+        .detail {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          a {
+            text-decoration: none;
+            color: $color-black;
+            font-size: 14px;
+            font-weight: 500;
+            @include breakpoint(mobil) {
+              font-size: 12px;
+            }
+          }
+          div {
+            color: $color-important;
+            font-weight: 300;
+            @include breakpoint(mobil) {
+              font-size: 13px;
             }
             @include breakpoint(tablette) {
-                padding: 10px 10px;
-                display: flex;
-                flex-direction: row;
-                column-gap: 4rem;
-                row-gap: 1rem;
+              font-size: 13px;
             }
-            .produit {
-                width: 25%;
-                height: 22rem;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                @include breakpoint(mobil) {
-                    height: 15rem;
-                    width: 8%;
-                }
-                @include breakpoint(tablette) {
-                    height: 15rem;
-                    width: 40%;
-                }
-                .image-cadre {
-                    width: 100%;
-                    height: 70%;
-                    img {
-                        width: 110%;
-                        height: 100%;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                        background-size: cover;
-                        object-fit:fill;
-                    }
-                    &:hover {
-                        border-bottom: 2px solid $color-black;
-                    }
-                }
-                .detail {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                    a {
-                        text-decoration: none;
-                        color: $color-black;
-                        font-size: 14px;
-                        font-weight: 500;
-                        @include breakpoint(mobil) {
-                            font-size: 12px;
-                        }
-                    }
-                    div {
-                        color: $color-important;
-                        font-weight: 300;
-                        @include breakpoint(mobil) {
-                            font-size: 13px;
-                        }
-                        @include breakpoint(tablette) {
-                            font-size: 13px;
-                        }
-                    }
-                    .montant {
-                        width: 100%;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 5px;
-                        div {
-                            color: $color-black;
-                            font-weight: 700;
-                            @include breakpoint(mobil) {
-                                font-size: 13px;
-                            }
-                            @include breakpoint(tablette) {
-                                font-size: 13px;
-                            }
-                            span {
-                                width: 2px;
-                                height: 100%;
-                            }
-                        }
-                        button {
-                            border: none;
-                            background-color: $color-white;
-                            font-size: 16px;
-                            font-weight: 700;
-                            @include breakpoint(mobil) {
-                                font-size: 13px;
-                            }
-                            @include breakpoint(tablette) {
-                                font-size: 13px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .cat-pagination {
-            padding: 10px 0;
+          }
+          .montant {
             width: 100%;
             display: flex;
             flex-direction: row;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            @include breakpoint(mobil) {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-            }
+            gap: 5px;
             div {
-                font-size: 17px;
-                color: $color-important;
-                @include breakpoint(mobil) {
-                    display: none;
-                }
-                @include breakpoint(tablette) {
-                    display: none;
-                }
+              color: $color-black;
+              font-weight: 700;
+              @include breakpoint(mobil) {
+                font-size: 13px;
+              }
+              @include breakpoint(tablette) {
+                font-size: 13px;
+              }
+              span {
+                width: 2px;
+                height: 100%;
+              }
             }
-            .pagination {
-                border: none;
-                width: 70%;
-                .page-item {
-                    border: none !important;
-                    color: $color-black;
-                    a {
-                        color: $color-black;
-                        outline: none !important;
-                        &:active {
-                            outline: none !important;
-                        }
-                        @include breakpoint(mobil) {
-                            text-align: center;
-                        }
-                    }
-                }
+            button {
+              border: none;
+              background-color: $color-white;
+              font-size: 16px;
+              font-weight: 700;
+              @include breakpoint(mobil) {
+                font-size: 13px;
+              }
+              @include breakpoint(tablette) {
+                font-size: 13px;
+              }
             }
+          }
         }
+      }
     }
+    .cat-pagination {
+      padding: 10px 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      @include breakpoint(mobil) {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      div {
+        font-size: 17px;
+        color: $color-important;
+        @include breakpoint(mobil) {
+          display: none;
+        }
+        @include breakpoint(tablette) {
+          display: none;
+        }
+      }
+      .pagination {
+        border: none;
+        width: 70%;
+        .page-item {
+          border: none !important;
+          color: $color-black;
+          a {
+            color: $color-black;
+            outline: none !important;
+            &:active {
+              outline: none !important;
+            }
+            @include breakpoint(mobil) {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
 }
