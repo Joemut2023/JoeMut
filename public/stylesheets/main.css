@@ -1231,6 +1231,7 @@
 }
 #pages-catalogue .group-catalogue .title p {
   color: #363a42;
+  opacity: 0.6;
 }
 #pages-catalogue .group-catalogue .list {
   width: 100%;
@@ -1293,6 +1294,8 @@
 #pages-catalogue .group-catalogue .list .list-body .accordion-body {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+  font-weight: 300;
 }
 #pages-catalogue .group-catalogue .list .list-body .accordion-body a {
   text-decoration: none;
@@ -2066,6 +2069,7 @@
 }
 #nouvelleCollection .group-catalogue .title p {
   color: #363a42;
+  opacity: 0.6;
 }
 #nouvelleCollection .group-catalogue .list {
   width: 100%;
