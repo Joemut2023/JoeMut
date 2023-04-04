@@ -14,13 +14,9 @@ var rechercheRouter = require('./routes/recherche');
 var panierRouter = require('./routes/panier')
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
-<<<<<<< HEAD
-var connexionUser = require('./routes/connexion')
 var inscriptionRouter = require('./routes/inscription')
-=======
 var connexionRouter = require('./routes/connexion')
 var commanderRouter = require('./routes/commander')
->>>>>>> feature/commander
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
@@ -30,39 +26,24 @@ var app = express();
 require("./config/db").sync();
 
 AdminJS.registerAdapter({
-  Resource: AdminJSSequelize.Resource,
-  Database: AdminJSSequelize.Database,
+    Resource: AdminJSSequelize.Resource,
+    Database: AdminJSSequelize.Database,
 });
 
 console.log(Components.Dashboard);
 const admin = new AdminJS({
-<<<<<<< HEAD
-  //resources:[Categorie]
-  dashboard: {
-    component: AdminJS.bundle("admin/pages-components/dashboard"),
-  },
-  databases: [db],
-  branding: {
-    companyName: "AES",
-    withMadeWithLove: false,
-    logo: "/images/logo.png",
-    favicon: "/images/favicon.ico",
-  },
-});
-=======
     //resources:[Categorie]
     dashboard: {
-        component: AdminJS.bundle('admin/pages-components/dashboard'),
+        component: AdminJS.bundle("admin/pages-components/dashboard"),
     },
     databases: [db],
     branding: {
         companyName: "AES",
         withMadeWithLove: false,
         logo: "/images/logo.png",
-        favicon: "/images/favicon.ico"
-    }
-})
->>>>>>> feature/commander
+        favicon: "/images/favicon.ico",
+    },
+});
 const adminRouter = AdminJSExpress.buildRouter(admin);
 
 // view engine setup
@@ -86,31 +67,27 @@ app.use('/promotion', promotionRouter)
 app.use('/recherche', rechercheRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
-<<<<<<< HEAD
-app.use('/connexion', connexionUser)
-app.use('/panier',panierRouter)
+app.use('/panier', panierRouter)
 app.use('/inscription', inscriptionRouter)
-=======
 app.use('/connexion', connexionRouter)
 app.use('/commander', commanderRouter)
-app.use('/panier', panierRouter)
->>>>>>> feature/commander
+
 
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+app.use(function(req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
 });
 
 module.exports = app;
