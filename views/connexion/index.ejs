@@ -1,37 +1,64 @@
-<div id="page-connexion">
-    <div class="formulaire-connexion">
-        <div class="text-connexion">
-            <p>Accueil /
-                <span>Connectez vous à votre compte</span>
-            </p>
-            <h4>Connectez vous à votre compte</h4>
-        </div>
+<div id="page-inscription">
 
-        <div class="form-parent">
-            <form class="pt-3 formulaire">
-                <div class="form-group py-2 bloc-mail">
-                    <div class="input-field">
-                        <span class="required">*</span>
-                        <span>E-mail</span>
-                        <input type="text" required>
-                    </div>
-                </div>
-                <div class="form-group py-1 pb-2 bloc-password">
-                    <div class="input-field">
-                        <span class="required">*</span>
-                        <span>Mot de passe</span>
-
-                        <input type="text" required> <button class="btn showPassword "> <span>Montrer</span> </button></input>
-
-                    </div>
-                </div>
-                <div class="forgot"> <a href="#" id="forgot">Mot de passe oublié?</a> </div>
-
-                <button class="btn btn-connexion btn-block text-center my-3">Connexion</button>
-                <hr>
-                <div class="pt-3 newCompte">Pas de compte ? <a href="#"> Créez-en un</a></div>
-            </form>
-        </div>
-
+    <div class="title-recherche">
+        <span><a href="">Acceuil</a></span>
+        <span>/</span>
+        <span>Connectez-vous à votre compte</span>
     </div>
-</div>
+
+    <div class="resultat">
+        <p>Connectez-vous à votre compte</p>
+    </div>
+
+    <div class="content">
+        <div class="register-form">
+
+            <form id="form">
+                <div>
+                    <div class="form-group row">
+                        <div class="col-md-3 item">
+                            <label class="required label" for="email"><span>*</span>E-mail</label
+                >
+              </div>
+              <div class="col-md-6 input">
+                <input type="email" name="prenom" id="prenom" required />
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+  
+            <div class="form-group row">
+              <div class="col-md-3 item">
+                <label class="required label" for="password"
+                  ><span>*</span>Mot de passe</label
+                >
+              </div>
+              <div class="col-md-6 btn-hide">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="input-password"
+                  required
+                />
+                <button id="btn-action" class="btn-action">Montrer</button>
+              </div>
+              <div></div>
+            </div>
+          </div>
+          <div class="forgot-password">
+            <p>Mot de passe oublié ?</p>
+          </div>
+         
+          <div class="button">
+            <button>Connexion</button>
+          </div>
+          <hr>
+          <div class="create-account">
+            <p>
+                Pas de compte ? créez-en un.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
