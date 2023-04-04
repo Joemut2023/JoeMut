@@ -12,6 +12,7 @@ var catalogueRouter = require('./routes/catalogue');
 var promotionRouter = require('./routes/promotion');
 var rechercheRouter = require('./routes/recherche');
 var panierRouter = require('./routes/panier')
+var articleRouter = require('./routes/article')
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
 var inscriptionRouter = require('./routes/inscription')
@@ -65,6 +66,7 @@ app.use("/contact", contactRouter);
 app.use('/catalogue', catalogueRouter)
 app.use('/promotion', promotionRouter)
 app.use('/recherche', rechercheRouter)
+app.use('/article', articleRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
 app.use('/panier', panierRouter)
