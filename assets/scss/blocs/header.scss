@@ -69,6 +69,9 @@
 
         .navbar-brand {
             width: 14%;
+            @include breakpoint(mobil) {
+               width: 100%;
+            }
 
             .logo-img {
                 margin-top: 12%;
@@ -136,7 +139,7 @@
 
             @include breakpoint(mobil) {
                 width: 50%;
-                padding-top: 4%;
+                padding-top: 5%;
             }
 
             .fa-magnifying-glass {
@@ -166,9 +169,8 @@
 
             @include breakpoint(mobil) {
                 width: 25%;
+                padding-top: 6.5%;
             }
-
-            &:hover {}
 
             a {
                 text-decoration: none;

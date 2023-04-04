@@ -72,6 +72,11 @@
 #bloc-header .nav-main-content .navbar-brand {
   width: 14%;
 }
+@media (max-width: 680px) {
+  #bloc-header .nav-main-content .navbar-brand {
+    width: 100%;
+  }
+}
 #bloc-header .nav-main-content .navbar-brand .logo-img {
   margin-top: 12%;
 }
@@ -137,7 +142,7 @@
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .search-div {
     width: 50%;
-    padding-top: 4%;
+    padding-top: 5%;
   }
 }
 #bloc-header .nav-main-content .search-div .fa-magnifying-glass {
@@ -165,6 +170,7 @@
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .user-div {
     width: 25%;
+    padding-top: 6.5%;
   }
 }
 #bloc-header .nav-main-content .user-div a {
@@ -1011,6 +1017,8 @@
 #page-creation .page-creation-button button {
   background-color: #61ce70;
   color: #fff;
+  font-weight: 279;
+  border-radius: 5px;
 }
 @media (max-width: 680px) {
   #page-creation .page-creation-button {
@@ -1060,6 +1068,7 @@
 @media (max-width: 680px) {
   #page-contact {
     padding: 2%;
+    margin-top: 7%;
   }
 }
 #page-contact .breadcrumb-link {

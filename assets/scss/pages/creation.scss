@@ -38,6 +38,8 @@
         button {
             background-color: $color-button-secondary;
             color: $color-white;
+            font-weight: 279;
+            border-radius: 5px;
         }
 
         @include breakpoint(mobil) {
