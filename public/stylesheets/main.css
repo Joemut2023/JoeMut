@@ -3629,7 +3629,7 @@
 }
 @media (max-width: 1000px) {
   #page-commander .row .bloc-1 .content .register-form form .form-group .item,
-  #page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item {
+#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item {
     text-align: left;
   }
 }
