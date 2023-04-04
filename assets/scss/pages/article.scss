@@ -61,6 +61,7 @@
         }
 
         .small-images {
+          margin-bottom: 30px;
           width: 100%;
           .carousel-item img {
             max-width: 100px;
@@ -81,13 +82,12 @@
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              border: 1px solid red;
 
               .image-grand {
                 width: 100%;
                 height: auto;
-                border: solid greenyellow;
-                .img-grand {
+                border-right: 1px solid #eeeeee;
+                img {
                   width: 100%;
                   height: auto;
                 }
@@ -108,15 +108,19 @@
 
             .small-images {
               width: 20%;
-              border: 1px solid red;
               display: flex;
               flex-direction: column;
               gap: 10px;
+              padding: 20px 0px;
 
               .image-card {
                 width: 90%;
                 margin: 0 auto;
-                border: solid yellow;
+                cursor: pointer;
+
+                &:hover {
+                  border: solid $color-primary;
+                }
               }
             }
           }
@@ -293,9 +297,9 @@
 
         .image {
           padding-bottom: 10px;
-          width: 30%;
+
           img {
-            width: 100%;
+            max-width: 250px;
             height: auto;
           }
         }
