@@ -46,8 +46,9 @@ btn_minus_grand.addEventListener("click", function () {
 });
 
 //SELECT
+
 input_choix.addEventListener("click", function () {
-  content.classList.toggle("content-hide");
+  content.classList.toggle(".content-hide");
   content.classList.add("content");
 });
 item_select.forEach(function (element) {

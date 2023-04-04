@@ -12,7 +12,6 @@ const choix = document.querySelector("#choix");
 const content = document.getElementById("content");
 const item_select = document.querySelectorAll(".item-choice");
 
-
 btn_plus_petit.addEventListener("click",function(){
     btn_minus_petit.style.display = "block"
     btn_plus_petit.style.display = "none"
@@ -48,9 +47,10 @@ btn_minus_grand.addEventListener("click",function(){
     btn_plus_grand.style.display = "block"
 })
 
-//SELECT
+ //SELECT
+
 input_choix.addEventListener("click", function () {
-  content.classList.toggle("content-hide");
+  content.classList.toggle(".content-hide");
   content.classList.add("content");
 });
 
