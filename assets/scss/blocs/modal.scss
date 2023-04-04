@@ -192,6 +192,7 @@
         button {
           padding: 7px 20px;
           font-size: 13px;
+          border: none;
           @include breakpoint(mobil) {
             font-size: 10px;
             padding: 3px 25px;

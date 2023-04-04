@@ -3472,6 +3472,7 @@
 #myModal .body-modal .modal-body-commande .btn-achat button {
   padding: 7px 20px;
   font-size: 13px;
+  border: none;
 }
 @media (max-width: 680px) {
   #myModal .body-modal .modal-body-commande .btn-achat button {
