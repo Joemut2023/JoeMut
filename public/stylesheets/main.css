@@ -3204,6 +3204,7 @@
   opacity: 1 !important;
 }
 #page-article .content .left-content .image-content .small-images {
+  margin-bottom: 30px;
   width: 100%;
 }
 #page-article .content .left-content .image-content .small-images .carousel-item img {
@@ -3220,14 +3221,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 #page-article .content .left-content .modal-container .modal-content .modal-body .images .image-grand {
   width: 100%;
   height: auto;
-  border: solid greenyellow;
+  border-right: 1px solid #eeeeee;
 }
-#page-article .content .left-content .modal-container .modal-content .modal-body .images .image-grand .img-grand {
+#page-article .content .left-content .modal-container .modal-content .modal-body .images .image-grand img {
   width: 100%;
   height: auto;
 }
@@ -3243,15 +3243,18 @@
 }
 #page-article .content .left-content .modal-container .modal-content .modal-body .small-images {
   width: 20%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 20px 0px;
 }
 #page-article .content .left-content .modal-container .modal-content .modal-body .small-images .image-card {
   width: 90%;
   margin: 0 auto;
-  border: solid yellow;
+  cursor: pointer;
+}
+#page-article .content .left-content .modal-container .modal-content .modal-body .small-images .image-card:hover {
+  border: solid #a0b21f;
 }
 #page-article .content .right-content h1 {
   font-size: 20px;
@@ -3393,10 +3396,9 @@
 }
 #page-article .others-like .items .item .image {
   padding-bottom: 10px;
-  width: 30%;
 }
 #page-article .others-like .items .item .image img {
-  width: 100%;
+  max-width: 250px;
   height: auto;
 }
 #page-article .others-like .items .item .details {
