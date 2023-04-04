@@ -57,11 +57,11 @@ livraisonForm.addEventListener("submit", function (event) {
 //         btn.textContent = "Cacher"
 // })
 
-// function toggle_visibility(id) {
-//     var element = document.getElementById(id);
-//     if (element.style.display === "none") {
-//         element.style.display = "block";
-//     } else {
-//         element.style.display = "none";
-//     }
-// }
+function toggle_visibility(id) {
+  var element = document.getElementById(id);
+  if (element.style.display === "none") {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
+  }
+}

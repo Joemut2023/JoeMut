@@ -3499,10 +3499,6 @@
   padding: 8% 9%;
   font-family: "Manrope", sans-serif;
 }
-#page-commander #btnDisable {
-  pointer-events: none;
-  opacity: 0.4;
-}
 #page-commander .row .bloc-1 .informations .big-title {
   display: flex;
   align-items: center;
@@ -3517,6 +3513,10 @@
   padding: 10px;
   text-align: center;
   color: #fff;
+}
+#page-commander .row .bloc-1 .informations .big-title .title-h4 {
+  display: flex;
+  justify-content: space-between;
 }
 #page-commander .row .bloc-1 .informations .big-title .title-h4 h4 {
   padding: 0;
@@ -3559,6 +3559,12 @@
 }
 #page-commander .row .bloc-1 .adresses .text-contents .text-2 {
   color: #7a7a7a;
+}
+#page-commander .row .bloc-1 .btn-modif {
+  background-color: #7a7a7a;
+  color: #fff;
+  margin-left: 55%;
+  display: none;
 }
 #page-commander .row .bloc-1 .title-recherche {
   margin-bottom: 5px;

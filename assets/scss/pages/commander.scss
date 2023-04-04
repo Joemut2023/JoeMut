@@ -1,10 +1,6 @@
 #page-commander {
     padding: 8% 9%;
     font-family: $typograohie;
-    #btnDisable {
-        pointer-events: none;
-        opacity: 0.4;
-    }
     .row {
         .bloc-1 {
             .informations {
@@ -23,6 +19,8 @@
                         color: $color-white;
                     }
                     .title-h4 {
+                        display: flex;
+                        justify-content: space-between;
                         h4 {
                             padding: 0;
                             margin: 0;
@@ -69,6 +67,12 @@
                         color: $color-secondary;
                     }
                 }
+            }
+            .btn-modif {
+                background-color: $color-secondary;
+                color: $color-white;
+                margin-left: 55%;
+                display: none;
             }
             .title-recherche {
                 margin-bottom: 5px;
@@ -206,7 +210,6 @@
                     color: white;
                 }
             }
-            .adresse-content {}
         }
         .bloc-2 {
             .title-article {
