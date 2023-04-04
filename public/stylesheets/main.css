@@ -1418,9 +1418,9 @@
 #pages-catalogue .catalogue .cat-filter .filter .input .content {
   position: absolute;
   left: 0;
-  top: 32px;
-  background-color: rgba(238, 238, 238, 0.9);
-  width: 80%;
+  top: 34px;
+  background-color: #f6f6f6;
+  width: 100%;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 #pages-catalogue .catalogue .cat-filter .filter .input .content ul {
@@ -2207,9 +2207,9 @@
 #nouvelleCollection .catalogue .cat-filter .filter .input .content {
   position: absolute;
   left: 0;
-  top: 32px;
-  background-color: rgba(238, 238, 238, 0.9);
-  width: 80%;
+  top: 34px;
+  background-color: #f6f6f6;
+  width: 100%;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 #nouvelleCollection .catalogue .cat-filter .filter .input .content ul {
