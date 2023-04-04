@@ -69,6 +69,61 @@
           }
         }
       }
+
+      .modal-container {
+        .modal-content {
+          .modal-body {
+            display: flex;
+
+            .images {
+              width: 80%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid red;
+
+              .image-grand {
+                width: 100%;
+                height: auto;
+                border: solid greenyellow;
+                .img-grand {
+                  width: 100%;
+                  height: auto;
+                }
+              }
+
+              .desc {
+                text-align: center;
+                margin-top: 20px;
+                p {
+                  margin-bottom: 10px;
+                }
+
+                .utile {
+                  font-weight: 600;
+                }
+              }
+            }
+
+            .small-images {
+              width: 20%;
+              border: 1px solid red;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+
+              .image-card {
+                width: 90%;
+                margin: 0 auto;
+                border: solid yellow;
+
+
+              }
+            }
+          }
+        }
+      }
     }
 
     .right-content {
@@ -93,7 +148,7 @@
           font-weight: 200;
         }
 
-        p{
+        p {
           margin-bottom: 10px;
         }
       }
@@ -128,14 +183,13 @@
           .qty-btn {
             display: flex;
             justify-content: center;
-            gap:5px;
+            gap: 5px;
             width: 15%;
 
             input {
               border: none;
               outline: none;
               max-width: 25px;
-              
             }
 
             .btns {
@@ -231,7 +285,7 @@
 
     .items {
       display: flex;
-
+      
       .item {
         display: flex;
         flex-direction: column;
@@ -241,6 +295,11 @@
 
         .image {
           padding-bottom: 10px;
+          width: 30%;
+          img{
+            width: 100%;
+            height: auto;
+          }
         }
         .details {
           text-align: center;
@@ -290,22 +349,22 @@
     }
   }
 
-  .comment{
-      margin-top: 30px;
-    .title{
+  .comment {
+    margin-top: 30px;
+    .title {
       margin-bottom: 20px;
       padding: 0;
-      .icon{
+      .icon {
         color: $color-primary;
         font-size: 18px;
       }
-      span{
+      span {
         font-weight: normal;
         vertical-align: top;
       }
     }
 
-    .avis{
+    .avis {
       border: 1px solid $color-primary;
       text-align: center;
       padding: 25px 0px;
