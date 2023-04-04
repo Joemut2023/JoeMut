@@ -61,6 +61,12 @@
         }
 
         .small-images {
+          width: 100%;
+          .carousel-item img {
+            max-width: 100px;
+            height: auto;
+            object-fit: contain;
+          }
         }
       }
     }
@@ -86,16 +92,20 @@
           color: $color-secondary;
           font-weight: 200;
         }
+
+        p{
+          margin-bottom: 10px;
+        }
       }
 
       .informations {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         span {
           font-size: 12px;
         }
         .description {
           p {
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             font-size: 14px;
           }
           .utile {
@@ -104,9 +114,202 @@
         }
       }
 
-      .add-cart{
-        
+      .add-cart {
+        margin-bottom: 30px;
+        p {
+          margin-bottom: 5px;
+          font-size: 14px;
+        }
+
+        .quantity {
+          display: flex;
+          gap: 5px;
+
+          .qty-btn {
+            display: flex;
+            justify-content: center;
+            gap:5px;
+            width: 15%;
+
+            input {
+              border: none;
+              outline: none;
+              max-width: 25px;
+              
+            }
+
+            .btns {
+              display: flex;
+              flex-direction: column;
+
+              button {
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                border: 1px solid $color-primary;
+                span {
+                  font-size: 10px;
+                  color: $color-primary;
+                }
+              }
+            }
+          }
+          .add {
+            border: none;
+            background: $color-primary;
+            color: white;
+            padding: 0 20px;
+          }
+        }
       }
+
+      .socials {
+        display: flex;
+        ul {
+          display: flex;
+          gap: 30px;
+
+          li {
+            list-style: none;
+
+            &:hover {
+              transform: scale(1.2) !important;
+            }
+            &:hover a {
+              color: $color-button-primary-2;
+            }
+
+            a {
+              color: $color-secondary;
+            }
+
+            a span {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .tabs-container {
+        margin-top: 32px;
+        padding: 20px 25px;
+
+        ul {
+          border-bottom: 1px solid #eeeeee;
+          li button {
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            color: $color-secondary;
+            font-weight: 600;
+          }
+          li .button-add {
+            border-bottom: 3px solid $color-primary;
+            color: $color-button-primary-2;
+          }
+        }
+
+        .tab-content {
+          padding: 20px 0px;
+          color: $color-secondary;
+          font-size: 14px;
+          .content-one {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .others-like {
+    h5 {
+      font-size: 16px;
+    }
+
+    .items {
+      display: flex;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        .image {
+          padding-bottom: 10px;
+        }
+        .details {
+          text-align: center;
+          margin: 15px 0px;
+
+          p {
+            margin: 0;
+
+            span {
+              font-size: 12px;
+            }
+
+            a {
+              text-decoration: none;
+              color: $color-black;
+            }
+          }
+
+          .ref {
+            color: $color-secondary;
+            font-weight: 100;
+          }
+
+          div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            .price {
+              font-weight: 600;
+            }
+
+            .btn {
+              padding: 0;
+              &:hover {
+                color: $color-secondary;
+              }
+            }
+
+            .bar {
+              color: $color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .comment{
+      margin-top: 30px;
+    .title{
+      margin-bottom: 20px;
+      padding: 0;
+      .icon{
+        color: $color-primary;
+        font-size: 18px;
+      }
+      span{
+        font-weight: normal;
+        vertical-align: top;
+      }
+    }
+
+    .avis{
+      border: 1px solid $color-primary;
+      text-align: center;
+      padding: 25px 0px;
+      margin-bottom: 20px;
     }
   }
 }
