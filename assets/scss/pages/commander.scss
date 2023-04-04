@@ -1,0 +1,259 @@
+#page-inscription {
+    padding: 8% 9%;
+    font-family: $typograohie;
+    .row {
+        .bloc-1 {
+            .informations {
+                .big-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    .border-number {
+                        border: 1px solid $color-button-secondary;
+                        border-radius: 50%;
+                        background-color: $color-button-secondary;
+                        width: 40px;
+                        height: 40px;
+                        padding: 10px;
+                        text-align: center;
+                        color: $color-white;
+                    }
+                    .title-h4 {
+                        h4 {
+                            padding: 0;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            .adresses {
+                .big-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    .border-number {
+                        border-radius: 50%;
+                        background-color: $color-white;
+                        border: 1px solid $color-secondary;
+                        color: $color-secondary;
+                        width: 40px;
+                        height: 40px;
+                        padding: 10px;
+                        text-align: center;
+                    }
+                    .title-h4 {
+                        h4 {
+                            padding: 0;
+                            margin: 0;
+                            color: $color-secondary;
+                        }
+                    }
+                }
+                .text-contents {
+                    width: 100%;
+                    margin: auto;
+                    .text-1 {
+                        background-color: $color-primary;
+                        color: $color-white;
+                        padding: 30px;
+                        p {
+                            text-align: center;
+                        }
+                    }
+                    .text-2 {
+                        color: $color-secondary;
+                    }
+                }
+            }
+            .title-recherche {
+                margin-bottom: 5px;
+                a {
+                    text-decoration: none;
+                    color: $color-black;
+                    font-size: 16px;
+                }
+                span {
+                    color: $color-secondary;
+                    font-size: 16px;
+                }
+            }
+            .resultat {
+                margin-bottom: 20px;
+                p {
+                    font-weight: 600;
+                    font-size: 24px;
+                }
+            }
+            .content {
+                max-width: 670px;
+                padding: 20px;
+                .register-form {
+                    .title {
+                        margin-left: -10px;
+                        color: $color-secondary;
+                        margin-bottom: 20px;
+                        #creer-compte {
+                            font-weight: 700;
+                            color: $color-black;
+                        }
+                        span {
+                            margin: 5px;
+                            font-size: large;
+                        }
+                        a {
+                            text-decoration: none;
+                            color: $color-primary;
+                        }
+                    }
+                    form {
+                        .ckeckbox {
+                            background-color: red;
+                        }
+                        .form-group {
+                            margin-bottom: 20px;
+                            .label {
+                                font-weight: 600;
+                            }
+                            .item {
+                                @include breakpoint(tablette) {
+                                    text-align: left;
+                                }
+                                label span {
+                                    color: red;
+                                }
+                            }
+                            .input input {
+                                width: 100%;
+                                background-color: white;
+                                border: 1px solid $color-primary;
+                                padding: 5px 15px;
+                                outline: none;
+                                &:focus {
+                                    border: 2px solid $color-primary;
+                                }
+                            }
+                            .input label {
+                                color: $color-secondary;
+                                font-size: 14px;
+                            }
+                            .btn-hide {
+                                display: flex;
+                                input {
+                                    width: 100%;
+                                    background-color: white;
+                                    border: 1px solid $color-primary;
+                                    padding: 5px 15px;
+                                    outline: none;
+                                }
+                                .btn-action {
+                                    padding: 5px 15px;
+                                    border: 1px solid gray;
+                                    color: white;
+                                    background-color: gray;
+                                    cursor: pointer;
+                                }
+                            }
+                            .check input {
+                                width: 20px;
+                                height: 20px;
+                            }
+                            .check .text {
+                                color: $color-primary;
+                            }
+                        }
+                        .radios {
+                            display: flex;
+                            gap: 15px;
+                            align-items: center;
+                            .radio {
+                                display: flex;
+                                align-items: center;
+                                gap: 5px;
+                            }
+                            div input {
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                display: inline-block;
+                                width: 20px;
+                                height: 20px;
+                                padding: 3px;
+                                background-clip: content-box;
+                                border: 1px solid #bbbbbb;
+                                border-radius: 50%;
+                            }
+                            div input[type="radio"]:checked {
+                                background-color: $color-primary;
+                            }
+                        }
+                    }
+                }
+            }
+            .button {
+                display: flex;
+                justify-content: flex-end;
+                button {
+                    align-self: flex-end;
+                    padding: 5px 15px;
+                    border: none;
+                    background: $color-primary;
+                    color: white;
+                }
+            }
+        }
+        .bloc-2 {
+            .title-article {
+                span {
+                    color: $color-secondary;
+                    font-size: larger;
+                }
+            }
+            .hidden-detail {
+                span {
+                    color: $color-primary;
+                    font-size: large;
+                }
+                .details {
+                    .details-items {
+                        .detail-item {
+                            display: flex;
+                            padding: 5px;
+                            color: $color-primary;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+            }
+            .detail-prices {
+                .prices {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 5px;
+                    color: $color-secondary;
+                    font-size: larger;
+                    .price {
+                        color: $color-black;
+                    }
+                }
+            }
+            .total {
+                display: flex;
+                justify-content: space-between;
+                color: $color-secondary;
+                div {
+                    font-size: larger;
+                    color: $color-black;
+                }
+            }
+            .code-promo {
+                text-align: center;
+                a {
+                    text-decoration: none;
+                    text-align: center;
+                    color: $color-primary;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
