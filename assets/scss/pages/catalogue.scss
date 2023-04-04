@@ -257,13 +257,14 @@
     }
     .cat-body {
       width: 100%;
-      padding: 25px 50px;
+      padding: 30px 0px 30px 100px;
       display: flex;
       flex-direction: row;
+      align-items: center;
       flex-wrap: wrap;
       column-gap: 14rem;
       @include breakpoint(mobil) {
-        padding:10px 10px;
+        padding:30px 0 30px 15px;
         display:flex;
         flex-direction:row;
         column-gap:2rem;

@@ -1439,15 +1439,16 @@
 }
 #pages-catalogue .catalogue .cat-body {
   width: 100%;
-  padding: 25px 50px;
+  padding: 30px 0px 30px 100px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
   column-gap: 14rem;
 }
 @media (max-width: 680px) {
   #pages-catalogue .catalogue .cat-body {
-    padding: 10px 10px;
+    padding: 30px 0 30px 15px;
     display: flex;
     flex-direction: row;
     column-gap: 2rem;
@@ -2228,27 +2229,19 @@
 }
 #nouvelleCollection .catalogue .cat-body {
   width: 100%;
-  padding: 25px 50px;
+  padding: 30px 0px 30px 100px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
   column-gap: 14rem;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body {
-    padding: 10px 5px;
+    padding: 30px 0 30px 15px;
     display: flex;
     flex-direction: row;
-    column-gap: 0.5rem;
-    row-gap: 0.7rem;
-  }
-}
-@media (max-width: 1000px) {
-  #nouvelleCollection .catalogue .cat-body {
-    padding: 10px 10px;
-    display: flex;
-    flex-direction: row;
-    column-gap: 4rem;
+    column-gap: 2rem;
     row-gap: 1rem;
   }
 }
@@ -2261,13 +2254,8 @@
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit {
-    height: 15rem;
-    width: 8%;
-  }
-}
-@media (max-width: 1000px) {
-  #nouvelleCollection .catalogue .cat-body .produit {
-    height: 15rem;
+    row-gap: 0.1rem;
+    height: 14rem;
     width: 40%;
   }
 }
@@ -2318,7 +2306,7 @@
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .detail div {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 @media (max-width: 1000px) {
@@ -2334,13 +2322,20 @@
   align-items: center;
   gap: 5px;
 }
+@media (max-width: 680px) {
+  #nouvelleCollection .catalogue .cat-body .produit .detail .montant {
+    flex-direction: column;
+    gap: 3px;
+    justify-content: space-around;
+  }
+}
 #nouvelleCollection .catalogue .cat-body .produit .detail .montant div {
   color: #232323;
   font-weight: 700;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .detail .montant div {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 @media (max-width: 1000px) {
