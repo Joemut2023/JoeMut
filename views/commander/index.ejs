@@ -1,0 +1,643 @@
+<div id="page-inscription">
+    <div class="row">
+        <div class="col-md-8 bloc-1">
+            <div class="informations">
+                <div class="big-title" onclick="toggle_visibility('myDIV')">
+                    <div class="border-number ">1</div>
+                    <div class="title-h4">
+                        <h4>INFORMATIONS PERSONNELLES</h4>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="content" id="myDIV">
+                    <div class="register-form">
+                        <p class="title">
+                            <span id="creer-compte">Creez votre compte</span>
+                            <span> | </span>
+                            <span>Connexion</span>
+                        </p>
+
+                        <form id='show'>
+                            <div>
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label for=" " class="label ">Civilité</label>
+                                    </div>
+                                    <div class="col-md-6 radios ">
+                                        <div class="radio ">
+                                            <input type="radio " name="civilite " id="homme " value="M " />
+                                            <label class=" " for="homme ">M</label>
+                                        </div>
+                                        <div class="radio ">
+                                            <input type="radio " name="civilite " id="femme " value="Mme " />
+                                            <label class=" " for="femme ">Mme</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                        <label for=" ">Seules les lettres et le point (.), suivi d'un espace, sont
+                                            autorisés.</label>
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Nom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                        <label for=" ">Seules les lettres et le point (.), suivi d'un espace, sont
+                                            autorisés.</label>
+                                    </div>
+                                    <div></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="password "><span>*</span>Mot de
+                                            passe</label>
+                                    </div>
+                                    <div class="col-md-6 btn-hide ">
+                                        <input type="password " name="password " id="password " class="input-password " required />
+                                        <button id="btn-action " class="btn-action ">Montrer</button>
+                                    </div>
+                                    <div></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required " for="nom "><span>*</span></label>
+                                    </div>
+                                    <div class="col-md-6 input check ">
+                                        <input type="checkbox " id="check-box " name="check-box " />
+                                        <label for="check-box " class="text ">Message concernant la confidentialité des
+                                            données clients
+                                            <br />
+                                            <em>Conformément aux dispositions de la loi du n°78-17 du 6
+                                                janvier 1978, vous disposez d'un droit d'accès, de
+                                                rectification et d'opposition sur les données nominatives vous
+                                                concernant.</em>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required " for="nom "><span></span></label>
+                                    </div>
+                                    <div class="col-md-6 input check ">
+                                        <input type="checkbox " id="check-box " name="check-box " />
+                                        <label for="check-box " class="text ">
+                                            Recevoir notre newsletter
+                                            <br />
+                                            <em>Vous pouvez vous désinscrire à tout moment. Vous trouverez
+                                                pour cela nos informations de contact dans les conditions
+                                                d'utilisation du site.</em>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required " for="nom "><span>*</span></label>
+                                    </div>
+                                    <div class="col-md-6 input check input-check ">
+                                        <div class="check-item checkbox-example ">
+                                            <input type="checkbox " id="check-box " name="check-box" />
+                                            <label for=" scales " class=" text checkmark ">J'accepte les conditions générales et la politique de
+                                  confidentialité
+                                </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class=" button ">
+                                <button>Continuer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="adresses">
+                <div class="big-title" onclick="toggle_visibility('divAdress')">
+                    <div class="border-number ">2</div>
+                    <div class="title-h4">
+                        <h4>ADRESSES</h4>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="content" id="divAdress">
+                    <div class="text-contents">
+                        <div class="text-1">
+                            <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
+                        </div>
+                        <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
+                    </div>
+                    <div class="register-form">
+
+                        <form id='show'>
+                            <div class="form-parent">
+                                <div class="form-group row ">
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Nom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Société</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Numero de TVA</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Complement d'adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Code postal</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Ville</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Pays</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Téléphone</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </div>
+                                    <div class="col-md-6 text-label">
+                                        <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="button btn col-md-6">
+                                <button>Continuer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adresses">
+                <div class="big-title" onclick="toggle_visibility('divLivraison')">
+                    <div class="border-number ">3</div>
+                    <div class="title-h4">
+                        <h4>MODE DE LIVRAISON</h4>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="content" id="divLivraison">
+                    <div class="text-contents">
+                        <div class="text-1">
+                            <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
+                        </div>
+                        <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
+                    </div>
+                    <div class="register-form">
+
+                        <form id='show'>
+                            <div class="form-parent">
+                                <div class="form-group row ">
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Nom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Société</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Numero de TVA</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Complement d'adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Code postal</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Ville</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Pays</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Téléphone</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </div>
+                                    <div class="col-md-6 text-label">
+                                        <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="button btn col-md-6">
+                                <button>Continuer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adresses">
+                <div class="big-title" onclick="toggle_visibility('divFinalisation')">
+                    <div class="border-number ">4</div>
+                    <div class="title-h4">
+                        <h4>FINALISATION</h4>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="content" id="divFinalisation">
+                    <div class="text-contents">
+                        <div class="text-1">
+                            <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
+                        </div>
+                        <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
+                    </div>
+                    <div class="register-form">
+
+                        <form id='show'>
+                            <div class="form-parent">
+                                <div class="form-group row ">
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                    <div class="col-md-3 "></div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="prenom " id="prenom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Nom</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Société</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Numero de TVA</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom ">Complement d'adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Code postal</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Ville</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Pays</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row ">
+                                    <div class="col-md-3 item ">
+                                        <label class="required label " for="nom "><span>*</span>Téléphone</label>
+                                    </div>
+                                    <div class="col-md-6 input ">
+                                        <input type="text " name="nom " id="nom " required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </div>
+                                    <div class="col-md-6 text-label">
+                                        <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="button btn col-md-6">
+                                <button>Commander</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-md-4 bloc-2 ">
+            <div class=" title-article ">
+                <span>1</span>
+                <span>article</span>
+            </div>
+
+            <div onclick="toggle_visibility('divItems')" class="hidden-detail">
+                <span> afficher les details</span>
+                <div class="details" id="divItems">
+                    <div class="details-items">
+                        <div class=" detail-item ">
+                            <div class="detail-img ">
+                                <img src=" " alt=" ">
+                            </div>
+                            <div class=" detail-content ">
+                                <span>MH19C - Top croisé dos nu bleu royal</span>
+                            </div>
+                        </div>
+
+                        <div class=" detail-item ">
+                            <div class=" detail-img ">
+                                <span>X</span>
+                            </div>
+                            <div class=" detail-content ">
+                                <span>20,00$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <hr>
+            <div class=" detail-prices ">
+                <div class=" prices ">
+                    <div class=" sous-total ">Sous-total</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+                <div class=" prices ">
+                    <div class=" sous-total ">Livraison</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+                <div class=" prices ">
+                    <div class=" sous-total ">Frais de dossier</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+            </div>
+            <hr>
+
+            <div class=" total ">
+                <div class=" sous-total ">Total TTC</div>
+                <div class=" price ">38, 00$</div>
+            </div>
+            <div class=" code-promo ">
+                <a href=" ">Vous avez un code promo ?</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- //Event show/none -->
+<script>
+    function toggle_visibility(id) {
+        var element = document.getElementById(id);
+        if (element.style.display === "none") {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
+</script>

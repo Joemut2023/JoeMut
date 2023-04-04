@@ -14,7 +14,8 @@ var rechercheRouter = require('./routes/recherche');
 var panierRouter = require('./routes/panier')
 var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
-var connexionUser = require('./routes/connexion')
+var connexionRouter = require('./routes/connexion')
+var commanderRouter = require('./routes/commander')
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
@@ -30,17 +31,17 @@ AdminJS.registerAdapter({
 
 console.log(Components.Dashboard);
 const admin = new AdminJS({
-   //resources:[Categorie]
-   dashboard: {
-    component: AdminJS.bundle('admin/pages-components/dashboard'),
-   },
-   databases: [db],
-   branding: {
-    companyName: "AES",
-    withMadeWithLove:false,
-    logo: "/images/logo.png",
-    favicon:"/images/favicon.ico"
-  }
+    //resources:[Categorie]
+    dashboard: {
+        component: AdminJS.bundle('admin/pages-components/dashboard'),
+    },
+    databases: [db],
+    branding: {
+        companyName: "AES",
+        withMadeWithLove: false,
+        logo: "/images/logo.png",
+        favicon: "/images/favicon.ico"
+    }
 })
 const adminRouter = AdminJSExpress.buildRouter(admin);
 
@@ -60,13 +61,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-app.use('/catalogue',catalogueRouter)
-app.use('/promotion',promotionRouter)
+app.use('/catalogue', catalogueRouter)
+app.use('/promotion', promotionRouter)
 app.use('/recherche', rechercheRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
 app.use('/mon-compte', usersRouter);
-app.use('/connexion', connexionUser)
-app.use('/panier',panierRouter)
+app.use('/connexion', connexionRouter)
+app.use('/commander', commanderRouter)
+app.use('/panier', panierRouter)
 
 
 // catch 404 and forward to error handler

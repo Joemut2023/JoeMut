@@ -63,6 +63,10 @@
                 width: 177px;
                 border: none;
                 background-color: $color-secondary;
+                a {
+                    text-decoration: none;
+                    color: $color-white;
+                }
             }
         }
     }

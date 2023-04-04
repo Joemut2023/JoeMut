@@ -470,6 +470,11 @@
   border: none;
   background-color: #7a7a7a;
 }
+#bloc-panier .offcanvas-body .kart-btns .btn-voirpanier button a,
+#bloc-panier .offcanvas-body .kart-btns .btn-commander button a {
+  text-decoration: none;
+  color: #fff;
+}
 
 #pages-home {
   margin-top: 130px;
@@ -2685,6 +2690,238 @@
 }
 #page-panier .products .row .details div .bar {
   color: #a0b21f;
+}
+
+#page-inscription {
+  padding: 8% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-inscription .row .bloc-1 .informations .big-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#page-inscription .row .bloc-1 .informations .big-title .border-number {
+  border: 1px solid #61ce70;
+  border-radius: 50%;
+  background-color: #61ce70;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+#page-inscription .row .bloc-1 .informations .big-title .title-h4 h4 {
+  padding: 0;
+  margin: 0;
+}
+#page-inscription .row .bloc-1 .adresses .big-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#page-inscription .row .bloc-1 .adresses .big-title .border-number {
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #7a7a7a;
+  color: #7a7a7a;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+}
+#page-inscription .row .bloc-1 .adresses .big-title .title-h4 h4 {
+  padding: 0;
+  margin: 0;
+  color: #7a7a7a;
+}
+#page-inscription .row .bloc-1 .adresses .text-contents {
+  width: 100%;
+  margin: auto;
+}
+#page-inscription .row .bloc-1 .adresses .text-contents .text-1 {
+  background-color: #a0b21f;
+  color: #fff;
+  padding: 30px;
+}
+#page-inscription .row .bloc-1 .adresses .text-contents .text-1 p {
+  text-align: center;
+}
+#page-inscription .row .bloc-1 .adresses .text-contents .text-2 {
+  color: #7a7a7a;
+}
+#page-inscription .row .bloc-1 .title-recherche {
+  margin-bottom: 5px;
+}
+#page-inscription .row .bloc-1 .title-recherche a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-inscription .row .bloc-1 .title-recherche span {
+  color: #7a7a7a;
+  font-size: 16px;
+}
+#page-inscription .row .bloc-1 .resultat {
+  margin-bottom: 20px;
+}
+#page-inscription .row .bloc-1 .resultat p {
+  font-weight: 600;
+  font-size: 24px;
+}
+#page-inscription .row .bloc-1 .content {
+  max-width: 670px;
+  padding: 20px;
+}
+#page-inscription .row .bloc-1 .content .register-form .title {
+  margin-left: -10px;
+  color: #7a7a7a;
+  margin-bottom: 20px;
+}
+#page-inscription .row .bloc-1 .content .register-form .title #creer-compte {
+  font-weight: 700;
+  color: #232323;
+}
+#page-inscription .row .bloc-1 .content .register-form .title span {
+  margin: 5px;
+  font-size: large;
+}
+#page-inscription .row .bloc-1 .content .register-form .title a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-inscription .row .bloc-1 .content .register-form form .ckeckbox {
+  background-color: red;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group {
+  margin-bottom: 20px;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .label {
+  font-weight: 600;
+}
+@media (max-width: 1000px) {
+  #page-inscription .row .bloc-1 .content .register-form form .form-group .item {
+    text-align: left;
+  }
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .item label span {
+  color: red;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .input input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .input input:focus {
+  border: 2px solid #a0b21f;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .input label {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .btn-hide {
+  display: flex;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .btn-hide input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .btn-hide .btn-action {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  color: white;
+  background-color: gray;
+  cursor: pointer;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .check input {
+  width: 20px;
+  height: 20px;
+}
+#page-inscription .row .bloc-1 .content .register-form form .form-group .check .text {
+  color: #a0b21f;
+}
+#page-inscription .row .bloc-1 .content .register-form form .radios {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+#page-inscription .row .bloc-1 .content .register-form form .radios .radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#page-inscription .row .bloc-1 .content .register-form form .radios div input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background-clip: content-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 50%;
+}
+#page-inscription .row .bloc-1 .content .register-form form .radios div input[type=radio]:checked {
+  background-color: #a0b21f;
+}
+#page-inscription .row .bloc-1 .button {
+  display: flex;
+  justify-content: flex-end;
+}
+#page-inscription .row .bloc-1 .button button {
+  align-self: flex-end;
+  padding: 5px 15px;
+  border: none;
+  background: #a0b21f;
+  color: white;
+}
+#page-inscription .row .bloc-2 .title-article span {
+  color: #7a7a7a;
+  font-size: larger;
+}
+#page-inscription .row .bloc-2 .hidden-detail span {
+  color: #a0b21f;
+  font-size: large;
+}
+#page-inscription .row .bloc-2 .hidden-detail .details .details-items .detail-item {
+  display: flex;
+  padding: 5px;
+  color: #a0b21f;
+  justify-content: space-between;
+}
+#page-inscription .row .bloc-2 .detail-prices .prices {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  color: #7a7a7a;
+  font-size: larger;
+}
+#page-inscription .row .bloc-2 .detail-prices .prices .price {
+  color: #232323;
+}
+#page-inscription .row .bloc-2 .total {
+  display: flex;
+  justify-content: space-between;
+  color: #7a7a7a;
+}
+#page-inscription .row .bloc-2 .total div {
+  font-size: larger;
+  color: #232323;
+}
+#page-inscription .row .bloc-2 .code-promo {
+  text-align: center;
+}
+#page-inscription .row .bloc-2 .code-promo a {
+  text-decoration: none;
+  text-align: center;
+  color: #a0b21f;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */
