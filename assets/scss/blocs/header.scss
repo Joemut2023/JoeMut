@@ -58,7 +58,7 @@
 
     .nav-main-content {
         display: flex;
-        padding: 0 1%;
+        // padding: 0 1%;
         flex-direction: row;
         border: solid yellow;
         justify-content: center;
@@ -107,6 +107,7 @@
         .navbar {
             background-color: $color-white;
             // width: 70%;
+            width: 100%;
             border: solid yellow;
 
             @include breakpoint(mobil) {
