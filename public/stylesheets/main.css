@@ -563,11 +563,11 @@
 }
 @media (min-width: 768px) {
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
@@ -2746,6 +2746,8 @@
 #page-panier .panier-details .comment {
   display: flex;
   flex-direction: column;
+  gap: 30px;
+  padding-top: 15px;
 }
 #page-panier .panier-details .comment span {
   font-size: 16px;
@@ -2762,6 +2764,63 @@
 #page-panier .panier-details .comment a .icon {
   margin-right: 10px;
   font-size: 12px;
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment .articles .id {
+  font-size: 14px;
+}
+#page-panier .panier-details .comment .articles .description .desc {
+  font-size: 14px;
+}
+#page-panier .panier-details .comment .articles .description .desc a {
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment .articles .description .desc a span {
+  font-size: 13px;
+}
+#page-panier .panier-details .comment .articles .description p {
+  font-weight: 600;
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn {
+  display: flex;
+  justify-content: center;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn input {
+  border: none;
+  outline: none;
+  max-width: 50px;
+  padding: 0px 10px;
+  border: 1px solid #7a7a7a;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn .btns {
+  display: flex;
+  flex-direction: column;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn .btns button {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #a0b21f;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn .btns button span {
+  font-size: 10px;
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .prx {
+  padding-top: 5px;
+}
+#page-panier .panier-details .comment .articles .prices .block-price .compteur .prx span {
+  font-weight: 600;
+  color: #a0b21f;
+}
+#page-panier .panier-details .comment .articles .prices .delete {
+  margin-top: 5px;
+}
+#page-panier .panier-details .comment .articles .prices .delete span {
   color: #a0b21f;
 }
 #page-panier .panier-price .frais {
@@ -2795,15 +2854,48 @@
 #page-panier .panier-price .item span {
   font-weight: 600;
 }
+#page-panier .panier-price .promo .link {
+  text-align: center;
+}
+#page-panier .panier-price .promo .link p {
+  color: #a0b21f;
+}
+#page-panier .panier-price .promo .code-promo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#page-panier .panier-price .promo .code-promo .btn-promo {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  margin-bottom: 20px;
+}
+#page-panier .panier-price .promo .code-promo .btn-promo input {
+  width: 100%;
+  border: 1px solid #7a7a7a;
+  padding: 5px 20px;
+  outline: none;
+}
+#page-panier .panier-price .promo .code-promo .btn-promo button {
+  border: none;
+  background: #a0b21f;
+  color: white;
+  padding: 0 20px;
+}
+#page-panier .panier-price .promo .code-promo .fermer {
+  color: #a0b21f;
+}
 #page-panier .button button {
   width: 100%;
   border: none;
   padding: 8px;
-  background: rgba(238, 238, 238, 0.9);
-  color: #7a7a7a;
+  background: #a0b21f;
+  color: white;
 }
 #page-panier .button button:hover {
-  cursor: not-allowed;
+  cursor: pointer;
 }
 #page-panier .products .title {
   text-align: center;
@@ -3650,7 +3742,7 @@
 }
 @media (max-width: 1000px) {
   #page-commander .row .bloc-1 .content .register-form form .form-group .item,
-  #page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item {
+#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item {
     text-align: left;
   }
 }
