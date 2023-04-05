@@ -106,7 +106,6 @@
         .navbar {
             background-color: $color-white;
             width: 100%;
-            margin-left: 1%;
             color: $color-primary !important;
 
             @include breakpoint(mobil) {
@@ -221,7 +220,6 @@
         padding-top: 1%;
 
         @include breakpoint(mobil) {
-            width: 50%;
             padding-top: 2%;
             padding-left: 20%;
         }

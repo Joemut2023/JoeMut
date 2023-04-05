@@ -79,3 +79,8 @@
     </div>
   </div>
 </div>
+<script>
+  const urlParams = window.location.search.substring(8);
+  const searchValue = urlParams.replaceAll("+"," ");
+  console.log(searchValue, "value");
+</script>
