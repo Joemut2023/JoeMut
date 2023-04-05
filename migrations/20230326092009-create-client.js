@@ -24,7 +24,6 @@ module.exports = {
       },
       cli_fonction: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
     });
     await queryInterface.addConstraint("Clients", {
