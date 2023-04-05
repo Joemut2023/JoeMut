@@ -58,9 +58,9 @@
 
     .nav-main-content {
         display: flex;
-        gap: 2%;
+        padding: 0 1%;
         flex-direction: row;
-        padding: 0 2%;
+        border: solid yellow;
         justify-content: center;
 
         @include breakpoint(mobil) {
@@ -68,13 +68,14 @@
         }
 
         .navbar-brand {
-            width: 14%;
+            width: 15%;
+            border: solid red;
             @include breakpoint(mobil) {
                width: 100%;
             }
 
             .logo-img {
-                margin-top: 12%;
+                margin-top: 8%;
 
                 @include breakpoint(mobil) {
                     margin-left: 15%;
@@ -106,6 +107,7 @@
         .navbar {
             background-color: $color-white;
             width: 70%;
+            border: solid yellow;
 
             @include breakpoint(mobil) {
                 width: 10%;
@@ -135,7 +137,8 @@
         .search-div {
             margin-left: 1%;
             padding-top: 3.5%;
-            width: 20%;
+            width: 15%;
+            border: solid red;
 
             @include breakpoint(mobil) {
                 width: 50%;
@@ -154,7 +157,7 @@
                 border: 0;
                 outline: 0;
                 padding-left: 4%;
-                width: 70%;
+                width: 90%;
             }
 
             .search-input::placeholder {
@@ -163,9 +166,10 @@
         }
 
         .user-div {
-            width: 10%;
+            // width: 10%;
             gap: 1rem;
             padding-top: 3.5%;
+            border: solid green;
 
             @include breakpoint(mobil) {
                 width: 25%;
