@@ -625,12 +625,19 @@
   font-size: 0.875rem;
   text-align: center;
 }
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price {
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .price {
   max-width: max-content;
   font-weight: 800;
   position: relative;
+  margin-right: 10px;
 }
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price::after {
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .price::after {
   content: "";
   height: 10px;
   width: 5px;
@@ -638,6 +645,14 @@
   position: absolute;
   right: -10px;
   top: 5px;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .btn-add {
+  max-width: max-content;
+  font-weight: 800;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .btn-add:hover {
+  color: #7a7a7a;
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-container {
@@ -1005,6 +1020,9 @@
   text-align: center;
   font-size: 29px;
   padding-bottom: 15px;
+}
+#pages-home .section-contact form {
+  font-family: "Byciclette !important";
 }
 
 #page-creation {
