@@ -3647,10 +3647,6 @@
   padding: 8% 9%;
   font-family: "Manrope", sans-serif;
 }
-#page-commander #btnDisable {
-  pointer-events: none;
-  opacity: 0.4;
-}
 #page-commander .row .bloc-1 .informations .big-title {
   display: flex;
   align-items: center;
@@ -3666,9 +3662,154 @@
   text-align: center;
   color: #fff;
 }
+#page-commander .row .bloc-1 .informations .big-title .title-h4 {
+  display: flex;
+  justify-content: space-between;
+}
 #page-commander .row .bloc-1 .informations .big-title .title-h4 h4 {
   padding: 0;
   margin: 0;
+}
+#page-commander .row .bloc-1 .informations .btn-modif {
+  background-color: #7a7a7a;
+  color: #fff;
+  margin-left: 250px;
+  padding: 5px;
+  display: none;
+}
+#page-commander .row .bloc-1 .informations .content,
+#page-commander .row .bloc-1 .informations .adresse-content {
+  max-width: 670px;
+  padding: 20px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form .title,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form .title {
+  margin-left: -10px;
+  color: #7a7a7a;
+  margin-bottom: 20px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form .title #creer-compte,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form .title #creer-compte {
+  font-weight: 700;
+  color: #232323;
+}
+#page-commander .row .bloc-1 .informations .content .register-form .title span,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form .title span {
+  margin: 5px;
+  font-size: large;
+}
+#page-commander .row .bloc-1 .informations .content .register-form .title a,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form .title a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .ckeckbox,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .ckeckbox {
+  background-color: red;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group {
+  margin-bottom: 20px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .label,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .label {
+  font-weight: 600;
+}
+@media (max-width: 1000px) {
+  #page-commander .row .bloc-1 .informations .content .register-form form .form-group .item,
+  #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .item {
+    text-align: left;
+  }
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .item label span,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .item label span {
+  color: red;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .input input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .input input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .input input:focus,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .input input:focus {
+  border: 2px solid #a0b21f;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .input label,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .input label {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .btn-hide,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .btn-hide {
+  display: flex;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .btn-hide input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .btn-hide input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .btn-hide .btn-action,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .btn-hide .btn-action {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  color: white;
+  background-color: gray;
+  cursor: pointer;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .check input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .check input {
+  width: 10px;
+  height: 20px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .check .text,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .check .text {
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .radios,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .radios .radio,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios .radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .radios div input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios div input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background-clip: content-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 50%;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .radios div input[type=radio]:checked,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios div input[type=radio]:checked {
+  background-color: #a0b21f;
+}
+#page-commander .row .bloc-1 .informations .button {
+  display: flex;
+  margin-left: 25%;
+}
+#page-commander .row .bloc-1 .informations .button button {
+  align-self: flex-end;
+  padding: 5px 15px;
+  border: none;
+  background: #a0b21f;
+  color: white;
 }
 #page-commander .row .bloc-1 .adresses .big-title,
 #page-commander .row .bloc-1 .adresses .adresse-title {
@@ -3708,133 +3849,121 @@
 #page-commander .row .bloc-1 .adresses .text-contents .text-2 {
   color: #7a7a7a;
 }
-#page-commander .row .bloc-1 .title-recherche {
-  margin-bottom: 5px;
+#page-commander .row .bloc-1 .adresses .btn-modif {
+  background-color: #7a7a7a;
+  color: #fff;
+  margin-left: 250px;
+  padding: 5px;
+  display: none;
 }
-#page-commander .row .bloc-1 .title-recherche a {
-  text-decoration: none;
-  color: #232323;
-  font-size: 16px;
-}
-#page-commander .row .bloc-1 .title-recherche span {
-  color: #7a7a7a;
-  font-size: 16px;
-}
-#page-commander .row .bloc-1 .resultat {
-  margin-bottom: 20px;
-}
-#page-commander .row .bloc-1 .resultat p {
-  font-weight: 600;
-  font-size: 24px;
-}
-#page-commander .row .bloc-1 .content,
-#page-commander .row .bloc-1 .adresse-content {
+#page-commander .row .bloc-1 .adresses .content,
+#page-commander .row .bloc-1 .adresses .adresse-content {
   max-width: 670px;
   padding: 20px;
 }
-#page-commander .row .bloc-1 .content .register-form .title,
-#page-commander .row .bloc-1 .adresse-content .register-form .title {
+#page-commander .row .bloc-1 .adresses .content .register-form .title,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form .title {
   margin-left: -10px;
   color: #7a7a7a;
   margin-bottom: 20px;
 }
-#page-commander .row .bloc-1 .content .register-form .title #creer-compte,
-#page-commander .row .bloc-1 .adresse-content .register-form .title #creer-compte {
+#page-commander .row .bloc-1 .adresses .content .register-form .title #creer-compte,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form .title #creer-compte {
   font-weight: 700;
   color: #232323;
 }
-#page-commander .row .bloc-1 .content .register-form .title span,
-#page-commander .row .bloc-1 .adresse-content .register-form .title span {
+#page-commander .row .bloc-1 .adresses .content .register-form .title span,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form .title span {
   margin: 5px;
   font-size: large;
 }
-#page-commander .row .bloc-1 .content .register-form .title a,
-#page-commander .row .bloc-1 .adresse-content .register-form .title a {
+#page-commander .row .bloc-1 .adresses .content .register-form .title a,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form .title a {
   text-decoration: none;
   color: #a0b21f;
 }
-#page-commander .row .bloc-1 .content .register-form form .ckeckbox,
-#page-commander .row .bloc-1 .adresse-content .register-form form .ckeckbox {
+#page-commander .row .bloc-1 .adresses .content .register-form form .ckeckbox,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .ckeckbox {
   background-color: red;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group {
   margin-bottom: 20px;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .label,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .label {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .label,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .label {
   font-weight: 600;
 }
 @media (max-width: 1000px) {
-  #page-commander .row .bloc-1 .content .register-form form .form-group .item,
-  #page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item {
+  #page-commander .row .bloc-1 .adresses .content .register-form form .form-group .item,
+  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .item {
     text-align: left;
   }
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .item label span,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .item label span {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .item label span,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .item label span {
   color: red;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .input input,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .input input {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .input input,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .input input {
   width: 100%;
   background-color: white;
   border: 1px solid #a0b21f;
   padding: 5px 15px;
   outline: none;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .input input:focus,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .input input:focus {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .input input:focus,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .input input:focus {
   border: 2px solid #a0b21f;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .input label,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .input label {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .input label,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .input label {
   color: #7a7a7a;
   font-size: 14px;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .btn-hide,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .btn-hide {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .btn-hide,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .btn-hide {
   display: flex;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .btn-hide input,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .btn-hide input {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .btn-hide input,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .btn-hide input {
   width: 100%;
   background-color: white;
   border: 1px solid #a0b21f;
   padding: 5px 15px;
   outline: none;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .btn-hide .btn-action,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .btn-hide .btn-action {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .btn-hide .btn-action,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .btn-hide .btn-action {
   padding: 5px 15px;
   border: 1px solid gray;
   color: white;
   background-color: gray;
   cursor: pointer;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .check input,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .check input {
-  width: 20px;
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .check input,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .check input {
+  width: 10px;
   height: 20px;
 }
-#page-commander .row .bloc-1 .content .register-form form .form-group .check .text,
-#page-commander .row .bloc-1 .adresse-content .register-form form .form-group .check .text {
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .check .text,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .check .text {
   color: #a0b21f;
 }
-#page-commander .row .bloc-1 .content .register-form form .radios,
-#page-commander .row .bloc-1 .adresse-content .register-form form .radios {
+#page-commander .row .bloc-1 .adresses .content .register-form form .radios,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .radios {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-#page-commander .row .bloc-1 .content .register-form form .radios .radio,
-#page-commander .row .bloc-1 .adresse-content .register-form form .radios .radio {
+#page-commander .row .bloc-1 .adresses .content .register-form form .radios .radio,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .radios .radio {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-#page-commander .row .bloc-1 .content .register-form form .radios div input,
-#page-commander .row .bloc-1 .adresse-content .register-form form .radios div input {
+#page-commander .row .bloc-1 .adresses .content .register-form form .radios div input,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .radios div input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -3846,75 +3975,121 @@
   border: 1px solid #bbbbbb;
   border-radius: 50%;
 }
-#page-commander .row .bloc-1 .content .register-form form .radios div input[type=radio]:checked,
-#page-commander .row .bloc-1 .adresse-content .register-form form .radios div input[type=radio]:checked {
+#page-commander .row .bloc-1 .adresses .content .register-form form .radios div input[type=radio]:checked,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .radios div input[type=radio]:checked {
   background-color: #a0b21f;
 }
-#page-commander .row .bloc-1 .button {
+#page-commander .row .bloc-1 .adresses .button {
   display: flex;
-  justify-content: flex-end;
+  margin-left: 25%;
 }
-#page-commander .row .bloc-1 .button button {
+#page-commander .row .bloc-1 .adresses .button button {
   align-self: flex-end;
   padding: 5px 15px;
   border: none;
   background: #a0b21f;
   color: white;
 }
-#page-commander .row .bloc-2 .title-article span {
+#page-commander .row .bloc-1 .livraisons .livraison-content .text-contents {
+  width: 95%;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .devis-1 {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(234, 232, 232);
+  height: max-content;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .devis-1 .desc-retrait {
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .devis-1 .desc-essaie,
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .devis-1 .desc-price {
+  color: #7a7a7a;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .commande-msg {
+  margin-top: 10px;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .commande-msg .msg label {
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .form form .row .bloc-input .col-md-4 input,
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .form textarea {
+  border: 1px solid #a0b21f;
+  border-radius: 0;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .form form .row .bloc-input .col-md-4 textarea {
+  height: 50px;
+}
+#page-commander .row .bloc-1 .livraisons .livraison-content .devis .form form .btn-livraison {
+  margin-top: 20px;
+  margin-left: 48%;
+}
+#page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div {
+  margin-top: 30px;
+}
+#page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content .form-check label {
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button {
+  margin-left: -170px;
+}
+#page-commander .row .bloc-1 #divFinalisation,
+#page-commander .row .bloc-1 #divLivraison,
+#page-commander .row .bloc-1 #divAdress,
+#page-commander .row .bloc-1 #info-mod-btn,
+#page-commander .row .bloc-1 #faCheck {
+  display: none;
+}
+#page-commander .row .bloc-1 #finalisation,
+#page-commander .row .bloc-1 #livraison,
+#page-commander .row .bloc-1 #adresse {
+  opacity: 0.7;
+  cursor: not-allow;
+}
+#page-commander .bloc-2 .title-article span {
   color: #7a7a7a;
   font-size: larger;
 }
-#page-commander .row .bloc-2 .hidden-detail span {
+#page-commander .bloc-2 .hidden-detail span {
   color: #a0b21f;
   font-size: large;
 }
-#page-commander .row .bloc-2 .hidden-detail .details .details-items .detail-item {
+#page-commander .bloc-2 .hidden-detail .details {
+  display: none;
+}
+#page-commander .bloc-2 .hidden-detail .details .details-items .detail-item {
   display: flex;
   padding: 5px;
   color: #a0b21f;
   justify-content: space-between;
 }
-#page-commander .row .bloc-2 .detail-prices .prices {
+#page-commander .bloc-2 .detail-prices .prices {
   display: flex;
   justify-content: space-between;
   padding: 5px;
   color: #7a7a7a;
   font-size: larger;
 }
-#page-commander .row .bloc-2 .detail-prices .prices .price {
+#page-commander .bloc-2 .detail-prices .prices .price {
   color: #232323;
 }
-#page-commander .row .bloc-2 .total {
+#page-commander .bloc-2 .total {
   display: flex;
   justify-content: space-between;
   color: #7a7a7a;
 }
-#page-commander .row .bloc-2 .total div {
+#page-commander .bloc-2 .total div {
   font-size: larger;
   color: #232323;
 }
-#page-commander .row .bloc-2 .code-promo {
+#page-commander .bloc-2 .code-promo {
   text-align: center;
 }
-#page-commander .row .bloc-2 .code-promo a {
+#page-commander .bloc-2 .code-promo a {
   text-decoration: none;
   text-align: center;
   color: #a0b21f;
   cursor: pointer;
-}
-#page-commander #divFinalisation,
-#page-commander #divLivraison,
-#page-commander #divAdress,
-#page-commander #info-mod-btn,
-#page-commander #faCheck {
-  display: none;
-}
-#page-commander #finalisation,
-#page-commander #livraison,
-#page-commander #adresse {
-  opacity: 0.7;
-  cursor: not-allow;
 }
 
 #page-inscription {

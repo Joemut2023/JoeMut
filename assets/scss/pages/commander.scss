@@ -1,10 +1,6 @@
 #page-commander {
     padding: 8% 9%;
     font-family: $typograohie;
-    #btnDisable {
-        pointer-events: none;
-        opacity: 0.4;
-    }
     .row {
         .bloc-1 {
             .informations {
@@ -23,10 +19,136 @@
                         color: $color-white;
                     }
                     .title-h4 {
+                        display: flex;
+                        justify-content: space-between;
                         h4 {
                             padding: 0;
                             margin: 0;
                         }
+                    }
+                }
+                .btn-modif {
+                    background-color: $color-secondary;
+                    color: $color-white;
+                    margin-left: 250px;
+                    padding: 5px;
+                    display: none;
+                }
+                .content,
+                .adresse-content {
+                    max-width: 670px;
+                    padding: 20px;
+                    .register-form {
+                        .title {
+                            margin-left: -10px;
+                            color: $color-secondary;
+                            margin-bottom: 20px;
+                            #creer-compte {
+                                font-weight: 700;
+                                color: $color-black;
+                            }
+                            span {
+                                margin: 5px;
+                                font-size: large;
+                            }
+                            a {
+                                text-decoration: none;
+                                color: $color-primary;
+                            }
+                        }
+                        form {
+                            .ckeckbox {
+                                background-color: red;
+                            }
+                            .form-group {
+                                margin-bottom: 20px;
+                                .label {
+                                    font-weight: 600;
+                                }
+                                .item {
+                                    @include breakpoint(tablette) {
+                                        text-align: left;
+                                    }
+                                    label span {
+                                        color: red;
+                                    }
+                                }
+                                .input input {
+                                    width: 100%;
+                                    background-color: white;
+                                    border: 1px solid $color-primary;
+                                    padding: 5px 15px;
+                                    outline: none;
+                                    &:focus {
+                                        border: 2px solid $color-primary;
+                                    }
+                                }
+                                .input label {
+                                    color: $color-secondary;
+                                    font-size: 14px;
+                                }
+                                .btn-hide {
+                                    display: flex;
+                                    input {
+                                        width: 100%;
+                                        background-color: white;
+                                        border: 1px solid $color-primary;
+                                        padding: 5px 15px;
+                                        outline: none;
+                                    }
+                                    .btn-action {
+                                        padding: 5px 15px;
+                                        border: 1px solid gray;
+                                        color: white;
+                                        background-color: gray;
+                                        cursor: pointer;
+                                    }
+                                }
+                                .check input {
+                                    width: 10px;
+                                    height: 20px;
+                                }
+                                .check .text {
+                                    color: $color-primary;
+                                }
+                            }
+                            .radios {
+                                display: flex;
+                                gap: 15px;
+                                align-items: center;
+                                .radio {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 5px;
+                                }
+                                div input {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    display: inline-block;
+                                    width: 20px;
+                                    height: 20px;
+                                    padding: 3px;
+                                    background-clip: content-box;
+                                    border: 1px solid #bbbbbb;
+                                    border-radius: 50%;
+                                }
+                                div input[type="radio"]:checked {
+                                    background-color: $color-primary;
+                                }
+                            }
+                        }
+                    }
+                }
+                .button {
+                    display: flex;
+                    margin-left: 25%;
+                    button {
+                        align-self: flex-end;
+                        padding: 5px 15px;
+                        border: none;
+                        background: $color-primary;
+                        color: white;
                     }
                 }
             }
@@ -69,211 +191,254 @@
                         color: $color-secondary;
                     }
                 }
-            }
-            .title-recherche {
-                margin-bottom: 5px;
-                a {
-                    text-decoration: none;
-                    color: $color-black;
-                    font-size: 16px;
+                .btn-modif {
+                    background-color: $color-secondary;
+                    color: $color-white;
+                    margin-left: 250px;
+                    padding: 5px;
+                    display: none;
                 }
-                span {
-                    color: $color-secondary;
-                    font-size: 16px;
-                }
-            }
-            .resultat {
-                margin-bottom: 20px;
-                p {
-                    font-weight: 600;
-                    font-size: 24px;
-                }
-            }
-            .content,
-            .adresse-content {
-                max-width: 670px;
-                padding: 20px;
-                .register-form {
-                    .title {
-                        margin-left: -10px;
-                        color: $color-secondary;
-                        margin-bottom: 20px;
-                        #creer-compte {
-                            font-weight: 700;
-                            color: $color-black;
-                        }
-                        span {
-                            margin: 5px;
-                            font-size: large;
-                        }
-                        a {
-                            text-decoration: none;
-                            color: $color-primary;
-                        }
-                    }
-                    form {
-                        .ckeckbox {
-                            background-color: red;
-                        }
-                        .form-group {
+                .content,
+                .adresse-content {
+                    max-width: 670px;
+                    padding: 20px;
+                    .register-form {
+                        .title {
+                            margin-left: -10px;
+                            color: $color-secondary;
                             margin-bottom: 20px;
-                            .label {
-                                font-weight: 600;
+                            #creer-compte {
+                                font-weight: 700;
+                                color: $color-black;
                             }
-                            .item {
-                                @include breakpoint(tablette) {
-                                    text-align: left;
+                            span {
+                                margin: 5px;
+                                font-size: large;
+                            }
+                            a {
+                                text-decoration: none;
+                                color: $color-primary;
+                            }
+                        }
+                        form {
+                            .ckeckbox {
+                                background-color: red;
+                            }
+                            .form-group {
+                                margin-bottom: 20px;
+                                .label {
+                                    font-weight: 600;
                                 }
-                                label span {
-                                    color: red;
+                                .item {
+                                    @include breakpoint(tablette) {
+                                        text-align: left;
+                                    }
+                                    label span {
+                                        color: red;
+                                    }
                                 }
-                            }
-                            .input input {
-                                width: 100%;
-                                background-color: white;
-                                border: 1px solid $color-primary;
-                                padding: 5px 15px;
-                                outline: none;
-                                &:focus {
-                                    border: 2px solid $color-primary;
-                                }
-                            }
-                            .input label {
-                                color: $color-secondary;
-                                font-size: 14px;
-                            }
-                            .btn-hide {
-                                display: flex;
-                                input {
+                                .input input {
                                     width: 100%;
                                     background-color: white;
                                     border: 1px solid $color-primary;
                                     padding: 5px 15px;
                                     outline: none;
+                                    &:focus {
+                                        border: 2px solid $color-primary;
+                                    }
                                 }
-                                .btn-action {
-                                    padding: 5px 15px;
-                                    border: 1px solid gray;
-                                    color: white;
-                                    background-color: gray;
-                                    cursor: pointer;
+                                .input label {
+                                    color: $color-secondary;
+                                    font-size: 14px;
+                                }
+                                .btn-hide {
+                                    display: flex;
+                                    input {
+                                        width: 100%;
+                                        background-color: white;
+                                        border: 1px solid $color-primary;
+                                        padding: 5px 15px;
+                                        outline: none;
+                                    }
+                                    .btn-action {
+                                        padding: 5px 15px;
+                                        border: 1px solid gray;
+                                        color: white;
+                                        background-color: gray;
+                                        cursor: pointer;
+                                    }
+                                }
+                                .check input {
+                                    width: 10px;
+                                    height: 20px;
+                                }
+                                .check .text {
+                                    color: $color-primary;
                                 }
                             }
-                            .check input {
-                                width: 20px;
-                                height: 20px;
+                            .radios {
+                                display: flex;
+                                gap: 15px;
+                                align-items: center;
+                                .radio {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 5px;
+                                }
+                                div input {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    display: inline-block;
+                                    width: 20px;
+                                    height: 20px;
+                                    padding: 3px;
+                                    background-clip: content-box;
+                                    border: 1px solid #bbbbbb;
+                                    border-radius: 50%;
+                                }
+                                div input[type="radio"]:checked {
+                                    background-color: $color-primary;
+                                }
                             }
-                            .check .text {
+                        }
+                    }
+                }
+                .button {
+                    display: flex;
+                    margin-left: 25%;
+                    button {
+                        align-self: flex-end;
+                        padding: 5px 15px;
+                        border: none;
+                        background: $color-primary;
+                        color: white;
+                    }
+                }
+            }
+            .livraisons {
+                .livraison-content {
+                    .text-contents {
+                        width: 95%;
+                    }
+                    .devis {
+                        .devis-1 {
+                            margin-top: 10px;
+                            padding: 10px;
+                            background-color: rgb(234, 232, 232);
+                            height: max-content;
+                            // display: flex;
+                            // justify-content: space-around;
+                            .desc-retrait {
+                                color: $color-primary;
+                            }
+                            .desc-essaie,
+                            .desc-price {
+                                color: $color-secondary;
+                            }
+                        }
+                        .commande-msg {
+                            margin-top: 10px;
+                            .msg label {
                                 color: $color-primary;
                             }
                         }
-                        .radios {
-                            display: flex;
-                            gap: 15px;
-                            align-items: center;
-                            .radio {
-                                display: flex;
-                                align-items: center;
-                                gap: 5px;
+                        .form {
+                            form .row .bloc-input .col-md-4 input,
+                            textarea {
+                                border: 1px solid $color-primary;
+                                border-radius: 0;
                             }
-                            div input {
-                                -webkit-appearance: none;
-                                -moz-appearance: none;
-                                appearance: none;
-                                display: inline-block;
-                                width: 20px;
-                                height: 20px;
-                                padding: 3px;
-                                background-clip: content-box;
-                                border: 1px solid #bbbbbb;
-                                border-radius: 50%;
+                            form .row .bloc-input .col-md-4 textarea {
+                                height: 50px;
                             }
-                            div input[type="radio"]:checked {
-                                background-color: $color-primary;
+                            form {
+                                .btn-livraison {
+                                    margin-top: 20px;
+                                    margin-left: 48%;
+                                }
                             }
                         }
                     }
                 }
             }
-            .button {
-                display: flex;
-                justify-content: flex-end;
-                button {
-                    align-self: flex-end;
-                    padding: 5px 15px;
-                    border: none;
-                    background: $color-primary;
-                    color: white;
-                }
+            .finalisations .finalisation-contents .finalisation-content div {
+                margin-top: 30px;
             }
-            .adresse-content {}
+            .finalisations .finalisation-contents .finalisation-content .form-check label {
+                color: $color-primary;
+            }
+            .finalisations .finalisation-contents .finalisation-content div button {
+                margin-left: -170px;
+            }
+            #divFinalisation,
+            #divLivraison,
+            #divAdress,
+            #info-mod-btn,
+            #faCheck {
+                display: none;
+            }
+            #finalisation,
+            #livraison,
+            #adresse {
+                opacity: 0.7;
+                cursor: not-allow;
+            }
         }
-        .bloc-2 {
-            .title-article {
-                span {
-                    color: $color-secondary;
-                    font-size: larger;
-                }
+    }
+    .bloc-2 {
+        .title-article {
+            span {
+                color: $color-secondary;
+                font-size: larger;
             }
-            .hidden-detail {
-                span {
-                    color: $color-primary;
-                    font-size: large;
-                }
-                .details {
-                    .details-items {
-                        .detail-item {
-                            display: flex;
-                            padding: 5px;
-                            color: $color-primary;
-                            justify-content: space-between;
-                        }
+        }
+        .hidden-detail {
+            span {
+                color: $color-primary;
+                font-size: large;
+            }
+            .details {
+                display: none;
+                .details-items {
+                    .detail-item {
+                        display: flex;
+                        padding: 5px;
+                        color: $color-primary;
+                        justify-content: space-between;
                     }
                 }
             }
-            .detail-prices {
-                .prices {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 5px;
-                    color: $color-secondary;
-                    font-size: larger;
-                    .price {
-                        color: $color-black;
-                    }
-                }
-            }
-            .total {
+        }
+        .detail-prices {
+            .prices {
                 display: flex;
                 justify-content: space-between;
+                padding: 5px;
                 color: $color-secondary;
-                div {
-                    font-size: larger;
+                font-size: larger;
+                .price {
                     color: $color-black;
                 }
             }
-            .code-promo {
-                text-align: center;
-                a {
-                    text-decoration: none;
-                    text-align: center;
-                    color: $color-primary;
-                    cursor: pointer;
-                }
+        }
+        .total {
+            display: flex;
+            justify-content: space-between;
+            color: $color-secondary;
+            div {
+                font-size: larger;
+                color: $color-black;
             }
         }
-    }
-    #divFinalisation,
-    #divLivraison,
-    #divAdress,
-    #info-mod-btn,
-    #faCheck {
-        display: none;
-    }
-    #finalisation,
-    #livraison,
-    #adresse {
-        opacity: 0.7;
-        cursor: not-allow;
+        .code-promo {
+            text-align: center;
+            a {
+                text-decoration: none;
+                text-align: center;
+                color: $color-primary;
+                cursor: pointer;
+            }
+        }
     }
 }
