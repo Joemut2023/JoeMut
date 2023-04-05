@@ -940,6 +940,8 @@
 @media (max-width: 680px) {
   #pages-home .section-newsletters .text {
     width: 100%;
+    font-size: small;
+    margin-left: 10%;
   }
 }
 #pages-home .section-newsletters .form {

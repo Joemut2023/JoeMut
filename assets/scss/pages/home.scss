@@ -359,6 +359,8 @@
             }
             @include breakpoint(mobil) {
                 width: 100%;
+                font-size: small;
+                margin-left: 10%;
             }
         }
         .form {
