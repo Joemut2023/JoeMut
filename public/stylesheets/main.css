@@ -107,7 +107,6 @@
 }
 #bloc-header .nav-main-content .navbar {
   background-color: #fff;
-  width: 70%;
   border: solid yellow;
 }
 @media (max-width: 680px) {

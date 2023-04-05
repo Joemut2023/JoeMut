@@ -106,7 +106,7 @@
 
         .navbar {
             background-color: $color-white;
-            width: 70%;
+            // width: 70%;
             border: solid yellow;
 
             @include breakpoint(mobil) {
