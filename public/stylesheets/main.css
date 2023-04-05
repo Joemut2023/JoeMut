@@ -379,6 +379,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #bloc-footer .logo-footer {
@@ -391,6 +392,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 #bloc-footer .spoon-buttom .icon-chevron {
   color: #fff;
@@ -426,6 +428,9 @@
   color: #232323;
   font-size: 1rem;
   font-weight: 300;
+}
+#bloc-footer .menu-footer a:hover {
+  color: #fff;
 }
 @media (max-width: 680px) {
   #bloc-footer .menu-footer a {
