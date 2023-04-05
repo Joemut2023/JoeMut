@@ -160,7 +160,6 @@
 #bloc-header .nav-main-content .user-div {
   gap: 1rem;
   padding-top: 4.5%;
-  border: solid green;
 }
 #bloc-header .nav-main-content .user-div .fa-user {
   cursor: pointer;
