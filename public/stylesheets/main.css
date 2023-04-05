@@ -4680,4 +4680,24 @@
   margin-bottom: 20px;
 }
 
+#page-mensionLegale .title {
+  margin-left: 5%;
+  margin-top: 10%;
+}
+#page-mensionLegale .title .mension {
+  color: #7a7a7a;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+#page-mensionLegale .title div {
+  padding: 5px;
+}
+#page-mensionLegale .content {
+  width: 90%;
+  margin: auto;
+}
+#page-mensionLegale .content p {
+  color: rgb(168, 167, 167);
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
 /*# sourceMappingURL=main.css.map */

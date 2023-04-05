@@ -1,0 +1,21 @@
+#page-mensionLegale {
+    .title {
+        margin-left: 5%;
+        margin-top: 10%;
+        .mension {
+            color: $color-secondary;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    }
+    .title div {
+        padding: 5px;
+    }
+    .content {
+        width: 90%;
+        margin: auto;
+        p {
+            color: rgb(168, 167, 167);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    }
+}

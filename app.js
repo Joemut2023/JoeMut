@@ -18,6 +18,7 @@ var usersRouter = require('./routes/users');
 var inscriptionRouter = require('./routes/inscription')
 var connexionRouter = require('./routes/connexion')
 var commanderRouter = require('./routes/commander')
+var mensionLegaleRouter = require('./routes/mensionLegale')
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
@@ -73,6 +74,7 @@ app.use('/panier', panierRouter)
 app.use('/inscription', inscriptionRouter)
 app.use('/connexion', connexionRouter)
 app.use('/commander', commanderRouter)
+app.use('/mensionLegale', mensionLegaleRouter)
 
 
 
