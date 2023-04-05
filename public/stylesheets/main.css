@@ -288,6 +288,7 @@
 @media (max-width: 680px) {
   #details-infos {
     gap: 1%;
+    margin-top: 5%;
   }
 }
 #details-infos .infos-content {
