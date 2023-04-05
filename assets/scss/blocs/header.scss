@@ -3,8 +3,10 @@
 #bloc-header {
     .top-bar {
         background-color: $color-primary;
-        padding-left: 5%;
-        padding-right: 8%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 12%;
         height: 10vh;
         padding-top: 2vh;
         color: $color-white;
@@ -17,7 +19,6 @@
 
             @include breakpoint(mobil) {
                 display: none;
-                border: solid green;
             }
         }
 
@@ -58,9 +59,7 @@
 
     .nav-main-content {
         display: flex;
-        gap: 2%;
         flex-direction: row;
-        padding: 0 2%;
         justify-content: center;
 
         @include breakpoint(mobil) {
@@ -68,13 +67,13 @@
         }
 
         .navbar-brand {
-            width: 14%;
+
             @include breakpoint(mobil) {
-               width: 100%;
+                width: 100%;
             }
 
             .logo-img {
-                margin-top: 12%;
+                margin-top: 8%;
 
                 @include breakpoint(mobil) {
                     margin-left: 15%;
@@ -105,7 +104,7 @@
 
         .navbar {
             background-color: $color-white;
-            width: 70%;
+            width: 100%;
 
             @include breakpoint(mobil) {
                 width: 10%;
@@ -134,8 +133,7 @@
 
         .search-div {
             margin-left: 1%;
-            padding-top: 3.5%;
-            width: 20%;
+            padding-top: 4.5%;
 
             @include breakpoint(mobil) {
                 width: 50%;
@@ -154,7 +152,7 @@
                 border: 0;
                 outline: 0;
                 padding-left: 4%;
-                width: 70%;
+                width: 90%;
             }
 
             .search-input::placeholder {
@@ -163,9 +161,14 @@
         }
 
         .user-div {
-            width: 10%;
             gap: 1rem;
-            padding-top: 3.5%;
+            padding-top: 4.5%;
+            border: solid green;
+
+            .fa-user {
+                cursor: pointer;
+
+            }
 
             @include breakpoint(mobil) {
                 width: 25%;
@@ -351,7 +354,6 @@
     float: right;
     width: 21%;
     display: none;
-    border: solid red;
     opacity: 0;
     transition: all 0.5s linear;
     background-color: $color-white;
@@ -362,4 +364,3 @@
 #user-title-Dropdown:hover>#user-menu-Dropdown {
     display: block;
 }
-
