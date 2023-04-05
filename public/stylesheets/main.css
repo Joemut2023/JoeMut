@@ -1051,8 +1051,11 @@
     margin-left: auto;
   }
 }
+#page-creation .etape-creation .etape-creation-content .creation-img {
+  height: 19vh;
+}
 #page-creation .etape-creation .etape-creation-content .etape-img {
-  width: 40%;
+  height: 19vh;
 }
 #page-creation .etape-creation .etape-creation-content h6 {
   color: #a0b21f;
