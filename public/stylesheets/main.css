@@ -209,6 +209,9 @@
     width: 10%;
   }
 }
+#headerSticky .second-navbar .nav-item a:hover {
+  color: #a0b21f !important;
+}
 #headerSticky .second-search-div {
   padding-top: 1%;
 }

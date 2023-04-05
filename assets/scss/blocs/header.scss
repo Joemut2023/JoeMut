@@ -211,6 +211,10 @@
         @include breakpoint(mobil) {
             width: 10%;
         }
+        .nav-item a:hover {
+            color: $color-primary !important;
+
+        }
     }
 
     .second-search-div {
