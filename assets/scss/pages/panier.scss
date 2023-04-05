@@ -79,7 +79,7 @@
 
         .prices {
           @include breakpoint(mobil) {
-            width: 70%;
+            width: 80%;
             margin: 0 auto;
           }
           @include breakpoint(tablette) {
@@ -103,7 +103,7 @@
                 display: flex;
                 justify-content: center;
                 @include breakpoint(mobil) {
-                  flex:1;
+                  flex:3;
                   justify-content: flex-end;
                 }
                 @include breakpoint(tablette) {
@@ -142,8 +142,9 @@
               .prx {
                 padding-top: 5px;
                 @include breakpoint(mobil) {
-                  flex:5;
+                  flex:1;
                   justify-content: flex-start;
+                  text-align: center;
                 }
                 
                 span {

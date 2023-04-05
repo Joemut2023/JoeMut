@@ -586,11 +586,11 @@
 }
 @media (min-width: 768px) {
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
     transform: translateX(25%);
   }
   #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
+#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
     transform: translateX(-25%);
   }
 }
@@ -2852,7 +2852,7 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
   }
 }
@@ -2884,7 +2884,7 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn {
-    flex: 1;
+    flex: 3;
     justify-content: flex-end;
   }
 }
@@ -2924,8 +2924,9 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices .block-price .compteur .prx {
-    flex: 5;
+    flex: 1;
     justify-content: flex-start;
+    text-align: center;
   }
 }
 #page-panier .panier-details .comment .articles .prices .block-price .compteur .prx span {
@@ -3838,7 +3839,7 @@
 }
 @media (max-width: 1000px) {
   #page-commander .row .bloc-1 .informations .content .register-form form .form-group .item,
-  #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .item {
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .item {
     text-align: left;
   }
 }
@@ -4017,7 +4018,7 @@
 }
 @media (max-width: 1000px) {
   #page-commander .row .bloc-1 .adresses .content .register-form form .form-group .item,
-  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .item {
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .item {
     text-align: left;
   }
 }
