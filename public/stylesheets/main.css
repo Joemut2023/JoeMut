@@ -10,8 +10,10 @@
 }
 #bloc-header .top-bar {
   background-color: #a0b21f;
-  padding-left: 5%;
-  padding-right: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12%;
   height: 10vh;
   padding-top: 2vh;
   color: #fff;
@@ -25,7 +27,6 @@
 @media (max-width: 680px) {
   #bloc-header .top-bar .title-content {
     display: none;
-    border: solid green;
   }
 }
 #bloc-header .top-bar .link-content {
@@ -59,19 +60,13 @@
 }
 #bloc-header .nav-main-content {
   display: flex;
-  padding: 0 1%;
   flex-direction: row;
-  border: solid yellow;
   justify-content: center;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content {
     flex-direction: column;
   }
-}
-#bloc-header .nav-main-content .navbar-brand {
-  width: 15%;
-  border: solid red;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .navbar-brand {
@@ -108,8 +103,7 @@
 }
 #bloc-header .nav-main-content .navbar {
   background-color: #fff;
-  width: 70%;
-  border: solid yellow;
+  width: 100%;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .navbar {
@@ -138,9 +132,7 @@
 }
 #bloc-header .nav-main-content .search-div {
   margin-left: 1%;
-  padding-top: 3.5%;
-  width: 15%;
-  border: solid red;
+  padding-top: 4.5%;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .search-div {
@@ -167,8 +159,10 @@
 }
 #bloc-header .nav-main-content .user-div {
   gap: 1rem;
-  padding-top: 3.5%;
-  border: solid green;
+  padding-top: 4.5%;
+}
+#bloc-header .nav-main-content .user-div .fa-user {
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .user-div {
@@ -344,7 +338,6 @@
   float: right;
   width: 21%;
   display: none;
-  border: solid red;
   opacity: 0;
   transition: all 0.5s linear;
   background-color: #fff;
