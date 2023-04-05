@@ -43,9 +43,24 @@
       .articles {
         .id {
           font-size: 14px;
+          @include breakpoint(mobil) {
+            text-align: center;
+            margin-bottom: 5px;
+          }
+         
         }
 
+        .image {
+          @include breakpoint(mobil) {
+            text-align: center;
+            margin-bottom: 5px;
+          }
+        }
         .description {
+          @include breakpoint(mobil) {
+            text-align: center;
+            margin-bottom: 5px;
+          }
           .desc {
             font-size: 14px;
             a {
@@ -63,16 +78,43 @@
         }
 
         .prices {
+          @include breakpoint(mobil) {
+            width: 80%;
+            margin: 0 auto;
+          }
+          @include breakpoint(tablette) {
+            margin-top: 20px;
+            // width: 100%;
+          }
           .block-price {
+            @include breakpoint(mobil) {
+                flex: 3;
+                padding-left: 15px;
+              }
+              @include breakpoint(tablette) {
+                flex: 2;
+                justify-content: flex-start;
+              }
             .compteur {
+              @include breakpoint(tablette) {
+                display: flex;
+              }
               .qty-btn {
                 display: flex;
                 justify-content: center;
-
+                @include breakpoint(mobil) {
+                  flex:3;
+                  justify-content: flex-end;
+                }
+                @include breakpoint(tablette) {
+                  flex:5;
+                  justify-content: flex-end;
+                }
                 input {
                   border: none;
                   outline: none;
                   max-width: 50px;
+                  height: 40px;
                   padding: 0px 10px;
                   border: 1px solid $color-secondary;
                 }
@@ -99,7 +141,12 @@
 
               .prx {
                 padding-top: 5px;
-
+                @include breakpoint(mobil) {
+                  flex:1;
+                  justify-content: flex-start;
+                  text-align: center;
+                }
+                
                 span {
                   font-weight: 600;
                   color: $color-primary;
@@ -108,6 +155,10 @@
             }
           }
           .delete {
+            @include breakpoint(mobil) {
+                flex: 1;
+                align-self: flex-start;
+              }
             margin-top: 5px;
 
             span {
@@ -153,10 +204,28 @@
 
     .promo {
       .link {
+        margin-bottom: 30px;
         text-align: center;
         p {
           color: $color-primary;
         }
+
+        .btnpromo {
+          cursor: pointer;
+        }
+
+        .linkhide {
+          transform: translateX(-100px);
+          display: none;
+          transition: all 0.5s ease;
+        }
+      }
+
+      .hide-promo {
+        display: none !important;
+      }
+      .show-promo {
+        display: flex;
       }
 
       .code-promo {
@@ -187,6 +256,7 @@
 
         .fermer {
           color: $color-primary;
+          cursor: pointer;
         }
       }
     }
@@ -228,6 +298,13 @@
         width: 90%;
         height: auto;
         padding-bottom: 10px;
+        @include breakpoint(tablette) {
+          text-align: center;
+        }
+        img {
+          width: 90%;
+          height: auto;
+        }
       }
       .details {
         text-align: center;

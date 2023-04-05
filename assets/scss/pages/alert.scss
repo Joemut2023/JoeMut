@@ -1,29 +1,28 @@
 #alert {
-    padding: 7%;
+  padding: 7%;
 
-    .breadcrumb-item {
-        a {
-            text-decoration: none;
-            color: $color-black;
-        }
-
-        @include breakpoint(mobil) {
-            display: none;
-        }
-
+  .breadcrumb-item {
+    a {
+      text-decoration: none;
+      color: $color-black;
     }
 
-    .link-div {
-        gap: 2%;
-        padding: 1%;
-
-        @include breakpoint(mobil) {
-            padding: 3% 1%;
-        }
-
-        a {
-            text-decoration: none;
-            color: $color-primary;
-        }
+    @include breakpoint(mobil) {
+      display: none;
     }
+  }
+
+  .link-div {
+    gap: 2%;
+    padding: 1%;
+
+    @include breakpoint(mobil) {
+      padding: 3% 1%;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-primary;
+    }
+  }
 }
