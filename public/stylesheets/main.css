@@ -3670,6 +3670,28 @@
   padding: 0;
   margin: 0;
 }
+#page-commander .row .bloc-1 .informations .tabs-container ul {
+  border-bottom: 1px solid #eeeeee;
+}
+#page-commander .row .bloc-1 .informations .tabs-container ul li button {
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  color: #7a7a7a;
+  font-weight: 600;
+}
+#page-commander .row .bloc-1 .informations .tabs-container ul li .button-add {
+  border-bottom: 3px solid #a0b21f;
+  color: rgb(127, 157, 221);
+}
+#page-commander .row .bloc-1 .informations .tabs-container .tab-content {
+  padding: 20px 0px;
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-commander .row .bloc-1 .informations .tabs-container .tab-content .content-one {
+  text-align: center;
+}
 #page-commander .row .bloc-1 .informations .btn-modif {
   background-color: #7a7a7a;
   color: #fff;

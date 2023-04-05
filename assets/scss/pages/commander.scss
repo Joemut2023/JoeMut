@@ -27,6 +27,30 @@
                         }
                     }
                 }
+                .tabs-container {
+                    ul {
+                        border-bottom: 1px solid #eeeeee;
+                        li button {
+                            border-left: none;
+                            border-top: none;
+                            border-right: none;
+                            color: $color-secondary;
+                            font-weight: 600;
+                        }
+                        li .button-add {
+                            border-bottom: 3px solid $color-primary;
+                            color: $color-button-primary-2;
+                        }
+                    }
+                    .tab-content {
+                        padding: 20px 0px;
+                        color: $color-secondary;
+                        font-size: 14px;
+                        .content-one {
+                            text-align: center;
+                        }
+                    }
+                }
                 .btn-modif {
                     background-color: $color-secondary;
                     color: $color-white;
@@ -86,6 +110,7 @@
                                 .input label {
                                     color: $color-secondary;
                                     font-size: 14px;
+                                    // text-align: left;
                                 }
                                 .btn-hide {
                                     display: flex;

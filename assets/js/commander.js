@@ -17,6 +17,9 @@ const btnModiferfinalisation = document.querySelector('#finalisation-mod-btn')
     // const btnModiferInfo = document.querySelector('#info-mod-btn')
 const faCheck = document.querySelector('#faCheck')
 
+const navlink_one = document.querySelector(".btn-tab-one");
+const navlink_two = document.querySelector(".btn-tab-two");
+
 
 const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, ) => {
     nextDiv.style.display = "block"
@@ -58,6 +61,18 @@ btn.addEventListener("click", function(e) {
     else
         btn.textContent = "Cacher"
 })
+
+
+//tabs
+navlink_one.addEventListener("click", function() {
+    navlink_one.classList.add("button-add");
+    navlink_two.classList.remove("button-add");
+});
+
+navlink_two.addEventListener("click", function() {
+    navlink_two.classList.add("button-add");
+    navlink_one.classList.remove("button-add");
+});
 
 function toggle_visibility(id) {
     var element = document.getElementById(id);

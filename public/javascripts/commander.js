@@ -18,6 +18,8 @@ var btnModiferlivraison = document.querySelector('#livraison-mod-btn');
 var btnModiferfinalisation = document.querySelector('#finalisation-mod-btn');
 // const btnModiferInfo = document.querySelector('#info-mod-btn')
 var faCheck = document.querySelector('#faCheck');
+var navlink_one = document.querySelector(".btn-tab-one");
+var navlink_two = document.querySelector(".btn-tab-two");
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv) {
   nextDiv.style.display = "block";
   currentDiv.style.display = "none";
@@ -49,6 +51,16 @@ btn.addEventListener("click", function (e) {
   var type = password.getAttribute("type") === "password" ? "text" : "password";
   password.setAttribute("type", type);
   if (password.getAttribute("type") === "password") btn.textContent = "Montrer";else btn.textContent = "Cacher";
+});
+
+//tabs
+navlink_one.addEventListener("click", function () {
+  navlink_one.classList.add("button-add");
+  navlink_two.classList.remove("button-add");
+});
+navlink_two.addEventListener("click", function () {
+  navlink_two.classList.add("button-add");
+  navlink_one.classList.remove("button-add");
 });
 function toggle_visibility(id) {
   var element = document.getElementById(id);
