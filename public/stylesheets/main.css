@@ -2856,7 +2856,7 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
   }
 }
@@ -2888,7 +2888,7 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices .block-price .compteur .qty-btn {
-    flex: 1;
+    flex: 3;
     justify-content: flex-end;
   }
 }
@@ -2928,8 +2928,9 @@
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices .block-price .compteur .prx {
-    flex: 5;
+    flex: 1;
     justify-content: flex-start;
+    text-align: center;
   }
 }
 #page-panier .panier-details .comment .articles .prices .block-price .compteur .prx span {
