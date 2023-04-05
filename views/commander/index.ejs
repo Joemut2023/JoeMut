@@ -30,11 +30,11 @@
                                     </div>
                                     <div class="col-md-6 radios ">
                                         <div class="radio ">
-                                            <input type="radio " name="civilite " id="homme " value="M " />
+                                            <input type="radio" name="civilite " id="homme " value="M " />
                                             <label class=" " for="homme ">M</label>
                                         </div>
                                         <div class="radio ">
-                                            <input type="radio " name="civilite " id="femme " value="Mme " />
+                                            <input type="radio" name="civilite " id="femme " value="Mme " />
                                             <label class=" " for="femme ">Mme</label>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-6 btn-hide ">
                                         <input type="password " name="password " id="password " class="input-password " required />
-                                        <button id="btn-action " class="btn-action ">Montrer</button>
+                                        <button id="btn-action" type="button" class="btn-action ">Montrer</button>
                                     </div>
                                     <div></div>
                                 </div>
@@ -82,7 +82,7 @@
                                         <label class="required " for="nom "><span>*</span></label>
                                     </div>
                                     <div class="col-md-6 input check ">
-                                        <input type="checkbox " id="check-box " name="check-box " />
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label for="check-box " class="text ">Message concernant la confidentialité des
                                             données clients
                                             <br />
@@ -92,7 +92,7 @@
                                                 concernant.</em>
                                         </label>
                                     </div>
-                                    <div class="col-md-3 "></div>
+                                    <div class="col-md-3"></div>
                                 </div>
 
                                 <div class="form-group row ">
@@ -100,7 +100,7 @@
                                         <label class="required " for="nom "><span></span></label>
                                     </div>
                                     <div class="col-md-6 input check ">
-                                        <input type="checkbox " id="check-box " name="check-box " />
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label for="check-box " class="text ">
                                             Recevoir notre newsletter
                                             <br />
@@ -118,23 +118,22 @@
                                     </div>
                                     <div class="col-md-6 input check input-check ">
                                         <div class="check-item checkbox-example ">
-                                            <input type="checkbox " id="check-box " name="check-box" />
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label for=" scales " class=" text checkmark ">J'accepte les conditions générales et la politique de
                                   confidentialité
-                                </label>
+                                 </label>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class=" button ">
+                            <div class="button">
                                 <button type="submit">Continuer</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
 
             <div class="adresses" id="adresse">
                 <div class="adresse-title">
@@ -283,311 +282,215 @@
                 </div>
             </div>
 
-            <div class="adresses" id="livraison">
-                <div class="big-title">
-                    <div class="border-number ">3</div>
+            <div class="adresses livraisons" id="livraison">
+                <div class="adresse-title">
+                    <div class="border-number">3</div>
                     <div class="title-h4">
-                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
-                        <h4>MODE DE LIVRAISON</h4>
+                        <div class="ckeckTrue"><i class="fa-solid fa-check iconCheck" id="faCheck"></i></div>
+                        <div class="titre">
+                            <h4>MODE DE LIVRAISON</h4>
+                        </div>
+                        <div class="btn bnt-primary btn-modif" id="info-mod-btn">Modfier</div>
                     </div>
-                    <div class="btn btn-modif" id="livraison-mod-btn">Modfier</div>
                 </div>
                 <hr>
 
-                <div class="content" id="divLivraison">
+                <div class="livraison-content" id="divLivraison">
                     <div class="text-contents">
                         <div class="text-1">
                             <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
                         </div>
-                        <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
                     </div>
-                    <div class="register-form">
 
-                        <form id='livraison-form'>
-                            <div class="form-parent">
-                                <div class="form-group row ">
-                                    <div class="col-md-3 "></div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="prenom " id="prenom " required />
-                                    </div>
-                                    <div class="col-md-3 "></div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="prenom " id="prenom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Nom</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Société</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Numero de TVA</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Complement d'adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Code postal</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Ville</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Pays</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Téléphone</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    </div>
-                                    <div class="col-md-6 text-label">
-                                        <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
-                                    </div>
-
-                                </div>
+                    <div class="devis">
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             </div>
-                            <div class="button btn col-md-6">
-                                <button>Continuer</button>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Retrait dans nos locaux AES</p>
                             </div>
-                        </form>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Je viendrais prendre le colis d'essayage et les costumes pour mon spectacle dans vos locaux</p>
+                            </div>
+                            <div class="descprice col-md-2">gratuit</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Essayage en livraison /Spectacle chez AES</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Je souhaite la livraison du colis d'assayage à domicile et je viendrais chercher les costumes pour les spectacles dans vos locaux</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Tous en livraison</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Le colis essayage et spectacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Pas de colis d'essayageet de livraison spectacle</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Pas de colis d'essayage et je souhaite que l'on m'envoie mes costumes à domicile pour le spactacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Essayage chez AES/Spectacle en livraison</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>je souhaite venir prendre mon colis d'ssayage dans vos locaux et une livraison à domicile pour le spactacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="commande-msg">
+                            <div class="mb-3 msg">
+                                <label for="exampleFormControlTextarea1" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="date-spectacle">
+                            <div class="title">
+                                <h3>DATE SPECTACLE</h3>
+                                <hr>
+                            </div>
+
+                            <div class="form">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date du debut de spectacle</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-debut" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date du debut de spectacle">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date de fin de spectacle</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-fin" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de fin de spectacle">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date de répétition</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-rep" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de repetition">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Site d'autres date</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Complement d'infos ?</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="button btn col-md-6 btn-livraison">
+                                        <button>Continuer</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
+                    <hr>
                 </div>
             </div>
 
-            <div class="adresses" id="finalisation">
-                <div class="big-title" onclick="toggle_visibility('divFinalisation')">
-                    <div class="border-number ">4</div>
+            <div class="adresses finalisations" id="finalisation">
+                <div class="big-title">
+                    <div class="border-number">4</div>
                     <div class="title-h4">
-                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
                         <h4>FINALISATION</h4>
                     </div>
                     <div class="btn btn-modif" id="finalisation-mod-btn">Modifier</div>
                 </div>
                 <hr>
 
-                <div class="content" id="divFinalisation">
-                    <div class="text-contents">
-                        <div class="text-1">
-                            <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)</p>
+                <div class="finalisation-contents" id="divFinalisation show">
+                    <div class="finalisation-content">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Confirmez votre devis
+                            </label>
                         </div>
-                        <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
-                    </div>
-                    <div class="register-form">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              J'ai lu les conditions générales de vente et j'y adheres sans reserve.
+                            </label>
+                        </div>
 
-                        <form id='finalisation-form'>
-                            <div class="form-parent">
-                                <div class="form-group row ">
-                                    <div class="col-md-3 "></div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="prenom " id="prenom " required />
-                                    </div>
-                                    <div class="col-md-3 "></div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="prenom "><span>*</span>Prenom</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="prenom " id="prenom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Nom</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Société</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Numero de TVA</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom ">Complement d'adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Code postal</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Ville</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Pays</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="nom "><span>*</span>Téléphone</label>
-                                    </div>
-                                    <div class="col-md-6 input ">
-                                        <input type="text " name="nom " id="nom " required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    </div>
-                                    <div class="col-md-6 text-label">
-                                        <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="button btn col-md-6">
-                                <button>Commander</button>
-                            </div>
-                        </form>
+                        <div class="button col-md-6">
+                            <button>Finaliser le devis</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class=" col-md-4 bloc-2 ">
+        <div class="col-md-4 bloc-2">
             <div class=" title-article ">
                 <span>1</span>
                 <span>article</span>
             </div>
 
-            <div onclick="toggle_visibility('divItems')" class="hidden-detail">
+            <div onclick="toggle_visibility( 'divItems') " class="hidden-detail ">
                 <span> afficher les details</span>
-                <div class="details" id="divItems">
-                    <div class="details-items">
+                <div class="details " id="divItems ">
+                    <div class="details-items ">
                         <div class=" detail-item ">
                             <div class="detail-img ">
                                 <img src=" " alt=" ">
@@ -637,5 +540,4 @@
             </div>
         </div>
     </div>
-
 </div>

@@ -44,19 +44,12 @@ livraisonForm.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(finalisationDiv, livraisonDiv, btnModiferlivraison, finalisationContainer);
 });
-
-// btn.addEventListener("click", function(e) {
-//     e.preventDefault()
-
-//     const type = password.getAttribute("type") === "password" ? "text" : "password";
-//     password.setAttribute("type", type);
-
-//     if (password.getAttribute("type") === "password")
-//         btn.textContent = "Montrer"
-//     else
-//         btn.textContent = "Cacher"
-// })
-
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
+  var type = password.getAttribute("type") === "password" ? "text" : "password";
+  password.setAttribute("type", type);
+  if (password.getAttribute("type") === "password") btn.textContent = "Montrer";else btn.textContent = "Cacher";
+});
 function toggle_visibility(id) {
   var element = document.getElementById(id);
   if (element.style.display === "none") {

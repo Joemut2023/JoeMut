@@ -47,17 +47,17 @@ livraisonForm.addEventListener("submit", (event) => {
 })
 
 
-// btn.addEventListener("click", function(e) {
-//     e.preventDefault()
+btn.addEventListener("click", function(e) {
+    e.preventDefault()
 
-//     const type = password.getAttribute("type") === "password" ? "text" : "password";
-//     password.setAttribute("type", type);
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
 
-//     if (password.getAttribute("type") === "password")
-//         btn.textContent = "Montrer"
-//     else
-//         btn.textContent = "Cacher"
-// })
+    if (password.getAttribute("type") === "password")
+        btn.textContent = "Montrer"
+    else
+        btn.textContent = "Cacher"
+})
 
 function toggle_visibility(id) {
     var element = document.getElementById(id);
