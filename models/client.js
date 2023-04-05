@@ -37,9 +37,12 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       tit_id: DataTypes.INTEGER,
+      cli_prenom: DataTypes.STRING,
+      cli_nom: DataTypes.STRING,
       cli_num: DataTypes.STRING,
       cli_mail: DataTypes.STRING,
       cli_login: DataTypes.STRING,
+      cli_pwd: DataTypes.STRING,
       cli_fonction: DataTypes.STRING,
     },
     {
