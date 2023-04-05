@@ -55,6 +55,11 @@
 #bloc-header .top-bar .social-link .fa-instagram {
   color: #fff;
 }
+#bloc-header .top-bar .social-link .fa-facebook:hover,
+#bloc-header .top-bar .social-link .fa-instagram:hover {
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+}
 #bloc-header .top-bar p {
   color: #fff;
 }
@@ -104,11 +109,17 @@
 #bloc-header .nav-main-content .navbar {
   background-color: #fff;
   width: 100%;
+  margin-left: 1%;
+  color: #a0b21f !important;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .navbar {
     width: 10%;
   }
+}
+#bloc-header .nav-main-content .navbar .nav-item a:hover {
+  border-top: 0.4px solid #a0b21f;
+  color: #a0b21f !important;
 }
 #bloc-header .nav-main-content .nav-content {
   display: flex;
@@ -161,8 +172,15 @@
   gap: 1rem;
   padding-top: 4.5%;
 }
-#bloc-header .nav-main-content .user-div .fa-user {
+#bloc-header .nav-main-content .user-div .fa-user,
+#bloc-header .nav-main-content .user-div .fa-cart-shopping {
   cursor: pointer;
+}
+#bloc-header .nav-main-content .user-div .fa-user:hover,
+#bloc-header .nav-main-content .user-div .fa-cart-shopping:hover {
+  color: #a0b21f;
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .user-div {
@@ -272,6 +290,10 @@
 #details-infos .infos-content {
   width: 18%;
   text-align: center;
+}
+#details-infos .infos-content:hover {
+  transform: scale(1.1);
+  transition: all 0.8s ease-in-out;
 }
 @media (max-width: 680px) {
   #details-infos .infos-content {
@@ -2631,116 +2653,116 @@
   font-size: 14px;
 }
 
-#page-inscription {
+#page-connexion {
   padding: 8% 9%;
   font-family: "Manrope", sans-serif;
 }
-#page-inscription .title-recherche {
+#page-connexion .title-recherche {
   margin-bottom: 5px;
 }
-#page-inscription .title-recherche a {
+#page-connexion .title-recherche a {
   text-decoration: none;
   color: #232323;
   font-size: 16px;
 }
-#page-inscription .title-recherche span {
+#page-connexion .title-recherche span {
   color: #7a7a7a;
   font-size: 16px;
 }
-#page-inscription .resultat {
+#page-connexion .resultat {
   margin-bottom: 20px;
 }
-#page-inscription .resultat p {
+#page-connexion .resultat p {
   font-weight: 600;
   font-size: 24px;
 }
-#page-inscription .content {
+#page-connexion .content {
   max-width: 670px;
   margin: 0 auto;
   border: 1px solid #a0b21f;
   padding: 20px;
 }
-#page-inscription .content .register-form .title {
+#page-connexion .content .register-form .title {
   color: #7a7a7a;
   margin-bottom: 20px;
 }
-#page-inscription .content .register-form .title a {
+#page-connexion .content .register-form .title a {
   text-decoration: none;
   color: #a0b21f;
 }
-#page-inscription .content .register-form form {
+#page-connexion .content .register-form form {
   margin-top: 20px;
 }
-#page-inscription .content .register-form form .form-group {
+#page-connexion .content .register-form form .form-group {
   margin-bottom: 20px;
 }
-#page-inscription .content .register-form form .form-group .label {
+#page-connexion .content .register-form form .form-group .label {
   font-weight: 600;
 }
-#page-inscription .content .register-form form .form-group .item {
+#page-connexion .content .register-form form .form-group .item {
   text-align: right;
 }
 @media (max-width: 1000px) {
-  #page-inscription .content .register-form form .form-group .item {
+  #page-connexion .content .register-form form .form-group .item {
     text-align: left;
   }
 }
-#page-inscription .content .register-form form .form-group .item label span {
+#page-connexion .content .register-form form .form-group .item label span {
   color: red;
   margin: 5px;
 }
-#page-inscription .content .register-form form .form-group .input input {
+#page-connexion .content .register-form form .form-group .input input {
   width: 100%;
   background-color: white;
   border: 1px solid #a0b21f;
   padding: 5px 15px;
   outline: none;
 }
-#page-inscription .content .register-form form .form-group .input input:focus {
+#page-connexion .content .register-form form .form-group .input input:focus {
   border: 2px solid #a0b21f;
 }
 @media (max-width: 680px) {
-  #page-inscription .content .register-form form .form-group .input input {
+  #page-connexion .content .register-form form .form-group .input input {
     margin-top: 4%;
   }
 }
-#page-inscription .content .register-form form .form-group .input label {
+#page-connexion .content .register-form form .form-group .input label {
   color: #7a7a7a;
   font-size: 14px;
 }
-#page-inscription .content .register-form form .form-group .btn-hide {
+#page-connexion .content .register-form form .form-group .btn-hide {
   display: flex;
 }
 @media (max-width: 680px) {
-  #page-inscription .content .register-form form .form-group .btn-hide {
+  #page-connexion .content .register-form form .form-group .btn-hide {
     margin-top: 4%;
   }
 }
-#page-inscription .content .register-form form .form-group .btn-hide input {
+#page-connexion .content .register-form form .form-group .btn-hide input {
   width: 100%;
   background-color: white;
   border: 1px solid #a0b21f;
   padding: 5px 15px;
   outline: none;
 }
-#page-inscription .content .register-form form .form-group .btn-hide .btn-action {
+#page-connexion .content .register-form form .form-group .btn-hide .btn-action {
   padding: 5px 15px;
   border: 1px solid gray;
   color: white;
   background-color: gray;
   cursor: pointer;
 }
-#page-inscription .create-account,
-#page-inscription .forgot-password {
+#page-connexion .create-account,
+#page-connexion .forgot-password {
   text-align: center;
   color: #a0b21f;
   font-size: large;
 }
-#page-inscription .button {
+#page-connexion .button {
   display: flex;
   justify-content: center;
 }
-#page-inscription .button button {
+#page-connexion .button button {
   width: 20%;
   padding: 10px;
   border: none;
@@ -2748,7 +2770,7 @@
   color: white;
 }
 @media (max-width: 680px) {
-  #page-inscription .button button {
+  #page-connexion .button button {
     text-align: center;
     width: 50%;
   }
