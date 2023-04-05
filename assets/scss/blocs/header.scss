@@ -68,7 +68,6 @@
         }
 
         .navbar-brand {
-            width: 15%;
             border: solid red;
 
             @include breakpoint(mobil) {
@@ -137,7 +136,7 @@
 
         .search-div {
             margin-left: 1%;
-            padding-top: 3.5%;
+            padding-top: 4.5%;
             // width: 15%;
             border: solid red;
 
@@ -169,7 +168,7 @@
         .user-div {
             // width: 10%;
             gap: 1rem;
-            padding-top: 3.5%;
+            padding-top: 4.5%;
             border: solid green;
 
             .fa-user {
