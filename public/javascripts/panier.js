@@ -16,11 +16,11 @@ btns_up.forEach(function (element) {
 });
 btns_down.forEach(function (element) {
   element.addEventListener("click", function () {
-    var compteur = element.parentNode.parentNode.children[0].value;
-    compteur = isNaN(compteur) ? 1 : compteur;
-    if (compteur > 1) compteur--;
-    input.value = compteur;
-    element.parentNode.parentNode.children[0].value = compteur;
+    var decrement = element.parentNode.parentNode.children[0].value;
+    console.log;
+    decrement = isNaN(decrement) ? 1 : decrement;
+    if (decrement > 1) decrement--;
+    element.parentNode.parentNode.children[0].value = decrement;
   });
 });
 link_parag.addEventListener("click", function () {
