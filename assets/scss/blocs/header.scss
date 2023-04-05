@@ -3,8 +3,6 @@
 #bloc-header {
     .top-bar {
         background-color: $color-primary;
-        // padding-left: 5%;
-        // padding-right: 8%;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -21,7 +19,6 @@
 
             @include breakpoint(mobil) {
                 display: none;
-                border: solid green;
             }
         }
 
@@ -62,9 +59,7 @@
 
     .nav-main-content {
         display: flex;
-        // padding: 0 1%;
         flex-direction: row;
-        border: solid yellow;
         justify-content: center;
 
         @include breakpoint(mobil) {
@@ -72,7 +67,6 @@
         }
 
         .navbar-brand {
-            border: solid red;
 
             @include breakpoint(mobil) {
                 width: 100%;
@@ -110,9 +104,7 @@
 
         .navbar {
             background-color: $color-white;
-            // width: 70%;
             width: 100%;
-            border: solid yellow;
 
             @include breakpoint(mobil) {
                 width: 10%;
@@ -142,8 +134,6 @@
         .search-div {
             margin-left: 1%;
             padding-top: 4.5%;
-            // width: 15%;
-            border: solid red;
 
             @include breakpoint(mobil) {
                 width: 50%;
@@ -171,7 +161,6 @@
         }
 
         .user-div {
-            // width: 10%;
             gap: 1rem;
             padding-top: 4.5%;
             border: solid green;
@@ -365,7 +354,6 @@
     float: right;
     width: 21%;
     display: none;
-    border: solid red;
     opacity: 0;
     transition: all 0.5s linear;
     background-color: $color-white;
