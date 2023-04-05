@@ -995,6 +995,11 @@
   justify-content: center;
   gap: 40px;
 }
+@media (max-width: 680px) {
+  #pages-home .section-testimonials .actions {
+    width: 100%;
+  }
+}
 #pages-home .section-contact {
   margin-bottom: 50px;
 }

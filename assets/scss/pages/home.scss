@@ -1,431 +1,430 @@
 #pages-home {
-  margin-top: 130px;
-  .btn{
-    background-color: $color-primary;
-    display: block;
-    color: $color-white;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Cardo';
-  }
-  .element-slider-suggestion{
-    @media (max-width: 767px) {
-        .carousel-inner .carousel-item > div {
-          display: none;
+    margin-top: 130px;
+    .btn {
+        background-color: $color-primary;
+        display: block;
+        color: $color-white;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-family: 'Cardo';
+    }
+    .element-slider-suggestion {
+        @media (max-width: 767px) {
+            .carousel-inner .carousel-item > div {
+                display: none;
+            }
+            .carousel-inner .carousel-item>div:first-child {
+                display: block;
+            }
         }
-        .carousel-inner .carousel-item > div:first-child {
-          display: block;
+        .carousel-inner .carousel-item.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            display: flex;
         }
-    }
-    .carousel-inner .carousel-item.active,
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-        display: flex;
-    }
-    @media (min-width: 768px) {
-    .carousel-inner .carousel-item-end.active,
-    .carousel-inner .carousel-item-next {
-        transform: translateX(25%);
-    }
-    .carousel-inner .carousel-item-start.active,
-    .carousel-inner .carousel-item-prev {
-        transform: translateX(-25%);
-    }
-    }
-    .carousel-inner .carousel-item-end,
-    .carousel-inner .carousel-item-start {
-    transform: translateX(0);
-    }
-    .font-weight-light{
-        margin-bottom: 20px;
-        font-family: 'Byciclette';
-    }
-    #suggestion-carousel{
-        margin-bottom: 1.5rem;
-        .carousel-inner{
-            .carousel-item{
-                height: 400px;
-                .item-card{
-                    .item-card-img{
-                        margin-bottom: 1.563rem;
-                    }
-                    .item-card-text{
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        align-content: center;
-                        font-family: 'Poppins';
-                        font-size: .875rem;
-                        text-align: center;
-                        .price{
-                            max-width: max-content;
-                            font-weight: 800;
-                            position: relative;
-                            &::after{
-                                content: '';
-                                height: 10px;
-                                width: 5px;
-                                border-right: solid 5px green;
-                                position: absolute;
-                                right: -10px;
-                                top: 5px;
+        @media (min-width: 768px) {
+            .carousel-inner .carousel-item-end.active,
+            .carousel-inner .carousel-item-next {
+                transform: translateX(25%);
+            }
+            .carousel-inner .carousel-item-start.active,
+            .carousel-inner .carousel-item-prev {
+                transform: translateX(-25%);
+            }
+        }
+        .carousel-inner .carousel-item-end,
+        .carousel-inner .carousel-item-start {
+            transform: translateX(0);
+        }
+        .font-weight-light {
+            margin-bottom: 20px;
+            font-family: 'Byciclette';
+        }
+        #suggestion-carousel {
+            margin-bottom: 1.5rem;
+            .carousel-inner {
+                .carousel-item {
+                    height: 400px;
+                    .item-card {
+                        .item-card-img {
+                            margin-bottom: 1.563rem;
+                        }
+                        .item-card-text {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            align-content: center;
+                            font-family: 'Poppins';
+                            font-size: .875rem;
+                            text-align: center;
+                            .price {
+                                max-width: max-content;
+                                font-weight: 800;
+                                position: relative;
+                                &::after {
+                                    content: '';
+                                    height: 10px;
+                                    width: 5px;
+                                    border-right: solid 5px green;
+                                    position: absolute;
+                                    right: -10px;
+                                    top: 5px;
+                                }
                             }
                         }
-    
+                    }
+                    .item-container {
+                        @include breakpoint(mobil) {
+                            width: 100%;
+                        }
+                        @include breakpoint(tablette) {
+                            width: 100%;
+                        }
                     }
                 }
-                .item-container{ 
-                    @include breakpoint(mobil){
-                        width: 100%;
-                    }
-                    @include breakpoint(tablette){
-                        width: 100%;
-                    }
-                }
-            }
-        }
-        
-    }
-  }
-  .section-location{
-    display: flex;
-    flex-direction: row;
-    background-color: ghostwhite;
-    min-height: 600px;
-    .section-location-img{
-        width: 36%;
-        background-size: cover;
-        background-position: top center;
-        background-repeat: no-repeat;
-        background-image: url(/images/location.jpg);
-        img{
-            width: 100%;
-            object-fit:contain ;
-        }
-        @include breakpoint(tablette){
-            display: none;
-        }
-        @include breakpoint(mobil){
-            display: none;
-        }
-    }
-    .section-location-text{
-        width: calc(100% - 36%);
-        @include breakpoint(tablette){
-            width: 100%;
-        }
-        @include breakpoint(mobil){
-            width: 100%;
-        }
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        h1{
-            width: 80%;
-            font-weight: 400;
-            color: $color-primary;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            font-family: 'Cardo';
-            font-size: 2rem;
-            text-align: center;
-        }
-        .content{
-            font-family: 'Cardo';
-            h2{
-                color: $color-primary;
-                font-weight: bolder;
-                font-size: 1.3125rem;
-                font-family: inherit;
-            }
-            ul li{
-                color: $color-primary;
-                font-weight: 500;
-                font-family: inherit;
-                position: relative;
-                list-style: none;
-                &::before{
-                    content:'>' ;
-                    position: absolute;
-                    left: -20px;
-                    top: 0;
-                }
-            }
-            p{
-                font-weight: normal;
-                font-family: inherit;
-                letter-spacing: normal;
-            }
-        }
-        .section-location-divider{
-            width: 100%;
-            height: 10px;
-            text-align: left;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            span{
-                display: block;
-                border-top-style: solid;
-                border-top-width: 1px;
-                border-top-color: $color-primary;
-                width: 20%;
             }
         }
     }
-    
-  }
-  .section-cta{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    h1{
-        font-family: 'Byciclette';
-        text-transform: uppercase;
-        font-weight: 400;
-        text-align: center;
-        font-size: 29px;
-        padding-bottom: 15px;
-    }
-    .cta-items{
+    .section-location {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 3%;
-        .cta-item{
-            position: relative;
-            width: 30%;
-            height: 300px;
-            overflow: hidden;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 300ms;
-            margin-bottom: 20px;
-            @include breakpoint(mobil){
+        background-color: ghostwhite;
+        min-height: 600px;
+        .section-location-img {
+            width: 36%;
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-image: url(/images/location.jpg);
+            img {
                 width: 100%;
+                object-fit: contain;
             }
-            &:hover{
-                .cta-item-img{
-                    transform: scale(1.3);
-                }
+            @include breakpoint(tablette) {
+                display: none;
             }
-            &::after{
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top:0;
-                bottom:0;
-                left:0;
-                right:0;
-                background-color: rgba(0, 0, 0, 0.372);
-                z-index: 2;
-            }
-            .cta-item-img{
-                position: absolute;
-                top:0;
-                bottom:0;
-                left:0;
-                right:0;
-                z-index: 1;
-                transition: all 500ms;
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-
-            }
-            .cta-item-content{
-                height: max-content;
-                width: 100%;
-                position: absolute;
-                z-index: 3;
-                top: 50%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                .cta-item-content-title{
-                    color: $color-white;
-                    font-size: 1.2em;
-                    width: max-content;
-                    margin-bottom: 10px;
-                    font-weight: 600;
-                    font-family: 'Byciclette';
-                }
-                .cta-item-btn{
-                    background-color: $color-primary;
-                    display: block;
-                    color: $color-white;
-                    padding: 10px;
-                    text-decoration: none;
-                    border-radius: 5px;
-                    font-family: 'Cardo';
-                }
+            @include breakpoint(mobil) {
+                display: none;
             }
         }
-    }
-  }
-  .section-nos-creations{
-    background-image: url(/images/banner-2.jpg);
-    height: 500px;
-    color:$color-white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: end;
-    padding-right: 80px;
-    position: relative;
-    @include breakpoint(mobil){
-        align-items: center;
-        padding-right: 0px;
-    }
-    &::before{
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top:0;
-        bottom:0;
-        left:0;
-        right:0;
-        background-color: rgba(0, 0, 0, 0.557);
-    }
-    .text-content{
-        z-index: 1;
-        width: 36%;
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        h1{
-            font-weight: 600;
-            padding-bottom: 5px;
-            text-transform: uppercase;
-            font-size: 4em;
-            font-family: 'Byciclette';
-            position: relative;
-            text-align: right;
-            .green{
-                color: $color-primary;
-                margin-bottom: 5px;
+        .section-location-text {
+            width: calc(100% - 36%);
+            @include breakpoint(tablette) {
+                width: 100%;
             }
-            @include breakpoint(mobil){
-                font-size: 1.5em;
+            @include breakpoint(mobil) {
+                width: 100%;
             }
-        }
-        @include breakpoint(mobil){
-            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-        .cta{
-            width: max-content;
-            height: fit-content;
-            padding: 0;
-            p{
-                text-align: right;
-                font-family: 'Corda';
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-                line-height: 5;
-                height: max-content;
+            h1 {
+                width: 80%;
+                font-weight: 400;
+                color: $color-primary;
+                text-transform: uppercase;
+                margin-bottom: 50px;
+                font-family: 'Cardo';
+                font-size: 2rem;
+                text-align: center;
             }
-            a{
-                text-align: right;
-                display: block;
-                float: right;
+            .content {
+                font-family: 'Cardo';
+                h2 {
+                    color: $color-primary;
+                    font-weight: bolder;
+                    font-size: 1.3125rem;
+                    font-family: inherit;
+                }
+                ul li {
+                    color: $color-primary;
+                    font-weight: 500;
+                    font-family: inherit;
+                    position: relative;
+                    list-style: none;
+                    &::before {
+                        content: '>';
+                        position: absolute;
+                        left: -20px;
+                        top: 0;
+                    }
+                }
+                p {
+                    font-weight: normal;
+                    font-family: inherit;
+                    letter-spacing: normal;
+                }
+            }
+            .section-location-divider {
+                width: 100%;
+                height: 10px;
+                text-align: left;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                span {
+                    display: block;
+                    border-top-style: solid;
+                    border-top-width: 1px;
+                    border-top-color: $color-primary;
+                    width: 20%;
+                }
             }
         }
     }
-  }
-  .section-newsletters{
-    background-color: $color-primary;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding: 40px 10px 40px 10px;
-    @include breakpoint(mobil){
-        flex-direction: column;
-    }
-    .text{
-        color: $color-white;
-        width: 40%;
-        p{
-            font-size: 1.5rem;
+    .section-cta {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        h1 {
+            font-family: 'Byciclette';
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: center;
+            font-size: 29px;
+            padding-bottom: 15px;
         }
-        @include breakpoint(mobil){
-            width: 100%;
-        }
-    }
-    .form{
-        width: calc(100% - 40%);
-        .input{
-            width: 100%;
+        .cta-items {
             display: flex;
             flex-direction: row;
-            justify-content: end;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3%;
+            .cta-item {
+                position: relative;
+                width: 30%;
+                height: 300px;
+                overflow: hidden;
+                cursor: pointer;
+                border-radius: 10px;
+                transition: all 300ms;
+                margin-bottom: 20px;
+                @include breakpoint(mobil) {
+                    width: 100%;
+                }
+                &:hover {
+                    .cta-item-img {
+                        transform: scale(1.3);
+                    }
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background-color: rgba(0, 0, 0, 0.372);
+                    z-index: 2;
+                }
+                .cta-item-img {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 1;
+                    transition: all 500ms;
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+                .cta-item-content {
+                    height: max-content;
+                    width: 100%;
+                    position: absolute;
+                    z-index: 3;
+                    top: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .cta-item-content-title {
+                        color: $color-white;
+                        font-size: 1.2em;
+                        width: max-content;
+                        margin-bottom: 10px;
+                        font-weight: 600;
+                        font-family: 'Byciclette';
+                    }
+                    .cta-item-btn {
+                        background-color: $color-primary;
+                        display: block;
+                        color: $color-white;
+                        padding: 10px;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        font-family: 'Cardo';
+                    }
+                }
+            }
+        }
+    }
+    .section-nos-creations {
+        background-image: url(/images/banner-2.jpg);
+        height: 500px;
+        color: $color-white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        padding-right: 80px;
+        position: relative;
+        @include breakpoint(mobil) {
             align-items: center;
-            align-content: center;
-            gap: 20px;
-            input{
-                outline: none;
-                border: none;
-                width: 80%;
-                border-bottom: solid 1px $color-white;
-                background-color: $color-primary;
-                color: $color-white;
-            }
-            button{
-                background-color: transparent;
-                border: none;
-                color: $color-white;
-                outline: none;
-            }
+            padding-right: 0px;
         }
-        @include breakpoint(mobil){
+        &::before {
+            content: '';
+            position: absolute;
             width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.557);
+        }
+        .text-content {
+            z-index: 1;
+            width: 36%;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            h1 {
+                font-weight: 600;
+                padding-bottom: 5px;
+                text-transform: uppercase;
+                font-size: 4em;
+                font-family: 'Byciclette';
+                position: relative;
+                text-align: right;
+                .green {
+                    color: $color-primary;
+                    margin-bottom: 5px;
+                }
+                @include breakpoint(mobil) {
+                    font-size: 1.5em;
+                }
+            }
+            @include breakpoint(mobil) {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+            .cta {
+                width: max-content;
+                height: fit-content;
+                padding: 0;
+                p {
+                    text-align: right;
+                    font-family: 'Corda';
+                    font-size: 1.5rem;
+                    letter-spacing: 2px;
+                    line-height: 5;
+                    height: max-content;
+                }
+                a {
+                    text-align: right;
+                    display: block;
+                    float: right;
+                }
+            }
         }
     }
-  }
-  .section-testimonials{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    h1{
-        font-family: 'Byciclette';
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 29px;
-        padding-bottom: 20px;
-    }
-    .actions{
-        width: 50%;
+    .section-newsletters {
+        background-color: $color-primary;
+        margin-bottom: 50px;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        padding: 40px 10px 40px 10px;
+        @include breakpoint(mobil) {
+            flex-direction: column;
+        }
+        .text {
+            color: $color-white;
+            width: 40%;
+            p {
+                font-size: 1.5rem;
+            }
+            @include breakpoint(mobil) {
+                width: 100%;
+            }
+        }
+        .form {
+            width: calc(100% - 40%);
+            .input {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: end;
+                align-items: center;
+                align-content: center;
+                gap: 20px;
+                input {
+                    outline: none;
+                    border: none;
+                    width: 80%;
+                    border-bottom: solid 1px $color-white;
+                    background-color: $color-primary;
+                    color: $color-white;
+                }
+                button {
+                    background-color: transparent;
+                    border: none;
+                    color: $color-white;
+                    outline: none;
+                }
+            }
+            @include breakpoint(mobil) {
+                width: 100%;
+            }
+        }
+    }
+    .section-testimonials {
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 40px;
+        margin-bottom: 30px;
+        h1 {
+            font-family: 'Byciclette';
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 29px;
+            padding-bottom: 20px;
+        }
+        .actions {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            @include breakpoint(mobil) {
+                width: 100%;
+            }
+        }
     }
-  }
-  .section-contact{
-    h1{
-        font-family: 'Byciclette';
-        text-transform: uppercase;
-        font-weight: 400;
-        text-align: center;
-        font-size: 29px;
-        padding-bottom: 15px;   
+    .section-contact {
+        h1 {
+            font-family: 'Byciclette';
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: center;
+            font-size: 29px;
+            padding-bottom: 15px;
+        }
+        margin-bottom: 50px;
     }
-    margin-bottom: 50px;
-  }
 }
