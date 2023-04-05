@@ -70,8 +70,9 @@
         .navbar-brand {
             width: 15%;
             border: solid red;
+
             @include breakpoint(mobil) {
-               width: 100%;
+                width: 100%;
             }
 
             .logo-img {
@@ -137,7 +138,7 @@
         .search-div {
             margin-left: 1%;
             padding-top: 3.5%;
-            width: 15%;
+            // width: 15%;
             border: solid red;
 
             @include breakpoint(mobil) {
@@ -170,6 +171,11 @@
             gap: 1rem;
             padding-top: 3.5%;
             border: solid green;
+
+            .fa-user {
+                cursor: pointer;
+
+            }
 
             @include breakpoint(mobil) {
                 width: 25%;
@@ -366,4 +372,3 @@
 #user-title-Dropdown:hover>#user-menu-Dropdown {
     display: block;
 }
-

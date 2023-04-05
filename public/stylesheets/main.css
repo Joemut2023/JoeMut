@@ -139,7 +139,6 @@
 #bloc-header .nav-main-content .search-div {
   margin-left: 1%;
   padding-top: 3.5%;
-  width: 15%;
   border: solid red;
 }
 @media (max-width: 680px) {
@@ -169,6 +168,9 @@
   gap: 1rem;
   padding-top: 3.5%;
   border: solid green;
+}
+#bloc-header .nav-main-content .user-div .fa-user {
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #bloc-header .nav-main-content .user-div {
