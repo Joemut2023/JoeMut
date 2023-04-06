@@ -1,44 +1,39 @@
 $color-primary: #a0b21f;
 $color-button-secondary: #61ce70;
-$color-button-primary : rgb(75, 119, 216);
-$color-button-primary-2 : rgb(127, 157, 221);
+$color-button-primary: rgb(75, 119, 216);
+$color-button-primary-2: rgb(127, 157, 221);
 $color-secondary: #7a7a7a;
 $color-important: #363a42;
 $color-black: #232323;
 $color-white: #fff;
 $color-white-secondary: #eeeeee;
-$typograohie: "Manrope", sans-serif;
+$typograohie: "Manrope",
+sans-serif;
 $padding-L-R :5rem;
-
-$breakpoints: (
-  header: 1000px,
-  mobil: 680px,
-);
+$breakpoints: ( header: 1000px, mobil: 680px, );
 $tablette: 1000px;
 $mobil: 680px;
-
 @mixin breakpoint($point) {
-  @if $point ==tablette {
-    @media (max-width: $tablette) {
-      @content;
+    @if $point==tablette {
+        @media (max-width: $tablette) {
+            @content;
+        }
     }
-  }
-
-  @else if $point ==mobil {
-    @media (max-width: $mobil) {
-      @content;
+    @else if $point==mobil {
+        @media (max-width: $mobil) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin cover($bkgImage) {
-  background-image: url($bkgImage);
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-sizing: border-box;
+    background-image: url($bkgImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
 }
 
 @mixin font($family: $typographie, $size: sizeHeading) {
-  font-family: $family;
-  font-size: $size;
+    font-family: $family;
+    font-size: $size;
 }

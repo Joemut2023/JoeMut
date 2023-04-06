@@ -1,55 +1,119 @@
-const password = document.getElementById("password");
-const btn = document.getElementById("btn-action");
+//change for big title on bloc-form
 const infoForm = document.querySelector('#info-form')
 const adresseForm = document.querySelector('#adresse-form')
 const livraisonForm = document.querySelector('#livraison-form')
+
 const infoContent = document.querySelector('#info-content')
 const adresseDiv = document.querySelector('#divAdress')
 const livraisonDiv = document.querySelector('#divLivraison')
 const finalisationDiv = document.querySelector('#divFinalisation')
+
 const adresseContainer = document.querySelector('#adresse')
 const livraisonContainer = document.querySelector('#livraison')
 const finalisationContainer = document.querySelector('#finalisation')
+
 const btnModiferInfo = document.querySelector('#info-mod-btn')
 const btnModiferAdresse = document.querySelector('#adresse-mod-btn')
 const btnModiferlivraison = document.querySelector('#livraison-mod-btn')
 const btnModiferfinalisation = document.querySelector('#finalisation-mod-btn')
-    // const btnModiferInfo = document.querySelector('#info-mod-btn')
-const faCheck = document.querySelector('#faCheck')
 
+const checkSuccess = document.querySelector('.check-success')
+const checkAdresse = document.querySelector('.check-adresse')
+const checkLivraison = document.querySelector('.check-livraison')
+
+const cursorAdresse = document.querySelector('.adresse-cursor')
+const cursorfinalisation = document.querySelector('.finalisation-cursor')
+const cursorLivraison = document.querySelector('.livraison-cursor')
+
+const borderNumber = document.querySelector('.border-number')
+const adresseBg = document.querySelector('.adresse-bg')
+const livraisonBg = document.querySelector('.livraison-bg')
+const finalisationBg = document.querySelector('.finalisation-bg')
+
+//for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");
 const navlink_two = document.querySelector(".btn-tab-two");
+const password = document.getElementById("password");
+const btn = document.getElementById("btn-action");
 
 
-const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, ) => {
+const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) => {
     nextDiv.style.display = "block"
     currentDiv.style.display = "none"
     btnModifier.style.display = "block"
     nexDiv.style.opacity = "1"
+    changeBorder.style.color = "grey"
+    changeBorder.style.backgroundColor = "white"
+    changeBorder.style.border = "1px solid grey"
+    iconSuccess.style.display = "block"
+    eventCursor.style.cursor = "default"
+    classAdresse.style.backgroundColor = "#61ce70"
+    classAdresse.style.color = "white"
+    classAdresse.style.border = "1px solid #61ce70"
 }
 
+// change events on infoForm
 infoForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer)
+    eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
 })
 btnModiferInfo.addEventListener("click", (event) => {
     event.preventDefault()
     adresseDiv.style.display = "none"
     infoContent.style.display = "flex"
-    adresseTitle.style.pointerEvents = "none"
-    adresseTitle.style.opacity = "0.6"
+    borderNumber.style.color = "white"
+    borderNumber.style.backgroundColor = "#61ce70"
+    borderNumber.style.border = "1px solid #61ce70"
+    checkSuccess.style.display = "none"
+    adresseBg.style.color = "grey"
+    adresseBg.style.backgroundColor = "white"
+    adresseBg.style.border = "1px solid grey"
 })
-adresseForm.addEventListener("submit", (event) => {
-        event.preventDefault()
-        eventAccordeonForm(livraisonDiv, adresseDiv, btnModiferAdresse, livraisonContainer)
-    }) // pointer-events: none;
 
+
+//change events on adresseForm
+adresseForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    eventAccordeonForm(livraisonDiv, adresseDiv, btnModiferAdresse, livraisonContainer, adresseBg, checkAdresse, cursorLivraison, livraisonBg)
+})
+
+btnModiferAdresse.addEventListener("click", (event) => {
+    event.preventDefault()
+    livraisonDiv.style.display = "none"
+    adresseDiv.style.display = "block"
+    adresseBg.style.color = "white"
+    adresseBg.style.backgroundColor = "#61ce70"
+    adresseBg.style.border = "1px solid #61ce70"
+    checkAdresse.style.display = "none"
+    livraisonBg.style.color = "grey"
+    livraisonBg.style.backgroundColor = "white"
+    livraisonBg.style.border = "1px solid grey"
+})
+
+
+//change events on livraisonForm
 livraisonForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    eventAccordeonForm(finalisationDiv, livraisonDiv, btnModiferlivraison, finalisationContainer)
+    eventAccordeonForm(finalisationDiv, livraisonDiv, btnModiferlivraison, finalisationContainer, livraisonBg, checkLivraison, cursorfinalisation, finalisationBg)
+})
+
+btnModiferlivraison.addEventListener("click", (event) => {
+    event.preventDefault()
+    finalisationDiv.style.display = "none"
+    livraisonDiv.style.display = "block"
+    livraisonBg.style.color = "white"
+    livraisonBg.style.backgroundColor = "#61ce70"
+    livraisonBg.style.border = "1px solid #61ce70"
+    checkLivraison.style.display = "none"
+    finalisationBg.style.color = "grey"
+    finalisationBg.style.backgroundColor = "white"
+    finalisationBg.style.border = "1px solid grey"
 })
 
 
+
+
+//event hide/show password on form
 btn.addEventListener("click", function(e) {
     e.preventDefault()
 
