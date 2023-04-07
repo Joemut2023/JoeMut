@@ -55,6 +55,9 @@
                     background-color: $color-white;
                     color: $color-secondary;
                     display: none;
+                    span {
+                        margin: 2px;
+                    }
                 }
                 .tabs-container {
                     ul {
@@ -272,6 +275,9 @@
                         border: none;
                         background-color: $color-white;
                         color: $color-secondary;
+                        span {
+                            margin: 2px;
+                        }
                     }
                 }
                 .text-contents {

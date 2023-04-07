@@ -3897,6 +3897,9 @@
   color: #7a7a7a;
   display: none;
 }
+#page-commander .row .bloc-1 .informations .btn-modif span {
+  margin: 2px;
+}
 #page-commander .row .bloc-1 .informations .tabs-container ul {
   border-bottom: 1px solid #eeeeee;
 }
@@ -4135,6 +4138,9 @@
   border: none;
   background-color: #fff;
   color: #7a7a7a;
+}
+#page-commander .row .bloc-1 .adresses .big-title .btn-modif span {
+  margin: 2px;
 }
 #page-commander .row .bloc-1 .adresses .text-contents {
   width: 100%;
