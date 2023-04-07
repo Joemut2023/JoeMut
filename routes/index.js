@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('default/index', { title: 'Express' });
+  res.locals.titre = "Accueil"
+  res.render('default/index');
 });
 
 

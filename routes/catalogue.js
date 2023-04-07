@@ -21,6 +21,7 @@ router.get('/:id',async (req,res)=>{
   try {
     const categories = await Categorie.findAll()
     const categorie = await Categorie.findByPk(id);
+    res.locals.titre = categorie.cat_libelle
     return res.render("catalogue/bycategorie", { title: "Express" , categories: categories,categorie:categorie});
   } catch (error) {
      res.status(500).render("inscription/index", {
@@ -28,6 +29,7 @@ router.get('/:id',async (req,res)=>{
        errorMsg: "Une erreur est survenue!",
      });
   }
+  
 })
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const {Type_categorie,Categorie} = require('../models');
 const getCategorie = async (req,res,next)=>{
+    res.locals.titre = "Accueil"
     try {
         let type_categories = await Type_categorie.findAll({
             include:[{
