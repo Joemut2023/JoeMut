@@ -1,7 +1,7 @@
 const verifySession = (req, res, next) => {
   const UsersSession = req.session.userId;
   if (!UsersSession) {
-    res.redirect("/connexion");
+    res.redirect("/connexion/#page-connexion");
   }
   return next();
 };
