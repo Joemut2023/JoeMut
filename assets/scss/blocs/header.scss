@@ -164,7 +164,7 @@
 
             @include breakpoint(tablette) {
                 width: 35%;
-                
+
             }
 
             @include breakpoint(mobil) {
@@ -312,13 +312,19 @@
         padding: 10px;
     }
 
-    .title-catalogue>ul>li {
-        padding: 7px;
-        margin-left: -10px;
-        cursor: pointer;
-        a{
-            text-decoration: none;
-            color: $color-black;
+    .title-catalogue {
+        ul {
+            line-height: 90%;
+            li {
+                padding: 7px;
+                margin-left: -10px;
+                cursor: pointer;
+
+                a {
+                    text-decoration: none;
+                    color: $color-black
+                }
+            }
         }
     }
 }
@@ -406,7 +412,8 @@
     padding: 7px;
     margin-left: -10px;
     cursor: pointer;
-    a{
+
+    a {
         text-decoration: none;
         color: $color-black;
     }
