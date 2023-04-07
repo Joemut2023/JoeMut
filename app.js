@@ -20,6 +20,7 @@ var connexionRouter = require("./routes/connexion");
 var commanderRouter = require("./routes/commander");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
+var confirmationCommandeRouter = require('./routes/confirmationCommande')
 const AdminJS = require("adminjs");
 const AdminJSExpress = require("@adminjs/express");
 const AdminJSSequelize = require("@adminjs/sequelize");
