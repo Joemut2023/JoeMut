@@ -44,7 +44,7 @@
               <div class="accordion-body">
                 <% categories.forEach(categorie => { %>
                   <% if (categorie.tyc_id===1) { %>
-                      <a href=""><%= categorie.cat_libelle %></a>
+                      <a href="/catalogue/<%=categorie.cat_id %>"><%= categorie.cat_libelle %></a>
                   <% } %>
                 <% }) %>
               </div>
@@ -88,7 +88,7 @@
               <div class="accordion-body">
                 <% categories.forEach(categorie => { %>
                    <% if (categorie.tyc_id===2) { %>
-                      <a href=""> <%= categorie.cat_libelle%></a>
+                      <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
                    <% } %>
                 <% }) %>
               </div>
@@ -130,7 +130,7 @@
                 <div class="accordion-body">
                 <% categories.forEach(categorie => { %>
                    <% if (categorie.tyc_id===4) { %>
-                      <a href=""> <%= categorie.cat_libelle%></a>
+                      <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
                    <% } %>
                 <% }) %>
               </div>
@@ -176,7 +176,7 @@
               <div class="accordion-body">
                 <% categories.forEach(categorie => { %>
                    <% if (categorie.tyc_id===3) { %>
-                      <a href=""> <%= categorie.cat_libelle%></a>
+                      <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
                    <% } %>
                 <% }) %>
               </div>
