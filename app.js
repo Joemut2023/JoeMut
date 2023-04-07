@@ -22,32 +22,12 @@ var mensionLegaleRouter = require('./routes/mensionLegale')
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
 const AdminJSSequelize = require('@adminjs/sequelize')
+const sessions = require('express-session');
 const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
 var app = express();
 require("./config/db").sync();
-
-AdminJS.registerAdapter({
-    Resource: AdminJSSequelize.Resource,
-    Database: AdminJSSequelize.Database,
-});
-
-console.log(Components.Dashboard);
-const admin = new AdminJS({
-    //resources:[Categorie]
-    dashboard: {
-        component: AdminJS.bundle("admin/pages-components/dashboard"),
-    },
-    databases: [db],
-    branding: {
-        companyName: "AES",
-        withMadeWithLove: false,
-        logo: "/images/logo.png",
-        favicon: "/images/favicon.ico",
-    },
-});
-const adminRouter = AdminJSExpress.buildRouter(admin);
-
+const oneDay = 1000 * 60 * 60 * 24;
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -58,8 +38,13 @@ app.set("layout extractScripts", true);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 app.use(cookieParser());
-app.use(admin.options.rootPath, adminRouter);
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
@@ -76,8 +61,25 @@ app.use('/connexion', connexionRouter)
 app.use('/commander', commanderRouter)
 app.use('/mensionLegale', mensionLegaleRouter)
 
-
-
+AdminJS.registerAdapter({
+    Resource: AdminJSSequelize.Resource,
+    Database: AdminJSSequelize.Database,
+});
+const admin = new AdminJS({
+    //resources:[Categorie]
+    dashboard: {
+        component: AdminJS.bundle("admin/pages-components/dashboard"),
+    },
+    databases: [db],
+    branding: {
+        companyName: "AES",
+        withMadeWithLove: false,
+        logo: "/images/logo.png",
+        favicon: "/images/favicon.ico",
+    },
+});
+const adminRouter = AdminJSExpress.buildRouter(admin);
+app.use(admin.options.rootPath, adminRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
