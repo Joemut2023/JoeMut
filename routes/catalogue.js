@@ -16,8 +16,18 @@ router.get('/',async function(req, res, next) {
   }
   
 });
-router.get('/:id',(req,res)=>{
-  res.render('catalogue/bycategorie');
+router.get('/:id',async (req,res)=>{
+  const id = req.params.id;
+  try {
+    const categories = await Categorie.findAll()
+    const categorie = await Categorie.findByPk(id);
+    return res.render("catalogue/bycategorie", { title: "Express" , categories: categories,categorie:categorie});
+  } catch (error) {
+     res.status(500).render("inscription/index", {
+       error: true,
+       errorMsg: "Une erreur est survenue!",
+     });
+  }
 })
 
 module.exports = router;
