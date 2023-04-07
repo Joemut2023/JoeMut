@@ -60,7 +60,7 @@ app.use('/promotion', promotionRouter)
 app.use('/recherche', rechercheRouter)
 app.use('/article', articleRouter)
 app.use('/nouvelleCollection', nouvelleCollectionRouter);
-app.use('/mon-compte', usersRouter);
+app.use('/mon-compte', auth,usersRouter);
 app.use('/panier', panierRouter)
 app.use('/inscription', inscriptionRouter)
 app.use('/connexion', connexionRouter)
