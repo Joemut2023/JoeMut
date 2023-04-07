@@ -17,6 +17,7 @@ var nouvelleCollectionRouter = require('./routes/nouvelleCollection');
 var usersRouter = require('./routes/users');
 var inscriptionRouter = require('./routes/inscription')
 var connexionRouter = require('./routes/connexion')
+var confirmationCommandeRouter = require('./routes/confirmationCommande') 
 var commanderRouter = require('./routes/commander')
 var mensionLegaleRouter = require('./routes/mensionLegale')
 const AdminJS = require('adminjs')
@@ -75,6 +76,7 @@ app.use('/inscription', inscriptionRouter)
 app.use('/connexion', connexionRouter)
 app.use('/commander', commanderRouter)
 app.use('/mensionLegale', mensionLegaleRouter)
+app.use('/confirmation-commande', confirmationCommandeRouter)
 
 
 

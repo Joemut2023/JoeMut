@@ -1,0 +1,262 @@
+#page-confirmation-commande {
+  padding: 8% 9%;
+  font-family: $typograohie;
+
+  .title-recherche {
+    margin-bottom: 16px;
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-size: 16px;
+    }
+
+    span {
+      color: $color-secondary;
+      font-size: 16px;
+    }
+  }
+
+  .main {
+    margin-bottom: 30px;
+    .content-card {
+      margin-bottom: 12px;
+
+      .block {
+        padding: 13px 13px 5px;
+
+        .col-md-12 {
+          span {
+            color: $color-primary;
+            margin: 10px;
+            font-size: 20px;
+          }
+          h3 {
+            font-weight: 600;
+            font-size: 20px;
+          }
+          p {
+            font-size: 14px;
+            color: $color-secondary;
+          }
+        }
+      }
+    }
+
+    .content {
+      .card-block {
+        padding: 20px 20px 20px 0px;
+
+        .order-items {
+          padding: 0 15px;
+          .order-titles {
+            margin-bottom: 20px;
+            .title {
+              font-weight: 600;
+              @include breakpoint(mobil) {
+                font-size: 14px;
+                font-weight: 600;
+              }
+            }
+
+            .hide-titles {
+              @include breakpoint(mobil) {
+                display: none;
+              }
+            }
+          }
+
+          .titles {
+            @include breakpoint(mobil) {
+              display: none;
+            }
+          }
+          h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+          }
+        }
+
+        .order-confirmation {
+          .order-line {
+            margin: 16px 15px 0px 15px;
+
+            .line {
+              margin-bottom: 20px;
+            }
+            .img-article {
+              .images {
+                .image {
+                  @include breakpoint(mobil) {
+                    width: 100%;
+                    margin: 0 auto;
+                  }
+                }
+                .image img {
+                  width: 100%;
+                  height: auto;
+                  @include breakpoint(mobil) {
+                    width: 60%;
+                    height: 200px;
+                    object-fit: contain;
+                  }
+                  @include breakpoint(tablette) {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+            .text-content .row {
+              margin-bottom: 20px !important;
+            }
+            .text-content,
+            .article-title {
+              @include breakpoint(mobil) {
+                font-size: 14px;
+              }
+            }
+            .price {
+              margin-bottom: 10px;
+            }
+
+            hr {
+              margin-bottom: 20px 0px;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              background: rgba(0, 0, 0, 0);
+              margin-bottom: 20px;
+              tr {
+                height: max-content;
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+                text-indent: initial;
+                border-spacing: 2px;
+
+                td {
+                  padding: 5px 2px;
+                }
+                .price-col {
+                  text-align: right;
+                }
+              }
+              .total-value {
+                font-weight: bold;
+                background: #f6f6f6;
+                padding: 20px 10px;
+              }
+            }
+          }
+        }
+
+        .details {
+          width: 50%;
+          margin-left: 12px;
+          h1 {
+            font-size: 16px;
+            font-weight: 600;
+          }
+
+          p {
+            margin-bottom: 5px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .products {
+    .title {
+      text-align: center;
+      margin-bottom: 40px;
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    .row {
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+
+      .image {
+        width: 90%;
+        height: auto;
+        padding-bottom: 10px;
+        @include breakpoint(tablette) {
+          text-align: center;
+        }
+        img {
+          width: 90%;
+          height: auto;
+        }
+      }
+      .details {
+        text-align: center;
+        margin: 15px 0px;
+
+        p {
+          margin: 0;
+
+          span {
+            font-size: 12px;
+          }
+
+          a {
+            text-decoration: none;
+            color: $color-black;
+          }
+        }
+
+        .ref {
+          color: $color-secondary;
+          font-weight: 100;
+        }
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+
+          .price {
+            font-weight: 600;
+          }
+
+          .btn {
+            padding: 0;
+            &:hover {
+              color: $color-secondary;
+            }
+          }
+
+          .bar {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+
+  .button-all{
+    margin-top: 20px;
+    text-align: right;
+    p{
+        color: $color-secondary;
+        font-size: 20px;
+
+        span{
+            color:$color-primary;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+    }
+
+  }
+}
