@@ -1,15 +1,21 @@
 #page-commander {
-    padding: 8% 9%;
+    padding: 6% 9%;
     font-family: $typograohie;
     .row {
         .bloc-1 {
+            #divFinalisation,
+            #divLivraison,
+            #divAdress {
+                display: none;
+            }
+            .finalisation-cursor,
+            .adresse-cursor,
+            .livraison-cursor {
+                cursor: not-allowed;
+            }
             .informations {
                 .big-title {
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
                     .border-number {
-                        border: 1px solid $color-button-secondary;
                         border-radius: 50%;
                         background-color: $color-button-secondary;
                         width: 40px;
@@ -18,14 +24,37 @@
                         text-align: center;
                         color: $color-white;
                     }
-                    .title-h4 {
-                        display: flex;
-                        justify-content: space-between;
-                        h4 {
+                    .check-success {
+                        margin-top: 10px;
+                        display: none;
+                        .fa-check {
+                            color: $color-button-secondary;
+                            font-size: larger;
+                            margin-left: 20px;
+                            @include breakpoint(mobil) {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+                }
+                .title-h4 {
+                    margin-top: 8px;
+                    h4 {
+                        padding: 0;
+                        margin: 0;
+                        color: $color-secondary;
+                        @include breakpoint(mobil) {
+                            font-size: 15px;
                             padding: 0;
                             margin: 0;
                         }
                     }
+                }
+                .btn-modif {
+                    margin-top: 3px;
+                    background-color: $color-white;
+                    color: $color-secondary;
+                    display: none;
                 }
                 .tabs-container {
                     ul {
@@ -50,13 +79,6 @@
                             text-align: center;
                         }
                     }
-                }
-                .btn-modif {
-                    background-color: $color-secondary;
-                    color: $color-white;
-                    margin-left: 250px;
-                    padding: 5px;
-                    display: none;
                 }
                 .content,
                 .adresse-content {
@@ -84,12 +106,25 @@
                             .ckeckbox {
                                 background-color: red;
                             }
+                            #label-text {
+                                text-align: left !important;
+                            }
+                            .checkWithText {
+                                color: $color-primary;
+                                .form-check-input {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                                display: flex;
+                                gap: 10px;
+                            }
                             .form-group {
                                 margin-bottom: 20px;
                                 .label {
                                     font-weight: 600;
                                 }
                                 .item {
+                                    text-align: left;
                                     @include breakpoint(tablette) {
                                         text-align: left;
                                     }
@@ -110,7 +145,7 @@
                                 .input label {
                                     color: $color-secondary;
                                     font-size: 14px;
-                                    // text-align: left;
+                                    margin-left: 0;
                                 }
                                 .btn-hide {
                                     display: flex;
@@ -130,11 +165,14 @@
                                     }
                                 }
                                 .check input {
-                                    width: 10px;
                                     height: 20px;
                                 }
                                 .check .text {
                                     color: $color-primary;
+                                }
+                                .form-check-input,
+                                .text {
+                                    display: flex;
                                 }
                             }
                             .radios {
@@ -165,6 +203,20 @@
                         }
                     }
                 }
+                .forgot-password {
+                    p {
+                        text-align: center;
+                    }
+                }
+                .btn-login {
+                    text-align: center;
+                    button {
+                        padding: 5px 15px;
+                        border: none;
+                        background: $color-primary;
+                        color: white;
+                    }
+                }
                 .button {
                     display: flex;
                     margin-left: 25%;
@@ -178,27 +230,48 @@
                 }
             }
             .adresses {
-                .big-title,
-                .adresse-title {
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
+                .big-title {
                     .border-number {
                         border-radius: 50%;
                         background-color: $color-white;
-                        border: 1px solid $color-secondary;
                         color: $color-secondary;
+                        border: 1px solid $color-secondary;
                         width: 40px;
                         height: 40px;
                         padding: 10px;
                         text-align: center;
                     }
+                    .check-success {
+                        margin-top: 10px;
+                        display: none;
+                        .fa-check {
+                            color: $color-button-secondary;
+                            font-size: larger;
+                            margin-left: 20px;
+                            @include breakpoint(mobil) {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
                     .title-h4 {
+                        margin-top: 8px;
                         h4 {
+                            color: $color-secondary;
                             padding: 0;
                             margin: 0;
-                            color: $color-secondary;
+                            @include breakpoint(mobil) {
+                                font-size: 15px;
+                                padding: 0;
+                                margin: 0;
+                            }
                         }
+                    }
+                    .btn-modif {
+                        display: none;
+                        margin-top: 3px;
+                        border: none;
+                        background-color: $color-white;
+                        color: $color-secondary;
                     }
                 }
                 .text-contents {
@@ -215,13 +288,6 @@
                     .text-2 {
                         color: $color-secondary;
                     }
-                }
-                .btn-modif {
-                    background-color: $color-secondary;
-                    color: $color-white;
-                    margin-left: 250px;
-                    padding: 5px;
-                    display: none;
                 }
                 .content,
                 .adresse-content {
@@ -250,6 +316,14 @@
                                 background-color: red;
                             }
                             .form-group {
+                                .form-check-input {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                                .labelWithCheck {
+                                    color: $color-secondary;
+                                    font-weight: normal;
+                                }
                                 margin-bottom: 20px;
                                 .label {
                                     font-weight: 600;
@@ -381,6 +455,9 @@
                                 .btn-livraison {
                                     margin-top: 20px;
                                     margin-left: 48%;
+                                    @include breakpoint(mobil) {
+                                        margin-left: 30%;
+                                    }
                                 }
                             }
                         }
@@ -395,20 +472,18 @@
             }
             .finalisations .finalisation-contents .finalisation-content div button {
                 margin-left: -170px;
+                @include breakpoint(mobil) {
+                    margin-left: 3%;
+                }
             }
-            #divFinalisation,
-            #divLivraison,
-            #divAdress,
-            #info-mod-btn,
-            #faCheck {
-                display: none;
-            }
-            #finalisation,
-            #livraison,
-            #adresse {
-                opacity: 0.7;
-                cursor: not-allow;
-            }
+            // #divFinalisation,
+            // #divLivraison,
+            // #divAdress,
+            // #finalisation,
+            // #livraison,
+            // #adresse {
+            //     cursor: not-allowed
+            // }
         }
     }
     .bloc-2 {
@@ -422,6 +497,10 @@
             span {
                 color: $color-primary;
                 font-size: large;
+                cursor: pointer;
+            }
+            .fa-chevron-down {
+                margin-left: 10px;
             }
             .details {
                 display: none;

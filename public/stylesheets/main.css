@@ -3786,16 +3786,20 @@
 }
 
 #page-commander {
-  padding: 8% 9%;
+  padding: 6% 9%;
   font-family: "Manrope", sans-serif;
 }
-#page-commander .row .bloc-1 .informations .big-title {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+#page-commander .row .bloc-1 #divFinalisation,
+#page-commander .row .bloc-1 #divLivraison,
+#page-commander .row .bloc-1 #divAdress {
+  display: none;
+}
+#page-commander .row .bloc-1 .finalisation-cursor,
+#page-commander .row .bloc-1 .adresse-cursor,
+#page-commander .row .bloc-1 .livraison-cursor {
+  cursor: not-allowed;
 }
 #page-commander .row .bloc-1 .informations .big-title .border-number {
-  border: 1px solid #61ce70;
   border-radius: 50%;
   background-color: #61ce70;
   width: 40px;
@@ -3804,13 +3808,40 @@
   text-align: center;
   color: #fff;
 }
-#page-commander .row .bloc-1 .informations .big-title .title-h4 {
-  display: flex;
-  justify-content: space-between;
+#page-commander .row .bloc-1 .informations .big-title .check-success {
+  margin-top: 10px;
+  display: none;
 }
-#page-commander .row .bloc-1 .informations .big-title .title-h4 h4 {
+#page-commander .row .bloc-1 .informations .big-title .check-success .fa-check {
+  color: #61ce70;
+  font-size: larger;
+  margin-left: 20px;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .informations .big-title .check-success .fa-check {
+    margin-left: 5px;
+  }
+}
+#page-commander .row .bloc-1 .informations .title-h4 {
+  margin-top: 8px;
+}
+#page-commander .row .bloc-1 .informations .title-h4 h4 {
   padding: 0;
   margin: 0;
+  color: #7a7a7a;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .informations .title-h4 h4 {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+  }
+}
+#page-commander .row .bloc-1 .informations .btn-modif {
+  margin-top: 3px;
+  background-color: #fff;
+  color: #7a7a7a;
+  display: none;
 }
 #page-commander .row .bloc-1 .informations .tabs-container ul {
   border-bottom: 1px solid #eeeeee;
@@ -3833,13 +3864,6 @@
 }
 #page-commander .row .bloc-1 .informations .tabs-container .tab-content .content-one {
   text-align: center;
-}
-#page-commander .row .bloc-1 .informations .btn-modif {
-  background-color: #7a7a7a;
-  color: #fff;
-  margin-left: 250px;
-  padding: 5px;
-  display: none;
 }
 #page-commander .row .bloc-1 .informations .content,
 #page-commander .row .bloc-1 .informations .adresse-content {
@@ -3871,6 +3895,21 @@
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .ckeckbox {
   background-color: red;
 }
+#page-commander .row .bloc-1 .informations .content .register-form form #label-text,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form #label-text {
+  text-align: left !important;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .checkWithText,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .checkWithText {
+  color: #a0b21f;
+  display: flex;
+  gap: 10px;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .checkWithText .form-check-input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .checkWithText .form-check-input {
+  width: 20px;
+  height: 20px;
+}
 #page-commander .row .bloc-1 .informations .content .register-form form .form-group,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group {
   margin-bottom: 20px;
@@ -3878,6 +3917,10 @@
 #page-commander .row .bloc-1 .informations .content .register-form form .form-group .label,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .label {
   font-weight: 600;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .item,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .item {
+  text-align: left;
 }
 @media (max-width: 1000px) {
   #page-commander .row .bloc-1 .informations .content .register-form form .form-group .item,
@@ -3905,6 +3948,7 @@
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .input label {
   color: #7a7a7a;
   font-size: 14px;
+  margin-left: 0;
 }
 #page-commander .row .bloc-1 .informations .content .register-form form .form-group .btn-hide,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .btn-hide {
@@ -3928,12 +3972,17 @@
 }
 #page-commander .row .bloc-1 .informations .content .register-form form .form-group .check input,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .check input {
-  width: 10px;
   height: 20px;
 }
 #page-commander .row .bloc-1 .informations .content .register-form form .form-group .check .text,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .check .text {
   color: #a0b21f;
+}
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .form-check-input,
+#page-commander .row .bloc-1 .informations .content .register-form form .form-group .text,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .form-check-input,
+#page-commander .row .bloc-1 .informations .adresse-content .register-form form .form-group .text {
+  display: flex;
 }
 #page-commander .row .bloc-1 .informations .content .register-form form .radios,
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios {
@@ -3964,6 +4013,18 @@
 #page-commander .row .bloc-1 .informations .adresse-content .register-form form .radios div input[type=radio]:checked {
   background-color: #a0b21f;
 }
+#page-commander .row .bloc-1 .informations .forgot-password p {
+  text-align: center;
+}
+#page-commander .row .bloc-1 .informations .btn-login {
+  text-align: center;
+}
+#page-commander .row .bloc-1 .informations .btn-login button {
+  padding: 5px 15px;
+  border: none;
+  background: #a0b21f;
+  color: white;
+}
 #page-commander .row .bloc-1 .informations .button {
   display: flex;
   margin-left: 25%;
@@ -3975,27 +4036,50 @@
   background: #a0b21f;
   color: white;
 }
-#page-commander .row .bloc-1 .adresses .big-title,
-#page-commander .row .bloc-1 .adresses .adresse-title {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-#page-commander .row .bloc-1 .adresses .big-title .border-number,
-#page-commander .row .bloc-1 .adresses .adresse-title .border-number {
+#page-commander .row .bloc-1 .adresses .big-title .border-number {
   border-radius: 50%;
   background-color: #fff;
-  border: 1px solid #7a7a7a;
   color: #7a7a7a;
+  border: 1px solid #7a7a7a;
   width: 40px;
   height: 40px;
   padding: 10px;
   text-align: center;
 }
-#page-commander .row .bloc-1 .adresses .big-title .title-h4 h4,
-#page-commander .row .bloc-1 .adresses .adresse-title .title-h4 h4 {
+#page-commander .row .bloc-1 .adresses .big-title .check-success {
+  margin-top: 10px;
+  display: none;
+}
+#page-commander .row .bloc-1 .adresses .big-title .check-success .fa-check {
+  color: #61ce70;
+  font-size: larger;
+  margin-left: 20px;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .big-title .check-success .fa-check {
+    margin-left: 5px;
+  }
+}
+#page-commander .row .bloc-1 .adresses .big-title .title-h4 {
+  margin-top: 8px;
+}
+#page-commander .row .bloc-1 .adresses .big-title .title-h4 h4 {
+  color: #7a7a7a;
   padding: 0;
   margin: 0;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .big-title .title-h4 h4 {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+  }
+}
+#page-commander .row .bloc-1 .adresses .big-title .btn-modif {
+  display: none;
+  margin-top: 3px;
+  border: none;
+  background-color: #fff;
   color: #7a7a7a;
 }
 #page-commander .row .bloc-1 .adresses .text-contents {
@@ -4012,13 +4096,6 @@
 }
 #page-commander .row .bloc-1 .adresses .text-contents .text-2 {
   color: #7a7a7a;
-}
-#page-commander .row .bloc-1 .adresses .btn-modif {
-  background-color: #7a7a7a;
-  color: #fff;
-  margin-left: 250px;
-  padding: 5px;
-  display: none;
 }
 #page-commander .row .bloc-1 .adresses .content,
 #page-commander .row .bloc-1 .adresses .adresse-content {
@@ -4053,6 +4130,16 @@
 #page-commander .row .bloc-1 .adresses .content .register-form form .form-group,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group {
   margin-bottom: 20px;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .form-check-input,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .form-check-input {
+  width: 20px;
+  height: 20px;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .form-group .labelWithCheck,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .labelWithCheck {
+  color: #7a7a7a;
+  font-weight: normal;
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .form-group .label,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .form-group .label {
@@ -4188,6 +4275,11 @@
   margin-top: 20px;
   margin-left: 48%;
 }
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .livraisons .livraison-content .devis .form form .btn-livraison {
+    margin-left: 30%;
+  }
+}
 #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div {
   margin-top: 30px;
 }
@@ -4197,18 +4289,10 @@
 #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button {
   margin-left: -170px;
 }
-#page-commander .row .bloc-1 #divFinalisation,
-#page-commander .row .bloc-1 #divLivraison,
-#page-commander .row .bloc-1 #divAdress,
-#page-commander .row .bloc-1 #info-mod-btn,
-#page-commander .row .bloc-1 #faCheck {
-  display: none;
-}
-#page-commander .row .bloc-1 #finalisation,
-#page-commander .row .bloc-1 #livraison,
-#page-commander .row .bloc-1 #adresse {
-  opacity: 0.7;
-  cursor: not-allow;
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button {
+    margin-left: 3%;
+  }
 }
 #page-commander .bloc-2 .title-article span {
   color: #7a7a7a;
@@ -4217,6 +4301,10 @@
 #page-commander .bloc-2 .hidden-detail span {
   color: #a0b21f;
   font-size: large;
+  cursor: pointer;
+}
+#page-commander .bloc-2 .hidden-detail .fa-chevron-down {
+  margin-left: 10px;
 }
 #page-commander .bloc-2 .hidden-detail .details {
   display: none;

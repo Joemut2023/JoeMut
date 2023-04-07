@@ -2,26 +2,23 @@
     <div class="row">
         <div class="col-md-8 bloc-1">
             <div class="informations">
-                <div class="big-title">
-                    <div class="border-number ">1</div>
-                    <div class="title-h4">
-                        <div class="ckeckTrue"><i class="fa-solid fa-check iconCheck" id="faCheck"></i></div>
-                        <div class="titre">
-                            <h4>INFORMATIONS PERSONNELLES</h4>
-                        </div>
-                        <div class="btn bnt-primary btn-modif" id="info-mod-btn">Modfier</div>
+                <div class="big-title row">
+                    <div class="border-number col-2">1</div>
+                    <div class="check-success col-1"><i class="fa-solid fa-check iconCheck" id="checkTrue"></i></div>
+                    <div class="title-h4 col-7">
+                        <h4>INFORMATIONS PERSONNELLES</h4>
                     </div>
+                    <div class="btn btn-modif col-2" id="info-mod-btn">Modfier</div>
                 </div>
                 <hr>
 
                 <div class="content" id="info-content">
                     <div class="tabs-container">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist row">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link btn-tab-one active button-add" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                                     <span id="creer-compte">Creez votre compte</span>  <span> | </span>
                             </button>
-
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link btn-tab-two" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
@@ -34,30 +31,30 @@
                                 <div class="register-form">
                                     <form id='info-form'>
                                         <div>
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
+                                            <div class="form-group row">
+                                                <div class="col-md-3 item">
                                                     <label for=" " class="label ">Civilité</label>
                                                 </div>
-                                                <div class="col-md-6 radios ">
-                                                    <div class="radio ">
-                                                        <input type="radio" name="civilite " id="homme " value="M " />
+                                                <div class="col-md-6 radios">
+                                                    <div class="radio">
+                                                        <input type="radio" name="civilite" id="homme" value="M" />
                                                         <label class=" " for="homme ">M</label>
                                                     </div>
-                                                    <div class="radio ">
-                                                        <input type="radio" name="civilite " id="femme " value="Mme " />
+                                                    <div class="radio">
+                                                        <input type="radio" name="civilite" id="femme" value="Mme" />
                                                         <label class=" " for="femme ">Mme</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 "></div>
+                                                <div class="col-md-3"></div>
                                             </div>
 
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="prenom "><span>*</span>Prenom</label>
+                                            <div class="form-group row">
+                                                <div class="col-md-3 item">
+                                                    <label class="required label" for="prenom"><span>*</span>Prenom</label>
                                                 </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="prenom " id="prenom " required />
-                                                    <label for=" ">Seules les lettres et le point (.), suivi d'un espace, sont
+                                                <div class="col-md-6 input">
+                                                    <input type="text" name="prenom" id="prenom" required />
+                                                    <label for=" " id="label-text">Seules les lettres et le point (.), suivi d'un espace, sont
                                                         autorisés.</label>
                                                 </div>
                                                 <div class="col-md-3"></div>
@@ -68,8 +65,8 @@
                                                     <label class="required label" for="nom "><span>*</span>Nom</label>
                                                 </div>
                                                 <div class="col-md-6 input">
-                                                    <input type="text " name="nom" id="nom " required />
-                                                    <label for=" ">Seules les lettres et le point (.), suivi d'un espace, sont
+                                                    <input type="text" name="nom" id="nom" required />
+                                                    <label for="" id="label-text">Seules les lettres et le point (.), suivi d'un espace, sont
                                                         autorisés.</label>
                                                 </div>
                                                 <div></div>
@@ -81,8 +78,8 @@
                                                         passe</label>
                                                 </div>
                                                 <div class="col-md-6 btn-hide ">
-                                                    <input type="password " name="password " id="password " class="input-password " required />
-                                                    <button id="btn-action" type="button" class="btn-action ">Montrer</button>
+                                                    <input type="password" name="password" id="password" class="input-password" required />
+                                                    <button id="btn-action" type="button" class="btn-action">Montrer</button>
                                                 </div>
                                                 <div></div>
                                             </div>
@@ -91,50 +88,54 @@
                                                 <div class="col-md-3 item">
                                                     <label class="required" for="nom"><span>*</span></label>
                                                 </div>
-                                                <div class="col-md-6 input check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label for="check-box" class="text">Message concernant la confidentialité des
-                                                        données clients
-                                                        <br />
-                                                        <em>Conformément aux dispositions de la loi du n°78-17 du 6
-                                                            janvier 1978, vous disposez d'un droit d'accès, de
-                                                            rectification et d'opposition sur les données nominatives vous
-                                                            concernant.</em>
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-3"></div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required " for="nom "><span></span></label>
-                                                </div>
-                                                <div class="col-md-6 input check ">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label for="check-box " class="text ">
-                                                        Recevoir notre newsletter
-                                                        <br />
-                                                        <em>Vous pouvez vous désinscrire à tout moment. Vous trouverez
-                                                            pour cela nos informations de contact dans les conditions
-                                                            d'utilisation du site.</em>
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-3 "></div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required " for="nom "><span>*</span></label>
-                                                </div>
-                                                <div class="col-md-6 input check input-check ">
-                                                    <div class="check-item checkbox-example ">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label for=" scales " class=" text checkmark ">J'accepte les conditions générales et la politique de
-                                              confidentialité
-                                             </label>
+                                                <div class="col-md-6 checkWithText">
+                                                    <div class=""> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
+                                                    <div class="">
+                                                        <label id="label-text">Message concernant la confidentialité des
+                                                            données clients
+                                                            <br />
+                                                            <em>Conformément aux dispositions de la loi du n°78-17 du 6
+                                                                janvier 1978, vous disposez d'un droit d'accès, de
+                                                                rectification et d'opposition sur les données nominatives vous
+                                                                concernant.</em>
+                                                        </label>
                                                     </div>
                                                 </div>
+                                            </div>
 
+                                            <div class="form-group row">
+                                                <div class="col-md-3 item">
+                                                    <label class="required" for="nom"><span>*</span></label>
+                                                </div>
+                                                <div class="col-md-6 checkWithText">
+                                                    <div class=""> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
+                                                    <div class="">
+                                                        <label id="label-text">Message concernant la confidentialité des
+                                                            données clients
+                                                            <br />
+                                                            <em>Recevoir notre newsletter
+                                                                Vous pouvez vous désinscrire à tout moment. Vous trouverez pour cela nos informations de contact dans les conditions d'utilisation du site.
+                                                            </em>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-md-3 item">
+                                                    <label class="required" for="nom"><span>*</span></label>
+                                                </div>
+                                                <div class="col-md-6 checkWithText">
+                                                    <div class=""> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
+                                                    <div class="">
+                                                        <label id="label-text">Message concernant la confidentialité des
+                                                            données clients
+                                                            <br />
+                                                            <em>J'accepte les conditions générales et la politique de confidentialité  </em>
+                                                          
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="button">
@@ -161,32 +162,25 @@
 
                                             <div class="form-group row">
                                                 <div class="col-md-3 item">
-                                                    <label class="required label" for="password"><span>*</span>Mot de passe</label
-                                        >
-                                      </div>
-                                      <div class="col-md-6 btn-hide">
-                                        <input
-                                          type="password"
-                                          name="password"
-                                          id="password"
-                                          class="input-password"
-                                          required
-                                        />
-                                        <button id="btn-action" class="btn-action">Montrer</button>
-                                      </div>
-                                      <div></div>
-                                    </div>
-                                  </div>
-                                  <div class="forgot-password">
-                                    <p>Mot de passe oublié ?</p>
-                                  </div>
-                                 
-                                  <div class="button">
-                                    <button>Connexion</button>
-                                  </div>
-                                  <hr>
-                                </form>
-                              </div>
+                                                    <label class="required label" for="password"><span>*</span>Mot de passe</label>
+                                                </div>
+                                                <div class="col-md-6 btn-hide">
+                                                    <input type="password" name="password" id="password" class="input-password" required />
+                                                    <button id="btn-action" type="button" class="btn-action">Montrer</button>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div class="forgot-password">
+                                            <p>Mot de passe oublié ?</p>
+                                        </div>
+
+                                        <div class="btn-login">
+                                            <button>Continuer</button>
+                                        </div>
+                                        <hr>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -195,13 +189,13 @@
             </div>
 
             <div class="adresses" id="adresse">
-                <div class="adresse-title">
-                    <div class="border-number ">2</div>
-                    <div class="title-h4">
-                        <div class="ckeckTrue"><i class="fa-solid fa-check" id="faCheck"></i></div>
+                <div class="big-title adresse-cursor row">
+                    <div class="border-number adresse-bg col-2">2</div>
+                    <div class="check-success check-adresse col-1"><i class="fa-solid fa-check iconCheck"></i></div>
+                    <div class="title-h4 col-7">
                         <h4>ADRESSES</h4>
                     </div>
-                    <div class="btn btn-modif" id="adresse-mod-btn">Modifier</div>
+                    <div class="btn btn-modif col-2" id="adresse-mod-btn">Modfier</div>
                 </div>
                 <hr>
 
@@ -213,392 +207,391 @@
                         <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
                     </div>
                     <div class="register-form">
-
                         <form id='adresse-form'>
                             <div class="form-parent">
-                                <div class="form-group row ">
+                                <div class="form-group row">
                                     <div class="col-md-3 "></div>
                                 </div>
 
-                                <div class="form-group row ">
-                                    <div class="col-md-3 item ">
-                                        <label class="required label " for="prenom "><span>*</span>Nom de la structure</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="prenom " id="prenom " required />
-                                                </div>
-                                                <div class="col-md-3 "></div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="prenom "><span>*</span>Prenom</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="prenom " id="prenom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Nom</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom ">Société</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom ">Numero de TVA</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Adresse</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom ">Complement d'adresse</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Code postal</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Ville</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Pays</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="nom "><span>*</span>Téléphone</label>
-                                                </div>
-                                                <div class="col-md-6 input ">
-                                                    <input type="text " name="nom " id="nom " required />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="col-md-3">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                </div>
-                                                <div class="col-md-6 text-label">
-                                                    <label class="required label " for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="button btn col-md-6">
-                                            <button>Continuer</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="adresses livraisons" id="livraison">
-                            <div class="adresse-title">
-                                <div class="border-number">3</div>
-                                <div class="title-h4">
-                                    <div class="ckeckTrue"><i class="fa-solid fa-check iconCheck" id="faCheck"></i></div>
-                                    <div class="titre">
-                                        <h4>MODE DE LIVRAISON</h4>
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="prenom"><span>*</span>Nom de la structure</label>
                                     </div>
-                                    <div class="btn bnt-primary btn-modif" id="info-mod-btn">Modfier</div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="prenom" id="prenom" required />
+                                    </div>
+                                    <div class="col-md-3"></div>
                                 </div>
-                            </div>
-                            <hr>
 
-                            <div class="livraison-content" id="divLivraison">
-                                <div class="text-contents">
-                                    <div class="text-1">
-                                        <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous
-                                            remerciant.)
-                                        </p>
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="prenom"><span>*</span>Prenom</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text " name="prenom" id="prenom" required />
                                     </div>
                                 </div>
 
-                                <div class="devis">
-                                    <div class="devis-1 row">
-                                        <div class="btn-checkbox  col-md-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        </div>
-                                        <div class="desc-img  col-md-2">image</div>
-                                        <div class="desc-retrait  col-md-2">
-                                            <p>Retrait dans nos locaux AES</p>
-                                        </div>
-                                        <div class="desc-essaie  col-md-4">
-                                            <p>Je viendrais prendre le colis d'essayage et les costumes pour mon spectacle dans vos locaux</p>
-                                        </div>
-                                        <div class="descprice col-md-2">gratuit</div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Nom</label>
                                     </div>
-
-                                    <div class="devis-1 row">
-                                        <div class="btn-checkbox  col-md-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        </div>
-                                        <div class="desc-img  col-md-2">image</div>
-                                        <div class="desc-retrait  col-md-2">
-                                            <p>Essayage en livraison /Spectacle chez AES</p>
-                                        </div>
-                                        <div class="desc-essaie  col-md-4">
-                                            <p>Je souhaite la livraison du colis d'assayage à domicile et je viendrais chercher les costumes pour les spectacles dans vos locaux</p>
-                                        </div>
-                                        <div class="descprice col-md-2">15.00 $ TTC</div>
-                                    </div>
-
-                                    <div class="devis-1 row">
-                                        <div class="btn-checkbox  col-md-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        </div>
-                                        <div class="desc-img  col-md-2">image</div>
-                                        <div class="desc-retrait  col-md-2">
-                                            <p>Tous en livraison</p>
-                                        </div>
-                                        <div class="desc-essaie  col-md-4">
-                                            <p>Le colis essayage et spectacle</p>
-                                        </div>
-                                        <div class="descprice col-md-2">15.00 $ TTC</div>
-                                    </div>
-
-                                    <div class="devis-1 row">
-                                        <div class="btn-checkbox  col-md-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        </div>
-                                        <div class="desc-img  col-md-2">image</div>
-                                        <div class="desc-retrait  col-md-2">
-                                            <p>Pas de colis d'essayageet de livraison spectacle</p>
-                                        </div>
-                                        <div class="desc-essaie  col-md-4">
-                                            <p>Pas de colis d'essayage et je souhaite que l'on m'envoie mes costumes à domicile pour le spactacle</p>
-                                        </div>
-                                        <div class="descprice col-md-2">15.00 $ TTC</div>
-                                    </div>
-
-                                    <div class="devis-1 row">
-                                        <div class="btn-checkbox  col-md-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        </div>
-                                        <div class="desc-img  col-md-2">image</div>
-                                        <div class="desc-retrait  col-md-2">
-                                            <p>Essayage chez AES/Spectacle en livraison</p>
-                                        </div>
-                                        <div class="desc-essaie  col-md-4">
-                                            <p>je souhaite venir prendre mon colis d'ssayage dans vos locaux et une livraison à domicile pour le spactacle</p>
-                                        </div>
-                                        <div class="descprice col-md-2">15.00 $ TTC</div>
-                                    </div>
-
-                                    <div class="commande-msg">
-                                        <div class="mb-3 msg">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="date-spectacle">
-                                        <div class="title">
-                                            <h3>DATE SPECTACLE</h3>
-                                            <hr>
-                                        </div>
-
-                                        <div class="form">
-                                            <form action="">
-                                                <div class="row">
-                                                    <div class="row g-3 align-items-center bloc-input">
-                                                        <div class="col-md-4">
-                                                            <label for="inputPassword6" class="col-form-label">Date du debut de spectacle</label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" id="date-debut" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date du debut de spectacle">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-3 align-items-center bloc-input">
-                                                        <div class="col-md-4">
-                                                            <label for="inputPassword6" class="col-form-label">Date de fin de spectacle</label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" id="date-fin" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de fin de spectacle">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-3 align-items-center bloc-input">
-                                                        <div class="col-md-4">
-                                                            <label for="inputPassword6" class="col-form-label">Date de répétition</label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" id="date-rep" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de repetition">
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="row g-3 align-items-center bloc-input">
-                                                        <div class="col-md-4">
-                                                            <label for="inputPassword6" class="col-form-label">Site d'autres date</label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row g-3 align-items-center bloc-input">
-                                                        <div class="col-md-4">
-                                                            <label for="inputPassword6" class="col-form-label">Complement d'infos ?</label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button btn col-md-6 btn-livraison">
-                                                    <button>Continuer</button>
-                                                </div>
-                                            </form>
-                                        </div>
-
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
                                     </div>
                                 </div>
-                                <hr>
-                            </div>
-                        </div>
 
-                        <div class="adresses finalisations" id="finalisation">
-                            <div class="big-title">
-                                <div class="border-number">4</div>
-                                <div class="title-h4">
-                                    <h4>FINALISATION</h4>
-                                </div>
-                                <div class="btn btn-modif" id="finalisation-mod-btn">Modifier</div>
-                            </div>
-                            <hr>
-
-                            <div class="finalisation-contents" id="divFinalisation">
-                                <div class="finalisation-content">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                              Confirmez votre devis
-                            </label>
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom">Société</label>
                                     </div>
-                                    <div class="form-check">
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom">Numero de TVA</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text " name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom">Complement d'adresse</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Code postal</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text " name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Ville</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Pays</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom" id="nom" required />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3 item">
+                                        <label class="required label" for="nom"><span>*</span>Téléphone</label>
+                                    </div>
+                                    <div class="col-md-6 input">
+                                        <input type="text" name="nom " id="nom" required />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                              J'ai lu les conditions générales de vente et j'y adheres sans reserve.
-                            </label>
+                                    </div>
+                                    <div class="col-md-6 text-label">
+                                        <label class="required label labelWithCheck" for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
                                     </div>
 
-                                    <div class="button col-md-6">
-                                        <button>Finaliser le devis</button>
-                                    </div>
                                 </div>
                             </div>
+                            <div class="button btn col-md-6">
+                                <button>Continuer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adresses livraisons" id="livraison">
+                <div class="big-title livraison-cursor row">
+                    <div class="border-number livraison-bg col-2">3</div>
+                    <div class="check-success check-livraison col-1"><i class="fa-solid fa-check iconCheck" id="checkTrue"></i></div>
+                    <div class="title-h4 col-7">
+                        <h4>MODE DE LIVRAISON</h4>
+                    </div>
+                    <div class="btn btn-modif col-md-2" id="livraison-mod-btn">Modfier</div>
+                </div>
+                <hr>
+
+                <div class="livraison-content" id="divLivraison">
+                    <div class="text-contents">
+                        <div class="text-1">
+                            <p>Afin de valider votre demande, vous devez nous envoyer votre devis accompagné du cheque de caution ainsi que le contrat de prêt pour essayage (Qui vous sera envoyé apres vérification des disponibilités. En vous remerciant.)
+                            </p>
                         </div>
                     </div>
 
-                    <div class="col-md-4 bloc-2">
-                        <div class="title-article">
-                            <span>1</span>
-                            <span>article</span>
+                    <div class="devis">
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Retrait dans nos locaux AES</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Je viendrais prendre le colis d'essayage et les costumes pour mon spectacle dans vos locaux</p>
+                            </div>
+                            <div class="descprice col-md-2">gratuit</div>
                         </div>
 
-                        <div onclick="toggle_visibility( 'divItems') " class="hidden-detail ">
-                            <span> afficher les details</span>
-                            <div class="details" id="divItems">
-                                <div class="details-items">
-                                    <div class=" detail-item">
-                                        <div class="detail-img">
-                                            <img src=" " alt=" ">
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Essayage en livraison /Spectacle chez AES</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Je souhaite la livraison du colis d'assayage à domicile et je viendrais chercher les costumes pour les spectacles dans vos locaux</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Tous en livraison</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Le colis essayage et spectacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Pas de colis d'essayageet de livraison spectacle</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>Pas de colis d'essayage et je souhaite que l'on m'envoie mes costumes à domicile pour le spactacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="devis-1 row">
+                            <div class="btn-checkbox  col-md-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            </div>
+                            <div class="desc-img  col-md-2">image</div>
+                            <div class="desc-retrait  col-md-2">
+                                <p>Essayage chez AES/Spectacle en livraison</p>
+                            </div>
+                            <div class="desc-essaie  col-md-4">
+                                <p>je souhaite venir prendre mon colis d'ssayage dans vos locaux et une livraison à domicile pour le spactacle</p>
+                            </div>
+                            <div class="descprice col-md-2">15.00 $ TTC</div>
+                        </div>
+
+                        <div class="commande-msg">
+                            <div class="mb-3 msg">
+                                <label for="exampleFormControlTextarea1" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="date-spectacle">
+                            <div class="title">
+                                <h3>DATE SPECTACLE</h3>
+                                <hr>
+                            </div>
+
+                            <div class="form" id="livraison-form">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date du debut de spectacle</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-debut" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date du debut de spectacle">
+                                            </div>
                                         </div>
-                                        <div class=" detail-content ">
-                                            <span>MH19C - Top croisé dos nu bleu royal</span>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date de fin de spectacle</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-fin" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de fin de spectacle">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Date de répétition</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="date-rep" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de repetition">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Site d'autres date</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="inputPassword6" class="col-form-label">Complement d'infos ?</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class=" detail-item ">
-                                        <div class=" detail-img ">
-                                            <span>X</span>
-                                        </div>
-                                        <div class=" detail-content ">
-                                            <span>20,00$</span>
-                                        </div>
+                                    <div class="button btn col-md-6 btn-livraison">
+                                        <button type="submit">Continuer</button>
                                     </div>
-                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="adresses finalisations" id="finalisation">
+                <div class="big-title finalisation-cursor row">
+                    <div class="border-number finalisation-bg col-2">4</div>
+                    <div class="check-success col-1"><i class="fa-solid fa-check iconCheck" id="checkTrue"></i></div>
+                    <div class="title-h4 col-7">
+                        <h4>FINALISATION</h4>
+                    </div>
+                    <div class="btn btn-modif col-2" id="info-mod-btn">Modfier</div>
+                </div>
+                <hr>
+
+                <div class="finalisation-contents" id="divFinalisation">
+                    <div class="finalisation-content">
+                        <form action="">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Confirmez votre devis
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  J'ai lu les conditions générales de vente et j'y adheres sans reserve.
+                                </label>
+                            </div>
+
+                            <div class="button col-md-6">
+                                <button>Finaliser le devis</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 bloc-2">
+            <div class="title-article">
+                <span>1</span>
+                <span>article</span>
+            </div>
+
+            <div onclick="toggle_visibility( 'divItems') " class="hidden-detail ">
+                <span> afficher les details</span><span><i class="fa-solid fa-chevron-down"></i></span>
+                <div class="details" id="divItems">
+                    <div class="details-items">
+                        <div class=" detail-item">
+                            <div class="detail-img">
+                                <img src=" " alt=" ">
+                            </div>
+                            <div class=" detail-content ">
+                                <span>MH19C - Top croisé dos nu bleu royal</span>
                             </div>
                         </div>
 
-
-
-                        <hr>
-                        <div class=" detail-prices ">
-                            <div class=" prices ">
-                                <div class=" sous-total ">Sous-total</div>
-                                <div class=" price ">10, 00$</div>
+                        <div class=" detail-item ">
+                            <div class=" detail-img ">
+                                <span>X</span>
                             </div>
-                            <div class=" prices ">
-                                <div class=" sous-total ">Livraison</div>
-                                <div class=" price ">10, 00$</div>
+                            <div class=" detail-content ">
+                                <span>20,00$</span>
                             </div>
-                            <div class=" prices ">
-                                <div class=" sous-total ">Frais de dossier</div>
-                                <div class=" price ">10, 00$</div>
-                            </div>
-                        </div>
-                        <hr>
-
-                        <div class=" total ">
-                            <div class=" sous-total ">Total TTC</div>
-                            <div class=" price ">38, 00$</div>
-                        </div>
-                        <div class=" code-promo ">
-                            <a href=" ">Vous avez un code promo ?</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+            <hr>
+            <div class=" detail-prices ">
+                <div class=" prices ">
+                    <div class=" sous-total ">Sous-total</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+                <div class=" prices ">
+                    <div class=" sous-total ">Livraison</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+                <div class=" prices ">
+                    <div class=" sous-total ">Frais de dossier</div>
+                    <div class=" price ">10, 00$</div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="total">
+                <div class="sous-total">Total TTC</div>
+                <div class="price">38, 00$</div>
+            </div>
+            <div class="code-promo">
+                <a href=" ">Vous avez un code promo ?</a>
+            </div>
+        </div>
+    </div>
+</div>
