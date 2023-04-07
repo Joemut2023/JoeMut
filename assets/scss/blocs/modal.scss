@@ -209,12 +209,17 @@
             background-color: gray;
           }
         }
+        a{
+          text-decoration: none;
+          font-size: 0.8rem;
+        }
         .finaliser {
           color: white;
           border-color: $color-primary;
           box-shadow: none;
           outline: none;
           background-color: $color-primary;
+          padding: 2% 3%;
           &:hover {
             background-color: rgb(53, 83, 219);
             border-color: rgb(53, 83, 219);

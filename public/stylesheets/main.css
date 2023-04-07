@@ -2755,7 +2755,7 @@
   color: #7a7a7a;
   margin-bottom: 20px;
 }
-#page-connexion .content .register-form .title a {
+#page-connexion .content .register-form a {
   text-decoration: none;
   color: #a0b21f;
 }
@@ -3819,12 +3819,17 @@
 #myModal .body-modal .modal-body-commande .btn-achat .continuer:hover {
   background-color: gray;
 }
+#myModal .body-modal .modal-body-commande .btn-achat a {
+  text-decoration: none;
+  font-size: 0.8rem;
+}
 #myModal .body-modal .modal-body-commande .btn-achat .finaliser {
   color: white;
   border-color: #a0b21f;
   box-shadow: none;
   outline: none;
   background-color: #a0b21f;
+  padding: 2% 3%;
 }
 #myModal .body-modal .modal-body-commande .btn-achat .finaliser:hover {
   background-color: rgb(53, 83, 219);
