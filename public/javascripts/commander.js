@@ -1,7 +1,8 @@
 "use strict";
 
 //change for big title on bloc-form
-var infoForm = document.querySelector('#info-form');
+var infoFormInscription = document.querySelector('.info-form-inscription');
+var infoFormConnexion = document.querySelector('.info-form-connexion');
 var adresseForm = document.querySelector('#adresse-form');
 var livraisonForm = document.querySelector('#livraison-form');
 var infoContent = document.querySelector('#info-content');
@@ -61,7 +62,11 @@ var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnMod
 };
 
 // change events on infoForm
-infoForm.addEventListener("submit", function (event) {
+infoFormInscription.addEventListener("submit", function (event) {
+  event.preventDefault();
+  eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
+});
+infoFormConnexion.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
 });

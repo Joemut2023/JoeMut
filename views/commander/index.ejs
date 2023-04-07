@@ -8,7 +8,10 @@
                     <div class="title-h4 col-7">
                         <h4>INFORMATIONS PERSONNELLES</h4>
                     </div>
-                    <div class="btn btn-modif col-2" id="info-mod-btn">Modfier</div>
+                    <div class="btn btn-modif col-2" id="info-mod-btn">
+                        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span>Modfier</span>
+                    </div>
                 </div>
                 <hr>
 
@@ -29,11 +32,11 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active content-one" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                 <div class="register-form">
-                                    <form id='info-form'>
+                                    <form class='info-form-inscription'>
                                         <div>
                                             <div class="form-group row">
                                                 <div class="col-md-3 item">
-                                                    <label for=" " class="label ">Civilité</label>
+                                                    <label for=" " class="label">Civilité</label>
                                                 </div>
                                                 <div class="col-md-6 radios">
                                                     <div class="radio">
@@ -72,12 +75,12 @@
                                                 <div></div>
                                             </div>
 
-                                            <div class="form-group row ">
-                                                <div class="col-md-3 item ">
-                                                    <label class="required label " for="password "><span>*</span>Mot de
+                                            <div class="form-group row">
+                                                <div class="col-md-3 item">
+                                                    <label class="required label" for="password"><span>*</span>Mot de
                                                         passe</label>
                                                 </div>
-                                                <div class="col-md-6 btn-hide ">
+                                                <div class="col-md-6 btn-hide">
                                                     <input type="password" name="password" id="password" class="input-password" required />
                                                     <button id="btn-action" type="button" class="btn-action">Montrer</button>
                                                 </div>
@@ -147,7 +150,7 @@
                             <div class="tab-pane fade content-two" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                 <div class="register-form">
 
-                                    <form id="form">
+                                    <form class="info-form-connexion">
                                         <div>
                                             <div class="form-group row">
                                                 <div class="col-md-3 item">
@@ -176,7 +179,7 @@
                                         </div>
 
                                         <div class="btn-login">
-                                            <button>Continuer</button>
+                                            <button type="submit">Continuer</button>
                                         </div>
                                         <hr>
                                     </form>
@@ -195,7 +198,10 @@
                     <div class="title-h4 col-7">
                         <h4>ADRESSES</h4>
                     </div>
-                    <div class="btn btn-modif col-2" id="adresse-mod-btn">Modfier</div>
+                    <div class="btn btn-modif col-2" id="adresse-mod-btn">
+                        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span>Modfier</span>
+                    </div>
                 </div>
                 <hr>
 
@@ -255,7 +261,7 @@
                                         <label class="required label" for="nom">Numero de TVA</label>
                                     </div>
                                     <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
+                                        <input type="number" name="nom" id="nom" required />
                                     </div>
                                 </div>
 
@@ -264,7 +270,7 @@
                                         <label class="required label" for="nom"><span>*</span>Adresse</label>
                                     </div>
                                     <div class="col-md-6 input">
-                                        <input type="text " name="nom" id="nom" required />
+                                        <input type="text" name="nom" id="nom" required />
                                     </div>
                                 </div>
 
@@ -284,7 +290,7 @@
                                         <label class="required label" for="nom"><span>*</span>Code postal</label>
                                     </div>
                                     <div class="col-md-6 input">
-                                        <input type="text " name="nom" id="nom" required />
+                                        <input type="number" name="nom" id="nom" required />
                                     </div>
                                 </div>
 
@@ -341,7 +347,10 @@
                     <div class="title-h4 col-7">
                         <h4>MODE DE LIVRAISON</h4>
                     </div>
-                    <div class="btn btn-modif col-md-2" id="livraison-mod-btn">Modfier</div>
+                    <div class="btn btn-modif col-md-2" id="livraison-mod-btn">
+                        <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span>Modfier</span>
+                    </div>
                 </div>
                 <hr>
 
@@ -445,7 +454,7 @@
                                                 <label for="inputPassword6" class="col-form-label">Date du debut de spectacle</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" id="date-debut" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date du debut de spectacle">
+                                                <input type="date" id="date-debut" class="form-control" placeholder="Date du debut de spectacle">
                                             </div>
                                         </div>
 
@@ -454,7 +463,7 @@
                                                 <label for="inputPassword6" class="col-form-label">Date de fin de spectacle</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" id="date-fin" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de fin de spectacle">
+                                                <input type="date" id="date-fin" class="form-control" placeholder="Date de fin de spectacle">
                                             </div>
                                         </div>
 
@@ -463,14 +472,14 @@
                                                 <label for="inputPassword6" class="col-form-label">Date de répétition</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" id="date-rep" class="form-control" aria-describedby="passwordHelpInline" placeholder="Date de repetition">
+                                                <input type="date" id="date-rep" class="form-control" placeholder="Date de repetition">
                                             </div>
                                         </div>
 
 
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Site d'autres date</label>
+                                                <label for="inputPassword6" class="col-form-label">Site d'autres dates</label>
                                             </div>
                                             <div class="col-md-4">
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -520,7 +529,7 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                                 <label class="form-check-label" for="flexCheckDefault">
                                   J'ai lu les conditions générales de vente et j'y adheres sans reserve.
                                 </label>

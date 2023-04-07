@@ -1,5 +1,6 @@
 //change for big title on bloc-form
-const infoForm = document.querySelector('#info-form')
+const infoFormInscription = document.querySelector('.info-form-inscription')
+const infoFormConnexion = document.querySelector('.info-form-connexion')
 const adresseForm = document.querySelector('#adresse-form')
 const livraisonForm = document.querySelector('#livraison-form')
 const infoContent = document.querySelector('#info-content')
@@ -63,10 +64,16 @@ const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, changeBord
 }
 
 // change events on infoForm
-infoForm.addEventListener("submit", (event) => {
+infoFormInscription.addEventListener("submit", (event) => {
     event.preventDefault()
     eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
 })
+
+infoFormConnexion.addEventListener("submit", (event) => {
+    event.preventDefault()
+    eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
+})
+
 btnModiferInfo.addEventListener("click", (event) => {
     event.preventDefault()
     adresseDiv.style.display = "none"
