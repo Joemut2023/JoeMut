@@ -16,5 +16,8 @@ router.get('/',async function(req, res, next) {
   }
   
 });
+router.get('/:id',(req,res)=>{
+  res.render('catalogue/bycategorie');
+})
 
 module.exports = router;

@@ -26,10 +26,12 @@ const AdminJSSequelize = require("@adminjs/sequelize");
 const sessions = require("express-session");
 const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
+const getCategorie = require("./middleware/categorie");
 var app = express();
 require("./config/db").sync();
 const oneDay = 1000 * 60 * 60 * 24;
 // view engine setup
+app.use(getCategorie);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(ejsLayout);

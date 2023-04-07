@@ -39,71 +39,17 @@
                                         </a>
                                     <div class="dropdown-menu dropdown-parent" aria-labelledby="dropdownMenuButton">
                                         <div class="menu-title">
-
-                                            <div class="title-catalogue">
-                                                <h6>COSTUMES POUR PETITS</h6>
-                                                <hr>
-                                                <ul>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                </ul>
-                                            </div>
-                                            <div class="title-catalogue">
-                                                <h6>COSTUMES POUR MOYENS</h6>
-                                                <hr>
-                                                <ul>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                </ul>
-                                            </div>
-                                            <div class="title-catalogue">
-                                                <h6>CONSTUMES POUR GRANDS</h6>
-                                                <hr>
-                                                <ul>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                </ul>
-                                            </div>
-                                            <div class="title-catalogue">
-                                                <h6>ACCESSOIRES</h6>
-                                                <hr>
-                                                <ul>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                    <li>Academies cotes combinaison</li>
-                                                </ul>
-                                            </div>
+                                            <% type_categories?.forEach(type_categorie => { %>
+                                                <div class="title-catalogue">
+                                                    <h6><%= type_categorie.tyc_libelle %></h6>
+                                                    <hr>
+                                                    <ul>
+                                                        <% type_categorie.Categories.forEach(categorie => { %>
+                                                            <li><a href="/catalogue/<%=categorie.cat_id %>"><%=categorie.cat_libelle %></a></li>
+                                                        <% }) %>    
+                                                    </ul>
+                                                </div>
+                                            <% }) %>
                                         </div>
 
                                     </div>
@@ -166,70 +112,17 @@
                         </a>
                         <div class="dropdown-menu dropdown-parents" aria-labelledby="dropdownMenuButton">
                             <div class="menu-title">
-                                <div class="title-catalogue">
-                                    <h6>COSTUMES POUR PETITS</h6>
-                                    <hr>
-                                    <ul>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                    </ul>
-                                </div>
-                                <div class="title-catalogue">
-                                    <h6>COSTUMES POUR MOYENS</h6>
-                                    <hr>
-                                    <ul>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                    </ul>
-                                </div>
-                                <div class="title-catalogue">
-                                    <h6>CONSTUMES POUR GRANDS</h6>
-                                    <hr>
-                                    <ul>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                    </ul>
-                                </div>
-                                <div class="title-catalogue">
-                                    <h6>ACCESSOIRES</h6>
-                                    <hr>
-                                    <ul>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                        <li>Academies cotes combinaison</li>
-                                    </ul>
-                                </div>
+                                <% type_categories?.forEach(type_categorie => { %>
+                                    <div class="title-catalogue">
+                                        <h6><%= type_categorie.tyc_libelle %></h6>
+                                        <hr>
+                                        <ul>
+                                            <% type_categorie.Categories.forEach(categorie => { %>
+                                                <li><a href="/catalogue/<%=categorie.cat_id %>"><%=categorie.cat_libelle %></a></li>
+                                            <% }) %>    
+                                        </ul>
+                                    </div>
+                                <% }) %>
                             </div>
                         </div>
 

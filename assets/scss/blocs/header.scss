@@ -316,6 +316,10 @@
         padding: 7px;
         margin-left: -10px;
         cursor: pointer;
+        a{
+            text-decoration: none;
+            color: $color-black;
+        }
     }
 }
 
@@ -402,6 +406,10 @@
     padding: 7px;
     margin-left: -10px;
     cursor: pointer;
+    a{
+        text-decoration: none;
+        color: $color-black;
+    }
 }
 
 .btn-canva {

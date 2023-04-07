@@ -312,6 +312,10 @@
   margin-left: -10px;
   cursor: pointer;
 }
+#headerSticky .title-catalogue > ul > li a {
+  text-decoration: none;
+  color: #232323;
+}
 
 #header-banner {
   width: 100%;
@@ -393,6 +397,10 @@
   padding: 7px;
   margin-left: -10px;
   cursor: pointer;
+}
+.title-catalogue > ul > li a {
+  text-decoration: none;
+  color: #232323;
 }
 
 .btn-canva {
