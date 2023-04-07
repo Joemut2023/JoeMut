@@ -4383,11 +4383,32 @@
   font-size: larger;
   color: #232323;
 }
-#page-commander .bloc-2 .code-promo {
-  text-align: center;
-}
-#page-commander .bloc-2 .code-promo a {
+#page-commander .bloc-2 .codepromo-content .text-promo p {
   text-decoration: none;
+  text-align: center;
+  color: #a0b21f;
+  cursor: pointer;
+  padding-top: 10px;
+}
+#page-commander .bloc-2 .codepromo-content .form-promo {
+  display: none;
+}
+#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo {
+  margin-top: 10px;
+  width: 80%;
+  margin: auto;
+}
+#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo input,
+#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo span {
+  border-radius: 0px;
+  padding: 10px;
+}
+#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo .btn-add span {
+  background-color: #a0b21f;
+  color: #fff;
+  cursor: pointer;
+}
+#page-commander .bloc-2 .codepromo-content .form-promo .text p {
   text-align: center;
   color: #a0b21f;
   cursor: pointer;
