@@ -31,23 +31,30 @@
                             color: $color-button-secondary;
                             font-size: larger;
                             margin-left: 20px;
+                            @include breakpoint(mobil) {
+                                margin-left: 5px;
+                            }
                         }
                     }
-                    .title-h4 {
-                        margin-top: 8px;
-                        h4 {
+                }
+                .title-h4 {
+                    margin-top: 8px;
+                    h4 {
+                        padding: 0;
+                        margin: 0;
+                        color: $color-secondary;
+                        @include breakpoint(mobil) {
+                            font-size: 15px;
                             padding: 0;
                             margin: 0;
-                            color: $color-secondary;
                         }
                     }
-                    .btn-modif {
-                        display: none;
-                        margin-top: 3px;
-                        border: none;
-                        background-color: $color-white;
-                        color: $color-secondary;
-                    }
+                }
+                .btn-modif {
+                    margin-top: 3px;
+                    background-color: $color-white;
+                    color: $color-secondary;
+                    display: none;
                 }
                 .tabs-container {
                     ul {
@@ -241,6 +248,9 @@
                             color: $color-button-secondary;
                             font-size: larger;
                             margin-left: 20px;
+                            @include breakpoint(mobil) {
+                                margin-left: 5px;
+                            }
                         }
                     }
                     .title-h4 {
@@ -249,6 +259,11 @@
                             color: $color-secondary;
                             padding: 0;
                             margin: 0;
+                            @include breakpoint(mobil) {
+                                font-size: 15px;
+                                padding: 0;
+                                margin: 0;
+                            }
                         }
                     }
                     .btn-modif {
@@ -440,6 +455,9 @@
                                 .btn-livraison {
                                     margin-top: 20px;
                                     margin-left: 48%;
+                                    @include breakpoint(mobil) {
+                                        margin-left: 30%;
+                                    }
                                 }
                             }
                         }
@@ -454,6 +472,9 @@
             }
             .finalisations .finalisation-contents .finalisation-content div button {
                 margin-left: -170px;
+                @include breakpoint(mobil) {
+                    margin-left: 3%;
+                }
             }
             // #divFinalisation,
             // #divLivraison,
