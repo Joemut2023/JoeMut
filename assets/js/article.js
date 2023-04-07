@@ -19,14 +19,14 @@ navlink_two.addEventListener("click", function () {
 });
 
 btn_up.addEventListener("click", function () {
-  let compteur = parseInt(document.querySelector(".number-value").value);
+ 
   compteur = isNaN(compteur) ? 1 : compteur;
   compteur++;
   input.value = compteur;
 });
 
 btn_down.addEventListener("click", function () {
-  let compteur = parseInt(document.querySelector(".number-value").value);
+  // let compteur = parseInt(document.querySelector(".number-value").value);
   compteur = isNaN(compteur) ? 1 : compteur;
   if (compteur > 1) compteur--;
   input.value = compteur;
