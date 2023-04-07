@@ -54,17 +54,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
-app.use("/catalogue", catalogueRouter);
-app.use("/promotion", promotionRouter);
-app.use("/recherche", rechercheRouter);
-app.use("/article", articleRouter);
-app.use("/nouvelleCollection", nouvelleCollectionRouter);
-app.use("/mon-compte", auth, usersRouter);
-app.use("/panier", panierRouter);
-app.use("/inscription", inscriptionRouter);
-app.use("/connexion", connexionRouter);
-app.use("/commander", commanderRouter);
-app.use("/mensionLegale", mensionLegaleRouter);
+app.use('/catalogue', catalogueRouter)
+app.use('/promotion', promotionRouter)
+app.use('/recherche', rechercheRouter)
+app.use('/article', articleRouter)
+app.use('/nouvelleCollection', nouvelleCollectionRouter);
+app.use('/mon-compte', usersRouter);
+app.use('/panier', panierRouter)
+app.use('/inscription', inscriptionRouter)
+app.use('/connexion', connexionRouter)
+app.use('/commander', commanderRouter)
+app.use('/mensionLegale', mensionLegaleRouter)
+app.use('/confirmation-commande', confirmationCommandeRouter)
+
+
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,
