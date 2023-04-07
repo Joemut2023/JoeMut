@@ -9,6 +9,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/customers.csv"))
   .pipe(csv({ separator: "\n", headers: ["titre", "prenom", "nom", "email"] }))
   .on("data", (data) => {
     results.push(data);
+    
   })
   .on("end", () => {
     results.shift();
