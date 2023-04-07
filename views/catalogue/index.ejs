@@ -42,10 +42,11 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <a href="">Académiques Côtes Combinaisons</a>
-              <a href="">Combishorts</a>
-              <a href="">Ensembles Jupes</a>
-              <a href="">Ensembles Pantalons</a>
+              <% categories.forEach(categorie => { %>
+                <% if (categorie.tyc_id===1) { %>
+                    <a href=""><%= categorie.cat_libelle %></a>
+                <% } %>
+              <% }) %>
             </div>
           </div>
         </div>
@@ -85,10 +86,11 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <a href="">Académiques Côtes Combinaisons</a>
-              <a href="">Combishorts</a>
-              <a href="">Ensembles Jupes</a>
-              <a href="">Ensembles Pantalons</a>
+              <% categories.forEach(categorie => { %>
+                 <% if (categorie.tyc_id===2) { %>
+                    <a href=""> <%= categorie.cat_libelle%></a>
+                 <% } %>
+              <% }) %>
             </div>
           </div>
         </div>
@@ -125,10 +127,13 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <a href="">Coiffes et chapeaux</a>
-              <a href="">Visage</a>
-              <a href="">Haut du corps</a>
-              <a href="">Gants</a>
+              <div class="accordion-body">
+              <% categories.forEach(categorie => { %>
+                 <% if (categorie.tyc_id===4) { %>
+                    <a href=""> <%= categorie.cat_libelle%></a>
+                 <% } %>
+              <% }) %>
+            </div>
             </div>
           </div>
         </div>
@@ -168,10 +173,13 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <a href="">Académiques Côtes Combinaisons</a>
-              <a href="">Combishorts</a>
-              <a href="">Ensembles Jupes</a>
-              <a href="">Ensembles Pantalons</a>
+            <div class="accordion-body">
+              <% categories.forEach(categorie => { %>
+                 <% if (categorie.tyc_id===3) { %>
+                    <a href=""> <%= categorie.cat_libelle%></a>
+                 <% } %>
+              <% }) %>
+            </div>
             </div>
           </div>
         </div>
