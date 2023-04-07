@@ -2,7 +2,9 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const path = require("path");
 var results = [];
-
+const db = require("../models");
+const {Client} = require("../models");
+// require("./config/db").sync();
 
 
 fs.createReadStream(path.resolve(__dirname, "../datas/customers.csv"))
@@ -13,8 +15,11 @@ fs.createReadStream(path.resolve(__dirname, "../datas/customers.csv"))
   })
   .on("end", () => {
     results.shift();
-    results.map((element) => {
-      console.log(element.titre.split(";")[0]);
+    results.map(async(element) => {
+          
+
+    
+      console.log(element.titre.split(";"));
     });
     
   });
