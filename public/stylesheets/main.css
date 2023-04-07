@@ -307,12 +307,15 @@
   margin: 5px;
   padding: 10px;
 }
-#headerSticky .title-catalogue > ul > li {
+#headerSticky .title-catalogue ul {
+  line-height: 90%;
+}
+#headerSticky .title-catalogue ul li {
   padding: 7px;
   margin-left: -10px;
   cursor: pointer;
 }
-#headerSticky .title-catalogue > ul > li a {
+#headerSticky .title-catalogue ul li a {
   text-decoration: none;
   color: #232323;
 }
