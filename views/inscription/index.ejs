@@ -14,8 +14,12 @@
       <p class="title">
         Vous avez déjà un compte ? <a href="/connexion/#page-connexion">Connectez - vous !</a>
       </p>
-
-      <form id="form">
+      <%if (typeof error !== 'undefined' && error == true) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= (errorMsg) ? errorMsg : '' %>
+        </div>
+      <% } %>
+      <form id="form" method="post" action="/inscription">
         <div>
           <div class="form-group row">
             <div class="col-md-3 item">
@@ -23,17 +27,16 @@
             </div>
             <div class="col-md-6 radios">
               <div class="radio">
-                <input type="radio" name="civilite" id="homme" value="M" />
+                <input type="radio" name="tit_id" id="homme" value="M" />
                 <label class="" for="homme">M</label>
               </div>
               <div class="radio">
-                <input type="radio" name="civilite" id="femme" value="Mme" />
+                <input type="radio" name="tit_id" id="femme" value="Mme" />
                 <label class="" for="femme">Mme</label>
               </div>
             </div>
             <div class="col-md-3"></div>
           </div>
-
           <div class="form-group row">
             <div class="col-md-3 item">
               <label class="required label" for="prenom"
@@ -41,7 +44,7 @@
               >
             </div>
             <div class="col-md-6 input">
-              <input type="text" name="prenom" id="prenom" required />
+              <input type="text" name="cli_prenom" id="prenom" required />
               <label for=""
                 >Seules les lettres et le point (.), suivi d'un espace, sont
                 autorisés.</label
@@ -55,7 +58,7 @@
               <label class="required label" for="nom"><span>*</span>Nom</label>
             </div>
             <div class="col-md-6 input">
-              <input type="text" name="nom" id="nom" required />
+              <input type="text" name="cli_nom" id="nom" required />
               <label for=""
                 >Seules les lettres et le point (.), suivi d'un espace, sont
                 autorisés.</label
@@ -70,7 +73,7 @@
               <label class="required label" for="email"><span>*</span>E-mail</label>
             </div>
             <div class="col-md-6 input">
-              <input type="email" name="email" id="email" required />
+              <input type="email" name="cli_mail" id="email" required />
             
             </div>
             <div></div>
@@ -85,7 +88,7 @@
             <div class="col-md-6 btn-hide">
               <input
                 type="password"
-                name="password"
+                name="cli_pwd"
                 id="password"
                 class="input-password"
                 required
@@ -140,7 +143,7 @@
             </div>
             <div class="col-md-6 input check input-check">
               <div class="check-item checkbox-example">
-                <input type="checkbox" id="check-box" name="check-box" "/>
+                <input type="checkbox" id="check-box" name="check-box"/>
                 <label for="scales" class="text checkmark"
                   >J'accepte les conditions générales et la politique de
                   confidentialité

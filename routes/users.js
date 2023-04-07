@@ -32,5 +32,9 @@ router.get("/adresses", function (req, res, next) {
 router.get("/alert", function (req, res, next) {
   res.render("users/alert");
 });
+router.get('/logout',(req,res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 module.exports = router;
