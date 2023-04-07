@@ -31,6 +31,20 @@ var navlink_one = document.querySelector(".btn-tab-one");
 var navlink_two = document.querySelector(".btn-tab-two");
 var password = document.getElementById("password");
 var btn = document.getElementById("btn-action");
+
+//animation code promoif-codepromo
+var formPromo = document.querySelector(".form-promo");
+var closeForme = document.querySelector("#close-form");
+var textPromo = document.querySelector(".text-promo");
+var ifCodePromo = document.querySelector("#if-codepromo");
+ifCodePromo.addEventListener("click", function () {
+  formPromo.style.display = "block";
+  textPromo.style.display = "none";
+});
+closeForme.addEventListener("click", function () {
+  formPromo.style.display = "none";
+  textPromo.style.display = "block";
+});
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) {
   nextDiv.style.display = "block";
   currentDiv.style.display = "none";

@@ -2,29 +2,23 @@
 const infoForm = document.querySelector('#info-form')
 const adresseForm = document.querySelector('#adresse-form')
 const livraisonForm = document.querySelector('#livraison-form')
-
 const infoContent = document.querySelector('#info-content')
 const adresseDiv = document.querySelector('#divAdress')
 const livraisonDiv = document.querySelector('#divLivraison')
 const finalisationDiv = document.querySelector('#divFinalisation')
-
 const adresseContainer = document.querySelector('#adresse')
 const livraisonContainer = document.querySelector('#livraison')
 const finalisationContainer = document.querySelector('#finalisation')
-
 const btnModiferInfo = document.querySelector('#info-mod-btn')
 const btnModiferAdresse = document.querySelector('#adresse-mod-btn')
 const btnModiferlivraison = document.querySelector('#livraison-mod-btn')
 const btnModiferfinalisation = document.querySelector('#finalisation-mod-btn')
-
 const checkSuccess = document.querySelector('.check-success')
 const checkAdresse = document.querySelector('.check-adresse')
 const checkLivraison = document.querySelector('.check-livraison')
-
 const cursorAdresse = document.querySelector('.adresse-cursor')
 const cursorfinalisation = document.querySelector('.finalisation-cursor')
 const cursorLivraison = document.querySelector('.livraison-cursor')
-
 const borderNumber = document.querySelector('.border-number')
 const adresseBg = document.querySelector('.adresse-bg')
 const livraisonBg = document.querySelector('.livraison-bg')
@@ -35,6 +29,22 @@ const navlink_one = document.querySelector(".btn-tab-one");
 const navlink_two = document.querySelector(".btn-tab-two");
 const password = document.getElementById("password");
 const btn = document.getElementById("btn-action");
+
+//animation code promoif-codepromo
+const formPromo = document.querySelector(".form-promo");
+const closeForme = document.querySelector("#close-form");
+const textPromo = document.querySelector(".text-promo");
+const ifCodePromo = document.querySelector("#if-codepromo");
+
+ifCodePromo.addEventListener("click", () => {
+    formPromo.style.display = "block"
+    textPromo.style.display = "none"
+})
+
+closeForme.addEventListener("click", () => {
+    formPromo.style.display = "none"
+    textPromo.style.display = "block"
+})
 
 
 const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) => {
