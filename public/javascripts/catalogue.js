@@ -56,4 +56,4 @@ item_select.forEach(function (element) {
     choix.textContent = element.textContent;
   });
 });
-console.log("sele selemani homme de nkoyi");
+
