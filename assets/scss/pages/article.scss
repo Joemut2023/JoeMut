@@ -60,13 +60,37 @@
           }
         }
 
-        .small-images {
-          margin-bottom: 30px;
-          width: 100%;
-          .carousel-item img {
-            max-width: 100px;
-            height: auto;
-            object-fit: contain;
+        #carouselImages {
+          .carousel-inner {
+            .carousel-item {
+              width: 150px;
+              height: 250px;
+
+              img {
+                width: 100%;
+                @include breakpoint(mobil) {
+                  width: 70%;
+                }
+                @include breakpoint(tablette) {
+                  width: 90%;
+                }
+              }
+            }
+          }
+          .carousel-control-prev, .carousel-control-next{
+            margin-left: -30px;
+            margin-top: -100px;
+            @include breakpoint(mobil) {
+              margin-top:-140px;
+            }
+            @include breakpoint(tablette) {
+               margin-top:-120px;
+            }
+          }
+          .icon,
+          .icon {
+            font-size: 16px;
+            color: $color-primary;
           }
         }
       }

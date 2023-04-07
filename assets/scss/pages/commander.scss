@@ -476,14 +476,6 @@
                     margin-left: 3%;
                 }
             }
-            // #divFinalisation,
-            // #divLivraison,
-            // #divAdress,
-            // #finalisation,
-            // #livraison,
-            // #adresse {
-            //     cursor: not-allowed
-            // }
         }
     }
     .bloc-2 {
@@ -535,13 +527,42 @@
                 color: $color-black;
             }
         }
-        .code-promo {
-            text-align: center;
-            a {
-                text-decoration: none;
-                text-align: center;
-                color: $color-primary;
-                cursor: pointer;
+        .codepromo-content {
+            .text-promo {
+                p {
+                    text-decoration: none;
+                    text-align: center;
+                    color: $color-primary;
+                    cursor: pointer;
+                    padding-top: 10px;
+                    // transition: all 1s ease-out;
+                    // opacity: 0;
+                }
+            }
+            .form-promo {
+                display: none;
+                .form-codepromo {
+                    margin-top: 10px;
+                    width: 80%;
+                    margin: auto;
+                    input,
+                    span {
+                        border-radius: 0px;
+                        padding: 10px;
+                    }
+                    .btn-add span {
+                        background-color: $color-primary;
+                        color: $color-white;
+                        cursor: pointer;
+                    }
+                }
+                .text {
+                    p {
+                        text-align: center;
+                        color: $color-primary;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
