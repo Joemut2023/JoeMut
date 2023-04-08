@@ -13,8 +13,8 @@ fs.createReadStream(path.resolve(__dirname, "../datas/produit.csv"))
     results.shift();
     results.map(async (element) => {
         let produit = element.produit.split(';')
-        await Produit.create({
-            pro_id:parseInt(produit[0]),
+        await Produit.create({/* 
+            pro_id:parseInt(produit[0]), */
             cat_id:parseInt(produit[1]),
             pro_ref:produit[2],
             pro_libelle:produit[3],
