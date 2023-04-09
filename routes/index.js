@@ -9,8 +9,6 @@ router.get('/', async (req, res, next)=> {
     order: [['pro_id', 'DESC'],],
     include:{model:Media,attributes:['med_id','med_ressource']}
   });
-  console.log('log : ',produits[0].pro_id,produits[0].Media[0].med_ressource)
-  console.table(produits[0].Media);
   res.render('default/index',{
     produits:produits
   });
