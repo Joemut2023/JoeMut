@@ -10,7 +10,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/media.csv"))
     results.push(data);
   })
   .on("end", () => {
-     results.shift();
+     //results.shift();
      results.map(async(media)=>{
         await Media.create({
           pro_id: parseInt(media.titre.split(";")[1]),

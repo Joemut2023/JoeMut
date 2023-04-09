@@ -49,6 +49,12 @@
           .item-card {
             .item-card-img {
               margin-bottom: 1.563rem;
+              height: 250px;
+              overflow: hidden;
+              img{
+                height: 100%!important;
+                object-fit: cover;
+              }
             }
             .item-card-text {
               display: flex;

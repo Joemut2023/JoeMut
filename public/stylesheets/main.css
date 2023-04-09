@@ -672,6 +672,12 @@
 }
 #pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-img {
   margin-bottom: 1.563rem;
+  height: 250px;
+  overflow: hidden;
+}
+#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-img img {
+  height: 100% !important;
+  object-fit: cover;
 }
 #pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text {
   display: flex;

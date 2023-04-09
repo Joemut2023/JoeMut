@@ -18,7 +18,7 @@ const handler = (entries) => {
 const observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
 observer.observe(topBar);
-userIcone.addEventListener(
+/* userIcone.addEventListener(
   "mouseenter",
   (event) => {
     dropDown.style.display = "block";
@@ -27,8 +27,8 @@ userIcone.addEventListener(
     dropDown.style.transformOrigin = "top";
   }
   // highlight the mouseenter target
-);
-dropDown.addEventListener(
+); */
+/* dropDown.addEventListener(
   "mouseout",
   (event) => {
     // dropDown.style.opacity = "0";
@@ -36,4 +36,4 @@ dropDown.addEventListener(
     dropDown.style.display = "none";
   }
   // highlight the mouseenter target
-);
+); */

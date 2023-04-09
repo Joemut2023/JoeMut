@@ -9,46 +9,27 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <div class="col-md-3 item-container">
-                <div class="item-card">
-                  <div class="item-card-img">
-                    <img src="/images/enfant1.jpg" class="img-fluid" />
-                  </div>
-                  <div class="item-card-text">
-                    <div class="title">
-                      MEJ2 - Ensemble jupe avec brassière noire
+            <% produits.forEach((produit,index) => { %>
+              <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                <div class="col-md-3 item-container">
+                  <div class="item-card">
+                    <div class="item-card-img">
+                      <img src="/images/produits/<%= produit.Media[0].med_ressource %>" class="img-fluid" />
                     </div>
-                    <div class="ref">Ref: MEJ2</div>
-                    <div class="price-block">
-                      <div class="price">9,50 €</div>
-                      <span class="btn-add button-ajouter">AJouter</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="col-md-3 item-container">
-                <div class="item-card">
-                  <div class="item-card-img">
-                    <a href="#">
-                      <img src="/images/enfant1.jpg" class="img-fluid" />
-                    </a>
-                  </div>
-                  <div class="item-card-text">
-                    <div class="title">
-                      MEJ2 - Ensemble jupe avec brassière noire
-                    </div>
-                    <div class="ref">Ref: MEJ2</div>
-                    <div class="price-block">
-                      <div class="price">9,50 €</div>
-                      <span class="btn-add button-ajouter">AJouter</span>
+                    <div class="item-card-text">
+                      <div class="title">
+                        <%= produit.pro_libelle %>
+                      </div>
+                      <div class="ref"><%= produit.pro_ref %></div>
+                      <div class="price-block">
+                        <div class="price">9,50 €</div>
+                        <span class="btn-add button-ajouter">AJouter</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% }) %>
           </div>
           <a
             class="carousel-control-prev bg-transparent w-aut"
@@ -156,37 +137,37 @@
         </div>
       </div>
       <div class="cta-item">
-        <img src="/images/sommaire-1.jpg" alt="" class="cta-item-img" />
+        <img src="/images/sommaire-2.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
-          <h2 class="cta-item-content-title">QUI SOMMES NOUS ?</h2>
+          <h2 class="cta-item-content-title">LA NOUVELLE COLLECTION</h2>
           <a href="" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
-        <img src="/images/sommaire-1.jpg" alt="" class="cta-item-img" />
+        <img src="/images/sommaire-3.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
-          <h2 class="cta-item-content-title">QUI SOMMES NOUS ?</h2>
+          <h2 class="cta-item-content-title">CRÉATIONS</h2>
           <a href="" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
-        <img src="/images/sommaire-1.jpg" alt="" class="cta-item-img" />
+        <img src="/images/sommaire4.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
-          <h2 class="cta-item-content-title">QUI SOMMES NOUS ?</h2>
+          <h2 class="cta-item-content-title">ACCESSOIRES</h2>
           <a href="" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
-        <img src="/images/sommaire-1.jpg" alt="" class="cta-item-img" />
+        <img src="/images/sommaire-5.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
-          <h2 class="cta-item-content-title">QUI SOMMES NOUS ?</h2>
+          <h2 class="cta-item-content-title">SUR YOUTUBE</h2>
           <a href="" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
-        <img src="/images/sommaire-1.jpg" alt="" class="cta-item-img" />
+        <img src="/images/sommaire-6.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
-          <h2 class="cta-item-content-title">QUI SOMMES NOUS ?</h2>
+          <h2 class="cta-item-content-title">PROMOTIONS</h2>
           <a href="" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
