@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       tar_ttc: DataTypes.DOUBLE,
       tar_debut: DataTypes.DATEONLY,
       tar_fin: DataTypes.DATEONLY,
+      tar_statut : DataTypes.INTEGER
     },
     {
       sequelize,
