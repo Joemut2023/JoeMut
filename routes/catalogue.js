@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 const { Categorie,Type_categorie} = require("../models");
 
-/* GET home page. */
+/**
+ * @Route renvois tout
+ */
 router.get('/',async function(req, res, next) {
   try {
     const typee_categories = await Type_categorie.findAll()
@@ -21,6 +23,9 @@ router.get('/',async function(req, res, next) {
   }
   
 });
+/**
+ * @Route renvois la listes des produits pour une catégorie
+ */
 router.get('/:id',async (req,res)=>{
   const id = req.params.id;
   try {
@@ -42,7 +47,9 @@ router.get('/:id',async (req,res)=>{
   }
   
 })
-
+/**
+ * @Route renvois la listes des produits pour un Type catégorie
+ */
 router.get('/type/:id',async (req,res)=>{
   const id = req.params.id;
    try {
