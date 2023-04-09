@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Tarif.hasMany(models.Panier_detail,{
-        foreignKey:'tar_id'
+      Tarif.hasMany(models.Panier_detail, {
+        foreignKey: "tar_id",
       });
-      Tarif.belongsTo(models.Produit,{
-        foreignKey: "pro_id"
-      })
+      Tarif.belongsTo(models.Produit, {
+        foreignKey: "pro_id",
+      });
     }
   }
   Tarif.init(
@@ -25,9 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       pro_id: DataTypes.INTEGER,
+      tar_ht: DataTypes.DOUBLE,
+      tar_ttc: DataTypes.DOUBLE,
       tar_debut: DataTypes.DATEONLY,
       tar_fin: DataTypes.DATEONLY,
-      tar_montant: DataTypes.DECIMAL,
     },
     {
       sequelize,
