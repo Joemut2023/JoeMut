@@ -1,7 +1,8 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 
-router.get('/', async(req, res) => {
-    res.render("promotion/index");
-})
+router.get("/", async (req, res) => {
+  res.locals.titre = "promotion";
+  res.render("promotion/index");
+});
 module.exports = router;
