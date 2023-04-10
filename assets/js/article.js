@@ -7,6 +7,8 @@ const btn_down = document.querySelector(".btn-down");
 
 const image_grand = document.querySelector(".img-grand");
 const image_small = document.querySelectorAll(".img-small");
+const default_img = document.querySelector(".default_img");
+const small_img_carousel = document.querySelector(".small_carousel");
 
 navlink_one.addEventListener("click", function () {
   navlink_one.classList.add("button-add");
@@ -35,6 +37,12 @@ btn_down.addEventListener("click", function () {
 image_small.forEach((element) => {
   element.addEventListener("click", function () {
     image_grand.src = element.src;
+  });
+});
+
+small_img_carousel.forEach((element) => {
+  element.addEventListener("click", function () {
+    default_img.src = element.src;
   });
 });
 

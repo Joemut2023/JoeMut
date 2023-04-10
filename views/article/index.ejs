@@ -1,6 +1,6 @@
 <div id="page-article">
   <div class="title-article">
-    <span><a href="">Acceuil</a></span>
+    <span><a href="/">Acceuil</a><%=  %></span>
     <span>/ <%= article.pro_libelle %></span>
   </div>
 
@@ -8,7 +8,7 @@
     <div class="left-content col-md-6">
       <div class="image-content">
         <div
-          class="image"
+          class="image default_img"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
@@ -27,7 +27,7 @@
             <div class="carousel-item active">
               <img
                 src="/images/produits/<%= element.med_ressource %>"
-                class="img-fluid"
+                class="img-fluid small_carousel"
               />
             </div>
             <% }) %>
@@ -192,7 +192,7 @@
               aria-labelledby="home-tab"
               tabindex="0"
             >
-              <%= article.pro_description %>
+              <%= article.pro_details %>
             </div>
             <div
               class="tab-pane fade content-two"
@@ -201,7 +201,7 @@
               aria-labelledby="profile-tab"
               tabindex="0"
             >
-              <%= article.pro_details %>
+              <%= article.pro_description %>
             </div>
           </div>
         </div>
@@ -211,8 +211,28 @@
 
   <div class="others-like">
     <h5>VOUS AIMEREZ AUSSI</h5>
-    <div class="items">
-      <div class="item">
+    <div class="items row">
+      <% produits_similaires.forEach(element => { %>
+       <div class="item col-md-4">
+        <div class="image">
+          <a href="#"
+            ><img src="/images/produits/<%= element.Media[0].med_ressource %>" class="img-fluid" alt=""
+          /></a>
+        </div>
+        <div class="details">
+          <p class="desc">
+            <a href="#"><span><%= element.pro_libelle %></span></a>
+          </p>
+          <p class="ref">Ref: <%= element.pro_ref %></p>
+          <div>
+            <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
+            <p class="bar">|</p>
+            <p class="price btn">Ajouter</p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <!-- <div class="item">
         <div class="image">
           <a href="#"
             ><img src="/images/enfant2.jpg" class="img-fluid" alt=""
@@ -229,7 +249,7 @@
             <p class="price btn">Ajouter</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 

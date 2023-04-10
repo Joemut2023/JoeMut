@@ -63,11 +63,12 @@
         #carouselImages {
           .carousel-inner {
             .carousel-item {
-              width: 150px;
+              width: 20%;
               height: 250px;
 
               img {
                 width: 100%;
+                cursor: pointer;
                 @include breakpoint(mobil) {
                   width: 70%;
                 }
@@ -307,6 +308,7 @@
   .others-like {
     h5 {
       font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .items {
@@ -324,7 +326,7 @@
 
           img {
             max-width: 250px;
-            height: auto;
+            height: 200px;
           }
         }
         .details {
