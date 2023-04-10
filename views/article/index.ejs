@@ -23,19 +23,16 @@
 
         <div id="carouselImages" class="carousel slide">
           <div class="carousel-inner">
+            <% article.Media.forEach(element => { %>
             <div class="carousel-item active">
-              <!-- <img src="..." class="d-block w-100" alt="..." /> -->
-              <img src="/images/enfant1.jpg" class="img-fluid" />
+              <img
+                src="/images/produits/<%= element.med_ressource %>"
+                class="img-fluid"
+              />
             </div>
-            <div class="carousel-item">
-              <!-- <img src="..." class="d-block w-100" alt="..." /> -->
-              <img src="/images/enfant2.jpg" class="img-fluid" />
-            </div>
-            <div class="carousel-item">
-              <!-- <img src="..." class="d-block w-100" alt="..." /> -->
-              <img src="/images/enfant1.jpg" class="img-fluid" />
-            </div>
+            <% }) %>
           </div>
+          <% if (article.Media.length > 1) { %>
           <button
             class="carousel-control-prev"
             type="button"
@@ -43,7 +40,6 @@
             data-bs-slide="prev"
           >
             <span class="icon"><i class="fa-solid fa-chevron-left"></i></span>
-            <!-- <span class="visually-hidden">Previous</span> -->
           </button>
           <button
             class="carousel-control-next"
@@ -52,8 +48,8 @@
             data-bs-slide="next"
           >
             <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
-            <!-- <span class="visually-hidden">Next</span> -->
           </button>
+          <% } %>
         </div>
       </div>
 
@@ -84,20 +80,15 @@
               </div>
 
               <div class="small-images">
+                <% article.Media.forEach(element => { %>
                 <div class="image-card">
                   <img
-                    src="/images/enfant4.jpg"
+                    src="/images/produits/<%= element.med_ressource %>"
                     class="img-fluid img-small"
                     alt=""
                   />
                 </div>
-                <div class="image-card">
-                  <img
-                    src="/images/enfant5.jpg"
-                    class="img-fluid img-small"
-                    alt=""
-                  />
-                </div>
+                <% }) %>
               </div>
             </div>
           </div>

@@ -1,9 +1,9 @@
 const navlink_one = document.querySelector(".btn-tab-one");
 const navlink_two = document.querySelector(".btn-tab-two");
+const input = document.querySelector(".number-value");
 
 const btn_up = document.querySelector(".btn-up");
 const btn_down = document.querySelector(".btn-down");
-const input = document.querySelector(".number-value");
 
 const image_grand = document.querySelector(".img-grand");
 const image_small = document.querySelectorAll(".img-small");
@@ -19,14 +19,14 @@ navlink_two.addEventListener("click", function () {
 });
 
 btn_up.addEventListener("click", function () {
- 
+  let compteur = document.querySelector(".number-value").value
   compteur = isNaN(compteur) ? 1 : compteur;
   compteur++;
   input.value = compteur;
 });
 
 btn_down.addEventListener("click", function () {
-  // let compteur = parseInt(document.querySelector(".number-value").value);
+  let compteur = parseInt(document.querySelector(".number-value").value);
   compteur = isNaN(compteur) ? 1 : compteur;
   if (compteur > 1) compteur--;
   input.value = compteur;

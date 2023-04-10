@@ -2,9 +2,9 @@
 
 var navlink_one = document.querySelector(".btn-tab-one");
 var navlink_two = document.querySelector(".btn-tab-two");
+var input = document.querySelector(".number-value");
 var btn_up = document.querySelector(".btn-up");
 var btn_down = document.querySelector(".btn-down");
-var input = document.querySelector(".number-value");
 var image_grand = document.querySelector(".img-grand");
 var image_small = document.querySelectorAll(".img-small");
 navlink_one.addEventListener("click", function () {
@@ -16,12 +16,13 @@ navlink_two.addEventListener("click", function () {
   navlink_one.classList.remove("button-add");
 });
 btn_up.addEventListener("click", function () {
+  var compteur = document.querySelector(".number-value").value;
   compteur = isNaN(compteur) ? 1 : compteur;
   compteur++;
   input.value = compteur;
 });
 btn_down.addEventListener("click", function () {
-  // let compteur = parseInt(document.querySelector(".number-value").value);
+  var compteur = parseInt(document.querySelector(".number-value").value);
   compteur = isNaN(compteur) ? 1 : compteur;
   if (compteur > 1) compteur--;
   input.value = compteur;
