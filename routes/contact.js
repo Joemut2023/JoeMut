@@ -8,6 +8,7 @@ router.get("/", function(req, res, next) {
 
 router.post("/", function(req, res, next) {
     const { cont_service, cont_email, cont_file, cont_msg } = req.body;
+  
 
     try {
         const transporter = nodemailer.createTransport({
@@ -31,6 +32,7 @@ router.post("/", function(req, res, next) {
                 console.log("Email sent: " + info.response);
                 res.status(200).render("default/contact", {
                     messages: "Votre message a été envoyé avec succès!",
+                    info:true
                 });
             })
             .catch(function(err) {
