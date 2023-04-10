@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       tai_libelle: DataTypes.STRING,
-      tai_order: DataTypes.INTEGER,
+      tai_ordre: DataTypes.INTEGER,
     },
     {
       sequelize,

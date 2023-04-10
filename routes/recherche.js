@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
     order: [["pro_id", "DESC"]],
     include: [
       { model: Media, attributes: ["med_id", "med_ressource"] },
-      { model: Tarif, attributes: ["tar_ht"] },
+      { model: Tarif, attributes: ["tar_ttc"] },
     ],
     where: { pro_libelle: { [Op.substring]: search } },
   });
