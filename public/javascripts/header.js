@@ -19,3 +19,6 @@ var handler = function handler(entries) {
 var observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
 observer.observe(topBar);
+document.querySelector('#kart-link-handler-btn').addEventListener('click', function (e) {
+  Kart.kartRenderItems();
+});

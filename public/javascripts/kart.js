@@ -15,6 +15,20 @@ var Kart = /*#__PURE__*/function () {
     _classCallCheck(this, Kart);
   }
   _createClass(Kart, null, [{
+    key: "getParsedBasket",
+    value:
+    /**
+     * 
+     * @returns Array
+     */
+    function getParsedBasket() {
+      return JSON.parse(localStorage.getItem('storedItems'));
+    }
+    /**
+     * 
+     * @param {Array} item 
+     */
+  }, {
     key: "addItem",
     value: function addItem(item) {
       var storedITems = JSON.parse(localStorage.getItem('storedItems'));
@@ -46,17 +60,39 @@ var Kart = /*#__PURE__*/function () {
         localStorage.setItem('storedItems', JSON.stringify(Kart.items));
       }
       Kart.kartRenderItems();
+      Kart.RenderModal(itemForPanier);
     }
+    /**
+     * Supprime un Item du panier
+     * @param {Number} itemId 
+     */
+  }, {
+    key: "removeItem",
+    value: function removeItem(itemId) {}
+    /**
+     * Affiche les items du panier
+     */
   }, {
     key: "kartRenderItems",
     value: function kartRenderItems() {
       var kartItemsElement = document.querySelector('.kart-items');
-      var storedITems = JSON.parse(localStorage.getItem('storedItems'));
+      var storedITems = Kart.getParsedBasket();
       var storedItemsHtml = "";
       storedITems.map(function (produit) {
         storedItemsHtml += "\n            <div class=\"kart-item\">\n                <div class=\"kart-img\">\n                    <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                </div>\n                <div class=\"kart-content\">\n                    <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                    <div class=\"actions\">\n                        <span class=\"price\">").concat(produit.pad_ttc, "</span>\n                        <button class=\"btn-close\"></button>\n                    </div>\n                </div>\n            </div>\n            ");
       });
       kartItemsElement.innerHTML = storedItemsHtml;
+    }
+    /**
+     * 
+     * @param {*} item 
+     */
+  }, {
+    key: "RenderModal",
+    value: function RenderModal(item) {
+      var storedITems = Kart.getParsedBasket();
+      var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">7,00 \u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(item.pad_qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(storedITems.length, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+      document.querySelector('#myModal .body-modal').innerHTML = html;
     }
   }]);
   return Kart;

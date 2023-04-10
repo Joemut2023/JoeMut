@@ -22,7 +22,6 @@ btn_add.forEach(function (element) {
           return axios.get("http://localhost:3000/panier/".concat(itemId));
         case 3:
           produit = _context.sent;
-          //console.log(produit.data);
           Kart.addItem(produit.data);
           myModal.style.display = "flex";
         case 6:

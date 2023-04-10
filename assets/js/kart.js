@@ -4,6 +4,17 @@
 class Kart {
     static items = [];
 
+    /**
+     * 
+     * @returns Array
+     */
+    static getParsedBasket(){
+        return JSON.parse(localStorage.getItem('storedItems'));
+    }
+    /**
+     * 
+     * @param {Array} item 
+     */
     static addItem(item){
         let storedITems = JSON.parse(localStorage.getItem('storedItems'));
         let itemForPanier = {
@@ -30,10 +41,21 @@ class Kart {
             localStorage.setItem('storedItems',JSON.stringify(Kart.items));
         }
         Kart.kartRenderItems();
+        Kart.RenderModal(itemForPanier);
     }
+    /**
+     * Supprime un Item du panier
+     * @param {Number} itemId 
+     */
+    static removeItem(itemId){
+
+    }
+    /**
+     * Affiche les items du panier
+     */
     static kartRenderItems(){
         let kartItemsElement = document.querySelector('.kart-items');
-        let storedITems = JSON.parse(localStorage.getItem('storedItems'));
+        let storedITems = Kart.getParsedBasket();
         let storedItemsHtml = ``
         storedITems.map(produit=>{
             storedItemsHtml += `
@@ -52,5 +74,45 @@ class Kart {
             `  
         })
         kartItemsElement.innerHTML = storedItemsHtml;
+    }
+    /**
+     * 
+     * @param {*} item 
+     */
+    static RenderModal(item){
+        let storedITems = Kart.getParsedBasket();
+        let html = /*html*/`
+        <div class="body-modal-detail">
+            <img src="/images/produits/${item.media}" alt="" srcset="" />
+            <div class="info-product">
+            <h4>${item.pro_libelle}</h4>
+            <div class="product-montant">7,00 €</div>
+            <div class="product-quantity">Quantité : <span> ${item.pad_qte} </span></div>
+            </div>
+        </div>
+        <div class="modal-body-commande">
+            <h5>Il y a ${storedITems.length} articles dans votre panier.</h5>
+            <div class="sous-total">
+                <span class="sous-total-titre">Sous-total :</span>
+                <span class="sous-total-montant">87,50 €</span>
+            </div>
+            <div class="transport">
+                <span class="transport-titre">transport:</span>
+                <span class="transport-montant">87,50 €</span>
+            </div>
+            <div class="total">
+                <span class="total-titre">total:</span>
+                <span class="total-montant">87,50 €</span>
+            </div>
+            <div class="btn-achat">
+                <button class="continuer">Continuer mes achats</button>
+                <a href="/panier/#page-panier" class="finaliser">
+                    <i class="fa fa-check icon-succes"></i>
+                    <span>Finaliser le devis</span>
+                </a>
+            </div>
+        </div>
+        `
+        document.querySelector('#myModal .body-modal').innerHTML = html;
     }
 }

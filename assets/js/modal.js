@@ -11,7 +11,6 @@ btn_add.forEach((element) => {
   element.addEventListener("click", async ()=> {
     let itemId = element.dataset.id;
     let produit = await axios.get(`http://localhost:3000/panier/${itemId}`);
-    //console.log(produit.data);
     Kart.addItem(produit.data)
     myModal.style.display = "flex";
   });
