@@ -2845,7 +2845,7 @@
   padding: 5px 15px;
   outline: none;
 }
-#page-connexion .content .register-form form .form-group .btn-hide .btn-action {
+#page-connexion .content .register-form form .form-group .btn-hide .show-password {
   padding: 5px 15px;
   border: 1px solid gray;
   color: white;
