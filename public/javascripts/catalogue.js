@@ -8,10 +8,6 @@ var btn_plus_acc = document.getElementById("plus-acc");
 var btn_minus_acc = document.getElementById("minus-acc");
 var btn_plus_grand = document.getElementById("plus-grand");
 var btn_minus_grand = document.getElementById("minus-grand");
-var input_choix = document.getElementById("input");
-var choix = document.querySelector("#choix");
-var content = document.getElementById("content");
-var item_select = document.querySelectorAll(".item-choice");
 btn_plus_petit.addEventListener("click", function () {
   btn_minus_petit.style.display = "block";
   btn_plus_petit.style.display = "none";
@@ -46,9 +42,12 @@ btn_minus_grand.addEventListener("click", function () {
 });
 
 //SELECT
-
+var input_choix = document.getElementById("input");
+var choix = document.querySelector("#choix");
+var content = document.getElementById("content");
+var item_select = document.querySelectorAll(".item-choice");
 input_choix.addEventListener("click", function () {
-  content.classList.toggle(".content-hide");
+  content.classList.toggle("content-hide");
   content.classList.add("content");
 });
 item_select.forEach(function (element) {
