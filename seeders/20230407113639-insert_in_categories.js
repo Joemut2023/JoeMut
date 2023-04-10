@@ -1,6 +1,9 @@
 "use strict";
 
-const { COSTUMES, ACCESSOIRES_LIST } = require("../helpers/categories");
+const {
+  COSTUMES_POUR_PETITS,COSTUMES_POUR_MOYENS,COSTUMES_POUR_GRANDS,
+  ACCESSOIRES_LIST,
+} = require("../helpers/categories");
 const {
   PETITS,
   MOYENS,
@@ -16,14 +19,14 @@ module.exports = {
     const list_for_grands = [];
     const list_for_accessoires = [];
 
-    COSTUMES.map((costume) => {
+    COSTUMES_POUR_PETITS.map((costume) => {
       list_for_petits.push({ tyc_id: PETITS, cat_libelle: costume });
     });
 
-    COSTUMES.map((costume) => {
+    COSTUMES_POUR_MOYENS.map((costume) => {
       list_for_moyens.push({ tyc_id: MOYENS, cat_libelle: costume });
     });
-    COSTUMES.map((costume) => {
+    COSTUMES_POUR_GRANDS.map((costume) => {
       list_for_grands.push({ tyc_id: GRANDS, cat_libelle: costume });
     });
     ACCESSOIRES_LIST.map((accessoire) => {
@@ -37,12 +40,6 @@ module.exports = {
     await queryInterface.bulkInsert("Categories", list_for_grands);
     await queryInterface.bulkInsert("Categories", list_for_accessoires);
 
-    await queryInterface.bulkInsert("Categories", [
-      {
-        tyc_id: GRANDS,
-        cat_libelle: "Redingotes",
-      },
-    ]);
   },
 
   async down(queryInterface, Sequelize) {
