@@ -18,20 +18,20 @@ var Kart = /*#__PURE__*/function () {
     key: "getParsedBasket",
     value:
     /**
-     * 
+     *
      * @returns Array
      */
     function getParsedBasket() {
-      return JSON.parse(localStorage.getItem('storedItems'));
+      return JSON.parse(localStorage.getItem("storedItems"));
     }
     /**
-     * 
-     * @param {Array} item 
+     *
+     * @param {Array} item
      */
   }, {
     key: "addItem",
     value: function addItem(item) {
-      var storedITems = JSON.parse(localStorage.getItem('storedItems'));
+      var storedITems = JSON.parse(localStorage.getItem("storedItems"));
       var itemForPanier = {
         pro_id: item.pro_id,
         pro_libelle: item.pro_libelle,
@@ -54,17 +54,17 @@ var Kart = /*#__PURE__*/function () {
         } else {
           storedITems.push(itemForPanier);
         }
-        localStorage.setItem('storedItems', JSON.stringify(storedITems));
+        localStorage.setItem("storedItems", JSON.stringify(storedITems));
       } else {
         Kart.items.push(itemForPanier);
-        localStorage.setItem('storedItems', JSON.stringify(Kart.items));
+        localStorage.setItem("storedItems", JSON.stringify(Kart.items));
       }
       Kart.kartRenderItems();
       Kart.RenderModal(itemForPanier);
     }
     /**
      * Supprime un Item du panier
-     * @param {Number} itemId 
+     * @param {Number} itemId
      */
   }, {
     key: "removeItem",
@@ -75,24 +75,30 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "kartRenderItems",
     value: function kartRenderItems() {
-      var kartItemsElement = document.querySelector('.kart-items');
+      var kartItemsElement = document.querySelector(".kart-items");
       var storedITems = Kart.getParsedBasket();
       var storedItemsHtml = "";
+      var kartProductQte = 0;
+      var kartProductPrice = 0;
       storedITems.map(function (produit) {
-        storedItemsHtml += "\n            <div class=\"kart-item\">\n                <div class=\"kart-img\">\n                    <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                </div>\n                <div class=\"kart-content\">\n                    <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                    <div class=\"actions\">\n                        <span class=\"price\">").concat(produit.pad_ttc, "</span>\n                        <button class=\"btn-close\"></button>\n                    </div>\n                </div>\n            </div>\n            ");
+        kartProductQte = produit.pad_qte + kartProductQte;
+        kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
+        storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc, " \u20AC</span>\n                            <button class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
       });
       kartItemsElement.innerHTML = storedItemsHtml;
+      var kartInfosData = "\n    <div class=\"kart-article\">\n    <div class=\"nbr-article\">\n      <span>".concat(kartProductQte, " articles</span>\n    </div>\n    <div class=\"price\">\n      <span>").concat(kartProductPrice, " \u20AC</span>\n    </div>\n  </div>\n\n  <div class=\"kart-livraison\">\n    <div class=\"total\">\n      <span>Livraison</span>\n    </div>\n    <div class=\"price-total\">\n      <span>15$</span>\n    </div>\n  </div>\n\n  <div class=\"kart-total\">\n    <div class=\"total\">\n      <span>Total</span>\n    </div>\n    <div class=\"price-total\">\n      <span>35$</span>\n    </div>\n  </div>\n    ");
+      document.querySelector("#kart-infos").innerHTML = kartInfosData;
     }
     /**
-     * 
-     * @param {*} item 
+     *
+     * @param {*} item
      */
   }, {
     key: "RenderModal",
     value: function RenderModal(item) {
       var storedITems = Kart.getParsedBasket();
       var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">7,00 \u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(item.pad_qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(storedITems.length, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
-      document.querySelector('#myModal .body-modal').innerHTML = html;
+      document.querySelector("#myModal .body-modal").innerHTML = html;
     }
   }]);
   return Kart;
