@@ -24,16 +24,11 @@
             </div>
         </div>
         <div class="page-contact-contactez-nous">
-            <% if (info) { %>
-                <div class="alert alert-success">
-                    <%= messages %>
-                </div>
-                <% } else { %>
-                    <div class="alert alert-danger">
-                        <%= errorMsg %>
-                    </div>
-                    <% } %>
-
+             <%if (typeof error !== 'undefined' && error == true) { %>
+        <div class="alert alert-danger mssg" role="alert">
+          <%= (errorMsg) ? errorMsg : '' %>
+        </div>
+      <% } %>
             <h5>CONTACTEZ-NOUS</h5>
             <form id="form" method="post" action="/contact">
                 <div class="form-content">
@@ -43,13 +38,13 @@
                         <label for="">Document joint</label><label for="">Message</label>
                     </div>
                     <div class="form-input">
-                        <input type="text" placeholder="Service client" name="cont_service" id="" /><br />
-                        <input type="email" placeholder="votre@email.com" name="cont_email" id="" /><br />
-                        <input class="form-control" type="file" id="formFile" name="cont_file" /><br />
-                        <textarea placeholder="Comment pouvons-nous vous aider ?" rows="3" name="cont_msg"></textarea>
+                        <input type="text" placeholder="Service client" name="cont_service" required  id="" /><br />
+                        <input type="email" placeholder="votre@email.com" name="cont_email" required  id="" /><br />
+                        <input class="form-control" type="file" id="formFile" name="cont_file"  /><br />
+                        <textarea placeholder="Comment pouvons-nous vous aider ?" rows="3" name="cont_msg" required></textarea>
                     </div>
                 </div>
-                <button type="submit">Envoyer</button>
+                <button class="btn_envoi">Envoyer</button>
             </form>
         </div>
     </div>
