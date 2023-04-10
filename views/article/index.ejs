@@ -1,7 +1,7 @@
 <div id="page-article">
   <div class="title-article">
     <span><a href="">Acceuil</a></span>
-    <span>/ MEP26A - Ensemble pantalon rose</span>
+    <span>/ <%= article.pro_libelle %></span>
   </div>
 
   <div class="content row">
@@ -103,10 +103,10 @@
     </div>
 
     <div class="right-content col-md-6">
-      <h1>MEP26A - ENSEMBLE PANTALON ROSE</h1>
-      <p class="ref">Référence: MEP26A</p>
+      <h1><%= article.pro_libelle %></h1>
+      <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
-        <p class="number">10,00 €</p>
+        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc %></p>
         <p class="title">TTC</p>
       </div>
       <div class="informations">
@@ -198,8 +198,7 @@
               aria-labelledby="home-tab"
               tabindex="0"
             >
-              Quantité insuffisante ? Laissez-nous un message en précisant la
-              référence du produit, ou appelez au 06 14 29 99 81
+             <%= article.pro_description %>
             </div>
             <div
               class="tab-pane fade content-two"
@@ -208,7 +207,7 @@
               aria-labelledby="profile-tab"
               tabindex="0"
             >
-              Référence MEP26A En stock 9995 Produits
+              <%= article.pro_details %>
             </div>
           </div>
         </div>
