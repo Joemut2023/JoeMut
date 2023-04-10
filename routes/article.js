@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { Produit, Tarif } = require("../models");
+const { Produit, Tarif, Media } = require("../models");
 
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -9,8 +9,14 @@ router.get("/:id", async (req, res, next) => {
       where: {
         pro_id: id,
       },
+      include: [
+        {
+          model: Media,
+          required: true,
+        },
+      ],
     });
-
+    // res.json({ article });
     const priceArticle = await Produit.findOne({
       include: [
         {
@@ -20,7 +26,7 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-    // res.json({ priceArticle });
+
     return res.render("article/index", {
       article: article,
       priceArticle: priceArticle,

@@ -12,7 +12,10 @@
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <img src="/images/enfant2.jpg" alt="" />
+          <img
+            src="/images/produits/<%= article.Media[0].med_ressource %>"
+            alt=""
+          />
           <div class="search-icon">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
           </div>
@@ -39,7 +42,7 @@
             data-bs-target="#carouselImages"
             data-bs-slide="prev"
           >
-            <span class="icon" ><i class="fa-solid fa-chevron-left"></i></span>
+            <span class="icon"><i class="fa-solid fa-chevron-left"></i></span>
             <!-- <span class="visually-hidden">Previous</span> -->
           </button>
           <button
@@ -67,7 +70,7 @@
               <div class="images">
                 <div class="image-grand">
                   <img
-                    src="/images/enfant2.jpg"
+                    src="/images/produits/<%= article.Media[0].med_ressource %>"
                     class="img-grand img-fluid"
                     alt=""
                   />
@@ -106,7 +109,7 @@
       <h1><%= article.pro_libelle %></h1>
       <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
-        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc %></p>
+        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc %> €</p>
         <p class="title">TTC</p>
       </div>
       <div class="informations">
@@ -198,7 +201,7 @@
               aria-labelledby="home-tab"
               tabindex="0"
             >
-             <%= article.pro_description %>
+              <%= article.pro_description %>
             </div>
             <div
               class="tab-pane fade content-two"
@@ -242,7 +245,7 @@
   <div class="row comment">
     <div class="title">
       <span class="icon"><i class="fa-solid fa-message"></i></span>
-      <span>Commentaires (0)</span>
+      <span>Commentaires (<%= article.pro_comment %>)</span>
     </div>
     <div class="avis">Aucun avis n'a été publié pour le moment.</div>
     <div class="comments-list"></div>
