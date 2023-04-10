@@ -209,7 +209,8 @@
     </div>
   </div>
 
-  <div class="others-like">
+  <% if (produits_similaires.length > 0) { %>
+   <div class="others-like">
     <h5>VOUS AIMEREZ AUSSI</h5>
     <div class="items row">
       <% produits_similaires.forEach(element => { %>
@@ -232,26 +233,10 @@
         </div>
       </div>
       <% }) %>
-      <!-- <div class="item">
-        <div class="image">
-          <a href="#"
-            ><img src="/images/enfant2.jpg" class="img-fluid" alt=""
-          /></a>
-        </div>
-        <div class="details">
-          <p class="desc">
-            <a href="#"><span>GV1B - Veste Queue De Pie Dorée</span></a>
-          </p>
-          <p class="ref">Ref: GV1B</p>
-          <div>
-            <p class="price">8,00 €</p>
-            <p class="bar">|</p>
-            <p class="price btn">Ajouter</p>
-          </div>
-        </div>
-      </div> -->
+      
     </div>
   </div>
+  <% } %>
 
   <div class="row comment">
     <div class="title">
