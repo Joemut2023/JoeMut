@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
       { model: Media, attributes: ["med_id", "med_ressource"] },
       { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
     ],
-    where: { pro_en_avant: 1 },
+    where: { pro_new_collect: 1 },
   });
   res.render("nouvelleCollection/index", {
     produits: produits,

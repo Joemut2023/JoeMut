@@ -1,7 +1,7 @@
 const password = document.getElementById("password");
-const btn = document.getElementById("btn-action");
+const show = document.getElementById("btn-password");
 
-btn.addEventListener("click", function (e) {
+show.addEventListener("click", function (e) {
   e.preventDefault();
 
   const type =
