@@ -1,6 +1,6 @@
 exports.COSTUMES = [
-  "Académiques Côtes",
-  "Combinaisons",
+  "Académiques Côtes Combinaisons",
+  // "Combinaisons",
   "Combishorts",
   "Ensembles Jupes",
   "Ensembles Pantalons",
