@@ -41,7 +41,16 @@ router.get("/:id", async (req, res) => {
   try {
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
-    const categorie = await Categorie.findByPk(id);
+    const categorie = await Categorie.findByPk(id, {
+      include: {
+        model: Produit,
+        include: [
+          { model: Media, attributes: ["med_id", "med_ressource"] },
+          { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+        ],
+      },
+    });
+    // res.json({categorie})
     res.locals.titre = categorie.cat_libelle;
     return res.render("catalogue/bycategorie", {
       title: "Express",
@@ -61,16 +70,33 @@ router.get("/:id", async (req, res) => {
  */
 router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
+  var totalProductBycat = 0;
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
-      include: { model: Categorie },
+      include: {
+        model: Categorie,
+        include: {
+          model: Produit,
+          include: [
+            { model: Media, attributes: ["med_id", "med_ressource"] },
+            { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+          ],
+        },
+      },
     });
+    // res.json({data:type_categorie.Categories[0].Produits.length})
+   
+    type_categorie.Categories.forEach(categorie => {
+       totalProductBycat = totalProductBycat + categorie.Produits.length
+    });
+    
     const categories = await Categorie.findAll();
     res.locals.titre = type_categorie.tyc_libelle;
     return res.render("catalogue/bytype", {
       title: "Express",
       categories: categories,
       type_categorie: type_categorie,
+      totalProductBycat,
     });
   } catch (error) {
     res.status(500).render("inscription/index", {
