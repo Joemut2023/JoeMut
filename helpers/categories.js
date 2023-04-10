@@ -1,6 +1,5 @@
-exports.COSTUMES = [
+exports.COSTUMES_POUR_PETITS = [
   "Académiques Côtes Combinaisons",
-  // "Combinaisons",
   "Combishorts",
   "Ensembles Jupes",
   "Ensembles Pantalons",
@@ -13,7 +12,42 @@ exports.COSTUMES = [
   "Tutus",
   "Vestes Gilets Cirés",
 ];
-// Redingotes;
+
+exports.COSTUMES_POUR_MOYENS = [
+  "Académiques Côtes Combinaisons",
+  "Combishorts",
+  "Ensembles Jupes",
+  "Ensembles Pantalons",
+  "Hauts",
+  "Jupes Courtes",
+  "Jupes Lngues",
+  "Justaucorps",
+  "Pantalons",
+  "Robes Courtes",
+  "Robes Longues",
+  "Tuniques",
+  "Tutus",
+  "Vestes,Gilets",
+];
+
+exports.COSTUMES_POUR_GRANDS = [
+  "Académiques Côtes Combinaisons",
+  "Combishorts",
+  "Ensembles Jupes",
+  "Ensembles Pantalons",
+  "Hauts",
+  "Jupes Courtes",
+  "Jupes Lngues",
+  "Justaucorps",
+  "Pantalons",
+  "Robes Courtes",
+  "Robes Longues",
+  "Tuniques",
+  "Tutus",
+  "Vestes, Gilets, Manteaux",
+  "Redingotes",
+];
+
 exports.ACCESSOIRES_LIST = [
   "Redingotes",
   "Visage",
