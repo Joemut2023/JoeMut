@@ -1,5 +1,5 @@
-const password = document.getElementById("password");
-const btn = document.getElementById("btn-action");
+const password = document.getElementById("input-show");
+const btn = document.getElementById("show-password");
 
 btn.addEventListener("click", function (e) {
   e.preventDefault();
