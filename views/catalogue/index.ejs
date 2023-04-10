@@ -193,7 +193,7 @@
       <h2>CATÉGORIE : <span>CATALOGUE</span></h2>
     </div>
     <div class="cat-filter">
-      <p>Il y a <span>1479</span> produits</p>
+      <p>Il y a <span><%= allproducts.length%></span> produits</p>
 
       <div class="filter">
         <label for="">Trier par : </label>
@@ -211,77 +211,28 @@
       </div>
     </div>
     <div class="cat-body">
-      <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/sommaire-3.jpg" alt="" srcset="" />
+      <% produits.forEach(produit => { %>
+        <div class="produit">
+            <div class="image-cadre">
+          <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
         </div>
         <div class="detail">
-          <a href="">ACCCE1 - Ceinture Arlequin</a>
-          <div>Ref: <span>ACCCE1</span></div>
+          <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
+          <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="montant">
-            <div>3.50 £</div>
+            <div><%= produit.Tarifs[0].tar_ht %>£</div>
             <button class="button-ajouter">Ajouter</button>
           </div>
         </div>
+         
       </div>
-      <!-- autres produits -->
-      <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/sommaire-3.jpg" alt="" srcset="" />
-        </div>
-        <div class="detail">
-          <a href="">ACCCE1 - Ceinture Arlequin</a>
-          <div>Ref: <span>ACCCE1</span></div>
-          <div class="montant">
-            <div>3.50 £</div>
-            <button class="button-ajouter">Ajouter</button>
-          </div>
-        </div>
-      </div>
-      <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/sommaire-3.jpg" alt="" srcset="" />
-        </div>
-        <div class="detail">
-          <a href="">ACCCE1 - Ceinture Arlequin</a>
-          <div>Ref: <span>ACCCE1</span></div>
-          <div class="montant">
-            <div>3.50 £</div>
-            <button class="button-ajouter">Ajouter</button>
-          </div>
-        </div>
-      </div>
-      <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/sommaire-3.jpg" alt="" srcset="" />
-        </div>
-        <div class="detail">
-          <a href="">ACCCE1 - Ceinture Arlequin</a>
-          <div>Ref: <span>ACCCE1</span></div>
-          <div class="montant">
-            <div>3.50 £</div>
-            <button class="button-ajouter">Ajouter</button>
-          </div>
-        </div>
-      </div>
-      <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/sommaire-3.jpg" alt="" srcset="" />
-        </div>
-        <div class="detail">
-          <a href="">ACCCE1 - Ceinture Arlequin</a>
-          <div>Ref: <span>ACCCE1</span></div>
-          <div class="montant">
-            <div>3.50 £</div>
-            <button class="button-ajouter">Ajouter</button>
-          </div>
-        </div>
-      </div>
-      <!-- autres produits -->
+        <% }) %>
+      
+     
     </div>
     <div class="cat-pagination">
       <div>
-        <p>Affichage <span>1-100</span> de <span>1479</span></p>
+        <p>Affichage <span>1-100</span> de <span><%= allproducts.length%></span></p>
       </div>
       <nav>
         <ul class="pagination">
