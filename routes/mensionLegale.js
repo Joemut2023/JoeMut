@@ -1,8 +1,9 @@
-var express = require('express')
-var router = express.Router()
+var express = require("express");
+var router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.render('mensionLegale/index')
-})
+router.get("/", (req, res, next) => {
+  res.locals.titre = "mention_legale";
+  res.render("mensionLegale/index");
+});
 
-module.exports = router
+module.exports = router;

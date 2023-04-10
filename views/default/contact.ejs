@@ -1,61 +1,51 @@
 <div id="page-contact">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="/" class="breadcrumb-link">Accueil</a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Contactez-nous</li>
-    </ol>
-  </nav>
-  <h4>INFORMATIONS</h4>
-  <div class="page-contact-content">
-    <div class="page-contact-informations">
-      <div class="adresse-infos">
-        <i class="fa-solid fa-location-dot fa-2x"></i>
-        <p>AIGUILLES EN SCENE 5 Rue des Agaces 35650 Le Rheu France</p>
-      </div>
-      <HR />
-      <div class="mail-infos">
-        <i class="fa-solid fa-envelope fa-2x"></i>
-        <p>
-          Envoyez-nous un e-mail :
-          <a href="mailto:contact@locationcostumesdedanse.com"
-            >contact@locationcostumesdedanse.com</a
-          >
-        </p>
-      </div>
-    </div>
-    <div class="page-contact-contactez-nous">
-      <h5>CONTACTEZ-NOUS</h5>
-      <form>
-        <div class="form-content">
-          <div class="form-label">
-            <label for="">Sujet</label>
-            <label for="">Adresse e-mail</label
-            ><label for="">Document joint</label><label for="">Message</label>
-          </div>
-          <div class="form-input">
-            <input
-              type="text"
-              placeholder="Service client"
-              name=""
-              id=""
-            /><br />
-            <input
-              type="email"
-              placeholder="votre@email.com"
-              name=""
-              id=""
-            /><br />
-            <input class="form-control" type="file" id="formFile" /><br />
-            <textarea
-              placeholder="Comment pouvons-nous vous aider ?"
-              rows="3"
-            ></textarea>
-          </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/" class="breadcrumb-link">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Contactez-nous</li>
+        </ol>
+    </nav>
+    <h4>INFORMATIONS</h4>
+    <div class="page-contact-content">
+        <div class="page-contact-informations">
+            <div class="adresse-infos">
+                <i class="fa-solid fa-location-dot fa-2x"></i>
+                <p>AIGUILLES EN SCENE 5 Rue des Agaces 35650 Le Rheu France</p>
+            </div>
+            <HR />
+            <div class="mail-infos">
+                <i class="fa-solid fa-envelope fa-2x"></i>
+                <p>
+                    Envoyez-nous un e-mail :
+                    <a href="mailto:contact@locationcostumesdedanse.com">contact@locationcostumesdedanse.com</a>
+                </p>
+            </div>
         </div>
-        <button type="submit">Envoyer</button>
-      </form>
+        <div class="page-contact-contactez-nous">
+             <%if (typeof error !== 'undefined' && error == true) { %>
+        <div class="alert alert-danger mssg" role="alert">
+          <%= (errorMsg) ? errorMsg : '' %>
+        </div>
+      <% } %>
+            <h5>CONTACTEZ-NOUS</h5>
+            <form id="form" method="post" action="/contact">
+                <div class="form-content">
+                    <div class="form-label">
+                        <label for="">Sujet</label>
+                        <label for="">Adresse e-mail</label>
+                        <label for="">Document joint</label><label for="">Message</label>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" placeholder="Service client" name="cont_service" required  id="" /><br />
+                        <input type="email" placeholder="votre@email.com" name="cont_email" required  id="" /><br />
+                        <input class="form-control" type="file" id="formFile" name="cont_file"  /><br />
+                        <textarea placeholder="Comment pouvons-nous vous aider ?" rows="3" name="cont_msg" required></textarea>
+                    </div>
+                </div>
+                <button class="btn_envoi">Envoyer</button>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
