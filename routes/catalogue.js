@@ -41,7 +41,16 @@ router.get("/:id", async (req, res) => {
   try {
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
-    const categorie = await Categorie.findByPk(id);
+    const categorie = await Categorie.findByPk(id, {
+      include: {
+        model: Produit,
+        include: [
+          { model: Media, attributes: ["med_id", "med_ressource"] },
+          { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+        ],
+      },
+    });
+    // res.json({categorie})
     res.locals.titre = categorie.cat_libelle;
     return res.render("catalogue/bycategorie", {
       title: "Express",
@@ -74,7 +83,6 @@ router.get("/type/:id", async (req, res) => {
         },
       },
     });
-    // res.json({ data: type_categorie.Categories });
     const categories = await Categorie.findAll();
     res.locals.titre = type_categorie.tyc_libelle;
     return res.render("catalogue/bytype", {
