@@ -7,6 +7,7 @@ router.get("/", async (req, res, next) => {
   const search = req.query.search;
   res.locals.titre = "recherche";
   const produits = await Produit.findAll({
+    limit: 10,
     order: [["pro_id", "DESC"]],
     include: [
       { model: Media, attributes: ["med_id", "med_ressource"] },
