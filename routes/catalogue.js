@@ -63,8 +63,18 @@ router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
-      include: { model: Categorie },
+      include: {
+        model: Categorie,
+        include: {
+          model: Produit,
+          include: [
+            { model: Media, attributes: ["med_id", "med_ressource"] },
+            { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+          ],
+        },
+      },
     });
+    // res.json({ data: type_categorie.Categories });
     const categories = await Categorie.findAll();
     res.locals.titre = type_categorie.tyc_libelle;
     return res.render("catalogue/bytype", {
