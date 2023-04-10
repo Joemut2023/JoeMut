@@ -14,7 +14,7 @@ router.post("/", function(req, res, next) {
             service: "gmail",
             auth: {
                 user: "myindavictoire@gmail.com",
-                pass: process.env.PASSWORD_KEY,
+                pass: process.env.PASSWORD_NODEMAILER,
             },
         });
 
