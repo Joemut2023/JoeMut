@@ -70,6 +70,7 @@ router.get("/:id", async (req, res) => {
  */
 router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
+  var totalProductBycat = 0;
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
@@ -83,12 +84,19 @@ router.get("/type/:id", async (req, res) => {
         },
       },
     });
+    // res.json({data:type_categorie.Categories[0].Produits.length})
+   
+    type_categorie.Categories.forEach(categorie => {
+       totalProductBycat = totalProductBycat + categorie.Produits.length
+    });
+    
     const categories = await Categorie.findAll();
     res.locals.titre = type_categorie.tyc_libelle;
     return res.render("catalogue/bytype", {
       title: "Express",
       categories: categories,
       type_categorie: type_categorie,
+      totalProductBycat,
     });
   } catch (error) {
     res.status(500).render("inscription/index", {
