@@ -5,12 +5,12 @@
   </div>
 
   <div class="resultat">
-    <p>RESULTATS DE LA RECHERCHE</p>
+    <p>RESULTATS DE LA RECHERCHE POUR : <%= search %> </p>
   </div>
 
   <div class="row resultat_choix">
     <div class="col-md-6">
-      <span class="title">Il y a 3 produits.</span>
+      <span class="title">Il y a <%= produits.length  %> produits.</span>
     </div>
     <div class="col-md-6 filtre-content">
       <div class="">
@@ -31,57 +31,26 @@
   </div>
 
   <div class="row resultat_image">
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
-      <div class="image">
-        <img src="/images/enfant2.jpg" class="img-fluid" alt="" />
-      </div>
-      <div class="details">
-        <p class="desc">GV1B - <span>Veste Queue De Pie Dorée</span></p>
-        <p class="ref">Ref: GV1B</p>
-        <div>
-          <p class="price">8,00 €</p>
-          <p class="bar">|</p>
-          <p class="price btn">Ajouter</p>
+    <% produits.forEach(produit => { %>
+      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
+        <div class="image">
+          <img src="/images/produits/<%= produit.dataValues.Media[0].med_ressource %>" class="img-fluid" alt="" />
+        </div>
+        <div class="details">
+          <p class="desc"><span><%= produit.dataValues.pro_libelle %></span></p>
+          <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
+          <div>
+            <p class="price"> <%= produit.dataValues.Tarifs[0].tar_ht %>,00 €</p>
+            <p class="bar">|</p>
+            <p class="price btn">Ajouter</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
-      <div class="image">
-        <img src="/images/enfant2.jpg" class="img-fluid" alt="" />
-      </div>
-      <div class="details">
-        <p class="desc">GV1B - <span>Veste Queue De Pie Dorée</span></p>
-        <p class="ref">Ref: GV1B</p>
-        <div>
-          <p class="price">8,00 €</p>
-          <p class="bar">|</p>
-          <p class="price btn">Ajouter</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
-      <div class="image">
-        <img src="/images/enfant1.jpg" class="img-fluid" alt="" />
-      </div>
-      <div class="details">
-        <p class="desc">GV1B - <span>Veste Queue De Pie Dorée</span></p>
-        <p class="ref">Ref: GV1B</p>
-        <div>
-          <p class="price">8,00 €</p>
-          <p class="bar">|</p>
-          <p class="price btn">Ajouter</p>
-        </div>
-      </div>
-    </div>
+    <% }) %>
 
     <div class="row affichage">
       <p>Affichage 1-3 de 3 article(s)</p>
     </div>
   </div>
 </div>
-<script>
-  const urlParams = window.location.search.substring(8);
-  const searchValue = urlParams.replaceAll("+"," ");
-  console.log(searchValue, "value");
-</script>
 <script src="/javascripts/recherche.js"></script>
