@@ -16,8 +16,8 @@ fs.createReadStream(path.resolve(__dirname, "../datas/tarif.csv"))
       await Tarif.create({
         tar_id: parseInt(tarif[0]),
         pro_id: parseInt(tarif[1]),
-        tar_ht: parseFloat(tarif[2]).toFixed(2),
-        tar_ttc: parseFloat(tarif[3]).toFixed(2),
+        tar_ht: parseFloat((tarif[2]).replace(',','.')),
+        tar_ttc: parseFloat((tarif[3]).replace(',','.')),
         tar_debut: Date.parse(tarif[4]),
         tar_statut: parseInt(tarif[6]),
       });
