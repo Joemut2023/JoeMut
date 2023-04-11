@@ -37,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
 
       Produit.hasMany(models.Panier_detail,{
         foreignKey:"pro_id",
-      })
+      });
+
+       Produit.hasMany(models.Commentaire, {
+         foreignKey: "pro_id",
+       });
     }
   }
   Produit.init(
