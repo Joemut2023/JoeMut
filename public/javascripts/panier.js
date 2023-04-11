@@ -27,7 +27,7 @@ var btnTrash = document.querySelectorAll(".delete");
 var eventlistner = function eventlistner(callback) {
   var btnTrash = document.querySelectorAll(".delete");
   btnTrash.forEach(function (element) {
-    element.addEventListener('click', function () {
+    element.addEventListener("click", function () {
       var itemId = element.dataset.id;
       Kart.removeItem(itemId);
       callback();

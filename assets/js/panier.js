@@ -63,25 +63,25 @@ const btns_up = document.querySelectorAll(".btn-up");
 const btns_down = document.querySelectorAll(".btn-down");
 const btnTrash = document.querySelectorAll(".delete");
 
-let eventlistner = (callback)=>{
+let eventlistner = (callback) => {
   const btnTrash = document.querySelectorAll(".delete");
-  btnTrash.forEach(element=>{
-    element.addEventListener('click',()=>{
+  btnTrash.forEach((element) => {
+    element.addEventListener("click", () => {
       let itemId = element.dataset.id;
       Kart.removeItem(itemId);
       callback();
       storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
-    })
-  })
-}
+    });
+  });
+};
 btnTrash.forEach((element) => {
   element.addEventListener("click", () => {
     let itemId = element.dataset.id;
     Kart.removeItem(itemId);
     RenderKartProduct();
-    eventlistner(()=>{
-      RenderKartProduct()
-    })
+    eventlistner(() => {
+      RenderKartProduct();
+    });
   });
 });
 
