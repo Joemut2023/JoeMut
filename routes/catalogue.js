@@ -49,8 +49,6 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   let {page,start,end} = check_paginate_value(req);
   try {
-    const typee_categories = await Type_categorie.findAll();
-    const categories = await Categorie.findAll();
     const categorie = await Categorie.findByPk(id, {
       offset:start,
       limit:PAGINATION_LIMIT,
@@ -62,13 +60,25 @@ router.get("/:id", async (req, res) => {
         ],
       },
     });
-   // let nbrPages = Math.ceil()
+    const produits = await Produit.findAll({
+      offset:start,
+      limit:PAGINATION_LIMIT,
+      include:[
+        { model: Media, attributes: ["med_id", "med_ressource"] },
+        { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+        {model:Categorie,where:{cat_id:id}}
+      ]
+    })
+    let nbrPages = Math.ceil(categorie.Produits.length / PAGINATION_LIMIT);
     res.locals.titre = categorie.cat_libelle;
     return res.render("catalogue/bycategorie", {
-      title: "Express",
-      categories: categories,
       categorie: categorie,
-      typee_categories: typee_categories,
+      produits:produits,
+      nbrPages:nbrPages,
+      pageActive:page,
+      start,
+      end,
+      categorie_id:id
     });
   } catch (error) {
     res.status(500).render("inscription/index", {
