@@ -50,37 +50,32 @@
       </div>
     </div>
     <div class="cat-body">
-      <% type_categorie.Categories.forEach(sous_cat => { %>
-         <% sous_cat.Produits.forEach(produit => { %>
-             <div class="produit">
-        <div class="image-cadre">
-          <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
-        </div>
-        <div class="detail">
-          <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
-          <div>Ref: <span><%= produit.pro_ref %></span></div>
-          <div class="montant">
-            <div><%= produit.Tarifs[0].tar_ttc %>£</div>
-            <button class="button-ajouter" data-id="<%= produit.pro_id %>">Ajouter</button>
+      
+         <% produits.forEach(produit => { %>
+          <div class="produit">
+            <div class="image-cadre">
+              <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
+            </div>
+            <div class="detail">
+              <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
+              <div>Ref: <span><%= produit.pro_ref %></span></div>
+              <div class="montant">
+                <div><%= produit.Tarifs[0].tar_ttc %>€</div>
+                <button class="button-ajouter" data-id="<%= produit.pro_id %>">Ajouter</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
          <% }) %>
-      <% }) %>
-   
-     
     </div>
     <div class="cat-pagination">
-      <div>1479
-        <p>Affichage <span>1-100</span> de <span><%= totalProductBycat %></span></p>
+      <div>
+        <p>Affichage <span> <%= start %> - <%= end %></span> de <span><%= totalProductBycat %></span></p>
       </div>
       <nav>
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <% for( let i = 1; i <= nbrPages; i++ ) { %>
+            <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/type/<%= type_categorie_id %>?page=<%= i %>"><%= i %></a></li>
+          <% } %>
         </ul>
       </nav>
     </div>
