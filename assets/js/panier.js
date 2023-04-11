@@ -1,18 +1,20 @@
-const btns_up = document.querySelectorAll(".btn-up");
-const btns_down = document.querySelectorAll(".btn-down");
 const link_parag = document.querySelector(".btnpromo");
 const btn_promo = document.querySelector(".btn-promo");
 const code_promo_block = document.querySelector(".promo_block");
 const btn_fermer = document.querySelector(".fermer");
 const panierDetails = document.querySelector(".comment");
-const btnTrash = document.querySelectorAll(".btn-down");
-console.log(btnTrash);
+const PanierPrice = document.querySelector(".panier-price");
+const emptyKartText = document.querySelector("#empty-product-kart");
+let storedITems = Kart.getParsedBasket();
+let ProductQuantity = 0;
+let TotalePrice = 0;
 
-const storedITems = Kart.getParsedBasket();
-let panierDetailsHtml = ``;
-
-storedITems.map((produit) => {
-  panierDetailsHtml += `
+const RenderKartProduct = () => {
+  let panierDetailsHtml = ``;
+  storedITems = Kart.getParsedBasket();
+  storedITems.map((produit) => {
+    ProductQuantity = ProductQuantity + produit.pad_qte;
+    panierDetailsHtml += `
   <div class="articles row">
     <div class="col-md-1 clo-sm-1 id">${produit.pro_ref}</div>
   <div class="col-md-3 col-sm-4 image">
@@ -31,10 +33,10 @@ storedITems.map((produit) => {
           <div class="col-md-6 col-sm-6 qty-btn">
             <input type="text" class="number-value" value="${produit.pad_qte}" />
             <div class="btns">
-              <button class="btn-up">
+              <button data-id="${produit.pro_id}" class="btn-up">
                 <span><i class="fa-solid fa-chevron-up"></i></span>
               </button>
-              <button class="btn-down">
+              <button data-id="${produit.pro_id}" class="btn-down">
                 <span><i class="fa-solid fa-chevron-down"></i></span>
               </button>
             </div>
@@ -44,32 +46,63 @@ storedITems.map((produit) => {
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-sm-2 delete">
-        <span><i class="fa-solid fa-trash"></i></span>
+      <div data-id="${produit.pro_id}" class="col-md-6 col-sm-2 delete">
+        <span><i  class="fa-solid fa-trash" ></i></span>
       </div>
     </div>
   </div>
   </div>
 `;
+  });
+  panierDetails.innerHTML = panierDetailsHtml;
+};
+
+RenderKartProduct();
+storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+const btns_up = document.querySelectorAll(".btn-up");
+const btns_down = document.querySelectorAll(".btn-down");
+const btnTrash = document.querySelectorAll(".delete");
+
+let eventlistner = (callback)=>{
+  const btnTrash = document.querySelectorAll(".delete");
+  btnTrash.forEach(element=>{
+    element.addEventListener('click',()=>{
+      let itemId = element.dataset.id;
+      Kart.removeItem(itemId);
+      callback();
+      storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+    })
+  })
+}
+btnTrash.forEach((element) => {
+  element.addEventListener("click", () => {
+    let itemId = element.dataset.id;
+    Kart.removeItem(itemId);
+    RenderKartProduct();
+    eventlistner(()=>{
+      RenderKartProduct()
+    })
+  });
 });
-panierDetails.innerHTML = panierDetailsHtml;
 
 btns_up.forEach((element) => {
-  element.addEventListener("click", function () {
+  element.addEventListener("click", () => {
     let compteur = element.parentNode.parentNode.children[0].value;
     compteur = isNaN(compteur) ? 1 : compteur;
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
+    ProductQuantity = ProductQuantity + 1;
   });
 });
 
 btns_down.forEach((element) => {
-  element.addEventListener("click", function () {
-    console.log("ds");
+  element.addEventListener("click", () => {
     let decrement = element.parentNode.parentNode.children[0].value;
     decrement = isNaN(decrement) ? 1 : decrement;
     if (decrement > 1) decrement--;
     element.parentNode.parentNode.children[0].value = decrement;
+    ProductQuantity = isNaN(ProductQuantity) ? 1 : ProductQuantity;
+    if (ProductQuantity > 1) ProductQuantity--;
   });
 });
 

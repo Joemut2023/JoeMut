@@ -2926,6 +2926,9 @@
   text-transform: uppercase;
   font-weight: 500;
 }
+#page-panier .panier-details #empty-product-kart {
+  display: none;
+}
 #page-panier .panier-details .comment {
   display: flex;
   flex-direction: column;
@@ -3068,6 +3071,9 @@
 }
 #page-panier .panier-details .comment .articles .prices .delete {
   margin-top: 5px;
+}
+#page-panier .panier-details .comment .articles .prices .delete .fa-trash {
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #page-panier .panier-details .comment .articles .prices .delete {

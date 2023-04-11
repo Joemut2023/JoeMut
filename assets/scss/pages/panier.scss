@@ -1,19 +1,27 @@
 #page-panier {
   padding: 8% 9%;
   font-family: $typograohie;
+
   .panier-content {
     margin-bottom: 60px;
   }
+
   .panier-details {
+
     .title,
     .comment {
       padding-left: 15px;
       margin-bottom: 20px;
     }
+
     h1 {
       font-size: 22px;
       text-transform: uppercase;
       font-weight: 500;
+    }
+
+    #empty-product-kart {
+      display: none;
     }
 
     .comment {
@@ -21,6 +29,7 @@
       flex-direction: column;
       gap: 30px;
       padding-top: 15px;
+
       span {
         font-size: 16px;
         font-weight: 400;
@@ -31,9 +40,11 @@
         font-size: 14px;
         color: $color-primary;
       }
+
       a {
         text-decoration: none;
       }
+
       a .icon {
         margin-right: 10px;
         font-size: 12px;
@@ -43,11 +54,12 @@
       .articles {
         .id {
           font-size: 14px;
+
           @include breakpoint(mobil) {
             text-align: center;
             margin-bottom: 5px;
           }
-         
+
         }
 
         .image {
@@ -56,13 +68,16 @@
             margin-bottom: 5px;
           }
         }
+
         .description {
           @include breakpoint(mobil) {
             text-align: center;
             margin-bottom: 5px;
           }
+
           .desc {
             font-size: 14px;
+
             a {
               color: $color-primary;
             }
@@ -71,6 +86,7 @@
               font-size: 13px;
             }
           }
+
           p {
             font-weight: 600;
             color: $color-primary;
@@ -82,34 +98,42 @@
             width: 80%;
             margin: 0 auto;
           }
+
           @include breakpoint(tablette) {
             margin-top: 20px;
             // width: 100%;
           }
+
           .block-price {
             @include breakpoint(mobil) {
-                flex: 3;
-                padding-left: 15px;
-              }
-              @include breakpoint(tablette) {
-                flex: 2;
-                justify-content: flex-start;
-              }
+              flex: 3;
+              padding-left: 15px;
+            }
+
+            @include breakpoint(tablette) {
+              flex: 2;
+              justify-content: flex-start;
+            }
+
             .compteur {
               @include breakpoint(tablette) {
                 display: flex;
               }
+
               .qty-btn {
                 display: flex;
                 justify-content: center;
+
                 @include breakpoint(mobil) {
-                  flex:3;
+                  flex: 3;
                   justify-content: flex-end;
                 }
+
                 @include breakpoint(tablette) {
-                  flex:5;
+                  flex: 5;
                   justify-content: flex-end;
                 }
+
                 input {
                   border: none;
                   outline: none;
@@ -131,6 +155,7 @@
                     justify-content: center;
                     background-color: white;
                     border: 1px solid $color-primary;
+
                     span {
                       font-size: 10px;
                       color: $color-primary;
@@ -141,12 +166,13 @@
 
               .prx {
                 padding-top: 5px;
+
                 @include breakpoint(mobil) {
-                  flex:1;
+                  flex: 1;
                   justify-content: flex-start;
                   text-align: center;
                 }
-                
+
                 span {
                   font-weight: 600;
                   color: $color-primary;
@@ -154,11 +180,17 @@
               }
             }
           }
+
           .delete {
+            .fa-trash {
+              cursor: pointer;
+            }
+
             @include breakpoint(mobil) {
-                flex: 1;
-                align-self: flex-start;
-              }
+              flex: 1;
+              align-self: flex-start;
+            }
+
             margin-top: 5px;
 
             span {
@@ -175,13 +207,16 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+
       @include breakpoint(tablette) {
         padding-left: 12px;
       }
+
       .item {
         display: flex;
         justify-content: space-between;
       }
+
       .item .title {
         font-size: 16px;
         font-weight: 400;
@@ -191,12 +226,15 @@
         font-weight: 600;
       }
     }
+
     .total {
       margin-bottom: 20px;
     }
+
     .item {
       display: flex;
       justify-content: space-between;
+
       span {
         font-weight: 600;
       }
@@ -206,6 +244,7 @@
       .link {
         margin-bottom: 30px;
         text-align: center;
+
         p {
           color: $color-primary;
         }
@@ -224,6 +263,7 @@
       .hide-promo {
         display: none !important;
       }
+
       .show-promo {
         display: flex;
       }
@@ -239,12 +279,14 @@
           margin: 0 auto;
           display: flex;
           margin-bottom: 20px;
+
           input {
             width: 100%;
             border: 1px solid $color-secondary;
             padding: 5px 20px;
             outline: none;
           }
+
           button {
             // width: 30%;
             border: none;
@@ -280,6 +322,7 @@
     .title {
       text-align: center;
       margin-bottom: 40px;
+
       h2 {
         font-size: 20px;
       }
@@ -298,14 +341,17 @@
         width: 90%;
         height: auto;
         padding-bottom: 10px;
+
         @include breakpoint(tablette) {
           text-align: center;
         }
+
         img {
           width: 90%;
           height: auto;
         }
       }
+
       .details {
         text-align: center;
         margin: 15px 0px;
@@ -340,6 +386,7 @@
 
           .btn {
             padding: 0;
+
             &:hover {
               color: $color-secondary;
             }
