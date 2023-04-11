@@ -55,10 +55,13 @@ module.exports = (sequelize, DataTypes) => {
       pro_new_collect: DataTypes.BOOLEAN,
       pro_en_avant: DataTypes.BOOLEAN,
       pro_comment: DataTypes.STRING,
+      pro_statut: DataTypes.BOOLEAN,
+      pro_position:DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: "Produit",
+      timestamps: false,
     }
   );
   return Produit;

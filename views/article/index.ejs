@@ -127,7 +127,7 @@
                 </button>
               </div>
             </div>
-            <button class="add">Ajouter au panier</button>
+            <button class="add btn-add" data-id="<%= article.pro_id %>">Ajouter au panier</button>
           </div>
           <div class="alerte-qty"></div>
         </div>
@@ -231,7 +231,7 @@
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
             <p class="bar">|</p>
-            <p class="price btn button-ajouter" data-id="<%= element.pro_id %>">Ajouter</p>
+            <p class="price btn" >Ajouter</p>
           </div>
         </div>
       </div>
@@ -248,7 +248,102 @@
     <div class="avis">
       <div class="content">
         <span class="icon"><i class="fa-solid fa-pen"></i></span>
-        <span class="text">soyez le premier à donner votre avis</span>
+        <span
+          class="text"
+          data-bs-toggle="modal"
+          data-bs-target="#commentModalLabel"
+          >soyez le premier à donner votre avis</span
+        >
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-container"
+      id="commentModalLabel"
+      tabindex="-1"
+      aria-labelledby="commentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-0">
+          <div class="modal-header">
+            <h4 class="modal-title">Donnez votre avis</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row first_block">
+              <div class="col-md-2 col-sm-2 block-1">
+                <div class="img-cover">
+                  <img
+                    src="/images/produits/<%= article.Media[0].med_ressource %>"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 block-2">
+                <h3>MRC16B - Robe tunique liberty Bleu/Lilas</h3>
+                <div>
+                  <p><strong><span>Quantité initiale : 1</span></strong></p>
+                  <p><strong><span>Taille disponibles : </span></strong></p>
+                  <p><span>15 en S/M (36/38)</span></p>
+                  <p><em class="small-text">* J’indiquerai les tailles après l’essayage</em></p>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 block-3">
+                  <div class="item">
+                    <label>Quality:</label>
+                    <div class="contents-starts">
+                      <div class="star-content star-empty clearfix"></div>
+                      <div class="start-content start-full clearfix">
+                        <div class="star star-on">star</div>
+                        <div class="star star-on">star</div>
+                        <div class="star star-on">star</div>
+                        <div class="star">star</div>
+                        <div class="star">star</div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row title_label">
+              <div class="col-md-12 col-sm-12">
+                 <label for="comment_title" class="form-label">Titre <sup class="required">*</sup></label>
+              </div>
+            </div>
+            <div class="row title_input">
+              <div class="col-md-12 col-sm-12 input">
+                <input type="text" name="comment_title" id="">
+              </div>
+            </div>
+            <div class="row content_label">
+              <div class="col-md-12 col-sm-12">
+                <label for="comment_content" class="form-label">Avis <sup class="required">*</sup></label>
+              </div>
+            </div>
+            <div class="row content_text">
+              <div class="col-md-12 col-sm-12 content">
+                <textarea name="comment_content" id="" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+            <div class="row buttons">
+              <div class="col-md-6 col-sm-6">
+                <p class="required">
+                  <sup>*</sup>
+                  champs requis
+                </p>
+              </div>
+              <div class="col-md-6 col-sm-6 btns">
+                <button type="button" class="btn-annuler">Annuler</button>
+                <button type="submit" class="btn-envoyer">Envoyer</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
