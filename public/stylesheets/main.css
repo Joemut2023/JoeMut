@@ -1077,6 +1077,17 @@
 #pages-home .section-contact {
   margin-bottom: 50px;
 }
+#pages-home .section-contact .page-contact-content {
+  display: flex;
+  flex-direction: row;
+  padding: 3%;
+}
+@media (max-width: 680px) {
+  #pages-home .section-contact .page-contact-content {
+    flex-direction: column;
+    padding: 0;
+  }
+}
 #pages-home .section-contact h1 {
   font-family: "Byciclette";
   text-transform: uppercase;

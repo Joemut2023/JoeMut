@@ -438,6 +438,18 @@
     }
   }
   .section-contact {
+    .page-contact-content {
+      display: flex;
+      flex-direction: row;
+      padding: 3%;
+  
+      @include breakpoint(mobil) {
+        flex-direction: column;
+        padding: 0;
+      }
+    }
+
+    
     h1 {
       font-family: "Byciclette";
       text-transform: uppercase;
