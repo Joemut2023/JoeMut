@@ -225,13 +225,15 @@
         </div>
         <div class="details">
           <p class="desc">
-            <a href="#"><span><%= element.pro_libelle %></span></a>
+            <a href="/article/<%= element.pro_id %>"
+              ><span><%= element.pro_libelle %></span></a
+            >
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
             <p class="bar">|</p>
-            <p class="price btn">Ajouter</p>
+            <p class="price btn button-ajouter">Ajouter</p>
           </div>
         </div>
       </div>
