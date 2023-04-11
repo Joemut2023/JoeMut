@@ -21,7 +21,7 @@ btn_add.forEach(function (element) {
           _context.next = 3;
           return axios.get("".concat(SITE_URL, "/article/").concat(itemId), {
             headers: {
-              'X-Requested-With': 'XMLHttpRequest'
+              "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 3:
