@@ -10,22 +10,22 @@ fs.createReadStream(path.resolve(__dirname, "../datas/frais_port.csv"))
     results.push(data);
   })
   .on("end", () => {
-    // results.shift();
+    results.shift();
     results.map(async (data) => {
       await Frais_port.create({
-        frp_id: data.frais.split(";")[0],
-        mle_id: data.frais.split(";")[1],
-        mls_id: data.frais.split(";")[2],
+        mle_id: parseInt(data.frais.split(";")[1]),
+        mls_id: parseInt(data.frais.split(";")[2]),
         frp_libelle: data.frais.split(";")[3],
         frp_description: data.frais.split(";")[4],
         frp_img: data.frais.split(";")[5],
-        frp_ht: data.frais.split(";")[6],
-        frp_ttc: data.frais.split(";")[7],
-        frp_debut: data.frais.split(";")[8],
-        frp_fin: data.frais.split(";")[9],
-        frp_activ: data.frais.split(";")[10],
-        frp_default: data.frais.split(";")[11],
+        frp_ht: parseFloat(data.frais.split(";")[6].replace(",", ".")),
+        frp_ttc: parseFloat(data.frais.split(";")[7].replace(",", ".")),
+        // frp_debut: data.frais.split(";")[9],
+        // frp_fin: data.frais.split(";")[8],
+        frp_activ: parseInt(data.frais.split(";")[10]),
+        frp_default: parseInt(data.frais.split(";")[11]),
       });
+      //   console.log(data.frais.split(";")[8]);
     });
 
     // console.log(results[1].frais.split(";"));
