@@ -152,13 +152,16 @@ class Kart {
    */
   static RenderModal(item) {
     let storedITems = Kart.getParsedBasket();
+    let produitFilter = storedITems.filter(
+      (produit) => produit.pro_id == item.pro_id
+    );
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">7,00 €</div>
-            <div class="product-quantity">Quantité : <span> ${item.pad_qte} </span></div>
+            <div class="product-quantity">Quantité : <span> ${produitFilter[0].pad_qte} </span></div>
             </div>
         </div>
         <div class="modal-body-commande">
