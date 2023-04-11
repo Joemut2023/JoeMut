@@ -4924,6 +4924,27 @@
   padding: 25px 0px;
   margin-bottom: 20px;
 }
+#page-article .comment .avis .content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 5px 15px;
+  background-color: #598794;
+  width: max-content;
+  height: max-content;
+}
+#page-article .comment .avis .content:hover {
+  background-color: #3c4d52;
+}
+#page-article .comment .avis .content .icon {
+  color: #a0b21f;
+  font-size: 14px;
+}
+#page-article .comment .avis .content .text {
+  color: white;
+}
 
 #page-mensionLegale {
   margin-bottom: 10%;
