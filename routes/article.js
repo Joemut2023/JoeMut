@@ -1,9 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const { Produit, Tarif, Media } = require("../models");
+const { Produit, Tarif, Media, Commentaire } = require("../models");
 const { Op } = require("sequelize");
+const auth = require("../middleware/auth")
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id",auth, async (req, res, next) => {
   const id = req.params.id;
   try {
     const article = await Produit.findOne({
@@ -80,7 +81,28 @@ router.get("/:id", async (req, res, next) => {
     });
   }
 });
-/* router.get('/:id',async (req,res)=>{
+
+
+router.post("/:id",async(req,res,next)=>{
+  const cli_id = req.session.userId;
+  const pro_id = req.params.id
+  var {cmt_titre,cmt_comment} = req.body;
+  console.log(cli_id)
+  try{
+   await Commentaire.create({
+      cli_id,
+      pro_id,
+      cmt_titre,
+      cmt_comment,
+    })
+    res.redirect(301, `/article/${pro_id}`);
+  }catch(error){
+    res.render("article/index", {
+      error: true,
+      errorMsg: "Une erreur est survenue!",
+    });
+  }
   
-}) */
+})
+
 module.exports = router;
