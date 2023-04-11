@@ -2,7 +2,9 @@
     .offcanvas-body {
         height: 100%;
         .kart-items {
-            height: 65%;
+            min-height: max-content;
+            height: max-content;
+            max-height: 65%;
             overflow-y: auto;
             .kart-item {
                 display: flex;
@@ -82,5 +84,8 @@
                 }
             }
         }
+    }
+    #par-empty-data{
+        display: none;
     }
 }

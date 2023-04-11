@@ -556,7 +556,9 @@
   height: 100%;
 }
 #bloc-panier .offcanvas-body .kart-items {
-  height: 65%;
+  min-height: max-content;
+  height: max-content;
+  max-height: 65%;
   overflow-y: auto;
 }
 #bloc-panier .offcanvas-body .kart-items .kart-item {
@@ -636,6 +638,9 @@
 #bloc-panier .offcanvas-body .kart-btns .btn-commander button a {
   text-decoration: none;
   color: #fff;
+}
+#bloc-panier #par-empty-data {
+  display: none;
 }
 
 #pages-home {

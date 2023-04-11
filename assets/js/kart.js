@@ -54,12 +54,11 @@ class Kart {
   static removeItem(itemId) {
     let storedITems = Kart.getParsedBasket();
     let produitPositionInArray = storedITems.findIndex(
-      (produit) => produit.pro_id === itemId
+      (produit) => produit.pro_id == itemId
     );
     storedITems.splice(produitPositionInArray, 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
     Kart.kartRenderItems();
-    Kart.RenderModal();
   }
   /**
    * Affiche les items du panier
@@ -70,7 +69,7 @@ class Kart {
     let storedItemsHtml = ``;
     let kartProductQte = 0;
     let kartProductPrice = 0;
-    storedITems.map((produit) => {
+    storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
       kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
       storedItemsHtml += `
@@ -83,7 +82,7 @@ class Kart {
                         <a href="/article/${produit.pro_id}">${produit.pro_libelle}</a>
                         <div class="actions">
                             <span class="price">${produit.pad_qte} x ${produit.pad_ttc} €</span>
-                            <button class="btn-close"></button>
+                            <button id="remove-prod" data-id="${produit.pro_id}" class="btn-close"></button>
                         </div>
                     </div>
                 </div>
@@ -94,6 +93,7 @@ class Kart {
     kartItemsElement.innerHTML = storedItemsHtml;
     let kartInfosData = `
     <div>
+    <p id="par-empty-data">Aucun produit dans le chariot.</p>
       <div class="kart-article">
         <div class="nbr-article">
           <span>${kartProductQte} articles</span>
@@ -108,7 +108,7 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-          <span>15$</span>
+          <span></span>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>35$</span>
+          <span>15$</span>
         </div>
       </div>
       <hr>
@@ -135,13 +135,14 @@ class Kart {
     </div>
     `;
     document.querySelector("#kart-infos").innerHTML = kartInfosData;
-    document.querySelector("#kart-infos").innerHTML = kartInfosData;
+    storedITems.length == 0
+      ? (document.querySelector("#par-empty-data").style.display = "block")
+      : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
     btnRemoveProduct.forEach((item) => {
       item.addEventListener("click", () => {
-        let itemId = element.dataset.id;
-        // Kart.removeItem()
-        console.log(itemId);
+        let itemId = item.dataset.id;
+        Kart.removeItem(itemId);
       });
     });
   }
