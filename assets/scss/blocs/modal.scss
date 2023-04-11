@@ -1,15 +1,4 @@
-// #parent-modal {
-//   width: 100%;
-//   position: absolute;
-//   top: 5;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   opacity: 0.8;
-//   background: #aaa;
-//   z-index: 10;
-//   // display: none;
-// }
+
 #myModal {
   width: 75%;
   height: 25rem;
@@ -18,19 +7,19 @@
   position: fixed;
   left: 10rem;
   top: 5rem;
-  z-index:3;
+  z-index:1;
   display: none;
   flex-direction: column;
   animation: appear 0.8s;
   transition: all 0.8s;
-  @keyframes appear {
-    from{
-      opacity: 0;
-    }
-    to{
-      opacity: 1;
-    }
-  }
+  // @keyframes appear {
+  //   from{
+  //     opacity: 0;
+  //   }
+  //   to{
+  //     opacity: 1;
+  //   }
+  // }
   @include breakpoint(mobil) {
     left: 3rem;
     width: 75%;

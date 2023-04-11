@@ -1,27 +1,23 @@
-<div id="parent-modal">
-  <div
-    id="myModal"
-    class="modal"
-    aria-hidden="false"
-    role="dialog"
-    tabindex="2"
-  >
-    <div class="title-modal modal-header">
-      <div class="title-modal-message">
+<div class="modal" tabindex="-1" id="parent_modal" aria-labelledby="parent_modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="myModal">
+      <div class="modal-header title-modal">
+          <div class="title-modal-message">
         <div class="modal-product-valid">
-          <!-- <div class="close"> -->
-          <i class="fa fa-check icon-check"></i>
-          <!-- </div> -->
+          <div class="close">
+           <i class="fa fa-check icon-check"></i> 
+          </div>
           <p>Produit ajouté au panier avec succès</p>
         </div>
         <div class="close" id="close">
-          <i class="fa-solid fa-xmark icon-xmark"></i>
+          <!-- <i class="fa-solid fa-xmark icon-xmark"></i> -->
+           <button type="button" class="btn-close icon-xmark" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       </div>
-      <div class="title-modal-border"></div>
-    </div>
-    <div class="body-modal">
-      <div class="body-modal-detail">
+      </div>
+      <div class="modal-body body-modal">
+              <div class="body-modal-detail">
         <img src="/images/sommaire-3.jpg" alt="" srcset="" />
         <div class="info-product">
           <h4>GH31D - Haut col mao bleu canard</h4>
@@ -50,6 +46,7 @@
             <span>Finaliser le devis</span>
           </a>
         </div>
+      </div>
       </div>
     </div>
   </div>

@@ -3679,19 +3679,11 @@
   position: fixed;
   left: 10rem;
   top: 5rem;
-  z-index: 3;
+  z-index: 1;
   display: none;
   flex-direction: column;
   animation: appear 0.8s;
   transition: all 0.8s;
-}
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 @media (max-width: 680px) {
   #myModal {
