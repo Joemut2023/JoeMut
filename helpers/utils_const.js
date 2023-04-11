@@ -1,0 +1,1 @@
+exports.PAGINATION_LIMIT = 100;

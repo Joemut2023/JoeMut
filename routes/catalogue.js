@@ -1,15 +1,14 @@
 var express = require("express");
 var router = express.Router();
 const { Categorie, Type_categorie, Produit, Media , Tarif} = require("../models");
+const { PAGINATION_LIMIT } = require("../helpers/utils_const");
+const check_paginate_value = require("../helpers/check_paginate_value");
 
 /**
  * @Route renvois tout
  */
 router.get("/", async function (req, res, next) {
-  let page = req.query.page ? parseInt(req.query.page):1;
-  let limit = 100;
-  let start = (page-1) * limit;
-  let end = page * limit;
+  let {page,start,end} = check_paginate_value(req);
   try {
     res.locals.titre = "catalogue";
     const typee_categories = await Type_categorie.findAll();
@@ -17,15 +16,14 @@ router.get("/", async function (req, res, next) {
     const allproducts = await Produit.findAll();
     const produits = await Produit.findAll({
       offset:start,
-      limit:limit,
+      limit: PAGINATION_LIMIT,
       order: [["pro_id", "DESC"]],
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
     });
-    //let nbrProduits = await produits.length;
-    let nbrPages = Math.ceil(allproducts.length/limit);
+    let nbrPages = Math.ceil(allproducts.length / PAGINATION_LIMIT);
     return res.render("catalogue/index", {
       categories: categories,
       typee_categories: typee_categories,
@@ -49,10 +47,13 @@ router.get("/", async function (req, res, next) {
  */
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
+  
   try {
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
     const categorie = await Categorie.findByPk(id, {
+      offset:start,
+      limit:PAGINATION_LIMIT,
       include: {
         model: Produit,
         include: [
@@ -61,7 +62,7 @@ router.get("/:id", async (req, res) => {
         ],
       },
     });
-    // res.json({categorie})
+   // let nbrPages = Math.ceil()
     res.locals.titre = categorie.cat_libelle;
     return res.render("catalogue/bycategorie", {
       title: "Express",
@@ -78,36 +79,46 @@ router.get("/:id", async (req, res) => {
 });
 /**
  * @Route renvois la listes des produits pour un Type catégorie
+ * @param {Number} id => Type_categorie id
  */
 router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
-  var totalProductBycat = 0;
+  let {page,start,end} = check_paginate_value(req);
+  let totalProductBycat = 0;
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
         model: Categorie,
-        include: {
-          model: Produit,
-          include: [
-            { model: Media, attributes: ["med_id", "med_ressource"] },
-            { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
-          ],
-        },
+        include:{
+          model:Produit
+        }
       },
     });
-    // res.json({data:type_categorie.Categories[0].Produits.length})
-   
     type_categorie.Categories.forEach(categorie => {
-       totalProductBycat = totalProductBycat + categorie.Produits.length
+      categorie.Produits.forEach(produit=>{
+        totalProductBycat = totalProductBycat +1;
+      })
     });
-    
-    const categories = await Categorie.findAll();
+    const produits = await Produit.findAll({
+      offset:start,
+      limit:PAGINATION_LIMIT,
+      include:[
+        { model: Media, attributes: ["med_id", "med_ressource"] },
+        { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+        {model:Categorie,where:{tyc_id:id}}
+      ]
+    })
     res.locals.titre = type_categorie.tyc_libelle;
+    let nbrPages = Math.ceil(totalProductBycat / PAGINATION_LIMIT);
     return res.render("catalogue/bytype", {
-      title: "Express",
-      categories: categories,
       type_categorie: type_categorie,
       totalProductBycat,
+      produits:produits,
+      nbrPages:nbrPages,
+      pageActive:page,
+      type_categorie_id:id,
+      start,
+      end
     });
   } catch (error) {
     res.status(500).render("inscription/index", {
