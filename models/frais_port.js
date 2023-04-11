@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       Frais_port.hasMany(models.Commande, {
         foreignKey: "frp_id",
       });
-      Frais_port.belongsTo(models.Mode_liv_essayage,{
-        foreignKey:"mle_id"
+      Frais_port.belongsTo(models.Mode_liv_essayage, {
+        foreignKey: "mle_id",
       });
-        Frais_port.belongsTo(models.Mode_liv_spectacle, {
-          foreignKey: "mls_id",
-        });
+      Frais_port.belongsTo(models.Mode_liv_spectacle, {
+        foreignKey: "mls_id",
+      });
     }
   }
   Frais_port.init(
@@ -28,7 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       frp_libelle: DataTypes.TEXT,
-      frp_montant: DataTypes.DECIMAL,
+      frp_descrition: DataTypes.TEXT,
+      frp_img: DataTypes.STRING,
+      frp_ht: DataTypes.DOUBLE,
+      frp_ttc: DataTypes.DOUBLE,
       frp_debut: DataTypes.DATEONLY,
       frp_fin: DataTypes.DATEONLY,
       frp_actif: DataTypes.BOOLEAN,
