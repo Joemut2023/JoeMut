@@ -1,6 +1,11 @@
 #bloc-panier {
     .offcanvas-body {
+        height: 100%;
         .kart-items {
+            min-height: max-content;
+            height: max-content;
+            max-height: 65%;
+            overflow-y: auto;
             .kart-item {
                 display: flex;
                 flex-direction: row;
@@ -42,6 +47,11 @@
                 }
             }
         }
+        #kart-infos{
+            height: 25%;
+            margin-top: 2%;
+            padding-top: 5%;
+        }
         .kart-article {
             display: flex;
             justify-content: space-between;
@@ -59,6 +69,7 @@
         }
         .kart-btns {
             display: flex;
+            padding-top: 1%;
             justify-content: space-between;
             .btn-voirpanier button,
             .btn-commander button {
@@ -73,5 +84,8 @@
                 }
             }
         }
+    }
+    #par-empty-data{
+        display: none;
     }
 }

@@ -552,6 +552,15 @@
   list-style-type: none;
 }
 
+#bloc-panier .offcanvas-body {
+  height: 100%;
+}
+#bloc-panier .offcanvas-body .kart-items {
+  min-height: max-content;
+  height: max-content;
+  max-height: 65%;
+  overflow-y: auto;
+}
 #bloc-panier .offcanvas-body .kart-items .kart-item {
   display: flex;
   flex-direction: row;
@@ -592,6 +601,11 @@
 #bloc-panier .offcanvas-body .kart-items .kart-item .kart-content .actions .price {
   color: #7a7a7a;
 }
+#bloc-panier .offcanvas-body #kart-infos {
+  height: 25%;
+  margin-top: 2%;
+  padding-top: 5%;
+}
 #bloc-panier .offcanvas-body .kart-article {
   display: flex;
   justify-content: space-between;
@@ -609,6 +623,7 @@
 }
 #bloc-panier .offcanvas-body .kart-btns {
   display: flex;
+  padding-top: 1%;
   justify-content: space-between;
 }
 #bloc-panier .offcanvas-body .kart-btns .btn-voirpanier button,
@@ -623,6 +638,9 @@
 #bloc-panier .offcanvas-body .kart-btns .btn-commander button a {
   text-decoration: none;
   color: #fff;
+}
+#bloc-panier #par-empty-data {
+  display: none;
 }
 
 #pages-home {

@@ -51,7 +51,15 @@ class Kart {
    * Supprime un Item du panier
    * @param {Number} itemId
    */
-  static removeItem(itemId) {}
+  static removeItem(itemId) {
+    let storedITems = Kart.getParsedBasket();
+    let produitPositionInArray = storedITems.findIndex(
+      (produit) => produit.pro_id == itemId
+    );
+    storedITems.splice(produitPositionInArray, 1);
+    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    Kart.kartRenderItems();
+  }
   /**
    * Affiche les items du panier
    */
@@ -59,11 +67,11 @@ class Kart {
     let kartItemsElement = document.querySelector(".kart-items");
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
-    let kartProductQte = 0
-    let kartProductPrice = 0
-    storedITems.map((produit) => {
-         kartProductQte = produit.pad_qte + kartProductQte;
-         kartProductPrice = (produit.pad_qte * produit.pad_ttc) + kartProductPrice
+    let kartProductQte = 0;
+    let kartProductPrice = 0;
+    storedITems?.map((produit) => {
+      kartProductQte = produit.pad_qte + kartProductQte;
+      kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
@@ -74,7 +82,7 @@ class Kart {
                         <a href="/article/${produit.pro_id}">${produit.pro_libelle}</a>
                         <div class="actions">
                             <span class="price">${produit.pad_qte} x ${produit.pad_ttc} €</span>
-                            <button class="btn-close"></button>
+                            <button id="remove-prod" data-id="${produit.pro_id}" class="btn-close"></button>
                         </div>
                     </div>
                 </div>
@@ -82,36 +90,61 @@ class Kart {
             <hr>
             `;
     });
-    kartItemsElement.innerHTML = storedItemsHtml; 
+    kartItemsElement.innerHTML = storedItemsHtml;
     let kartInfosData = `
-    <div class="kart-article">
-    <div class="nbr-article">
-      <span>${kartProductQte} articles</span>
-    </div>
-    <div class="price">
-      <span>${kartProductPrice} €</span>
-    </div>
-  </div>
+    <div>
+    <p id="par-empty-data">Aucun produit dans le chariot.</p>
+      <div class="kart-article">
+        <div class="nbr-article">
+          <span>${kartProductQte} articles</span>
+        </div>
+        <div class="price">
+          <span>${kartProductPrice} €</span>
+        </div>
+      </div>
 
-  <div class="kart-livraison">
-    <div class="total">
-      <span>Livraison</span>
-    </div>
-    <div class="price-total">
-      <span>15$</span>
-    </div>
-  </div>
+      <div class="kart-livraison">
+        <div class="total">
+          <span>Livraison</span>
+        </div>
+        <div class="price-total">
+          <span></span>
+        </div>
+      </div>
 
-  <div class="kart-total">
-    <div class="total">
-      <span>Total</span>
+      <div class="kart-total">
+        <div class="total">
+          <span>Total</span>
+        </div>
+        <div class="price-total">
+          <span>15$</span>
+        </div>
+      </div>
+      <hr>
+      <div class="kart-btns">
+      <a href="/panier/#page-panier" class="btn-voirpanier">
+        <button>
+          Voir le <br />
+          panier
+        </button>
+      </a>
+      <a href="/commander/#page-commander" class="btn-commander">
+        <button>Commander</button>
+      </a>
     </div>
-    <div class="price-total">
-      <span>35$</span>
     </div>
-  </div>
     `;
-    document.querySelector("#kart-infos").innerHTML =kartInfosData ;
+    document.querySelector("#kart-infos").innerHTML = kartInfosData;
+    storedITems.length == 0
+      ? (document.querySelector("#par-empty-data").style.display = "block")
+      : null;
+    const btnRemoveProduct = document.querySelectorAll("#remove-prod");
+    btnRemoveProduct.forEach((item) => {
+      item.addEventListener("click", () => {
+        let itemId = item.dataset.id;
+        Kart.removeItem(itemId);
+      });
+    });
   }
   /**
    *
