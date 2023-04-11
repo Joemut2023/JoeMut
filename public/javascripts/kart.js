@@ -68,7 +68,16 @@ var Kart = /*#__PURE__*/function () {
      */
   }, {
     key: "removeItem",
-    value: function removeItem(itemId) {}
+    value: function removeItem(itemId) {
+      var storedITems = Kart.getParsedBasket();
+      var produitPositionInArray = storedITems.findIndex(function (produit) {
+        return produit.pro_id === itemId;
+      });
+      storedITems.splice(produitPositionInArray, 1);
+      localStorage.setItem("storedItems", JSON.stringify(storedITems));
+      Kart.kartRenderItems();
+      Kart.RenderModal();
+    }
     /**
      * Affiche les items du panier
      */

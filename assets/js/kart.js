@@ -51,7 +51,16 @@ class Kart {
    * Supprime un Item du panier
    * @param {Number} itemId
    */
-  static removeItem(itemId) {}
+  static removeItem(itemId) {
+    let storedITems = Kart.getParsedBasket();
+    let produitPositionInArray = storedITems.findIndex(
+      (produit) => produit.pro_id === itemId
+    );
+    storedITems.splice(produitPositionInArray, 1);
+    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    Kart.kartRenderItems();
+    Kart.RenderModal();
+  }
   /**
    * Affiche les items du panier
    */
