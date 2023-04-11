@@ -27,6 +27,4 @@ fs.createReadStream(path.resolve(__dirname, "../datas/frais_port.csv"))
       });
       //   console.log(data.frais.split(";")[8]);
     });
-
-    // console.log(results[1].frais.split(";"));
   });
