@@ -221,7 +221,7 @@
           <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="montant">
             <div><%= produit.Tarifs[0].tar_ttc %>€</div>
-            <button class="button-ajouter" data-id="<%= produit.pro_id %>">Ajouter</button>
+            <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal" data-bs-target="#parent_modal">Ajouter</button>
           </div>
         </div>
          

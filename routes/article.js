@@ -4,7 +4,7 @@ const { Produit, Tarif, Media, Commentaire } = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth")
 
-router.get("/:id",auth, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     const article = await Produit.findOne({
