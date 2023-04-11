@@ -429,6 +429,7 @@
   .modal-container {
     .modal-dialog {
       .modal-content {
+        border: 1px solid $color-primary;
         .modal-header {
           border: none;
           padding: 30px 30px 15px;
@@ -476,10 +477,21 @@
 
             .block-3 {
               .item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
                 label {
                   color: #363a41;
                   font-size: 14px;
                   font-weight: 700;
+                }
+
+                .contents-starts{
+                  .start-full{
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                  }
                 }
               }
             }
