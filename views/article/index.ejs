@@ -127,7 +127,7 @@
                 </button>
               </div>
             </div>
-            <button class="add">Ajouter au panier</button>
+            <button class="add btn-add" data-id="<%= article.pro_id %>">Ajouter au panier</button>
           </div>
           <div class="alerte-qty"></div>
         </div>
@@ -231,7 +231,7 @@
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
             <p class="bar">|</p>
-            <p class="price btn button-ajouter" data-id="<%= element.pro_id %>">Ajouter</p>
+            <p class="price btn" >Ajouter</p>
           </div>
         </div>
       </div>

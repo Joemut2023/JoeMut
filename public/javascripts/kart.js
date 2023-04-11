@@ -31,11 +31,12 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addItem",
     value: function addItem(item) {
+      var qte = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var storedITems = JSON.parse(localStorage.getItem("storedItems"));
       var itemForPanier = {
         pro_id: item.pro_id,
         pro_libelle: item.pro_libelle,
-        pad_qte: 1,
+        pad_qte: qte ? parseInt(qte) : 1,
         pad_ttc: item.Tarifs[0].tar_ttc,
         pad_ht: item.Tarifs[0].tar_ht,
         media: item.Media[0].med_ressource
@@ -46,7 +47,7 @@ var Kart = /*#__PURE__*/function () {
         });
         var produit = produitFilter[0];
         if (produitFilter.length !== 0) {
-          produit.pad_qte = produit.pad_qte + 1;
+          produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
           var produitPositionInArray = storedITems.findIndex(function (produit) {
             return produit.pro_id === item.pro_id;
           });
