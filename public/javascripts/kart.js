@@ -39,7 +39,8 @@ var Kart = /*#__PURE__*/function () {
         pad_qte: qte ? parseInt(qte) : 1,
         pad_ttc: item.Tarifs[0].tar_ttc,
         pad_ht: item.Tarifs[0].tar_ht,
-        media: item.Media[0].med_ressource
+        media: item.Media[0].med_ressource,
+        pro_ref: item.pro_ref
       };
       if (storedITems) {
         var produitFilter = storedITems.filter(function (produit) {

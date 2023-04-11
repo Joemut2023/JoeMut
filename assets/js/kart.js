@@ -24,6 +24,7 @@ class Kart {
       pad_ttc: item.Tarifs[0].tar_ttc,
       pad_ht: item.Tarifs[0].tar_ht,
       media: item.Media[0].med_ressource,
+      pro_ref: item.pro_ref,
     };
     if (storedITems) {
       let produitFilter = storedITems.filter(
