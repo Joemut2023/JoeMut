@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Autre_frais.hasMany(models.Frais_supp,{
-        foreignKey:"auf_id"
-      })
+      Autre_frais.hasMany(models.Frais_supp, {
+        foreignKey: "auf_id",
+      });
     }
   }
   Autre_frais.init(
@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       auf_libelle: DataTypes.TEXT,
-      auf_montant: DataTypes.DECIMAL,
+      auf_ht: DataTypes.DOUBLE,
+      auf_ttc: DataTypes.DOUBLE,
       auf_debut: DataTypes.DATEONLY,
       auf_fin: DataTypes.DATEONLY,
       auf_actif: DataTypes.BOOLEAN,
