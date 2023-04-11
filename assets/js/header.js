@@ -18,22 +18,7 @@ const handler = (entries) => {
 const observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
 observer.observe(topBar);
-/* userIcone.addEventListener(
-  "mouseenter",
-  (event) => {
-    dropDown.style.display = "block";
-    dropDown.style.opacity = "1";
-    dropDown.style.transform = "scaleY(1)";
-    dropDown.style.transformOrigin = "top";
-  }
-  // highlight the mouseenter target
-); */
-/* dropDown.addEventListener(
-  "mouseout",
-  (event) => {
-    // dropDown.style.opacity = "0";
-    // dropDown.style.transform="scaleY(0)";
-    dropDown.style.display = "none";
-  }
-  // highlight the mouseenter target
-); */
+
+document.querySelector('#kart-link-handler-btn').addEventListener('click',(e)=>{
+  Kart.kartRenderItems();
+})

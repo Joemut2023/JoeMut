@@ -39,6 +39,7 @@
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.21.0",
     "dotenv": "^16.0.3",
     "nodemon": "^2.0.22",
     "sass": "^1.60.0"

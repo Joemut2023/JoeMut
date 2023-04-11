@@ -64,3 +64,4 @@ typings/
 config/config.json
 
 public/images/produits
+assets/js/url.js
