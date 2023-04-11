@@ -57,70 +57,17 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                <div class="title-catalogue">
-                  <h6>COSTUMES POUR PETITS</h6>
-                  <hr />
-                  <ul>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                  </ul>
-                </div>
-                <div class="title-catalogue">
-                  <h6>COSTUMES POUR MOYENS</h6>
-                  <hr />
-                  <ul>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                  </ul>
-                </div>
-                <div class="title-catalogue">
-                  <h6>CONSTUMES POUR GRANDS</h6>
-                  <hr />
-                  <ul>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                  </ul>
-                </div>
-                <div class="title-catalogue">
-                  <h6>ACCESSOIRES</h6>
-                  <hr />
-                  <ul>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                    <li>Academies cotes combinaison</li>
-                  </ul>
-                </div>
+                <% type_categories.forEach(tcg => { %>
+                  <div class="title-catalogue">
+                    <h6><%= tcg.tyc_libelle %></h6>
+                    <hr />
+                    <ul>
+                      <% tcg.Categories.forEach(categorie => { %>
+                        <li><a href="/catalogue/<%= categorie.cat_id %>"><%= categorie.cat_libelle %></a></li>
+                      <% }) %>
+                    </ul>
+                  </div>
+                <% }) %>
               </div>
             </div>
           </div>
