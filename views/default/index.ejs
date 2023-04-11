@@ -191,7 +191,7 @@
     </div>
     <div class="form">
       <div class="input">
-        <input type="text" placeholder="Votre adresse e-mail" />
+        <input type="text" placeholder="Votre adresse e-mail"/>
         <button><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
@@ -212,20 +212,22 @@
           placeholder="votre e-mail"
           class="form-control"
           id="input-email"
+          name="cont_email"
           aria-describedby="emailHelp"
         />
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Choisir un fichier</label>
-        <input class="form-control" type="file" id="formFile" />
+        <input class="form-control" type="file" id="formFile"  name="cont_file"/>
       </div>
       <div class="mb-3">
         <textarea
           class="form-control"
           placeholder="Comment pouvons-nous vous aider?"
+          name="cont_msg"
         ></textarea>
       </div>
-      <button type="submit" class="btn">Envoyer</button>
+      <button class="btn">Envoyer</button>
     </form>
   </div>
 </div>
