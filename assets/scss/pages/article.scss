@@ -63,11 +63,12 @@
         #carouselImages {
           .carousel-inner {
             .carousel-item {
-              width: 150px;
+              width: 20%;
               height: 250px;
 
               img {
                 width: 100%;
+                cursor: pointer;
                 @include breakpoint(mobil) {
                   width: 70%;
                 }
@@ -307,6 +308,7 @@
   .others-like {
     h5 {
       font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .items {
@@ -324,7 +326,7 @@
 
           img {
             max-width: 250px;
-            height: auto;
+            height: 200px;
           }
         }
         .details {
@@ -395,6 +397,31 @@
       text-align: center;
       padding: 25px 0px;
       margin-bottom: 20px;
+
+      .content{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        // justify-content: center;
+        // align-items: center;
+        margin: 0 auto;
+        padding: 5px 15px;
+        background-color: #598794;
+        width: max-content;
+        height: max-content;
+        &:hover{
+          background-color: #3c4d52;
+        }
+        .icon{
+          color: $color-primary;
+          font-size: 14px;
+        }
+
+        .text{
+          color: white;
+        }
+      }
     }
   }
 }

@@ -4645,11 +4645,12 @@
   opacity: 1 !important;
 }
 #page-article .content .left-content .image-content #carouselImages .carousel-inner .carousel-item {
-  width: 150px;
+  width: 20%;
   height: 250px;
 }
 #page-article .content .left-content .image-content #carouselImages .carousel-inner .carousel-item img {
   width: 100%;
+  cursor: pointer;
 }
 @media (max-width: 680px) {
   #page-article .content .left-content .image-content #carouselImages .carousel-inner .carousel-item img {
@@ -4851,6 +4852,7 @@
 }
 #page-article .others-like h5 {
   font-size: 16px;
+  margin-bottom: 20px;
 }
 #page-article .others-like .items {
   display: flex;
@@ -4867,7 +4869,7 @@
 }
 #page-article .others-like .items .item .image img {
   max-width: 250px;
-  height: auto;
+  height: 200px;
 }
 #page-article .others-like .items .item .details {
   text-align: center;
@@ -4925,6 +4927,27 @@
   text-align: center;
   padding: 25px 0px;
   margin-bottom: 20px;
+}
+#page-article .comment .avis .content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 5px 15px;
+  background-color: #598794;
+  width: max-content;
+  height: max-content;
+}
+#page-article .comment .avis .content:hover {
+  background-color: #3c4d52;
+}
+#page-article .comment .avis .content .icon {
+  color: #a0b21f;
+  font-size: 14px;
+}
+#page-article .comment .avis .content .text {
+  color: white;
 }
 
 #page-mensionLegale {
