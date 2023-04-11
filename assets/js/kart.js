@@ -121,6 +121,15 @@ class Kart {
   </div>
     `;
     document.querySelector("#kart-infos").innerHTML =kartInfosData ;
+    document.querySelector("#kart-infos").innerHTML = kartInfosData;
+    const btnRemoveProduct = document.querySelectorAll("#remove-prod");
+    btnRemoveProduct.forEach((item) => {
+      item.addEventListener("click", () => {
+        let itemId = element.dataset.id;
+        // Kart.removeItem()
+        console.log(itemId);
+      });
+    });
   }
   /**
    *

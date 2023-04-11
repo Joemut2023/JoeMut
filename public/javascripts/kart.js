@@ -97,6 +97,15 @@ var Kart = /*#__PURE__*/function () {
       kartItemsElement.innerHTML = storedItemsHtml;
       var kartInfosData = "\n    <div class=\"kart-article\">\n    <div class=\"nbr-article\">\n      <span>".concat(kartProductQte, " articles</span>\n    </div>\n    <div class=\"price\">\n      <span>").concat(kartProductPrice, " \u20AC</span>\n    </div>\n  </div>\n\n  <div class=\"kart-livraison\">\n    <div class=\"total\">\n      <span>Livraison</span>\n    </div>\n    <div class=\"price-total\">\n      <span>15$</span>\n    </div>\n  </div>\n\n  <div class=\"kart-total\">\n    <div class=\"total\">\n      <span>Total</span>\n    </div>\n    <div class=\"price-total\">\n      <span>35$</span>\n    </div>\n  </div>\n    ");
       document.querySelector("#kart-infos").innerHTML = kartInfosData;
+      document.querySelector("#kart-infos").innerHTML = kartInfosData;
+      var btnRemoveProduct = document.querySelectorAll("#remove-prod");
+      btnRemoveProduct.forEach(function (item) {
+        item.addEventListener("click", function () {
+          var itemId = element.dataset.id;
+          // Kart.removeItem()
+          console.log(itemId);
+        });
+      });
     }
     /**
      *
