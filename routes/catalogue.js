@@ -6,25 +6,35 @@ const { Categorie, Type_categorie, Produit, Media , Tarif} = require("../models"
  * @Route renvois tout
  */
 router.get("/", async function (req, res, next) {
+  let page = req.query.page ? parseInt(req.query.page):1;
+  let limit = 100;
+  let start = (page-1) * limit;
+  let end = page * limit;
   try {
     res.locals.titre = "catalogue";
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
     const allproducts = await Produit.findAll();
     const produits = await Produit.findAll({
-      limit:8,
+      offset:start,
+      limit:limit,
       order: [["pro_id", "DESC"]],
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
     });
+    //let nbrProduits = await produits.length;
+    let nbrPages = Math.ceil(allproducts.length/limit);
     return res.render("catalogue/index", {
-      title: "Express",
       categories: categories,
       typee_categories: typee_categories,
       produits: produits,
-      allproducts:allproducts
+      allproducts:allproducts,
+      nbrPages:nbrPages,
+      pageActive:page,
+      start:start,
+      end:end
     });
   } catch (error) {
     res.status(500).render("inscription/index", {
@@ -32,6 +42,7 @@ router.get("/", async function (req, res, next) {
       errorMsg: "Une erreur est survenue!",
     });
   }
+  
 });
 /**
  * @Route renvois la listes des produits pour une catégorie
