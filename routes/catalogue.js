@@ -47,7 +47,7 @@ router.get("/", async function (req, res, next) {
  */
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
-  
+  let {page,start,end} = check_paginate_value(req);
   try {
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
