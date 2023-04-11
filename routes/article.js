@@ -22,7 +22,7 @@ router.get("/:id", async (req, res, next) => {
     });
 
     const ref_produit = article.pro_ref
-    const ref_produit_caractere = ref_produit.slice(0,ref_produit.length-1)
+    const ref_produit_caractere = ref_produit.slice(0,ref_produit.length-1);
 
     const produits_similaires = await Produit.findAll({
       limit: 3,
@@ -58,7 +58,16 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-
+    if(req.xhr){
+      //the request is ajax call
+      let produit = await Produit.findByPk(parseInt(req.params.id),{
+        include :[
+          {model:Tarif,attributes:['tar_ttc','tar_ht']},
+          {model:Media,attributes:['med_id','med_ressource']},
+        ]
+      });
+      return res.json(produit);
+    }
     return res.render("article/index", {
       article: article,
       priceArticle: priceArticle,
