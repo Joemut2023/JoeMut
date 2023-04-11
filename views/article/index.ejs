@@ -216,7 +216,7 @@
       <% produits_similaires.forEach(element => { %>
       <div class="item col-md-4">
         <div class="image">
-          <a href="#"
+          <a href="/article/<%= element.pro_id %>"
             ><img
               src="/images/produits/<%= element.Media[0].med_ressource %>"
               class="img-fluid"
@@ -225,13 +225,13 @@
         </div>
         <div class="details">
           <p class="desc">
-            <a href="#"><span><%= element.pro_libelle %></span></a>
+            <a href="/article/<%= element.pro_id %>"><span><%= element.pro_libelle %></span></a>
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
             <p class="bar">|</p>
-            <p class="price btn">Ajouter</p>
+            <p class="price btn button-ajouter" data-id="<%= element.pro_id %>">Ajouter</p>
           </div>
         </div>
       </div>
