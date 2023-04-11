@@ -24,6 +24,8 @@ router.get("/", async function (req, res, next) {
       ],
     });
     let nbrPages = Math.ceil(allproducts.length / PAGINATION_LIMIT);
+    let next = start > 0 ? page + 1 : null;
+    let prev = end < 0 ? page - 1 : null;
     return res.render("catalogue/index", {
       categories: categories,
       typee_categories: typee_categories,
@@ -32,7 +34,9 @@ router.get("/", async function (req, res, next) {
       nbrPages:nbrPages,
       pageActive:page,
       start:start,
-      end:end
+      end:end,
+      prev:prev,
+      next:next
     });
   } catch (error) {
     res.status(500).render("inscription/index", {

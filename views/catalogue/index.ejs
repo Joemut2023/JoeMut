@@ -236,11 +236,18 @@
       </div>
       <nav>
         <ul class="pagination">
-          <!--<li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-          <% for( let i = 1; i <= nbrPages; i++ ) { %>
-            <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue?page=<%= i %>#pages-catalogue"><%= i %></a></li>
+          <li class="page-item"><a class="page-link" href="/catalogue?page=1#pages-catalogue">1</a></li>
+          <% if (pageActive === 1 || pageActive ===2) { %>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=2#pages-catalogue">2</a></li>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=3#pages-catalogue">3</a></li>
+          <% } else { %>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive -1 %>#pages-catalogue"><%= pageActive-1 %></a></li>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive %>#pages-catalogue"><%= pageActive %></a></li>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue"><%= pageActive+1 %></a></li>
+            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue"><%= pageActive+2 %></a></li>
+            <li class="page-item">...</li>
           <% } %>
-          <!--<li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+          <li class="page-item"><a class="page-link" href="/catalogue?page=<%= nbrPages %>#pages-catalogue"><%= nbrPages %></a></li>
         </ul>
       </nav>
     </div>
