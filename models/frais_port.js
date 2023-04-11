@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       Frais_port.hasMany(models.Commande, {
         foreignKey: "frp_id",
       });
+      Frais_port.belongsTo(models.Mode_liv_essayage,{
+        foreignKey:"mle_id"
+      });
+        Frais_port.belongsTo(models.Mode_liv_spectacle, {
+          foreignKey: "mls_id",
+        });
     }
   }
   Frais_port.init(
