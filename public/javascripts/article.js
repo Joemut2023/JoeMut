@@ -9,6 +9,7 @@ var navlink_two = document.querySelector(".btn-tab-two");
 var input = document.querySelector(".number-value");
 var btnAjouter = document.querySelector(".btn-add");
 var btn_envoyer = document.querySelector(".btn-envoyer");
+var form = document.querySelector(".form");
 var titre = document.querySelector(".titre");
 var contenu = document.querySelector(".contenu");
 var btn_close_avis = document.querySelector(".close-avis");
@@ -76,7 +77,7 @@ if (small_img_carousel.length > 1) {
     });
   });
 }
-btn_envoyer.addEventListener("click", function () {
+form.addEventListener("click", function () {
   btn_envoyer.setAttribute("data-bs-toggle", "modal");
   btn_envoyer.setAttribute("data-bs-target", "#sendModalLabel");
 });
