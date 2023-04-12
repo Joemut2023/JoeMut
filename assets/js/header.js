@@ -4,7 +4,7 @@ const headerSticky = document.querySelector("#headerSticky");
 const userIcone = document.querySelector("#user-title-Dropdown");
 const dropDown = document.querySelector("#user-menu-Dropdown");
 
-document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+
 
 const handler = (entries) => {
   if (!entries[0].isIntersecting) {
@@ -20,11 +20,10 @@ const handler = (entries) => {
 const observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
 observer.observe(topBar);
+document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
 
 document
   .querySelector("#kart-link-handler-btn")
   .addEventListener("click", (e) => {
     Kart.kartRenderItems();
   });
-
-
