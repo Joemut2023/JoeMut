@@ -250,12 +250,10 @@
       <span>Commentaires (<%= article.pro_comment %>)</span>
     </div>
     <div class="avis">
-      <div class="content">
+      <div class="content"  data-bs-toggle="modal" data-bs-target="#commentModalLabel">
         <span class="icon"><i class="fa-solid fa-pen"></i></span>
         <span
           class="text"
-          data-bs-toggle="modal"
-          data-bs-target="#commentModalLabel"
           >soyez le premier à donner votre avis</span
         >
       </div>
@@ -322,7 +320,7 @@
                 </div>
               </div>
             </div>
-            <form action="/article/<%= article.pro_id %>" method="post">
+            <form action="/article/<%= article.pro_id %>" method="post" class="form">
               <div class="row title_label">
                 <div class="col-md-12 col-sm-12">
                   <label for="comment_title" class="form-label"
@@ -332,7 +330,7 @@
               </div>
               <div class="row title_input">
                 <div class="col-md-12 col-sm-12 input">
-                  <input type="text" name="cmt_titre" id="" />
+                  <input type="text" name="cmt_titre" id="" required class="titre" />
                 </div>
               </div>
               <div class="row content_label">
@@ -349,6 +347,8 @@
                     id=""
                     cols="30"
                     rows="10"
+                    required
+                    class="contenu"
                   ></textarea>
                 </div>
               </div>
@@ -360,11 +360,37 @@
                   </p>
                 </div>
                 <div class="col-md-6 col-sm-6 btns">
-                  <button type="button" class="btn-annuler">Annuler</button>
+                  <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn-annuler">Annuler</button>
                   <button type="submit" class="btn-envoyer">Envoyer</button>
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade sendModal"
+      id="sendModalLabel"
+      tabindex="-1"
+      aria-labelledby="sendModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="title">
+              <span><i class="fa-solid fa-circle-check"></i></span>
+              <h3>Avis envoyé</h3>
+            </div>
+            <p>
+              Votre commentaire a bien été enregistré. Il sera publié dès qu'un
+              modérateur l'aura approuvé.
+            </p>
+            <div class="button">
+              <button data-bs-dismiss="modal" aria-label="Close">Ok</button>
+            </div>
           </div>
         </div>
       </div>
