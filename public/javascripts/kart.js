@@ -79,6 +79,22 @@ var Kart = /*#__PURE__*/function () {
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
       Kart.kartRenderItems();
     }
+
+    /**
+     * Mettre à jour la quantité d'un item du panier
+     * @param {Number} itemId
+     */
+  }, {
+    key: "updateItemQuantity",
+    value: function updateItemQuantity(itemId, action) {
+      storedITems = Kart.getParsedBasket();
+      var produitPositionInArray = storedITems.findIndex(function (produit) {
+        return produit.pro_id == itemId;
+      });
+      action ? storedITems[produitPositionInArray].pad_qte += 1 : storedITems[produitPositionInArray].pad_qte -= 1;
+      localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    }
+
     /**
      * Affiche les items du panier
      */
