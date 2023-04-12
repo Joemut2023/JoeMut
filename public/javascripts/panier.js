@@ -46,6 +46,12 @@ btnTrash.forEach(function (element) {
   });
 });
 var TotalPricesProducts = function TotalPricesProducts() {
+  var storedITems = Kart.getParsedBasket();
+  var totalPriceht = 0;
+  var totalPoductPrice = 0;
+  storedITems.forEach(function (element) {
+    console.log(element);
+  });
   var PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(ProductQuantity, " articles</span>\n      <span class=\"price\">18,0 \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">3,00 \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">15,00 \u20AC</span>\n    </div>\n  </div>");
   PanierPrice.innerHTML = PanierPriceHtml;
 };

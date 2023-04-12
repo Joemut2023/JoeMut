@@ -85,6 +85,12 @@ btnTrash.forEach((element) => {
   });
 });
 const TotalPricesProducts = () => {
+  let storedITems = Kart.getParsedBasket();
+  let totalPriceht = 0;
+  let totalPoductPrice = 0;
+  storedITems.forEach((element) => {
+    console.log(element);
+  });
   let PanierPriceHtml = ` 
   <div class="frais">
     <div class="item">
