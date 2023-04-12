@@ -129,6 +129,7 @@ let eventlistner = (callback) => {
       let itemId = element.dataset.id;
       Kart.removeItem(itemId);
       TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       callback();
       if (storedITems.length == 0) {
         emptyKartText.style.display = "block";
@@ -144,6 +145,7 @@ btnTrash.forEach((element) => {
     let itemId = element.dataset.id;
     Kart.removeItem(itemId);
     TotalPricesProducts();
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     RenderKartProduct();
     eventlistner(() => {
       RenderKartProduct();
@@ -159,6 +161,7 @@ btns_up.forEach((element) => {
     element.parentNode.parentNode.children[0].value = compteur;
     Kart.updateItemQuantity(itemId, true);
     TotalPricesProducts();
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
   });
 });
 
@@ -171,6 +174,7 @@ btns_down.forEach((element) => {
       decrement--;
       Kart.updateItemQuantity(itemId, false);
       TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     }
     element.parentNode.parentNode.children[0].value = decrement;
   });

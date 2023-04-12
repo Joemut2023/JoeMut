@@ -432,6 +432,10 @@
   display: block;
 }
 
+#cart-item-count {
+  background-color: #a0b21f;
+}
+
 #bloc-footer {
   width: 100%;
   background-color: #a0b21f;

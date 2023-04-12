@@ -18,6 +18,20 @@ class Kart {
   static getParsedFrais() {
     return JSON.parse(localStorage.getItem("fraisDivers"));
   }
+
+  /**
+   *
+   * @returns Numeric
+   */
+  static getItemNumber() {
+    let storedITems = Kart.getParsedBasket();
+    let quantity = 0;
+    storedITems.forEach((element) => {
+      quantity += element.pad_qte;
+    });
+    return quantity;
+  }
+
   /**
    *
    * @param {Array} item
@@ -66,9 +80,11 @@ class Kart {
         storedITems.push(itemForPanier);
       }
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     } else {
       Kart.items.push(itemForPanier);
       localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     }
     Kart.kartRenderItems();
     Kart.RenderModal(itemForPanier);
@@ -79,6 +95,7 @@ class Kart {
    */
   static removeItem(itemId) {
     let storedITems = Kart.getParsedBasket();
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
@@ -199,6 +216,7 @@ class Kart {
       item.addEventListener("click", () => {
         let itemId = item.dataset.id;
         Kart.removeItem(itemId);
+        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       });
     });
   }
