@@ -3,7 +3,6 @@ var router = express.Router();
 const { Categorie, Type_categorie, Produit, Media , Tarif} = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 const check_paginate_value = require("../helpers/check_paginate_value");
-
 /**
  * @Route renvois tout
  */
