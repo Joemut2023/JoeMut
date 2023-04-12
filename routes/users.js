@@ -43,6 +43,7 @@ router.get("/alert", function (req, res, next) {
 });
 router.get("/logout", (req, res) => {
   req.session.destroy();
+  delete res.locals.user;
   res.redirect("/");
 });
 

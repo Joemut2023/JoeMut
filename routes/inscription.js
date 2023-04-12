@@ -41,6 +41,7 @@ router.post("/", async (req, res, next) => {
       cli_pwd: pwdhashed,
     });
     req.session.userId = client.cli_id;
+    res.locals.user = client;
     res.redirect(301, `/mon-compte`);
   } catch (error) {
     res.render("inscription/index", {
