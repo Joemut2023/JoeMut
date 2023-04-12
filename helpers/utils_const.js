@@ -1,1 +1,1 @@
-exports.PAGINATION_LIMIT = 100;
+exports.PAGINATION_LIMIT = 40;
