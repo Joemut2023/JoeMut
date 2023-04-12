@@ -1,7 +1,3 @@
-const link_parag = document.querySelector(".btnpromo");
-const btn_promo = document.querySelector(".btn-promo");
-const code_promo_block = document.querySelector(".promo_block");
-const btn_fermer = document.querySelector(".fermer");
 const panierDetails = document.querySelector(".comment");
 const PanierPrice = document.querySelector(".panier-price");
 const emptyKartText = document.querySelector("#empty-product-kart");
@@ -56,7 +52,7 @@ const RenderKartProduct = () => {
 };
 
 RenderKartProduct();
-storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+
 const btns_up = document.querySelectorAll(".btn-up");
 const btns_down = document.querySelectorAll(".btn-down");
 const btnTrash = document.querySelectorAll(".delete");
@@ -108,13 +104,23 @@ const TotalPricesProducts = () => {
   </div>
 </div>
 <a href="/commander/#page-commander" class="button">
-  <button>Finaliser le Devis</button>
+  <button class="enable">Finaliser le Devis</button>
 </a>
   `;
 
   PanierPrice.innerHTML = PanierPriceHtml;
 };
 TotalPricesProducts();
+const link_parag = document.querySelector(".btnpromo");
+const btn_promo = document.querySelector(".btn-promo");
+const code_promo_block = document.querySelector(".promo_block");
+const btn_fermer = document.querySelector(".fermer");
+const btnFinaliser = document.querySelector(".enable");
+if (storedITems.length == 0) {
+  emptyKartText.style.display = "block";
+  btnFinaliser.disabled = true;
+  btnFinaliser.classList.add("btn-enabled");
+}
 
 let eventlistner = (callback) => {
   const btnTrash = document.querySelectorAll(".delete");
@@ -123,9 +129,12 @@ let eventlistner = (callback) => {
       let itemId = element.dataset.id;
       Kart.removeItem(itemId);
       TotalPricesProducts();
-      console.log("1");
       callback();
-      storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+      if (storedITems.length == 0) {
+        emptyKartText.style.display = "block";
+        btnFinaliser.disabled = true;
+        btnFinaliser.classList.add("btn-enabled");
+      }
     });
   });
 };
@@ -136,7 +145,6 @@ btnTrash.forEach((element) => {
     Kart.removeItem(itemId);
     TotalPricesProducts();
     RenderKartProduct();
-    console.log("2");
     eventlistner(() => {
       RenderKartProduct();
     });
