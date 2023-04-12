@@ -67,12 +67,14 @@ class Kart {
    * Affiche les items du panier
    * @param {Number} itemId
    */
-  static updateItemQuantity(itemId) {
+  static updateItemQuantity(itemId, action) {
     storedITems = Kart.getParsedBasket();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
-    storedITems[produitPositionInArray].pad_qte += 1;
+    action ==1 ?
+    storedITems[produitPositionInArray].pad_qte += 1: 
+    storedITems[produitPositionInArray].pad_qte -= 1;
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
   }
 

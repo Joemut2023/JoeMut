@@ -86,12 +86,12 @@ var Kart = /*#__PURE__*/function () {
      */
   }, {
     key: "updateItemQuantity",
-    value: function updateItemQuantity(itemId) {
+    value: function updateItemQuantity(itemId, action) {
       storedITems = Kart.getParsedBasket();
       var produitPositionInArray = storedITems.findIndex(function (produit) {
         return produit.pro_id == itemId;
       });
-      storedITems[produitPositionInArray].pad_qte += 1;
+      action == 1 ? storedITems[produitPositionInArray].pad_qte += 1 : storedITems[produitPositionInArray].pad_qte -= 1;
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
     }
 

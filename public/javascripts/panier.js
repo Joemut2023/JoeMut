@@ -58,18 +58,24 @@ btns_up.forEach(function (element) {
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
     ProductQuantity = ProductQuantity + 1;
-    Kart.updateItemQuantity(itemId);
+    Kart.updateItemQuantity(itemId, 1);
     TotalPricesProducts();
   });
 });
 btns_down.forEach(function (element) {
   element.addEventListener("click", function () {
+    var itemId = element.dataset.id;
     var decrement = element.parentNode.parentNode.children[0].value;
     decrement = isNaN(decrement) ? 1 : decrement;
-    if (decrement > 1) decrement--;
+    if (decrement > 1) {
+      decrement--;
+      ProductQuantity -= 1;
+      console.log(decrement, "decrement");
+      Kart.updateItemQuantity(itemId, 0);
+      TotalPricesProducts();
+      console.log(ProductQuantity, "qtéproductu");
+    }
     element.parentNode.parentNode.children[0].value = decrement;
-    ProductQuantity = isNaN(ProductQuantity) ? 1 : ProductQuantity;
-    if (ProductQuantity > 1) ProductQuantity--;
   });
 });
 link_parag.addEventListener("click", function () {
@@ -82,4 +88,3 @@ btn_fermer.addEventListener("click", function () {
   code_promo_block.classList.remove("code-promo");
   code_promo_block.classList.add("hide-promo");
 });
-console.log(ProductQuantity);
