@@ -36,6 +36,22 @@ var Kart = /*#__PURE__*/function () {
     value: function getParsedFrais() {
       return JSON.parse(localStorage.getItem("fraisDivers"));
     }
+
+    /**
+     *
+     * @returns Numeric
+     */
+  }, {
+    key: "getItemNumber",
+    value: function getItemNumber() {
+      var storedITems = Kart.getParsedBasket();
+      var quantity = 0;
+      storedITems.forEach(function (element) {
+        quantity += element.pad_qte;
+      });
+      return quantity;
+    }
+
     /**
      *
      * @param {Array} item
@@ -100,9 +116,11 @@ var Kart = /*#__PURE__*/function () {
           storedITems.push(itemForPanier);
         }
         localStorage.setItem("storedItems", JSON.stringify(storedITems));
+        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       } else {
         Kart.items.push(itemForPanier);
         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       }
       Kart.kartRenderItems();
       Kart.RenderModal(itemForPanier);
@@ -115,6 +133,7 @@ var Kart = /*#__PURE__*/function () {
     key: "removeItem",
     value: function removeItem(itemId) {
       var storedITems = Kart.getParsedBasket();
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       var produitPositionInArray = storedITems.findIndex(function (produit) {
         return produit.pro_id == itemId;
       });
@@ -170,6 +189,7 @@ var Kart = /*#__PURE__*/function () {
         item.addEventListener("click", function () {
           var itemId = item.dataset.id;
           Kart.removeItem(itemId);
+          document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
         });
       });
     }

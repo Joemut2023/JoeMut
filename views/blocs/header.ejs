@@ -94,8 +94,13 @@
                         <a href="/connexion"><i class="fa-solid fa-user fa-xl"></i></a>
                        <% } %>
                       </div>
-                      <a id="kart-link-handler-btn" data-bs-toggle="offcanvas" href="#bloc-panier" role="button" aria-controls="bloc-panier"><i class="fa-solid fa-xl fa-cart-shopping"></i
-                        ></a>
+                      <a  id="kart-link-handler-btn" class="position-relative" data-bs-toggle="offcanvas" href="#bloc-panier" role="button" aria-controls="bloc-panier">
+                        <i class="fa-solid fa-xl fa-cart-shopping">
+                        </i>
+                        <span class="position-absolute top-75 start-80 translate-middle badge rounded-circle " id="cart-item-count">
+                            0
+                        <span class="visually-hidden">unread messages</span>
+                    </a>
                 </div>
             </div>
         </div>
