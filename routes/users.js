@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const {Adresse} = require('../models');
+const { Adresse } = require("../models");
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "mon_compte";
@@ -15,37 +15,166 @@ router.get("/nouvelleAdresse", function (req, res, next) {
   res.locals.titre = "nouvelle adresse";
   res.render("users/nouvelleAdresse");
 });
-router.post('/nouvelleAdresse',async (req,res)=>{
-  res.locals.titre = "nouvelle adresse";
-  let error,success;
-  const {adr_structure,adr_nom,
-    adr_prenom,adr_societe,
-    adr_adresse,adr_comp,adr_cp,
-    adr_ville,adr_num_tva,adr_phone,adr_pays} = req.body
-    const chekInput = (input) => {return input !=='' ? true : false}
-    if (chekInput(adr_nom) && chekInput(adr_prenom) && chekInput(adr_adresse) && chekInput(adr_cp) && chekInput(adr_ville) && chekInput(adr_pays)) {
-      try {
-        let adresse = Adresse.create({
-          ...req.body,
-          cli_id : req.session.userId
-        })
-        if (adresse) {
-          success = 'Adresse ajouté!'
-          return res.render('users/nouvelleAdresse',{success});
-        }
-      } catch (err) {
-        error = 'Erreur interne du serveur';
-        return res.render("users/nouvelleAdresse",{
-          error
-        });
+
+router.get("/editAdresse/:id", async function (req, res, next) {
+  res.locals.titre = "edit adresse";
+  try {
+    const adressById = await Adresse.findOne({
+      where: {
+        adr_id: req.params.id,
+      },
+    });
+    // res.json({ adressById });
+    return res.render("users/editAdress", {
+      adressById,
+    });
+  } catch (error) {
+    error = "une erreur est survenue";
+    return res.render("users/adresses", {
+      error,
+    });
+  }
+});
+
+router.post("/editAdresse/:id", async function (req, res, next) {
+  let error, success;
+  const {
+    adr_structure,
+    adr_nom,
+    adr_prenom,
+    adr_societe,
+    adr_adresse,
+    adr_comp,
+    adr_cp,
+    adr_ville,
+    adr_num_tva,
+    adr_phone,
+    adr_pays,
+  } = req.body;
+
+  try {
+    const updateAdresse = await Adresse.update(
+      {
+        adr_structure,
+        adr_nom,
+        adr_prenom,
+        adr_societe,
+        adr_adresse,
+        adr_comp,
+        adr_cp,
+        adr_ville,
+        adr_num_tva,
+        adr_phone,
+        adr_pays,
+      },
+      {
+        where: {
+          adr_id: req.params.id,
+        },
       }
-    }else{
-      error = 'Veillez remplir tout les champs obligatoire';
-      return res.render("users/nouvelleAdresse",{
-        error
+    );
+    res.json({ updateAdresse });
+    // res.render("users/editAdresse", {
+    //   success: "Modification effectuée",
+    // });
+  } catch (error) {
+    error = "Erreur interne du serveur";
+    return res.render("users/nouvelleAdresse", {
+      error,
+    });
+  }
+});
+
+router.delete("/adresses", async (req, res, next) => {
+  try {
+    const { id } = req.params.id;
+    const deleteAdresse = Adresse.destroy({
+      where: {
+        adr_id: id,
+      },
+    });
+    return res.render("users/adresses", {
+      deleteAdresse,
+    });
+  } catch (error) {
+    return res.render("users/adresses", {
+      error: "une erreur est survenue",
+    });
+  }
+});
+
+router.get("/adresses", async function (req, res, next) {
+  try {
+    const getAdresses = await Adresse.findAll({
+      where: {
+        cli_id: req.session.userId,
+      },
+    });
+    // res.json({getAdresses})
+    return res.render("users/adresses", {
+      getAdresses,
+    });
+  } catch (error) {
+    error = "une erreur est survenue";
+    return res.render("users/adresses", {
+      error,
+    });
+  }
+});
+
+// router.get("/mon-compte/adresse-update/:id", async (req, res, next) => {
+
+// });
+
+router.post("/nouvelleAdresse", async (req, res) => {
+  res.locals.titre = "nouvelle adresse";
+  let error, success;
+  const {
+    adr_structure,
+    adr_nom,
+    adr_prenom,
+    adr_societe,
+    adr_adresse,
+    adr_comp,
+    adr_cp,
+    adr_ville,
+    adr_num_tva,
+    adr_phone,
+    adr_pays,
+  } = req.body;
+  const chekInput = (input) => {
+    return input !== "" ? true : false;
+  };
+  if (
+    chekInput(adr_nom) &&
+    chekInput(adr_prenom) &&
+    chekInput(adr_adresse) &&
+    chekInput(adr_cp) &&
+    chekInput(adr_ville) &&
+    chekInput(adr_pays)
+  ) {
+    try {
+      let adresse = Adresse.create({
+        ...req.body,
+        cli_id: req.session.userId,
+      });
+      if (adresse) {
+        success = "Adresse ajouté!";
+        return res.render("users/nouvelleAdresse", { success });
+      }
+    } catch (err) {
+      error = "Erreur interne du serveur";
+      return res.render("users/nouvelleAdresse", {
+        error,
       });
     }
-})
+  } else {
+    error = "Veillez remplir tout les champs obligatoire";
+    return res.render("users/nouvelleAdresse", {
+      error,
+    });
+  }
+});
 router.get("/donnee", function (req, res, next) {
   res.locals.titre = "informations";
   res.render("users/donnee");
