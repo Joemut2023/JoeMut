@@ -64,7 +64,7 @@ class Kart {
   }
 
   /**
-   * Affiche les items du panier
+   * Mettre à jour la quantité d'un item du panier
    * @param {Number} itemId
    */
   static updateItemQuantity(itemId, action) {
@@ -72,9 +72,9 @@ class Kart {
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
-    action ==1 ?
-    storedITems[produitPositionInArray].pad_qte += 1: 
-    storedITems[produitPositionInArray].pad_qte -= 1;
+    action
+      ? (storedITems[produitPositionInArray].pad_qte += 1)
+      : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
   }
 

@@ -81,7 +81,7 @@ var Kart = /*#__PURE__*/function () {
     }
 
     /**
-     * Affiche les items du panier
+     * Mettre à jour la quantité d'un item du panier
      * @param {Number} itemId
      */
   }, {
@@ -91,7 +91,7 @@ var Kart = /*#__PURE__*/function () {
       var produitPositionInArray = storedITems.findIndex(function (produit) {
         return produit.pro_id == itemId;
       });
-      action == 1 ? storedITems[produitPositionInArray].pad_qte += 1 : storedITems[produitPositionInArray].pad_qte -= 1;
+      action ? storedITems[produitPositionInArray].pad_qte += 1 : storedITems[produitPositionInArray].pad_qte -= 1;
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
     }
 

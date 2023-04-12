@@ -58,7 +58,7 @@ btns_up.forEach(function (element) {
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
     ProductQuantity = ProductQuantity + 1;
-    Kart.updateItemQuantity(itemId, 1);
+    Kart.updateItemQuantity(itemId, true);
     TotalPricesProducts();
   });
 });
@@ -70,10 +70,8 @@ btns_down.forEach(function (element) {
     if (decrement > 1) {
       decrement--;
       ProductQuantity -= 1;
-      console.log(decrement, "decrement");
-      Kart.updateItemQuantity(itemId, 0);
+      Kart.updateItemQuantity(itemId, false);
       TotalPricesProducts();
-      console.log(ProductQuantity, "qtéproductu");
     }
     element.parentNode.parentNode.children[0].value = decrement;
   });
