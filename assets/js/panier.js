@@ -1,19 +1,13 @@
-const link_parag = document.querySelector(".btnpromo");
-const btn_promo = document.querySelector(".btn-promo");
-const code_promo_block = document.querySelector(".promo_block");
-const btn_fermer = document.querySelector(".fermer");
 const panierDetails = document.querySelector(".comment");
 const PanierPrice = document.querySelector(".panier-price");
 const emptyKartText = document.querySelector("#empty-product-kart");
 let storedITems = Kart.getParsedBasket();
-let ProductQuantity = 0;
 let TotalePrice = 0;
 
 const RenderKartProduct = () => {
   let panierDetailsHtml = ``;
   storedITems = Kart.getParsedBasket();
   storedITems.map((produit) => {
-    ProductQuantity = ProductQuantity + produit.pad_qte;
     panierDetailsHtml += `
   <div class="articles row">
     <div class="col-md-1 clo-sm-1 id">${produit.pro_ref}</div>
@@ -58,10 +52,75 @@ const RenderKartProduct = () => {
 };
 
 RenderKartProduct();
-storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+
 const btns_up = document.querySelectorAll(".btn-up");
 const btns_down = document.querySelectorAll(".btn-down");
 const btnTrash = document.querySelectorAll(".delete");
+
+const TotalPricesProducts = () => {
+  let storedITems = Kart.getParsedBasket();
+  let storedFrais = Kart.getParsedFrais();
+  let totalPriceht = 0;
+  let totalPoductPrice = 0;
+  let totalQuantity = 0;
+  storedITems.forEach((element) => {
+    totalQuantity += element.pad_qte;
+    totalPriceht += element.pad_qte * element.pad_ttc;
+  });
+  totalPoductPrice =
+    totalPriceht +
+    parseFloat(storedFrais.frais_port) +
+    parseFloat(storedFrais.frais_dossier);
+  let PanierPriceHtml = ` 
+  <div class="frais">
+    <div class="item">
+      <span class="title">${totalQuantity} articles</span>
+      <span class="price">${totalPriceht.toFixed(2)}  €</span>
+    </div>
+    <div class="item">
+      <span class="title">Livraisons</span>
+      <span class="price">${storedFrais.frais_port} €</span>
+    </div>
+    <div class="item">
+      <span class="title">Frais de dossier</span>
+      <span class="price">${storedFrais.frais_dossier} €</span>
+    </div>
+    <hr>
+  </div>
+  <div class="item total">
+  <span>TTC</span>
+  <span>${totalPoductPrice.toFixed(2)} €</span>
+</div>
+<div class="promo">
+  <div class="link">
+    <p class="btnpromo"><span>Vous avez un code promo ?</span></p>
+  </div>
+  <div class="hide-promo promo_block">
+    <div class="btn-promo">
+      <input type="text" placeholder="Code promo" />
+      <button>Ajouter</button>
+    </div>
+    <p class="fermer">Fermer</p>
+  </div>
+</div>
+<a href="/commander/#page-commander" class="button">
+  <button class="enable">Finaliser le Devis</button>
+</a>
+  `;
+
+  PanierPrice.innerHTML = PanierPriceHtml;
+};
+TotalPricesProducts();
+const link_parag = document.querySelector(".btnpromo");
+const btn_promo = document.querySelector(".btn-promo");
+const code_promo_block = document.querySelector(".promo_block");
+const btn_fermer = document.querySelector(".fermer");
+const btnFinaliser = document.querySelector(".enable");
+if (storedITems.length == 0) {
+  emptyKartText.style.display = "block";
+  btnFinaliser.disabled = true;
+  btnFinaliser.classList.add("btn-enabled");
+}
 
 let eventlistner = (callback) => {
   const btnTrash = document.querySelectorAll(".delete");
@@ -69,47 +128,28 @@ let eventlistner = (callback) => {
     element.addEventListener("click", () => {
       let itemId = element.dataset.id;
       Kart.removeItem(itemId);
+      TotalPricesProducts();
       callback();
-      storedITems.length == 0 ? (emptyKartText.style.display = "block") : null;
+      if (storedITems.length == 0) {
+        emptyKartText.style.display = "block";
+        btnFinaliser.disabled = true;
+        btnFinaliser.classList.add("btn-enabled");
+      }
     });
   });
 };
 btnTrash.forEach((element) => {
   element.addEventListener("click", () => {
+    TotalPricesProducts;
     let itemId = element.dataset.id;
     Kart.removeItem(itemId);
+    TotalPricesProducts();
     RenderKartProduct();
     eventlistner(() => {
       RenderKartProduct();
     });
   });
 });
-const TotalPricesProducts = () => {
-  let storedITems = Kart.getParsedBasket();
-  let totalPriceht = 0;
-  let totalPoductPrice = 0;
-  storedITems.forEach((element) => {
-    console.log(element);
-  });
-  let PanierPriceHtml = ` 
-  <div class="frais">
-    <div class="item">
-      <span class="title">${ProductQuantity} articles</span>
-      <span class="price">18,0 €</span>
-    </div>
-    <div class="item">
-      <span class="title">Livraisons</span>
-      <span class="price">3,00 €</span>
-    </div>
-    <div class="item">
-      <span class="title">Frais de dossier</span>
-      <span class="price">15,00 €</span>
-    </div>
-  </div>`;
-
-  PanierPrice.innerHTML = PanierPriceHtml;
-};
-TotalPricesProducts();
 btns_up.forEach((element) => {
   element.addEventListener("click", () => {
     let itemId = element.dataset.id;
@@ -117,7 +157,6 @@ btns_up.forEach((element) => {
     compteur = isNaN(compteur) ? 1 : compteur;
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
-    ProductQuantity = ProductQuantity + 1;
     Kart.updateItemQuantity(itemId, true);
     TotalPricesProducts();
   });
@@ -130,7 +169,6 @@ btns_down.forEach((element) => {
     decrement = isNaN(decrement) ? 1 : decrement;
     if (decrement > 1) {
       decrement--;
-      ProductQuantity -= 1;
       Kart.updateItemQuantity(itemId, false);
       TotalPricesProducts();
     }

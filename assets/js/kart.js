@@ -13,13 +13,25 @@ class Kart {
   }
   /**
    *
+   * @returns Array
+   */
+  static getParsedFrais() {
+    return JSON.parse(localStorage.getItem("fraisDivers"));
+  }
+  /**
+   *
    * @param {Array} item
    */
 
-  static addFraisDivers() {
+  static async addFraisDivers() {
+    // let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
     let fraisDivers = {
-      frais_port: "13,10",
-      frais_dossier: "15,00",
+      frais_port: "13.10",
+      frais_dossier: "15.00",
     };
     localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
   }
@@ -95,7 +107,9 @@ class Kart {
    */
   static kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
-    const fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
     let totalPrice = 0;
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
@@ -103,12 +117,9 @@ class Kart {
     let kartProductPrice = 0;
     storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
-      kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
-      totalPrice = (
-        kartProductPrice +
-        fraisDIvers.frais_dossier +
-        fraisDIvers.frais_port
-      ).toFixed(2);
+      kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
+      totalPrice = kartProductPrice + fraisDossier + fraisPort;
+
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
@@ -145,15 +156,15 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-          <span>${fraisDIvers.frais_port.toFixed(2)} €</span>
+          <span>${fraisDivers.frais_port} €</span>
         </div>
       </div>
       <div class="kart-livraison">
       <div class="total">
-        <span>Frais de dossier</span>
+        <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${fraisDIvers.frais_dossier.toFixed(2)} €</span>
+        <span>${fraisDivers.frais_dossier} €</span>
       </div>
     </div>
 
@@ -162,7 +173,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${totalPrice} €</span>
+          <span>${totalPrice.toFixed(2)} €</span>
         </div>
       </div>
       <hr>
@@ -180,9 +191,9 @@ class Kart {
     </div>
     `;
     document.querySelector("#kart-infos").innerHTML = kartInfosData;
-    storedITems.length == 0
-      ? (document.querySelector("#par-empty-data").style.display = "block")
-      : null;
+    // storedITems.length != 0
+    //   ? (document.querySelector("#par-empty-data").style.display = "block")
+    //   : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
     btnRemoveProduct.forEach((item) => {
       item.addEventListener("click", () => {

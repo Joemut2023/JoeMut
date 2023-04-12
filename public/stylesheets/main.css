@@ -3237,6 +3237,10 @@
 #page-panier .products .row .details div .bar {
   color: #a0b21f;
 }
+#page-panier .btn-enabled {
+  cursor: not-allowed !important;
+  background: #eeeeee !important;
+}
 
 #identite {
   width: 80%;
