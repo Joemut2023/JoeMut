@@ -85,6 +85,24 @@ router.post("/editAdresse/:id", async function (req, res, next) {
   }
 });
 
+router.delete("/adresses", async (req, res, next) => {
+  try {
+    const { id } = req.params.id;
+    const deleteAdresse = Adresse.destroy({
+      where: {
+        adr_id: id,
+      },
+    });
+    return res.render("users/adresses", {
+      deleteAdresse,
+    });
+  } catch (error) {
+    return res.render("users/adresses", {
+      error: "une erreur est survenue",
+    });
+  }
+});
+
 router.get("/adresses", async function (req, res, next) {
   try {
     const getAdresses = await Adresse.findAll({
