@@ -7,6 +7,7 @@ const auth = require("../middleware/auth");
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
+    res.locals.titre = "catalogue";
     const article = await Produit.findOne({
       where: {
         pro_id: id,
