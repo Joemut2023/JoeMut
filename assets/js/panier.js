@@ -84,14 +84,36 @@ btnTrash.forEach((element) => {
     });
   });
 });
+const TotalPricesProducts = () => {
+  let PanierPriceHtml = ` 
+  <div class="frais">
+    <div class="item">
+      <span class="title">${ProductQuantity} articles</span>
+      <span class="price">18,0 €</span>
+    </div>
+    <div class="item">
+      <span class="title">Livraisons</span>
+      <span class="price">3,00 €</span>
+    </div>
+    <div class="item">
+      <span class="title">Frais de dossier</span>
+      <span class="price">15,00 €</span>
+    </div>
+  </div>`;
 
+  PanierPrice.innerHTML = PanierPriceHtml;
+};
+TotalPricesProducts();
 btns_up.forEach((element) => {
   element.addEventListener("click", () => {
+    let itemId = element.dataset.id;
     let compteur = element.parentNode.parentNode.children[0].value;
     compteur = isNaN(compteur) ? 1 : compteur;
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
     ProductQuantity = ProductQuantity + 1;
+    Kart.updateItemQuantity(itemId)
+    TotalPricesProducts();
   });
 });
 
@@ -118,3 +140,6 @@ btn_fermer.addEventListener("click", function () {
   code_promo_block.classList.remove("code-promo");
   code_promo_block.classList.add("hide-promo");
 });
+console.log(ProductQuantity);
+
+

@@ -17,6 +17,7 @@ class Kart {
    */
   static addItem(item, qte = null) {
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
+
     let itemForPanier = {
       pro_id: item.pro_id,
       pro_libelle: item.pro_libelle,
@@ -61,6 +62,20 @@ class Kart {
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
     Kart.kartRenderItems();
   }
+
+  /**
+   * Affiche les items du panier
+   * @param {Number} itemId
+   */
+  static updateItemQuantity(itemId) {
+    storedITems = Kart.getParsedBasket();
+    let produitPositionInArray = storedITems.findIndex(
+      (produit) => produit.pro_id == itemId
+    );
+    storedITems[produitPositionInArray].pad_qte += 1;
+    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+  }
+
   /**
    * Affiche les items du panier
    */

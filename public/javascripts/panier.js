@@ -45,13 +45,21 @@ btnTrash.forEach(function (element) {
     });
   });
 });
+var TotalPricesProducts = function TotalPricesProducts() {
+  var PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(ProductQuantity, " articles</span>\n      <span class=\"price\">18,0 \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">3,00 \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">15,00 \u20AC</span>\n    </div>\n  </div>");
+  PanierPrice.innerHTML = PanierPriceHtml;
+};
+TotalPricesProducts();
 btns_up.forEach(function (element) {
   element.addEventListener("click", function () {
+    var itemId = element.dataset.id;
     var compteur = element.parentNode.parentNode.children[0].value;
     compteur = isNaN(compteur) ? 1 : compteur;
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
     ProductQuantity = ProductQuantity + 1;
+    Kart.updateItemQuantity(itemId);
+    TotalPricesProducts();
   });
 });
 btns_down.forEach(function (element) {
@@ -74,3 +82,4 @@ btn_fermer.addEventListener("click", function () {
   code_promo_block.classList.remove("code-promo");
   code_promo_block.classList.add("hide-promo");
 });
+console.log(ProductQuantity);
