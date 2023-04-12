@@ -3,9 +3,9 @@ const navlink_two = document.querySelector(".btn-tab-two");
 const input = document.querySelector(".number-value");
 const btnAjouter = document.querySelector(".btn-add");
 const btn_envoyer = document.querySelector(".btn-envoyer");
-const titre = document.querySelector(".titre")
-const contenu = document.querySelector(".contenu")
-const form = document.querySelector(".form")
+const titre = document.querySelector(".titre");
+const contenu = document.querySelector(".contenu");
+const btn_close_avis = document.querySelector(".close-avis");
 
 const btn_up = document.querySelector(".btn-up");
 const btn_down = document.querySelector(".btn-down");
@@ -72,14 +72,12 @@ if (small_img_carousel.length > 1) {
 btn_envoyer.addEventListener("click", function () {
   btn_envoyer.setAttribute("data-bs-toggle", "modal");
   btn_envoyer.setAttribute("data-bs-target", "#sendModalLabel");
+ 
 });
 
-form.addEventListener("submit", function(e){
-  e.preventDefault()
+btn_close_avis.addEventListener("click", function(){
   titre.value = ""
   contenu.value = ""
 })
-
-
 
 
