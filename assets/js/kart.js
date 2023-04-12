@@ -15,8 +15,18 @@ class Kart {
    *
    * @param {Array} item
    */
+
+  static addFraisDivers() {
+    let fraisDivers = {
+      frais_port: "13,10",
+      frais_dossier: "15,00",
+    };
+    localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+  }
+
   static addItem(item, qte = null) {
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
+    const fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
     let itemForPanier = {
       pro_id: item.pro_id,
       pro_libelle: item.pro_libelle,
@@ -26,6 +36,9 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
+
+    fraisDIvers == null ? Kart.addFraisDivers() : null;
+
     if (storedITems) {
       let produitFilter = storedITems.filter(
         (produit) => produit.pro_id == item.pro_id
@@ -61,11 +74,29 @@ class Kart {
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
     Kart.kartRenderItems();
   }
+
+  /**
+   * Mettre à jour la quantité d'un item du panier
+   * @param {Number} itemId
+   */
+  static updateItemQuantity(itemId, action) {
+    storedITems = Kart.getParsedBasket();
+    let produitPositionInArray = storedITems.findIndex(
+      (produit) => produit.pro_id == itemId
+    );
+    action
+      ? (storedITems[produitPositionInArray].pad_qte += 1)
+      : (storedITems[produitPositionInArray].pad_qte -= 1);
+    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+  }
+
   /**
    * Affiche les items du panier
    */
   static kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
+    const fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
+    let totalPrice = 0;
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
@@ -73,6 +104,11 @@ class Kart {
     storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
       kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
+      totalPrice = (
+        kartProductPrice +
+        fraisDIvers.frais_dossier +
+        fraisDIvers.frais_port
+      ).toFixed(2);
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
@@ -100,7 +136,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${kartProductPrice} €</span>
+          <span>${kartProductPrice.toFixed(2)} €</span>
         </div>
       </div>
 
@@ -109,16 +145,24 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-          <span></span>
+          <span>${fraisDIvers.frais_port.toFixed(2)} €</span>
         </div>
       </div>
+      <div class="kart-livraison">
+      <div class="total">
+        <span>Frais de dossier</span>
+      </div>
+      <div class="price-total">
+        <span>${fraisDIvers.frais_dossier.toFixed(2)} €</span>
+      </div>
+    </div>
 
       <div class="kart-total">
         <div class="total">
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>15$</span>
+          <span>${totalPrice} €</span>
         </div>
       </div>
       <hr>

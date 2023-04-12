@@ -84,25 +84,57 @@ btnTrash.forEach((element) => {
     });
   });
 });
+const TotalPricesProducts = () => {
+  let storedITems = Kart.getParsedBasket();
+  let totalPriceht = 0;
+  let totalPoductPrice = 0;
+  storedITems.forEach((element) => {
+    console.log(element);
+  });
+  let PanierPriceHtml = ` 
+  <div class="frais">
+    <div class="item">
+      <span class="title">${ProductQuantity} articles</span>
+      <span class="price">18,0 €</span>
+    </div>
+    <div class="item">
+      <span class="title">Livraisons</span>
+      <span class="price">3,00 €</span>
+    </div>
+    <div class="item">
+      <span class="title">Frais de dossier</span>
+      <span class="price">15,00 €</span>
+    </div>
+  </div>`;
 
+  PanierPrice.innerHTML = PanierPriceHtml;
+};
+TotalPricesProducts();
 btns_up.forEach((element) => {
   element.addEventListener("click", () => {
+    let itemId = element.dataset.id;
     let compteur = element.parentNode.parentNode.children[0].value;
     compteur = isNaN(compteur) ? 1 : compteur;
     compteur++;
     element.parentNode.parentNode.children[0].value = compteur;
     ProductQuantity = ProductQuantity + 1;
+    Kart.updateItemQuantity(itemId, true);
+    TotalPricesProducts();
   });
 });
 
 btns_down.forEach((element) => {
   element.addEventListener("click", () => {
+    let itemId = element.dataset.id;
     let decrement = element.parentNode.parentNode.children[0].value;
     decrement = isNaN(decrement) ? 1 : decrement;
-    if (decrement > 1) decrement--;
+    if (decrement > 1) {
+      decrement--;
+      ProductQuantity -= 1;
+      Kart.updateItemQuantity(itemId, false);
+      TotalPricesProducts();
+    }
     element.parentNode.parentNode.children[0].value = decrement;
-    ProductQuantity = isNaN(ProductQuantity) ? 1 : ProductQuantity;
-    if (ProductQuantity > 1) ProductQuantity--;
   });
 });
 

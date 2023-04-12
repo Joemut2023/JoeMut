@@ -28,6 +28,7 @@ const sessions = require("express-session");
 const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
 const getCategorie = require("./middleware/categorie");
+const setAuthorizedUser = require("./middleware/setAuthorizedUser");
 var app = express();
 
 require("./config/db").sync();
@@ -54,6 +55,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(setAuthorizedUser);
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
