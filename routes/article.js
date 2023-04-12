@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { Produit, Tarif, Media, Commentaire } = require("../models");
 const { Op } = require("sequelize");
-const auth = require("../middleware/auth")
+const auth = require("../middleware/auth");
 
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -15,15 +15,15 @@ router.get("/:id", async (req, res, next) => {
         {
           model: Media,
           required: true,
-          where:{
-            pro_id:id
-          }
+          where: {
+            pro_id: id,
+          },
         },
       ],
     });
 
-    const ref_produit = article.pro_ref
-    const ref_produit_caractere = ref_produit.slice(0,ref_produit.length-1);
+    const ref_produit = article.pro_ref;
+    const ref_produit_caractere = ref_produit.slice(0, ref_produit.length - 1);
 
     const produits_similaires = await Produit.findAll({
       limit: 3,
@@ -59,13 +59,13 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-    if(req.xhr){
+    if (req.xhr) {
       //the request is ajax call
-      let produit = await Produit.findByPk(parseInt(req.params.id),{
-        include :[
-          {model:Tarif,attributes:['tar_ttc','tar_ht']},
-          {model:Media,attributes:['med_id','med_ressource']},
-        ]
+      let produit = await Produit.findByPk(parseInt(req.params.id), {
+        include: [
+          { model: Tarif, attributes: ["tar_ttc", "tar_ht"] },
+          { model: Media, attributes: ["med_id", "med_ressource"] },
+        ],
       });
       return res.json(produit);
     }
@@ -82,27 +82,30 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
-router.post("/:id",async(req,res,next)=>{
+router.post("/:id", async (req, res, next) => {
   const cli_id = req.session.userId;
-  const pro_id = req.params.id
-  var {cmt_titre,cmt_comment} = req.body;
-  console.log(cli_id)
-  try{
-   await Commentaire.create({
-      cli_id,
-      pro_id,
-      cmt_titre,
-      cmt_comment,
-    })
-    res.redirect(301, `/article/${pro_id}`);
-  }catch(error){
+  const pro_id = req.params.id;
+  const cmt_date = new Date().toJSON().slice(0, 10)
+  var { cmt_titre, cmt_comment } = req.body;
+
+  try {
+    if (cli_id) {
+      await Commentaire.create({
+        cli_id,
+        pro_id,
+        cmt_titre,
+        cmt_comment,
+        cmt_date
+      });
+    } else {
+      res.redirect(301, `/connexion`);
+    }
+  } catch (error) {
     res.render("article/index", {
       error: true,
       errorMsg: "Une erreur est survenue!",
     });
   }
-  
-})
+});
 
 module.exports = router;
