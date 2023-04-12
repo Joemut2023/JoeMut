@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       frp_debut: DataTypes.DATEONLY,
       frp_fin: DataTypes.DATEONLY,
       frp_actif: DataTypes.BOOLEAN,
+      frp_default:DataTypes.BOOLEAN
     },
     {
       sequelize,
