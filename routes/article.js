@@ -85,6 +85,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/:id", async (req, res, next) => {
   const cli_id = req.session.userId;
   const pro_id = req.params.id;
+  const cmt_date = new Date().toJSON().slice(0, 10)
   var { cmt_titre, cmt_comment } = req.body;
 
   try {
@@ -94,6 +95,7 @@ router.post("/:id", async (req, res, next) => {
         pro_id,
         cmt_titre,
         cmt_comment,
+        cmt_date
       });
       res.redirect(301, `/article/${pro_id}`);
     } else {
