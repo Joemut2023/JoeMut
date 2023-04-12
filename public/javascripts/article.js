@@ -11,7 +11,7 @@ var btnAjouter = document.querySelector(".btn-add");
 var btn_envoyer = document.querySelector(".btn-envoyer");
 var titre = document.querySelector(".titre");
 var contenu = document.querySelector(".contenu");
-var form = document.querySelector(".form");
+var btn_close_avis = document.querySelector(".close-avis");
 var btn_up = document.querySelector(".btn-up");
 var btn_down = document.querySelector(".btn-down");
 var image_grand = document.querySelector(".img-grand");
@@ -80,8 +80,7 @@ btn_envoyer.addEventListener("click", function () {
   btn_envoyer.setAttribute("data-bs-toggle", "modal");
   btn_envoyer.setAttribute("data-bs-target", "#sendModalLabel");
 });
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+btn_close_avis.addEventListener("click", function () {
   titre.value = "";
   contenu.value = "";
 });
