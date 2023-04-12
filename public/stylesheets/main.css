@@ -5092,6 +5092,39 @@
   border: 1px solid #7a7a7a;
   padding: 8px 20px;
 }
+#page-article .sendModal .modal-dialog .modal-content .modal-body .title {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body .title span {
+  color: #a0b21f;
+  font-size: 30px;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body .title h3 {
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 10px;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body p {
+  font-size: 13px;
+  line-height: 20px;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body .button {
+  display: flex;
+  justify-content: flex-end;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body .button button {
+  padding: 5px 15px;
+  border: none;
+  background-color: #3c4d52;
+  color: white;
+}
+#page-article .sendModal .modal-dialog .modal-content .modal-body .button button a {
+  text-decoration: none;
+  color: inherit;
+}
 
 #page-mensionLegale {
   margin-bottom: 10%;

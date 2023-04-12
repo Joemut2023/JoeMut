@@ -576,4 +576,50 @@
       }
     }
   }
+
+  .sendModal{
+    .modal-dialog{
+      .modal-content{
+        .modal-body{
+          .title{
+            display: flex;
+            gap: 5px;
+            justify-content: flex-start;
+            align-items: center;
+
+            span{
+              color: $color-primary;
+              font-size: 30px;
+            }
+            h3{
+              font-weight: 600;
+              font-size: 20px;
+              margin-top: 10px;
+            }
+          }
+          p{
+            font-size: 13px;
+            line-height: 20px;
+          }
+
+          .button{
+            display: flex;
+            justify-content: flex-end;
+
+          button{
+            padding: 5px 15px;
+            border: none;
+            background-color: #3c4d52;
+            color: white;
+
+            a{
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+          }
+        }
+      }
+    }
+  }
 }

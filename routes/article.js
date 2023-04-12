@@ -97,7 +97,6 @@ router.post("/:id", async (req, res, next) => {
         cmt_comment,
         cmt_date
       });
-      res.redirect(301, `/article/${pro_id}`);
     } else {
       res.redirect(301, `/connexion`);
     }
