@@ -18,6 +18,7 @@ var usersRouter = require("./routes/users");
 var inscriptionRouter = require("./routes/inscription");
 var connexionRouter = require("./routes/connexion");
 var commanderRouter = require("./routes/commander");
+var fraisPortRouter = require("./routes/fraisPort");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
@@ -46,12 +47,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
-    sessions({
-        secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-        saveUninitialized: true,
-        cookie: { maxAge: oneDay },
-        resave: false,
-    })
+  sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false,
+  })
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -71,40 +72,41 @@ app.use("/connexion", connexionRouter);
 app.use("/commander", commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
 app.use("/confirmation-commande", confirmationCommandeRouter);
+app.use("/fraisPort", fraisPortRouter);
 
 AdminJS.registerAdapter({
-    Resource: AdminJSSequelize.Resource,
-    Database: AdminJSSequelize.Database,
+  Resource: AdminJSSequelize.Resource,
+  Database: AdminJSSequelize.Database,
 });
 const admin = new AdminJS({
-    //resources:[Categorie]
-    dashboard: {
-        component: AdminJS.bundle("admin/pages-components/dashboard"),
-    },
-    databases: [db],
-    branding: {
-        companyName: "AES",
-        withMadeWithLove: false,
-        logo: "/images/logo.png",
-        favicon: "/images/favicon.ico",
-    },
+  //resources:[Categorie]
+  dashboard: {
+    component: AdminJS.bundle("admin/pages-components/dashboard"),
+  },
+  databases: [db],
+  branding: {
+    companyName: "AES",
+    withMadeWithLove: false,
+    logo: "/images/logo.png",
+    favicon: "/images/favicon.ico",
+  },
 });
 const adminRouter = AdminJSExpress.buildRouter(admin);
 app.use(admin.options.rootPath, adminRouter);
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
+app.use(function (req, res, next) {
+  next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render("error");
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
 });
 
 module.exports = app;
