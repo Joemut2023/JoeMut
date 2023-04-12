@@ -5401,4 +5401,104 @@
   margin-left: 10px;
 }
 
+#edit-adresse {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10% 0 5% 0;
+}
+@media (max-width: 680px) {
+  #edit-adresse {
+    padding: 1%;
+    width: 95%;
+  }
+}
+#edit-adresse .breadcrumb-item a {
+  text-decoration: none;
+  color: #232323;
+}
+@media (max-width: 680px) {
+  #edit-adresse .breadcrumb-item {
+    display: none;
+  }
+}
+#edit-adresse form {
+  padding: 2% 1% 5% 1%;
+  border: 0.3px solid #a0b21f;
+}
+@media (max-width: 680px) {
+  #edit-adresse form {
+    padding: 3% 3% 15% 3%;
+  }
+}
+#edit-adresse form .row-form {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin: 2% 0;
+}
+@media (max-width: 680px) {
+  #edit-adresse form .row-form {
+    flex-direction: column;
+    margin: 4% 0;
+  }
+}
+#edit-adresse form .row-form input {
+  border: 0.3px solid #a0b21f;
+  padding: 0.5% 1%;
+}
+#edit-adresse form .row-form .col-label {
+  width: 20%;
+  text-align: end;
+}
+@media (max-width: 680px) {
+  #edit-adresse form .row-form .col-label {
+    text-align: start;
+    width: 100%;
+  }
+}
+#edit-adresse form .row-form .col-input {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 680px) {
+  #edit-adresse form .row-form .col-input {
+    width: 100%;
+  }
+}
+#edit-adresse form .row-form .col-label-end {
+  text-align: start;
+  color: #7a7a7a;
+}
+#edit-adresse form .btn-submit {
+  float: right;
+}
+#edit-adresse form .btn-submit button {
+  background-color: #a0b21f;
+  color: #fff;
+}
+#edit-adresse .link-div {
+  gap: 2%;
+  padding: 1%;
+}
+@media (max-width: 680px) {
+  #edit-adresse .link-div {
+    padding: 3% 1%;
+  }
+}
+#edit-adresse .link-div a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#edit-adresse label span {
+  color: red;
+}
+#edit-adresse .form-check-label {
+  color: #a0b21f;
+}
+#edit-adresse .form-check-label .checkbox-label {
+  background-color: #a0b21f;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -16,6 +16,75 @@ router.get("/nouvelleAdresse", function (req, res, next) {
   res.render("users/nouvelleAdresse");
 });
 
+router.get("/editAdresse/:id", async function (req, res, next) {
+  res.locals.titre = "edit adresse";
+  try {
+    const adressById = await Adresse.findOne({
+      where: {
+        adr_id: req.params.id,
+      },
+    });
+    // res.json({ adressById });
+    return res.render("users/editAdress", {
+      adressById,
+    });
+  } catch (error) {
+    error = "une erreur est survenue";
+    return res.render("users/adresses", {
+      error,
+    });
+  }
+});
+
+router.post("/editAdresse/:id", async function (req, res, next) {
+  let error, success;
+  const {
+    adr_structure,
+    adr_nom,
+    adr_prenom,
+    adr_societe,
+    adr_adresse,
+    adr_comp,
+    adr_cp,
+    adr_ville,
+    adr_num_tva,
+    adr_phone,
+    adr_pays,
+  } = req.body;
+
+  try {
+    const updateAdresse = await Adresse.update(
+      {
+        adr_structure,
+        adr_nom,
+        adr_prenom,
+        adr_societe,
+        adr_adresse,
+        adr_comp,
+        adr_cp,
+        adr_ville,
+        adr_num_tva,
+        adr_phone,
+        adr_pays,
+      },
+      {
+        where: {
+          adr_id: req.params.id,
+        },
+      }
+    );
+    res.json({ updateAdresse });
+    // res.render("users/editAdresse", {
+    //   success: "Modification effectuée",
+    // });
+  } catch (error) {
+    error = "Erreur interne du serveur";
+    return res.render("users/nouvelleAdresse", {
+      error,
+    });
+  }
+});
+
 router.get("/adresses", async function (req, res, next) {
   try {
     const getAdresses = await Adresse.findAll({
@@ -34,6 +103,10 @@ router.get("/adresses", async function (req, res, next) {
     });
   }
 });
+
+// router.get("/mon-compte/adresse-update/:id", async (req, res, next) => {
+
+// });
 
 router.post("/nouvelleAdresse", async (req, res) => {
   res.locals.titre = "nouvelle adresse";
