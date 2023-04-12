@@ -1,12 +1,11 @@
 var express = require("express");
 var router = express.Router();
-
+const {Adresse} = require('../models');
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "mon_compte";
   res.render("users/index");
 });
-
 router.get("/identite", function (req, res, next) {
   res.locals.titre = "identite";
   res.render("users/identite");
@@ -16,7 +15,37 @@ router.get("/nouvelleAdresse", function (req, res, next) {
   res.locals.titre = "nouvelle adresse";
   res.render("users/nouvelleAdresse");
 });
-
+router.post('/nouvelleAdresse',async (req,res)=>{
+  res.locals.titre = "nouvelle adresse";
+  let error,success;
+  const {adr_structure,adr_nom,
+    adr_prenom,adr_societe,
+    adr_adresse,adr_comp,adr_cp,
+    adr_ville,adr_num_tva,adr_phone,adr_pays} = req.body
+    const chekInput = (input) => {return input !=='' ? true : false}
+    if (chekInput(adr_nom) && chekInput(adr_prenom) && chekInput(adr_adresse) && chekInput(adr_cp) && chekInput(adr_ville) && chekInput(adr_pays)) {
+      try {
+        let adresse = Adresse.create({
+          ...req.body,
+          cli_id : req.session.userId
+        })
+        if (adresse) {
+          success = 'Adresse ajouté!'
+          return res.render('users/nouvelleAdresse',{success});
+        }
+      } catch (err) {
+        error = 'Erreur interne du serveur';
+        return res.render("users/nouvelleAdresse",{
+          error
+        });
+      }
+    }else{
+      error = 'Veillez remplir tout les champs obligatoire';
+      return res.render("users/nouvelleAdresse",{
+        error
+      });
+    }
+})
 router.get("/donnee", function (req, res, next) {
   res.locals.titre = "informations";
   res.render("users/donnee");
