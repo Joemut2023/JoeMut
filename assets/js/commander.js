@@ -92,7 +92,7 @@ btn_info_client_connected?.addEventListener('click',(event)=>{
 })
 
 //change events on adresseForm
-adresseForm.addEventListener("submit", (event) => {
+adresseForm?.addEventListener("submit", (event) => {
     event.preventDefault()
     eventAccordeonForm(livraisonDiv, adresseDiv, btnModiferAdresse, livraisonContainer, adresseBg, checkAdresse, cursorLivraison, livraisonBg)
 })
