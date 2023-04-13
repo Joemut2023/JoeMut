@@ -16,16 +16,20 @@ const RenderKartProduct = () => {
   </div>
   <div class="col-md-3 col-sm-7 description">
     <div class="desc">
-      <a href="/article/${produit.pro_id}"><span>${produit.pro_libelle}</span></a>
+      <a href="/article/${produit.pro_id}"><span>${
+      produit.pro_libelle
+    }</span></a>
     </div>
-    <p class="price">${(produit.pad_ttc.toFixed(2))} €</p>
+    <p class="price">${produit.pad_ttc.toFixed(2)} €</p>
   </div>
   <div class="col-md-5 col-sm-12 prices">
     <div class="row">
       <div class="col-md-6 col-sm-10 block-price">
         <div class="row compteur">
           <div class="col-md-4 col-sm-6 qty-btn">
-            <input type="text" class="number-value" value="${produit.pad_qte}" />
+            <input type="text" class="number-value" value="${
+              produit.pad_qte
+            }" />
             <div class="btns">
               <button data-id="${produit.pro_id}" class="btn-up">
                 <span><i class="fa-solid fa-chevron-up"></i></span>
@@ -36,7 +40,7 @@ const RenderKartProduct = () => {
             </div>
           </div>
           <div class="col-md-8 col-sm-6 prx">
-            <span>${(produit.pad_ttc).toFixed(2)} €</span>
+            <span>${produit.pad_ttc.toFixed(2)} €</span>
           </div>
         </div>
       </div>
@@ -49,13 +53,53 @@ const RenderKartProduct = () => {
 `;
   });
   panierDetails.innerHTML = panierDetailsHtml;
+  const btnTrash = document.querySelectorAll(".delete");
+  const btnFinaliser = document.querySelector(".enable");
+
+  let eventlistner = (callback) => {
+    const btnTrash = document.querySelectorAll(".delete");
+    btnTrash.forEach((element) => {
+      element.addEventListener("click", () => {
+        let itemId = element.dataset.id;
+        Kart.removeItem(itemId);
+        TotalPricesProducts();
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
+        callback();
+        if (storedITems.length == 0) {
+          emptyKartText.style.display = "block";
+          btnFinaliser.disabled = true;
+          btnFinaliser.classList.add("btn-enabled");
+        }
+      });
+    });
+  };
+  btnTrash.forEach((element) => {
+    element.addEventListener("click", () => {
+      TotalPricesProducts;
+      let itemId = element.dataset.id;
+      Kart.removeItem(itemId);
+      TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
+      RenderKartProduct();
+      eventlistner(() => {
+        RenderKartProduct();
+      });
+    });
+  });
+
+  if (storedITems.length == 0) {
+    emptyKartText.style.display = "block";
+    btnFinaliser.disabled = true;
+    btnFinaliser.classList.add("btn-enabled");
+  }
 };
 
 RenderKartProduct();
 
 const btns_up = document.querySelectorAll(".btn-up");
 const btns_down = document.querySelectorAll(".btn-down");
-const btnTrash = document.querySelectorAll(".delete");
 
 const TotalPricesProducts = () => {
   let storedITems = Kart.getParsedBasket();
@@ -79,11 +123,11 @@ const TotalPricesProducts = () => {
     </div>
     <div class="item">
       <span class="title">Livraisons</span>
-      <span class="price">${storedFrais.frais_port} €</span>
+      <span class="price">${storedFrais.frais_port.toFixed(2)} €</span>
     </div>
     <div class="item">
       <span class="title">Frais de dossier</span>
-      <span class="price">${storedFrais.frais_dossier} €</span>
+      <span class="price">${storedFrais.frais_dossier.toFixed(2)} €</span>
     </div>
     <hr>
   </div>
@@ -122,36 +166,6 @@ if (storedITems.length == 0) {
   btnFinaliser.classList.add("btn-enabled");
 }
 
-let eventlistner = (callback) => {
-  const btnTrash = document.querySelectorAll(".delete");
-  btnTrash.forEach((element) => {
-    element.addEventListener("click", () => {
-      let itemId = element.dataset.id;
-      Kart.removeItem(itemId);
-      TotalPricesProducts();
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-      callback();
-      if (storedITems.length == 0) {
-        emptyKartText.style.display = "block";
-        btnFinaliser.disabled = true;
-        btnFinaliser.classList.add("btn-enabled");
-      }
-    });
-  });
-};
-btnTrash.forEach((element) => {
-  element.addEventListener("click", () => {
-    TotalPricesProducts;
-    let itemId = element.dataset.id;
-    Kart.removeItem(itemId);
-    TotalPricesProducts();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-    RenderKartProduct();
-    eventlistner(() => {
-      RenderKartProduct();
-    });
-  });
-});
 btns_up.forEach((element) => {
   element.addEventListener("click", () => {
     let itemId = element.dataset.id;
@@ -174,7 +188,8 @@ btns_down.forEach((element) => {
       decrement--;
       Kart.updateItemQuantity(itemId, false);
       TotalPricesProducts();
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
     }
     element.parentNode.parentNode.children[0].value = decrement;
   });

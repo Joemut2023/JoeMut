@@ -3,10 +3,12 @@ var router = express.Router();
 const { Frais_port } = require("../models");
 
 router.get("/", async (req, res) => {
-  const FraisPort = await Frais_port.findOne({ where: { frp_default: true } });
-  res.render("default/index", {
-    FraisPort: FraisPort,
-  });
+  try {
+    const fraisPort = await Frais_port.findOne({
+      where: { frp_default: true },
+    });
+    return res.json(fraisPort);
+  } catch (error) {}
 });
 
 module.exports = router;
