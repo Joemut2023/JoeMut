@@ -18,13 +18,13 @@ const RenderKartProduct = () => {
     <div class="desc">
       <a href="/article/${produit.pro_id}"><span>${produit.pro_libelle}</span></a>
     </div>
-    <p class="price">${produit.pad_ttc} €</p>
+    <p class="price">${(produit.pad_ttc.toFixed(2))} €</p>
   </div>
   <div class="col-md-5 col-sm-12 prices">
     <div class="row">
       <div class="col-md-6 col-sm-10 block-price">
         <div class="row compteur">
-          <div class="col-md-6 col-sm-6 qty-btn">
+          <div class="col-md-4 col-sm-6 qty-btn">
             <input type="text" class="number-value" value="${produit.pad_qte}" />
             <div class="btns">
               <button data-id="${produit.pro_id}" class="btn-up">
@@ -35,8 +35,8 @@ const RenderKartProduct = () => {
               </button>
             </div>
           </div>
-          <div class="col-md-6 col-sm-6 prx">
-            <span>${produit.pad_ttc} €</span>
+          <div class="col-md-8 col-sm-6 prx">
+            <span>${(produit.pad_ttc).toFixed(2)} €</span>
           </div>
         </div>
       </div>

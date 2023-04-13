@@ -162,7 +162,7 @@ class Kart {
                     <div class="kart-content">
                         <a href="/article/${produit.pro_id}">${produit.pro_libelle}</a>
                         <div class="actions">
-                            <span class="price">${produit.pad_qte} x ${produit.pad_ttc} €</span>
+                            <span class="price">${produit.pad_qte} x ${(produit.pad_ttc).toFixed(2)} €</span>
                             <button id="remove-prod" data-id="${produit.pro_id}" class="btn-close"></button>
                         </div>
                     </div>
