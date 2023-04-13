@@ -5038,11 +5038,14 @@
   color: #363a41;
   font-size: 14px;
   font-weight: 700;
+  margin-right: 5px;
 }
-#page-article .modal-container .modal-dialog .modal-content .modal-body .first_block .block-3 .item .contents-starts .start-full {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+#page-article .modal-container .modal-dialog .modal-content .modal-body .first_block .block-3 .item .contents-starts .start-content .star {
+  color: #7a7a7a;
+  cursor: pointer;
+}
+#page-article .modal-container .modal-dialog .modal-content .modal-body .first_block .block-3 .item .contents-starts .start-content .star-color {
+  color: orange;
 }
 #page-article .modal-container .modal-dialog .modal-content .modal-body form .title_label,
 #page-article .modal-container .modal-dialog .modal-content .modal-body form .content_label {

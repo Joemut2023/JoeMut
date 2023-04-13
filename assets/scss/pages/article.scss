@@ -484,13 +484,18 @@
                   color: #363a41;
                   font-size: 14px;
                   font-weight: 700;
+                  margin-right: 5px;
                 }
 
                 .contents-starts {
-                  .start-full {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
+                  .start-content {
+                    .star {
+                      color: $color-secondary;
+                      cursor: pointer;
+                    }
+                    .star-color {
+                      color: orange;
+                    }
                   }
                 }
               }

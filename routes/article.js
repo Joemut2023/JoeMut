@@ -1,6 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const { Produit, Tarif, Media, Commentaire } = require("../models");
+const {
+  Produit,
+  Tarif,
+  Media,
+  Commentaire,
+  Quantite,
+  Taille,
+} = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth");
 
@@ -23,6 +30,24 @@ router.get("/:id", async (req, res, next) => {
       ],
     });
 
+    const taillesQuantites = await Taille.findAll({
+      include: [
+        {
+          model: Quantite,
+          where: {
+            pro_id: req.params.id,
+          },
+        },
+      ],
+      order: [["tai_ordre", "ASC"]],
+    });
+
+    const quantiteInitial = await Quantite.sum('qua_nbre',{
+      where:{
+        pro_id:req.params.id
+      }
+    })
+    // res.json({ taillesQuantites });
     const ref_produit = article.pro_ref;
     const ref_produit_caractere = ref_produit.slice(0, ref_produit.length - 1);
 
@@ -47,7 +72,7 @@ router.get("/:id", async (req, res, next) => {
         ],
       },
     });
-    // res.json({ produits_similaires });
+   
     const priceArticle = await Produit.findOne({
       include: [
         {
@@ -74,6 +99,8 @@ router.get("/:id", async (req, res, next) => {
       article: article,
       priceArticle: priceArticle,
       produits_similaires: produits_similaires,
+      taillesQuantites: taillesQuantites,
+      quantiteInitial:quantiteInitial
     });
   } catch (error) {
     res.status(500).render("article/index", {
@@ -86,7 +113,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/:id", async (req, res, next) => {
   const cli_id = req.session.userId;
   const pro_id = req.params.id;
-  const cmt_date = new Date().toJSON().slice(0, 10)
+  const cmt_date = new Date().toJSON().slice(0, 10);
   var { cmt_titre, cmt_comment } = req.body;
 
   try {
@@ -96,7 +123,7 @@ router.post("/:id", async (req, res, next) => {
         pro_id,
         cmt_titre,
         cmt_comment,
-        cmt_date
+        cmt_date,
       });
     } else {
       res.redirect(301, `/connexion`);

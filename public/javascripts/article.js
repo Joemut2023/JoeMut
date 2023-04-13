@@ -13,6 +13,7 @@ var form = document.querySelector(".form");
 var titre = document.querySelector(".titre");
 var contenu = document.querySelector(".contenu");
 var btn_close_avis = document.querySelector(".close-avis");
+var stars = document.querySelectorAll(".star");
 var btn_up = document.querySelector(".btn-up");
 var btn_down = document.querySelector(".btn-down");
 var image_grand = document.querySelector(".img-grand");
@@ -84,4 +85,9 @@ form.addEventListener("click", function () {
 btn_close_avis.addEventListener("click", function () {
   titre.value = "";
   contenu.value = "";
+});
+stars.forEach(function (element) {
+  element.addEventListener("click", function () {
+    element.classList.toggle("star-color");
+  });
 });
