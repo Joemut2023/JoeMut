@@ -64,16 +64,19 @@
        
       </div>
       <div class="cat-pagination">
-        <div>
+        <% if (nbrPages > 1) { %>
+           <div>
           <p>Affichage <span>1-100</span> de <span><%= categorie.Produits.length %></span></p>
         </div>
-        <nav>
+            <nav>
           <ul class="pagination">
             <% for( let i = 1; i <= nbrPages; i++ ) { %>
               <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/<%= categorie_id %>?page=<%= i %>"><%= i %></a></li>
             <% } %>
           </ul>
         </nav>
+         
+        <% } %>
       </div>
     </div>
   </div>
