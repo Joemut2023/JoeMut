@@ -39,20 +39,20 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active content-one" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                     <div class="register-form">
-                                        <form class='info-form-inscription'>
+                                        <form method="post" action="/commander/user-subscribe">
                                             <div>
                                                 <div class="form-group row">
                                                     <div class="col-md-3 item">
-                                                        <label for=" " class="label">Civilité</label>
+                                                        <label for="" class="label">Civilité</label>
                                                     </div>
                                                     <div class="col-md-6 radios">
                                                         <div class="radio">
-                                                            <input type="radio" name="civilite" id="homme" value="M" />
-                                                            <label class=" " for="homme ">M</label>
+                                                            <input type="radio" name="tit_id" id="homme" value="M" />
+                                                            <label class="" for="homme ">M</label>
                                                         </div>
                                                         <div class="radio">
-                                                            <input type="radio" name="civilite" id="femme" value="Mme" />
-                                                            <label class=" " for="femme ">Mme</label>
+                                                            <input type="radio" name="tit_id" id="femme" value="Mme" />
+                                                            <label class="" for="femme ">Mme</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3"></div>
@@ -63,7 +63,7 @@
                                                         <label class="required label" for="prenom"><span>*</span>Prenom</label>
                                                     </div>
                                                     <div class="col-md-6 input">
-                                                        <input type="text" name="prenom" id="prenom" required />
+                                                        <input type="text" name="cli_prenom" id="prenom" required />
                                                         <label for=" " id="label-text">Seules les lettres et le point (.), suivi d'un espace, sont
                                                             autorisés.</label>
                                                     </div>
@@ -72,12 +72,22 @@
     
                                                 <div class="form-group row">
                                                     <div class="col-md-3 item">
-                                                        <label class="required label" for="nom "><span>*</span>Nom</label>
+                                                        <label class="required label" for="nom"><span>*</span>Nom</label>
                                                     </div>
                                                     <div class="col-md-6 input">
-                                                        <input type="text" name="nom" id="nom" required />
+                                                        <input type="text" name="cli_nom" id="nom" required />
                                                         <label for="" id="label-text">Seules les lettres et le point (.), suivi d'un espace, sont
                                                             autorisés.</label>
+                                                    </div>
+                                                    <div></div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-3 item">
+                                                        <label class="required label" for="email"><span>*</span>E-mail</label>
+                                                    </div>
+                                                    <div class="col-md-6 input">
+                                                        <input type="text" name="cli_mail" id="email" required />
+                                                        <label for="" id="label-text"></label>
                                                     </div>
                                                     <div></div>
                                                 </div>
@@ -88,7 +98,7 @@
                                                             passe</label>
                                                     </div>
                                                     <div class="col-md-6 btn-hide">
-                                                        <input type="password" name="password" id="password" class="input-password" required />
+                                                        <input type="password" name="cli_pwd" id="password" class="input-password" required />
                                                         <button id="btn-action" type="button" class="btn-action">Montrer</button>
                                                     </div>
                                                     <div></div>

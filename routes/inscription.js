@@ -10,7 +10,6 @@ router.get("/", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   var { tit_id, cli_nom, cli_prenom, cli_mail, cli_pwd } = req.body;
   tit_id = tit_id === "M" ? M : MME;
-
   try {
     if (
       cli_nom === "" ||
