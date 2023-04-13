@@ -138,7 +138,12 @@
                 </button>
               </div>
             </div>
-            <button class="add btn-add" data-bs-toggle="modal" data-bs-target="#parent_modal" data-id="<%= article.pro_id %>">
+            <button
+              class="add btn-add"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+              data-id="<%= article.pro_id %>"
+            >
               Ajouter au panier
             </button>
           </div>
@@ -246,7 +251,14 @@
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
             <p class="bar">|</p>
-            <p class="price btn button-ajouter" data-bs-toggle="modal" data-bs-target="#parent_modal">Ajouter</p>
+            <button
+              data-id="<%= element.pro_id %>"
+              class="price btn button-ajouter"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+            >
+              Ajouter
+            </button>
           </div>
         </div>
       </div>
