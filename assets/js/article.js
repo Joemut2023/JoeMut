@@ -7,6 +7,7 @@ const form = document.querySelector(".form")
 const titre = document.querySelector(".titre");
 const contenu = document.querySelector(".contenu");
 const btn_close_avis = document.querySelector(".close-avis");
+const stars = document.querySelectorAll(".star");
 
 const btn_up = document.querySelector(".btn-up");
 const btn_down = document.querySelector(".btn-down");
@@ -80,5 +81,11 @@ btn_close_avis.addEventListener("click", function(){
   titre.value = ""
   contenu.value = ""
 })
+
+stars.forEach(element => {
+  element.addEventListener("click", function(){
+    element.classList.toggle("star-color");
+  })
+});
 
 
