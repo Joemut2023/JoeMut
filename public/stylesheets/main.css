@@ -5514,4 +5514,10 @@
   background-color: #a0b21f;
 }
 
+#error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=main.css.map */
