@@ -54,7 +54,9 @@
          <% produits.forEach(produit => { %>
           <div class="produit">
             <div class="image-cadre">
-              <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
+              <a href="/article/<%= produit.pro_id %>">
+                <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
+              </a>
             </div>
             <div class="detail">
               <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
