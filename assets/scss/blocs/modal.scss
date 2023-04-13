@@ -12,14 +12,14 @@
   flex-direction: column;
   animation: appear 0.8s;
   transition: all 0.8s;
-  // @keyframes appear {
-  //   from{
-  //     opacity: 0;
-  //   }
-  //   to{
-  //     opacity: 1;
-  //   }
-  // }
+  @keyframes appear {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
   @include breakpoint(mobil) {
     left: 3rem;
     width: 75%;
