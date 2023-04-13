@@ -73,13 +73,11 @@ router.post("/editAdresse/:id", async function (req, res, next) {
         },
       }
     );
-    res.json({ updateAdresse });
-    // res.render("users/editAdresse", {
-    //   success: "Modification effectuée",
-    // });
-  } catch (error) {
+    success = "Modification effectuée";
+    // return res.redirect(301, "/mon-compte/adresses");
+  } catch (err) {
     error = "Erreur interne du serveur";
-    return res.render("users/nouvelleAdresse", {
+    return res.render("users/adresses", {
       error,
     });
   }
@@ -101,7 +99,7 @@ router.get("/deleteAdresse/:id", async (req, res, next) => {
     return res.render("users/adresses", {
       deleteAdresse,
       getAdresses: getAdresses,
-      success: true
+      success: true,
     });
   } catch (error) {
     return res.render("users/adresses", {
@@ -128,10 +126,6 @@ router.get("/adresses", async function (req, res, next) {
     });
   }
 });
-
-// router.get("/mon-compte/adresse-update/:id", async (req, res, next) => {
-
-// });
 
 router.post("/nouvelleAdresse", async (req, res) => {
   res.locals.titre = "nouvelle adresse";
