@@ -189,15 +189,11 @@ var Kart = /*#__PURE__*/function () {
       var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
       var fraisDossier = parseFloat(fraisDivers.frais_dossier);
       var fraisPort = parseFloat(fraisDivers.frais_port);
-      var totalPrice = 0;
       var storedITems = Kart.getParsedBasket();
       var storedItemsHtml = "";
       var kartProductQte = 0;
-      var kartProductPrice = 0;
       storedITems === null || storedITems === void 0 ? void 0 : storedITems.map(function (produit) {
         kartProductQte = produit.pad_qte + kartProductQte;
-        kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
-        totalPrice = kartProductPrice + fraisDossier + fraisPort;
         storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc, " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
       });
       kartItemsElement.innerHTML = storedItemsHtml;

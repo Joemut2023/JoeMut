@@ -147,15 +147,11 @@ class Kart {
     const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
-    let totalPrice = 0;
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    let kartProductPrice = 0;
     storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
-      kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
-      totalPrice = kartProductPrice + fraisDossier + fraisPort;
 
       storedItemsHtml += `
             <div>
@@ -268,7 +264,9 @@ class Kart {
             <h5>Il y a ${Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
-                <span class="sous-total-montant">${Kart.calculTotalPrice().kartProductPrice.toFixed(2)} €</span>
+                <span class="sous-total-montant">${Kart.calculTotalPrice().kartProductPrice.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
@@ -276,11 +274,15 @@ class Kart {
             </div>
             <div class="transport">
                 <span class="transport-titre">frais dossier:</span>
-                <span class="transport-montant">${fraisDossier.toFixed(2)} €</span>
+                <span class="transport-montant">${fraisDossier.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
-                <span class="total-montant">${Kart.calculTotalPrice().totalPrice.toFixed(2)} €</span>
+                <span class="total-montant">${Kart.calculTotalPrice().totalPrice.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer">Continuer mes achats</button>
