@@ -72,10 +72,17 @@
                   />
                 </div>
                 <div class="desc">
-                  <p class="utile">Quantité initiale : 5</p>
+                  <p class="utile">
+                    Quantité initiale : <%= quantiteInitial %>
+                  </p>
                   <p class="utile">Tailles disponibles :</p>
-                  <p>1 en 8 ans</p>
-                  <p>4 en 10 ans</p>
+                  <% if (taillesQuantites.length > 0) { %> <%
+                  taillesQuantites.forEach(element => { %>
+                  <p>
+                    <%= element.Quantites[0].qua_nbre %> en <%=
+                    element.tai_libelle %>
+                  </p>
+                  <% }) %> <% } %>
                 </div>
               </div>
 
@@ -105,10 +112,14 @@
       </div>
       <div class="informations">
         <div class="description">
-          <p class="utile">Quantité initiale : 5</p>
+          <p class="utile">Quantité initiale : <%= quantiteInitial %></p>
           <p class="utile">Tailles disponibles :</p>
-          <p>1 en 8 ans</p>
-          <p>4 en 10 ans</p>
+          <% if (taillesQuantites.length > 0) { %> <%
+          taillesQuantites.forEach(element => { %>
+          <p>
+            <%= element.Quantites[0].qua_nbre %> en <%= element.tai_libelle %>
+          </p>
+          <% }) %> <% } %>
         </div>
         <span>* J’indiquerai les tailles après l’essayage</span>
       </div>
@@ -250,12 +261,13 @@
       <span>Commentaires (<%= article.pro_comment %>)</span>
     </div>
     <div class="avis">
-      <div class="content"  data-bs-toggle="modal" data-bs-target="#commentModalLabel">
+      <div
+        class="content"
+        data-bs-toggle="modal"
+        data-bs-target="#commentModalLabel"
+      >
         <span class="icon"><i class="fa-solid fa-pen"></i></span>
-        <span
-          class="text"
-          >soyez le premier à donner votre avis</span
-        >
+        <span class="text">soyez le premier à donner votre avis</span>
       </div>
     </div>
 
@@ -291,12 +303,25 @@
                 <h3>MRC16B - Robe tunique liberty Bleu/Lilas</h3>
                 <div>
                   <p>
-                    <strong><span>Quantité initiale : 1</span></strong>
+                    <strong
+                      ><span
+                        >Quantité initiale : <%= quantiteInitial %></span
+                      ></strong
+                    >
                   </p>
                   <p>
                     <strong><span>Taille disponibles : </span></strong>
                   </p>
-                  <p><span>15 en S/M (36/38)</span></p>
+
+                  <% if (taillesQuantites.length > 0) { %> <%
+                  taillesQuantites.forEach(element => { %>
+                  <p>
+                    <span
+                      ><%= element.Quantites[0].qua_nbre %> en <%=
+                      element.tai_libelle %></span
+                    >
+                  </p>
+                  <% }) %> <% } %>
                   <p>
                     <em class="small-text"
                       >* J’indiquerai les tailles après l’essayage</em
@@ -320,7 +345,11 @@
                 </div>
               </div>
             </div>
-            <form action="/article/<%= article.pro_id %>" method="post" class="form">
+            <form
+              action="/article/<%= article.pro_id %>"
+              method="post"
+              class="form"
+            >
               <div class="row title_label">
                 <div class="col-md-12 col-sm-12">
                   <label for="comment_title" class="form-label"
@@ -330,7 +359,13 @@
               </div>
               <div class="row title_input">
                 <div class="col-md-12 col-sm-12 input">
-                  <input type="text" name="cmt_titre" id="" required class="titre" />
+                  <input
+                    type="text"
+                    name="cmt_titre"
+                    id=""
+                    required
+                    class="titre"
+                  />
                 </div>
               </div>
               <div class="row content_label">
@@ -360,7 +395,14 @@
                   </p>
                 </div>
                 <div class="col-md-6 col-sm-6 btns">
-                  <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn-annuler">Annuler</button>
+                  <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    class="btn-annuler"
+                  >
+                    Annuler
+                  </button>
                   <button type="submit" class="btn-envoyer">Envoyer</button>
                 </div>
               </div>
@@ -389,7 +431,13 @@
               modérateur l'aura approuvé.
             </p>
             <div class="button">
-              <button data-bs-dismiss="modal" aria-label="Close" class="close-avis">Ok</button>
+              <button
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                class="close-avis"
+              >
+                Ok
+              </button>
             </div>
           </div>
         </div>
