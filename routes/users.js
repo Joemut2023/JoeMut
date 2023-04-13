@@ -85,16 +85,23 @@ router.post("/editAdresse/:id", async function (req, res, next) {
   }
 });
 
-router.delete("/adresses/:id", async (req, res, next) => {
+router.get("/deleteAdresse/:id", async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params.id;
-    const deleteAdresse = Adresse.destroy({
+    const deleteAdresse = await Adresse.destroy({
       where: {
-        adr_id: id,
+        adr_id: parseInt(id),
+      },
+    });
+    const getAdresses = await Adresse.findAll({
+      where: {
+        cli_id: req.session.userId,
       },
     });
     return res.render("users/adresses", {
       deleteAdresse,
+      getAdresses: getAdresses,
+      success: true
     });
   } catch (error) {
     return res.render("users/adresses", {
