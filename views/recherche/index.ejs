@@ -4,11 +4,11 @@
     <span>/ Résultats de la recherche</span>
   </div>
   <div class="resultat">
-    <p>RESULTATS DE LA RECHERCHE POUR : <%= search %> </p>
+    <p>RESULTATS DE LA RECHERCHE POUR : <%= search %></p>
   </div>
   <div class="row resultat_choix">
     <div class="col-md-6">
-      <span class="title">Il y a <%= produitsNbr  %> produits.</span>
+      <span class="title">Il y a <%= produitsNbr %> produits.</span>
     </div>
     <div class="col-md-6 filtre-content">
       <div class="">
@@ -30,41 +30,110 @@
 
   <div class="row resultat_image">
     <% produits.forEach(produit => { %>
-      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
-        <div class="image">
-          <img src="/images/produits/<%= produit.dataValues.Media[0].med_ressource %>" class="img-fluid" alt="" />
-        </div>
-        <div class="details">
-          <p class="desc"><span><%= produit.dataValues.pro_libelle %></span></p>
-          <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
-          <div>
-            <p class="price"> <%= produit.dataValues.Tarifs[0].tar_ttc %> €</p>
-            <p class="bar">|</p>
-            <p class="price btn button-ajouter" data-id="<%= produit.pro_id %>">Ajouter</p>
-          </div>
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
+      <div class="image">
+        <a href="/article/<%= produit.dataValues.pro_id %>">
+          <img
+            src="/images/produits/<%= produit.dataValues.Media[0].med_ressource %>"
+            class="img-fluid"
+            alt=""
+          />
+        </a>
+      </div>
+      <div class="details">
+        <p class="desc">
+          <span>
+            <a href="/article/<%= produit.dataValues.pro_id %>"><%=
+            produit.dataValues.pro_libelle %></a></span
+          >
+        </p>
+
+        <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
+        <div>
+          <p class="price"><%= produit.dataValues.Tarifs[0].tar_ttc %> €</p>
+          <p class="bar">|</p>
+          <p
+            class="price btn button-ajouter"
+            data-id="<%= produit.pro_id %>"
+            data-bs-toggle="modal"
+            data-bs-target="#parent_modal"
+          >
+            Ajouter
+          </p>
         </div>
       </div>
+    </div>
     <% }) %>
-
 
     <div class="cat-pagination">
       <div class="row affichage">
-        <p>Affichage <span><%= start %> - <%= end %></span> de <span><%= produitsNbr%></span></p>
+        <p>
+          Affichage <span><%= start %> - <%= end %></span> de
+          <span><%= produitsNbr%></span>
+        </p>
       </div>
       <nav>
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=1#page-recherche">1</a></li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=1#page-recherche"
+              >1</a
+            >
+          </li>
           <% if (pageActive === 1 || pageActive ===2) { %>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=2#page-recherche">2</a></li>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=3#page-recherche">3</a></li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=2#page-recherche"
+              >2</a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=3#page-recherche"
+              >3</a
+            >
+          </li>
           <% } else { %>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=<%= pageActive -1 %>#page-recherche"><%= pageActive-1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=<%= pageActive %>#page-recherche"><%= pageActive %></a></li>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=<%= pageActive+1 %>#page-recherche"><%= pageActive+1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=<%= pageActive+2 %>#page-recherche"><%= pageActive+2 %></a></li>
-            <li class="page-item">...</li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive -1 %>#page-recherche"
+              ><%= pageActive-1 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive %>#page-recherche"
+              ><%= pageActive %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive+1 %>#page-recherche"
+              ><%= pageActive+1 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive+2 %>#page-recherche"
+              ><%= pageActive+2 %></a
+            >
+          </li>
+          <li class="page-item">...</li>
           <% } %>
-          <li class="page-item"><a class="page-link" href="/recherche/?search=<%= search %>&page=<%= nbrPages %>#page-recherche"><%= nbrPages %></a></li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/recherche/?search=<%= search %>&page=<%= nbrPages %>#page-recherche"
+              ><%= nbrPages %></a
+            >
+          </li>
         </ul>
       </nav>
     </div>

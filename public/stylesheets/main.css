@@ -2759,6 +2759,11 @@
 #page-recherche .resultat_image .details p span {
   font-size: 12px;
 }
+#page-recherche .resultat_image .details p span a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #232323;
+}
 #page-recherche .resultat_image .details .ref {
   color: #7a7a7a;
   font-weight: 100;
