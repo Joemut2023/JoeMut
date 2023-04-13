@@ -422,10 +422,12 @@
                         </div>
                     </div>
                     <div class="devis">
-                        <% mode_livraisons.forEach(mode_livraison => { %>
+                        <% mode_livraisons.forEach((mode_livraison,index) => { %>
                             <div class="devis-1 row">
                                 <div class="btn-checkbox  col-md-2">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="radio_mode_livraison" 
+                                     value="<%= index %>" 
+                                     data-ttc="<%= mode_livraison.frp_ttc %>" id="radio_mode_livraison<%= mode_livraison.frp_id%>">
                                 </div>
                                 <div class="desc-img  col-md-2">image</div>
                                 <div class="desc-retrait  col-md-2">
@@ -449,7 +451,6 @@
                                 <h3>DATE SPECTACLE</h3>
                                 <hr>
                             </div>
-
                             <div class="form" id="livraison-form">
                                 <form action="">
                                     <div class="row">
@@ -505,7 +506,6 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <hr>
@@ -623,3 +623,4 @@
     </div>
 </div>
 <script src="/javascripts/commander.js"></script>
+<script src="/javascripts/commande_process.js"></script>
