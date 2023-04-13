@@ -75,11 +75,8 @@ app.use("/commander", commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
 app.use("/confirmation-commande", confirmationCommandeRouter);
 app.use("/fraisPort", fraisPortRouter);
-<<<<<<< HEAD
 app.use("/error", errorRouter);
-=======
 app.use("/fraisDossier", fraisDossier);
->>>>>>> fix/bug
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,

@@ -4,8 +4,6 @@ const headerSticky = document.querySelector("#headerSticky");
 const userIcone = document.querySelector("#user-title-Dropdown");
 const dropDown = document.querySelector("#user-menu-Dropdown");
 
-
-
 const handler = (entries) => {
   if (!entries[0].isIntersecting) {
     headerSticky.style.display = "block";
@@ -28,4 +26,4 @@ document
     Kart.kartRenderItems();
   });
 
-Kart.addFraisDivers() 
+Kart.addFraisDivers();
