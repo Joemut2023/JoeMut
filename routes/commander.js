@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {Adresse,Frais_port} = require('../models');
+const createadress = require("../helpers/createadress");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
@@ -19,18 +20,33 @@ router.get("/", async (req, res) => {
           cli_id: req.session.userId,
         },
       });
-      return res.render("commander/index",{
-        adresses,
-        mode_livraisons:mode_livraisons
-      });
+      if (adresses.length ===0) {
+        return res.render("commander/index",{
+          mode_livraisons:mode_livraisons
+        });
+      }else{
+        return res.render("commander/index",{
+          adresses,
+          mode_livraisons:mode_livraisons
+        });
+      }
+      
     }else{
       return res.render('commander/index',{
         mode_livraisons:mode_livraisons
       });
     }
   } catch (error) {
-    console.log(error);
-    return res.render('commander/index');
+    res.status(500).render("error/serverError", {
+      error: true,
+      errorMsg: "Une erreur est survenue!",
+      detailError: error,
+    });
   }
 });
+router.post('/add-adresse',async (req,res)=>{
+  res.locals.titre = "commander";
+  let userId = req.session.userId;
+  createadress(req,res,'/commander',true);
+})
 module.exports = router;
