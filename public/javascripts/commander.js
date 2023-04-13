@@ -88,7 +88,7 @@ btn_info_client_connected === null || btn_info_client_connected === void 0 ? voi
 });
 
 //change events on adresseForm
-adresseForm.addEventListener("submit", function (event) {
+adresseForm === null || adresseForm === void 0 ? void 0 : adresseForm.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(livraisonDiv, adresseDiv, btnModiferAdresse, livraisonContainer, adresseBg, checkAdresse, cursorLivraison, livraisonBg);
 });

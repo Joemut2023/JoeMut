@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       pan_date: {
-        type:DataTypes.DATE
+        type:DataTypes.DATE,
+        defaultValue:new Date(new Date().setDate(new Date().getDate()))
       },
       cli_id: DataTypes.INTEGER,
     },

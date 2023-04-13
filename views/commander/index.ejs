@@ -238,7 +238,7 @@
                                         <div class="adresse-elmt">
                                             <div class="adresse-elmt-head">
                                                 <div class="adresse-elmnt-head-radio">
-                                                    <input type="radio" name="radio_adresse" id="radio_adresse<%= index %>">
+                                                    <input type="radio" name="radio_adresse" value="<%= adresse.adr_id %>" id="radio_adresse<%= index %>">
                                                     <label for="radio_adresse<%= index %>">
                                                         <h3><%= adresse.adr_nom %></h3>
                                                         <div class="adresse-elmnt-body">
@@ -441,8 +441,8 @@
                         <% }) %>
                         <div class="commande-msg">
                             <div class="mb-3 msg">
-                                <label for="exampleFormControlTextarea1" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="com_comment" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
+                                <textarea name="com_comment" class="form-control" id="com_comment" rows="3"></textarea>
                             </div>
                         </div>
 
@@ -456,32 +456,28 @@
                                     <div class="row">
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Date du debut de spectacle</label>
+                                                <label for="date-debut" class="col-form-label">Date du debut de spectacle</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="date" id="date-debut" class="form-control" placeholder="Date du debut de spectacle">
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-3 align-items-center bloc-input">
-                                            <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Date de fin de spectacle</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="date" id="date-fin" class="form-control" placeholder="Date de fin de spectacle">
+                                                <input name="com_debut_spectacle" type="date" id="date-debut" class="form-control" placeholder="Date du debut de spectacle" required>
                                             </div>
                                         </div>
-
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Date de répétition</label>
+                                                <label for="date-fin" class="col-form-label">Date de fin de spectacle</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input name="com_fin_spectacle" type="date" id="date-fin" class="form-control" placeholder="Date de fin de spectacle">
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 align-items-center bloc-input">
+                                            <div class="col-md-4">
+                                                <label for="date-rep" class="col-form-label">Date de répétition</label>
                                             </div>
                                             <div class="col-md-4">
                                                 <input type="date" id="date-rep" class="form-control" placeholder="Date de repetition">
                                             </div>
                                         </div>
-
-
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
                                                 <label for="inputPassword6" class="col-form-label">Site d'autres dates</label>
@@ -490,7 +486,6 @@
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                             </div>
                                         </div>
-
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
                                                 <label for="inputPassword6" class="col-form-label">Complement d'infos ?</label>
