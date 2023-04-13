@@ -38,7 +38,7 @@
         type="text"
         name="adr_structure"
         id=""
-        value="<%= adressById.adr_structure %>"
+        value="<%= adressById.adr_structure ? adressById.adr_structure : '' %>"
       />
       <label class="col-label-end" for="">Optionnel</label>
     </div>
@@ -141,12 +141,19 @@
         type="text"
         name="adr_pays"
         id=""
-        value="<%= adressById.adr_pays %>"
+        value="<%= adressById.adr_pays ? adressById.adr_pays : '' %>"
       />
     </div>
 
     <div class="btn-submit">
-      <button class="btn" type="submit">Modifier</button>
+      <button
+        class="btn"
+        type="submit"
+        data-bs-toggle="modal"
+        data-bs-target="#sendModalLabel"
+      >
+        Modifier
+      </button>
     </div>
   </form>
   <div class="link-div d-flex flex-row">
@@ -157,6 +164,35 @@
     </div>
     <div>
       <a href="/"><i class="fa-solid fa-house"></i> Accueil</a>
+    </div>
+  </div>
+  <div
+    class="modal fade sendModal"
+    id="sendModalLabel"
+    tabindex="-1"
+    aria-labelledby="sendModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="title">
+            <span><i class="fa-solid fa-circle-check"></i></span>
+            <h3>Adresse modifiée avec succès</h3>
+          </div>
+          <div class="button">
+            <a href="/mon-compte/adresses"
+              ><button
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                class="close-avis"
+              >
+                Ok
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

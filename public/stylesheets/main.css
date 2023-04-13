@@ -5502,6 +5502,39 @@
   background-color: #a0b21f;
   color: #fff;
 }
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .title {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .title span {
+  color: #a0b21f;
+  font-size: 25px;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .title h3 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 10px;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body p {
+  font-size: 13px;
+  line-height: 20px;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .button {
+  display: flex;
+  justify-content: flex-end;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .button button {
+  padding: 5px 15px;
+  border: none;
+  background-color: #3c4d52;
+  color: white;
+}
+#edit-adresse .sendModal .modal-dialog .modal-content .modal-body .button button a {
+  text-decoration: none;
+  color: inherit;
+}
 #edit-adresse .link-div {
   gap: 2%;
   padding: 1%;
