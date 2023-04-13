@@ -68,7 +68,7 @@
       <div class="cat-pagination">
         <% if (nbrPages > 1) { %>
            <div>
-          <p>Affichage <span>1-100</span> de <span><%= categorie.Produits.length %></span></p>
+          <p>Affichage <span> <%= start %>-<%= end %> </span> de <span><%= categorie.Produits.length %></span></p>
         </div>
             <nav>
           <ul class="pagination">
