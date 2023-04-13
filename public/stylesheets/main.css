@@ -648,6 +648,9 @@
 
 #pages-home {
   margin-top: 130px;
+  /*
+  caroussel 
+  */
 }
 #pages-home .btn {
   background-color: #a0b21f;
@@ -658,100 +661,9 @@
   border-radius: 5px;
   font-family: "Cardo";
 }
-@media (max-width: 767px) {
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item > div {
-    display: none;
-  }
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item > div:first-child {
-    display: block;
-  }
-}
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item.active,
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-next,
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
-  display: flex;
-}
-@media (min-width: 768px) {
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-end.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-next {
-    transform: translateX(25%);
-  }
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-start.active,
-  #pages-home .element-slider-suggestion .carousel-inner .carousel-item-prev {
-    transform: translateX(-25%);
-  }
-}
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-end,
-#pages-home .element-slider-suggestion .carousel-inner .carousel-item-start {
-  transform: translateX(0);
-}
 #pages-home .element-slider-suggestion .font-weight-light {
   margin-bottom: 20px;
   font-family: "Byciclette";
-}
-#pages-home .element-slider-suggestion #suggestion-carousel {
-  margin-bottom: 1.5rem;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item {
-  height: 400px;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-img {
-  margin-bottom: 1.563rem;
-  height: 250px;
-  overflow: hidden;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-img img {
-  height: 100% !important;
-  object-fit: cover;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  font-family: "Poppins";
-  font-size: 0.875rem;
-  text-align: center;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .price {
-  max-width: max-content;
-  font-weight: 800;
-  position: relative;
-  margin-right: 10px;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .price::after {
-  content: "";
-  height: 10px;
-  width: 5px;
-  border-right: solid 5px green;
-  position: absolute;
-  right: -10px;
-  top: 5px;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .btn-add {
-  max-width: max-content;
-  font-weight: 800;
-}
-#pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-card .item-card-text .price-block .btn-add:hover {
-  color: #7a7a7a;
-  cursor: pointer;
-}
-@media (max-width: 680px) {
-  #pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-container {
-    width: 100%;
-  }
-}
-@media (max-width: 1000px) {
-  #pages-home .element-slider-suggestion #suggestion-carousel .carousel-inner .carousel-item .item-container {
-    width: 100%;
-  }
 }
 #pages-home .section-location {
   display: flex;
@@ -1123,6 +1035,81 @@
 }
 #pages-home .section-contact form {
   font-family: "Byciclette !important";
+}
+#pages-home .carousel {
+  margin: 20px;
+}
+#pages-home .carousel__view {
+  width: 95%;
+  height: 400px;
+  background: white;
+  margin: 0 auto 5% auto;
+  overflow: hidden;
+  position: relative;
+}
+#pages-home .carousel__control {
+  position: absolute;
+  z-index: 1;
+  height: 400px;
+  width: 70px;
+  transition: background-color 0.3s;
+  display: table;
+}
+#pages-home .carousel__control .icon {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+#pages-home .carousel__control:first-of-type {
+  left: 0;
+}
+#pages-home .carousel__control:last-of-type {
+  right: 0;
+}
+#pages-home .product-list {
+  position: absolute;
+  margin: 0;
+  padding: 0%;
+  transition: transform 0.3s;
+  transform: translateX(0px);
+  list-style: none;
+  height: 400px;
+}
+#pages-home .product-list__item {
+  width: 300px;
+  height: 400px;
+  display: inline-block;
+}
+#pages-home .product {
+  display: table;
+  height: 100%;
+  width: 100%;
+  margin-right: 100px;
+}
+#pages-home .product .item-card-img {
+  height: 270px;
+  width: 60%;
+  margin: 0 auto 2% auto;
+}
+#pages-home .product .item-card-img .suggestion-img {
+  object-fit: cover;
+}
+#pages-home .product .paragraph {
+  text-align: center;
+  color: #7a7a7a;
+}
+#pages-home .product .paragraph .libelle {
+  font-size: 0.8rem;
+}
+#pages-home .product .price {
+  text-align: center;
+  color: #363a42;
+}
+#pages-home .product .price span {
+  cursor: pointer;
+}
+#pages-home body {
+  margin: 50px;
 }
 
 #page-creation {

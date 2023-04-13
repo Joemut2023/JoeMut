@@ -1,51 +1,46 @@
 <div id="pages-home">
   <div class="element-slider-suggestion">
-    <div class="text-center">
-      <h2 class="font-weight-light">NOS SUGGESTIONS !</h2>
-      <div class="row mx-auto my-auto justify-content-center">
-        <div id="suggestion-carousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner" role="listbox">
-            <% produits.forEach((produit,index) => { %>
-              <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                <div class="col-md-3 item-container">
-                  <div class="item-card">
-                    <div class="item-card-img">
-                      <a href="/article/<%= produit.pro_id %>"><img src="/images/produits/<%= produit.Media[0].med_ressource %>" class="img-fluid" /></a>
-                    </div>
-                    <div class="item-card-text">
-                      <div class="title">
-                        <%= produit.pro_libelle %>
-                      </div>
-                      <div class="ref"><%= produit.pro_ref %></div>
-                      <div class="price-block">
-                        <div class="price"><%= produit.Tarifs[0].tar_ht %> €</div>
-                        <span class="btn-add button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal" data-bs-target="#parent_modal"  data-id="<%= produit.pro_id %>">AJouter</span>
-                      </div>
-                    </div>
-                  </div>
+    <div class="">
+      <h2 class="font-weight-light text-center">NOS SUGGESTIONS !</h2>
+      <div class="carousel js-product-carousel">
+        <div class="carousel__view">
+          <span class="carousel__control js-carousel-prev"
+            ><i class="icon"><i class="fa-solid fa-chevron-left"></i></i
+          ></span>
+          <span href="#" class="carousel__control js-carousel-next"
+            ><i class="icon"><i class="fa-solid fa-chevron-right"></i></i
+          ></span>
+          <ul class="product-list js-product-list">
+            <% produits.forEach(produit => { %>
+            <li class="product-list__item">
+              <div data-slide="1" class="product">
+                <div class="item-card-img">
+                  <a href="/article/<%= produit.pro_id %>"
+                    ><img
+                      src="/images/produits/<%= produit.Media[0].med_ressource %>"
+                      class="img-fluid suggestion-img"
+                  /></a>
+                </div>
+                <div class="paragraph">
+                  <p class="libelle"><%= produit.pro_libelle %></p>
+                  <p><%= produit.pro_ref %></p>
+                </div>
+                <div class="price">
+                  <p>
+                    <%= (produit.Tarifs[0].tar_ht).toFixed(2) %> €
+                    <span
+                      class="btn-add button-ajouter"
+                      data-id="<%= produit.pro_id %>"
+                      data-bs-toggle="modal"
+                      data-bs-target="#parent_modal"
+                      >Ajouter</span
+                    >
+                  </p>
                 </div>
               </div>
+            </li>
             <% }) %>
-          </div>
-          <a
-            class="carousel-control-prev bg-transparent w-aut"
-            href="#suggestion-carousel"
-            role="button"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          </a>
-          <a
-            class="carousel-control-next bg-transparent w-aut"
-            href="#suggestion-carousel"
-            role="button"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          </a>
+          </ul>
         </div>
       </div>
     </div>
@@ -139,7 +134,9 @@
         <img src="/images/sommaire-2.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">LA NOUVELLE COLLECTION</h2>
-          <a href="/nouvelleCollection/#nouvelleCollection" class="cta-item-btn">Découvrir</a>
+          <a href="/nouvelleCollection/#nouvelleCollection" class="cta-item-btn"
+            >Découvrir</a
+          >
         </div>
       </div>
       <div class="cta-item">
@@ -160,14 +157,21 @@
         <img src="/images/sommaire-5.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">SUR YOUTUBE</h2>
-          <a href="https://www.youtube.com/channel/UCYAveH1UzFJ-fMx0OFx7efg?app=desktop" target="_blank" class="cta-item-btn">Découvrir</a>
+          <a
+            href="https://www.youtube.com/channel/UCYAveH1UzFJ-fMx0OFx7efg?app=desktop"
+            target="_blank"
+            class="cta-item-btn"
+            >Découvrir</a
+          >
         </div>
       </div>
       <div class="cta-item">
         <img src="/images/sommaire-6.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">PROMOTIONS</h2>
-          <a href="/promotion/#page-promotion" class="cta-item-btn">Découvrir</a>
+          <a href="/promotion/#page-promotion" class="cta-item-btn"
+            >Découvrir</a
+          >
         </div>
       </div>
     </section>
@@ -190,7 +194,7 @@
     </div>
     <div class="form">
       <div class="input">
-        <input type="text" placeholder="Votre adresse e-mail"/>
+        <input type="text" placeholder="Votre adresse e-mail" />
         <button><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
@@ -244,3 +248,4 @@
   </div>
 </div>
 <script src="/javascripts/suggestion_carousel.js"></script>
+<script src="/javascripts/home.js"></script>
