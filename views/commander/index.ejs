@@ -166,16 +166,19 @@
                                 </div>
                                 <div class="tab-pane fade content-two" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                     <div class="register-form">
-    
-                                        <form class="info-form-connexion">
+                                        <form method="post" action="/commander/user-login">
+                                            <%if (typeof error !== 'undefined' && error == true) { %>
+                                                <div class="alert alert-danger" role="alert">
+                                                  <%= (errorMsg) ? errorMsg : '' %>
+                                                </div>
+                                              <% } %>
                                             <div>
                                                 <div class="form-group row">
                                                     <div class="col-md-3 item">
                                                         <label class="required label" for="email"><span>*</span>E-mail</label>
-    
                                                     </div>
                                                     <div class="col-md-6 input">
-                                                        <input type="email" name="prenom" id="prenom" required />
+                                                        <input type="email" name="cli_mail" id="prenom" required />
                                                     </div>
                                                     <div class="col-md-3"></div>
                                                 </div>
@@ -185,7 +188,7 @@
                                                         <label class="required label" for="password"><span>*</span>Mot de passe</label>
                                                     </div>
                                                     <div class="col-md-6 btn-hide">
-                                                        <input type="password" name="password" id="password" class="input-password" required />
+                                                        <input type="password" name="cli_pwd" id="password" class="input-password" required />
                                                         <button id="btn-action" type="button" class="btn-action">Montrer</button>
                                                     </div>
                                                     <div></div>
@@ -194,7 +197,6 @@
                                             <div class="forgot-password">
                                                 <p>Mot de passe oublié ?</p>
                                             </div>
-    
                                             <div class="btn-login">
                                                 <button type="submit">Continuer</button>
                                             </div>

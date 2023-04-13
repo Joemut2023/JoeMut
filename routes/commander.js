@@ -3,6 +3,7 @@ const router = express.Router();
 const {Adresse,Frais_port} = require('../models');
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
+const user_login = require("../helpers/user_login");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
@@ -51,7 +52,7 @@ router.post('/add-adresse',async (req,res)=>{
   createadress(req,res,'/commander',true);
 });
 router.post('/user-login',async (req,res)=>{
- 
+ user_login(req,res,'commander/index','/commander');
 });
 router.post('/user-subscribe',async (req,res)=>{
   user_subscribe(req,res,'commander/index','/commander');
