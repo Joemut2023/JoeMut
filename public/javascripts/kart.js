@@ -38,7 +38,7 @@ var Kart = /*#__PURE__*/function () {
     }
 
     /**
-     *
+     * recuperer le nombre d'artcile au panier
      * @returns Numeric
      */
   }, {
@@ -158,6 +158,28 @@ var Kart = /*#__PURE__*/function () {
     }
 
     /**
+     * Calculer les prix des artciles dans le panier
+     */
+  }, {
+    key: "calculTotalPrice",
+    value: function calculTotalPrice() {
+      var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+      var storedITems = Kart.getParsedBasket();
+      var fraisDossier = parseFloat(fraisDivers.frais_dossier);
+      var fraisPort = parseFloat(fraisDivers.frais_port);
+      var kartProductPrice = 0;
+      var totalPrice = 0;
+      storedITems.forEach(function (produit) {
+        kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
+        totalPrice = kartProductPrice + fraisDossier + fraisPort;
+      });
+      return {
+        totalPrice: totalPrice,
+        kartProductPrice: kartProductPrice
+      };
+    }
+
+    /**
      * Affiche les items du panier
      */
   }, {
@@ -167,19 +189,15 @@ var Kart = /*#__PURE__*/function () {
       var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
       var fraisDossier = parseFloat(fraisDivers.frais_dossier);
       var fraisPort = parseFloat(fraisDivers.frais_port);
-      var totalPrice = 0;
       var storedITems = Kart.getParsedBasket();
       var storedItemsHtml = "";
       var kartProductQte = 0;
-      var kartProductPrice = 0;
       storedITems === null || storedITems === void 0 ? void 0 : storedITems.map(function (produit) {
         kartProductQte = produit.pad_qte + kartProductQte;
-        kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
-        totalPrice = kartProductPrice + fraisDossier + fraisPort;
         storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc, " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
       });
       kartItemsElement.innerHTML = storedItemsHtml;
-      var kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(fraisDivers.frais_port, " \u20AC</span>\n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(fraisDivers.frais_dossier, " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
+      var kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(fraisDivers.frais_port, " \u20AC</span>\n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(fraisDivers.frais_dossier, " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
       document.querySelector("#kart-infos").innerHTML = kartInfosData;
       // storedITems.length != 0
       //   ? (document.querySelector("#par-empty-data").style.display = "block")
@@ -201,10 +219,13 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderModal",
     value: function RenderModal(item) {
       var storedITems = Kart.getParsedBasket();
+      var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+      var fraisDossier = parseFloat(fraisDivers.frais_dossier);
+      var fraisPort = parseFloat(fraisDivers.frais_port);
       var produitFilter = storedITems.filter(function (produit) {
         return produit.pro_id == item.pro_id;
       });
-      var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">7,00 \u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(produitFilter[0].pad_qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(storedITems.length, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">87,50 \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+      var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">7,00 \u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(produitFilter[0].pad_qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(Kart.getItemNumber(), " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(fraisPort.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(fraisDossier.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
       document.querySelector("#myModal .body-modal").innerHTML = html;
     }
   }]);

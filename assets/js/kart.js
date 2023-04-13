@@ -20,7 +20,7 @@ class Kart {
   }
 
   /**
-   *
+   * recuperer le nombre d'artcile au panier
    * @returns Numeric
    */
   static getItemNumber() {
@@ -80,11 +80,13 @@ class Kart {
         storedITems.push(itemForPanier);
       }
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
     } else {
       Kart.items.push(itemForPanier);
       localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
     }
     Kart.kartRenderItems();
     Kart.RenderModal(itemForPanier);
@@ -120,6 +122,24 @@ class Kart {
   }
 
   /**
+   * Calculer les prix des artciles dans le panier
+   */
+  static calculTotalPrice() {
+    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    let storedITems = Kart.getParsedBasket();
+    let fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    let fraisPort = parseFloat(fraisDivers.frais_port);
+    let kartProductPrice = 0;
+    let totalPrice = 0;
+
+    storedITems.forEach((produit) => {
+      kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
+      totalPrice = kartProductPrice + fraisDossier + fraisPort;
+    });
+    return { totalPrice, kartProductPrice };
+  }
+
+  /**
    * Affiche les items du panier
    */
   static kartRenderItems() {
@@ -127,15 +147,11 @@ class Kart {
     const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
-    let totalPrice = 0;
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    let kartProductPrice = 0;
     storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
-      kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
-      totalPrice = kartProductPrice + fraisDossier + fraisPort;
 
       storedItemsHtml += `
             <div>
@@ -164,7 +180,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${kartProductPrice.toFixed(2)} €</span>
+          <span>${Kart.calculTotalPrice().kartProductPrice.toFixed(2)} €</span>
         </div>
       </div>
 
@@ -190,7 +206,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${totalPrice.toFixed(2)} €</span>
+          <span>${Kart.calculTotalPrice().totalPrice.toFixed(2)} €</span>
         </div>
       </div>
       <hr>
@@ -216,7 +232,8 @@ class Kart {
       item.addEventListener("click", () => {
         let itemId = item.dataset.id;
         Kart.removeItem(itemId);
-        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
       });
     });
   }
@@ -226,6 +243,9 @@ class Kart {
    */
   static RenderModal(item) {
     let storedITems = Kart.getParsedBasket();
+    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    let fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    let fraisPort = parseFloat(fraisDivers.frais_port);
     let produitFilter = storedITems.filter(
       (produit) => produit.pro_id == item.pro_id
     );
@@ -235,22 +255,34 @@ class Kart {
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">7,00 €</div>
-            <div class="product-quantity">Quantité : <span> ${produitFilter[0].pad_qte} </span></div>
+            <div class="product-quantity">Quantité : <span> ${
+              produitFilter[0].pad_qte
+            } </span></div>
             </div>
         </div>
         <div class="modal-body-commande">
-            <h5>Il y a ${storedITems.length} articles dans votre panier.</h5>
+            <h5>Il y a ${Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
-                <span class="sous-total-montant">87,50 €</span>
+                <span class="sous-total-montant">${Kart.calculTotalPrice().kartProductPrice.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
-                <span class="transport-montant">87,50 €</span>
+                <span class="transport-montant">${fraisPort.toFixed(2)} €</span>
+            </div>
+            <div class="transport">
+                <span class="transport-titre">frais dossier:</span>
+                <span class="transport-montant">${fraisDossier.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
-                <span class="total-montant">87,50 €</span>
+                <span class="total-montant">${Kart.calculTotalPrice().totalPrice.toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer">Continuer mes achats</button>
