@@ -24,6 +24,7 @@ const borderNumber = document.querySelector('.border-number')
 const adresseBg = document.querySelector('.adresse-bg')
 const livraisonBg = document.querySelector('.livraison-bg')
 const finalisationBg = document.querySelector('.finalisation-bg')
+const btn_info_client_connected = document.querySelector('.btn_info_client_connected')
 
 //for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");
@@ -64,12 +65,12 @@ const eventAccordeonForm = (nextDiv, currentDiv, btnModifier, nexDiv, changeBord
 }
 
 // change events on infoForm
-infoFormInscription.addEventListener("submit", (event) => {
+infoFormInscription?.addEventListener("submit", (event) => {
     event.preventDefault()
     eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
 })
 
-infoFormConnexion.addEventListener("submit", (event) => {
+infoFormConnexion?.addEventListener("submit", (event) => {
     event.preventDefault()
     eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
 })
@@ -86,7 +87,9 @@ btnModiferInfo.addEventListener("click", (event) => {
     adresseBg.style.backgroundColor = "white"
     adresseBg.style.border = "1px solid grey"
 })
-
+btn_info_client_connected?.addEventListener('click',(event)=>{
+    eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg)
+})
 
 //change events on adresseForm
 adresseForm.addEventListener("submit", (event) => {
@@ -131,7 +134,7 @@ btnModiferlivraison.addEventListener("click", (event) => {
 
 
 //event hide/show password on form
-btn.addEventListener("click", function(e) {
+btn?.addEventListener("click", function(e) {
     e.preventDefault()
 
     const type = password.getAttribute("type") === "password" ? "text" : "password";
@@ -145,12 +148,12 @@ btn.addEventListener("click", function(e) {
 
 
 //tabs
-navlink_one.addEventListener("click", function() {
+navlink_one?.addEventListener("click", function() {
     navlink_one.classList.add("button-add");
     navlink_two.classList.remove("button-add");
 });
 
-navlink_two.addEventListener("click", function() {
+navlink_two?.addEventListener("click", function() {
     navlink_two.classList.add("button-add");
     navlink_one.classList.remove("button-add");
 });

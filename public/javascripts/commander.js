@@ -26,6 +26,7 @@ var borderNumber = document.querySelector('.border-number');
 var adresseBg = document.querySelector('.adresse-bg');
 var livraisonBg = document.querySelector('.livraison-bg');
 var finalisationBg = document.querySelector('.finalisation-bg');
+var btn_info_client_connected = document.querySelector('.btn_info_client_connected');
 
 //for class tabs
 var navlink_one = document.querySelector(".btn-tab-one");
@@ -62,11 +63,11 @@ var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnMod
 };
 
 // change events on infoForm
-infoFormInscription.addEventListener("submit", function (event) {
+infoFormInscription === null || infoFormInscription === void 0 ? void 0 : infoFormInscription.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
 });
-infoFormConnexion.addEventListener("submit", function (event) {
+infoFormConnexion === null || infoFormConnexion === void 0 ? void 0 : infoFormConnexion.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
 });
@@ -81,6 +82,9 @@ btnModiferInfo.addEventListener("click", function (event) {
   adresseBg.style.color = "grey";
   adresseBg.style.backgroundColor = "white";
   adresseBg.style.border = "1px solid grey";
+});
+btn_info_client_connected === null || btn_info_client_connected === void 0 ? void 0 : btn_info_client_connected.addEventListener('click', function (event) {
+  eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
 });
 
 //change events on adresseForm
@@ -120,7 +124,7 @@ btnModiferlivraison.addEventListener("click", function (event) {
 });
 
 //event hide/show password on form
-btn.addEventListener("click", function (e) {
+btn === null || btn === void 0 ? void 0 : btn.addEventListener("click", function (e) {
   e.preventDefault();
   var type = password.getAttribute("type") === "password" ? "text" : "password";
   password.setAttribute("type", type);
@@ -128,11 +132,11 @@ btn.addEventListener("click", function (e) {
 });
 
 //tabs
-navlink_one.addEventListener("click", function () {
+navlink_one === null || navlink_one === void 0 ? void 0 : navlink_one.addEventListener("click", function () {
   navlink_one.classList.add("button-add");
   navlink_two.classList.remove("button-add");
 });
-navlink_two.addEventListener("click", function () {
+navlink_two === null || navlink_two === void 0 ? void 0 : navlink_two.addEventListener("click", function () {
   navlink_two.classList.add("button-add");
   navlink_one.classList.remove("button-add");
 });
