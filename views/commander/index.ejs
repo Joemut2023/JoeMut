@@ -399,78 +399,22 @@
                             </p>
                         </div>
                     </div>
-
                     <div class="devis">
-                        <div class="devis-1 row">
-                            <div class="btn-checkbox  col-md-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <% mode_livraisons.forEach(mode_livraison => { %>
+                            <div class="devis-1 row">
+                                <div class="btn-checkbox  col-md-2">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                </div>
+                                <div class="desc-img  col-md-2">image</div>
+                                <div class="desc-retrait  col-md-2">
+                                    <p><%= mode_livraison.frp_libelle %></p>
+                                </div>
+                                <div class="desc-essaie  col-md-4">
+                                    <p><%= mode_livraison.frp_descrition %></p>
+                                </div>
+                                <div class="descprice col-md-2"><%= mode_livraison.frp_ttc %> € TTC</div>
                             </div>
-                            <div class="desc-img  col-md-2">image</div>
-                            <div class="desc-retrait  col-md-2">
-                                <p>Retrait dans nos locaux AES</p>
-                            </div>
-                            <div class="desc-essaie  col-md-4">
-                                <p>Je viendrais prendre le colis d'essayage et les costumes pour mon spectacle dans vos locaux</p>
-                            </div>
-                            <div class="descprice col-md-2">gratuit</div>
-                        </div>
-
-                        <div class="devis-1 row">
-                            <div class="btn-checkbox  col-md-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            </div>
-                            <div class="desc-img  col-md-2">image</div>
-                            <div class="desc-retrait  col-md-2">
-                                <p>Essayage en livraison /Spectacle chez AES</p>
-                            </div>
-                            <div class="desc-essaie  col-md-4">
-                                <p>Je souhaite la livraison du colis d'assayage à domicile et je viendrais chercher les costumes pour les spectacles dans vos locaux</p>
-                            </div>
-                            <div class="descprice col-md-2">15.00 $ TTC</div>
-                        </div>
-
-                        <div class="devis-1 row">
-                            <div class="btn-checkbox  col-md-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            </div>
-                            <div class="desc-img  col-md-2">image</div>
-                            <div class="desc-retrait  col-md-2">
-                                <p>Tous en livraison</p>
-                            </div>
-                            <div class="desc-essaie  col-md-4">
-                                <p>Le colis essayage et spectacle</p>
-                            </div>
-                            <div class="descprice col-md-2">15.00 $ TTC</div>
-                        </div>
-
-                        <div class="devis-1 row">
-                            <div class="btn-checkbox  col-md-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            </div>
-                            <div class="desc-img  col-md-2">image</div>
-                            <div class="desc-retrait  col-md-2">
-                                <p>Pas de colis d'essayageet de livraison spectacle</p>
-                            </div>
-                            <div class="desc-essaie  col-md-4">
-                                <p>Pas de colis d'essayage et je souhaite que l'on m'envoie mes costumes à domicile pour le spactacle</p>
-                            </div>
-                            <div class="descprice col-md-2">15.00 $ TTC</div>
-                        </div>
-
-                        <div class="devis-1 row">
-                            <div class="btn-checkbox  col-md-2">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            </div>
-                            <div class="desc-img  col-md-2">image</div>
-                            <div class="desc-retrait  col-md-2">
-                                <p>Essayage chez AES/Spectacle en livraison</p>
-                            </div>
-                            <div class="desc-essaie  col-md-4">
-                                <p>je souhaite venir prendre mon colis d'ssayage dans vos locaux et une livraison à domicile pour le spactacle</p>
-                            </div>
-                            <div class="descprice col-md-2">15.00 $ TTC</div>
-                        </div>
-
+                        <% }) %>
                         <div class="commande-msg">
                             <div class="mb-3 msg">
                                 <label for="exampleFormControlTextarea1" class="form-label">Si vous voulez nous laisser un message à propos de votre commande, merci de de bien vouloir le renseigner dans le champs ci-contre</label>
