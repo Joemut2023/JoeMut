@@ -24,11 +24,17 @@
             </div>
         </div>
         <div class="page-contact-contactez-nous">
-             <%if (typeof error !== 'undefined' && error == true) { %>
-        <div class="alert alert-danger mssg" role="alert">
-          <%= (errorMsg) ? errorMsg : '' %>
-        </div>
-      <% } %>
+            <%if (typeof error !== 'undefined' && error == true) { %>
+                <div class="alert alert-danger mssg" role="alert">
+                  <%= (errorMsg) ? errorMsg : '' %>
+                </div>
+              <% } %>
+          
+              <%if (typeof error == null && error == false) { %>
+                <div class="alert alert-success mssg" role="alert">
+                  <%= (messages) ? messages : '' %>
+                </div>
+              <% } %>
             <h5>CONTACTEZ-NOUS</h5>
             <form id="form" method="post" action="/contact">
                 <div class="form-content">
