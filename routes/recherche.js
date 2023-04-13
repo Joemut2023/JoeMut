@@ -2,11 +2,11 @@ var express = require("express");
 var router = express.Router();
 var { Produit, Media, Tarif } = require("../models");
 const { Op } = require("sequelize");
-const check_paginate_value = require('../helpers/check_paginate_value')
+const check_paginate_value = require("../helpers/check_paginate_value");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 router.get("/", async (req, res, next) => {
   const search = req.query.search;
-  let {page,start,end} = check_paginate_value(req);
+  let { page, start, end } = check_paginate_value(req);
 
   try {
     const all_produits = await Produit.findAll({
@@ -33,15 +33,18 @@ router.get("/", async (req, res, next) => {
       produits: produits,
       search: search,
       nbrPages,
-      pageActive:page,
+      pageActive: page,
       start,
       end,
-      produitsNbr:all_produits.length
+      produitsNbr: all_produits.length,
     });
   } catch (error) {
-    // log vers page d'erreur
+    res.status(500).render("error/serverError", {
+      error: true,
+      errorMsg: "Une erreur est survenue!",
+      detailError: error,
+    });
   }
-  
 });
 
 module.exports = router;
