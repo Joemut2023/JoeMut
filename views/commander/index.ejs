@@ -251,7 +251,17 @@
                         </div>
                     <% } else { %>
                         <div class="register-form">
-                            <form id='adresse-form'>
+                            <form method="post" action="/commander/add-adresse">
+                                <% if (typeof error  !== 'undefined') { %>
+                                    <div class="alert alert-danger" role="alert">
+                                      <%= error %>
+                                    </div>
+                                  <% } %>
+                                  <% if (typeof success  !== 'undefined') { %>
+                                    <div class="alert alert alert-success" role="alert">
+                                      <%= success %>
+                                    </div>
+                                  <% } %>
                                 <div class="form-parent">
                                     <div class="form-group row">
                                         <div class="col-md-3 "></div>
@@ -259,10 +269,10 @@
     
                                     <div class="form-group row">
                                         <div class="col-md-3 item">
-                                            <label class="required label" for="prenom"><span>*</span>Nom de la structure</label>
+                                            <label class="required label"><span>*</span>Nom de la structure</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="prenom" id="prenom" required />
+                                            <input type="text" name="adr_structure" required />
                                         </div>
                                         <div class="col-md-3"></div>
                                     </div>
@@ -272,7 +282,7 @@
                                             <label class="required label" for="prenom"><span>*</span>Prenom</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text " name="prenom" id="prenom" required />
+                                            <input type="text " name="adr_prenom" required />
                                         </div>
                                     </div>
     
@@ -281,7 +291,7 @@
                                             <label class="required label" for="nom"><span>*</span>Nom</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_nom" id="nom" required />
                                         </div>
                                     </div>
     
@@ -290,7 +300,7 @@
                                             <label class="required label" for="nom">Société</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_societe" required />
                                         </div>
                                     </div>
     
@@ -299,7 +309,7 @@
                                             <label class="required label" for="nom">Numero de TVA</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="number" name="nom" id="nom" required />
+                                            <input type="number" name=" adr_num_tva" id="nom" required />
                                         </div>
                                     </div>
     
@@ -308,7 +318,7 @@
                                             <label class="required label" for="nom"><span>*</span>Adresse</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_adresse" required />
                                         </div>
                                     </div>
     
@@ -318,7 +328,7 @@
                                             <label class="required label" for="nom">Complement d'adresse</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_comp" required />
                                         </div>
                                     </div>
     
@@ -328,7 +338,7 @@
                                             <label class="required label" for="nom"><span>*</span>Code postal</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="number" name="nom" id="nom" required />
+                                            <input type="number" name="adr_cp" required />
                                         </div>
                                     </div>
     
@@ -337,7 +347,7 @@
                                             <label class="required label" for="nom"><span>*</span>Ville</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_ville" required />
                                         </div>
                                     </div>
     
@@ -346,7 +356,7 @@
                                             <label class="required label" for="nom"><span>*</span>Pays</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom" id="nom" required />
+                                            <input type="text" name="adr_pays" id="nom" required />
                                         </div>
                                     </div>
     
@@ -356,7 +366,7 @@
                                             <label class="required label" for="nom"><span>*</span>Téléphone</label>
                                         </div>
                                         <div class="col-md-6 input">
-                                            <input type="text" name="nom " id="nom" required />
+                                            <input type="text" name="adr_phone " required />
                                         </div>
                                     </div>
     

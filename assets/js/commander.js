@@ -110,7 +110,6 @@ btnModiferAdresse.addEventListener("click", (event) => {
     livraisonBg.style.border = "1px solid grey"
 })
 
-
 //change events on livraisonForm
 livraisonForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -130,9 +129,6 @@ btnModiferlivraison.addEventListener("click", (event) => {
     finalisationBg.style.border = "1px solid grey"
 })
 
-
-
-
 //event hide/show password on form
 btn?.addEventListener("click", function(e) {
     e.preventDefault()
@@ -145,7 +141,6 @@ btn?.addEventListener("click", function(e) {
     else
         btn.textContent = "Cacher"
 })
-
 
 //tabs
 navlink_one?.addEventListener("click", function() {
