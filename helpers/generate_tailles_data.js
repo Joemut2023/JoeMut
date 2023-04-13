@@ -2,7 +2,6 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const path = require("path");
 var results = [];
-const db = require("../models");
 const { Taille } = require("../models");
 fs.createReadStream(path.resolve(__dirname, "../datas/taille.csv"))
   .pipe(csv({ separator: "\n", headers: ["taille"] }))

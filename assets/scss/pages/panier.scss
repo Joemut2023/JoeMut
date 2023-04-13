@@ -399,4 +399,9 @@
       }
     }
   }
+
+  .btn-enabled {
+    cursor: not-allowed !important;
+    background: $color-white-secondary !important;
+  }
 }

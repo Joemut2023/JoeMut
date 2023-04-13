@@ -31,7 +31,11 @@ module.exports = (sequelize, DataTypes) => {
       adr_cp: DataTypes.STRING,
       adr_ville: DataTypes.STRING,
       adr_num_tva: DataTypes.STRING,
-      adr_phone: DataTypes.STRING,
+      adr_phone: {
+        type:DataTypes.STRING,
+        defaultValue:null
+      },
+      adr_pays: DataTypes.STRING,
     },
     {
       sequelize,

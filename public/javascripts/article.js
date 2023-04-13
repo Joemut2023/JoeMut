@@ -8,6 +8,11 @@ var navlink_one = document.querySelector(".btn-tab-one");
 var navlink_two = document.querySelector(".btn-tab-two");
 var input = document.querySelector(".number-value");
 var btnAjouter = document.querySelector(".btn-add");
+var btn_envoyer = document.querySelector(".btn-envoyer");
+var form = document.querySelector(".form");
+var titre = document.querySelector(".titre");
+var contenu = document.querySelector(".contenu");
+var btn_close_avis = document.querySelector(".close-avis");
 var btn_up = document.querySelector(".btn-up");
 var btn_down = document.querySelector(".btn-down");
 var image_grand = document.querySelector(".img-grand");
@@ -65,8 +70,18 @@ btnAjouter.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__
     }
   }, _callee);
 })));
-small_img_carousel.forEach(function (element) {
-  element.addEventListener("click", function () {
-    default_img.src = element.src;
+if (small_img_carousel.length > 1) {
+  small_img_carousel.forEach(function (element) {
+    element.addEventListener("click", function () {
+      default_img.src = element.src;
+    });
   });
+}
+form.addEventListener("click", function () {
+  btn_envoyer.setAttribute("data-bs-toggle", "modal");
+  btn_envoyer.setAttribute("data-bs-target", "#sendModalLabel");
+});
+btn_close_avis.addEventListener("click", function () {
+  titre.value = "";
+  contenu.value = "";
 });

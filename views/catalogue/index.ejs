@@ -10,7 +10,6 @@
         <p>Catalogue</p>
         <div class="accordion-item">
           <div class="type-categorie">
-           
             <a href="/catalogue/type/<%= typee_categories[0].tyc_id %>"
               >Costumes des danses <br />
               Petits</a
@@ -43,11 +42,12 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <% categories.forEach(categorie => { %>
-                <% if (categorie.tyc_id===1) { %>
-                    <a href="/catalogue/<%=categorie.cat_id %>"><%= categorie.cat_libelle %></a>
-                <% } %>
-              <% }) %>
+              <% categories.forEach(categorie => { %> <% if
+              (categorie.tyc_id===1) { %>
+              <a href="/catalogue/<%=categorie.cat_id %>"
+                ><%= categorie.cat_libelle %></a
+              >
+              <% } %> <% }) %>
             </div>
           </div>
         </div>
@@ -87,11 +87,12 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <% categories.forEach(categorie => { %>
-                 <% if (categorie.tyc_id===2) { %>
-                    <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
-                 <% } %>
-              <% }) %>
+              <% categories.forEach(categorie => { %> <% if
+              (categorie.tyc_id===2) { %>
+              <a href="/catalogue/<%=categorie.cat_id %>">
+                <%= categorie.cat_libelle%></a
+              >
+              <% } %> <% }) %>
             </div>
           </div>
         </div>
@@ -99,7 +100,9 @@
         <!-- accessoirs -->
         <div class="accordion-item">
           <div class="type-categorie">
-            <a href="/catalogue/type/<%= typee_categories[3].tyc_id %>">Accessoirs</a>
+            <a href="/catalogue/type/<%= typee_categories[3].tyc_id %>"
+              >Accessoirs</a
+            >
             <div
               id="plus-acc"
               class="icon_showing"
@@ -129,12 +132,13 @@
           >
             <div class="accordion-body">
               <div class="accordion-body">
-              <% categories.forEach(categorie => { %>
-                 <% if (categorie.tyc_id===4) { %>
-                    <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
-                 <% } %>
-              <% }) %>
-            </div>
+                <% categories.forEach(categorie => { %> <% if
+                (categorie.tyc_id===4) { %>
+                <a href="/catalogue/<%=categorie.cat_id %>">
+                  <%= categorie.cat_libelle%></a
+                >
+                <% } %> <% }) %>
+              </div>
             </div>
           </div>
         </div>
@@ -174,13 +178,14 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-            <div class="accordion-body">
-              <% categories.forEach(categorie => { %>
-                 <% if (categorie.tyc_id===3) { %>
-                    <a href="/catalogue/<%=categorie.cat_id %>"> <%= categorie.cat_libelle%></a>
-                 <% } %>
-              <% }) %>
-            </div>
+              <div class="accordion-body">
+                <% categories.forEach(categorie => { %> <% if
+                (categorie.tyc_id===3) { %>
+                <a href="/catalogue/<%=categorie.cat_id %>">
+                  <%= categorie.cat_libelle%></a
+                >
+                <% } %> <% }) %>
+              </div>
             </div>
           </div>
         </div>
@@ -212,42 +217,93 @@
     </div>
     <div class="cat-body">
       <% produits.forEach(produit => { %>
-        <div class="produit">
-            <div class="image-cadre">
-          <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
+      <div class="produit">
+        <div class="image-cadre">
+          <a href="/article/<%= produit.pro_id %>">
+            <img
+              src="/images/produits/<%= produit.Media[0].med_ressource %>"
+              alt=""
+              srcset=""
+            />
+          </a>
         </div>
         <div class="detail">
-          <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
+          <a href="/article/<%= produit.pro_id %>">
+            <%= produit.pro_libelle%></a
+          >
           <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="montant">
             <div><%= produit.Tarifs[0].tar_ttc %>€</div>
-            <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal" data-bs-target="#parent_modal">Ajouter</button>
+            <button
+              class="button-ajouter"
+              data-id="<%= produit.pro_id %>"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+            >
+              Ajouter
+            </button>
           </div>
         </div>
-         
       </div>
-        <% }) %>
-      
-     
+      <% }) %>
     </div>
     <div class="cat-pagination">
       <div>
-        <p>Affichage <span><%= start %> - <%= end %></span> de <span><%= allproducts.length%></span></p>
+        <p>
+          Affichage <span><%= start %> - <%= end %></span> de
+          <span><%= allproducts.length%></span>
+        </p>
       </div>
       <nav>
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="/catalogue?page=1#pages-catalogue">1</a></li>
+          <li class="page-item">
+            <a class="page-link" href="/catalogue?page=1#pages-catalogue">1</a>
+          </li>
           <% if (pageActive === 1 || pageActive ===2) { %>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=2#pages-catalogue">2</a></li>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=3#pages-catalogue">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="/catalogue?page=2#pages-catalogue">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/catalogue?page=3#pages-catalogue">3</a>
+          </li>
           <% } else { %>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive -1 %>#pages-catalogue"><%= pageActive-1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive %>#pages-catalogue"><%= pageActive %></a></li>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue"><%= pageActive+1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue"><%= pageActive+2 %></a></li>
-            <li class="page-item">...</li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/catalogue?page=<%= pageActive -1 %>#pages-catalogue"
+              ><%= pageActive-1 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/catalogue?page=<%= pageActive %>#pages-catalogue"
+              ><%= pageActive %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue"
+              ><%= pageActive+1 %></a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue"
+              ><%= pageActive+2 %></a
+            >
+          </li>
+          <li class="page-item">...</li>
           <% } %>
-          <li class="page-item"><a class="page-link" href="/catalogue?page=<%= nbrPages %>#pages-catalogue"><%= nbrPages %></a></li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="/catalogue?page=<%= nbrPages %>#pages-catalogue"
+              ><%= nbrPages %></a
+            >
+          </li>
         </ul>
       </nav>
     </div>

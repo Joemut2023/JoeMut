@@ -13,10 +13,46 @@ class Kart {
   }
   /**
    *
+   * @returns Array
+   */
+  static getParsedFrais() {
+    return JSON.parse(localStorage.getItem("fraisDivers"));
+  }
+
+  /**
+   *
+   * @returns Numeric
+   */
+  static getItemNumber() {
+    let storedITems = Kart.getParsedBasket();
+    let quantity = 0;
+    storedITems.forEach((element) => {
+      quantity += element.pad_qte;
+    });
+    return quantity;
+  }
+
+  /**
+   *
    * @param {Array} item
    */
+
+  static async addFraisDivers() {
+    // let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
+    let fraisDivers = {
+      frais_port: "13.10",
+      frais_dossier: "15.00",
+    };
+    localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+  }
+
   static addItem(item, qte = null) {
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
+    const fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
     let itemForPanier = {
       pro_id: item.pro_id,
       pro_libelle: item.pro_libelle,
@@ -26,6 +62,9 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
+
+    fraisDIvers == null ? Kart.addFraisDivers() : null;
+
     if (storedITems) {
       let produitFilter = storedITems.filter(
         (produit) => produit.pro_id == item.pro_id
@@ -41,9 +80,11 @@ class Kart {
         storedITems.push(itemForPanier);
       }
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     } else {
       Kart.items.push(itemForPanier);
       localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     }
     Kart.kartRenderItems();
     Kart.RenderModal(itemForPanier);
@@ -54,6 +95,7 @@ class Kart {
    */
   static removeItem(itemId) {
     let storedITems = Kart.getParsedBasket();
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
@@ -61,18 +103,40 @@ class Kart {
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
     Kart.kartRenderItems();
   }
+
+  /**
+   * Mettre à jour la quantité d'un item du panier
+   * @param {Number} itemId
+   */
+  static updateItemQuantity(itemId, action) {
+    storedITems = Kart.getParsedBasket();
+    let produitPositionInArray = storedITems.findIndex(
+      (produit) => produit.pro_id == itemId
+    );
+    action
+      ? (storedITems[produitPositionInArray].pad_qte += 1)
+      : (storedITems[produitPositionInArray].pad_qte -= 1);
+    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+  }
+
   /**
    * Affiche les items du panier
    */
   static kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
+    const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
+    let totalPrice = 0;
     let storedITems = Kart.getParsedBasket();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
     let kartProductPrice = 0;
     storedITems?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
-      kartProductPrice = produit.pad_qte * produit.pad_ttc + kartProductPrice;
+      kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
+      totalPrice = kartProductPrice + fraisDossier + fraisPort;
+
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
@@ -100,7 +164,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${kartProductPrice} €</span>
+          <span>${kartProductPrice.toFixed(2)} €</span>
         </div>
       </div>
 
@@ -109,16 +173,24 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-          <span></span>
+          <span>${fraisDivers.frais_port} €</span>
         </div>
       </div>
+      <div class="kart-livraison">
+      <div class="total">
+        <span>Frais dossier</span>
+      </div>
+      <div class="price-total">
+        <span>${fraisDivers.frais_dossier} €</span>
+      </div>
+    </div>
 
       <div class="kart-total">
         <div class="total">
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>15$</span>
+          <span>${totalPrice.toFixed(2)} €</span>
         </div>
       </div>
       <hr>
@@ -136,14 +208,15 @@ class Kart {
     </div>
     `;
     document.querySelector("#kart-infos").innerHTML = kartInfosData;
-    storedITems.length == 0
-      ? (document.querySelector("#par-empty-data").style.display = "block")
-      : null;
+    // storedITems.length != 0
+    //   ? (document.querySelector("#par-empty-data").style.display = "block")
+    //   : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
     btnRemoveProduct.forEach((item) => {
       item.addEventListener("click", () => {
         let itemId = item.dataset.id;
         Kart.removeItem(itemId);
+        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
       });
     });
   }

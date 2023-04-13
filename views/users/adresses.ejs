@@ -5,7 +5,9 @@
         <a href="/" class="breadcrumb-link">Accueil</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Votre compte</a>
+        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
+          >Votre compte</a
+        >
       </li>
       <li class="breadcrumb-item" aria-current="page">
         <a href="/mon-compte/adresse" class="breadcrumb-link">Adresses</a>
@@ -14,7 +16,25 @@
   </nav>
   <h5>Vos adresses</h5>
   <div class="adresse-main-content">
+    <% getAdresses.forEach(element => { %>
     <div class="adresse-item">
+      <h6><%= element.adr_structure %></h6>
+      <p><%= element.adr_nom %> <%= element.adr_prenom %></p>
+      <p><%= element.adr_societe %></p>
+      <p><%= element.adr_ville %></p>
+      <p><%= element.adr_pays %></p>
+      <p><%= element.adr_phone %></p>
+      <hr />
+      <div class="item-actions">
+        <a href="/mon-compte/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
+        <a href="/adresses/<%= element.adr_id %>"  onclick="deleteAddress()"><i class="fa-solid fa-trash"></i> Supprimer</a>
+      </div>
+    </div>
+    <% }) %>
+
+
+   
+    <!-- <div class="adresse-item">
       <h6>Nom Structure</h6>
       <p>Nom Prénom</p>
       <p>Nom entreprise</p>
@@ -26,8 +46,8 @@
         <a href=""><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
         <a href=""><i class="fa-solid fa-trash"></i> Supprimer</a>
       </div>
-    </div>
-    <div class="adresse-item">
+    </div> -->
+    <!-- <div class="adresse-item">
       <h6>Nom Structure</h6>
       <p>Nom Prénom</p>
       <p>Nom entreprise</p>
@@ -39,9 +59,9 @@
         <a href=""><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
         <a href=""><i class="fa-solid fa-trash"></i> Supprimer</a>
       </div>
-    </div>
-    <div class="adresse-item">
-      <h6>Nom Structure</h6>
+    </div> -->
+    <!-- <div class="adresse-item">
+      <h6>Nom Structure </h6>
       <p>Nom Prénom</p>
       <p>Nom entreprise</p>
       <p>Ville</p>
@@ -52,9 +72,18 @@
         <a href=""><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
         <a href=""><i class="fa-solid fa-trash"></i> Supprimer</a>
       </div>
-    </div>
+    </div> -->
   </div>
-  <div class="add-adresse-link">
-    <a href="/mon-compte/nouvelleAdresse/#nouvelle-adresse"><i class="fa-solid fa-plus"></i> Créer une nouvelle adresse</a>
-  </div>
+
+  <script>
+    function deleteAddress() {
+      $.ajax({
+        url: `/adresses/<%= element.adr_id %>`,
+        type: 'DELETE',
+        success: function(result) {
+          window.location.reload(true);
+        }
+      })
+    }
+    </script>
 </div>

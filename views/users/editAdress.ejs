@@ -1,0 +1,162 @@
+<div id="edit-adresse">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/" class="breadcrumb-link">Accueil</a>
+      </li>
+      <li class="breadcrumb-item" aria-current="page">
+        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
+          >Votre compte</a
+        >
+      </li>
+      <li class="breadcrumb-item" aria-current="page">
+        <a href="/mon-compte/adresses/#adresses" class="breadcrumb-link"
+          >Adresses</a
+        >
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Nouvelle adresse
+      </li>
+    </ol>
+  </nav>
+  <h4>Modifier votre adresse</h4>
+  <form
+    action="/mon-compte/editAdresse/<%= adressById.adr_id %>"
+    class="fom"
+    method="post"
+  >
+    <% if (typeof error !== 'undefined') { %>
+    <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %> <% if (typeof success !== 'undefined') { %>
+    <div class="alert alert alert-success" role="alert"><%= success %></div>
+    <% } %>
+    <div class="row-form">
+      <label class="col-label" for=""> Nom de la structure</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_structure"
+        id=""
+        value="<%= adressById.adr_structure %>"
+      />
+      <label class="col-label-end" for="">Optionnel</label>
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""><span>* </span> Nom</label>
+      <input
+        class="col-input"
+        placeholder="Romain"
+        type="text"
+        name="adr_nom"
+        id=""
+        value="<%= adressById.adr_nom %>"
+      />
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span>* </span>Prenom</label>
+      <input
+        class="col-input"
+        placeholder="Romain"
+        type="text"
+        name="adr_prenom"
+        id=""
+        value="<%= adressById.adr_prenom %>"
+      />
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> Société</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_societe"
+        id=""
+        value="<%= adressById.adr_societe %>"
+      />
+      <label class="col-label-end" for="">Optionnel</label>
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> Numéro de TVA</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_num_tva"
+        id=""
+        value="<%= adressById.adr_adr_num_tva %>"
+      />
+      <label class="col-label-end" for="">Optionnel</label>
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span>* </span>Adresse</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_adresse"
+        id=""
+        value="<%= adressById.adr_adresse %>"
+      />
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> Complément d'adresse</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_comp"
+        id=""
+        value="<%= adressById.adr_comp %>"
+      />
+      <label class="col-label-end" for="">Optionnel</label>
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span>* </span>Code penal</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_cp"
+        id=""
+        value="<%= adressById.adr_cp %>"
+      />
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span>* </span>Ville</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_ville"
+        id=""
+        value="<%= adressById.adr_ville %>"
+      />
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span>* </span>Pays</label>
+      <input
+        class="col-input"
+        placeholder=""
+        type="text"
+        name="adr_pays"
+        id=""
+        value="<%= adressById.adr_pays %>"
+      />
+    </div>
+
+    <div class="btn-submit">
+      <button class="btn" type="submit">Modifier</button>
+    </div>
+  </form>
+  <div class="link-div d-flex flex-row">
+    <div>
+      <a href="/mon-compte/#page-mon-compte"
+        ><i class="fa-solid fa-chevron-left"></i> Retour à votre compte
+      </a>
+    </div>
+    <div>
+      <a href="/"><i class="fa-solid fa-house"></i> Accueil</a>
+    </div>
+  </div>
+</div>

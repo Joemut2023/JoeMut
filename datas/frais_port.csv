@@ -1,4 +1,3 @@
-frp_id;mle_id;mls_id;frp_libelle;frp_description;frp_img;frp_ht;frp_ttc;frp_debut;frp_fin;frp_actif;frp_defaut;
 1;1;1;Retrait des costumes dans les locaux AES;Le client viendra chercher le colis d’essayage et les costumes pour son spectacle dans les locaux d'AES.;21.jpg;0,00;0,00;2023-01-01;0000-00-00;1;0;
 2;2;2;Tout en livraison;Tout sera livré dans les locaux du client, aussi bien le colis d'essayage que les costumes de spectacle;;10,83;13,10;2023-01-01;0000-00-00;1;1;
 3;2;1;Le colis d'essayage en livraison/les costumes dans les locaux du client;Le colis d'essayage sera livré dans les locaux du client. Par contre, les costumes de spectacle seront retirés dans les locaux d'AES;;10,50;12,70;2023-01-01;0000-00-00;1;0;

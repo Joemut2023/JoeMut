@@ -12,6 +12,8 @@ fs.createReadStream(path.resolve(__dirname, "../datas/frais_port.csv"))
   .on("end", () => {
     results.shift();
     results.map(async (data) => {
+
+
       const debut = data.frais.split(";")[8];
       const dateArr = debut.split("-");
       const date_debut = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
@@ -30,8 +32,8 @@ fs.createReadStream(path.resolve(__dirname, "../datas/frais_port.csv"))
         frp_ttc: parseFloat(data.frais.split(";")[7].replace(",", ".")),
         frp_debut: date_debut,
         frp_fin: date_fin,
-        frp_activ: parseInt(data.frais.split(";")[10]),
-        frp_default: parseInt(data.frais.split(";")[11]),
+        frp_actif: parseInt(data.frais.split(";")[10]),
+        frp_default: parseInt(data.frais.split(";")[11]) == 1 ? true : null,
       });
       //   console.log(data.frais.split(";")[8]);
     });

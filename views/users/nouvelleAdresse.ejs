@@ -16,50 +16,60 @@
     </ol>
   </nav>
   <h4>Nouvelle adresse</h4>
-  <form action="" class="fom">
+  <form action="/mon-compte/nouvelleAdresse" class="fom" method="post">
+    <% if (typeof error  !== 'undefined') { %>
+      <div class="alert alert-danger" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if (typeof success  !== 'undefined') { %>
+      <div class="alert alert alert-success" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
     <div class="row-form">
       <label class="col-label" for=""> Nom de la structure</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_structure" id="" />
       <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""><span>* </span> Nom</label>
-      <input class="col-input" placeholder="Romain" type="text" name="" id="" />
+      <input class="col-input" placeholder="Romain" type="text" name="adr_nom" id="" />
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Prenom</label>
-      <input class="col-input" placeholder="Romain" type="text" name="" id="" />
+      <input class="col-input" placeholder="Romain" type="text" name="adr_prenom" id="" />
     </div>
     <div class="row-form">
       <label class="col-label" for=""> Société</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_societe" id="" />
       <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> Numéro de TVA</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_num_tva" id="" />
       <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Adresse</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_adresse" id=""/>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> Complément d'adresse</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_comp" id="" />
       <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Code penal</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_cp" id="" />
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Ville</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_ville" id="" />
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Pays</label>
-      <input class="col-input" placeholder="" type="text" name="" id="" />
+      <input class="col-input" placeholder="" type="text" name="adr_pays" id="" />
     </div>
 
     <div class="btn-submit">
