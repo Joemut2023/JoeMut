@@ -5519,5 +5519,13 @@
   justify-content: center;
   align-items: center;
 }
+#error img {
+  width: 400px;
+}
+@media (max-width: 680px) {
+  #error img {
+    width: 150px;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */
