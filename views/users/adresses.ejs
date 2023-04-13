@@ -27,10 +27,13 @@
       <hr />
       <div class="item-actions">
         <a href="/mon-compte/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
-        <a href=""><i class="fa-solid fa-trash"></i> Supprimer</a>
+        <a href="/adresses/<%= element.adr_id %>"  onclick="deleteAddress()"><i class="fa-solid fa-trash"></i> Supprimer</a>
       </div>
     </div>
     <% }) %>
+
+
+   
     <!-- <div class="adresse-item">
       <h6>Nom Structure</h6>
       <p>Nom Prénom</p>
@@ -71,4 +74,16 @@
       </div>
     </div> -->
   </div>
+
+  <script>
+    function deleteAddress() {
+      $.ajax({
+        url: `/adresses/<%= element.adr_id %>`,
+        type: 'DELETE',
+        success: function(result) {
+          window.location.reload(true);
+        }
+      })
+    }
+    </script>
 </div>

@@ -85,7 +85,7 @@ router.post("/editAdresse/:id", async function (req, res, next) {
   }
 });
 
-router.delete("/adresses", async (req, res, next) => {
+router.delete("/adresses/:id", async (req, res, next) => {
   try {
     const { id } = req.params.id;
     const deleteAdresse = Adresse.destroy({
