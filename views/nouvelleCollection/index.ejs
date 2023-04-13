@@ -56,7 +56,12 @@
           <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="montant">
             <div><%= produit.Tarifs[0].tar_ttc %>£</div>
-            <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal" data-bs-target="#parent_modal">
+            <button
+              class="button-ajouter"
+              data-id="<%= produit.pro_id %>"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+            >
               Ajouter
             </button>
           </div>
@@ -65,18 +70,27 @@
       <% }) %>
     </div>
     <div class="cat-pagination">
+      <% if (nbrPages>1) { %>
       <div>
-        <p>Affichage <span>1-100</span> de <span>1479</span></p>
+        <p>
+          Affichage <span> <%= start %> - <%= end %></span> de
+          <span><%= produits.length %></span>
+        </p>
       </div>
       <nav>
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <% for( let i = 1; i <= nbrPages; i++ ) { %>
+          <li class="page-item">
+            <a
+              class="page-link <%= pageActive === i ? 'active' : '' %>"
+              href="/nouvelleCollection?page=<%= i %>#nouvelleCollection"
+              ><%= i %></a
+            >
+          </li>
+          <% } %>
         </ul>
       </nav>
+      <% } %>
     </div>
   </div>
 </div>
