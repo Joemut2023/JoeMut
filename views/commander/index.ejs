@@ -195,7 +195,6 @@
                             </div>
                         </div>
                     <% } %>
-                    
                 </div>
             </div>
 
@@ -212,7 +211,6 @@
                     </div>
                 </div>
                 <hr>
-
                 <div class="adresse-content" id="divAdress">
                     <div class="text-contents">
                         <div class="text-1">
@@ -220,134 +218,166 @@
                         </div>
                         <div class="text-2"> L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.</div>
                     </div>
-                    <div class="register-form">
-                        <form id='adresse-form'>
-                            <div class="form-parent">
-                                <div class="form-group row">
-                                    <div class="col-md-3 "></div>
+                    <% if (typeof adresses != "undefined") { %>
+                        <div class="register-form">
+                            <form action="" id='adresse-form'>
+                                <div class="row">
+                                    <% adresses.forEach((adresse,index) => { %>
+                                        <div class="adresse-elmt">
+                                            <div class="adresse-elmt-head">
+                                                <div class="adresse-elmnt-head-radio">
+                                                    <input type="radio" name="radio_adresse" id="radio_adresse<%= index %>">
+                                                    <label for="radio_adresse<%= index %>">
+                                                        <h3><%= adresse.adr_nom %></h3>
+                                                        <div class="adresse-elmnt-body">
+                                                            <p><%= adresse.adr_nom %> - <%= adresse.adr_prenom %></p>
+                                                            <p><%= adresse.adr_societe %></p>
+                                                            <p><%= adresse.adr_adresse %></p>
+                                                            <p><%= adresse.adr_cp %> <%= adresse.adr_ville %></p>
+                                                            <p><%= adresse.adr_ville %></p>
+                                                            <p><%= adresse.adr_phone %></p>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    <% }) %>
                                 </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="prenom"><span>*</span>Nom de la structure</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="prenom" id="prenom" required />
-                                    </div>
-                                    <div class="col-md-3"></div>
+                                <div class="button btn col-md-6">
+                                    <button>Continuer</button>
                                 </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="prenom"><span>*</span>Prenom</label>
+                            </form>
+                        </div>
+                    <% } else { %>
+                        <div class="register-form">
+                            <form id='adresse-form'>
+                                <div class="form-parent">
+                                    <div class="form-group row">
+                                        <div class="col-md-3 "></div>
                                     </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text " name="prenom" id="prenom" required />
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="prenom"><span>*</span>Nom de la structure</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="prenom" id="prenom" required />
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="prenom"><span>*</span>Prenom</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text " name="prenom" id="prenom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Nom</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom">Société</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom">Numero de TVA</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="number" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Adresse</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom">Complement d'adresse</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Code postal</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="number" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Ville</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Pays</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom" id="nom" required />
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3 item">
+                                            <label class="required label" for="nom"><span>*</span>Téléphone</label>
+                                        </div>
+                                        <div class="col-md-6 input">
+                                            <input type="text" name="nom " id="nom" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        </div>
+                                        <div class="col-md-6 text-label">
+                                            <label class="required label labelWithCheck" for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
+                                        </div>
+    
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Nom</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
+                                <div class="button btn col-md-6">
+                                    <button>Continuer</button>
                                 </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom">Société</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom">Numero de TVA</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="number" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom">Complement d'adresse</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Code postal</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="number" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Ville</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Pays</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom" id="nom" required />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <div class="col-md-3 item">
-                                        <label class="required label" for="nom"><span>*</span>Téléphone</label>
-                                    </div>
-                                    <div class="col-md-6 input">
-                                        <input type="text" name="nom " id="nom" required />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-3">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    </div>
-                                    <div class="col-md-6 text-label">
-                                        <label class="required label labelWithCheck" for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="button btn col-md-6">
-                                <button>Continuer</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                            </form>
+                        </div>
+                    <% } %>        
+                 </div>
             </div>
-
             <div class="adresses livraisons" id="livraison">
                 <div class="big-title livraison-cursor row">
                     <div class="border-number livraison-bg col-2">3</div>
