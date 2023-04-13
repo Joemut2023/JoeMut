@@ -23,3 +23,4 @@ document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
 document.querySelector("#kart-link-handler-btn").addEventListener("click", function (e) {
   Kart.kartRenderItems();
 });
+Kart.addFraisDivers();

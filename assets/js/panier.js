@@ -123,11 +123,11 @@ const TotalPricesProducts = () => {
     </div>
     <div class="item">
       <span class="title">Livraisons</span>
-      <span class="price">${storedFrais.frais_port} €</span>
+      <span class="price">${storedFrais.frais_port.toFixed(2)} €</span>
     </div>
     <div class="item">
       <span class="title">Frais de dossier</span>
-      <span class="price">${storedFrais.frais_dossier} €</span>
+      <span class="price">${storedFrais.frais_dossier.toFixed(2)} €</span>
     </div>
     <hr>
   </div>

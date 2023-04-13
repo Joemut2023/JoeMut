@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       frp_libelle: DataTypes.TEXT,
-      frp_descrition: DataTypes.TEXT,
+      frp_description: DataTypes.TEXT,
       frp_img: DataTypes.STRING,
       frp_ht: DataTypes.DOUBLE,
       frp_ttc: DataTypes.DOUBLE,

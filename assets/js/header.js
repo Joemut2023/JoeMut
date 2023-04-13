@@ -27,3 +27,5 @@ document
   .addEventListener("click", (e) => {
     Kart.kartRenderItems();
   });
+
+Kart.addFraisDivers() 

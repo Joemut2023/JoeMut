@@ -60,21 +60,32 @@ var Kart = /*#__PURE__*/function () {
     key: "addFraisDivers",
     value: function () {
       var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var fraisDivers;
+        var fraisPort, fraisDossier, fraisDivers;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              // let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
-              //   headers: {
-              //     "X-Requested-With": "XMLHttpRequest",
-              //   },
-              // });
+              _context.next = 2;
+              return axios.get("".concat(SITE_URL, "/fraisPort"), {
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 2:
+              fraisPort = _context.sent;
+              _context.next = 5;
+              return axios.get("".concat(SITE_URL, "/fraisDossier"), {
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 5:
+              fraisDossier = _context.sent;
               fraisDivers = {
-                frais_port: "13.10",
-                frais_dossier: "15.00"
+                frais_port: fraisPort.data.frp_ttc,
+                frais_dossier: fraisDossier.data.auf_ttc
               };
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
-            case 2:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -90,7 +101,6 @@ var Kart = /*#__PURE__*/function () {
     value: function addItem(item) {
       var qte = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var storedITems = JSON.parse(localStorage.getItem("storedItems"));
-      var fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
       var itemForPanier = {
         pro_id: item.pro_id,
         pro_libelle: item.pro_libelle,
@@ -100,7 +110,6 @@ var Kart = /*#__PURE__*/function () {
         media: item.Media[0].med_ressource,
         pro_ref: item.pro_ref
       };
-      fraisDIvers == null ? Kart.addFraisDivers() : null;
       if (storedITems) {
         var produitFilter = storedITems.filter(function (produit) {
           return produit.pro_id == item.pro_id;
@@ -197,7 +206,7 @@ var Kart = /*#__PURE__*/function () {
         storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
       });
       kartItemsElement.innerHTML = storedItemsHtml;
-      var kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(fraisDivers.frais_port, " \u20AC</span>\n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(fraisDivers.frais_dossier, " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
+      var kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(fraisDivers.frais_port.toFixed(2), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(fraisDivers.frais_dossier.toFixed(2), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
       document.querySelector("#kart-infos").innerHTML = kartInfosData;
       // storedITems.length != 0
       //   ? (document.querySelector("#par-empty-data").style.display = "block")

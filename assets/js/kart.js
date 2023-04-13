@@ -38,21 +38,25 @@ class Kart {
    */
 
   static async addFraisDivers() {
-    // let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
-    //   headers: {
-    //     "X-Requested-With": "XMLHttpRequest",
-    //   },
-    // });
+    let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
     let fraisDivers = {
-      frais_port: "13.10",
-      frais_dossier: "15.00",
+      frais_port: fraisPort.data.frp_ttc,
+      frais_dossier: fraisDossier.data.auf_ttc,
     };
     localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
   }
 
   static addItem(item, qte = null) {
-    let storedITems = JSON.parse(localStorage.getItem("storedItems"));
-    const fraisDIvers = JSON.parse(localStorage.getItem("fraisDivers"));
+    let storedITems = JSON.parse(localStorage.getItem("storedItems"))
     let itemForPanier = {
       pro_id: item.pro_id,
       pro_libelle: item.pro_libelle,
@@ -62,8 +66,6 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
-
-    fraisDIvers == null ? Kart.addFraisDivers() : null;
 
     if (storedITems) {
       let produitFilter = storedITems.filter(
@@ -160,10 +162,16 @@ class Kart {
                         <img src="/images/produits/${produit.media}" alt="">
                     </div>
                     <div class="kart-content">
-                        <a href="/article/${produit.pro_id}">${produit.pro_libelle}</a>
+                        <a href="/article/${produit.pro_id}">${
+        produit.pro_libelle
+      }</a>
                         <div class="actions">
-                            <span class="price">${produit.pad_qte} x ${(produit.pad_ttc).toFixed(2)} €</span>
-                            <button id="remove-prod" data-id="${produit.pro_id}" class="btn-close"></button>
+                            <span class="price">${
+                              produit.pad_qte
+                            } x ${produit.pad_ttc.toFixed(2)} €</span>
+                            <button id="remove-prod" data-id="${
+                              produit.pro_id
+                            }" class="btn-close"></button>
                         </div>
                     </div>
                 </div>
@@ -189,7 +197,7 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-          <span>${fraisDivers.frais_port} €</span>
+        <span>${fraisDivers.frais_port.toFixed(2)} €</span> 
         </div>
       </div>
       <div class="kart-livraison">
@@ -197,7 +205,7 @@ class Kart {
         <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${fraisDivers.frais_dossier} €</span>
+        <span>${fraisDivers.frais_dossier.toFixed(2)} €</span>
       </div>
     </div>
 
