@@ -11,6 +11,7 @@ var indexRouter = require("./routes/index");
 var catalogueRouter = require("./routes/catalogue");
 var promotionRouter = require("./routes/promotion");
 var rechercheRouter = require("./routes/recherche");
+var errorRouter = require("./routes/error");
 var panierRouter = require("./routes/panier");
 var articleRouter = require("./routes/article");
 var nouvelleCollectionRouter = require("./routes/nouvelleCollection");
@@ -73,6 +74,7 @@ app.use("/commander", commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
 app.use("/confirmation-commande", confirmationCommandeRouter);
 app.use("/fraisPort", fraisPortRouter);
+app.use("/error", errorRouter);
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,
