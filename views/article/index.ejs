@@ -107,7 +107,7 @@
       <h1><%= article.pro_libelle %></h1>
       <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
-        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc %> €</p>
+        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
         <p class="title">TTC</p>
       </div>
       <div class="informations">
@@ -249,7 +249,7 @@
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div>
-            <p class="price"><%= element.Tarifs[0].tar_ttc %>€</p>
+            <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2) %>€</p>
             <p class="bar">|</p>
             <button
               data-id="<%= element.pro_id %>"
@@ -312,7 +312,7 @@
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 block-2">
-                <h3>MRC16B - Robe tunique liberty Bleu/Lilas</h3>
+                <h3><%= article.pro_libelle %></h3>
                 <div>
                   <p>
                     <strong

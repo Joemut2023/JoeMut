@@ -56,7 +56,7 @@ class Kart {
   }
 
   static addItem(item, qte = null) {
-    let storedITems = JSON.parse(localStorage.getItem("storedItems"))
+    let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
       pro_libelle: item.pro_libelle,
@@ -262,7 +262,7 @@ class Kart {
             <img src="/images/produits/${item.media}" alt="" srcset="" />
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
-            <div class="product-montant">7,00 €</div>
+            <div class="product-montant">${item.pad_ttc.toFixed(2)}€</div>
             <div class="product-quantity">Quantité : <span> ${
               produitFilter[0].pad_qte
             } </span></div>
