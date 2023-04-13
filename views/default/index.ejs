@@ -3,8 +3,7 @@
     <div class="text-center">
       <h2 class="font-weight-light">NOS SUGGESTIONS !</h2>
       <div class="row mx-auto my-auto justify-content-center">
-        <div
-          id="suggestion-carousel"
+        <div id="suggestion-carousel"
           class="carousel slide"
           data-bs-ride="carousel"
         >
@@ -204,27 +203,40 @@
     </div>
   </div>
   <div class="section-contact container">
+    <%if (typeof error !== 'undefined' && error == true) { %>
+      <div class="alert alert-danger mssg" role="alert">
+        <%= (errorMsg) ? errorMsg : '' %>
+      </div>
+    <% } %>
+
+    <%if (typeof error == null && error == false) { %>
+      <div class="alert alert-success mssg" role="alert">
+        <%= (messages) ? messages : '' %>
+      </div>
+    <% } %>
+    
     <h1>NOUS CONTACTER</h1>
-    <form>
+    <form method="post" action="/">
       <div class="mb-3">
         <input
           type="email"
           placeholder="votre e-mail"
           class="form-control"
-          id="input-email"
-          name="cont_email"
+          id="email"
+          name="email"
           aria-describedby="emailHelp"
         />
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Choisir un fichier</label>
-        <input class="form-control" type="file" id="formFile"  name="cont_file"/>
+        <input class="form-control" type="file" id="file"  name="file"/>
       </div>
       <div class="mb-3">
         <textarea
           class="form-control"
           placeholder="Comment pouvons-nous vous aider?"
-          name="cont_msg"
+          name="textarea"
+          id="textarea"
         ></textarea>
       </div>
       <button class="btn">Envoyer</button>
