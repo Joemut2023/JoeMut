@@ -20,7 +20,7 @@ btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           e.preventDefault();
-          panier_items = localStorage.getItem("storedItems");
+          panier_items = JSON.parse(localStorage.getItem("storedItems"));
           homme = document.getElementById("homme");
           femme = document.getElementById("femme");
           cli_nom = document.getElementById("nom").value;
@@ -28,11 +28,13 @@ btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
           cli_mail = document.getElementById("email").value;
           cli_pwd = document.getElementById("password").value;
           data = {
-            tit_id: homme.checked ? homme.value : femme.value,
-            cli_nom: cli_nom,
-            cli_prenom: cli_prenom,
-            cli_mail: cli_mail,
-            cli_pwd: cli_pwd,
+            credentials: {
+              tit_id: homme.checked ? homme.value : femme.value,
+              cli_nom: cli_nom,
+              cli_prenom: cli_prenom,
+              cli_mail: cli_mail,
+              cli_pwd: cli_pwd
+            },
             panier_items: panier_items
           };
           _context.next = 11;
