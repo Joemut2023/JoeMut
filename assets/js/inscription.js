@@ -15,7 +15,7 @@ btn.addEventListener("click", function (e) {
 btn_enregistrer.addEventListener("click", async function (e) {
   e.preventDefault();
 
-  let panier_items = localStorage.getItem("storedItems");
+  let panier_items = JSON.parse(localStorage.getItem("storedItems"));
   let homme = document.getElementById("homme");
   let femme = document.getElementById("femme");
   let cli_nom = document.getElementById("nom").value;
@@ -23,11 +23,13 @@ btn_enregistrer.addEventListener("click", async function (e) {
   let cli_mail = document.getElementById("email").value;
   let cli_pwd = document.getElementById("password").value;
   let data = {
-    tit_id: homme.checked ? homme.value : femme.value,
-    cli_nom: cli_nom,
-    cli_prenom: cli_prenom,
-    cli_mail: cli_mail,
-    cli_pwd: cli_pwd,
+    credentials: {
+      tit_id: homme.checked ? homme.value : femme.value,
+      cli_nom: cli_nom,
+      cli_prenom: cli_prenom,
+      cli_mail: cli_mail,
+      cli_pwd: cli_pwd,
+    },
     panier_items: panier_items,
   };
   await axios.post(`${SITE_URL}/inscription`, data, {
