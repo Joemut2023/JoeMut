@@ -31,40 +31,26 @@ router.get("/identite/", async function (req, res, next) {
 });
 
 
-router.post("/identite/", async (req, res) => {
-  res.locals.titre = "identite";
-  let error, success;
-  const { prenom, nom, email, password, radioNewLetter, radioActivation, radioPartenaire } = req.body;
-  const chekInput = (input) => {
-    return input !== "" ? true : false;
-  };
-  if (
-    chekInput(prenom) &&
-    chekInput(nom) &&
-    chekInput(email) &&
-    chekInput(password) &&
-    chekInput(radioNewLetter) &&
-    chekInput(radioPartenaire)
-  ) {
-    try {
-      let updateClient = Client.update({
-        ...req.body,
-        cli_id: req.session.userId,
-      });
-      if (updateClient) {
-        success = "Vos informations ont été mises à jour avec success!";
-        return res.render("users/identite", { success });
+router.post("/identite/", async function (req, res, next) {
+
+  const { prenom, nom, email, password } = req.body;
+
+  try {
+    const updateAdresse = await Client.update({ prenom, nom, email, password },
+      {
+        where: {
+          cli_id: req.session.userId
+        },
       }
-    } catch (err) {
-      error = "Erreur interne du serveur";
-      return res.render("users/identite", {
-        error,
-      });
-    }
-  } else {
-    error = "Veillez remplir tout les champs obligatoire";
+    );
     return res.render("users/identite", {
-      error,
+      success: "Modification effectuée",
+      updateAdresse
+    });
+  } catch (error) {
+    return res.render("users/identite", {
+      error: "Erreur interne du serveur",
+      error
     });
   }
 });
