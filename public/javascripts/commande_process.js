@@ -8,13 +8,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var radios = document.querySelectorAll('[name=radio_mode_livraison]');
   var radios_adresses = document.querySelectorAll('[name=radio_adresse]');
   var form_finalisation = document.querySelector('.finalisation-content form');
+  var livraison_form_el = document.querySelector('#livraison-form form');
   radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
     radio.addEventListener('click', function (e) {
       var frp_ttc = e.target.dataset.ttc;
       var frp_id = e.target.value;
       localStorage.setItem('fraisDivers', JSON.stringify({
         frais_port: parseFloat(frp_ttc),
-        frais_dossier: 15.5
+        frais_dossier: 15.5,
+        frp_id: frp_id
       }));
     });
   });
@@ -25,22 +27,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var panier_details, frais, panier;
+      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, panier_details, frais, adresse, params, panier;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             e.preventDefault();
+            commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
+            com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
+            com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
+            com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
+            com_compl = document.querySelector('[name=com_compl]').value;
             panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
-            _context.next = 5;
-            return axios.post('/panier', {
+            adresse = document.querySelector('[name=radio_adresse]').value;
+            params = {
+              items: panier_details,
+              frais: frais,
+              commande: {
+                commande_debut: commande_debut,
+                com_fin_spectacle: com_fin_spectacle,
+                com_date_essayage: com_date_essayage,
+                com_date_essayage_autre: com_date_essayage_autre,
+                com_compl: com_compl
+              },
+              adresse: adresse
+            };
+            _context.next = 12;
+            return axios.post('/panier', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 5:
+          case 12:
             panier = _context.sent;
-          case 6:
+          case 13:
           case "end":
             return _context.stop();
         }
