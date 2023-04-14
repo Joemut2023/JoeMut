@@ -13,8 +13,26 @@ const check_paginate_value = require("../helpers/check_paginate_value");
  * @Route renvois tout
  */
 router.get("/", async function (req, res, next) {
+  let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
+  var orderCondition 
+   if (orderby === "AàZ") {
+     orderCondition = [["pro_libelle", "ASC"]];
+   }
+   else if (orderby === "ZàA"){
+    orderCondition = [["pro_libelle", "DESC"]];
+   }
+   else{
+    orderCondition = [["pro_libelle", "DESC"]];
+   }
+  //  else if (orderby === "PC"){
+  //   orderCondition = "PC";
+  //  }
+  //  else if (orderby === "PD"){
+  //   orderCondition = "PD";
+  //  }
   try {
+   
     res.locals.titre = "catalogue";
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
@@ -22,11 +40,12 @@ router.get("/", async function (req, res, next) {
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
-      order: [["pro_id", "DESC"]],
+      order:orderCondition,
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
+      
     });
     let nbrPages = Math.ceil(allproducts.length / PAGINATION_LIMIT);
     let next = start > 0 ? page + 1 : null;
