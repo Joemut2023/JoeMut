@@ -208,17 +208,15 @@
   </div>
   <div class="section-contact container">
     <%if (typeof error !== 'undefined' && error == true) { %>
-      <div class="alert alert-danger mssg" role="alert">
-        <%= (errorMsg) ? errorMsg : '' %>
-      </div>
+    <div class="alert alert-danger mssg" role="alert">
+      <%= (errorMsg) ? errorMsg : '' %>
+    </div>
+    <% } %> <%if (typeof error == null && error == false) { %>
+    <div class="alert alert-success mssg" role="alert">
+      <%= (messages) ? messages : '' %>
+    </div>
     <% } %>
 
-    <%if (typeof error == null && error == false) { %>
-      <div class="alert alert-success mssg" role="alert">
-        <%= (messages) ? messages : '' %>
-      </div>
-    <% } %>
-    
     <h1>NOUS CONTACTER</h1>
     <form method="post" action="/">
       <div class="mb-3">
@@ -233,7 +231,7 @@
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Choisir un fichier</label>
-        <input class="form-control" type="file" id="file"  name="file"/>
+        <input class="form-control" type="file" id="file" name="file" />
       </div>
       <div class="mb-3">
         <textarea
