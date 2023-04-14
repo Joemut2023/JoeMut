@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Client,Panier,
-  Panier_detail,Commande,Produit,Tarif
+  Panier_detail,Commande,Produit,Tarif,Media
 } = require("../models");
 let bcrypt = require("bcryptjs");
 let {Op} = require('sequelize');
@@ -63,6 +63,7 @@ router.post("/", async (req, res) => {
             pan_id:panier.pan_id,
             pad_qte:item.pad_qte,
             pad_ht:produit.Tarifs[0].tar_ht,
+            // pad_ttc:item.pad_ttc,
           })
         });
        }
@@ -84,7 +85,19 @@ router.post("/", async (req, res) => {
 router.get('/panier-details/:pan_id',async (req,res)=>{
   let {pan_id} = req.params;
   try {
-  var Panier_details = await Panier_detail.findAll({where:{pan_id:parseInt(pan_id)}});
+  var Panier_details = await Panier_detail.findAll({
+    include:[
+      {
+        model:Produit,
+        attributes:['pro_id','pro_libelle','pro_ref'],
+        include:{
+          model:Media,
+          attributes:['med_ressource']
+        }
+      }
+    ],
+    where:{pan_id:parseInt(pan_id)}
+  });
     return res.json(Panier_details);
   } catch (error) {
     console.log(error);

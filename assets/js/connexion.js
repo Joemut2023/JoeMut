@@ -32,8 +32,15 @@ formElt.addEventListener('submit',async (e)=>{
   });
   console.log(panier_id);
   let panier_details = await axios.get(`/connexion/panier-details/${panier_id.data}`);
+
   if (panier_details.data.length > 0) {
+    let panier_details_data = [];
+    console.log(panier_details.data);
+    panier_details.data.forEach(item => {
+      panier_details_data.push({...item,media:item.Produit.Media[0].med_ressource,pro_libelle:item.Produit.pro_libelle,pro_ref:item.Produit.pro_ref,pad_ttc:item.pad_ht});
+    });
+    localStorage.setItem('storedItems',JSON.stringify(panier_details_data));
     window.location.href =  `${SITE_URL}/mon-compte`;
   }
-  console.log(panier_details.data);
+  
 })
