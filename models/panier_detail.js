@@ -36,12 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       pan_id: DataTypes.INTEGER,
       pad_qte: DataTypes.INTEGER,
       pad_ht: DataTypes.FLOAT,
+      pad_ttc: DataTypes.FLOAT,
       pad_remise: DataTypes.FLOAT,
     },
     {
       sequelize,
       modelName: "Panier_detail",
-      timestamps:false
+      timestamps: false
     }
   );
   return Panier_detail;
