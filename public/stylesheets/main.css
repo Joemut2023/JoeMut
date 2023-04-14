@@ -1591,6 +1591,9 @@
   padding: 0px;
   margin: 0px;
 }
+#pages-catalogue .catalogue .cat-filter .filter .input .content ul a, #pages-bycategorie .catalogue .cat-filter .filter .input .content ul a, #pages-catalogue-type .catalogue .cat-filter .filter .input .content ul a {
+  text-decoration: none;
+}
 #pages-catalogue .catalogue .cat-filter .filter .input .content ul li, #pages-bycategorie .catalogue .cat-filter .filter .input .content ul li, #pages-catalogue-type .catalogue .cat-filter .filter .input .content ul li {
   list-style: none;
   padding: 8px 20px;
