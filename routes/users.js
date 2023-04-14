@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { Adresse } = require("../models");
+const { Adresse, Client } = require("../models");
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "mon_compte";
@@ -8,10 +8,53 @@ router.get("/", async (req, res, next) => {
 });
 
 //dynamisation : get all data userlogin and modify
-router.get("/identite", function (req, res, next) {
+router.get("/identite/", async function (req, res, next) {
   res.locals.titre = "identite";
-  res.render("users/identite");
+
+  try {
+    const clientSession = await Client.findOne({
+      where: {
+        cli_id: req.session.userId,
+      },
+    });
+    // res.json({ clientSession });
+    return res.render("users/identite", {
+      clientSession,
+    });
+  } catch (error) {
+    error = "une erreur est survenue";
+    return res.render("users/identite", {
+      error,
+    });
+  }
+  // res.render("users/identite");
 });
+
+
+router.post("/identite/", async function (req, res, next) {
+
+  const { prenom, nom, email, password } = req.body;
+
+  try {
+    const updateAdresse = await Client.update({ prenom, nom, email, password },
+      {
+        where: {
+          cli_id: req.session.userId
+        },
+      }
+    );
+    return res.render("users/identite", {
+      success: "Modification effectuée",
+      updateAdresse
+    });
+  } catch (error) {
+    return res.render("users/identite", {
+      error: "Erreur interne du serveur",
+      error
+    });
+  }
+});
+
 
 router.get("/nouvelleAdresse", function (req, res, next) {
   res.locals.titre = "nouvelle adresse";
