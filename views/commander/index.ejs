@@ -109,9 +109,9 @@
                                                         <label class="required" for="nom"><span>*</span></label>
                                                     </div>
                                                     <div class="col-md-6 checkWithText">
-                                                        <div class=""> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
+                                                        <div class=""> <input class="form-check-input" type="checkbox" value="" id="check_msg"></div>
                                                         <div class="">
-                                                            <label id="label-text">Message concernant la confidentialité des
+                                                            <label id="check_msg">Message concernant la confidentialité des
                                                                 données clients
                                                                 <br />
                                                                 <em>Conformément aux dispositions de la loi du n°78-17 du 6
@@ -146,7 +146,7 @@
                                                         <label class="required" for="nom"><span>*</span></label>
                                                     </div>
                                                     <div class="col-md-6 checkWithText">
-                                                        <div class=""> <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div>
+                                                        <div class=""> <input class="form-check-input" type="checkbox" value=""></div>
                                                         <div class="">
                                                             <label id="label-text">Message concernant la confidentialité des
                                                                 données clients
@@ -384,10 +384,10 @@
     
                                     <div class="form-group row">
                                         <div class="col-md-3">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="" id="check_facture">
                                         </div>
                                         <div class="col-md-6 text-label">
-                                            <label class="required label labelWithCheck" for="prenom" id="checkbox">Utiliser aussi cette adresse pour la facturation</label>
+                                            <label class="required label labelWithCheck" for="check_facture">Utiliser aussi cette adresse pour la facturation</label>
                                         </div>
     
                                     </div>
@@ -426,7 +426,7 @@
                             <div class="devis-1 row">
                                 <div class="btn-checkbox  col-md-2">
                                     <input class="form-check-input" type="radio" name="radio_mode_livraison" 
-                                     value="<%= index %>" 
+                                     value="<%= mode_livraison.frp_id%>" 
                                      data-ttc="<%= mode_livraison.frp_ttc %>" id="radio_mode_livraison<%= mode_livraison.frp_id%>">
                                 </div>
                                 <div class="desc-img  col-md-2">image</div>
@@ -475,23 +475,23 @@
                                                 <label for="date-rep" class="col-form-label">Date de répétition</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="date" id="date-rep" class="form-control" placeholder="Date de repetition">
+                                                <input type="date" id="date-rep" name="com_date_essayage" class="form-control" placeholder="Date de repetition">
                                             </div>
                                         </div>
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Site d'autres dates</label>
+                                                <label for="autre_date" class="col-form-label">Site d'autres dates</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" name="com_autre_date" id="autre_date" rows="3"></textarea>
                                             </div>
                                         </div>
                                         <div class="row g-3 align-items-center bloc-input">
                                             <div class="col-md-4">
-                                                <label for="inputPassword6" class="col-form-label">Complement d'infos ?</label>
+                                                <label for="comp_info" class="col-form-label">Complement d'infos ?</label>
                                             </div>
                                             <div class="col-md-4">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" name="com_compl" id="comp_info" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -522,8 +522,8 @@
                     <div class="finalisation-content">
                         <form action="">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input" type="radio" value="" id="confirm_devis">
+                                <label class="form-check-label" for="confirm_devis">
                                   Confirmez votre devis
                                 </label>
                             </div>

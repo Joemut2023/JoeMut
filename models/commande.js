@@ -38,8 +38,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       frp_id: DataTypes.INTEGER,
       cli_id: DataTypes.INTEGER,
-      com_num: DataTypes.STRING,
-      com_date: DataTypes.DATE,
+      com_num: {
+        type:DataTypes.TEXT,
+        defaultValue:(new Date(new Date().setDate(new Date().getDate()))).toString()
+      },
+      com_date: {
+        type:DataTypes.DATE,
+        defaultValue:new Date(new Date().setDate(new Date().getDate()))
+      },
       com_debut_spectacle: DataTypes.DATEONLY,
       com_fin_spectacle: DataTypes.DATEONLY,
       com_remise: DataTypes.DECIMAL,
@@ -50,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       com_comment: DataTypes.TEXT,
       com_adr_liv: DataTypes.INTEGER,
       com_adr_fac: DataTypes.INTEGER,
+      pan_id:DataTypes.INTEGER
     },
     {
       sequelize,
