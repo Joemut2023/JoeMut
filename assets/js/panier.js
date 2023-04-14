@@ -10,11 +10,13 @@ const RenderKartProduct = () => {
   storedITems.map((produit) => {
     panierDetailsHtml += `
   <div class="articles row">
-    <div class="col-md-1 clo-sm-1 id">${produit.pro_ref}</div>
-  <div class="col-md-3 col-sm-4 image">
-    <img src="/images/produits/${produit.media}" class="img-fluid" alt="" />
+    <div class="col-md-1 col-sm-1 col-1 id">${produit.pro_ref}</div>
+  <div class="col-md-3 col-sm-4 col-4 image">
+    <span><img src="/images/produits/${
+      produit.media
+    }" class="img-fluid" alt="" /></span>
   </div>
-  <div class="col-md-3 col-sm-7 description">
+  <div class="col-md-3 col-sm-7 col-7 description">
     <div class="desc">
       <a href="/article/${produit.pro_id}"><span>${
       produit.pro_libelle
@@ -22,11 +24,12 @@ const RenderKartProduct = () => {
     </div>
     <p class="price">${produit.pad_ttc.toFixed(2)} €</p>
   </div>
-  <div class="col-md-5 col-sm-12 prices">
+  <div class="col-md-5 col-sm-12 col-12 prices">
     <div class="row">
-      <div class="col-md-6 col-sm-10 block-price">
+    <div class="hidden col-sm-4 col-3"></div>
+      <div class="col-md-10 col-sm-6 col-7 block-price">
         <div class="row compteur">
-          <div class="col-md-4 col-sm-6 qty-btn">
+          <div class="col-md-6 col-sm-6 col-6 qty-btn">
             <input type="text" class="number-value" value="${
               produit.pad_qte
             }" />
@@ -39,12 +42,12 @@ const RenderKartProduct = () => {
               </button>
             </div>
           </div>
-          <div class="col-md-8 col-sm-6 prx">
+          <div class="col-md-6 col-sm-6 col-6 prx">
             <span>${produit.pad_ttc.toFixed(2)} €</span>
           </div>
         </div>
       </div>
-      <div data-id="${produit.pro_id}" class="col-md-6 col-sm-2 delete">
+      <div data-id="${produit.pro_id}" class="col-md-2 col-sm-2 col-2 delete">
         <span><i  class="fa-solid fa-trash" ></i></span>
       </div>
     </div>

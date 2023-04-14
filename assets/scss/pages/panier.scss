@@ -55,23 +55,26 @@
           font-size: 14px;
 
           @include breakpoint(mobil) {
-            text-align: center;
-            margin-bottom: 5px;
+            text-align: left;
+            margin-top: -20px;
+            font-size: 13px;
           }
         }
 
         .image {
-          @include breakpoint(mobil) {
-            text-align: center;
-            margin-bottom: 5px;
+          
+          span{
+            vertical-align: middle;
+            img{
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            vertical-align: middle;
+          }
           }
         }
 
         .description {
-          @include breakpoint(mobil) {
-            text-align: center;
-            margin-bottom: 5px;
-          }
 
           .desc {
             font-size: 14px;
@@ -92,45 +95,18 @@
         }
 
         .prices {
-          @include breakpoint(mobil) {
-            width: 80%;
-            margin: 0 auto;
+           @include breakpoint(mobil) {
+            margin-top: 10px;
           }
-
-          @include breakpoint(tablette) {
-            margin-top: 20px;
-            // width: 100%;
-          }
-
           .block-price {
-            @include breakpoint(mobil) {
-              flex: 3;
-              padding-left: 15px;
-            }
-
-            @include breakpoint(tablette) {
-              flex: 2;
-              justify-content: flex-start;
-            }
 
             .compteur {
-              @include breakpoint(tablette) {
-                display: flex;
-              }
-
+              
               .qty-btn {
                 display: flex;
                 justify-content: center;
-
-                @include breakpoint(mobil) {
-                  flex: 3;
-                  justify-content: flex-end;
-                }
-
-                @include breakpoint(tablette) {
-                  flex: 5;
-                  justify-content: flex-end;
-                }
+                align-items: center;
+                
 
                 input {
                   border: none;
@@ -165,11 +141,11 @@
               .prx {
                 padding-top: 5px;
 
-                @include breakpoint(mobil) {
-                  flex: 1;
-                  justify-content: flex-start;
-                  text-align: center;
-                }
+                // @include breakpoint(mobil) {
+                //   flex: 1;
+                //   justify-content: flex-start;
+                //   text-align: center;
+                // }
 
                 span {
                   font-weight: 600;
@@ -184,10 +160,10 @@
               cursor: pointer;
             }
 
-            @include breakpoint(mobil) {
-              flex: 1;
-              align-self: flex-start;
-            }
+            // @include breakpoint(mobil) {
+            //   flex: 1;
+            //   align-self: flex-start;
+            // }
 
             margin-top: 5px;
 
