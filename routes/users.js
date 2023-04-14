@@ -33,20 +33,28 @@ router.get("/identite/", async function (req, res, next) {
 
 router.post("/identite/", async function (req, res, next) {
 
-  const { prenom, nom, email, password } = req.body;
+  const { prenom, nom, email, newPassword } = req.body;
+  const id = req.session.userId
 
   try {
-    const updateAdresse = await Client.update({ prenom, nom, email, password },
-      {
-        where: {
-          cli_id: req.session.userId
-        },
-      }
-    );
-    return res.render("users/identite", {
-      success: "Modification effectuée",
-      updateAdresse
-    });
+    const clientSession = await Client.findByPk(id)
+    if (!clientSession) {
+      return res.render("users/identite", {
+        error: "Erreur interne du serveur",
+      });
+    }
+    else {
+      clientSession.cli_prenom = prenom
+      clientSession.cli_nom = nom
+      clientSession.cli_email = email
+      clientSession.cli_password = newPassword
+
+      await clientSession.save()
+      return res.render("users/identite", {
+        success: "Modification effectuée",
+        clientSession
+      });
+    }
   } catch (error) {
     return res.render("users/identite", {
       error: "Erreur interne du serveur",
