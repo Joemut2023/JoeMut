@@ -6,6 +6,8 @@ router.get("/", async (req, res, next) => {
   res.locals.titre = "mon_compte";
   res.render("users/index");
 });
+
+//dynamisation : get all data userlogin and modify
 router.get("/identite", function (req, res, next) {
   res.locals.titre = "identite";
   res.render("users/identite");
