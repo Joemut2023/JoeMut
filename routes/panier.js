@@ -1,7 +1,17 @@
 var express = require("express");
 var router = express.Router();
 const { Op } = require("sequelize");
-const {Produit,Tarif,Media,Panier,Apply,Promo,Panier_detail,Frais_port,Commande} = require('../models');
+const {
+  Produit,
+  Tarif,
+  Media,
+  Panier,
+  Apply,
+  Promo,
+  Panier_detail,
+  Frais_port,
+  Commande,
+} = require("../models");
 const { ACTIF } = require("../helpers/utils_const");
 
 router.get("/", async (req, res, next) => {
@@ -95,7 +105,7 @@ router.post('/',async (req,res)=>{
     if (!frais_port) {
       return res.json('frais de port non valide');
     }else{
-      
+
       // let commande = await Commande.create({
       //   frp_id:frais_port.frp_id,
       //   cli_id:userId,
@@ -117,4 +127,5 @@ router.post('/',async (req,res)=>{
     return res.json('veillez vous authentifier');
   }
 })
+
 module.exports = router;
