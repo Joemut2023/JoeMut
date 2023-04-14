@@ -60,32 +60,37 @@ var Kart = /*#__PURE__*/function () {
     key: "addFraisDivers",
     value: function () {
       var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var fraisPort, fraisDossier, fraisDivers;
+        var oldFraisDossier, fraisPort, fraisDossier, fraisDivers;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              oldFraisDossier = Kart.getParsedFrais();
+              if (!(oldFraisDossier == null)) {
+                _context.next = 10;
+                break;
+              }
+              _context.next = 4;
               return axios.get("".concat(SITE_URL, "/fraisPort"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 2:
+            case 4:
               fraisPort = _context.sent;
-              _context.next = 5;
+              _context.next = 7;
               return axios.get("".concat(SITE_URL, "/fraisDossier"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 5:
+            case 7:
               fraisDossier = _context.sent;
               fraisDivers = {
                 frais_port: fraisPort.data.frp_ttc,
                 frais_dossier: fraisDossier.data.auf_ttc
               };
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
-            case 8:
+            case 10:
             case "end":
               return _context.stop();
           }
