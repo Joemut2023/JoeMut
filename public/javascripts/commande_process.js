@@ -25,22 +25,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var panier_details, frais, panier;
+      var panier_details, frais, params, panier;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             e.preventDefault();
             panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
-            _context.next = 5;
-            return axios.post('/panier', {
+            params = {
+              items: panier_details,
+              frais: frais
+            };
+            _context.next = 6;
+            return axios.post('/panier', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 5:
-            panier = _context.sent;
           case 6:
+            panier = _context.sent;
+          case 7:
           case "end":
             return _context.stop();
         }

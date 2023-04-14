@@ -19,10 +19,14 @@
         e.preventDefault();
         let panier_details = JSON.parse(localStorage.getItem('storedItems'));
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
-        let panier = await axios.post('/panier',{
+        let params = {
+            items : panier_details,
+            frais:frais
+        }
+        let panier = await axios.post('/panier',params,{
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
-            }
+            },
         });
     });
 
