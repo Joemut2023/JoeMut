@@ -14,6 +14,16 @@
   </nav>
   <h4>Vos informations personnelles</h4>
   <form action="" class="fom">
+    <% if (typeof error  !== 'undefined') { %>
+      <div class="alert alert-danger" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if (typeof success  !== 'undefined') { %>
+      <div class="alert alert alert-success" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
     <div class="row-form">
       <label class="col-label label" for="civilite">Civilité</label>
       <div class="">
@@ -26,7 +36,7 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Prenom</label>
       <div class="col-input">
-        <input class="col" placeholder="Romain" type="text" name="" id="" />
+        <input class="col" placeholder="Romain" type="text" name="prenom" id="" value="<%= clientSession.cli_prenom %>" required/>
         <label for=""
           >Seules les lettres et le point (.), suivi d'un espace, sont
           autorisés.</label
@@ -36,7 +46,7 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Nom</label>
       <div class="col-input">
-        <input class="col" placeholder="Kabasi" type="text" name="" id="" />
+        <input class="col" placeholder="Kabasi" type="text" name="nom" id="" value="<%= clientSession.cli_nom %>" required/>
         <label for=""
           >Seules les lettres et le point (.), suivi d'un espace, sont
           autorisés.</label
@@ -50,8 +60,10 @@
           class="col"
           placeholder="Kabasiromain@gmail.com"
           type="email"
-          name=""
+          name="email"
           id=""
+          value="<%= clientSession.cli_mail %>"
+          required
         />
       </div>
     </div>
@@ -63,7 +75,7 @@
           type="password"
           name="password"
           placeholder="Password"
-          value=""
+          required
         />
         <span class="input-group-text">
           <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
@@ -73,7 +85,7 @@
     <div class="row-form">
       <label class="col-label" for=""> Nouveau mot de passe</label>
       <div class="d-flex flex-row col-input">
-        <input id="password" type="password" name="password" value="" />
+        <input id="password" type="password" name="password" required />
         <span class="input-group-text">
           <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
         </span>
@@ -82,7 +94,7 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span></label>
       <div class="checkbox-label">
-        <input type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" />
+        <input type="checkbox" name="radioNewLetter" id="flexRadioDefault2" required/>
         <label class="form-check-label" for=""
           >Message concernant la confidentialité des données clients
           Conformément aux dispositions de la loi du n°78-17 du 6 janvier 1978,
@@ -94,7 +106,7 @@
     <div class="row-form">
       <label class="col-label" for=""> <span> </span></label>
       <div class="checkbox-label">
-        <input type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" />
+        <input type="checkbox" name="radioActivation" id="flexRadioDefault2" value="<%= clientSession.cli_activation%>"/>
         <label class="form-check-label" for="">
           Recevoir notre newsletter Vous pouvez vous désinscrire à tout moment.
           Vous trouverez pour cela nos informations de contact dans les
@@ -105,7 +117,7 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span></label>
       <div class="checkbox-label">
-        <input type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" />
+        <input type="checkbox" name="radioPartenaire" id="flexRadioDefault2" required/>
         <label class="form-check-label" for=""
           >J'accepte les conditions générales et la politique de
           confidentialité</label
