@@ -37,13 +37,15 @@
       <div class="filter">
         <label for="">Trier par : </label>
         <div class="input" id="input">
-          <span id="choix">Choisir</span>
+          <span id="choix"><%= choix ? choix : "Choisir" %></span>
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
           <div class="content content-hide" id="content">
             <ul>
-              <li class="item-choice">Pertinente</li>
-              <li class="item-choice">Nom, A à Z</li>
-              <li class="item-choice">Nom, Z à A</li>
+              <a href="/catalogue"> <li class="item-choice">Pertinente</li></a>
+              <a href="/catalogue/type/<%= type_categorie.tyc_id  %>/?orderby=AàZ"><li class="item-choice">Nom, A à Z</li></a>
+              <a href="/catalogue/type/<%= type_categorie.tyc_id %>/?orderby=ZàA"><li class="item-choice">Nom, Z à A</li></a>
+              <a href="/catalogue/type/<%= type_categorie.tyc_id  %>/?orderby=PC"> <li class="item-choice">Prix, croissant</li></a>
+              <a href="/catalogue/type/<%= type_categorie.tyc_id  %>/?orderby=PD"><li class="item-choice">Prix, décroissant</li></a>
             </ul>
           </div>
         </div>
@@ -76,7 +78,7 @@
       <nav>
         <ul class="pagination">
           <% for( let i = 1; i <= nbrPages; i++ ) { %>
-            <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/type/<%= type_categorie_id %>?page=<%= i %>"><%= i %></a></li>
+            <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/type/<%= type_categorie_id %>?page=<%= i %>&orderby=<%= orderby %>"><%= i %></a></li>
           <% } %>
         </ul>
       </nav>

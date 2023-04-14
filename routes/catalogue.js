@@ -133,6 +133,7 @@ router.get("/:id", async (req, res) => {
       end,
       categorie_id: id,
       choix: choix,
+      orderby:orderby
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
@@ -148,8 +149,27 @@ router.get("/:id", async (req, res) => {
  */
 router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
+  let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
   let totalProductBycat = 0;
+  var orderCondition;
+  let choix, ordre;
+  if (orderby === "AàZ") {
+    orderCondition = [["pro_libelle", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "ZàA") {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PC") {
+    orderCondition = [[Tarif, "tar_ttc", "ASC"]];
+    choix = "Prix, croissant";
+  } else if (orderby === "PD") {
+    orderCondition = [[Tarif, "tar_ttc", "DESC"]];
+    choix = "Prix, décroissant";
+  } else {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Choisir";
+  }
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
@@ -172,6 +192,7 @@ router.get("/type/:id", async (req, res) => {
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Categorie, where: { tyc_id: id } },
       ],
+      order: orderCondition,
     });
     res.locals.titre = type_categorie.tyc_libelle;
     let nbrPages = Math.ceil(totalProductBycat / PAGINATION_LIMIT);
@@ -184,6 +205,8 @@ router.get("/type/:id", async (req, res) => {
       type_categorie_id: id,
       start,
       end,
+      choix: choix,
+      orderby: orderby,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {

@@ -74,7 +74,7 @@
             <nav>
           <ul class="pagination">
             <% for( let i = 1; i <= nbrPages; i++ ) { %>
-              <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/<%= categorie_id %>?page=<%= i %>"><%= i %></a></li>
+              <li class="page-item"><a class="page-link <%= pageActive === i ? 'active' : '' %>" href="/catalogue/<%= categorie_id %>?page=<%= i %>&orderby=orderby"><%= i %></a></li>
             <% } %>
           </ul>
         </nav>
