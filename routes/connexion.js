@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
             pan_id:panier.pan_id,
             pad_qte:item.pad_qte,
             pad_ht:produit.Tarifs[0].tar_ht,
-            // pad_ttc:item.pad_ttc,
+            pad_ttc:produit.Tarifs[0].tar_ttc,
           })
         });
        }

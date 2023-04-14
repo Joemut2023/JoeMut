@@ -56,7 +56,7 @@ formElt.addEventListener('submit', /*#__PURE__*/function () {
                 media: item.Produit.Media[0].med_ressource,
                 pro_libelle: item.Produit.pro_libelle,
                 pro_ref: item.Produit.pro_ref,
-                pad_ttc: item.pad_ht
+                pad_ttc: item.pad_ttc
               }));
             });
             localStorage.setItem('storedItems', JSON.stringify(panier_details_data));
