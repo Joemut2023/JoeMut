@@ -1091,7 +1091,12 @@
   width: 60%;
   margin: 0 auto 2% auto;
 }
-#pages-home .product .item-card-img .suggestion-img {
+#pages-home .product .item-card-img a {
+  display: inline-block;
+  height: 100%;
+}
+#pages-home .product .item-card-img a img {
+  height: 100%;
   object-fit: cover;
 }
 #pages-home .product .paragraph {
@@ -1108,8 +1113,11 @@
 #pages-home .product .price span {
   cursor: pointer;
 }
-#pages-home body {
-  margin: 50px;
+#pages-home .product .slick-list {
+  perspective: 1px;
+}
+#pages-home .product .slick-track {
+  will-change: transform, transition;
 }
 
 #page-creation {
