@@ -38,21 +38,25 @@ class Kart {
    */
 
   static async addFraisDivers() {
-    let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    let fraisDivers = {
-      frais_port: fraisPort.data.frp_ttc,
-      frais_dossier: fraisDossier.data.auf_ttc,
-    };
-    localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+    let oldFraisDossier = Kart.getParsedFrais();
+    if (oldFraisDossier == null) {
+      let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      let fraisDivers = {
+        frais_port: fraisPort.data.frp_ttc,
+        frais_dossier: fraisDossier.data.auf_ttc,
+      };
+      localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+    }
   }
 
   static addItem(item, qte = null) {
