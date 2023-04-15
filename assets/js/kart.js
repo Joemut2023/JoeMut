@@ -201,7 +201,7 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-        <span>${fraisDivers.frais_port.toFixed(2)} €</span> 
+        <span>${parseFloat(fraisPort).toFixed(2)} €</span> 
         </div>
       </div>
       <div class="kart-livraison">
@@ -209,7 +209,7 @@ class Kart {
         <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${fraisDivers.frais_dossier.toFixed(2)} €</span>
+        <span>${parseFloat(fraisDossier).toFixed(2)} €</span>
       </div>
     </div>
 
