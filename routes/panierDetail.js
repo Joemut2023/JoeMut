@@ -3,11 +3,10 @@ var router = express.Router();
 const { Op, and } = require("sequelize");
 const { Panier_detail, Apply, Tarif, Promo, Quantite } = require('../models');
 
-
-
 router.post("/", async (req, res, next) => {
     const { pro_id, pad_qte } = req.body;
-    const pan_id = req.session.panierId;
+    const pan_id = 1;
+    // const pan_id = req.session.panierId;
     try {
         const oldPanierDetail = await Panier_detail.findOne({
             where:
@@ -44,12 +43,21 @@ router.post("/", async (req, res, next) => {
         const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
 
+<<<<<<< HEAD
         // if (quantite !== null) {
         //     let quantiteDispo = quantite.qua_nbre;
         //     if (newQuantite > quantiteDispo) {
         //         return res.status(409).send(`Vous avez déjà commandé la quantité disponible pour cet article`)
         //     }
         // }
+=======
+        if (quantite !== null) {
+            let quantiteDispo = quantite.qua_nbre;
+            if (newQuantite > quantiteDispo) {
+                return res.status(409).send(`Votre panier contient la quantité disponible pour cet article`)
+            }
+        }
+>>>>>>> fix/merge
 
         const panierDetail = await Panier_detail.update({
             pad_qte: newQuantite
@@ -75,22 +83,38 @@ router.post("/", async (req, res, next) => {
     }
 })
 
-// router.put("/:id", async (req, res, next) => {
-//     const pad_id = req.params.id
-//     try {
-//         const panierEdit = await Panier_detail.udpdate({ pad_qte }, { where: { pad_id } })
-//         const NewPanier = await panierEdit.findOne({ where: { pad_id } })
 
-//         res.status(200).json(NewPanier)
-//     } catch (error) {
-//         res.status(500).json({ error: error })
-//     }
-// })
+router.get("/", async (req, res, next) => {
+    const pan_id = req.session.panierId;
+
+    try {
+        const Produits = await Panier_detail.findAll({
+            where: { pan_id }
+        });
+
+        res.status(200).json({
+            mesaage: "Produits trouvés",
+            data: Produits
+        })
+
+    } catch (error) {
+        return res.status(500).json({ error: error })
+
+    }
+
+})
+
 
 router.delete("/", async (req, res) => {
     const { pro_id } = req.body;
+<<<<<<< HEAD
     const pan_id = req.session.panierId;
     console.log(pan_id);
+=======
+    // const pan_id = req.session.panierId;
+    const pan_id = 1;
+
+>>>>>>> fix/merge
     try {
        
         const oldPanierDetail = await Panier_detail.findAll({

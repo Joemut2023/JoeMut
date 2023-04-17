@@ -46,7 +46,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, panier_details, frais, adresse, params, panier;
+      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -55,12 +55,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
             com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
             com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
-            com_compl = document.querySelector('[name=com_compl]').value;
-            panier_details = JSON.parse(localStorage.getItem('storedItems'));
+            com_compl = document.querySelector('[name=com_compl]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
             adresse = document.querySelector('[name=radio_adresse]').value;
             params = {
-              items: panier_details,
+              //items : panier_details,
               frais: frais,
               commande: {
                 commande_debut: commande_debut,
@@ -71,15 +70,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               },
               adresse: adresse
             };
-            _context2.next = 12;
-            return axios.post('/panier', params, {
+            _context2.next = 11;
+            return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 12:
+          case 11:
             panier = _context2.sent;
-          case 13:
+            localStorage.setItem('storedItems', JSON.stringify([]));
+            window.location.replace('/confirmation-commande');
+          case 14:
           case "end":
             return _context2.stop();
         }
