@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {Adresse,Frais_port} = require('../models');
+const {Adresse,Frais_port,Panier, Commande} = require('../models');
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
 const user_login = require("../helpers/user_login");
@@ -46,6 +46,39 @@ router.get("/", async (req, res) => {
     });
   }
 });
+router.post('/',async(req,res)=>{
+  let userId = req.session.userId;
+  let pan_id = req.session.panierId;
+  let {frais, adresse,commande} = req.body;
+
+  try {
+    // récuperation du panier du user(panier, non commande)
+    //enregistrement du panier dans la commande
+    let panier = await Panier.findByPk(pan_id);
+    let adress_item = await Adresse.findByPk(parseInt(adresse));
+    let commande_item = await Commande.create({
+        frp_id:frais.frais_port.frp_id,
+        cli_id:userId,
+        com_debut_spectacle:commande.commande_debut,
+        com_fin_spectacle:commande.com_fin_spectacle,
+        com_comment:commande.com_compl,
+        com_adr_liv:adress_item.adr_id,
+        com_adr_fac:adress_item.adr_id,
+        pan_id:panier.pan_id
+        // com_ht:,
+        // com_ttc:
+      });
+
+      let new_panier = Panier.create({
+        cli_id:userId
+      }) 
+    req.session.panierId = panier.pan_id;
+    return res.json(new_panier);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error)
+  }
+})
 router.post('/add-adresse',async (req,res)=>{
   res.locals.titre = "commander";
   let userId = req.session.userId;
