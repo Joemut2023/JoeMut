@@ -150,19 +150,7 @@ var Kart = /*#__PURE__*/function () {
               }
 
               //si le client "est connecté"
-<<<<<<< HEAD
-              // await axios.post(`${SITE_URL}/panierDetail`, {
-              //   pro_id: item.pro_id,
-              //   pad_qte: 1,
-              //   headers: {
-              //     "X-Requested-With": "XMLHttpRequest",
-              //   },
-              // });
-              //
-              Kart.RenderModal(itemForPanier);
-            case 5:
-=======
-              _context2.next = 7;
+              _context2.next = 6;
               return axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
                 pad_qte: 1,
@@ -170,13 +158,13 @@ var Kart = /*#__PURE__*/function () {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 7:
+            case 6:
               panier = _context2.sent;
               console.log(panier.status, panier);
+
               //
               Kart.RenderModal(itemForPanier);
-            case 10:
->>>>>>> develop
+            case 9:
             case "end":
               return _context2.stop();
           }

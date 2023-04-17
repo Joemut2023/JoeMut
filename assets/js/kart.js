@@ -96,15 +96,6 @@ class Kart {
     }
 
     //si le client "est connecté"
-<<<<<<< HEAD
-    // await axios.post(`${SITE_URL}/panierDetail`, {
-    //   pro_id: item.pro_id,
-    //   pad_qte: 1,
-    //   headers: {
-    //     "X-Requested-With": "XMLHttpRequest",
-    //   },
-    // });
-=======
     const panier = await axios.post(`${SITE_URL}/panierDetail`, {
       pro_id: item.pro_id,
       pad_qte: 1,
@@ -113,7 +104,7 @@ class Kart {
       },
     });
     console.log(panier.status, panier);
->>>>>>> develop
+
     //
     Kart.RenderModal(itemForPanier);
   }
