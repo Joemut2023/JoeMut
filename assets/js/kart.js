@@ -26,7 +26,7 @@ class Kart {
   static getItemNumber() {
     let storedITems = Kart.getParsedBasket();
     let quantity = 0;
-    storedITems.forEach((element) => {
+    storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
     return quantity;
@@ -59,7 +59,7 @@ class Kart {
     }
   }
 
-  static addItem(item, qte = null) {
+  static async addItem(item, qte = null) {
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
@@ -95,7 +95,17 @@ class Kart {
         Kart.getItemNumber();
     }
     Kart.kartRenderItems();
-    Kart.RenderModal(itemForPanier);
+
+    //si le client "est connecté"
+    await axios.post(`${SITE_URL}/panierDetail`, {
+      pro_id: item.pro_id,
+      pad_qte: 1,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    //
+    Kart.RenderModal(item.pro_id);
   }
   /**
    * Supprime un Item du panier
