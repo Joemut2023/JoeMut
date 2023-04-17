@@ -147,21 +147,18 @@ var Kart = /*#__PURE__*/function () {
                 localStorage.setItem("storedItems", JSON.stringify(Kart.items));
                 document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
               }
-              Kart.kartRenderItems();
 
               //si le client "est connecté"
-              _context2.next = 7;
-              return axios.post("".concat(SITE_URL, "/panierDetail"), {
-                pro_id: item.pro_id,
-                pad_qte: 1,
-                headers: {
-                  "X-Requested-With": "XMLHttpRequest"
-                }
-              });
-            case 7:
+              // await axios.post(`${SITE_URL}/panierDetail`, {
+              //   pro_id: item.pro_id,
+              //   pad_qte: 1,
+              //   headers: {
+              //     "X-Requested-With": "XMLHttpRequest",
+              //   },
+              // });
               //
-              Kart.RenderModal(item.pro_id);
-            case 8:
+              Kart.RenderModal(itemForPanier);
+            case 5:
             case "end":
               return _context2.stop();
           }

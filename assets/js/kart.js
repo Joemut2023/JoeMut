@@ -94,18 +94,17 @@ class Kart {
       document.querySelector("#cart-item-count").innerHTML =
         Kart.getItemNumber();
     }
-    Kart.kartRenderItems();
 
     //si le client "est connecté"
-    await axios.post(`${SITE_URL}/panierDetail`, {
-      pro_id: item.pro_id,
-      pad_qte: 1,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    // await axios.post(`${SITE_URL}/panierDetail`, {
+    //   pro_id: item.pro_id,
+    //   pad_qte: 1,
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
     //
-    Kart.RenderModal(item.pro_id);
+    Kart.RenderModal(itemForPanier);
   }
   /**
    * Supprime un Item du panier
