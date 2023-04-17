@@ -65,6 +65,7 @@ router.get("/", async function (req, res, next) {
       prev: prev,
       next: next,
       choix: choix,
+      orderby
     });
   } catch (error) {
     res.status(500).render("error/serverError", {

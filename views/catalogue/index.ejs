@@ -261,20 +261,20 @@
       <nav>
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=1#pages-catalogue">1</a>
+            <a class="page-link" href="/catalogue?page=1&orderby=<%= orderby %>#pages-catalogue">1</a>
           </li>
           <% if (pageActive === 1 || pageActive ===2) { %>
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=2#pages-catalogue">2</a>
+            <a class="page-link" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=3#pages-catalogue">3</a>
+            <a class="page-link" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
           </li>
           <% } else { %>
           <li class="page-item">
             <a
               class="page-link"
-              href="/catalogue?page=<%= pageActive -1 %>#pages-catalogue"
+              href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue"
               ><%= pageActive-1 %></a
             >
           </li>
