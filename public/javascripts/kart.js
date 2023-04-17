@@ -46,7 +46,7 @@ var Kart = /*#__PURE__*/function () {
     value: function getItemNumber() {
       var storedITems = Kart.getParsedBasket();
       var quantity = 0;
-      storedITems.forEach(function (element) {
+      storedITems === null || storedITems === void 0 ? void 0 : storedITems.forEach(function (element) {
         quantity += element.pad_qte;
       });
       return quantity;
@@ -103,42 +103,75 @@ var Kart = /*#__PURE__*/function () {
     }()
   }, {
     key: "addItem",
-    value: function addItem(item) {
-      var qte = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var storedITems = JSON.parse(localStorage.getItem("storedItems"));
-      var itemForPanier = {
-        pro_id: item.pro_id,
-        pro_libelle: item.pro_libelle,
-        pad_qte: qte ? parseInt(qte) : 1,
-        pad_ttc: item.Tarifs[0].tar_ttc,
-        pad_ht: item.Tarifs[0].tar_ht,
-        media: item.Media[0].med_ressource,
-        pro_ref: item.pro_ref
-      };
-      if (storedITems) {
-        var produitFilter = storedITems.filter(function (produit) {
-          return produit.pro_id == item.pro_id;
-        });
-        var produit = produitFilter[0];
-        if (produitFilter.length !== 0) {
-          produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-          var produitPositionInArray = storedITems.findIndex(function (produit) {
-            return produit.pro_id === item.pro_id;
-          });
-          storedITems[produitPositionInArray] = produit;
-        } else {
-          storedITems.push(itemForPanier);
-        }
-        localStorage.setItem("storedItems", JSON.stringify(storedITems));
-        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-      } else {
-        Kart.items.push(itemForPanier);
-        localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-        document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+    value: function () {
+      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(item) {
+        var qte,
+          storedITems,
+          itemForPanier,
+          produitFilter,
+          produit,
+          produitPositionInArray,
+          _args2 = arguments;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              qte = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : null;
+              storedITems = JSON.parse(localStorage.getItem("storedItems"));
+              itemForPanier = {
+                pro_id: item.pro_id,
+                pro_libelle: item.pro_libelle,
+                pad_qte: qte ? parseInt(qte) : 1,
+                pad_ttc: item.Tarifs[0].tar_ttc,
+                pad_ht: item.Tarifs[0].tar_ht,
+                media: item.Media[0].med_ressource,
+                pro_ref: item.pro_ref
+              };
+              if (storedITems) {
+                produitFilter = storedITems.filter(function (produit) {
+                  return produit.pro_id == item.pro_id;
+                });
+                produit = produitFilter[0];
+                if (produitFilter.length !== 0) {
+                  produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+                  produitPositionInArray = storedITems.findIndex(function (produit) {
+                    return produit.pro_id === item.pro_id;
+                  });
+                  storedITems[produitPositionInArray] = produit;
+                } else {
+                  storedITems.push(itemForPanier);
+                }
+                localStorage.setItem("storedItems", JSON.stringify(storedITems));
+                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+              } else {
+                Kart.items.push(itemForPanier);
+                localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+              }
+              Kart.kartRenderItems();
+
+              //si le client "est connecté"
+              _context2.next = 7;
+              return axios.post("".concat(SITE_URL, "/panierDetail"), {
+                pro_id: item.pro_id,
+                pad_qte: 1,
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 7:
+              //
+              Kart.RenderModal(item.pro_id);
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }));
+      function addItem(_x) {
+        return _addItem.apply(this, arguments);
       }
-      Kart.kartRenderItems();
-      Kart.RenderModal(itemForPanier);
-    }
+      return addItem;
+    }()
     /**
      * Supprime un Item du panier
      * @param {Number} itemId
