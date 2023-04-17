@@ -69,15 +69,13 @@ router.post("/", async (req, res) => {
         });
        }
        await insert_panier_details();
-      }
+    }
       // si des données panier_details sont envoyés insérés dans la bd
     }else{
       if (panier_items.length > 0) {
         // supprimer tout les paniers details et insérer des nouveaux
       }
     }
-    console.log('===============');
-    console.log(panier);
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
     res.locals.user = client;

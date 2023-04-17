@@ -5,7 +5,7 @@ const { Panier_detail, Apply, Tarif, Promo, Quantite } = require('../models');
 
 router.post("/", async (req, res, next) => {
     const { pro_id, pad_qte } = req.body;
-    const pan_id = 1;
+    const pan_id = req.session.panierId;
     // const pan_id = req.session.panierId;
     try {
         const oldPanierDetail = await Panier_detail.findOne({
@@ -69,7 +69,7 @@ router.post("/", async (req, res, next) => {
 
         return res.status(404).send("aucun produit ajouté");
     } catch (error) {
-
+        console.log(error);
         res.status(500).json({ error: error })
     }
 })
