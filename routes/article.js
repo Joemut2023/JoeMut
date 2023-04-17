@@ -7,6 +7,8 @@ const {
   Commentaire,
   Quantite,
   Taille,
+  Categorie,
+  Type_categorie
 } = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth");
@@ -23,13 +25,16 @@ router.get("/:id", async (req, res, next) => {
         {
           model: Media,
           required: true,
-          where: {
-            pro_id: id,
-          },
+          // where: {
+          //   pro_id: id,
+          // },
         },
+        {
+          model:Categorie,include:{model:Type_categorie}
+        }
       ],
     });
-
+    // res.json({article})
     const taillesQuantites = await Taille.findAll({
       include: [
         {
