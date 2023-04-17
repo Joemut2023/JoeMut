@@ -4,6 +4,7 @@ const { Op, and } = require("sequelize");
 const { Panier_detail, Apply, Tarif, Promo, Quantite } = require('../models');
 
 
+
 router.post("/", async (req, res, next) => {
     const { pro_id, pad_qte } = req.body;
     const pan_id = req.session.panierId;
@@ -46,7 +47,7 @@ router.post("/", async (req, res, next) => {
         if (quantite !== null) {
             let quantiteDispo = quantite.qua_nbre;
             if (newQuantite > quantiteDispo) {
-                return res.status(409).send(`La quantité disponible n'est que de ${quantiteDispo} articles`)
+                return res.status(409).send(`Vous avez déjà commandé la quantité disponible pour cet article`)
             }
         }
 
@@ -85,6 +86,38 @@ router.post("/", async (req, res, next) => {
 //         res.status(500).json({ error: error })
 //     }
 // })
+
+router.delete("/", async (req, res) => {
+    const { pro_id } = req.body;
+    const pan_id = req.session.panierId;
+
+    try {
+        const oldPanierDetail = await Panier_detail.findOne({
+            where:
+            {
+                [Op.and]: [
+                    { pro_id },
+                    { pan_id }
+                ]
+            }
+        });
+
+        const panierDelete = await Panier_detail.destroy({
+            where: {
+                pad_id: oldPanierDetail.pad_id
+            }
+        })
+
+
+        if (panierDelete == 1) {
+            return res.status(200).send("produit supprimé dans le panier avec succès");
+        }
+        return res.status(404).send("Aucun produit supprimé")
+
+    } catch (error) {
+        return res.status(500).json({ error: error })
+    }
+})
 
 
 
