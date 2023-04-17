@@ -9,6 +9,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var radios_adresses = document.querySelectorAll('[name=radio_adresse]');
   var form_finalisation = document.querySelector('.finalisation-content form');
   var livraison_form_el = document.querySelector('#livraison-form form');
+  var formLogin = document.querySelector('#form-commande-login');
+  formLogin === null || formLogin === void 0 ? void 0 : formLogin.addEventListener('submit', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            _context.next = 3;
+            return login_process('commander/#page-commander');
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
   radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
     radio.addEventListener('click', function (e) {
       var frp_ttc = e.target.dataset.ttc;
@@ -26,22 +45,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
   });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, panier_details, frais, adresse, params, panier;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, params, panier;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
             commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
             com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
             com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
             com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
-            com_compl = document.querySelector('[name=com_compl]').value;
-            panier_details = JSON.parse(localStorage.getItem('storedItems'));
+            com_compl = document.querySelector('[name=com_compl]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
             adresse = document.querySelector('[name=radio_adresse]').value;
             params = {
-              items: panier_details,
+              //items : panier_details,
               frais: frais,
               commande: {
                 commande_debut: commande_debut,
@@ -52,22 +70,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               },
               adresse: adresse
             };
-            _context.next = 12;
-            return axios.post('/panier', params, {
+            _context2.next = 11;
+            return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 12:
-            panier = _context.sent;
-          case 13:
+          case 11:
+            panier = _context2.sent;
+            localStorage.setItem('storedItems', JSON.stringify([]));
+            window.location.replace('/confirmation-commande');
+          case 14:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }));
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }());
 })();

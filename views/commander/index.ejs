@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="tab-pane fade content-two" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                     <div class="register-form">
-                                        <form method="post" action="/commander/user-login">
+                                        <form method="post" action="/commander/user-login" id="form-commande-login">
                                             <%if (typeof error !== 'undefined' && error == true) { %>
                                                 <div class="alert alert-danger" role="alert">
                                                   <%= (errorMsg) ? errorMsg : '' %>
@@ -618,4 +618,5 @@
     </div>
 </div>
 <script src="/javascripts/commander.js"></script>
+<script src="/javascripts/login_process.js"></script>
 <script src="/javascripts/commande_process.js"></script>

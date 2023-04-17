@@ -3,11 +3,10 @@ var router = express.Router();
 const { Op, and } = require("sequelize");
 const { Panier_detail, Apply, Tarif, Promo, Quantite } = require('../models');
 
-
-
 router.post("/", async (req, res, next) => {
     const { pro_id, pad_qte } = req.body;
-    const pan_id = req.session.panierId;
+    const pan_id = 1;
+    // const pan_id = req.session.panierId;
     try {
         const oldPanierDetail = await Panier_detail.findOne({
             where:
@@ -44,12 +43,12 @@ router.post("/", async (req, res, next) => {
         const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
 
-        if (quantite !== null) {
-            let quantiteDispo = quantite.qua_nbre;
-            if (newQuantite > quantiteDispo) {
-                return res.status(409).send(`Vous avez déjà commandé la quantité disponible pour cet article`)
-            }
-        }
+        // if (quantite !== null) {
+        //     let quantiteDispo = quantite.qua_nbre;
+        //     if (newQuantite > quantiteDispo) {
+        //         return res.status(409).send(`Vous avez déjà commandé la quantité disponible pour cet article`)
+        //     }
+        // }
 
         const panierDetail = await Panier_detail.update({
             pad_qte: newQuantite
@@ -75,32 +74,45 @@ router.post("/", async (req, res, next) => {
     }
 })
 
-// router.put("/:id", async (req, res, next) => {
-//     const pad_id = req.params.id
-//     try {
-//         const panierEdit = await Panier_detail.udpdate({ pad_qte }, { where: { pad_id } })
-//         const NewPanier = await panierEdit.findOne({ where: { pad_id } })
 
-//         res.status(200).json(NewPanier)
-//     } catch (error) {
-//         res.status(500).json({ error: error })
-//     }
-// })
+router.get("/", async (req, res, next) => {
+    const pan_id = req.session.panierId;
+
+    try {
+        const Produits = await Panier_detail.findAll({
+            where: { pan_id }
+        });
+
+        res.status(200).json({
+            mesaage: "Produits trouvés",
+            data: Produits
+        })
+
+    } catch (error) {
+        return res.status(500).json({ error: error })
+
+    }
+
+})
+
 
 router.delete("/", async (req, res) => {
     const { pro_id } = req.body;
     const pan_id = req.session.panierId;
 
     try {
-        const oldPanierDetail = await Panier_detail.findOne({
+       
+        const oldPanierDetail = await Panier_detail.findAll({
             where:
             {
                 [Op.and]: [
                     { pro_id },
-                    { pan_id }
+                    { pan_id}
                 ]
             }
         });
+
+        console.log(oldPanierDetail,"request");
 
         const panierDelete = await Panier_detail.destroy({
             where: {
@@ -112,7 +124,7 @@ router.delete("/", async (req, res) => {
         if (panierDelete == 1) {
             return res.status(200).send("produit supprimé dans le panier avec succès");
         }
-        return res.status(404).send("Aucun produit supprimé")
+        return res.status(202).send("Aucun produit supprimé")
 
     } catch (error) {
         return res.status(500).json({ error: error })

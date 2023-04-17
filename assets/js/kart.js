@@ -96,6 +96,7 @@ class Kart {
     }
 
     //si le client "est connecté"
+<<<<<<< HEAD
     // await axios.post(`${SITE_URL}/panierDetail`, {
     //   pro_id: item.pro_id,
     //   pad_qte: 1,
@@ -103,6 +104,16 @@ class Kart {
     //     "X-Requested-With": "XMLHttpRequest",
     //   },
     // });
+=======
+    const panier = await axios.post(`${SITE_URL}/panierDetail`, {
+      pro_id: item.pro_id,
+      pad_qte: 1,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    console.log(panier.status, panier);
+>>>>>>> develop
     //
     Kart.RenderModal(itemForPanier);
   }
@@ -110,7 +121,7 @@ class Kart {
    * Supprime un Item du panier
    * @param {Number} itemId
    */
-  static removeItem(itemId) {
+  static async removeItem(itemId) {
     let storedITems = Kart.getParsedBasket();
     document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     let produitPositionInArray = storedITems.findIndex(
@@ -118,6 +129,16 @@ class Kart {
     );
     storedITems.splice(produitPositionInArray, 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
+
+    // si le user est connecté
+    console.log(itemId);
+    const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
+      pro_id: itemId,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    console.log(panier);
     Kart.kartRenderItems();
   }
 
