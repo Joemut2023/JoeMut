@@ -14,6 +14,8 @@ router.get("/", async (req, res) => {
   res.render(connexion);
 });
 router.post("/", async (req, res) => {
+  //user_login(req,res,'commander/index','/commander');
+
   const { credentials,panier_items } = req.body;
   try {
     const client = await Client.findOne({ where: {cli_mail : credentials.cli_mail } });
@@ -24,13 +26,12 @@ router.post("/", async (req, res) => {
     if (!valid) {
       return res.json('mot de passe incorrect');
     }
-    var panier = await Panier.findOne({
-      include:[{
-          model:Commande,
-          required:false
-        }],
-      where:{cli_id:client.cli_id}
+    const panier = await Panier.findOne({
+      where: { cli_id: client.cli_id },
+      include: [{ model: Commande, required: false }],
+      where: { '$Commande.com_id$': null }
     });
+    
     if (!panier) {
       panier = await Panier.create({
         cli_id:client.cli_id
@@ -75,11 +76,15 @@ router.post("/", async (req, res) => {
         // supprimer tout les paniers details et insérer des nouveaux
       }
     }
+    console.log('===============');
+    console.log(panier);
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
     res.locals.user = client;
+    req.session.userId = client.cli_id;
     return res.json(panier.pan_id);
   } catch (error) {
+    console.log(error);
     return res.status(500).json(error);
   }
 });

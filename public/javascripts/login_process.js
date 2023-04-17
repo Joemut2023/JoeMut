@@ -37,6 +37,7 @@ var login_process = /*#__PURE__*/function () {
           return axios.get("/connexion/panier-details/".concat(panier_id.data));
         case 9:
           panier_details = _context.sent;
+          panier_id = panier_id.data;
           if (panier_details.data.length > 0) {
             panier_details_data = [];
             panier_details.data.forEach(function (item) {
@@ -48,7 +49,14 @@ var login_process = /*#__PURE__*/function () {
               }));
             });
             localStorage.setItem('storedItems', JSON.stringify(panier_details_data));
-            // window.location.href =  `${SITE_URL}/${view}`;
+            if (window.location.href == "".concat(SITE_URL, "/").concat(view)) {
+              window.location.replace("".concat(SITE_URL, "/").concat(view));
+              window.location.reload();
+            } else {
+              window.location.replace("".concat(SITE_URL, "/").concat(view));
+            }
+          } else {
+            localStorage.setItem('storedItems', JSON.stringify([]));
             if (window.location.href == "".concat(SITE_URL, "/").concat(view)) {
               window.location.replace("".concat(SITE_URL, "/").concat(view));
               window.location.reload();
@@ -56,7 +64,7 @@ var login_process = /*#__PURE__*/function () {
               window.location.replace("".concat(SITE_URL, "/").concat(view));
             }
           }
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
