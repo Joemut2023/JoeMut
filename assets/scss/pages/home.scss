@@ -517,14 +517,30 @@
       .libelle {
         font-size: 0.8rem;
       }
+
+      P{
+        margin-bottom: 5px;
+      }
     }
 
     .price {
       text-align: center;
       color: $color-important;
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
 
-      span {
+      .bar{
+        font-size: 20px;
+        font-weight: 500;
+        color:$color-primary
+      }
+      .btn-add {
         cursor: pointer;
+      }
+      p{
+        margin-bottom: 0px;
       }
     }
 

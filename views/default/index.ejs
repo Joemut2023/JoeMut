@@ -28,14 +28,15 @@
                 <div class="price">
                   <p>
                     <%= (produit.Tarifs[0].tar_ht).toFixed(2) %> €
-                    <span
+                  </p>
+                  <span class="bar">|</span>
+                  <span
                       class="btn-add button-ajouter"
                       data-id="<%= produit.pro_id %>"
                       data-bs-toggle="modal"
                       data-bs-target="#parent_modal"
                       >Ajouter</span
                     >
-                  </p>
                 </div>
               </div>
             </li>
