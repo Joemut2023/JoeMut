@@ -77,6 +77,7 @@ router.post("/", async (req, res) => {
     }
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
+    res.locals.user = client;
     return res.json(panier.pan_id);
   } catch (error) {
     return res.status(500).json(error);
