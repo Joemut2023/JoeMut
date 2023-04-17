@@ -3,8 +3,12 @@
     let radios_adresses = document.querySelectorAll('[name=radio_adresse]');
     let form_finalisation = document.querySelector('.finalisation-content form');
     let livraison_form_el = document.querySelector('#livraison-form form');
-    
+    let formLogin = document.querySelector('#form-commande-login');    
 
+    formLogin?.addEventListener('submit',async (e)=>{
+        e.preventDefault();
+        await login_process('commander/#page-commander');
+    })
     radios?.forEach(radio=>{
         radio.addEventListener('click',(e)=>{
             let frp_ttc = e.target.dataset.ttc;
