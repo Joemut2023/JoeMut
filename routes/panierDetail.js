@@ -57,17 +57,17 @@ router.get("/", async (req, res, next) => {
     }
 })
 
-router.put("/:id", async (req, res, next) => {
-    const pad_id = req.params.id
-    try {
-        const panierEdit = await Panier_detail.udpdate({ pad_qte }, { where: { pad_id } })
-        const NewPanier = await panierEdit.findOne({ where: { pad_id } })
+// router.put("/:id", async (req, res, next) => {
+//     const pad_id = req.params.id
+//     try {
+//         const panierEdit = await Panier_detail.udpdate({ pad_qte }, { where: { pad_id } })
+//         const NewPanier = await panierEdit.findOne({ where: { pad_id } })
 
-        res.status(200).json(NewPanier)
-    } catch (error) {
-        res.status(500).json({ error: error })
-    }
-})
+//         res.status(200).json(NewPanier)
+//     } catch (error) {
+//         res.status(500).json({ error: error })
+//     }
+// })
 
 module.exports = router
 
