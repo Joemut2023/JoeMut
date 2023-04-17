@@ -329,9 +329,9 @@
             align-items: center;
             gap: 5px;
             @include breakpoint(mobil) {
-              flex-direction: column;
-              gap:3px;
-              justify-content:space-around;
+              // flex-direction: column;
+              // gap:3px;
+              // justify-content:space-around;
 
               
             }
