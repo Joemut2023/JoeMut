@@ -111,6 +111,7 @@ var Kart = /*#__PURE__*/function () {
           produitFilter,
           produit,
           produitPositionInArray,
+          panier,
           _args2 = arguments;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
@@ -159,9 +160,11 @@ var Kart = /*#__PURE__*/function () {
                 }
               });
             case 7:
+              panier = _context2.sent;
+              console.log(panier.status, panier);
               //
-              Kart.RenderModal(item.pro_id);
-            case 8:
+              Kart.RenderModal(itemForPanier);
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -178,17 +181,44 @@ var Kart = /*#__PURE__*/function () {
      */
   }, {
     key: "removeItem",
-    value: function removeItem(itemId) {
-      var storedITems = Kart.getParsedBasket();
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-      var produitPositionInArray = storedITems.findIndex(function (produit) {
-        return produit.pro_id == itemId;
-      });
-      storedITems.splice(produitPositionInArray, 1);
-      localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      Kart.kartRenderItems();
-    }
+    value: function () {
+      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(itemId) {
+        var storedITems, produitPositionInArray, panier;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              storedITems = Kart.getParsedBasket();
+              document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+              produitPositionInArray = storedITems.findIndex(function (produit) {
+                return produit.pro_id == itemId;
+              });
+              storedITems.splice(produitPositionInArray, 1);
+              localStorage.setItem("storedItems", JSON.stringify(storedITems));
 
+              // si le user est connecté
+              console.log(itemId);
+              _context3.next = 8;
+              return axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
+                pro_id: itemId,
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 8:
+              panier = _context3.sent;
+              console.log(panier);
+              Kart.kartRenderItems();
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3);
+      }));
+      function removeItem(_x2) {
+        return _removeItem.apply(this, arguments);
+      }
+      return removeItem;
+    }()
     /**
      * Mettre à jour la quantité d'un item du panier
      * @param {Number} itemId
