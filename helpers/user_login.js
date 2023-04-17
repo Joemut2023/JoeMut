@@ -1,5 +1,6 @@
 let bcrypt = require("bcryptjs");
-const {Client,Panier,Panier_detail,Tarif,Produit} = require('../models');
+const {Client,Panier,Panier_detail,Tarif,Produit,Commande} = require('../models');
+const morgan = require("morgan");
 
 module.exports = async (req,res,view,route)=>{
   // const { cli_mail, cli_pwd } = req.body;
@@ -20,7 +21,17 @@ module.exports = async (req,res,view,route)=>{
         errorMsg: "paire login / mot de passe invalide",
       });
     }
-    let oldPanier = await Panier.findOne({ where: { cli_id: client.cli_id } });
+    let oldPanier = await Panier.findOne({ 
+      include:[
+        {
+          model:Commande,
+          attributes:['pan_id'],
+          required:false
+        },
+      ],
+      where: { cli_id: client.cli_id } 
+    });
+
     if (!oldPanier) {
         var panier = await Panier.create({
           cli_id: client.cli_id,
@@ -58,6 +69,7 @@ module.exports = async (req,res,view,route)=>{
         }
     }else{
       // panier existe déjà
+      var panier = oldPanier;
     }
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
