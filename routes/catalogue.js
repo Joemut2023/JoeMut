@@ -111,7 +111,10 @@ router.get("/:id", async (req, res) => {
           { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         ],
       },
+      // include:{model:Type_categorie}
     });
+    const type_categorie = await Type_categorie.findByPk(categorie.tyc_id)
+    // res.json(type_categorie)
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
@@ -127,6 +130,7 @@ router.get("/:id", async (req, res) => {
     return res.render("catalogue/bycategorie", {
       categorie: categorie,
       produits: produits,
+      type_categorie:type_categorie,
       nbrPages: nbrPages,
       pageActive: page,
       start,
