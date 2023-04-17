@@ -53,7 +53,7 @@
 
         <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
         <div>
-          <p class="price"><%= produit.dataValues.Tarifs[0].tar_ttc %> €</p>
+          <p class="price"><%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
           <p class="bar">|</p>
           <p
             class="price btn button-ajouter"

@@ -55,20 +55,35 @@
       
          <% produits.forEach(produit => { %>
           <div class="produit">
-            <div class="image-cadre">
-              <a href="/article/<%= produit.pro_id %>">
-                <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
-              </a>
-            </div>
-            <div class="detail">
-              <a href=/article/<%= produit.pro_id %>> <%= produit.pro_libelle%></a>
-              <div>Ref: <span><%= produit.pro_ref %></span></div>
-              <div class="montant">
-                <div><%= produit.Tarifs[0].tar_ttc %>€</div>
-                <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal" data-bs-target="#parent_modal">Ajouter</button>
-              </div>
-            </div>
+        <div class="image-cadre">
+          <a href="/article/<%= produit.pro_id %>">
+            <img
+              src="/images/produits/<%= produit.Media[0].med_ressource %>"
+              alt=""
+              srcset=""
+            />
+          </a>
+        </div>
+        <div class="bar"></div>
+        <div class="detail">
+          <a href="/article/<%= produit.pro_id %>">
+            <%= produit.pro_libelle%></a
+          >
+          <div>Ref: <span><%= produit.pro_ref %></span></div>
+          <div class="montant">
+            <div><%= produit.Tarifs[0].tar_ttc %> €</div>
+            <span>|</span>
+            <button
+              class="button-ajouter"
+              data-id="<%= produit.pro_id %>"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+            >
+              Ajouter
+            </button>
           </div>
+        </div>
+      </div>
          <% }) %>
     </div>
     <div class="cat-pagination">
