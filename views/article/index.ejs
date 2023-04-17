@@ -2,6 +2,18 @@
   <div class="title-article">
     <span><a href="/">Accueil</a><%= %></span>
      <span>/ <a href="/catalogue">catalogue</a><%= %></span>
+     <span>/ <a href="/catalogue/type/<%= article.Categorie.Type_categorie.tyc_id %>">
+    <% if (article.Categorie.Type_categorie.tyc_id===1) { %>
+       Petits
+    <% } else if (article.Categorie.Type_categorie.tyc_id===2) { %>
+        Moyens
+     <% } else if (article.Categorie.Type_categorie.tyc_id===3) { %>
+        Grands
+        <% } else { %>
+          Accessoirs
+     <% } %> 
+      
+    </a><%= %></span>
      <span>/ <a href="/catalogue/<%=article.Categorie.cat_id %>"><%= article.Categorie.cat_libelle %></a><%= %></span>
     <span>/ <%= article.pro_libelle %></span>
   </div>

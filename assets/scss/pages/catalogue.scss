@@ -19,7 +19,7 @@
     align-items: center;
   }
   .group-catalogue {
-    width: 25%;
+    width: 35%;
     height: 100%;
     // background-color: aqua;
     display: flex;
@@ -40,13 +40,14 @@
       @include breakpoint(tablette) {
         display: none;
       }
-      a {
+      .title_accueil{
         text-decoration: none;
         color: $color-black;
       }
-      p {
+      .title_catalogue{
         color: $color-important;
         opacity: 0.6;
+        text-decoration: none;
       }
     }
     .list {
