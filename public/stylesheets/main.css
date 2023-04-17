@@ -2456,7 +2456,7 @@
   align-items: center;
   flex-wrap: wrap;
   column-gap: 14rem;
-  row-gap: 1.2rem;
+  row-gap: 2.5rem;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body {
@@ -2474,6 +2474,9 @@
   flex-direction: column;
   row-gap: 2px;
 }
+#nouvelleCollection .catalogue .cat-body .produit:hover .bar {
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+}
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit {
     row-gap: 0.1rem;
@@ -2483,7 +2486,7 @@
 }
 #nouvelleCollection .catalogue .cat-body .produit .image-cadre {
   width: 100%;
-  height: 60%;
+  height: 70%;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .image-cadre {
@@ -2493,8 +2496,8 @@
 }
 #nouvelleCollection .catalogue .cat-body .produit .image-cadre img {
   width: 100%;
-  height: 95%;
-  object-fit: fill;
+  height: 100%;
+  object-fit: contain;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .image-cadre img {
@@ -2502,11 +2505,14 @@
     height: 90%;
   }
 }
-#nouvelleCollection .catalogue .cat-body .produit .image-cadre:hover {
-  border-bottom: 2px solid #232323;
+#nouvelleCollection .catalogue .cat-body .produit .bar {
+  height: 5px;
+  padding: 10px 0px 0px 0px;
+  margin-bottom: 5px;
 }
 #nouvelleCollection .catalogue .cat-body .produit .detail {
   width: 100%;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -2516,6 +2522,7 @@
   color: #232323;
   font-size: 14px;
   font-weight: 500;
+  line-height: 20px;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .detail a {
@@ -2574,6 +2581,7 @@
   background-color: #fff;
   font-size: 16px;
   font-weight: 700;
+  padding: 0px;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .detail .montant button {
@@ -2584,6 +2592,13 @@
   #nouvelleCollection .catalogue .cat-body .produit .detail .montant button {
     font-size: 13px;
   }
+}
+#nouvelleCollection .catalogue .cat-body .produit .detail .montant button:hover {
+  color: #7a7a7a;
+}
+#nouvelleCollection .catalogue .cat-body .produit .detail .montant span {
+  font-weight: 600;
+  color: #a0b21f;
 }
 #nouvelleCollection .catalogue .cat-pagination {
   padding: 10px 0;
