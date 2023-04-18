@@ -138,23 +138,25 @@ class Kart {
    * @param {Number} itemId
    */
   static async removeItem(itemId) {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false)
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     let storedITems = Kart.getParsedBasket();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
     storedITems.splice(produitPositionInArray, 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
-
-    // si le user est connecté
-    console.log(itemId);
-    // const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
-    //   pro_id: itemId,
-    //   headers: {
-    //     "X-Requested-With": "XMLHttpRequest",
-    //   },
-    // });
-
+    const pro_id = parseInt(itemId);
+    await axios.delete(`${SITE_URL}/panierDetail`, {
+      data: {
+        pro_id,
+      },
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     Kart.kartRenderItems();
   }
 
@@ -314,7 +316,7 @@ class Kart {
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${item.pad_ttc.toFixed(2)}€</div>
             <div class="product-quantity">Quantité : <span> ${
-              produitFilter[0].pad_qte
+              produitFilter[0]?.pad_qte
             } </span></div>
             </div>
         </div>

@@ -115,13 +115,13 @@ router.delete("/", async (req, res) => {
   const pan_id = req.session.panierId;
 
   try {
-    const oldPanierDetail = await Panier_detail.findAll({
+    const oldPanierDetail = await Panier_detail.findOne({
       where: {
         [Op.and]: [{ pro_id }, { pan_id }],
       },
     });
 
-    console.log(oldPanierDetail, "request");
+    console.log(oldPanierDetail.pad_id, "request");
 
     const panierDelete = await Panier_detail.destroy({
       where: {
