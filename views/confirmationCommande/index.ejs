@@ -79,13 +79,21 @@
                       <td>Sous-total</td>
                       <td class="price-col"><%= sous_total.toFixed(2) %> €</td>
                     </tr>
-                    <tr>
+                    <% if (commande.Frais_port.frp_ttc) { %>
+                     <tr>
                       <td>Frais de livraison</td>
-                      <td class="price-col">gratuit</td>
+                      <td class="price-col"><%= commande.Frais_port.frp_ttc.toFixed(2) %> €</td>
                     </tr>
+                    <% } %>
+                    <% if (commande.com_frais) { %>
+                     <tr>
+                      <td>Autres frais</td>
+                      <td class="price-col"><%= commande.com_frais.toFixed(2) %> €</td>
+                    </tr>
+                    <% } %>
                     <tr class="total-value">
                       <td>TOTAL TTC</td>
-                      <td class="price-col"><%= commande.com_ttc %> €</td>
+                      <td class="price-col"><%= total.toFixed(2) %> €</td>
                     </tr>
                   </tbody>
                 </table>
@@ -96,7 +104,7 @@
               <h1 class="title">DÉTAILS DE LA COMMANDE:</h1>
               <p>Référence de la commande : ORD-OJQCG</p>
               <p>Moyen de paiement : Devis</p>
-              <p>Mode de livraison : Retrait dans nos locaux AES</p>
+              <p>Mode de livraison : <%= commande.Frais_port.frp_libelle %></p>
               <p>
                 <%= commande.com_comment %>
               </p>
