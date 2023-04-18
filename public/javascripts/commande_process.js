@@ -33,7 +33,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var frp_ttc = e.target.dataset.ttc;
       var frp_id = e.target.value;
       localStorage.setItem('fraisDivers', JSON.stringify({
-        frais_port: parseFloat(frp_ttc),
+        frais_port: parseFloat(frp_ttc).toFixed(2),
         frais_dossier: 15.5,
         frp_id: frp_id
       }));

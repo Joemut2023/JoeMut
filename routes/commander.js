@@ -67,7 +67,8 @@ router.post('/',async(req,res)=>{
         com_adr_fac:adress_item.adr_id,
         pan_id:panier.pan_id,
         com_ht:somme_ht,
-        com_ttc:somme_ttc
+        com_ttc:somme_ttc,
+        com_port:frais.frais_port,
       });
     let new_panier = Panier.create({
         cli_id:userId
