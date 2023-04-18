@@ -68,8 +68,10 @@ router.post('/',async(req,res)=>{
         pan_id:panier.pan_id,
         com_ht:somme_ht,
         com_ttc:somme_ttc,
-        com_port:frais.frp_id,
+        com_port:frais.frais_port,
+        // com_frais:frais.frais_dossier
       });
+      // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
     let new_panier = Panier.create({
         cli_id:userId
     }) 
