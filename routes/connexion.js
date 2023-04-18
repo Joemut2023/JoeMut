@@ -31,8 +31,6 @@ router.post("/", async (req, res) => {
       include: [{ model: Commande, required: false,where:{com_id:null} }],
      // where: { '$Commande.com_id$': null }
     });
-    console.log(client);
-    console.log(panier);
     if (!panier) {
       panier = await Panier.create({
         cli_id:client.cli_id
