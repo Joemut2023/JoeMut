@@ -72,7 +72,7 @@ router.post('/',async(req,res)=>{
         // com_frais:frais.frais_dossier
       });
       // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
-    let new_panier = Panier.create({
+    let new_panier = await Panier.create({
         cli_id:userId
     }) 
     req.session.panierId = new_panier.pan_id;
