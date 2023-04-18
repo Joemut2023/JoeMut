@@ -15,23 +15,33 @@ class Kart {
    *
    * @returns Array
    */
-  static getParsedFrais() {
-    return JSON.parse(localStorage.getItem("fraisDivers"));
+  static async getUserStatut() {
+    try {
+      const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      return userStatut.data;
+    } catch (error) {}
+  }
+  static async getParsedFrais() {
+    const userStatus = await Kart.getUserStatut();
+    if (userStatus == false) {
+      return JSON.parse(localStorage.getItem("fraisDivers"));
+    }
+    // const panier = await axios.get(`${SITE_URL}/panierDetail`, {
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
+    // return panier.data;
   }
 
   /**
    * recuperer le statut du client
    * @returns userId or false
    */
-
-  static async getUserStatut() {
-    const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    return userStatut.data;
-  }
 
   /**
    * recuperer le nombre d'artcile au panier
@@ -112,23 +122,20 @@ class Kart {
     //si le client "est connecté"
     const userStatut = await Kart.getUserStatut();
     if (userStatut != false) {
-     try {
-      const panier = await axios.post(`${SITE_URL}/panierDetail`, {
-        pro_id: item.pro_id,
-        pad_qte: 1,
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      Kart.RenderModal(itemForPanier);
-     } catch (error) {
-       Kart.RenderModal(itemForPanier);
-      console.log(error);
-     }
+      try {
+        const panier = await axios.post(`${SITE_URL}/panierDetail`, {
+          pro_id: item.pro_id,
+          pad_qte: 1,
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        });
+        Kart.RenderModal(itemForPanier);
+      } catch (error) {
+        Kart.RenderModal(itemForPanier);
+        console.log(error);
+      }
     }
-
-   
-
   }
   /**
    * Supprime un Item du panier

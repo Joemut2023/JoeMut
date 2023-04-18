@@ -9,8 +9,8 @@ show.addEventListener("click", function (e) {
     password.getAttribute("type") === "password" ? "text" : "password";
   password.setAttribute("type", type);
 
-  if (password.getAttribute("type") === "password") btn.textContent = "Montrer";
-  else btn.textContent = "Cacher";
+  if (password.getAttribute("type") === "password") show.textContent = "Montrer";
+  else show.textContent = "Cacher";
 });
 
 formElt.addEventListener('submit',async (e)=>{

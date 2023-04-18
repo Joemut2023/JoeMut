@@ -32,16 +32,6 @@ var Kart = /*#__PURE__*/function () {
      * @returns Array
      */
   }, {
-    key: "getParsedFrais",
-    value: function getParsedFrais() {
-      return JSON.parse(localStorage.getItem("fraisDivers"));
-    }
-
-    /**
-     * recuperer le statut du client
-     * @returns userId or false
-     */
-  }, {
     key: "getUserStatut",
     value: function () {
       var _getUserStatut = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -49,26 +39,62 @@ var Kart = /*#__PURE__*/function () {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              _context.prev = 0;
+              _context.next = 3;
               return axios.get("".concat(SITE_URL, "/connexion/userStatut"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 2:
+            case 3:
               userStatut = _context.sent;
               return _context.abrupt("return", userStatut.data);
-            case 4:
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+            case 9:
             case "end":
               return _context.stop();
           }
-        }, _callee);
+        }, _callee, null, [[0, 7]]);
       }));
       function getUserStatut() {
         return _getUserStatut.apply(this, arguments);
       }
       return getUserStatut;
     }()
+  }, {
+    key: "getParsedFrais",
+    value: function () {
+      var _getParsedFrais = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var userStatus;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return Kart.getUserStatut();
+            case 2:
+              userStatus = _context2.sent;
+              if (!(userStatus == false)) {
+                _context2.next = 5;
+                break;
+              }
+              return _context2.abrupt("return", JSON.parse(localStorage.getItem("fraisDivers")));
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }));
+      function getParsedFrais() {
+        return _getParsedFrais.apply(this, arguments);
+      }
+      return getParsedFrais;
+    }()
+    /**
+     * recuperer le statut du client
+     * @returns userId or false
+     */
     /**
      * recuperer le nombre d'artcile au panier
      * @returns Numeric
@@ -91,32 +117,32 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addFraisDivers",
     value: function () {
-      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var oldFraisDossier, fraisPort, fraisDossier, fraisDivers;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
               oldFraisDossier = Kart.getParsedFrais();
               if (!(oldFraisDossier == null)) {
-                _context2.next = 10;
+                _context3.next = 10;
                 break;
               }
-              _context2.next = 4;
+              _context3.next = 4;
               return axios.get("".concat(SITE_URL, "/fraisPort"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 4:
-              fraisPort = _context2.sent;
-              _context2.next = 7;
+              fraisPort = _context3.sent;
+              _context3.next = 7;
               return axios.get("".concat(SITE_URL, "/fraisDossier"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 7:
-              fraisDossier = _context2.sent;
+              fraisDossier = _context3.sent;
               fraisDivers = {
                 frais_port: fraisPort.data.frp_ttc,
                 frais_dossier: fraisDossier.data.auf_ttc
@@ -124,9 +150,9 @@ var Kart = /*#__PURE__*/function () {
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
             case 10:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
-        }, _callee2);
+        }, _callee3);
       }));
       function addFraisDivers() {
         return _addFraisDivers.apply(this, arguments);
@@ -136,7 +162,7 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addItem",
     value: function () {
-      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item) {
+      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
         var qte,
           storedITems,
           itemForPanier,
@@ -145,11 +171,11 @@ var Kart = /*#__PURE__*/function () {
           produitPositionInArray,
           userStatut,
           panier,
-          _args3 = arguments;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+          _args4 = arguments;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
-              qte = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : null;
+              qte = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : null;
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
                 pro_id: item.pro_id,
@@ -183,16 +209,16 @@ var Kart = /*#__PURE__*/function () {
               }
 
               //si le client "est connecté"
-              _context3.next = 6;
+              _context4.next = 6;
               return Kart.getUserStatut();
             case 6:
-              userStatut = _context3.sent;
+              userStatut = _context4.sent;
               if (!(userStatut != false)) {
-                _context3.next = 19;
+                _context4.next = 19;
                 break;
               }
-              _context3.prev = 8;
-              _context3.next = 11;
+              _context4.prev = 8;
+              _context4.next = 11;
               return axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
                 pad_qte: 1,
@@ -201,20 +227,20 @@ var Kart = /*#__PURE__*/function () {
                 }
               });
             case 11:
-              panier = _context3.sent;
+              panier = _context4.sent;
               Kart.RenderModal(itemForPanier);
-              _context3.next = 19;
+              _context4.next = 19;
               break;
             case 15:
-              _context3.prev = 15;
-              _context3.t0 = _context3["catch"](8);
+              _context4.prev = 15;
+              _context4.t0 = _context4["catch"](8);
               Kart.RenderModal(itemForPanier);
-              console.log(_context3.t0);
+              console.log(_context4.t0);
             case 19:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
-        }, _callee3, null, [[8, 15]]);
+        }, _callee4, null, [[8, 15]]);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);
@@ -228,10 +254,10 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "removeItem",
     value: function () {
-      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(itemId) {
+      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(itemId) {
         var storedITems, produitPositionInArray;
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) switch (_context4.prev = _context4.next) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
             case 0:
               storedITems = Kart.getParsedBasket();
               document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
@@ -253,9 +279,9 @@ var Kart = /*#__PURE__*/function () {
               Kart.kartRenderItems();
             case 7:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
-        }, _callee4);
+        }, _callee5);
       }));
       function removeItem(_x2) {
         return _removeItem.apply(this, arguments);

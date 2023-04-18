@@ -1,7 +1,15 @@
 var express = require("express");
 var router = express.Router();
 const { Op, and } = require("sequelize");
-const { Panier_detail, Apply, Tarif, Promo, Quantite } = require("../models");
+const {
+  Panier_detail,
+  Apply,
+  Media,
+  Tarif,
+  Promo,
+  Quantite,
+  Produit,
+} = require("../models");
 
 router.post("/", async (req, res, next) => {
   const { pro_id, pad_qte } = req.body;
@@ -9,8 +17,6 @@ router.post("/", async (req, res, next) => {
 
   const pan_id = req.session.panierId;
   try {
-    if (!req.session.userId) return res.render(connexion);
-
     const oldPanierDetail = await Panier_detail.findOne({
       where: {
         [Op.and]: [{ pro_id }, { pan_id }],
@@ -51,10 +57,14 @@ router.post("/", async (req, res, next) => {
     const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
     if (quantite !== null) {
-        let quantiteDispo = quantite.qua_nbre;
-        if (newQuantite > quantiteDispo) {
-            return res.status(409).send(`Vous avez déjà commandé la quantité disponible pour cet article`)
-        }
+      let quantiteDispo = quantite.qua_nbre;
+      if (newQuantite > quantiteDispo) {
+        return res
+          .status(409)
+          .send(
+            `Vous avez déjà commandé la quantité disponible pour cet article`
+          );
+      }
     }
 
     const panierDetail = await Panier_detail.update(
@@ -84,13 +94,17 @@ router.get("/", async (req, res, next) => {
 
   try {
     const Produits = await Panier_detail.findAll({
+      include: [
+        { 
+          model: Produit,
+          attributes: ["pro_ref", "pro_libelle"],
+          include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
+        },
+      ],
       where: { pan_id },
     });
 
-    res.status(200).json({
-      mesaage: "Produits trouvés",
-      data: Produits,
-    });
+   return res.status(200).send(Produits);
   } catch (error) {
     return res.status(500).json({ error: error });
   }

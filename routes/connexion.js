@@ -82,9 +82,9 @@ router.post("/", async (req, res) => {
       }
       // si des données panier_details sont envoyés insérés dans la bd
     } else {
-      if (panier_items.length > 0) {
+     // if (panier_items.length > 0) {
         // supprimer tout les paniers details et insérer des nouveaux
-      }
+      //}
     }
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
@@ -112,9 +112,10 @@ router.get("/panier-details/:pan_id", async (req, res) => {
       ],
       where: { pan_id: parseInt(pan_id) },
     });
-    return res.json(Panier_details);
+    // return res.json(Panier_details);
+    return res.json('ok')
   } catch (error) {
-    console.log(error);
+   // console.log(error);
     return res.status(500).json(error);
   }
 });
