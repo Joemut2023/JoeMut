@@ -67,7 +67,7 @@ router.post("/", async (req, res, next) => {
       }
     }
 
-    const panierDetail = await Panier_detail.update(
+    let panierDetail = await Panier_detail.update(
       {
         pad_qte: newQuantite,
       },
@@ -75,12 +75,12 @@ router.post("/", async (req, res, next) => {
     );
 
     if (panierDetail[0] == 1) {
-      const newPanierDetail = await Panier_detail.findOne({
+      panierDetail = await Panier_detail.findOne({
         where: {
           [Op.and]: [{ pro_id }, { pan_id }],
         },
       });
-      return res.status(200).json({ newPanierDetail: newPanierDetail });
+      return res.status(200).json({ panierDetail });
     }
 
     return res.status(404).send("aucun produit ajouté");
@@ -95,7 +95,7 @@ router.get("/", async (req, res, next) => {
   try {
     const Produits = await Panier_detail.findAll({
       include: [
-        { 
+        {
           model: Produit,
           attributes: ["pro_ref", "pro_libelle"],
           include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
@@ -104,7 +104,7 @@ router.get("/", async (req, res, next) => {
       where: { pan_id },
     });
 
-   return res.status(200).send(Produits);
+    return res.status(200).send(Produits);
   } catch (error) {
     return res.status(500).json({ error: error });
   }

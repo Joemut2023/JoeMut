@@ -167,10 +167,6 @@ var Kart = /*#__PURE__*/function () {
           userStatut,
           storedITems,
           itemForPanier,
-          panier,
-          produitFilter,
-          produit,
-          produitPositionInArray,
           _args4 = arguments;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
@@ -196,50 +192,46 @@ var Kart = /*#__PURE__*/function () {
                 media: item.Media[0].med_ressource,
                 pro_ref: item.pro_ref
               };
-              _context4.prev = 8;
-              _context4.next = 11;
-              return axios.post("".concat(SITE_URL, "/panierDetail"), {
-                pro_id: item.pro_id,
-                pad_qte: 1,
-                headers: {
-                  "X-Requested-With": "XMLHttpRequest"
-                }
-              });
-            case 11:
-              panier = _context4.sent;
-              Kart.RenderModal(itemForPanier);
-              if (storedITems) {
-                produitFilter = storedITems.filter(function (produit) {
-                  return produit.pro_id == item.pro_id;
+              try {
+                axios.post("".concat(SITE_URL, "/panierDetail"), {
+                  pro_id: item.pro_id,
+                  pad_qte: 1,
+                  headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                  }
+                }).then(function (res) {
+                  var qte = res.data.panierDetail.pad_qte;
+                  Kart.RenderModal(itemForPanier, qte);
+                  if (storedITems) {
+                    var produitFilter = storedITems.filter(function (produit) {
+                      return produit.pro_id == item.pro_id;
+                    });
+                    var produit = produitFilter[0];
+                    if (produitFilter.length !== 0) {
+                      produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+                      var produitPositionInArray = storedITems.findIndex(function (produit) {
+                        return produit.pro_id === item.pro_id;
+                      });
+                      storedITems[produitPositionInArray] = produit;
+                    } else {
+                      storedITems.push(itemForPanier);
+                    }
+                    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+                    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                  } else {
+                    Kart.items.push(itemForPanier);
+                    localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+                    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                  }
                 });
-                produit = produitFilter[0];
-                if (produitFilter.length !== 0) {
-                  produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-                  produitPositionInArray = storedITems.findIndex(function (produit) {
-                    return produit.pro_id === item.pro_id;
-                  });
-                  storedITems[produitPositionInArray] = produit;
-                } else {
-                  storedITems.push(itemForPanier);
-                }
-                localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-              } else {
-                Kart.items.push(itemForPanier);
-                localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+              } catch (error) {
+                Kart.RenderModal(itemForPanier);
               }
-              _context4.next = 19;
-              break;
-            case 16:
-              _context4.prev = 16;
-              _context4.t0 = _context4["catch"](8);
-              Kart.RenderModal(itemForPanier);
-            case 19:
+            case 9:
             case "end":
               return _context4.stop();
           }
-        }, _callee4, null, [[8, 16]]);
+        }, _callee4);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);
@@ -373,16 +365,15 @@ var Kart = /*#__PURE__*/function () {
      */
   }, {
     key: "RenderModal",
-    value: function RenderModal(item) {
-      var _produitFilter$;
+    value: function RenderModal(item, qte) {
       var storedITems = Kart.getParsedBasket();
       var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
       var fraisDossier = parseFloat(fraisDivers.frais_dossier);
       var fraisPort = parseFloat(fraisDivers.frais_port);
-      var produitFilter = storedITems.filter(function (produit) {
-        return produit.pro_id == item.pro_id;
-      });
-      var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat((_produitFilter$ = produitFilter[0]) === null || _produitFilter$ === void 0 ? void 0 : _produitFilter$.pad_qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(Kart.getItemNumber(), " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(fraisPort.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(fraisDossier.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+      // let produitFilter = storedITems.filter(
+      //   (produit) => produit.pro_id == item.pro_id
+      // );
+      var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(Kart.getItemNumber(), " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(fraisPort.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(fraisDossier.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
       document.querySelector("#myModal .body-modal").innerHTML = html;
     }
   }]);

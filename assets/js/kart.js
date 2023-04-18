@@ -98,37 +98,41 @@ class Kart {
       pro_ref: item.pro_ref,
     };
     try {
-      const panier = await axios.post(`${SITE_URL}/panierDetail`, {
-        pro_id: item.pro_id,
-        pad_qte: 1,
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      Kart.RenderModal(itemForPanier);
-      if (storedITems) {
-        let produitFilter = storedITems.filter(
-          (produit) => produit.pro_id == item.pro_id
-        );
-        let produit = produitFilter[0];
-        if (produitFilter.length !== 0) {
-          produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-          let produitPositionInArray = storedITems.findIndex(
-            (produit) => produit.pro_id === item.pro_id
-          );
-          storedITems[produitPositionInArray] = produit;
-        } else {
-          storedITems.push(itemForPanier);
-        }
-        localStorage.setItem("storedItems", JSON.stringify(storedITems));
-        document.querySelector("#cart-item-count").innerHTML =
-          Kart.getItemNumber();
-      } else {
-        Kart.items.push(itemForPanier);
-        localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-        document.querySelector("#cart-item-count").innerHTML =
-          Kart.getItemNumber();
-      }
+      axios
+        .post(`${SITE_URL}/panierDetail`, {
+          pro_id: item.pro_id,
+          pad_qte: 1,
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        })
+        .then((res) => {
+          let qte = res.data.panierDetail.pad_qte;
+          Kart.RenderModal(itemForPanier, qte);
+          if (storedITems) {
+            let produitFilter = storedITems.filter(
+              (produit) => produit.pro_id == item.pro_id
+            );
+            let produit = produitFilter[0];
+            if (produitFilter.length !== 0) {
+              produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+              let produitPositionInArray = storedITems.findIndex(
+                (produit) => produit.pro_id === item.pro_id
+              );
+              storedITems[produitPositionInArray] = produit;
+            } else {
+              storedITems.push(itemForPanier);
+            }
+            localStorage.setItem("storedItems", JSON.stringify(storedITems));
+            document.querySelector("#cart-item-count").innerHTML =
+              Kart.getItemNumber();
+          } else {
+            Kart.items.push(itemForPanier);
+            localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+            document.querySelector("#cart-item-count").innerHTML =
+              Kart.getItemNumber();
+          }
+        });
     } catch (error) {
       Kart.RenderModal(itemForPanier);
     }
@@ -301,23 +305,21 @@ class Kart {
    *
    * @param {*} item
    */
-  static RenderModal(item) {
+  static RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
     let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
-    let produitFilter = storedITems.filter(
-      (produit) => produit.pro_id == item.pro_id
-    );
+    // let produitFilter = storedITems.filter(
+    //   (produit) => produit.pro_id == item.pro_id
+    // );
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${item.pad_ttc.toFixed(2)}€</div>
-            <div class="product-quantity">Quantité : <span> ${
-              produitFilter[0]?.pad_qte
-            } </span></div>
+            <div class="product-quantity">Quantité : <span> ${qte} </span></div>
             </div>
         </div>
         <div class="modal-body-commande">
