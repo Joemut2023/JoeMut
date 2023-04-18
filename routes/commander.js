@@ -58,7 +58,7 @@ router.post('/',async(req,res)=>{
     const somme_ttc = await Panier_detail.sum('pad_ttc', { where: { pan_id} });
     const somme_ht = await Panier_detail.sum('pad_ht', { where: { pan_id} });
     let commande_item = await Commande.create({
-        frp_id:frais.frais_port.frp_id,
+        frp_id:frais.frp_id,
         cli_id:userId,
         com_debut_spectacle:commande.commande_debut,
         com_fin_spectacle:commande.com_fin_spectacle,
