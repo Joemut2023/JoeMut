@@ -73,6 +73,7 @@ router.post('/',async(req,res)=>{
         cli_id:userId
     }) 
     req.session.panierId = panier.pan_id;
+    req.session.commandeId = commande_item.com_id;
     return res.json(new_panier);
   } catch (error) {
     console.log(error);
