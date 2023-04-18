@@ -6,7 +6,7 @@
     let formLogin = document.querySelector('#form-commande-login');    
 
     formLogin?.addEventListener('submit',async (e)=>{
-        e.preventDefault();
+        e.preventDefault(); 
         await login_process('commander/#page-commander');
     })
     radios?.forEach(radio=>{
