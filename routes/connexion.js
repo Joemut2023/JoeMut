@@ -36,10 +36,18 @@ router.post("/", async (req, res) => {
     }
     const panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
+<<<<<<< HEAD
       include: [{ model: Commande, required: false }],
       where: { "$Commande.com_id$": null },
     });
 
+=======
+      include: [{ model: Commande, required: false,where:{com_id:null} }],
+     // where: { '$Commande.com_id$': null }
+    });
+    console.log(client);
+    console.log(panier);
+>>>>>>> develop
     if (!panier) {
       panier = await Panier.create({
         cli_id: client.cli_id,
@@ -77,8 +85,29 @@ router.post("/", async (req, res) => {
               pad_ttc: produit.Tarifs[0].tar_ttc,
             });
           });
+<<<<<<< HEAD
         };
         await insert_panier_details();
+=======
+          // insérer dans panier_details
+          let panier_dtl = await Panier_detail.create({
+            pro_id:produit.pro_id,
+            tar_id:produit.Tarifs[0].tar_id,
+            pan_id:panier.pan_id,
+            pad_qte:item.pad_qte,
+            pad_ht:produit.Tarifs[0].tar_ht,
+            pad_ttc:produit.Tarifs[0].tar_ttc,
+          })
+        });
+       }
+       await insert_panier_details();
+    }
+      // si des données panier_details sont envoyés insérés dans la bd
+    }else{
+      if (panier_items?.length > 0) {
+        // supprimer tout les paniers details et insérer des nouveaux
+        
+>>>>>>> develop
       }
       // si des données panier_details sont envoyés insérés dans la bd
     } else {

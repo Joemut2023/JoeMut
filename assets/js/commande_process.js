@@ -6,7 +6,7 @@
     let formLogin = document.querySelector('#form-commande-login');    
 
     formLogin?.addEventListener('submit',async (e)=>{
-        e.preventDefault();
+        e.preventDefault(); 
         await login_process('commander/#page-commander');
     })
     radios?.forEach(radio=>{
@@ -14,7 +14,7 @@
             let frp_ttc = e.target.dataset.ttc;
             let frp_id = e.target.value;
             localStorage.setItem('fraisDivers',JSON.stringify({
-                frais_port:parseFloat(frp_ttc),frais_dossier:15.5,frp_id:frp_id}))
+                frais_port:parseFloat(frp_ttc).toFixed(2),frais_dossier:15.5,frp_id:frp_id}))
         })
     });
     radios_adresses?.forEach(radio=>{
