@@ -75,7 +75,7 @@ router.post('/',async(req,res)=>{
     let new_panier = Panier.create({
         cli_id:userId
     }) 
-    req.session.panierId = panier.pan_id;
+    req.session.panierId = new_panier.pan_id;
     req.session.commandeId = commande_item.com_id;
     return res.json(new_panier);
   } catch (error) {

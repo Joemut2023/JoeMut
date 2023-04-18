@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
     }
     var panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
-      // include: [{ model: Commande, required: false, where: { com_id: null } }],
+      //include: [{ model: Commande, required: false, where: { com_id: null } }],
       include: [{ model: Commande, required: false }],
       where: { '$Commande.com_id$': null }
     });
