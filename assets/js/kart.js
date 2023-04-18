@@ -84,6 +84,10 @@ class Kart {
   }
 
   static async addItem(item, qte = null) {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false)
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    console.log(userStatut);
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
@@ -118,23 +122,18 @@ class Kart {
       document.querySelector("#cart-item-count").innerHTML =
         Kart.getItemNumber();
     }
-
-    //si le client "est connecté"
-    const userStatut = await Kart.getUserStatut();
-    if (userStatut != false) {
-      try {
-        const panier = await axios.post(`${SITE_URL}/panierDetail`, {
-          pro_id: item.pro_id,
-          pad_qte: 1,
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        });
-        Kart.RenderModal(itemForPanier);
-      } catch (error) {
-        Kart.RenderModal(itemForPanier);
-        console.log(error);
-      }
+    try {
+      const panier = await axios.post(`${SITE_URL}/panierDetail`, {
+        pro_id: item.pro_id,
+        pad_qte: 1,
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      Kart.RenderModal(itemForPanier);
+    } catch (error) {
+      Kart.RenderModal(itemForPanier);
+      console.log(error);
     }
   }
   /**

@@ -164,18 +164,29 @@ var Kart = /*#__PURE__*/function () {
     value: function () {
       var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
         var qte,
+          userStatut,
           storedITems,
           itemForPanier,
           produitFilter,
           produit,
           produitPositionInArray,
-          userStatut,
           panier,
           _args4 = arguments;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
               qte = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : null;
+              _context4.next = 3;
+              return Kart.getUserStatut();
+            case 3:
+              userStatut = _context4.sent;
+              if (!(userStatut == false)) {
+                _context4.next = 6;
+                break;
+              }
+              return _context4.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+            case 6:
+              console.log(userStatut);
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
                 pro_id: item.pro_id,
@@ -207,18 +218,8 @@ var Kart = /*#__PURE__*/function () {
                 localStorage.setItem("storedItems", JSON.stringify(Kart.items));
                 document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
               }
-
-              //si le client "est connecté"
-              _context4.next = 6;
-              return Kart.getUserStatut();
-            case 6:
-              userStatut = _context4.sent;
-              if (!(userStatut != false)) {
-                _context4.next = 19;
-                break;
-              }
-              _context4.prev = 8;
-              _context4.next = 11;
+              _context4.prev = 10;
+              _context4.next = 13;
               return axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
                 pad_qte: 1,
@@ -226,21 +227,21 @@ var Kart = /*#__PURE__*/function () {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 11:
+            case 13:
               panier = _context4.sent;
               Kart.RenderModal(itemForPanier);
-              _context4.next = 19;
+              _context4.next = 21;
               break;
-            case 15:
-              _context4.prev = 15;
-              _context4.t0 = _context4["catch"](8);
+            case 17:
+              _context4.prev = 17;
+              _context4.t0 = _context4["catch"](10);
               Kart.RenderModal(itemForPanier);
               console.log(_context4.t0);
-            case 19:
+            case 21:
             case "end":
               return _context4.stop();
           }
-        }, _callee4, null, [[8, 15]]);
+        }, _callee4, null, [[10, 17]]);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);
