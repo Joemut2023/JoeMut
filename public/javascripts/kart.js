@@ -167,10 +167,10 @@ var Kart = /*#__PURE__*/function () {
           userStatut,
           storedITems,
           itemForPanier,
+          panier,
           produitFilter,
           produit,
           produitPositionInArray,
-          panier,
           _args4 = arguments;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
@@ -186,7 +186,6 @@ var Kart = /*#__PURE__*/function () {
               }
               return _context4.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 6:
-              console.log(userStatut);
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
                 pro_id: item.pro_id,
@@ -197,6 +196,18 @@ var Kart = /*#__PURE__*/function () {
                 media: item.Media[0].med_ressource,
                 pro_ref: item.pro_ref
               };
+              _context4.prev = 8;
+              _context4.next = 11;
+              return axios.post("".concat(SITE_URL, "/panierDetail"), {
+                pro_id: item.pro_id,
+                pad_qte: 1,
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 11:
+              panier = _context4.sent;
+              Kart.RenderModal(itemForPanier);
               if (storedITems) {
                 produitFilter = storedITems.filter(function (produit) {
                   return produit.pro_id == item.pro_id;
@@ -218,30 +229,17 @@ var Kart = /*#__PURE__*/function () {
                 localStorage.setItem("storedItems", JSON.stringify(Kart.items));
                 document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
               }
-              _context4.prev = 10;
-              _context4.next = 13;
-              return axios.post("".concat(SITE_URL, "/panierDetail"), {
-                pro_id: item.pro_id,
-                pad_qte: 1,
-                headers: {
-                  "X-Requested-With": "XMLHttpRequest"
-                }
-              });
-            case 13:
-              panier = _context4.sent;
-              Kart.RenderModal(itemForPanier);
-              _context4.next = 21;
+              _context4.next = 19;
               break;
-            case 17:
-              _context4.prev = 17;
-              _context4.t0 = _context4["catch"](10);
+            case 16:
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](8);
               Kart.RenderModal(itemForPanier);
-              console.log(_context4.t0);
-            case 21:
+            case 19:
             case "end":
               return _context4.stop();
           }
-        }, _callee4, null, [[10, 17]]);
+        }, _callee4, null, [[8, 16]]);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);

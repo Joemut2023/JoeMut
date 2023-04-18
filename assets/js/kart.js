@@ -87,7 +87,6 @@ class Kart {
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
-    console.log(userStatut);
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
@@ -98,30 +97,6 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
-
-    if (storedITems) {
-      let produitFilter = storedITems.filter(
-        (produit) => produit.pro_id == item.pro_id
-      );
-      let produit = produitFilter[0];
-      if (produitFilter.length !== 0) {
-        produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-        let produitPositionInArray = storedITems.findIndex(
-          (produit) => produit.pro_id === item.pro_id
-        );
-        storedITems[produitPositionInArray] = produit;
-      } else {
-        storedITems.push(itemForPanier);
-      }
-      localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    } else {
-      Kart.items.push(itemForPanier);
-      localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    }
     try {
       const panier = await axios.post(`${SITE_URL}/panierDetail`, {
         pro_id: item.pro_id,
@@ -131,9 +106,31 @@ class Kart {
         },
       });
       Kart.RenderModal(itemForPanier);
+      if (storedITems) {
+        let produitFilter = storedITems.filter(
+          (produit) => produit.pro_id == item.pro_id
+        );
+        let produit = produitFilter[0];
+        if (produitFilter.length !== 0) {
+          produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+          let produitPositionInArray = storedITems.findIndex(
+            (produit) => produit.pro_id === item.pro_id
+          );
+          storedITems[produitPositionInArray] = produit;
+        } else {
+          storedITems.push(itemForPanier);
+        }
+        localStorage.setItem("storedItems", JSON.stringify(storedITems));
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
+      } else {
+        Kart.items.push(itemForPanier);
+        localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
+      }
     } catch (error) {
       Kart.RenderModal(itemForPanier);
-      console.log(error);
     }
   }
   /**
