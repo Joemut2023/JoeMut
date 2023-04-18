@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
     const commande = await Commande.findOne({
       include: [
         { model: Client, attributes: ["cli_mail"] },
-        { model: Frais_port,attributes:["frp_id","frp_libelle"] },
+        { model: Frais_port},
       ],
       where: {
         cli_id: userId,
@@ -52,25 +52,20 @@ router.get("/", async (req, res, next) => {
       },
     });
 
-    // const frais_suppl = await Frais_supp.findAll({
-    //   include:[
-    //     {model:Autre_frais}
-    //   ],
-    //   where:{
-    //     com_id:commandeId
-    //   }
-    // })
-    // res.json(frais_suppl)
+  
     let sous_total = 0
     for (let index = 0; index < panierDetails.length; index++) {
       sous_total += panierDetails[index].pad_ttc * panierDetails[index].pad_qte
     }
-    // res.json({ sous_total });
+
+    let total = sous_total + commande.Frais_port.frp_ttc + commande.com_frais
+    // res.json({ commande });
      res.render("confirmationCommande/index", {
        panierDetails: panierDetails,
        commande: commande,
        sous_total: sous_total,
        produitsPopulaires: produitsPopulaires,
+       total:total
      });
   } catch (error) {
     
