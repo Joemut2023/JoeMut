@@ -25,7 +25,6 @@ var Kart = /*#__PURE__*/function () {
      * @returns Array
      */
     function getParsedBasket() {
-      Kart.getAllPanierDetails();
       return JSON.parse(localStorage.getItem("storedItems"));
     }
     /**
@@ -48,7 +47,7 @@ var Kart = /*#__PURE__*/function () {
               });
             case 2:
               panier = _context.sent;
-              console.log(panier);
+              return _context.abrupt("return", panier.data);
             case 4:
             case "end":
               return _context.stop();
@@ -258,7 +257,7 @@ var Kart = /*#__PURE__*/function () {
                   }
                 });
               } catch (error) {
-                Kart.RenderModal(itemForPanier);
+                Kart.RenderModal(itemForPanier, qte);
               }
             case 9:
             case "end":
@@ -365,33 +364,51 @@ var Kart = /*#__PURE__*/function () {
      */
   }, {
     key: "kartRenderItems",
-    value: function kartRenderItems() {
-      var kartItemsElement = document.querySelector(".kart-items");
-      var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
-      var fraisDossier = parseFloat(fraisDivers.frais_dossier);
-      var fraisPort = parseFloat(fraisDivers.frais_port);
-      var storedITems = Kart.getParsedBasket();
-      var storedItemsHtml = "";
-      var kartProductQte = 0;
-      storedITems === null || storedITems === void 0 ? void 0 : storedITems.map(function (produit) {
-        kartProductQte = produit.pad_qte + kartProductQte;
-        storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.media, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
-      });
-      kartItemsElement.innerHTML = storedItemsHtml;
-      var kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
-      document.querySelector("#kart-infos").innerHTML = kartInfosData;
-      // storedITems.length != 0
-      //   ? (document.querySelector("#par-empty-data").style.display = "block")
-      //   : null;
-      var btnRemoveProduct = document.querySelectorAll("#remove-prod");
-      btnRemoveProduct.forEach(function (item) {
-        item.addEventListener("click", function () {
-          var itemId = item.dataset.id;
-          Kart.removeItem(itemId);
-          document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-        });
-      });
-    }
+    value: function () {
+      var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        var kartItemsElement, fraisDivers, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) switch (_context7.prev = _context7.next) {
+            case 0:
+              kartItemsElement = document.querySelector(".kart-items");
+              fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+              fraisDossier = parseFloat(fraisDivers.frais_dossier);
+              fraisPort = parseFloat(fraisDivers.frais_port);
+              _context7.next = 6;
+              return Kart.getAllPanierDetails();
+            case 6:
+              panierDetail = _context7.sent;
+              storedItemsHtml = "";
+              kartProductQte = 0;
+              panierDetail === null || panierDetail === void 0 ? void 0 : panierDetail.map(function (produit) {
+                kartProductQte = produit.pad_qte + kartProductQte;
+                storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
+              });
+              kartItemsElement.innerHTML = storedItemsHtml;
+              kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
+              document.querySelector("#kart-infos").innerHTML = kartInfosData;
+              // storedITems.length != 0
+              //   ? (document.querySelector("#par-empty-data").style.display = "block")
+              //   : null;
+              btnRemoveProduct = document.querySelectorAll("#remove-prod");
+              btnRemoveProduct.forEach(function (item) {
+                item.addEventListener("click", function () {
+                  var itemId = item.dataset.id;
+                  Kart.removeItem(itemId);
+                  document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                });
+              });
+            case 15:
+            case "end":
+              return _context7.stop();
+          }
+        }, _callee7);
+      }));
+      function kartRenderItems() {
+        return _kartRenderItems.apply(this, arguments);
+      }
+      return kartRenderItems;
+    }()
     /**
      *
      * @param {*} item

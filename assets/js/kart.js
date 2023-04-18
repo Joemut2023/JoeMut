@@ -9,7 +9,6 @@ class Kart {
    * @returns Array
    */
   static getParsedBasket() {
-    Kart.getAllPanierDetails();
     return JSON.parse(localStorage.getItem("storedItems"));
   }
   /**
@@ -22,7 +21,7 @@ class Kart {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    console.log(panier);
+    return panier.data;
   }
   /**
    *
@@ -147,7 +146,7 @@ class Kart {
           }
         });
     } catch (error) {
-      Kart.RenderModal(itemForPanier);
+      Kart.RenderModal(itemForPanier, qte);
     }
   }
   /**
@@ -213,26 +212,28 @@ class Kart {
   /**
    * Affiche les items du panier
    */
-  static kartRenderItems() {
+  static async kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
     const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
-    let storedITems = Kart.getParsedBasket();
+    let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    storedITems?.map((produit) => {
+    panierDetail?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
 
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
                     <div class="kart-img">
-                        <img src="/images/produits/${produit.media}" alt="">
+                        <img src="/images/produits/${
+                          produit.Produit.Media[0].med_ressource
+                        }" alt="">
                     </div>
                     <div class="kart-content">
                         <a href="/article/${produit.pro_id}">${
-        produit.pro_libelle
+        produit.Produit.pro_libelle
       }</a>
                         <div class="actions">
                             <span class="price">${
