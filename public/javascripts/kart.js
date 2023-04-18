@@ -38,6 +38,38 @@ var Kart = /*#__PURE__*/function () {
     }
 
     /**
+     * recuperer le statut du client
+     * @returns userId or false
+     */
+  }, {
+    key: "getUserStatut",
+    value: function () {
+      var _getUserStatut = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var userStatut;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get("".concat(SITE_URL, "/connexion/userStatut"), {
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 2:
+              userStatut = _context.sent;
+              return _context.abrupt("return", userStatut.data);
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      function getUserStatut() {
+        return _getUserStatut.apply(this, arguments);
+      }
+      return getUserStatut;
+    }()
+    /**
      * recuperer le nombre d'artcile au panier
      * @returns Numeric
      */
@@ -59,32 +91,32 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addFraisDivers",
     value: function () {
-      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var oldFraisDossier, fraisPort, fraisDossier, fraisDivers;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
               oldFraisDossier = Kart.getParsedFrais();
               if (!(oldFraisDossier == null)) {
-                _context.next = 10;
+                _context2.next = 10;
                 break;
               }
-              _context.next = 4;
+              _context2.next = 4;
               return axios.get("".concat(SITE_URL, "/fraisPort"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 4:
-              fraisPort = _context.sent;
-              _context.next = 7;
+              fraisPort = _context2.sent;
+              _context2.next = 7;
               return axios.get("".concat(SITE_URL, "/fraisDossier"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 7:
-              fraisDossier = _context.sent;
+              fraisDossier = _context2.sent;
               fraisDivers = {
                 frais_port: fraisPort.data.frp_ttc,
                 frais_dossier: fraisDossier.data.auf_ttc
@@ -92,9 +124,9 @@ var Kart = /*#__PURE__*/function () {
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
             case 10:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
-        }, _callee);
+        }, _callee2);
       }));
       function addFraisDivers() {
         return _addFraisDivers.apply(this, arguments);
@@ -104,19 +136,20 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addItem",
     value: function () {
-      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(item) {
+      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item) {
         var qte,
           storedITems,
           itemForPanier,
           produitFilter,
           produit,
           produitPositionInArray,
+          userStatut,
           panier,
-          _args2 = arguments;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+          _args3 = arguments;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              qte = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : null;
+              qte = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : null;
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
                 pro_id: item.pro_id,
@@ -150,7 +183,16 @@ var Kart = /*#__PURE__*/function () {
               }
 
               //si le client "est connecté"
-              _context2.next = 6;
+              _context3.next = 6;
+              return Kart.getUserStatut();
+            case 6:
+              userStatut = _context3.sent;
+              if (!(userStatut != false)) {
+                _context3.next = 19;
+                break;
+              }
+              _context3.prev = 8;
+              _context3.next = 11;
               return axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
                 pad_qte: 1,
@@ -158,17 +200,21 @@ var Kart = /*#__PURE__*/function () {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
-            case 6:
-              panier = _context2.sent;
-              console.log(panier.status, panier);
-
-              //
+            case 11:
+              panier = _context3.sent;
               Kart.RenderModal(itemForPanier);
-            case 9:
+              _context3.next = 19;
+              break;
+            case 15:
+              _context3.prev = 15;
+              _context3.t0 = _context3["catch"](8);
+              Kart.RenderModal(itemForPanier);
+              console.log(_context3.t0);
+            case 19:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
-        }, _callee2);
+        }, _callee3, null, [[8, 15]]);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);
@@ -182,10 +228,10 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "removeItem",
     value: function () {
-      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(itemId) {
-        var storedITems, produitPositionInArray, panier;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(itemId) {
+        var storedITems, produitPositionInArray;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
               storedITems = Kart.getParsedBasket();
               document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
@@ -197,22 +243,19 @@ var Kart = /*#__PURE__*/function () {
 
               // si le user est connecté
               console.log(itemId);
-              _context3.next = 8;
-              return axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
-                pro_id: itemId,
-                headers: {
-                  "X-Requested-With": "XMLHttpRequest"
-                }
-              });
-            case 8:
-              panier = _context3.sent;
-              console.log(panier);
+              // const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
+              //   pro_id: itemId,
+              //   headers: {
+              //     "X-Requested-With": "XMLHttpRequest",
+              //   },
+              // });
+
               Kart.kartRenderItems();
-            case 11:
+            case 7:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
-        }, _callee3);
+        }, _callee4);
       }));
       function removeItem(_x2) {
         return _removeItem.apply(this, arguments);

@@ -20,6 +20,20 @@ class Kart {
   }
 
   /**
+   * recuperer le statut du client
+   * @returns userId or false
+   */
+
+  static async getUserStatut() {
+    const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    return userStatut.data;
+  }
+
+  /**
    * recuperer le nombre d'artcile au panier
    * @returns Numeric
    */
@@ -96,17 +110,25 @@ class Kart {
     }
 
     //si le client "est connecté"
-    const panier = await axios.post(`${SITE_URL}/panierDetail`, {
-      pro_id: item.pro_id,
-      pad_qte: 1,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    console.log(panier.status, panier);
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut != false) {
+     try {
+      const panier = await axios.post(`${SITE_URL}/panierDetail`, {
+        pro_id: item.pro_id,
+        pad_qte: 1,
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      Kart.RenderModal(itemForPanier);
+     } catch (error) {
+       Kart.RenderModal(itemForPanier);
+      console.log(error);
+     }
+    }
 
-    //
-    Kart.RenderModal(itemForPanier);
+   
+
   }
   /**
    * Supprime un Item du panier
@@ -123,13 +145,13 @@ class Kart {
 
     // si le user est connecté
     console.log(itemId);
-    const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
-      pro_id: itemId,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    console.log(panier);
+    // const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
+    //   pro_id: itemId,
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
+
     Kart.kartRenderItems();
   }
 
