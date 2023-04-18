@@ -88,7 +88,6 @@ var TotalPricesProducts = /*#__PURE__*/function () {
           return Kart.addFraisDivers();
         case 5:
           storedFrais = _context2.sent;
-          console.log(storedFrais);
           totalPriceht = 0;
           totalPoductPrice = 0;
           totalQuantity = 0;
@@ -99,7 +98,7 @@ var TotalPricesProducts = /*#__PURE__*/function () {
           totalPoductPrice = totalPriceht + parseFloat(storedFrais.frais_port) + parseFloat(storedFrais.frais_dossier);
           PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(totalQuantity, " articles</span>\n      <span class=\"price\">").concat(totalPriceht.toFixed(2), "  \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">").concat(parseFloat(storedFrais.frais_port).toFixed(2), " \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">").concat(parseFloat(storedFrais.frais_dossier).toFixed(2), " \u20AC</span>\n    </div>\n    <hr>\n  </div>\n  <div class=\"item total\">\n  <span>TTC</span>\n  <span>").concat(totalPoductPrice.toFixed(2), " \u20AC</span>\n</div>\n<div class=\"promo\">\n  <div class=\"link\">\n    <p class=\"btnpromo\"><span>Vous avez un code promo ?</span></p>\n  </div>\n  <div class=\"hide-promo promo_block\">\n    <div class=\"btn-promo\">\n      <input type=\"text\" placeholder=\"Code promo\" />\n      <button>Ajouter</button>\n    </div>\n    <p class=\"fermer\">Fermer</p>\n  </div>\n</div>\n<a href=\"/commander/#page-commander\" class=\"button\">\n  <button class=\"enable\">Finaliser le Devis</button>\n</a>\n  ");
           PanierPrice.innerHTML = PanierPriceHtml;
-        case 14:
+        case 13:
         case "end":
           return _context2.stop();
       }

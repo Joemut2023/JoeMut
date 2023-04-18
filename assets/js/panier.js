@@ -107,7 +107,6 @@ const btns_down = document.querySelectorAll(".btn-down");
 const TotalPricesProducts = async () => {
   let storedITems = await Kart.getAllPanierDetails();
   let storedFrais = await Kart.addFraisDivers();
-  console.log(storedFrais);
   let totalPriceht = 0;
   let totalPoductPrice = 0;
   let totalQuantity = 0;
