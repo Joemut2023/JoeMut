@@ -26,89 +26,87 @@
         <div class="row">
           <div class="order-items">
             <div class="row order-titles">
-              <h3 class="title col-md-6 col-12 text-center">
-                articles de la commande
+              <h3 class="title col-md-6 col-12">articles de la commande</h3>
+              <h3 class="title col-md-2 text-md-center _desktop-title">
+                prix unitaire
               </h3>
-              <div class="col-md-6 col-sm-6 hide-titles">
-                <div class="row">
-                  <h3 class="title col-md-4 col-sm-4 text-center">
-                    prix unitaire
-                  </h3>
-                  <h3 class="title col-md-4 col-sm-4 text-center">quantité</h3>
-                  <h3 class="title col-md-4 col-sm-4 text-center">
-                    total produits
-                  </h3>
-                </div>
-              </div>
+              <h3 class="title col-md-2 text-md-center _desktop-title">
+                quantité
+              </h3>
+              <h3 class="title col-md-2 text-md-center _desktop-title">
+                total produits
+              </h3>
             </div>
             <div class="order-confirmation">
               <div class="order-line">
                 <% panierDetails.forEach(element => { %>
                 <div class="row line">
-                  <div class="col-md-6 col-sm-6 col-xs-6 img-article">
-                    <div class="row">
-                      <div class="col-md-6 col-sm-6 images">
-                        <div class="image">
-                          <img src="/images/produits/<%= element.Produit.Media[0].med_ressource %>" alt="" class="img-fluid"/>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6">
-                        <span class="article-title"
-                          ><%= element.Produit.pro_libelle %></span
-                        >
-                      </div>
-                    </div>
+                  <div class="col-sm-2 col-3 images">
+                    <span class="image">
+                      <img
+                        src="/images/produits/<%= element.Produit.Media[0].med_ressource %>"
+                        alt=""
+                      />
+                    </span>
                   </div>
-                  <div class="col-md-6 col-sm-6 text-content">
+                  <div class="col-sm-4 col-9">
+                    <span class="article-title"
+                      ><%= element.Produit.pro_libelle %></span
+                    >
+                  </div>
+                  <div class="col-sm-6 col-12">
                     <div class="row">
-                      <div class="col-md-4 col-sm-4 text-center text-xs-left">
-                        <%= element.pad_ttc.toFixed(2) %>  €
+                      <div class="col-4 text-sm-center text-xs-left">
+                        <%= element.pad_ttc.toFixed(2) %> €
                       </div>
-                      <div class="col-md-4 col-sm-4 text-center"><%= element.pad_qte %></div>
-                      <div class="col-md-4 col-sm-4 text-center text-xs-left">
+                      <div class="col-4 text-sm-center text-xs-left">
+                        <%= element.pad_qte %>
+                      </div>
+                      <div class="col-4 text-sm-center text-xs-left total">
                         <%= (element.pad_ttc * element.pad_qte).toFixed(2)%> €
                       </div>
                     </div>
                   </div>
                 </div>
                 <% }) %>
-                <hr />
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Sous-total</td>
-                      <td class="price-col"><%= sous_total.toFixed(2) %> €</td>
-                    </tr>
-                    <% if (commande.Frais_port.frp_ttc) { %>
-                     <tr>
-                      <td>Frais de livraison</td>
-                      <td class="price-col"><%= commande.Frais_port.frp_ttc.toFixed(2) %> €</td>
-                    </tr>
-                    <% } %>
-                    <% if (commande.com_frais) { %>
-                     <tr>
-                      <td>Autres frais</td>
-                      <td class="price-col"><%= commande.com_frais.toFixed(2) %> €</td>
-                    </tr>
-                    <% } %>
-                    <tr class="total-value">
-                      <td>TOTAL TTC</td>
-                      <td class="price-col"><%= total.toFixed(2) %> €</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
+              <hr />
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Sous-total</td>
+                    <td class="price-col"><%= sous_total.toFixed(2) %> €</td>
+                  </tr>
+                  <% if (commande.Frais_port.frp_ttc) { %>
+                  <tr>
+                    <td>Frais de livraison</td>
+                    <td class="price-col">
+                      <%= commande.Frais_port.frp_ttc.toFixed(2) %> €
+                    </td>
+                  </tr>
+                  <% } %> <% if (commande.com_frais) { %>
+                  <tr>
+                    <td>Autres frais</td>
+                    <td class="price-col">
+                      <%= commande.com_frais.toFixed(2) %> €
+                    </td>
+                  </tr>
+                  <% } %>
+                  <tr class="total-value">
+                    <td>TOTAL TTC</td>
+                    <td class="price-col"><%= total.toFixed(2) %> €</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
 
-            <div class="details">
-              <h1 class="title">DÉTAILS DE LA COMMANDE:</h1>
-              <p>Référence de la commande : ORD-OJQCG</p>
-              <p>Moyen de paiement : Devis</p>
-              <p>Mode de livraison : <%= commande.Frais_port.frp_libelle %></p>
-              <p>
-                <%= commande.com_comment %>
-              </p>
-            </div>
+          <div class="details">
+            <h1 class="title">DÉTAILS DE LA COMMANDE:</h1>
+            <p>Référence de la commande : ORD-OJQCG</p>
+            <p>Moyen de paiement : Devis</p>
+            <p>Mode de livraison : <%= commande.Frais_port.frp_libelle %></p>
+            <p><%= commande.com_comment %></p>
           </div>
         </div>
       </div>
@@ -151,8 +149,10 @@
   </div>
 
   <div class="button-all">
-    <a href="/catalogue"><p>
-      Tous les produits <span><i class="fa-solid fa-chevron-right"></i></span>
-    </p></a>
+    <a href="/catalogue"
+      ><p>
+        Tous les produits
+        <span><i class="fa-solid fa-chevron-right"></i></span></p
+    ></a>
   </div>
 </div>

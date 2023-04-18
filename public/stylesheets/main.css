@@ -5248,78 +5248,45 @@
   margin-bottom: 20px;
 }
 #page-confirmation-commande .main .content .card-block .order-items .order-titles .title {
+  padding: 0px 15px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  text-transform: uppercase;
   font-weight: 600;
 }
+@media (max-width: 1000px) {
+  #page-confirmation-commande .main .content .card-block .order-items .order-titles ._desktop-title {
+    display: none;
+  }
+}
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line {
+  margin: 15px 0px;
+}
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .images .image {
+  vertical-align: middle;
+}
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .images .image img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
 @media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-items .order-titles .title {
-    font-size: 14px;
+  #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .total {
     font-weight: 600;
   }
 }
-@media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-items .order-titles .hide-titles {
-    display: none;
-  }
-}
-@media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-items .titles {
-    display: none;
-  }
-}
-#page-confirmation-commande .main .content .card-block .order-items h3 {
-  font-size: 16px;
-  text-transform: uppercase;
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line {
-  margin: 16px 15px 0px 15px;
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line .line {
-  margin-bottom: 20px;
-}
-@media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-confirmation .order-line .img-article .images .image {
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line .img-article .images .image img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-}
-@media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-confirmation .order-line .img-article .images .image img {
-    width: 60%;
-    object-fit: contain;
-  }
-}
-@media (max-width: 1000px) {
-  #page-confirmation-commande .main .content .card-block .order-confirmation .order-line .img-article .images .image img {
-    width: 100%;
-  }
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line .text-content .row {
-  margin-bottom: 20px !important;
-}
-@media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-confirmation .order-line .text-content,
-  #page-confirmation-commande .main .content .card-block .order-confirmation .order-line .article-title {
-    font-size: 14px;
-  }
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line .price {
-  margin-bottom: 10px;
-}
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line hr {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation hr {
   margin-bottom: 20px 0px;
 }
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line table {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation table {
   width: 100%;
   border-collapse: collapse;
   background: rgba(0, 0, 0, 0);
   margin-bottom: 20px;
 }
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line table tr {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation table tr {
   height: max-content;
   display: table-row;
   vertical-align: inherit;
@@ -5327,13 +5294,13 @@
   text-indent: initial;
   border-spacing: 2px;
 }
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line table tr td {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation table tr td {
   padding: 5px 2px;
 }
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line table tr .price-col {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation table tr .price-col {
   text-align: right;
 }
-#page-confirmation-commande .main .content .card-block .order-confirmation .order-line table .total-value {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation table .total-value {
   font-weight: bold;
   background: #f6f6f6;
   padding: 20px 10px;
