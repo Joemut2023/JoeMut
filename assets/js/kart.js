@@ -38,16 +38,7 @@ class Kart {
     } catch (error) {}
   }
   static async getParsedFrais() {
-    const userStatus = await Kart.getUserStatut();
-    if (userStatus == false) {
-      return JSON.parse(localStorage.getItem("fraisDivers"));
-    }
-    // const panier = await axios.get(`${SITE_URL}/panierDetail`, {
-    //   headers: {
-    //     "X-Requested-With": "XMLHttpRequest",
-    //   },
-    // });
-    // return panier.data;
+    return JSON.parse(localStorage.getItem("fraisDivers"));
   }
 
   /**
@@ -74,25 +65,23 @@ class Kart {
    */
 
   static async addFraisDivers() {
-    let oldFraisDossier = Kart.getParsedFrais();
-    if (oldFraisDossier == null) {
-      let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
+    let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
 
-      let fraisDivers = {
-        frais_port: fraisPort.data.frp_ttc,
-        frais_dossier: fraisDossier.data.auf_ttc,
-      };
-      localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
-    }
+    let fraisDivers = {
+      frais_port: fraisPort.data.frp_ttc,
+      frais_dossier: fraisDossier.data.auf_ttc,
+    };
+    localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+    return fraisDivers;
   }
 
   static async addItem(item, qte = null) {
@@ -214,7 +203,7 @@ class Kart {
    */
   static async kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
-    const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const fraisDivers = await Kart.addFraisDivers();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
     let panierDetail = await Kart.getAllPanierDetails();

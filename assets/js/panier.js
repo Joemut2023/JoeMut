@@ -1,25 +1,25 @@
 const panierDetails = document.querySelector(".comment");
 const PanierPrice = document.querySelector(".panier-price");
 const emptyKartText = document.querySelector("#empty-product-kart");
-let storedITems = Kart.getParsedBasket();
+let storedITems = Kart.getAllPanierDetails();
 let TotalePrice = 0;
 
-const RenderKartProduct = () => {
+const RenderKartProduct = async () => {
   let panierDetailsHtml = ``;
-  storedITems = Kart.getParsedBasket();
+  storedITems = await Kart.getAllPanierDetails();
   storedITems.map((produit) => {
     panierDetailsHtml += `
   <div class="articles row">
-    <div class="col-md-1 col-sm-1 col-1 id">${produit.pro_ref}</div>
+    <div class="col-md-1 col-sm-1 col-1 id">${produit.Produit.pro_ref}</div>
   <div class="col-md-3 col-sm-4 col-4 image">
     <span><img src="/images/produits/${
-      produit.media
+      produit.Produit.Media[0].med_ressource
     }" class="img-fluid" alt="" /></span>
   </div>
   <div class="col-md-3 col-sm-7 col-7 description">
     <div class="desc">
       <a href="/article/${produit.pro_id}"><span>${
-      produit.pro_libelle
+      produit.Produit.pro_libelle
     }</span></a>
     </div>
     <p class="price">${produit.pad_ttc.toFixed(2)} €</p>
@@ -104,9 +104,10 @@ RenderKartProduct();
 const btns_up = document.querySelectorAll(".btn-up");
 const btns_down = document.querySelectorAll(".btn-down");
 
-const TotalPricesProducts = () => {
-  let storedITems = Kart.getParsedBasket();
-  let storedFrais = Kart.getParsedFrais();
+const TotalPricesProducts = async () => {
+  let storedITems = await Kart.getAllPanierDetails();
+  let storedFrais = await Kart.addFraisDivers();
+  console.log(storedFrais);
   let totalPriceht = 0;
   let totalPoductPrice = 0;
   let totalQuantity = 0;
@@ -126,11 +127,15 @@ const TotalPricesProducts = () => {
     </div>
     <div class="item">
       <span class="title">Livraisons</span>
-      <span class="price">${parseFloat(storedFrais.frais_port).toFixed(2)} €</span>
+      <span class="price">${parseFloat(storedFrais.frais_port).toFixed(
+        2
+      )} €</span>
     </div>
     <div class="item">
       <span class="title">Frais de dossier</span>
-      <span class="price">${parseFloat(storedFrais.frais_dossier).toFixed(2)} €</span>
+      <span class="price">${parseFloat(storedFrais.frais_dossier).toFixed(
+        2
+      )} €</span>
     </div>
     <hr>
   </div>
