@@ -13,8 +13,6 @@ const {
 
 router.post("/", async (req, res, next) => {
   const { pro_id, pad_qte } = req.body;
-  // const pan_id = 1;
-
   const pan_id = req.session.panierId;
   try {
     const oldPanierDetail = await Panier_detail.findOne({
@@ -104,7 +102,8 @@ router.get("/", async (req, res, next) => {
       where: { pan_id },
     });
 
-    return res.status(200).send(Produits);
+    if (Produits.length !== 0) return res.status(200).send(Produits);
+    return res.status(200).send("auncun produit disponible");
   } catch (error) {
     return res.status(500).json({ error: error });
   }

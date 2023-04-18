@@ -25,8 +25,41 @@ var Kart = /*#__PURE__*/function () {
      * @returns Array
      */
     function getParsedBasket() {
+      Kart.getAllPanierDetails();
       return JSON.parse(localStorage.getItem("storedItems"));
     }
+    /**
+     *
+     * @returns Array of all product in panierDetails
+     */
+  }, {
+    key: "getAllPanierDetails",
+    value: function () {
+      var _getAllPanierDetails = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var panier;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get("".concat(SITE_URL, "/panierDetail"), {
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 2:
+              panier = _context.sent;
+              console.log(panier);
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      function getAllPanierDetails() {
+        return _getAllPanierDetails.apply(this, arguments);
+      }
+      return getAllPanierDetails;
+    }()
     /**
      *
      * @returns Array
@@ -34,29 +67,29 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "getUserStatut",
     value: function () {
-      var _getUserStatut = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var _getUserStatut = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var userStatut;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+              _context2.prev = 0;
+              _context2.next = 3;
               return axios.get("".concat(SITE_URL, "/connexion/userStatut"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 3:
-              userStatut = _context.sent;
-              return _context.abrupt("return", userStatut.data);
+              userStatut = _context2.sent;
+              return _context2.abrupt("return", userStatut.data);
             case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
             case 9:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee2, null, [[0, 7]]);
       }));
       function getUserStatut() {
         return _getUserStatut.apply(this, arguments);
@@ -66,25 +99,25 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "getParsedFrais",
     value: function () {
-      var _getParsedFrais = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var _getParsedFrais = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var userStatus;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return Kart.getUserStatut();
             case 2:
-              userStatus = _context2.sent;
+              userStatus = _context3.sent;
               if (!(userStatus == false)) {
-                _context2.next = 5;
+                _context3.next = 5;
                 break;
               }
-              return _context2.abrupt("return", JSON.parse(localStorage.getItem("fraisDivers")));
+              return _context3.abrupt("return", JSON.parse(localStorage.getItem("fraisDivers")));
             case 5:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
-        }, _callee2);
+        }, _callee3);
       }));
       function getParsedFrais() {
         return _getParsedFrais.apply(this, arguments);
@@ -117,32 +150,32 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addFraisDivers",
     value: function () {
-      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _addFraisDivers = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var oldFraisDossier, fraisPort, fraisDossier, fraisDivers;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
               oldFraisDossier = Kart.getParsedFrais();
               if (!(oldFraisDossier == null)) {
-                _context3.next = 10;
+                _context4.next = 10;
                 break;
               }
-              _context3.next = 4;
+              _context4.next = 4;
               return axios.get("".concat(SITE_URL, "/fraisPort"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 4:
-              fraisPort = _context3.sent;
-              _context3.next = 7;
+              fraisPort = _context4.sent;
+              _context4.next = 7;
               return axios.get("".concat(SITE_URL, "/fraisDossier"), {
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               });
             case 7:
-              fraisDossier = _context3.sent;
+              fraisDossier = _context4.sent;
               fraisDivers = {
                 frais_port: fraisPort.data.frp_ttc,
                 frais_dossier: fraisDossier.data.auf_ttc
@@ -150,9 +183,9 @@ var Kart = /*#__PURE__*/function () {
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
             case 10:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
-        }, _callee3);
+        }, _callee4);
       }));
       function addFraisDivers() {
         return _addFraisDivers.apply(this, arguments);
@@ -162,25 +195,25 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "addItem",
     value: function () {
-      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
+      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
         var qte,
           userStatut,
           storedITems,
           itemForPanier,
-          _args4 = arguments;
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) switch (_context4.prev = _context4.next) {
+          _args5 = arguments;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
             case 0:
-              qte = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : null;
-              _context4.next = 3;
+              qte = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : null;
+              _context5.next = 3;
               return Kart.getUserStatut();
             case 3:
-              userStatut = _context4.sent;
+              userStatut = _context5.sent;
               if (!(userStatut == false)) {
-                _context4.next = 6;
+                _context5.next = 6;
                 break;
               }
-              return _context4.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context5.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 6:
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
@@ -229,9 +262,9 @@ var Kart = /*#__PURE__*/function () {
               }
             case 9:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
-        }, _callee4);
+        }, _callee5);
       }));
       function addItem(_x) {
         return _addItem.apply(this, arguments);
@@ -245,20 +278,20 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "removeItem",
     value: function () {
-      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(itemId) {
+      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(itemId) {
         var userStatut, storedITems, produitPositionInArray, pro_id;
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-          while (1) switch (_context5.prev = _context5.next) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
             case 0:
-              _context5.next = 2;
+              _context6.next = 2;
               return Kart.getUserStatut();
             case 2:
-              userStatut = _context5.sent;
+              userStatut = _context6.sent;
               if (!(userStatut == false)) {
-                _context5.next = 5;
+                _context6.next = 5;
                 break;
               }
-              return _context5.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context6.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               storedITems = Kart.getParsedBasket();
               produitPositionInArray = storedITems.findIndex(function (produit) {
@@ -267,7 +300,7 @@ var Kart = /*#__PURE__*/function () {
               storedITems.splice(produitPositionInArray, 1);
               localStorage.setItem("storedItems", JSON.stringify(storedITems));
               pro_id = parseInt(itemId);
-              _context5.next = 12;
+              _context6.next = 12;
               return axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
                 data: {
                   pro_id: pro_id
@@ -281,9 +314,9 @@ var Kart = /*#__PURE__*/function () {
               Kart.kartRenderItems();
             case 14:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
-        }, _callee5);
+        }, _callee6);
       }));
       function removeItem(_x2) {
         return _removeItem.apply(this, arguments);
@@ -370,9 +403,6 @@ var Kart = /*#__PURE__*/function () {
       var fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
       var fraisDossier = parseFloat(fraisDivers.frais_dossier);
       var fraisPort = parseFloat(fraisDivers.frais_port);
-      // let produitFilter = storedITems.filter(
-      //   (produit) => produit.pro_id == item.pro_id
-      // );
       var html = /*html*/"\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ").concat(Kart.getItemNumber(), " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(fraisPort.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(fraisDossier.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
       document.querySelector("#myModal .body-modal").innerHTML = html;
     }

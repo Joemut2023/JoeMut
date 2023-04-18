@@ -9,7 +9,20 @@ class Kart {
    * @returns Array
    */
   static getParsedBasket() {
+    Kart.getAllPanierDetails();
     return JSON.parse(localStorage.getItem("storedItems"));
+  }
+  /**
+   *
+   * @returns Array of all product in panierDetails
+   */
+  static async getAllPanierDetails() {
+    const panier = await axios.get(`${SITE_URL}/panierDetail`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    console.log(panier);
   }
   /**
    *
@@ -310,9 +323,6 @@ class Kart {
     let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
-    // let produitFilter = storedITems.filter(
-    //   (produit) => produit.pro_id == item.pro_id
-    // );
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
