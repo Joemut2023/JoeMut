@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     if (!valid) {
       return res.json('mot de passe incorrect');
     }
-    const panier = await Panier.findOne({
+    var panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
       include: [{ model: Commande, required: false,where:{com_id:null} }],
      // where: { '$Commande.com_id$': null }
