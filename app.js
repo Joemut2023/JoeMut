@@ -34,6 +34,7 @@ const db = require("./models");
 const { Components, componentLoader } = require("./admin/ComponentLoader");
 const getCategorie = require("./middleware/categorie");
 const setAuthorizedUser = require("./middleware/setAuthorizedUser");
+const getPanierDetail = require("./middleware/getPanierDetail");
 var app = express();
 
 require("./config/db").sync();
@@ -61,6 +62,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(setAuthorizedUser);
+app.use(getPanierDetail);
 app.use("/", indexRouter);
 app.use("/creation", creationRouter);
 app.use("/contact", contactRouter);
@@ -70,16 +72,16 @@ app.use("/recherche", rechercheRouter);
 app.use("/article", articleRouter);
 app.use("/nouvelleCollection", nouvelleCollectionRouter);
 app.use("/mon-compte", auth, usersRouter);
-app.use("/panier", panierRouter);
+app.use("/panier", auth,panierRouter);
 app.use("/inscription", inscriptionRouter);
 app.use("/connexion", connexionRouter);
-app.use("/commander", commanderRouter);
+app.use("/commander",auth, commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
-app.use("/confirmation-commande", confirmationCommandeRouter);
+app.use("/confirmation-commande",auth, confirmationCommandeRouter);
 app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
-app.use("/panierDetail", panierDetailRouter)
+app.use("/panierDetail",auth, panierDetailRouter)
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,

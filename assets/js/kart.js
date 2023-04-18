@@ -15,9 +15,33 @@ class Kart {
    *
    * @returns Array
    */
-  static getParsedFrais() {
-    return JSON.parse(localStorage.getItem("fraisDivers"));
+  static async getUserStatut() {
+    try {
+      const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      return userStatut.data;
+    } catch (error) {}
   }
+  static async getParsedFrais() {
+    const userStatus = await Kart.getUserStatut();
+    if (userStatus == false) {
+      return JSON.parse(localStorage.getItem("fraisDivers"));
+    }
+    // const panier = await axios.get(`${SITE_URL}/panierDetail`, {
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
+    // return panier.data;
+  }
+
+  /**
+   * recuperer le statut du client
+   * @returns userId or false
+   */
 
   /**
    * recuperer le nombre d'artcile au panier
@@ -60,6 +84,9 @@ class Kart {
   }
 
   static async addItem(item, qte = null) {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false)
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
@@ -70,43 +97,41 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
-
-    if (storedITems) {
-      let produitFilter = storedITems.filter(
-        (produit) => produit.pro_id == item.pro_id
-      );
-      let produit = produitFilter[0];
-      if (produitFilter.length !== 0) {
-        produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-        let produitPositionInArray = storedITems.findIndex(
-          (produit) => produit.pro_id === item.pro_id
+    try {
+      const panier = await axios.post(`${SITE_URL}/panierDetail`, {
+        pro_id: item.pro_id,
+        pad_qte: 1,
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      Kart.RenderModal(itemForPanier);
+      if (storedITems) {
+        let produitFilter = storedITems.filter(
+          (produit) => produit.pro_id == item.pro_id
         );
-        storedITems[produitPositionInArray] = produit;
+        let produit = produitFilter[0];
+        if (produitFilter.length !== 0) {
+          produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+          let produitPositionInArray = storedITems.findIndex(
+            (produit) => produit.pro_id === item.pro_id
+          );
+          storedITems[produitPositionInArray] = produit;
+        } else {
+          storedITems.push(itemForPanier);
+        }
+        localStorage.setItem("storedItems", JSON.stringify(storedITems));
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
       } else {
-        storedITems.push(itemForPanier);
+        Kart.items.push(itemForPanier);
+        localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
       }
-      localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    } else {
-      Kart.items.push(itemForPanier);
-      localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
+    } catch (error) {
+      Kart.RenderModal(itemForPanier);
     }
-
-    //si le client "est connecté"
-    const panier = await axios.post(`${SITE_URL}/panierDetail`, {
-      pro_id: item.pro_id,
-      pad_qte: 1,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    console.log(panier.status, panier);
-
-    //
-    Kart.RenderModal(itemForPanier);
   }
   /**
    * Supprime un Item du panier
@@ -123,13 +148,13 @@ class Kart {
 
     // si le user est connecté
     console.log(itemId);
-    const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
-      pro_id: itemId,
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    console.log(panier);
+    // const panier = await axios.delete(`${SITE_URL}/panierDetail`, {
+    //   pro_id: itemId,
+    //   headers: {
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
+
     Kart.kartRenderItems();
   }
 
