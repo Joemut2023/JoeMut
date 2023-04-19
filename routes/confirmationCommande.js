@@ -10,7 +10,7 @@ const {
   Media,
   Tarif,
   Frais_supp,
-  Autre_frais
+  Autre_frais,
 } = require("../models");
 
 router.get("/", async (req, res, next) => {
@@ -18,29 +18,29 @@ router.get("/", async (req, res, next) => {
 
   try {
     const commandeId = req.session.commandeId;
-    const userId = req.session.userId
-
-    const commande = await Commande.findOne({
+    const userId = req.session.userId;
+    let commande = await Commande.findByPk(commandeId, {
       include: [
         { model: Client, attributes: ["cli_mail"] },
-        { model: Frais_port},
+        { model: Frais_port },
       ],
-      where: {
-        cli_id: userId,
-      },
     });
     const panierDetails = await Panier_detail.findAll({
-      include:[
-        {model:Produit, include: [
-        { model: Media, attributes: ["med_id", "med_ressource"] },
-        { model: Tarif, attributes: ["tar_ttc"] },
-      ],}
+      include: [
+        {
+          model: Produit,
+          include: [
+            { model: Media, attributes: ["med_id", "med_ressource"] },
+            { model: Tarif, attributes: ["tar_ttc"] },
+          ],
+        },
       ],
       where: {
-        pan_id: req.session.panierId
+        pan_id: commande.pan_id,
       },
     });
-
+    console.log("========= panier Id ========")
+    console.log(req.session.panierId)
     const produitsPopulaires = await Produit.findAll({
       limit: 16,
       include: [
@@ -52,25 +52,23 @@ router.get("/", async (req, res, next) => {
       },
     });
 
-  
-    let sous_total = 0
+    let sous_total = 0;
     for (let index = 0; index < panierDetails.length; index++) {
       sous_total += panierDetails[index].pad_ttc * panierDetails[index].pad_qte
     }
 
     let total = sous_total + commande.Frais_port.frp_ttc + commande.com_frais
-    // res.json({ commande });
-     res.render("confirmationCommande/index", {
-       panierDetails: panierDetails,
-       commande: commande,
-       sous_total: sous_total,
-       produitsPopulaires: produitsPopulaires,
-       total:total
-     });
+    // res.json({ panierDetails });
+    return res.render("confirmationCommande/index", {
+      panierDetails: panierDetails,
+      commande: commande,
+      sous_total: sous_total,
+      produitsPopulaires: produitsPopulaires,
+      total: total
+    });
   } catch (error) {
-    
+    console.log(error);
   }
-
 });
 
 module.exports = router;
