@@ -79,7 +79,7 @@ app.use("/connexion", connexionRouter);
 app.use("/commander", auth, commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
 app.use("/confirmation-commande", auth, confirmationCommandeRouter);
-app.use("/devis", auth, devisRouter)
+app.use("/devis", devisRouter)
 app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);

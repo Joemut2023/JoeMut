@@ -5390,6 +5390,57 @@
   margin-left: 10px;
 }
 
+#page-devis {
+  width: 95%;
+  margin: auto;
+}
+#page-devis .logo-dates {
+  display: flex;
+  justify-content: space-between;
+}
+#page-devis .logo-dates .bordure {
+  border: 1px solid green;
+}
+#page-devis .adresses {
+  display: flex;
+  margin-top: 50px;
+}
+#page-devis .adresses ul {
+  list-style: none;
+}
+#page-devis .adresses .facturation {
+  margin-left: 30%;
+}
+#page-devis .table-detail {
+  text-align: center;
+}
+#page-devis .table-detail th {
+  background-color: rgb(241, 239, 239);
+}
+#page-devis .tables {
+  display: flex;
+  justify-content: space-between;
+}
+#page-devis .tables .taxe-detail1 {
+  width: 45%;
+  text-align: center;
+  border: 1px solid rgb(212, 210, 210);
+  margin-bottom: 20px;
+}
+#page-devis .tables .taxe-detail1 th {
+  background-color: rgb(241, 239, 239);
+}
+#page-devis .tables .taxe-detail2 {
+  width: 45%;
+  text-align: center;
+}
+#page-devis .tables .taxe-detail2 #title {
+  background-color: rgb(241, 239, 239);
+}
+#page-devis .tables .taxe-detail2 .table-borderless {
+  border: 1px solid rgb(212, 210, 210);
+}
+
 #edit-adresse {
   width: 80%;
   margin-left: auto;

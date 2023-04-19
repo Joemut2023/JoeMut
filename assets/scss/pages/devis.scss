@@ -1,0 +1,56 @@
+#page-devis {
+  width: 95%;
+  margin: auto;
+
+  .logo-dates {
+    display: flex;
+    justify-content: space-between;
+
+    .bordure {
+      border: 1px solid green;
+    }
+  }
+
+  .adresses {
+    display: flex;
+    margin-top: 50px;
+    ul {
+      list-style: none;
+    }
+    .facturation {
+      margin-left: 30%;
+    }
+  }
+
+  .table-detail {
+    text-align: center;
+    th {
+      background-color: rgb(241, 239, 239);
+    }
+  }
+  .tables {
+    display: flex;
+    justify-content: space-between;
+    .taxe-detail1 {
+      width: 45%;
+      text-align: center;
+      border: 1px solid rgb(212, 210, 210);
+      margin-bottom: 20px;
+      th {
+        background-color: rgb(241, 239, 239);
+      }
+    }
+    .taxe-detail2 {
+      width: 45%;
+      text-align: center;
+
+      #title {
+        background-color: rgb(241, 239, 239);
+      }
+
+      .table-borderless {
+        border: 1px solid rgb(212, 210, 210);
+      }
+    }
+  }
+}
