@@ -62,9 +62,9 @@ const RenderKartProduct = async () => {
   let eventlistner = (callback) => {
     const btnTrash = document.querySelectorAll(".delete");
     btnTrash.forEach((element) => {
-      element.addEventListener("click", () => {
+      element.addEventListener("click", async () => {
         let itemId = element.dataset.id;
-        Kart.removeItem(itemId);
+        await Kart.removeItem(itemId);
         TotalPricesProducts();
         document.querySelector("#cart-item-count").innerHTML =
           Kart.getItemNumber();
@@ -78,16 +78,17 @@ const RenderKartProduct = async () => {
     });
   };
   btnTrash.forEach((element) => {
-    element.addEventListener("click", () => {
+    element.addEventListener("click", async () => {
       TotalPricesProducts;
       let itemId = element.dataset.id;
-      Kart.removeItem(itemId);
+      await Kart.removeItem(itemId);
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
         Kart.getItemNumber();
-      RenderKartProduct();
-      eventlistner(() => {
-        RenderKartProduct();
+      await RenderKartProduct();
+      eventlistner(async () => {
+        await Kart.removeItem(itemId);
+        await RenderKartProduct();
       });
     });
   });
@@ -174,26 +175,33 @@ if (storedITems.length == 0) {
 }
 
 btns_up.forEach((element) => {
-  element.addEventListener("click", () => {
+  element.addEventListener("click", async () => {
     let itemId = element.dataset.id;
+    console.log("maman");
     let compteur = element.parentNode.parentNode.children[0].value;
-    compteur = isNaN(compteur) ? 1 : compteur;
-    compteur++;
-    element.parentNode.parentNode.children[0].value = compteur;
-    Kart.updateItemQuantity(itemId, true);
-    TotalPricesProducts();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+    const qte = await Kart.updateItemQuantity(itemId, "up");
+    // compteur = isNaN(compteur) ? 1 : compteur;
+    if (qte !== compteur) {
+      console.log("maman");
+      compteur++;
+      element.parentNode.parentNode.children[0].value = compteur;
+      // Kart.updateItemQuantity(itemId, true);
+      TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
+    } else console.log("maman");
   });
 });
 
 btns_down.forEach((element) => {
-  element.addEventListener("click", () => {
+  element.addEventListener("click", async () => {
     let itemId = element.dataset.id;
     let decrement = element.parentNode.parentNode.children[0].value;
+    const qte = await Kart.updateItemQuantity(itemId, false);
     decrement = isNaN(decrement) ? 1 : decrement;
     if (decrement > 1) {
       decrement--;
-      Kart.updateItemQuantity(itemId, false);
+
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
         Kart.getItemNumber();

@@ -24,7 +24,7 @@ var fraisDossier = require("./routes/fraisDossier");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
-var panierDetailRouter = require('./routes/panierDetail')
+var panierDetailRouter = require("./routes/panierDetail");
 
 const AdminJS = require("adminjs");
 const AdminJSExpress = require("@adminjs/express");
@@ -72,16 +72,16 @@ app.use("/recherche", rechercheRouter);
 app.use("/article", articleRouter);
 app.use("/nouvelleCollection", nouvelleCollectionRouter);
 app.use("/mon-compte", auth, usersRouter);
-app.use("/panier", auth,panierRouter);
+app.use("/panier", auth, panierRouter);
 app.use("/inscription", inscriptionRouter);
 app.use("/connexion", connexionRouter);
-app.use("/commander",auth, commanderRouter);
+app.use("/commander", auth, commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
-app.use("/confirmation-commande",auth, confirmationCommandeRouter);
+app.use("/confirmation-commande", auth, confirmationCommandeRouter);
 app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
-app.use("/panierDetail", panierDetailRouter)
+app.use("/panierDetail", auth, panierDetailRouter);
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,

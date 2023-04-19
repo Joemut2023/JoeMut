@@ -107,9 +107,9 @@ class Kart {
             "X-Requested-With": "XMLHttpRequest",
           },
         })
-        .then((res) => {
+        .then(async (res) => {
           let qte = res.data.panierDetail.pad_qte;
-          Kart.RenderModal(itemForPanier, qte);
+          await Kart.RenderModal(itemForPanier, qte);
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -135,7 +135,7 @@ class Kart {
           }
         });
     } catch (error) {
-      Kart.RenderModal(itemForPanier, qte);
+      await Kart.RenderModal(itemForPanier, qte);
     }
   }
   /**
@@ -168,7 +168,7 @@ class Kart {
         .then(() => {
           document.querySelector("#cart-item-count").innerHTML =
             Kart.getItemNumber();
-            Kart.kartRenderItems();
+          Kart.kartRenderItems();
         });
     }
   }
@@ -177,7 +177,14 @@ class Kart {
    * Mettre à jour la quantité d'un item du panier
    * @param {Number} itemId
    */
-  static updateItemQuantity(itemId, action) {
+  static async updateItemQuantity(itemId, action) {
+    const panierDetail = await axios.put(`${SITE_URL}/panierDetail`, {
+      pro_id: itemId,
+      action: action,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
     storedITems = Kart.getParsedBasket();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
@@ -186,14 +193,15 @@ class Kart {
       ? (storedITems[produitPositionInArray].pad_qte += 1)
       : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    return panierDetail.pad_qte;
   }
 
   /**
    * Calculer les prix des artciles dans le panier
    */
-  static calculTotalPrice() {
-    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
-    let storedITems = Kart.getParsedBasket();
+  static async calculTotalPrice() {
+    let fraisDivers = await Kart.addFraisDivers();
+    let storedITems = await Kart.getAllPanierDetails();
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
     let kartProductPrice = 0;
@@ -212,6 +220,7 @@ class Kart {
   static async kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
     const fraisDivers = await Kart.addFraisDivers();
+    const price = await Kart.calculTotalPrice();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
     let panierDetail = await Kart.getAllPanierDetails();
@@ -248,7 +257,7 @@ class Kart {
               `;
       });
       kartItemsElement.innerHTML = storedItemsHtml;
-    }else{
+    } else {
       kartItemsElement.innerHTML = ``;
     }
 
@@ -260,7 +269,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${Kart.calculTotalPrice().kartProductPrice.toFixed(2)} €</span>
+          <span>${price.kartProductPrice.toFixed(2)} €</span>
         </div>
       </div>
 
@@ -286,7 +295,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${Kart.calculTotalPrice().totalPrice.toFixed(2)} €</span>
+          <span>${price.totalPrice.toFixed(2)} €</span>
         </div>
       </div>
       <hr>
@@ -321,9 +330,11 @@ class Kart {
    *
    * @param {*} item
    */
-  static RenderModal(item, qte) {
+  static async RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
-    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const price = await Kart.calculTotalPrice();
+    const fraisDivers = localStorage.getItem("fraisDivers");
+    console.log(fraisDivers);
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
@@ -339,7 +350,7 @@ class Kart {
             <h5>Il y a ${Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
-                <span class="sous-total-montant">${Kart.calculTotalPrice().kartProductPrice.toFixed(
+                <span class="sous-total-montant">${price.kartProductPrice.toFixed(
                   2
                 )} €</span>
             </div>
@@ -355,7 +366,7 @@ class Kart {
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
-                <span class="total-montant">${Kart.calculTotalPrice().totalPrice.toFixed(
+                <span class="total-montant">${price.totalPrice.toFixed(
                   2
                 )} €</span>
             </div>

@@ -146,8 +146,7 @@ router.delete("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
   const { pro_id, action } = req.body;
-  // const pan_id = req.session.panierId;
-  const pan_id = 1;
+  const pan_id = req.session.panierId;
   try {
     let panierDetail = await Panier_detail.findOne({
       where: {
@@ -162,7 +161,6 @@ router.put("/", async (req, res) => {
       ],
       where: { pro_id },
     });
-
     if (quantite) {
       const qteDispo = quantite[0].getDataValue("qteTotal");
       const newQuantite =
