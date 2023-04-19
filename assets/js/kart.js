@@ -50,9 +50,11 @@ class Kart {
    * recuperer le nombre d'artcile au panier
    * @returns Numeric
    */
-  static getItemNumber() {
-    let storedITems = Kart.getParsedBasket();
+  static async getItemNumber() {
+    const userStatut = await Kart.getUserStatut();
     let quantity = 0;
+    if (userStatut == false) return quantity;
+    let storedITems = await Kart.getAllPanierDetails();
     storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
@@ -193,7 +195,7 @@ class Kart {
       ? (storedITems[produitPositionInArray].pad_qte += 1)
       : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
-    return   panierDetail.data.pad_qte;
+    return panierDetail.data.pad_qte;
   }
 
   /**
@@ -218,6 +220,12 @@ class Kart {
    * Affiche les items du panier
    */
   static async kartRenderItems() {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false) {
+      document.querySelector("#offcnvas-kart").style.display = "none";
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    }
+
     let kartItemsElement = document.querySelector(".kart-items");
     const fraisDivers = await Kart.addFraisDivers();
     const price = await Kart.calculTotalPrice();
