@@ -17,8 +17,11 @@
 
                 <div class="content" id="info-content">
                     <% if (locals.user) { %>
-                     <h2>Vous êtes déjà connecté </h2>
-                     <a href="/mon-compte/logout">déconnexion</a>
+                     <div class="user-are-loged-in">
+                        <p>Vous êtes déjà connecté étant que : <%= locals.user.cli_nom %> </p>
+                        <p>Ce n'est pas vous? <a href="/mon-compte/logout">déconnexion</a></p>
+                        <p>Si vous vous déconnectez maintenant, votre panier sera vidé.</p>
+                     </div>
                      <div class="button">
                         <button class="btn_info_client_connected">Continuer</button>
                     </div>
