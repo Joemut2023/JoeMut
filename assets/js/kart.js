@@ -222,7 +222,7 @@ class Kart {
   static async kartRenderItems() {
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false) {
-      document.querySelector(".offcanvas-kart").style.display = "none";
+      document.querySelector(".offcanvas-kart")?.style.display = "none";
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     }
 
