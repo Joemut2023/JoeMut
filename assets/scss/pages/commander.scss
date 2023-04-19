@@ -105,7 +105,8 @@
                                 color: $color-primary;
                             }
                         }
-                        form {
+                        form { 
+                            // ancien design pour adresse => victoire
                             .ckeckbox {
                                 background-color: red;
                             }
@@ -338,6 +339,17 @@
                             }
                         }
                         form {
+                            .row .adresse-elmt{
+                                border: solid 2px $color-primary;
+                                width: 40%;
+                            }
+                            .adresse-actions{
+                                margin-top: 10px;
+                                a{
+                                    text-decoration: none;
+                                    color: $color-primary;
+                                }
+                            }
                             .ckeckbox {
                                 background-color: red;
                             }

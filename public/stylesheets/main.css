@@ -4280,6 +4280,20 @@
   text-decoration: none;
   color: #a0b21f;
 }
+#page-commander .row .bloc-1 .adresses .content .register-form form .row .adresse-elmt,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row .adresse-elmt {
+  border: solid 2px #a0b21f;
+  width: 40%;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions {
+  margin-top: 10px;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions a,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions a {
+  text-decoration: none;
+  color: #a0b21f;
+}
 #page-commander .row .bloc-1 .adresses .content .register-form form .ckeckbox,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .ckeckbox {
   background-color: red;
