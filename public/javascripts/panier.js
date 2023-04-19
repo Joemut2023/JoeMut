@@ -10,17 +10,18 @@ var emptyKartText = document.querySelector("#empty-product-kart");
 var storedITems = Kart.getAllPanierDetails();
 var TotalePrice = 0;
 var RenderKartProduct = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var _storedITems;
     var panierDetailsHtml, btnTrash, btnFinaliser, eventlistner;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
         case 0:
           panierDetailsHtml = "";
-          _context.next = 3;
+          _context4.next = 3;
           return Kart.getAllPanierDetails();
         case 3:
-          storedITems = _context.sent;
-          storedITems.map(function (produit) {
+          storedITems = _context4.sent;
+          (_storedITems = storedITems) === null || _storedITems === void 0 ? void 0 : _storedITems.map(function (produit) {
             panierDetailsHtml += "\n  <div class=\"articles row\">\n    <div class=\"col-md-1 col-sm-1 col-1 id\">".concat(produit.Produit.pro_ref, "</div>\n  <div class=\"col-md-3 col-sm-4 col-4 image\">\n    <span><img src=\"/images/produits/").concat(produit.Produit.Media[0].med_ressource, "\" class=\"img-fluid\" alt=\"\" /></span>\n  </div>\n  <div class=\"col-md-3 col-sm-7 col-7 description\">\n    <div class=\"desc\">\n      <a href=\"/article/").concat(produit.pro_id, "\"><span>").concat(produit.Produit.pro_libelle, "</span></a>\n    </div>\n    <p class=\"price\">").concat(produit.pad_ttc.toFixed(2), " \u20AC</p>\n  </div>\n  <div class=\"col-md-5 col-sm-12 col-12 prices\">\n    <div class=\"row\">\n    <div class=\"hidden col-sm-4 col-3\"></div>\n      <div class=\"col-md-10 col-sm-6 col-7 block-price\">\n        <div class=\"row compteur\">\n          <div class=\"col-md-6 col-sm-6 col-6 qty-btn\">\n            <input type=\"text\" class=\"number-value\" value=\"").concat(produit.pad_qte, "\" />\n            <div class=\"btns\">\n              <button data-id=\"").concat(produit.pro_id, "\" class=\"btn-up\">\n                <span><i class=\"fa-solid fa-chevron-up\"></i></span>\n              </button>\n              <button data-id=\"").concat(produit.pro_id, "\" class=\"btn-down\">\n                <span><i class=\"fa-solid fa-chevron-down\"></i></span>\n              </button>\n            </div>\n          </div>\n          <div class=\"col-md-6 col-sm-6 col-6 prx\">\n            <span>").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n          </div>\n        </div>\n      </div>\n      <div data-id=\"").concat(produit.pro_id, "\" class=\"col-md-2 col-sm-2 col-2 delete\">\n        <span><i  class=\"fa-solid fa-trash\" ></i></span>\n      </div>\n    </div>\n  </div>\n  </div>\n");
           });
           panierDetails.innerHTML = panierDetailsHtml;
@@ -29,32 +30,68 @@ var RenderKartProduct = /*#__PURE__*/function () {
           eventlistner = function eventlistner(callback) {
             var btnTrash = document.querySelectorAll(".delete");
             btnTrash.forEach(function (element) {
-              element.addEventListener("click", function () {
-                var itemId = element.dataset.id;
-                Kart.removeItem(itemId);
-                TotalPricesProducts();
-                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-                callback();
-                if (storedITems.length == 0) {
-                  emptyKartText.style.display = "block";
-                  btnFinaliser.disabled = true;
-                  btnFinaliser.classList.add("btn-enabled");
-                }
-              });
+              element.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                var itemId;
+                return _regeneratorRuntime().wrap(function _callee$(_context) {
+                  while (1) switch (_context.prev = _context.next) {
+                    case 0:
+                      itemId = element.dataset.id;
+                      _context.next = 3;
+                      return Kart.removeItem(itemId);
+                    case 3:
+                      TotalPricesProducts();
+                      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                      callback();
+                      if (storedITems.length == 0) {
+                        emptyKartText.style.display = "block";
+                        btnFinaliser.disabled = true;
+                        btnFinaliser.classList.add("btn-enabled");
+                      }
+                    case 7:
+                    case "end":
+                      return _context.stop();
+                  }
+                }, _callee);
+              })));
             });
           };
           btnTrash.forEach(function (element) {
-            element.addEventListener("click", function () {
-              TotalPricesProducts;
-              var itemId = element.dataset.id;
-              Kart.removeItem(itemId);
-              TotalPricesProducts();
-              document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-              RenderKartProduct();
-              eventlistner(function () {
-                RenderKartProduct();
-              });
-            });
+            element.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+              var itemId;
+              return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                while (1) switch (_context3.prev = _context3.next) {
+                  case 0:
+                    TotalPricesProducts;
+                    itemId = element.dataset.id;
+                    _context3.next = 4;
+                    return Kart.removeItem(itemId);
+                  case 4:
+                    TotalPricesProducts();
+                    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                    _context3.next = 8;
+                    return RenderKartProduct();
+                  case 8:
+                    eventlistner( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                        while (1) switch (_context2.prev = _context2.next) {
+                          case 0:
+                            _context2.next = 2;
+                            return Kart.removeItem(itemId);
+                          case 2:
+                            _context2.next = 4;
+                            return RenderKartProduct();
+                          case 4:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }, _callee2);
+                    })));
+                  case 9:
+                  case "end":
+                    return _context3.stop();
+                }
+              }, _callee3);
+            })));
           });
           if (storedITems.length == 0) {
             emptyKartText.style.display = "block";
@@ -63,31 +100,100 @@ var RenderKartProduct = /*#__PURE__*/function () {
           }
         case 11:
         case "end":
-          return _context.stop();
+          return _context4.stop();
       }
-    }, _callee);
+    }, _callee4);
   }));
   return function RenderKartProduct() {
     return _ref.apply(this, arguments);
   };
 }();
-RenderKartProduct();
-var btns_up = document.querySelectorAll(".btn-up");
-var btns_down = document.querySelectorAll(".btn-down");
+_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  var btns_up, btns_down;
+  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+    while (1) switch (_context7.prev = _context7.next) {
+      case 0:
+        _context7.next = 2;
+        return RenderKartProduct();
+      case 2:
+        btns_up = document.querySelectorAll(".btn-up");
+        btns_down = document.querySelectorAll(".btn-down");
+        btns_up.forEach(function (element) {
+          element.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+            var itemId, compteur, qte;
+            return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+              while (1) switch (_context5.prev = _context5.next) {
+                case 0:
+                  itemId = element.dataset.id;
+                  compteur = element.parentNode.parentNode.children[0].value;
+                  compteur = isNaN(compteur) ? 1 : compteur;
+                  compteur++;
+                  _context5.next = 6;
+                  return Kart.updateItemQuantity(itemId, "up");
+                case 6:
+                  qte = _context5.sent;
+                  console.log(qte);
+                  element.parentNode.parentNode.children[0].value = qte;
+                  TotalPricesProducts();
+                  document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                case 11:
+                case "end":
+                  return _context5.stop();
+              }
+            }, _callee5);
+          })));
+        });
+        btns_down.forEach(function (element) {
+          element.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+            var itemId, decrement, qte;
+            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+              while (1) switch (_context6.prev = _context6.next) {
+                case 0:
+                  itemId = element.dataset.id;
+                  decrement = element.parentNode.parentNode.children[0].value;
+                  decrement = isNaN(decrement) ? 1 : decrement;
+                  if (!(decrement > 1)) {
+                    _context6.next = 12;
+                    break;
+                  }
+                  decrement--;
+                  _context6.next = 7;
+                  return Kart.updateItemQuantity(itemId, "down");
+                case 7:
+                  qte = _context6.sent;
+                  console.log(qte);
+                  document.querySelector("#cart-item-count").value = qte;
+                  TotalPricesProducts();
+                  Kart.getItemNumber();
+                case 12:
+                  element.parentNode.parentNode.children[0].value = decrement;
+                case 13:
+                case "end":
+                  return _context6.stop();
+              }
+            }, _callee6);
+          })));
+        });
+      case 6:
+      case "end":
+        return _context7.stop();
+    }
+  }, _callee7);
+}))();
 var TotalPricesProducts = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
     var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
         case 0:
-          _context2.next = 2;
+          _context8.next = 2;
           return Kart.getAllPanierDetails();
         case 2:
-          storedITems = _context2.sent;
-          _context2.next = 5;
+          storedITems = _context8.sent;
+          _context8.next = 5;
           return Kart.addFraisDivers();
         case 5:
-          storedFrais = _context2.sent;
+          storedFrais = _context8.sent;
           totalPriceht = 0;
           totalPoductPrice = 0;
           totalQuantity = 0;
@@ -100,12 +206,12 @@ var TotalPricesProducts = /*#__PURE__*/function () {
           PanierPrice.innerHTML = PanierPriceHtml;
         case 13:
         case "end":
-          return _context2.stop();
+          return _context8.stop();
       }
-    }, _callee2);
+    }, _callee8);
   }));
   return function TotalPricesProducts() {
-    return _ref2.apply(this, arguments);
+    return _ref8.apply(this, arguments);
   };
 }();
 TotalPricesProducts();
@@ -119,32 +225,6 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-btns_up.forEach(function (element) {
-  element.addEventListener("click", function () {
-    var itemId = element.dataset.id;
-    var compteur = element.parentNode.parentNode.children[0].value;
-    compteur = isNaN(compteur) ? 1 : compteur;
-    compteur++;
-    element.parentNode.parentNode.children[0].value = compteur;
-    Kart.updateItemQuantity(itemId, true);
-    TotalPricesProducts();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-  });
-});
-btns_down.forEach(function (element) {
-  element.addEventListener("click", function () {
-    var itemId = element.dataset.id;
-    var decrement = element.parentNode.parentNode.children[0].value;
-    decrement = isNaN(decrement) ? 1 : decrement;
-    if (decrement > 1) {
-      decrement--;
-      Kart.updateItemQuantity(itemId, false);
-      TotalPricesProducts();
-      document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-    }
-    element.parentNode.parentNode.children[0].value = decrement;
-  });
-});
 link_parag.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
   code_promo_block.classList.remove("hide-promo");

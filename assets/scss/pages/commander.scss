@@ -105,7 +105,8 @@
                                 color: $color-primary;
                             }
                         }
-                        form {
+                        form { 
+                            // ancien design pour adresse => victoire
                             .ckeckbox {
                                 background-color: red;
                             }
@@ -231,6 +232,26 @@
                         color: white;
                     }
                 }
+                #info-content{
+                    .user-are-loged-in{
+                        p{
+                            font-weight: 400;
+                            font-size: .9375rem;
+                            color: $color-black;
+                            a{
+                                color: $color-primary;
+                                text-decoration: none;
+                                transition: all 300ms;
+                                :hover{
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                        :last-child{
+                            font-size: .9000rem;
+                        }
+                    }
+                }
             }
             .adresses {
                 .big-title {
@@ -318,6 +339,17 @@
                             }
                         }
                         form {
+                            .row .adresse-elmt{
+                                border: solid 2px $color-primary;
+                                width: 40%;
+                            }
+                            .adresse-actions{
+                                margin-top: 10px;
+                                a{
+                                    text-decoration: none;
+                                    color: $color-primary;
+                                }
+                            }
                             .ckeckbox {
                                 background-color: red;
                             }

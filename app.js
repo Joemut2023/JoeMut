@@ -21,11 +21,12 @@ var connexionRouter = require("./routes/connexion");
 var commanderRouter = require("./routes/commander");
 var fraisPortRouter = require("./routes/fraisPort");
 var fraisDossier = require("./routes/fraisDossier");
+var mailRouter = require("./routes/mail");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
 var devisRouter = require("./routes/devis")
-var panierDetailRouter = require('./routes/panierDetail')
+var panierDetailRouter = require("./routes/panierDetail");
 
 const AdminJS = require("adminjs");
 const AdminJSExpress = require("@adminjs/express");
@@ -57,7 +58,7 @@ app.use(
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false,
+    resave: true,
   })
 );
 app.use(cookieParser());
@@ -84,6 +85,7 @@ app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
 app.use("/panierDetail", auth, panierDetailRouter)
+app.use("/mail", mailRouter);
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,
