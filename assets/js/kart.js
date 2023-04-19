@@ -50,9 +50,11 @@ class Kart {
    * recuperer le nombre d'artcile au panier
    * @returns Numeric
    */
-  static getItemNumber() {
-    let storedITems = Kart.getParsedBasket();
+  static async getItemNumber() {
+    const userStatut = await Kart.getUserStatut();
     let quantity = 0;
+    let storedITems = await Kart.getAllPanierDetails();
+    if (userStatut == false || storedITems.length == 0) return quantity;
     storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
@@ -126,12 +128,12 @@ class Kart {
             }
             localStorage.setItem("storedItems", JSON.stringify(storedITems));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           } else {
             Kart.items.push(itemForPanier);
             localStorage.setItem("storedItems", JSON.stringify(Kart.items));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           }
         });
     } catch (error) {
@@ -165,9 +167,9 @@ class Kart {
             "X-Requested-With": "XMLHttpRequest",
           },
         })
-        .then(() => {
+        .then(async () => {
           document.querySelector("#cart-item-count").innerHTML =
-            Kart.getItemNumber();
+            await Kart.getItemNumber();
           Kart.kartRenderItems();
         });
     }
@@ -193,7 +195,7 @@ class Kart {
       ? (storedITems[produitPositionInArray].pad_qte += 1)
       : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
-    return   panierDetail.data.pad_qte;
+    return panierDetail.data.pad_qte;
   }
 
   /**
@@ -218,6 +220,12 @@ class Kart {
    * Affiche les items du panier
    */
   static async kartRenderItems() {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false) {
+      document.querySelector(".offcanvas-kart").style.display = "none";
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    }
+
     let kartItemsElement = document.querySelector(".kart-items");
     const fraisDivers = await Kart.addFraisDivers();
     const price = await Kart.calculTotalPrice();
@@ -333,9 +341,9 @@ class Kart {
   static async RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
     const price = await Kart.calculTotalPrice();
-    const fraisDivers = localStorage.getItem("fraisDivers");
-    let fraisDossier = parseFloat(fraisDivers.frais_dossier);
-    let fraisPort = parseFloat(fraisDivers.frais_port);
+    const fraisDivers = await Kart.addFraisDivers();
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
@@ -355,13 +363,15 @@ class Kart {
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
-                <span class="transport-montant">${fraisPort.toFixed(2)} €</span>
+                <span class="transport-montant">${parseFloat(fraisPort).toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">frais dossier:</span>
-                <span class="transport-montant">${fraisDossier.toFixed(
-                  2
-                )} €</span>
+                <span class="transport-montant">${parseFloat(
+                  fraisDossier
+                ).toFixed(2)} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
