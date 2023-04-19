@@ -91,7 +91,7 @@ router.get("/", async (req, res, next) => {
   const pan_id = req.session.panierId;
 
   try {
-    const Produits = await Panier_detail.findAll({
+    const produits = await Panier_detail.findAll({
       include: [
         {
           model: Produit,
@@ -102,8 +102,8 @@ router.get("/", async (req, res, next) => {
       where: { pan_id },
     });
 
-    if (Produits.length !== 0) return res.status(200).send(Produits);
-    return res.status(200).send("auncun produit disponible");
+    //if (Produits.length !== 0) return res.status(200).send(Produits);
+    return res.status(200).send(produits);
   } catch (error) {
     return res.status(500).json({ error: error });
   }
@@ -120,8 +120,6 @@ router.delete("/", async (req, res) => {
       },
     });
 
-    console.log(oldPanierDetail.pad_id, "request");
-
     const panierDelete = await Panier_detail.destroy({
       where: {
         pad_id: oldPanierDetail.pad_id,
@@ -136,6 +134,32 @@ router.delete("/", async (req, res) => {
     return res.status(202).send("Aucun produit supprimé");
   } catch (error) {
     return res.status(500).json({ error: error });
+  }
+});
+
+router.put("/", async (req, res) => {
+  const { pro_id, action } = req.body;
+  // const pan_id = req.session.panierId;
+  const pan_id = 1;
+  try {
+    const oldPanierDetail = await Panier_detail.findOne({
+      where: {
+        [Op.and]: [{ pro_id }, { pan_id }],
+      },
+    });
+    const newQuantite = action == "increment" ? oldPanierDetail.pad_qte + 1 : ol
+    if (oldPanierDetail)
+      await oldPanierDetail.update(
+        {
+          pad_qte: newQuantite,
+        },
+        { where: { pad_id: oldPanierDetail.pad_id } }
+      );
+    const panierDetail = await oldPanierDetail.increment("pad_qte");
+    console.log(panierDetail);
+    if (panierDetail) return res.status(200).json({ panierDetail });
+  } catch (error) {
+    // return res.status(500).send({ error: error });
   }
 });
 
