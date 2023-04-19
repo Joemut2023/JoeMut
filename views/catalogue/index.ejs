@@ -1,8 +1,8 @@
 <div id="pages-catalogue">
   <div class="group-catalogue">
     <div class="title">
-      <a href="">Accueil</a>
-      <p>/ catalogue</p>
+      <a class="title_accueil" href="">Accueil</a>
+      <a class="title_catalogue" href="/catalogue">/ catalogue</a>
     </div>
     <div class="list">
       <div class="border"></div>
@@ -229,13 +229,15 @@
             />
           </a>
         </div>
+        <div class="bar"></div>
         <div class="detail">
           <a href="/article/<%= produit.pro_id %>">
             <%= produit.pro_libelle%></a
           >
           <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="montant">
-            <div><%= produit.Tarifs[0].tar_ttc %>€</div>
+            <div><%= produit.Tarifs[0].tar_ttc %> €</div>
+            <span>|</span>
             <button
               class="button-ajouter"
               data-id="<%= produit.pro_id %>"
@@ -259,20 +261,20 @@
       <nav>
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=1#pages-catalogue">1</a>
+            <a class="page-link" href="/catalogue?page=1&orderby=<%= orderby %>#pages-catalogue">1</a>
           </li>
           <% if (pageActive === 1 || pageActive ===2) { %>
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=2#pages-catalogue">2</a>
+            <a class="page-link" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=3#pages-catalogue">3</a>
+            <a class="page-link" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
           </li>
           <% } else { %>
           <li class="page-item">
             <a
               class="page-link"
-              href="/catalogue?page=<%= pageActive -1 %>#pages-catalogue"
+              href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue"
               ><%= pageActive-1 %></a
             >
           </li>

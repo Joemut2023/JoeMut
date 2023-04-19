@@ -13,11 +13,38 @@ class Kart {
   }
   /**
    *
+   * @returns Array of all product in panierDetails
+   */
+  static async getAllPanierDetails() {
+    const panier = await axios.get(`${SITE_URL}/panierDetail`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    return panier.data;
+  }
+  /**
+   *
    * @returns Array
    */
-  static getParsedFrais() {
+  static async getUserStatut() {
+    try {
+      const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      return userStatut.data;
+    } catch (error) {}
+  }
+  static async getParsedFrais() {
     return JSON.parse(localStorage.getItem("fraisDivers"));
   }
+
+  /**
+   * recuperer le statut du client
+   * @returns userId or false
+   */
 
   /**
    * recuperer le nombre d'artcile au panier
@@ -26,7 +53,7 @@ class Kart {
   static getItemNumber() {
     let storedITems = Kart.getParsedBasket();
     let quantity = 0;
-    storedITems.forEach((element) => {
+    storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
     return quantity;
@@ -38,28 +65,29 @@ class Kart {
    */
 
   static async addFraisDivers() {
-    let oldFraisDossier = Kart.getParsedFrais();
-    if (oldFraisDossier == null) {
-      let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
+    let fraisPort = await axios.get(`${SITE_URL}/fraisPort`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    let fraisDossier = await axios.get(`${SITE_URL}/fraisDossier`, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
 
-      let fraisDivers = {
-        frais_port: fraisPort.data.frp_ttc,
-        frais_dossier: fraisDossier.data.auf_ttc,
-      };
-      localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
-    }
+    let fraisDivers = {
+      frais_port: fraisPort.data.frp_ttc,
+      frais_dossier: fraisDossier.data.auf_ttc,
+    };
+    localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
+    return fraisDivers;
   }
 
-  static addItem(item, qte = null) {
+  static async addItem(item, qte = null) {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false)
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     let storedITems = JSON.parse(localStorage.getItem("storedItems"));
     let itemForPanier = {
       pro_id: item.pro_id,
@@ -70,45 +98,70 @@ class Kart {
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
     };
-
-    if (storedITems) {
-      let produitFilter = storedITems.filter(
-        (produit) => produit.pro_id == item.pro_id
-      );
-      let produit = produitFilter[0];
-      if (produitFilter.length !== 0) {
-        produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
-        let produitPositionInArray = storedITems.findIndex(
-          (produit) => produit.pro_id === item.pro_id
-        );
-        storedITems[produitPositionInArray] = produit;
-      } else {
-        storedITems.push(itemForPanier);
-      }
-      localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    } else {
-      Kart.items.push(itemForPanier);
-      localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
+    try {
+      axios
+        .post(`${SITE_URL}/panierDetail`, {
+          pro_id: item.pro_id,
+          pad_qte: 1,
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        })
+        .then((res) => {
+          let qte = res.data.panierDetail.pad_qte;
+          Kart.RenderModal(itemForPanier, qte);
+          if (storedITems) {
+            let produitFilter = storedITems.filter(
+              (produit) => produit.pro_id == item.pro_id
+            );
+            let produit = produitFilter[0];
+            if (produitFilter.length !== 0) {
+              produit.pad_qte = produit.pad_qte + itemForPanier.pad_qte;
+              let produitPositionInArray = storedITems.findIndex(
+                (produit) => produit.pro_id === item.pro_id
+              );
+              storedITems[produitPositionInArray] = produit;
+            } else {
+              storedITems.push(itemForPanier);
+            }
+            localStorage.setItem("storedItems", JSON.stringify(storedITems));
+            document.querySelector("#cart-item-count").innerHTML =
+              Kart.getItemNumber();
+          } else {
+            Kart.items.push(itemForPanier);
+            localStorage.setItem("storedItems", JSON.stringify(Kart.items));
+            document.querySelector("#cart-item-count").innerHTML =
+              Kart.getItemNumber();
+          }
+        });
+    } catch (error) {
+      Kart.RenderModal(itemForPanier, qte);
     }
-    Kart.kartRenderItems();
-    Kart.RenderModal(itemForPanier);
   }
   /**
    * Supprime un Item du panier
    * @param {Number} itemId
    */
-  static removeItem(itemId) {
+  static async removeItem(itemId) {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false)
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     let storedITems = Kart.getParsedBasket();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
     );
     storedITems.splice(produitPositionInArray, 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    const pro_id = parseInt(itemId);
+    await axios.delete(`${SITE_URL}/panierDetail`, {
+      data: {
+        pro_id,
+      },
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
     Kart.kartRenderItems();
   }
 
@@ -148,26 +201,28 @@ class Kart {
   /**
    * Affiche les items du panier
    */
-  static kartRenderItems() {
+  static async kartRenderItems() {
     let kartItemsElement = document.querySelector(".kart-items");
-    const fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
+    const fraisDivers = await Kart.addFraisDivers();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
-    let storedITems = Kart.getParsedBasket();
+    let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    storedITems?.map((produit) => {
+    panierDetail?.map((produit) => {
       kartProductQte = produit.pad_qte + kartProductQte;
 
       storedItemsHtml += `
             <div>
                 <div class="kart-item">
                     <div class="kart-img">
-                        <img src="/images/produits/${produit.media}" alt="">
+                        <img src="/images/produits/${
+                          produit.Produit.Media[0].med_ressource
+                        }" alt="">
                     </div>
                     <div class="kart-content">
                         <a href="/article/${produit.pro_id}">${
-        produit.pro_libelle
+        produit.Produit.pro_libelle
       }</a>
                         <div class="actions">
                             <span class="price">${
@@ -253,23 +308,18 @@ class Kart {
    *
    * @param {*} item
    */
-  static RenderModal(item) {
+  static RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
     let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
-    let produitFilter = storedITems.filter(
-      (produit) => produit.pro_id == item.pro_id
-    );
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${item.pad_ttc.toFixed(2)}€</div>
-            <div class="product-quantity">Quantité : <span> ${
-              produitFilter[0].pad_qte
-            } </span></div>
+            <div class="product-quantity">Quantité : <span> ${qte} </span></div>
             </div>
         </div>
         <div class="modal-body-commande">
