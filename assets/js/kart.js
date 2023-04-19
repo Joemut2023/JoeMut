@@ -193,7 +193,7 @@ class Kart {
       ? (storedITems[produitPositionInArray].pad_qte += 1)
       : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
-    return panierDetail.pad_qte;
+    return   panierDetail.data.pad_qte;
   }
 
   /**
@@ -334,7 +334,6 @@ class Kart {
     let storedITems = Kart.getParsedBasket();
     const price = await Kart.calculTotalPrice();
     const fraisDivers = localStorage.getItem("fraisDivers");
-    console.log(fraisDivers);
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
