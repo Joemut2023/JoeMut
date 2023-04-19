@@ -56,7 +56,7 @@ app.use(
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false,
+    resave: true,
   })
 );
 app.use(cookieParser());
