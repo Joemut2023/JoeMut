@@ -53,8 +53,8 @@ class Kart {
   static async getItemNumber() {
     const userStatut = await Kart.getUserStatut();
     let quantity = 0;
-    if (userStatut == false) return quantity;
     let storedITems = await Kart.getAllPanierDetails();
+    if (userStatut == false || storedITems.length == 0) return quantity;
     storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
@@ -128,12 +128,12 @@ class Kart {
             }
             localStorage.setItem("storedItems", JSON.stringify(storedITems));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           } else {
             Kart.items.push(itemForPanier);
             localStorage.setItem("storedItems", JSON.stringify(Kart.items));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           }
         });
     } catch (error) {
@@ -167,9 +167,9 @@ class Kart {
             "X-Requested-With": "XMLHttpRequest",
           },
         })
-        .then(() => {
+        .then(async () => {
           document.querySelector("#cart-item-count").innerHTML =
-            Kart.getItemNumber();
+            await Kart.getItemNumber();
           Kart.kartRenderItems();
         });
     }
@@ -222,7 +222,7 @@ class Kart {
   static async kartRenderItems() {
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false) {
-      document.querySelector("#offcnvas-kart").style.display = "none";
+      document.querySelector(".offcanvas-kart").style.display = "none";
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     }
 
@@ -341,9 +341,9 @@ class Kart {
   static async RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
     const price = await Kart.calculTotalPrice();
-    const fraisDivers = localStorage.getItem("fraisDivers");
-    let fraisDossier = parseFloat(fraisDivers.frais_dossier);
-    let fraisPort = parseFloat(fraisDivers.frais_port);
+    const fraisDivers = await Kart.addFraisDivers();
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
@@ -363,13 +363,15 @@ class Kart {
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
-                <span class="transport-montant">${fraisPort.toFixed(2)} €</span>
+                <span class="transport-montant">${parseFloat(fraisPort).toFixed(
+                  2
+                )} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">frais dossier:</span>
-                <span class="transport-montant">${fraisDossier.toFixed(
-                  2
-                )} €</span>
+                <span class="transport-montant">${parseFloat(
+                  fraisDossier
+                ).toFixed(2)} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>

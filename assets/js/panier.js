@@ -84,7 +84,7 @@ const RenderKartProduct = async () => {
       await Kart.removeItem(itemId);
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
+        await Kart.getItemNumber();
       await RenderKartProduct();
       eventlistner(async () => {
         await Kart.removeItem(itemId);
@@ -110,13 +110,13 @@ const RenderKartProduct = async () => {
       let compteur = element.parentNode.parentNode.children[0].value;
       compteur = isNaN(compteur) ? 1 : compteur;
       compteur++;
-     
+
       const qte = await Kart.updateItemQuantity(itemId, "up");
       console.log(qte);
-      element.parentNode.parentNode.children[0].value =  qte;
+      element.parentNode.parentNode.children[0].value = qte;
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
+      await  Kart.getItemNumber();
     });
   });
 
@@ -128,11 +128,11 @@ const RenderKartProduct = async () => {
       decrement = isNaN(decrement) ? 1 : decrement;
       if (decrement > 1) {
         decrement--;
-        const qte =  await Kart.updateItemQuantity(itemId, "down");
+        const qte = await Kart.updateItemQuantity(itemId, "down");
         console.log(qte);
-        document.querySelector("#cart-item-count").value = qte
+        document.querySelector("#cart-item-count").value = qte;
         TotalPricesProducts();
-          Kart.getItemNumber();
+        
       }
       element.parentNode.parentNode.children[0].value = decrement;
     });
