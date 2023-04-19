@@ -354,7 +354,7 @@ class Kart {
             </div>
         </div>
         <div class="modal-body-commande">
-            <h5>Il y a ${Kart.getItemNumber()} articles dans votre panier.</h5>
+            <h5>Il y a ${await Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
                 <span class="sous-total-montant">${price.kartProductPrice.toFixed(
