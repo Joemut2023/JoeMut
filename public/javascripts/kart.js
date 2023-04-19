@@ -476,26 +476,25 @@ var Kart = /*#__PURE__*/function () {
             case 2:
               userStatut = _context12.sent;
               if (!(userStatut == false)) {
-                _context12.next = 6;
+                _context12.next = 5;
                 break;
               }
-              document.querySelector(".offcanvas-kart").style.display = "none";
               return _context12.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
-            case 6:
+            case 5:
               kartItemsElement = document.querySelector(".kart-items");
-              _context12.next = 9;
+              _context12.next = 8;
               return Kart.addFraisDivers();
-            case 9:
+            case 8:
               fraisDivers = _context12.sent;
-              _context12.next = 12;
+              _context12.next = 11;
               return Kart.calculTotalPrice();
-            case 12:
+            case 11:
               price = _context12.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context12.next = 17;
+              _context12.next = 16;
               return Kart.getAllPanierDetails();
-            case 17:
+            case 16:
               panierDetail = _context12.sent;
               storedItemsHtml = "";
               kartProductQte = 0;
@@ -521,7 +520,7 @@ var Kart = /*#__PURE__*/function () {
                   document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
                 });
               });
-            case 25:
+            case 24:
             case "end":
               return _context12.stop();
           }
