@@ -18,12 +18,9 @@ const handler = (entries) => {
 const observer = new window.IntersectionObserver(handler);
 // give the observer some dom nodes to keep an eye on
 observer.observe(topBar);
-document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
 
 document
   .querySelector("#kart-link-handler-btn")
   .addEventListener("click", (e) => {
     Kart.kartRenderItems();
   });
-
-Kart.addFraisDivers();

@@ -67,10 +67,13 @@ var RenderKartProduct = /*#__PURE__*/function () {
                     return Kart.removeItem(itemId);
                   case 4:
                     TotalPricesProducts();
-                    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-                    _context3.next = 8;
+                    _context3.next = 7;
+                    return Kart.getItemNumber();
+                  case 7:
+                    document.querySelector("#cart-item-count").innerHTML = _context3.sent;
+                    _context3.next = 10;
                     return RenderKartProduct();
-                  case 8:
+                  case 10:
                     eventlistner( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
                       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                         while (1) switch (_context2.prev = _context2.next) {
@@ -86,7 +89,7 @@ var RenderKartProduct = /*#__PURE__*/function () {
                         }
                       }, _callee2);
                     })));
-                  case 9:
+                  case 11:
                   case "end":
                     return _context3.stop();
                 }
@@ -135,8 +138,11 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   console.log(qte);
                   element.parentNode.parentNode.children[0].value = qte;
                   TotalPricesProducts();
-                  document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-                case 11:
+                  _context5.next = 12;
+                  return Kart.getItemNumber();
+                case 12:
+                  document.querySelector("#cart-item-count").innerHTML = _context5.sent;
+                case 13:
                 case "end":
                   return _context5.stop();
               }
@@ -153,7 +159,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   decrement = element.parentNode.parentNode.children[0].value;
                   decrement = isNaN(decrement) ? 1 : decrement;
                   if (!(decrement > 1)) {
-                    _context6.next = 12;
+                    _context6.next = 11;
                     break;
                   }
                   decrement--;
@@ -164,10 +170,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   console.log(qte);
                   document.querySelector("#cart-item-count").value = qte;
                   TotalPricesProducts();
-                  Kart.getItemNumber();
-                case 12:
+                case 11:
                   element.parentNode.parentNode.children[0].value = decrement;
-                case 13:
+                case 12:
                 case "end":
                   return _context6.stop();
               }
