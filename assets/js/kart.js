@@ -153,16 +153,20 @@ class Kart {
     storedITems.splice(produitPositionInArray, 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
     const pro_id = parseInt(itemId);
-    await axios.delete(`${SITE_URL}/panierDetail`, {
-      data: {
-        pro_id,
-      },
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-    Kart.kartRenderItems();
+    axios
+      .delete(`${SITE_URL}/panierDetail`, {
+        data: {
+          pro_id,
+        },
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then(() => {
+        document.querySelector("#cart-item-count").innerHTML =
+          Kart.getItemNumber();
+        Kart.kartRenderItems();
+      });
   }
 
   /**
@@ -191,7 +195,7 @@ class Kart {
     let kartProductPrice = 0;
     let totalPrice = 0;
 
-    storedITems.forEach((produit) => {
+    storedITems?.forEach((produit) => {
       kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
       totalPrice = kartProductPrice + fraisDossier + fraisPort;
     });
@@ -209,36 +213,39 @@ class Kart {
     let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    panierDetail?.map((produit) => {
-      kartProductQte = produit.pad_qte + kartProductQte;
+    if (panierDetail.length !== 0) {
+      panierDetail?.map((produit) => {
+        kartProductQte = produit.pad_qte + kartProductQte;
 
-      storedItemsHtml += `
-            <div>
-                <div class="kart-item">
-                    <div class="kart-img">
-                        <img src="/images/produits/${
-                          produit.Produit.Media[0].med_ressource
-                        }" alt="">
-                    </div>
-                    <div class="kart-content">
-                        <a href="/article/${produit.pro_id}">${
-        produit.Produit.pro_libelle
-      }</a>
-                        <div class="actions">
-                            <span class="price">${
-                              produit.pad_qte
-                            } x ${produit.pad_ttc.toFixed(2)} €</span>
-                            <button id="remove-prod" data-id="${
-                              produit.pro_id
-                            }" class="btn-close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            `;
-    });
-    kartItemsElement.innerHTML = storedItemsHtml;
+        storedItemsHtml += `
+              <div>
+                  <div class="kart-item">
+                      <div class="kart-img">
+                          <img src="/images/produits/${
+                            produit.Produit.Media[0].med_ressource
+                          }" alt="">
+                      </div>
+                      <div class="kart-content">
+                          <a href="/article/${produit.pro_id}">${
+          produit.Produit.pro_libelle
+        }</a>
+                          <div class="actions">
+                              <span class="price">${
+                                produit.pad_qte
+                              } x ${produit.pad_ttc.toFixed(2)} €</span>
+                              <button id="remove-prod" data-id="${
+                                produit.pro_id
+                              }" class="btn-close"></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <hr>
+              `;
+      });
+      kartItemsElement.innerHTML = storedItemsHtml;
+    }
+
     let kartInfosData = `
     <div>
     <p id="par-empty-data">Aucun produit dans le chariot.</p>
@@ -295,7 +302,7 @@ class Kart {
     //   ? (document.querySelector("#par-empty-data").style.display = "block")
     //   : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
-    btnRemoveProduct.forEach((item) => {
+    btnRemoveProduct?.forEach((item) => {
       item.addEventListener("click", () => {
         let itemId = item.dataset.id;
         Kart.removeItem(itemId);

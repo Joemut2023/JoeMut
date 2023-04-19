@@ -286,19 +286,18 @@ var Kart = /*#__PURE__*/function () {
               storedITems.splice(produitPositionInArray, 1);
               localStorage.setItem("storedItems", JSON.stringify(storedITems));
               pro_id = parseInt(itemId);
-              _context6.next = 12;
-              return axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
+              axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
                 data: {
                   pro_id: pro_id
                 },
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
+              }).then(function () {
+                document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
+                Kart.kartRenderItems();
               });
-            case 12:
-              document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-              Kart.kartRenderItems();
-            case 14:
+            case 11:
             case "end":
               return _context6.stop();
           }
@@ -336,7 +335,7 @@ var Kart = /*#__PURE__*/function () {
       var fraisPort = parseFloat(fraisDivers.frais_port);
       var kartProductPrice = 0;
       var totalPrice = 0;
-      storedITems.forEach(function (produit) {
+      storedITems === null || storedITems === void 0 ? void 0 : storedITems.forEach(function (produit) {
         kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
         totalPrice = kartProductPrice + fraisDossier + fraisPort;
       });
@@ -370,25 +369,27 @@ var Kart = /*#__PURE__*/function () {
               panierDetail = _context7.sent;
               storedItemsHtml = "";
               kartProductQte = 0;
-              panierDetail === null || panierDetail === void 0 ? void 0 : panierDetail.map(function (produit) {
-                kartProductQte = produit.pad_qte + kartProductQte;
-                storedItemsHtml += "\n            <div>\n                <div class=\"kart-item\">\n                    <div class=\"kart-img\">\n                        <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                    </div>\n                    <div class=\"kart-content\">\n                        <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                        <div class=\"actions\">\n                            <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                            <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <hr>\n            ");
-              });
-              kartItemsElement.innerHTML = storedItemsHtml;
+              if (panierDetail.length !== 0) {
+                panierDetail === null || panierDetail === void 0 ? void 0 : panierDetail.map(function (produit) {
+                  kartProductQte = produit.pad_qte + kartProductQte;
+                  storedItemsHtml += "\n              <div>\n                  <div class=\"kart-item\">\n                      <div class=\"kart-img\">\n                          <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                      </div>\n                      <div class=\"kart-content\">\n                          <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                          <div class=\"actions\">\n                              <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                              <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n              <hr>\n              ");
+                });
+                kartItemsElement.innerHTML = storedItemsHtml;
+              }
               kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(Kart.calculTotalPrice().kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(Kart.calculTotalPrice().totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
               document.querySelector("#kart-infos").innerHTML = kartInfosData;
               // storedITems.length != 0
               //   ? (document.querySelector("#par-empty-data").style.display = "block")
               //   : null;
               btnRemoveProduct = document.querySelectorAll("#remove-prod");
-              btnRemoveProduct.forEach(function (item) {
+              btnRemoveProduct === null || btnRemoveProduct === void 0 ? void 0 : btnRemoveProduct.forEach(function (item) {
                 item.addEventListener("click", function () {
                   var itemId = item.dataset.id;
                   Kart.removeItem(itemId);
                   document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
                 });
               });
-            case 17:
+            case 16:
             case "end":
               return _context7.stop();
           }
