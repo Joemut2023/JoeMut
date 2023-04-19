@@ -7,7 +7,7 @@ let TotalePrice = 0;
 const RenderKartProduct = async () => {
   let panierDetailsHtml = ``;
   storedITems = await Kart.getAllPanierDetails();
-  storedITems.map((produit) => {
+  storedITems?.map((produit) => {
     panierDetailsHtml += `
   <div class="articles row">
     <div class="col-md-1 col-sm-1 col-1 id">${produit.Produit.pro_ref}</div>
@@ -62,9 +62,9 @@ const RenderKartProduct = async () => {
   let eventlistner = (callback) => {
     const btnTrash = document.querySelectorAll(".delete");
     btnTrash.forEach((element) => {
-      element.addEventListener("click", () => {
+      element.addEventListener("click", async () => {
         let itemId = element.dataset.id;
-        Kart.removeItem(itemId);
+        await Kart.removeItem(itemId);
         TotalPricesProducts();
         document.querySelector("#cart-item-count").innerHTML =
           Kart.getItemNumber();
@@ -78,16 +78,17 @@ const RenderKartProduct = async () => {
     });
   };
   btnTrash.forEach((element) => {
-    element.addEventListener("click", () => {
+    element.addEventListener("click", async () => {
       TotalPricesProducts;
       let itemId = element.dataset.id;
-      Kart.removeItem(itemId);
+      await Kart.removeItem(itemId);
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
         Kart.getItemNumber();
-      RenderKartProduct();
-      eventlistner(() => {
-        RenderKartProduct();
+      await RenderKartProduct();
+      eventlistner(async () => {
+        await Kart.removeItem(itemId);
+        await RenderKartProduct();
       });
     });
   });
@@ -99,10 +100,44 @@ const RenderKartProduct = async () => {
   }
 };
 
-RenderKartProduct();
+(async () => {
+  await RenderKartProduct();
+  const btns_up = document.querySelectorAll(".btn-up");
+  const btns_down = document.querySelectorAll(".btn-down");
+  btns_up.forEach((element) => {
+    element.addEventListener("click", async () => {
+      let itemId = element.dataset.id;
+      let compteur = element.parentNode.parentNode.children[0].value;
+      compteur = isNaN(compteur) ? 1 : compteur;
+      compteur++;
+     
+      const qte = await Kart.updateItemQuantity(itemId, "up");
+      console.log(qte);
+      element.parentNode.parentNode.children[0].value =  qte;
+      TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML =
+        Kart.getItemNumber();
+    });
+  });
 
-const btns_up = document.querySelectorAll(".btn-up");
-const btns_down = document.querySelectorAll(".btn-down");
+  btns_down.forEach((element) => {
+    element.addEventListener("click", async () => {
+      let itemId = element.dataset.id;
+      let decrement = element.parentNode.parentNode.children[0].value;
+
+      decrement = isNaN(decrement) ? 1 : decrement;
+      if (decrement > 1) {
+        decrement--;
+        const qte =  await Kart.updateItemQuantity(itemId, "down");
+        console.log(qte);
+        document.querySelector("#cart-item-count").value = qte
+        TotalPricesProducts();
+          Kart.getItemNumber();
+      }
+      element.parentNode.parentNode.children[0].value = decrement;
+    });
+  });
+})();
 
 const TotalPricesProducts = async () => {
   let storedITems = await Kart.getAllPanierDetails();
@@ -172,35 +207,6 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-
-btns_up.forEach((element) => {
-  element.addEventListener("click", () => {
-    let itemId = element.dataset.id;
-    let compteur = element.parentNode.parentNode.children[0].value;
-    compteur = isNaN(compteur) ? 1 : compteur;
-    compteur++;
-    element.parentNode.parentNode.children[0].value = compteur;
-    Kart.updateItemQuantity(itemId, true);
-    TotalPricesProducts();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-  });
-});
-
-btns_down.forEach((element) => {
-  element.addEventListener("click", () => {
-    let itemId = element.dataset.id;
-    let decrement = element.parentNode.parentNode.children[0].value;
-    decrement = isNaN(decrement) ? 1 : decrement;
-    if (decrement > 1) {
-      decrement--;
-      Kart.updateItemQuantity(itemId, false);
-      TotalPricesProducts();
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    }
-    element.parentNode.parentNode.children[0].value = decrement;
-  });
-});
 
 link_parag.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
