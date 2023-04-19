@@ -21,7 +21,14 @@ router.post("/", async (req, res, next) => {
       },
     });
 
-    const quantite = await Quantite.findOne({ where: { pro_id } });
+    const quantite = await Quantite.findAll({
+      attributes: [
+        "qua_nbre",
+        "pro_id",
+        [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
+      ],
+      where: { pro_id },
+    });
     if (oldPanierDetail == null) {
       const promo = await Apply.findOne({
         where: { pro_id },
@@ -54,8 +61,8 @@ router.post("/", async (req, res, next) => {
 
     const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
-    if (quantite !== null) {
-      let quantiteDispo = quantite.qua_nbre;
+    if (quantite) {
+      let quantiteDispo = quantite.quantite[0].getDataValue("qteTotal");
       if (newQuantite > quantiteDispo) {
         return res
           .status(409)
