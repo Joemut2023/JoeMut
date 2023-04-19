@@ -14,6 +14,7 @@ router.get("/", async (req, res, next) => {
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ttc"] },
+
       ],
       where: { pro_libelle: { [Op.substring]: search } },
     });

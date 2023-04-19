@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { Op, and } = require("sequelize");
-const { Panier_detail, Apply, Tarif, Promo, Quantite } = require('../models');
+const { Panier_detail, Apply, Tarif, Promo, Quantite, Media, Produit } = require('../models');
 
 router.post("/", async (req, res, next) => {
     const { pro_id, pad_qte } = req.body;
@@ -76,15 +76,21 @@ router.post("/", async (req, res, next) => {
 
 
 router.get("/", async (req, res, next) => {
-    const pan_id = req.session.panierId;
+    const pan_id = 1
 
     try {
         const Produits = await Panier_detail.findAll({
-            where: { pan_id }
+            include: [
+                { model: Media, attributes: ["med_id", "med_ressource",] },
+                { model: Tarif, attributes: ["tar_ttc"] },
+                { model: Quantite, attributes: ["qua_nbre"] },
+                { model: Produit, attributes: ["pro_libelle", "pro_ref"] },
+            ],
+            where: { pan_id },
         });
 
         res.status(200).json({
-            mesaage: "Produits trouvés",
+            message: "Produits trouvés",
             data: Produits
         })
 
@@ -94,6 +100,8 @@ router.get("/", async (req, res, next) => {
     }
 
 })
+
+
 
 
 router.delete("/", async (req, res) => {
