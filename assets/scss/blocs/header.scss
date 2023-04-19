@@ -9,7 +9,6 @@
         padding-top: 2vh;
         color: $color-white;
         font-weight: 300;
-
         .title-content {
             display: flex;
             flex-direction: row;
@@ -329,16 +328,17 @@
     }
 }
 
-#header-banner {
-    width: 100%;
-    height: auto;
+// #header-banner {
+//     border: 1px solid orangered;
+//     width: 100%;
+//     height: auto;
 
-    #barner-img {
-        position: relative;
-        width: 30%;
-        max-height: 100%;
-    }
-}
+//     #barner-img {
+//         position: relative;
+//         width: 30%;
+//         max-height: 100%;
+//     }
+// }
 
 #details-infos {
     display: flex;
