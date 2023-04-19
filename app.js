@@ -82,12 +82,8 @@ app.use("/confirmation-commande", auth, confirmationCommandeRouter);
 app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
-<<<<<<< HEAD
 app.use("/panierDetail",auth, panierDetailRouter)
 app.use("/mail",mailRouter);
-=======
-app.use("/panierDetail", auth, panierDetailRouter);
->>>>>>> feature/panierdetail
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,
