@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { Op, and } = require("sequelize");
+const { Op, and, Sequelize } = require("sequelize");
 const {
   Panier_detail,
   Apply,
@@ -142,24 +142,45 @@ router.put("/", async (req, res) => {
   // const pan_id = req.session.panierId;
   const pan_id = 1;
   try {
-    const oldPanierDetail = await Panier_detail.findOne({
+    let panierDetail = await Panier_detail.findOne({
       where: {
         [Op.and]: [{ pro_id }, { pan_id }],
       },
     });
-    const newQuantite = action == "increment" ? oldPanierDetail.pad_qte + 1 : ol
-    if (oldPanierDetail)
-      await oldPanierDetail.update(
-        {
-          pad_qte: newQuantite,
-        },
-        { where: { pad_id: oldPanierDetail.pad_id } }
-      );
-    const panierDetail = await oldPanierDetail.increment("pad_qte");
-    console.log(panierDetail);
-    if (panierDetail) return res.status(200).json({ panierDetail });
+    const quantite = await Quantite.findAll({
+      attributes: [
+        "qua_nbre",
+        "pro_id",
+        [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
+      ],
+      where: { pro_id },
+    });
+
+    if (quantite) {
+      const qteDispo = quantite[0].getDataValue("qteTotal");
+      const newQuantite =
+        action == "up" ? panierDetail.pad_qte + 1 : panierDetail.pad_qte - 1;
+      if (qteDispo >= newQuantite) {
+        const newpanierDetail = await panierDetail.update(
+          {
+            pad_qte: newQuantite,
+          },
+          { where: { pad_id: panierDetail.pad_id } }
+        );
+        if (newpanierDetail[0] == 1) {
+          panierDetail = await Panier_detail.findOne({
+            where: {
+              [Op.and]: [{ pro_id }, { pan_id }],
+            },
+          });
+          return res.status(200).json({ panierDetail });
+        }
+      }
+    }
+    return res.status(200).json(panierDetail);
   } catch (error) {
-    // return res.status(500).send({ error: error });
+    console.log(error);
+    return res.status(500).send({ error: error });
   }
 });
 
