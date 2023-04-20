@@ -54,6 +54,8 @@
 #bloc-header .top-bar .social-link .fa-facebook,
 #bloc-header .top-bar .social-link .fa-instagram {
   color: #fff;
+  width: 23px;
+  margin-top: -2px;
 }
 #bloc-header .top-bar .social-link .fa-facebook:hover,
 #bloc-header .top-bar .social-link .fa-instagram:hover {
