@@ -21,12 +21,16 @@ router.post("/", async (req, res, next) => {
       },
     });
 
-    const quantite = await Quantite.findAll({
-      attributes: [
-        "qua_nbre",
-        "pro_id",
-        [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
-      ],
+    // const quantite = await Quantite.findAll({
+    //   attributes: [
+    //     "qua_nbre",
+    //     "pro_id",
+    //     [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
+    //   ],
+    //   where: { pro_id },
+    // });
+
+    const quantite = await Quantite.sum('qua_nbre',{
       where: { pro_id },
     });
     if (oldPanierDetail == null) {
@@ -62,8 +66,8 @@ router.post("/", async (req, res, next) => {
     const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
     if (quantite) {
-      let quantiteDispo = quantite.quantite[0].getDataValue("qteTotal");
-      if (newQuantite > quantiteDispo) {
+      
+      if (newQuantite > quantite) {
         return res
           .status(409)
           .send(
@@ -90,6 +94,7 @@ router.post("/", async (req, res, next) => {
 
     return res.status(404).send("aucun produit ajouté");
   } catch (error) {
+    //console.log(error);
     res.status(500).json({ error: error });
   }
 });
@@ -112,6 +117,7 @@ router.get("/", async (req, res, next) => {
     //if (Produits.length !== 0) return res.status(200).send(Produits);
     return res.status(200).send(produits);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: error });
   }
 });
