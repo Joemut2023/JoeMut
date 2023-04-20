@@ -6,22 +6,27 @@ const {
   Panier,
   Commande,
   Panier_detail,
+  Autre_frais
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
 const user_login = require("../helpers/user_login");
+const {Op} = require('sequelize');
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
   let userId = req.session.userId;
   let { newadress } = req.query;
-  if (newadress) {
-    return res.render("commander/index");
-  }
+  
   try {
     const mode_livraisons = await Frais_port.findAll({
       where: { frp_actif: true },
     });
+    if (newadress) {
+      return res.render("commander/index",{
+        mode_livraisons: mode_livraisons,
+      });
+    }
     if (userId) {
       const adresses = await Adresse.findAll({
         where: {
@@ -62,6 +67,19 @@ router.post("/", async (req, res) => {
     let adress_item = await Adresse.findByPk(parseInt(adresse));
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
+    let today = new Date();
+    const sum = await Autre_frais.sum('auf_ttc', {
+      where: {
+        auf_actif: true,
+        auf_debut: {
+          [Op.lte]: today
+        },
+        auf_fin: {
+          [Op.gte]: today
+        }
+      },
+      attributes: []
+    });
     let commande_item = await Commande.create({
       frp_id: frais.frp_id,
       cli_id: userId,
@@ -74,7 +92,7 @@ router.post("/", async (req, res) => {
       com_ht: somme_ht,
       com_ttc: somme_ttc,
       com_port: frais.frais_port,
-      // com_frais:frais.frais_dossier
+      com_frais:sum
     });
     // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
     let new_panier = await Panier.create({

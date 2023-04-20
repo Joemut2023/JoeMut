@@ -247,16 +247,24 @@ var Kart = /*#__PURE__*/function () {
                 }
               }).then( /*#__PURE__*/function () {
                 var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(res) {
-                  var qte, produitFilter, produit, produitPositionInArray;
+                  var qte, myModal, produitFilter, produit, produitPositionInArray;
                   return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                     while (1) switch (_context6.prev = _context6.next) {
                       case 0:
+                        if (!(res.data == "indisponible")) {
+                          _context6.next = 2;
+                          break;
+                        }
+                        return _context6.abrupt("return", Kart.RenderMaxQteModal());
+                      case 2:
                         qte = res.data.panierDetail.pad_qte;
-                        _context6.next = 3;
+                        _context6.next = 5;
                         return Kart.RenderModal(itemForPanier, qte);
-                      case 3:
+                      case 5:
+                        myModal = document.getElementById("myModal"); //
+                        myModal.style.display = "flex";
                         if (!storedITems) {
-                          _context6.next = 13;
+                          _context6.next = 17;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -273,20 +281,20 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 10;
+                        _context6.next = 14;
                         return Kart.getItemNumber();
-                      case 10:
+                      case 14:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 18;
+                        _context6.next = 22;
                         break;
-                      case 13:
+                      case 17:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 17;
+                        _context6.next = 21;
                         return Kart.getItemNumber();
-                      case 17:
+                      case 21:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                      case 18:
+                      case 22:
                       case "end":
                         return _context6.stop();
                     }
@@ -322,20 +330,44 @@ var Kart = /*#__PURE__*/function () {
     key: "removeItem",
     value: function () {
       var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(itemId) {
-        var userStatut, storedITems, produitPositionInArray, pro_id;
+        var userStatut, pro_id, storedITems, produitPositionInArray;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
           while (1) switch (_context9.prev = _context9.next) {
             case 0:
-              _context9.next = 2;
+              console.log(itemId);
+              _context9.next = 3;
               return Kart.getUserStatut();
-            case 2:
+            case 3:
               userStatut = _context9.sent;
               if (!(userStatut == false)) {
-                _context9.next = 5;
+                _context9.next = 6;
                 break;
               }
               return _context9.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
-            case 5:
+            case 6:
+              pro_id = parseInt(itemId);
+              axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
+                data: {
+                  pro_id: pro_id
+                },
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              }).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+                return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+                  while (1) switch (_context8.prev = _context8.next) {
+                    case 0:
+                      _context8.next = 2;
+                      return Kart.getItemNumber();
+                    case 2:
+                      document.querySelector("#cart-item-count").innerHTML = _context8.sent;
+                      Kart.kartRenderItems();
+                    case 4:
+                    case "end":
+                      return _context8.stop();
+                  }
+                }, _callee8);
+              })));
               storedITems = Kart.getParsedBasket();
               if (storedITems.length > 0) {
                 produitPositionInArray = storedITems.findIndex(function (produit) {
@@ -343,31 +375,8 @@ var Kart = /*#__PURE__*/function () {
                 });
                 storedITems.splice(produitPositionInArray, 1);
                 localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                pro_id = parseInt(itemId);
-                axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
-                  data: {
-                    pro_id: pro_id
-                  },
-                  headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                  }
-                }).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-                  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-                    while (1) switch (_context8.prev = _context8.next) {
-                      case 0:
-                        _context8.next = 2;
-                        return Kart.getItemNumber();
-                      case 2:
-                        document.querySelector("#cart-item-count").innerHTML = _context8.sent;
-                        Kart.kartRenderItems();
-                      case 4:
-                      case "end":
-                        return _context8.stop();
-                    }
-                  }, _callee8);
-                })));
               }
-            case 7:
+            case 10:
             case "end":
               return _context9.stop();
           }
@@ -467,7 +476,7 @@ var Kart = /*#__PURE__*/function () {
     key: "kartRenderItems",
     value: function () {
       var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-        var userStatut, kartItemsElement, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
+        var userStatut, kartItemsElement, kartLoader, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
         return _regeneratorRuntime().wrap(function _callee12$(_context12) {
           while (1) switch (_context12.prev = _context12.next) {
             case 0:
@@ -482,19 +491,20 @@ var Kart = /*#__PURE__*/function () {
               return _context12.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               kartItemsElement = document.querySelector(".kart-items");
-              _context12.next = 8;
+              kartLoader = document.querySelector(".kart-loader");
+              _context12.next = 9;
               return Kart.addFraisDivers();
-            case 8:
+            case 9:
               fraisDivers = _context12.sent;
-              _context12.next = 11;
+              _context12.next = 12;
               return Kart.calculTotalPrice();
-            case 11:
+            case 12:
               price = _context12.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context12.next = 16;
+              _context12.next = 17;
               return Kart.getAllPanierDetails();
-            case 16:
+            case 17:
               panierDetail = _context12.sent;
               storedItemsHtml = "";
               kartProductQte = 0;
@@ -503,6 +513,7 @@ var Kart = /*#__PURE__*/function () {
                   kartProductQte = produit.pad_qte + kartProductQte;
                   storedItemsHtml += "\n              <div>\n                  <div class=\"kart-item\">\n                      <div class=\"kart-img\">\n                          <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                      </div>\n                      <div class=\"kart-content\">\n                          <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                          <div class=\"actions\">\n                              <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                              <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n              <hr>\n              ");
                 });
+                kartLoader.style.display = kartItemsElement.innerHTML ? "none" : "block";
                 kartItemsElement.innerHTML = storedItemsHtml;
               } else {
                 kartItemsElement.innerHTML = "";
@@ -520,7 +531,7 @@ var Kart = /*#__PURE__*/function () {
                   document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
                 });
               });
-            case 24:
+            case 25:
             case "end":
               return _context12.stop();
           }
@@ -571,6 +582,38 @@ var Kart = /*#__PURE__*/function () {
         return _RenderModal.apply(this, arguments);
       }
       return RenderModal;
+    }()
+  }, {
+    key: "RenderMaxQteModal",
+    value: function () {
+      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        var storedITems, price, fraisDivers, fraisDossier, fraisPort, html;
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) switch (_context14.prev = _context14.next) {
+            case 0:
+              storedITems = Kart.getParsedBasket(); // document.querySelector(".body-modal-detail").style.display = "none";
+              _context14.next = 3;
+              return Kart.calculTotalPrice();
+            case 3:
+              price = _context14.sent;
+              _context14.next = 6;
+              return Kart.addFraisDivers();
+            case 6:
+              fraisDivers = _context14.sent;
+              fraisDossier = parseFloat(fraisDivers.frais_dossier);
+              fraisPort = parseFloat(fraisDivers.frais_port);
+              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
+              document.querySelector("#myModal .body-modal").innerHTML = html;
+            case 11:
+            case "end":
+              return _context14.stop();
+          }
+        }, _callee14);
+      }));
+      function RenderMaxQteModal() {
+        return _RenderMaxQteModal.apply(this, arguments);
+      }
+      return RenderMaxQteModal;
     }()
   }]);
   return Kart;

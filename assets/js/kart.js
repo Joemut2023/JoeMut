@@ -110,8 +110,12 @@ class Kart {
           },
         })
         .then(async (res) => {
+          if (res.data == "indisponible") return Kart.RenderMaxQteModal();
           let qte = res.data.panierDetail.pad_qte;
           await Kart.RenderModal(itemForPanier, qte);
+          const myModal = document.getElementById("myModal");
+          //
+          myModal.style.display = "flex";
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -145,33 +149,32 @@ class Kart {
    * @param {Number} itemId
    */
   static async removeItem(itemId) {
+    console.log(itemId);
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    const pro_id = parseInt(itemId);
+    axios
+      .delete(`${SITE_URL}/panierDetail`, {
+        data: {
+          pro_id,
+        },
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then(async () => {
+        document.querySelector("#cart-item-count").innerHTML =
+          await Kart.getItemNumber();
+        Kart.kartRenderItems();
+      });
     let storedITems = Kart.getParsedBasket();
     if (storedITems.length > 0) {
       let produitPositionInArray = storedITems.findIndex(
         (produit) => produit.pro_id == itemId
       );
-
       storedITems.splice(produitPositionInArray, 1);
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      const pro_id = parseInt(itemId);
-
-      axios
-        .delete(`${SITE_URL}/panierDetail`, {
-          data: {
-            pro_id,
-          },
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        })
-        .then(async () => {
-          document.querySelector("#cart-item-count").innerHTML =
-            await Kart.getItemNumber();
-          Kart.kartRenderItems();
-        });
     }
   }
 
@@ -226,6 +229,7 @@ class Kart {
     }
 
     let kartItemsElement = document.querySelector(".kart-items");
+    let kartLoader = document.querySelector(".kart-loader");
     const fraisDivers = await Kart.addFraisDivers();
     const price = await Kart.calculTotalPrice();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
@@ -263,6 +267,7 @@ class Kart {
               <hr>
               `;
       });
+      kartLoader.style.display = kartItemsElement.innerHTML ? "none" : "block";
       kartItemsElement.innerHTML = storedItemsHtml;
     } else {
       kartItemsElement.innerHTML = ``;
@@ -385,6 +390,20 @@ class Kart {
                     <span>Finaliser le devis</span>
                 </a>
             </div>
+        </div>
+        `;
+    document.querySelector("#myModal .body-modal").innerHTML = html;
+  }
+  static async RenderMaxQteModal() {
+    let storedITems = Kart.getParsedBasket();
+    // document.querySelector(".body-modal-detail").style.display = "none";
+    const price = await Kart.calculTotalPrice();
+    const fraisDivers = await Kart.addFraisDivers();
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
+    let html = /*html*/ `
+        <div class="modal-body-commande">
+            <h5>Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
         </div>
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;

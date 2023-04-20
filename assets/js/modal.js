@@ -15,8 +15,8 @@ btn_add.forEach((element) => {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    Kart.addItem(produit.data);
-    myModal.style.display = "flex";
+   await Kart.addItem(produit.data);
+   // myModal.style.display = "flex";
   });
 });
 btn_continuer.forEach((element) => {
