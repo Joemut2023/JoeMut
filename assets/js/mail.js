@@ -10,7 +10,8 @@ sender.addEventListener("click", async function () {
       "X-Requested-With": "XMLHttpRequest",
     },
   });
-  window.location.href = `${SITE_URL}/mon-compte`
+  // window.location.href = `${SITE_URL}/mon-compte`
+  console.log('ok')
 
  
 });

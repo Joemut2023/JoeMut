@@ -1,83 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-        
-    </style>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="x-apple-disable-message-reformatting"/>
+    <title></title>
   </head>
   <body>
-    <div id="mail">
-        <h1><%= name %></h1>
-      <div class="entete">
-        <img src="/images/logo.png" alt="" srcset="" />
+    <div id="mail" style="width: 100%;">
+      <div class="entete" style="width: 100%;">
+        <img src="http://aes.wcg-rdc.tech/images/logo.png" alt="" srcset="" style="width: 15%; margin: auto;display: inherit;">
       </div>
-      <div class="salutation">
-        <h4>Bonjour Blaise KINALI</h4>
-        <p>
+      <div style="width:100%;padding: 40px 35px 0 35px;">
+        <h4 style="font-weight:700;font-size:22px;">Bonjour <%= commande.Client.cli_nom %></h4>
+        <p style="font-size: 18px;">
           Merci d'avoir effectué votre devis en ligne sur
-          <span>AIGUILLES EN SCENE</span>
+          <span style="font-weight: 700;">AIGUILLES EN SCENE</span>
         </p>
       </div>
-      <div class="adresse">
-        <div class="livraison">
-          <div class="titre">
-            <i class="fa-solid fa-location-dot icone"></i>
-            <h6>Adresse de livraison</h6>
+      <div class="adresse" style="width: 100%; display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
+        <div class="livraison" style="width: 45%;margin-right: 5%;">
+          <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
+            <i class="fa-solid fa-location-dot icone" style="font-size: 20px"></i>
+            <h6 style="font-weight: 700; font-size:22px;margin-bottom: 0;">Adresse de livraison</h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
           <div class="body">
-            <h6>Blaise KINALI</h6>
-            <p>WCG</p>
-            <p>21 bld Hausmann</p>
-            <p>75009</p>
-            <p>France</p>
-            <p>016114653</p>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
+            <p style="font-size: 15px;">WC</p>
+            <p style="font-size: 15px;">21 bld Hausmann</p>
+            <p style="font-size: 15px;">75009</p>
+            <p style="font-size: 15px;">France</p>
+            <p style="font-size: 15px;">016114653</p>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
         </div>
-        <div class="facturation">
-          <div class="titre">
-            <i class="fa-solid fa-receipt icone"></i>
-            <h6>Adresse de facturation</h6>
+        <div class="facturation" style="width: 45%;">
+          <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
+            <i class="fa-solid fa-receipt icone" style="font-size: 20px;"></i>
+            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Adresse de facturation</h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
           <div class="body">
-            <h6>Blaise KINALI</h6>
-            <p>WCG</p>
-            <p>21 bld Hausmann</p>
-            <p>75009</p>
-            <p>France</p>
-            <p>016114653</p>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
+            <p style="font-size: 15px;">WCG</p>
+            <p style="font-size: 15px;">21 bld Hausmann</p>
+            <p style="font-size: 15px;">75009</p>
+            <p style="font-size: 15px;">France</p>
+            <p style="font-size: 15px;">016114653</p>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
         </div>
       </div>
-      <div class="detail">
-        <table>
+      <div class="detail" style="width: 100%;padding: 30px 35px 10px 35px;">
+        <table role="presentation" style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background: #ffffff;" width="100%">
           <tr>
-            <th>Réference</th>
-            <th>Produits</th>
-            <th>Prix unitaire(HT)</th>
-            <th>Quantité</th>
-            <th>Total(HT)</th>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Réference</th>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produits</th>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Prix unitaire(HT)</th>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Quantité</th>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total(HT)</th>
           </tr>
           <tr>
-            <td>PC18</td>
-            <th>PC19-Combishorht bleu</th>
-            <td>9.00 £</td>
-            <td>2</td>
-            <td>18,00 £</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">PC18</td>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">PC19-Combishorht bleu</th>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9.00 £</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">2</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">18,00 £</td>
           </tr>
           <tr>
-            <td>MR6</td>
-            <th>MR6-Robe sirène-Marin</th>
-            <td>9.00 £</td>
-            <td>1</td>
-            <td>9,00 £</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">MR6</td>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">MR6-Robe sirène-Marin</th>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9.00 £</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">1</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9,00 £</td>
           </tr>
           <!-- <tr>
             <td>GEP23</td>
@@ -87,82 +84,84 @@
             <td>12,00 £/td>
         </tr> -->
         </table>
-        <div class="detail_total">
-          <table>
+        <div class="detail_total" style="padding: 50px 0 0 0; width: 100%; flex-direction: row; justify-content: end;">
+          <table style="width: 40%; border-collapse: collapse;" width="40%">
             <tr>
-              <th>Produit HT</th>
-              <th>39.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produit HT</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">39.00 £</th>
             </tr>
             <tr>
-              <th>Reductions HT</th>
-              <th>0.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Reductions HT</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">0.00 £</th>
             </tr>
             <tr>
-              <th>Frais dossier HT</th>
-              <th>15.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais dossier HT</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">15.00 £</th>
             </tr>
             <tr>
-              <th>Livraison</th>
-              <th>18.70 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Livraison</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">18.70 £</th>
             </tr>
             <tr>
-              <th>Incluant un total de taxes</th>
-              <th>6.50 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Incluant un total de taxes</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">6.50 £</th>
             </tr>
             <tr>
-              <th>Montant total TTC</th>
-              <th>72.70 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Montant total TTC</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">72.70 £</th>
             </tr>
           </table>
         </div>
       </div>
-      <div class="modeLivraison">
-        <div class="titreLivraison">
-          <i class="fa-solid fa-truck icone_livraison"></i>
-          <h6>Livraison</h6>
+      <div class="modeLivraison" style="width: 100%;padding: 30px 35px 10px 35px;">
+        <div class="titreLivraison" style="width: 100%; display: flex; flex-direction: row">
+          <i class="fa-solid fa-truck icone_livraison" style="font-size: 20px;"></i>
+          <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Livraison</h6>
         </div>
-        <h5>Mode de livraison :<span>Tout en livraison</span></h5>
+        <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;">Tout en livraison</span></h5>
       </div>
-      <div class="repetition_spectable">
-        <div class="spectacle">
-          <div class="titre">
-            <h6>Date spectacle</h6>
+      <div class="remarque" style="width: 100%;padding: 30px 35px 10px 35px">
+        <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Remarque</h6>
+        <p style="font-size: 17px;">J'ai aimé vos produits , merci ...</p>
+      </div>
+      <div class="repetition_spectable" style="width: 100%;display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
+        <div class="spectacle" style="width: 45%; margin-right: 10%;">
+          <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
+            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date spectacle</h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
           <div class="body">
-            <h6>Date de début : <span>12-04-2023</span></h6>
-            <h6>Date de fin : <span>20-04-2023</span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span style="font-weight: 400;">12-04-2023</span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span style="font-weight: 400;">20-04-2023</span></h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
         </div>
-        <div class="repetition">
-          <div class="titre">
-            <h6>Date repétition</h6>
+        <div class="repetition" style="width: 45%">
+          <div class="titre" style="width: 100%">
+            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date repétition</h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
           <div class="body">
-            <h6>Date de repétition (1) : <span>12-04-2023</span></h6>
-            <h6>Date de repétion (2) : <span>20-04-2023</span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de repétition (1) : <span style="font-weight: 400;">12-04-2023</span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de repétion (2) : <span style="font-weight: 400;">20-04-2023</span></h6>
           </div>
-          <hr />
+          <hr style="opacity: 0.4;">
         </div>
       </div>
-      <div class="message">
-        <p>
+      <div class="message" style="width: 80%;margin-left: 110px; align-items: center; gap: 10%; padding: 30px 35px 0 35px;">
+        <p style="font-size: 17px; text-align: center;">
           Nous vérifions la disponibilité des références demandées et vous
           informons par mail dans les 48h si les articles sont disponibles en
           fonction de tailles selectionnées .
         </p>
       </div>
-      <div class="remerciement">
-        <p>
-          Bien cordialement <br />
+      <div class="remerciement" style="width: 100%; padding: 30px 35px 0 35px;">
+        <p style="font-size: 17px;">
+          Bien cordialement <br>
           Le service client
         </p>
         <!-- <p>Le service client</p> -->
       </div>
     </div>
-    <script src="/javascripts/mail.js"></script>
   </body>
-  <!-- </html> -->
 </html>

@@ -8,19 +8,19 @@ const sass = require("node-sass");
 
 router.get("/", (req, res, next) => {
   res.locals.titre = "mail";
-  res.render("mail/index2", {});
+  res.render("mail/index", {});
 });
 router.post("/", async function (req, res) {
   // var mail = req.body.mail;
   // read EJS file
   let ejsFile = fs.readFileSync(
-    path.join(__dirname, "../message/index.ejs"),
+    path.join(__dirname, "../mailTemplate/index.ejs"),
     "utf8"
   );
   // console.log(ejsFile);
   // render EJS file
-  let html = ejs.render(ejsFile,{
-    name:"sele"
+  let html = ejs.render(ejsFile, {
+    commande: "sele",
   });
 
   // compile Sass
@@ -46,8 +46,8 @@ router.post("/", async function (req, res) {
       },
     });
     const mailOptions = {
-      from: "mavubapathy@gmail.com",
-      to: "trigoyodila1996@gmail.com",
+      from: "trigoyodila1996@gmail.com",
+      to: "seleshabani4@gmail.com",
       subject: "Message du client depuis le site",
       text: "Hello",
       html: html,
@@ -67,7 +67,7 @@ router.post("/", async function (req, res) {
 
     transporter.sendMail(mailOptions).then(function (info) {
       console.log("Email sent: " + info.response);
-      res.status(200).render("default/contact", {
+      res.status(200).render("mail/index", {
         messages: "Votre message a été envoyé avec succès!",
         info: true,
         error: false,

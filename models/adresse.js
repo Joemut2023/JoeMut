@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       Adresse.belongsTo(models.Client, {
         foreignKey: "cli_id",
       });
+      Adresse.hasMany(models.Commande,{
+        foreignKey:"com_adr_liv"
+      })
+        Adresse.hasMany(models.Commande, {
+          foreignKey: "com_adr_fac",
+        });
     }
   }
   Adresse.init(
