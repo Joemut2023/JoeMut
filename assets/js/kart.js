@@ -113,6 +113,9 @@ class Kart {
           if (res.data == "indisponible") return Kart.RenderMaxQteModal();
           let qte = res.data.panierDetail.pad_qte;
           await Kart.RenderModal(itemForPanier, qte);
+          const myModal = document.getElementById("myModal");
+          //
+          myModal.style.display = "flex";
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -136,6 +139,8 @@ class Kart {
             document.querySelector("#cart-item-count").innerHTML =
               await Kart.getItemNumber();
           }
+
+
         });
     } catch (error) {
       await Kart.RenderModal(itemForPanier, qte);

@@ -247,7 +247,7 @@ var Kart = /*#__PURE__*/function () {
                 }
               }).then( /*#__PURE__*/function () {
                 var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(res) {
-                  var qte, produitFilter, produit, produitPositionInArray;
+                  var qte, myModal, produitFilter, produit, produitPositionInArray;
                   return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                     while (1) switch (_context6.prev = _context6.next) {
                       case 0:
@@ -261,8 +261,10 @@ var Kart = /*#__PURE__*/function () {
                         _context6.next = 5;
                         return Kart.RenderModal(itemForPanier, qte);
                       case 5:
+                        myModal = document.getElementById("myModal"); //
+                        myModal.style.display = "flex";
                         if (!storedITems) {
-                          _context6.next = 15;
+                          _context6.next = 17;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -279,20 +281,20 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 12;
+                        _context6.next = 14;
                         return Kart.getItemNumber();
-                      case 12:
+                      case 14:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 20;
+                        _context6.next = 22;
                         break;
-                      case 15:
+                      case 17:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 19;
+                        _context6.next = 21;
                         return Kart.getItemNumber();
-                      case 19:
+                      case 21:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                      case 20:
+                      case 22:
                       case "end":
                         return _context6.stop();
                     }

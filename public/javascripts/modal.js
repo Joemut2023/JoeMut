@@ -26,8 +26,8 @@ btn_add.forEach(function (element) {
           });
         case 3:
           produit = _context.sent;
-          Kart.addItem(produit.data);
-          myModal.style.display = "flex";
+          _context.next = 6;
+          return Kart.addItem(produit.data);
         case 6:
         case "end":
           return _context.stop();
