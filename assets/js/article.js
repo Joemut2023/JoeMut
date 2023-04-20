@@ -59,7 +59,8 @@ btnAjouter.addEventListener("click", async () => {
       "X-Requested-With": "XMLHttpRequest",
     },
   });
-  Kart.addItem(produit.data, qte);
+  await Kart.addItem(produit.data, qte);
+  input.value = "1"
   myModal.style.display = "flex";
 });
 
