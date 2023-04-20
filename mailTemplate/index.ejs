@@ -13,7 +13,7 @@
         <img src="http://aes.wcg-rdc.tech/images/logo.png" alt="" srcset="" style="width: 15%; margin: auto;display: inherit;">
       </div>
       <div style="width:100%;padding: 40px 35px 0 35px;">
-        <h4 style="font-weight:700;font-size:22px;">Bonjour Blaise KINALI</h4>
+        <h4 style="font-weight:700;font-size:22px;">Bonjour <%= commande.Client.cli_nom %></h4>
         <p style="font-size: 18px;">
           Merci d'avoir effectué votre devis en ligne sur
           <span style="font-weight: 700;">AIGUILLES EN SCENE</span>
@@ -27,8 +27,8 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 700; font-size: 15px;">Blaise KINALI</h6>
-            <p style="font-size: 15px;">WCG</p>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
+            <p style="font-size: 15px;">WC</p>
             <p style="font-size: 15px;">21 bld Hausmann</p>
             <p style="font-size: 15px;">75009</p>
             <p style="font-size: 15px;">France</p>
@@ -43,7 +43,7 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 700; font-size: 15px;">Blaise KINALI</h6>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
             <p style="font-size: 15px;">WCG</p>
             <p style="font-size: 15px;">21 bld Hausmann</p>
             <p style="font-size: 15px;">75009</p>

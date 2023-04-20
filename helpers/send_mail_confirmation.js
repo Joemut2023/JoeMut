@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
 
-module.exports = async (commande) => {
+module.exports = async (res,req,commande) => {
 
     let ejsFile = fs.readFileSync(
       path.join(__dirname, "../mailTemplate/index.ejs"),
@@ -38,11 +38,6 @@ module.exports = async (commande) => {
        };
        transporter.sendMail(mailOptions).then(function (info) {
          console.log("Email sent: " + info.response);
-         res.status(200).render("mail/index", {
-           messages: "Votre message a été envoyé avec succès!",
-           info: true,
-           error: false,
-         });
        });
      } catch (error) {}
 };
