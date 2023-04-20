@@ -5567,6 +5567,9 @@
 #page-devis .repetition_spectable .repetition .body h6 span {
   font-weight: 400;
 }
+#page-devis .message {
+  font-size: smaller;
+}
 
 #edit-adresse {
   width: 80%;
