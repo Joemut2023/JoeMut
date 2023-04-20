@@ -18,7 +18,8 @@ sender.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_r
           }
         });
       case 2:
-        window.location.href = "".concat(SITE_URL, "/mon-compte");
+        // window.location.href = `${SITE_URL}/mon-compte`
+        console.log('ok');
       case 3:
       case "end":
         return _context.stop();

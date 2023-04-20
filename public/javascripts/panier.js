@@ -135,9 +135,10 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   return Kart.updateItemQuantity(itemId, "up");
                 case 6:
                   qte = _context5.sent;
-                  console.log(qte);
                   element.parentNode.parentNode.children[0].value = qte;
-                  TotalPricesProducts();
+                  _context5.next = 10;
+                  return TotalPricesProducts();
+                case 10:
                   _context5.next = 12;
                   return Kart.getItemNumber();
                 case 12:
@@ -167,9 +168,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   return Kart.updateItemQuantity(itemId, "down");
                 case 7:
                   qte = _context6.sent;
-                  console.log(qte);
                   document.querySelector("#cart-item-count").value = qte;
-                  TotalPricesProducts();
+                  _context6.next = 11;
+                  return TotalPricesProducts();
                 case 11:
                   element.parentNode.parentNode.children[0].value = decrement;
                 case 12:
@@ -250,7 +251,6 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-console.log(link_parag);
 link_parag === null || link_parag === void 0 ? void 0 : link_parag.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
   code_promo_block.classList.remove("hide-promo");

@@ -110,12 +110,17 @@ class Kart {
           },
         })
         .then(async (res) => {
-          if (res.data == "indisponible") return Kart.RenderMaxQteModal();
-          let qte = res.data.panierDetail.pad_qte;
-          await Kart.RenderModal(itemForPanier, qte);
-          const myModal = document.getElementById("myModal");
-          //
+          //console.log(res.data);
+          const myModal = document.querySelector("#myModal");
           myModal.style.display = "flex";
+
+          if (res.data == "indisponible") {
+            return Kart.RenderMaxQteModal();
+          }else{
+            let qte = res.data.panierDetail.pad_qte;
+            await Kart.RenderModal(itemForPanier, qte);
+          }
+          
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -152,7 +157,7 @@ class Kart {
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
-      let kartLoader = document.querySelector(".kart-loader");
+    let kartLoader = document.querySelector(".kart-loader");
     const pro_id = parseInt(itemId);
     axios
       .delete(`${SITE_URL}/panierDetail`, {
@@ -166,8 +171,8 @@ class Kart {
       .then(async (res) => {
         document.querySelector("#cart-item-count").innerHTML =
           await Kart.getItemNumber();
-          kartLoader.style.display = res.data ? "none" : "block";
-           await Kart.kartRenderItems();
+        kartLoader.style.display = res.data ? "none" : "block";
+        await Kart.kartRenderItems();
       });
     let storedITems = Kart.getParsedBasket();
     if (storedITems.length > 0) {
