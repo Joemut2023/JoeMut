@@ -149,10 +149,10 @@ class Kart {
    * @param {Number} itemId
    */
   static async removeItem(itemId) {
-    console.log(itemId);
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+      let kartLoader = document.querySelector(".kart-loader");
     const pro_id = parseInt(itemId);
     axios
       .delete(`${SITE_URL}/panierDetail`, {
@@ -163,10 +163,11 @@ class Kart {
           "X-Requested-With": "XMLHttpRequest",
         },
       })
-      .then(async () => {
+      .then(async (res) => {
         document.querySelector("#cart-item-count").innerHTML =
           await Kart.getItemNumber();
-        Kart.kartRenderItems();
+          kartLoader.style.display = res.data ? "none" : "block";
+           await Kart.kartRenderItems();
       });
     let storedITems = Kart.getParsedBasket();
     if (storedITems.length > 0) {

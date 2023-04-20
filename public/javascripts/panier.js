@@ -187,7 +187,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
 }))();
 var TotalPricesProducts = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-    var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml;
+    var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml, link_parag, btn_promo, code_promo_block, btn_fermer, btnFinaliser;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
@@ -209,7 +209,27 @@ var TotalPricesProducts = /*#__PURE__*/function () {
           totalPoductPrice = totalPriceht + parseFloat(storedFrais.frais_port) + parseFloat(storedFrais.frais_dossier);
           PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(totalQuantity, " articles</span>\n      <span class=\"price\">").concat(totalPriceht.toFixed(2), "  \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">").concat(parseFloat(storedFrais.frais_port).toFixed(2), " \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">").concat(parseFloat(storedFrais.frais_dossier).toFixed(2), " \u20AC</span>\n    </div>\n    <hr>\n  </div>\n  <div class=\"item total\">\n  <span>TTC</span>\n  <span>").concat(totalPoductPrice.toFixed(2), " \u20AC</span>\n</div>\n<div class=\"promo\">\n  <div class=\"link\">\n    <p class=\"btnpromo\"><span>Vous avez un code promo ?</span></p>\n  </div>\n  <div class=\"hide-promo promo_block\">\n    <div class=\"btn-promo\">\n      <input type=\"text\" placeholder=\"Code promo\" />\n      <button>Ajouter</button>\n    </div>\n    <p class=\"fermer\">Fermer</p>\n  </div>\n</div>\n<a href=\"/commander/#page-commander\" class=\"button\">\n  <button class=\"enable\">Finaliser le Devis</button>\n</a>\n  ");
           PanierPrice.innerHTML = PanierPriceHtml;
-        case 13:
+          link_parag = document.querySelector(".btnpromo");
+          btn_promo = document.querySelector(".btn-promo");
+          code_promo_block = document.querySelector(".promo_block");
+          btn_fermer = document.querySelector(".fermer");
+          btnFinaliser = document.querySelector(".enable");
+          if (storedITems.length == 0) {
+            emptyKartText.style.display = "block";
+            btnFinaliser.disabled = true;
+            btnFinaliser.classList.add("btn-enabled");
+          }
+          link_parag === null || link_parag === void 0 ? void 0 : link_parag.addEventListener("click", function () {
+            link_parag.classList.add("linkhide");
+            code_promo_block.classList.remove("hide-promo");
+            code_promo_block.classList.add("code-promo");
+          });
+          btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
+            link_parag.classList.remove("linkhide");
+            code_promo_block.classList.remove("code-promo");
+            code_promo_block.classList.add("hide-promo");
+          });
+        case 21:
         case "end":
           return _context8.stop();
       }
@@ -230,12 +250,13 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-link_parag.addEventListener("click", function () {
+console.log(link_parag);
+link_parag === null || link_parag === void 0 ? void 0 : link_parag.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
   code_promo_block.classList.remove("hide-promo");
   code_promo_block.classList.add("code-promo");
 });
-btn_fermer.addEventListener("click", function () {
+btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
   link_parag.classList.remove("linkhide");
   code_promo_block.classList.remove("code-promo");
   code_promo_block.classList.add("hide-promo");
