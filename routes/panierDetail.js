@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { Op, and } = require("sequelize");
+const { Op, and, Sequelize } = require("sequelize");
 const {
   Panier_detail,
   Apply,
@@ -21,7 +21,18 @@ router.post("/", async (req, res, next) => {
       },
     });
 
-    const quantite = await Quantite.findOne({ where: { pro_id } });
+    // const quantite = await Quantite.findAll({
+    //   attributes: [
+    //     "qua_nbre",
+    //     "pro_id",
+    //     [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
+    //   ],
+    //   where: { pro_id },
+    // });
+
+    const quantite = await Quantite.sum('qua_nbre',{
+      where: { pro_id },
+    });
     if (oldPanierDetail == null) {
       const promo = await Apply.findOne({
         where: { pro_id },
@@ -54,9 +65,9 @@ router.post("/", async (req, res, next) => {
 
     const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
-    if (quantite !== null) {
-      let quantiteDispo = quantite.qua_nbre;
-      if (newQuantite > quantiteDispo) {
+    if (quantite) {
+      
+      if (newQuantite > quantite) {
         return res
           .status(409)
           .send(
@@ -83,6 +94,7 @@ router.post("/", async (req, res, next) => {
 
     return res.status(404).send("aucun produit ajouté");
   } catch (error) {
+    //console.log(error);
     res.status(500).json({ error: error });
   }
 });
@@ -91,7 +103,7 @@ router.get("/", async (req, res, next) => {
   const pan_id = req.session.panierId;
 
   try {
-    const Produits = await Panier_detail.findAll({
+    const produits = await Panier_detail.findAll({
       include: [
         {
           model: Produit,
@@ -102,9 +114,10 @@ router.get("/", async (req, res, next) => {
       where: { pan_id },
     });
 
-    if (Produits.length !== 0) return res.status(200).send(Produits);
-    return res.status(200).send("auncun produit disponible");
+    //if (Produits.length !== 0) return res.status(200).send(Produits);
+    return res.status(200).send(produits);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: error });
   }
 });
@@ -120,8 +133,6 @@ router.delete("/", async (req, res) => {
       },
     });
 
-    console.log(oldPanierDetail.pad_id, "request");
-
     const panierDelete = await Panier_detail.destroy({
       where: {
         pad_id: oldPanierDetail.pad_id,
@@ -135,6 +146,51 @@ router.delete("/", async (req, res) => {
     }
     return res.status(202).send("Aucun produit supprimé");
   } catch (error) {
+    return res.status(500).json({ error: error });
+  }
+});
+
+router.put("/", async (req, res) => {
+  const { pro_id, action } = req.body;
+  const pan_id = req.session.panierId;
+  try {
+    let panierDetail = await Panier_detail.findOne({
+      where: {
+        [Op.and]: [{ pro_id }, { pan_id }],
+      },
+    });
+    const quantite = await Quantite.findAll({
+      attributes: [
+        "qua_nbre",
+        "pro_id",
+        [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
+      ],
+      where: { pro_id },
+    });
+    if (quantite) {
+      const qteDispo = quantite[0].getDataValue("qteTotal");
+      const newQuantite =
+        action == "up" ? panierDetail.pad_qte + 1 : panierDetail.pad_qte - 1;
+      if (qteDispo >= newQuantite) {
+        const newpanierDetail = await panierDetail.update(
+          {
+            pad_qte: newQuantite,
+          },
+          { where: { pad_id: panierDetail.pad_id } }
+        );
+        if (newpanierDetail[0] == 1) {
+          panierDetail = await Panier_detail.findOne({
+            where: {
+              [Op.and]: [{ pro_id }, { pan_id }],
+            },
+          });
+          return res.status(200).json({ panierDetail });
+        }
+      }
+    }
+    return res.status(200).json(panierDetail);
+  } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: error });
   }
 });

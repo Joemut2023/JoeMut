@@ -50,9 +50,11 @@ class Kart {
    * recuperer le nombre d'artcile au panier
    * @returns Numeric
    */
-  static getItemNumber() {
-    let storedITems = Kart.getParsedBasket();
+  static async getItemNumber() {
+    const userStatut = await Kart.getUserStatut();
     let quantity = 0;
+    let storedITems = await Kart.getAllPanierDetails();
+    if (userStatut == false || storedITems.length == 0) return quantity;
     storedITems?.forEach((element) => {
       quantity += element.pad_qte;
     });
@@ -107,9 +109,9 @@ class Kart {
             "X-Requested-With": "XMLHttpRequest",
           },
         })
-        .then((res) => {
+        .then(async (res) => {
           let qte = res.data.panierDetail.pad_qte;
-          Kart.RenderModal(itemForPanier, qte);
+          await Kart.RenderModal(itemForPanier, qte);
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -126,16 +128,16 @@ class Kart {
             }
             localStorage.setItem("storedItems", JSON.stringify(storedITems));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           } else {
             Kart.items.push(itemForPanier);
             localStorage.setItem("storedItems", JSON.stringify(Kart.items));
             document.querySelector("#cart-item-count").innerHTML =
-              Kart.getItemNumber();
+              await Kart.getItemNumber();
           }
         });
     } catch (error) {
-      Kart.RenderModal(itemForPanier, qte);
+      await Kart.RenderModal(itemForPanier, qte);
     }
   }
   /**
@@ -143,33 +145,47 @@ class Kart {
    * @param {Number} itemId
    */
   static async removeItem(itemId) {
+    console.log(itemId);
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
-    let storedITems = Kart.getParsedBasket();
-    let produitPositionInArray = storedITems.findIndex(
-      (produit) => produit.pro_id == itemId
-    );
-    storedITems.splice(produitPositionInArray, 1);
-    localStorage.setItem("storedItems", JSON.stringify(storedITems));
     const pro_id = parseInt(itemId);
-    await axios.delete(`${SITE_URL}/panierDetail`, {
-      data: {
-        pro_id,
-      },
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-    Kart.kartRenderItems();
+    axios
+      .delete(`${SITE_URL}/panierDetail`, {
+        data: {
+          pro_id,
+        },
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then(async () => {
+        document.querySelector("#cart-item-count").innerHTML =
+          await Kart.getItemNumber();
+        Kart.kartRenderItems();
+      });
+    let storedITems = Kart.getParsedBasket();
+    if (storedITems.length > 0) {
+      let produitPositionInArray = storedITems.findIndex(
+        (produit) => produit.pro_id == itemId
+      );
+      storedITems.splice(produitPositionInArray, 1);
+      localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    }
   }
 
   /**
    * Mettre à jour la quantité d'un item du panier
    * @param {Number} itemId
    */
-  static updateItemQuantity(itemId, action) {
+  static async updateItemQuantity(itemId, action) {
+    const panierDetail = await axios.put(`${SITE_URL}/panierDetail`, {
+      pro_id: itemId,
+      action: action,
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
     storedITems = Kart.getParsedBasket();
     let produitPositionInArray = storedITems.findIndex(
       (produit) => produit.pro_id == itemId
@@ -178,20 +194,21 @@ class Kart {
       ? (storedITems[produitPositionInArray].pad_qte += 1)
       : (storedITems[produitPositionInArray].pad_qte -= 1);
     localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    return panierDetail.data.pad_qte;
   }
 
   /**
    * Calculer les prix des artciles dans le panier
    */
-  static calculTotalPrice() {
-    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
-    let storedITems = Kart.getParsedBasket();
+  static async calculTotalPrice() {
+    let fraisDivers = await Kart.addFraisDivers();
+    let storedITems = await Kart.getAllPanierDetails();
     let fraisDossier = parseFloat(fraisDivers.frais_dossier);
     let fraisPort = parseFloat(fraisDivers.frais_port);
     let kartProductPrice = 0;
     let totalPrice = 0;
 
-    storedITems.forEach((produit) => {
+    storedITems?.forEach((produit) => {
       kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
       totalPrice = kartProductPrice + fraisDossier + fraisPort;
     });
@@ -202,43 +219,54 @@ class Kart {
    * Affiche les items du panier
    */
   static async kartRenderItems() {
+    const userStatut = await Kart.getUserStatut();
+    if (userStatut == false) {
+      return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    }
+
     let kartItemsElement = document.querySelector(".kart-items");
     const fraisDivers = await Kart.addFraisDivers();
+    const price = await Kart.calculTotalPrice();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
     let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    panierDetail?.map((produit) => {
-      kartProductQte = produit.pad_qte + kartProductQte;
+    if (panierDetail.length !== 0) {
+      panierDetail?.map((produit) => {
+        kartProductQte = produit.pad_qte + kartProductQte;
 
-      storedItemsHtml += `
-            <div>
-                <div class="kart-item">
-                    <div class="kart-img">
-                        <img src="/images/produits/${
-                          produit.Produit.Media[0].med_ressource
-                        }" alt="">
-                    </div>
-                    <div class="kart-content">
-                        <a href="/article/${produit.pro_id}">${
-        produit.Produit.pro_libelle
-      }</a>
-                        <div class="actions">
-                            <span class="price">${
-                              produit.pad_qte
-                            } x ${produit.pad_ttc.toFixed(2)} €</span>
-                            <button id="remove-prod" data-id="${
-                              produit.pro_id
-                            }" class="btn-close"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            `;
-    });
-    kartItemsElement.innerHTML = storedItemsHtml;
+        storedItemsHtml += `
+              <div>
+                  <div class="kart-item">
+                      <div class="kart-img">
+                          <img src="/images/produits/${
+                            produit.Produit.Media[0].med_ressource
+                          }" alt="">
+                      </div>
+                      <div class="kart-content">
+                          <a href="/article/${produit.pro_id}">${
+          produit.Produit.pro_libelle
+        }</a>
+                          <div class="actions">
+                              <span class="price">${
+                                produit.pad_qte
+                              } x ${produit.pad_ttc.toFixed(2)} €</span>
+                              <button id="remove-prod" data-id="${
+                                produit.pro_id
+                              }" class="btn-close"></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <hr>
+              `;
+      });
+      kartItemsElement.innerHTML = storedItemsHtml;
+    } else {
+      kartItemsElement.innerHTML = ``;
+    }
+
     let kartInfosData = `
     <div>
     <p id="par-empty-data">Aucun produit dans le chariot.</p>
@@ -247,7 +275,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${Kart.calculTotalPrice().kartProductPrice.toFixed(2)} €</span>
+          <span>${price.kartProductPrice.toFixed(2)} €</span>
         </div>
       </div>
 
@@ -273,7 +301,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${Kart.calculTotalPrice().totalPrice.toFixed(2)} €</span>
+          <span>${price.totalPrice.toFixed(2)} €</span>
         </div>
       </div>
       <hr>
@@ -295,7 +323,7 @@ class Kart {
     //   ? (document.querySelector("#par-empty-data").style.display = "block")
     //   : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
-    btnRemoveProduct.forEach((item) => {
+    btnRemoveProduct?.forEach((item) => {
       item.addEventListener("click", () => {
         let itemId = item.dataset.id;
         Kart.removeItem(itemId);
@@ -308,11 +336,12 @@ class Kart {
    *
    * @param {*} item
    */
-  static RenderModal(item, qte) {
+  static async RenderModal(item, qte) {
     let storedITems = Kart.getParsedBasket();
-    let fraisDivers = JSON.parse(localStorage.getItem("fraisDivers"));
-    let fraisDossier = parseFloat(fraisDivers.frais_dossier);
-    let fraisPort = parseFloat(fraisDivers.frais_port);
+    const price = await Kart.calculTotalPrice();
+    const fraisDivers = await Kart.addFraisDivers();
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="body-modal-detail">
             <img src="/images/produits/${item.media}" alt="" srcset="" />
@@ -323,26 +352,28 @@ class Kart {
             </div>
         </div>
         <div class="modal-body-commande">
-            <h5>Il y a ${Kart.getItemNumber()} articles dans votre panier.</h5>
+            <h5>Il y a ${await Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
-                <span class="sous-total-montant">${Kart.calculTotalPrice().kartProductPrice.toFixed(
+                <span class="sous-total-montant">${price.kartProductPrice.toFixed(
                   2
                 )} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
-                <span class="transport-montant">${fraisPort.toFixed(2)} €</span>
-            </div>
-            <div class="transport">
-                <span class="transport-titre">frais dossier:</span>
-                <span class="transport-montant">${fraisDossier.toFixed(
+                <span class="transport-montant">${parseFloat(fraisPort).toFixed(
                   2
                 )} €</span>
             </div>
+            <div class="transport">
+                <span class="transport-titre">frais dossier:</span>
+                <span class="transport-montant">${parseFloat(
+                  fraisDossier
+                ).toFixed(2)} €</span>
+            </div>
             <div class="total">
                 <span class="total-titre">total:</span>
-                <span class="total-montant">${Kart.calculTotalPrice().totalPrice.toFixed(
+                <span class="total-montant">${price.totalPrice.toFixed(
                   2
                 )} €</span>
             </div>

@@ -25,7 +25,8 @@ var mailRouter = require("./routes/mail");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
-var panierDetailRouter = require('./routes/panierDetail')
+var devisRouter = require("./routes/devis")
+var panierDetailRouter = require("./routes/panierDetail");
 
 const AdminJS = require("adminjs");
 const AdminJSExpress = require("@adminjs/express");
@@ -57,7 +58,7 @@ app.use(
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false,
+    resave: true,
   })
 );
 app.use(cookieParser());
@@ -73,17 +74,18 @@ app.use("/recherche", rechercheRouter);
 app.use("/article", articleRouter);
 app.use("/nouvelleCollection", nouvelleCollectionRouter);
 app.use("/mon-compte", auth, usersRouter);
-app.use("/panier", auth,panierRouter);
+app.use("/panier", auth, panierRouter);
 app.use("/inscription", inscriptionRouter);
 app.use("/connexion", connexionRouter);
-app.use("/commander",auth, commanderRouter);
+app.use("/commander", auth, commanderRouter);
 app.use("/mensionLegale", mensionLegaleRouter);
-app.use("/confirmation-commande",auth, confirmationCommandeRouter);
+app.use("/confirmation-commande", auth, confirmationCommandeRouter);
+app.use("/devis", devisRouter)
 app.use("/fraisPort", fraisPortRouter);
 app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
-app.use("/panierDetail",auth, panierDetailRouter)
-app.use("/mail",mailRouter);
+app.use("/panierDetail", auth, panierDetailRouter)
+app.use("/mail", mailRouter);
 
 AdminJS.registerAdapter({
   Resource: AdminJSSequelize.Resource,

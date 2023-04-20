@@ -13,7 +13,7 @@
     </ol>
   </nav>
   <h4>Vos informations personnelles</h4>
-  <form action="" class="fom">
+  <form action="/mon-compte/identite" class="fom" method="POST">
     <% if (typeof error  !== 'undefined') { %>
       <div class="alert alert-danger" role="alert">
         <%= error %>
@@ -27,9 +27,9 @@
     <div class="row-form">
       <label class="col-label label" for="civilite">Civilité</label>
       <div class="">
-        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="<%= clientSession.tit_id  %>"/>
         <label class="form-check-label" for="">M</label>
-        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="<%= clientSession.tit_id  %>"/>
         <label class="form-check-label" for="">Mme</label>
       </div>
     </div>
@@ -85,7 +85,7 @@
     <div class="row-form">
       <label class="col-label" for=""> Nouveau mot de passe</label>
       <div class="d-flex flex-row col-input">
-        <input id="password" type="password" name="password" required />
+        <input id="password" type="password" name="newPassword" />
         <span class="input-group-text">
           <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
         </span>

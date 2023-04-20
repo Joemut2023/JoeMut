@@ -1,450 +1,443 @@
 #bloc-header {
-    .top-bar {
-        background-color: $color-primary;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 12%;
-        height: 10vh;
-        padding-top: 2vh;
-        color: $color-white;
-        font-weight: 300;
+  .top-bar {
+    background-color: $color-primary;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12%;
+    height: 10vh;
+    padding-top: 2vh;
+    color: $color-white;
+    font-weight: 300;
+    .title-content {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
 
-        .title-content {
-            display: flex;
-            flex-direction: row;
-            gap: 3rem;
-
-            @include breakpoint(tablette) {
-                display: none;
-            }
-        }
-
-        .link-content {
-            display: flex;
-            flex-direction: row;
-
-            @include breakpoint(tablette) {
-                display: none;
-            }
-
-            a {
-                text-decoration: none;
-                color: $color-black;
-            }
-        }
-
-        .social-link {
-            gap: 1rem;
-
-            @include breakpoint(tablette) {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .fa-facebook,
-            .fa-instagram {
-                color: $color-white;
-
-                &:hover {
-                    transform: scale(1.1);
-                    transition: all .5s ease-in-out;
-                }
-            }
-        }
-
-        p {
-            color: $color-white;
-        }
-
+      @include breakpoint(tablette) {
+        display: none;
+      }
     }
 
-    .nav-main-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+    .link-content {
+      display: flex;
+      flex-direction: row;
 
+      @include breakpoint(tablette) {
+        display: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-black;
+      }
+    }
+
+    .social-link {
+      gap: 1rem;
+
+      @include breakpoint(tablette) {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .fa-facebook,
+      .fa-instagram {
+        color: $color-white;
+        width: 23px;
+        margin-top: -2px;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: all 0.5s ease-in-out;
+        }
+      }
+    }
+
+    p {
+      color: $color-white;
+    }
+  }
+
+  .nav-main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    @include breakpoint(tablette) {
+      flex-direction: column;
+    }
+
+    @include breakpoint(mobil) {
+      flex-direction: column;
+    }
+
+    .navbar-brand {
+      @include breakpoint(moyen) {
+        width: 15%;
+      }
+
+      @include breakpoint(tablette) {
+        width: 100%;
+        text-align: center;
+        padding-top: 0;
+      }
+
+      .logo-img {
+        margin-top: 8%;
 
         @include breakpoint(tablette) {
-            flex-direction: column;
+          margin-top: 0;
         }
+      }
+    }
+
+    .nav-content {
+      display: flex;
+      flex-direction: row;
+
+      @include breakpoint(tablette) {
+        display: flex;
+        flex-direction: row;
+        width: 20%;
+      }
+
+      .menu-button {
+        display: none;
+
+        @include breakpoint(tablette) {
+          display: flex;
+        }
+      }
+    }
+
+    .navbar {
+      background-color: $color-white;
+      width: 100%;
+      color: $color-primary !important;
+
+      @include breakpoint(mobil) {
+        width: 10%;
+      }
+
+      .nav-item a:hover {
+        border-top: 0.4px solid $color-primary;
+        color: $color-primary !important;
+      }
+    }
+
+    .nav-content {
+      display: flex;
+      flex-direction: row;
+
+      @include breakpoint(tablette) {
+        width: 100%;
+        gap: 3%;
+      }
+
+      @include breakpoint(mobil) {
+        width: 99%;
+      }
+
+      .menu-button {
+        display: none;
 
         @include breakpoint(mobil) {
-            flex-direction: column;
+          display: flex;
+          padding: 2%;
         }
-
-        .navbar-brand {
-            @include breakpoint(moyen) {
-                width: 15%;
-            }
-
-            @include breakpoint(tablette) {
-                width: 100%;
-                text-align: center;
-                padding-top: 0;
-            }
-
-            .logo-img {
-                margin-top: 8%;
-
-                @include breakpoint(tablette) {
-                    margin-top: 0;
-                }
-            }
-        }
-
-
-        .nav-content {
-            display: flex;
-            flex-direction: row;
-
-            @include breakpoint(tablette) {
-                display: flex;
-                flex-direction: row;
-                width: 20%;
-            }
-
-            .menu-button {
-                display: none;
-
-                @include breakpoint(tablette) {
-                    display: flex;
-                }
-            }
-        }
-
-        .navbar {
-            background-color: $color-white;
-            width: 100%;
-            color: $color-primary !important;
-
-            @include breakpoint(mobil) {
-                width: 10%;
-            }
-
-            .nav-item a:hover {
-                border-top: 0.4px solid $color-primary;
-                color: $color-primary !important;
-
-            }
-        }
-
-        .nav-content {
-            display: flex;
-            flex-direction: row;
-
-            @include breakpoint(tablette) {
-                width: 100%;
-                gap: 3%;
-            }
-
-            @include breakpoint(mobil) {
-                width: 99%;
-            }
-
-            .menu-button {
-                display: none;
-
-
-                @include breakpoint(mobil) {
-                    display: flex;
-                    padding: 2%;
-                }
-            }
-        }
-
-        .search-div {
-            margin-left: 1%;
-            padding-top: 4.5%;
-
-            @include breakpoint(moyen) {
-                width: 15%;
-                padding-top: 2.5%;
-            }
-
-            @include breakpoint(tablette) {
-                width: 35%;
-
-            }
-
-            @include breakpoint(mobil) {
-                width: 50%;
-                padding-top: 5%;
-            }
-
-            .fa-magnifying-glass {
-                color: $color-primary;
-
-                @include breakpoint(mobil) {
-                    padding-top: 4.3%;
-                }
-            }
-
-            .search-input {
-                border: 0;
-                outline: 0;
-                padding-left: 4%;
-                width: 90%;
-
-                @include breakpoint(tablette) {
-                    margin-top: -5px;
-                }
-            }
-
-            .search-input::placeholder {
-                font-weight: 200;
-            }
-        }
-
-        .user-div {
-            gap: 1rem;
-            padding-top: 4.5%;
-            margin-right: 1%;
-
-            @include breakpoint(moyen) {
-                padding-top: 2.5%;
-            }
-
-            .fa-user,
-            .fa-cart-shopping {
-                cursor: pointer;
-
-                &:hover {
-                    color: $color-primary;
-                    transform: scale(1.1);
-                    transition: all .5s ease-in-out;
-                }
-            }
-
-            @include breakpoint(mobil) {
-                width: 25%;
-                padding-top: 6.5%;
-            }
-
-            @include breakpoint(tablette) {
-                width: 20%;
-                padding-top: 3.5%;
-            }
-
-            @include breakpoint(mobil) {
-                width: 20%;
-                padding-top: 6.5%;
-            }
-
-            a {
-                text-decoration: none;
-                color: $color-black;
-            }
-        }
+      }
     }
+
+    .search-div {
+      margin-left: 1%;
+      padding-top: 4.5%;
+
+      @include breakpoint(moyen) {
+        width: 15%;
+        padding-top: 2.5%;
+      }
+
+      @include breakpoint(tablette) {
+        width: 35%;
+      }
+
+      @include breakpoint(mobil) {
+        width: 50%;
+        padding-top: 5%;
+      }
+
+      .fa-magnifying-glass {
+        color: $color-primary;
+
+        @include breakpoint(mobil) {
+          padding-top: 4.3%;
+        }
+      }
+
+      .search-input {
+        border: 0;
+        outline: 0;
+        padding-left: 4%;
+        width: 90%;
+
+        @include breakpoint(tablette) {
+          margin-top: -5px;
+        }
+      }
+
+      .search-input::placeholder {
+        font-weight: 200;
+      }
+    }
+
+    .user-div {
+      gap: 1rem;
+      padding-top: 4.5%;
+      margin-right: 1%;
+
+      @include breakpoint(moyen) {
+        padding-top: 2.5%;
+      }
+
+      .fa-user,
+      .fa-cart-shopping {
+        cursor: pointer;
+
+        &:hover {
+          color: $color-primary;
+          transform: scale(1.1);
+          transition: all 0.5s ease-in-out;
+        }
+      }
+
+      @include breakpoint(mobil) {
+        width: 25%;
+        padding-top: 6.5%;
+      }
+
+      @include breakpoint(tablette) {
+        width: 20%;
+        padding-top: 3.5%;
+      }
+
+      @include breakpoint(mobil) {
+        width: 20%;
+        padding-top: 6.5%;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-black;
+      }
+    }
+  }
 }
 
 #headerSticky {
-    position: sticky;
-    top: 0px;
-    padding-left: 2%;
-    z-index: 10;
-    transition: all 300ms;
-    background-color: $color-white;
+  position: sticky;
+  top: 0px;
+  padding-left: 2%;
+  z-index: 10;
+  transition: all 300ms;
+  background-color: $color-white;
 
-    .second-navbar {
-        width: 100%;
-
-        @include breakpoint(mobil) {
-            width: 10%;
-        }
-
-        .nav-item a:hover {
-            color: $color-primary !important;
-
-        }
-    }
-
-    .second-search-div {
-        padding-top: 1%;
-
-        @include breakpoint(mobil) {
-            padding-top: 2%;
-            padding-left: 20%;
-        }
-
-        .second-glass {
-            color: $color-primary;
-
-            @include breakpoint(mobil) {
-                padding-top: 5%;
-            }
-        }
-
-        .search-input {
-            border: 0;
-            outline: 0;
-            padding-left: 4%;
-            width: 60%;
-
-            @include breakpoint(mobil) {
-                width: 90%;
-            }
-        }
-
-        .search-input::placeholder {
-            font-weight: 200;
-        }
-    }
-
-    .dropdown:hover>.dropdown-menu {
-        display: block;
-    }
-
-    .dropdown:hover .dropdown-main-content {
-        display: flex;
-    }
-
-    .menu-title {
-        display: flex;
-        width: max-content;
-        height: max-content;
-        border: none;
-    }
-
-    .title-catalogue {
-        margin: 5px;
-        padding: 10px;
-    }
-
-    .title-catalogue {
-        ul {
-            line-height: 90%;
-            li {
-                padding: 7px;
-                margin-left: -10px;
-                cursor: pointer;
-
-                a {
-                    text-decoration: none;
-                    color: $color-black
-                }
-            }
-        }
-    }
-}
-
-#header-banner {
+  .second-navbar {
     width: 100%;
-    height: auto;
-
-    #barner-img {
-        position: relative;
-        width: 30%;
-        max-height: 100%;
-    }
-}
-
-#details-infos {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 2% 0;
-    gap: 2%;
-    justify-content: center;
-    box-shadow: 4px 4px #ece9e9;
 
     @include breakpoint(mobil) {
-        gap: 1%;
-        margin-top: 5%;
+      width: 10%;
     }
 
-    .infos-content {
-        width: 18%;
-        text-align: center;
-
-        &:hover {
-            transform: scale(1.1);
-            transition: all .8s ease-in-out;
-        }
-
-        @include breakpoint(mobil) {
-            width: 48%;
-        }
-
-        h6 {
-            color: $color-primary;
-            margin: 2% 0;
-            font-size: 0.9rem;
-        }
-
-        p {
-            font-weight: 400;
-            color: $color-secondary;
-        }
+    .nav-item a:hover {
+      color: $color-primary !important;
     }
-}
+  }
 
-.dropdown:hover>.dropdown-menu {
+  .second-search-div {
+    padding-top: 1%;
+
+    @include breakpoint(mobil) {
+      padding-top: 2%;
+      padding-left: 20%;
+    }
+
+    .second-glass {
+      color: $color-primary;
+
+      @include breakpoint(mobil) {
+        padding-top: 5%;
+      }
+    }
+
+    .search-input {
+      border: 0;
+      outline: 0;
+      padding-left: 4%;
+      width: 60%;
+
+      @include breakpoint(mobil) {
+        width: 90%;
+      }
+    }
+
+    .search-input::placeholder {
+      font-weight: 200;
+    }
+  }
+
+  .dropdown:hover > .dropdown-menu {
     display: block;
-}
+  }
 
-.dropdown:hover .dropdown-main-content {
+  .dropdown:hover .dropdown-main-content {
     display: flex;
-}
+  }
 
-.dropdown-parent {
-    position: relative;
-    width: max-content;
-    margin: auto;
-    left: -300px;
-    border: none;
-}
-
-.menu-title {
+  .menu-title {
     display: flex;
     width: max-content;
     height: max-content;
     border: none;
+  }
+
+  .title-catalogue {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .title-catalogue {
+    ul {
+      line-height: 90%;
+      li {
+        padding: 7px;
+        margin-left: -10px;
+        cursor: pointer;
+
+        a {
+          text-decoration: none;
+          color: $color-black;
+        }
+      }
+    }
+  }
+}
+
+// #header-banner {
+//     border: 1px solid orangered;
+//     width: 100%;
+//     height: auto;
+
+//     #barner-img {
+//         position: relative;
+//         width: 30%;
+//         max-height: 100%;
+//     }
+// }
+
+#details-infos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2% 0;
+  gap: 2%;
+  justify-content: center;
+  box-shadow: 4px 4px #ece9e9;
+
+  @include breakpoint(mobil) {
+    gap: 1%;
+    margin-top: 5%;
+  }
+
+  .infos-content {
+    width: 18%;
+    text-align: center;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.8s ease-in-out;
+    }
+
+    @include breakpoint(mobil) {
+      width: 48%;
+    }
+
+    h6 {
+      color: $color-primary;
+      margin: 2% 0;
+      font-size: 0.9rem;
+    }
+
+    p {
+      font-weight: 400;
+      color: $color-secondary;
+    }
+  }
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown:hover .dropdown-main-content {
+  display: flex;
+}
+
+.dropdown-parent {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  left: -300px;
+  border: none;
+}
+
+.menu-title {
+  display: flex;
+  width: max-content;
+  height: max-content;
+  border: none;
 }
 
 .title-catalogue {
-    margin: 5px;
-    padding: 10px;
+  margin: 5px;
+  padding: 10px;
 }
 
-.title-catalogue>ul>li {
-    padding: 7px;
-    margin-left: -10px;
-    cursor: pointer;
+.title-catalogue > ul > li {
+  padding: 7px;
+  margin-left: -10px;
+  cursor: pointer;
 
-    a {
-        text-decoration: none;
-        color: $color-black;
-    }
+  a {
+    text-decoration: none;
+    color: $color-black;
+  }
 }
 
 .btn-canva {
-    display: none;
+  display: none;
 
-    @include breakpoint(tablette) {
-        display: block;
-    }
+  @include breakpoint(tablette) {
+    display: block;
+  }
 }
-
 
 #user-menu-Dropdown {
-    position: relative;
-    top: -800px;
-    z-index: 2;
-    float: right;
-    width: 21%;
-    display: none;
-    opacity: 0;
-    transition: all 0.5s linear;
-    background-color: $color-white;
-    transform: scaleY(0);
-
+  position: relative;
+  top: -800px;
+  z-index: 2;
+  float: right;
+  width: 21%;
+  display: none;
+  opacity: 0;
+  transition: all 0.5s linear;
+  background-color: $color-white;
+  transform: scaleY(0);
 }
 
-#user-title-Dropdown:hover>#user-menu-Dropdown {
-    display: block;
+#user-title-Dropdown:hover > #user-menu-Dropdown {
+  display: block;
 }
-#cart-item-count{
-    background-color: $color-primary;
+#cart-item-count {
+  background-color: $color-primary;
 }

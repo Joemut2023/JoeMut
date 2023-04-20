@@ -14,19 +14,21 @@ router.post("/", async function (req, res) {
   // var mail = req.body.mail;
   // read EJS file
   let ejsFile = fs.readFileSync(
-    path.join(__dirname, "../views/mail/index.html"),
+    path.join(__dirname, "../message/index.ejs"),
     "utf8"
   );
   // console.log(ejsFile);
   // render EJS file
-  let html = ejs.render(ejsFile);
+  let html = ejs.render(ejsFile,{
+    name:"sele"
+  });
 
   // compile Sass
-  let css = sass
-    .renderSync({
-      file: path.join(__dirname, "../assets/scss/pages/mail.scss"),
-    })
-    .css.toString();
+  // let css = sass
+  //   .renderSync({
+  //     file: path.join(__dirname, "../assets/scss/pages/mail.scss"),
+  //   })
+  //   .css.toString();
   // console.log(css);
 
   // let variable = sass.renderSync

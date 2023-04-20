@@ -54,6 +54,8 @@
 #bloc-header .top-bar .social-link .fa-facebook,
 #bloc-header .top-bar .social-link .fa-instagram {
   color: #fff;
+  width: 23px;
+  margin-top: -2px;
 }
 #bloc-header .top-bar .social-link .fa-facebook:hover,
 #bloc-header .top-bar .social-link .fa-instagram:hover {
@@ -318,16 +320,6 @@
 #headerSticky .title-catalogue ul li a {
   text-decoration: none;
   color: #232323;
-}
-
-#header-banner {
-  width: 100%;
-  height: auto;
-}
-#header-banner #barner-img {
-  position: relative;
-  width: 30%;
-  max-height: 100%;
 }
 
 #details-infos {
@@ -1136,7 +1128,7 @@
 }
 
 #page-creation {
-  padding: 6% 8%;
+  padding: 3% 4%;
 }
 #page-creation .breadcrumb-link {
   text-decoration: none;
@@ -1221,7 +1213,7 @@
 }
 
 #page-contact {
-  padding: 6% 9%;
+  padding: 3% 4%;
 }
 @media (max-width: 680px) {
   #page-contact {
@@ -1343,7 +1335,6 @@
   display: flex;
   flex-direction: row;
   padding: 20px 5rem;
-  margin-top: 130px;
 }
 @media (max-width: 680px) {
   #pages-catalogue, #pages-bycategorie, #pages-catalogue-type {
@@ -1823,7 +1814,6 @@
   display: flex;
   flex-direction: row;
   padding: 20px 5rem;
-  margin-top: 130px;
 }
 @media (max-width: 680px) {
   #page-promotion {
@@ -2229,7 +2219,6 @@
   display: flex;
   flex-direction: row;
   padding: 20px 5rem;
-  margin-top: 130px;
 }
 @media (max-width: 680px) {
   #nouvelleCollection {
@@ -5433,6 +5422,152 @@
   margin-left: 10px;
 }
 
+#page-devis {
+  width: 95%;
+  margin: auto;
+}
+#page-devis .logo-dates {
+  display: flex;
+  justify-content: space-between;
+}
+#page-devis .logo-dates .bordure {
+  border: 1px solid green;
+}
+#page-devis .adresses {
+  display: flex;
+  margin-top: 50px;
+}
+#page-devis .adresses ul {
+  list-style: none;
+}
+#page-devis .adresses .facturation {
+  margin-left: 30%;
+}
+#page-devis .table-detail {
+  text-align: center;
+}
+#page-devis .tables {
+  display: flex;
+  justify-content: space-between;
+}
+#page-devis .tables .taxe-detail1 {
+  width: 45%;
+  text-align: center;
+  border: 1px solid rgb(212, 210, 210);
+  margin-bottom: 20px;
+}
+#page-devis .tables .taxe-detail2 {
+  width: 45%;
+  text-align: center;
+}
+#page-devis .tables .taxe-detail2 .table-borderless {
+  border: 1px solid rgb(212, 210, 210);
+}
+#page-devis .modeLivraison {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 35px 10px 35px;
+}
+#page-devis .modeLivraison .titreLivraison {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+#page-devis .modeLivraison .titreLivraison .icone_livraison {
+  font-size: 20px;
+}
+@media (max-width: 680px) {
+  #page-devis .modeLivraison .titreLivraison .icone_livraison {
+    font-size: 16px;
+  }
+}
+#page-devis .modeLivraison .titreLivraison h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #page-devis .modeLivraison .titreLivraison h6 {
+    font-size: 13px;
+  }
+}
+#page-devis .modeLivraison h5 {
+  font-weight: 700;
+  font-size: 17px;
+}
+#page-devis .modeLivraison h5 span {
+  font-weight: 200;
+}
+@media (max-width: 680px) {
+  #page-devis .modeLivraison h5 {
+    font-size: 13px;
+  }
+}
+#page-devis .modeLivraison .text-detail2 {
+  border: 1px solid rgb(212, 210, 210);
+  padding: 15px;
+}
+#page-devis .repetition_spectable {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  padding: 30px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #page-devis .repetition_spectable {
+    padding: 30px 20px 0 20px;
+  }
+}
+#page-devis .repetition_spectable .spectacle,
+#page-devis .repetition_spectable .repetition {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+#page-devis .repetition_spectable .spectacle .titre,
+#page-devis .repetition_spectable .repetition .titre {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#page-devis .repetition_spectable .spectacle .titre h6,
+#page-devis .repetition_spectable .repetition .titre h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #page-devis .repetition_spectable .spectacle .titre h6,
+  #page-devis .repetition_spectable .repetition .titre h6 {
+    font-size: 13px;
+  }
+}
+#page-devis .repetition_spectable .spectacle hr,
+#page-devis .repetition_spectable .repetition hr {
+  opacity: 0.4;
+}
+#page-devis .repetition_spectable .spectacle .body,
+#page-devis .repetition_spectable .repetition .body {
+  display: flex;
+  flex-direction: column;
+}
+#page-devis .repetition_spectable .spectacle .body h6,
+#page-devis .repetition_spectable .repetition .body h6 {
+  font-weight: 600;
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  #page-devis .repetition_spectable .spectacle .body h6,
+  #page-devis .repetition_spectable .repetition .body h6 {
+    font-size: 13px;
+  }
+}
+#page-devis .repetition_spectable .spectacle .body h6 span,
+#page-devis .repetition_spectable .repetition .body h6 span {
+  font-weight: 400;
+}
+
 #edit-adresse {
   width: 80%;
   margin-left: auto;
@@ -5577,6 +5712,357 @@
 @media (max-width: 680px) {
   #error img {
     width: 150px;
+  }
+}
+
+#mail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 680px) {
+  #mail {
+    gap: 10px;
+  }
+}
+#mail .entete {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#mail .entete img {
+  width: 15%;
+  height: 10vh;
+}
+@media (max-width: 680px) {
+  #mail .entete img {
+    width: 50%;
+    height: 10vh;
+  }
+}
+#mail .salutation {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #mail .salutation {
+    padding: 30px 20px 0 20px;
+  }
+}
+#mail .salutation h4 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #mail .salutation h4 {
+    font-size: 18px;
+  }
+}
+#mail .salutation p {
+  font-size: 18px;
+}
+@media (max-width: 680px) {
+  #mail .salutation p {
+    font-size: 15px;
+  }
+}
+#mail .salutation p span {
+  font-weight: 700;
+}
+#mail .adresse {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  padding: 30px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #mail .adresse {
+    padding: 30px 20px 0 20px;
+  }
+}
+#mail .adresse .livraison,
+#mail .adresse .facturation {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+#mail .adresse .livraison .titre,
+#mail .adresse .facturation .titre {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#mail .adresse .livraison .titre .icone,
+#mail .adresse .facturation .titre .icone {
+  font-size: 20px;
+}
+@media (max-width: 680px) {
+  #mail .adresse .livraison .titre .icone,
+  #mail .adresse .facturation .titre .icone {
+    font-size: 16px;
+  }
+}
+#mail .adresse .livraison .titre h6,
+#mail .adresse .facturation .titre h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #mail .adresse .livraison .titre h6,
+  #mail .adresse .facturation .titre h6 {
+    font-size: 13px;
+  }
+}
+#mail .adresse .livraison hr,
+#mail .adresse .facturation hr {
+  opacity: 0.4;
+}
+#mail .adresse .livraison .body,
+#mail .adresse .facturation .body {
+  display: flex;
+  flex-direction: column;
+}
+#mail .adresse .livraison .body h6,
+#mail .adresse .facturation .body h6 {
+  font-weight: 700;
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  #mail .adresse .livraison .body h6,
+  #mail .adresse .facturation .body h6 {
+    font-size: 13px;
+  }
+}
+#mail .adresse .livraison .body p,
+#mail .adresse .facturation .body p {
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  #mail .adresse .livraison .body p,
+  #mail .adresse .facturation .body p {
+    font-size: 13px;
+  }
+}
+#mail .detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 35px 10px 35px;
+}
+#mail .detail table {
+  width: 100%;
+}
+#mail .detail table th,
+#mail .detail table td {
+  border: 1px solid gray;
+  padding: 10px;
+  font-size: 16px;
+}
+@media (max-width: 680px) {
+  #mail .detail table th,
+  #mail .detail table td {
+    font-size: 10px;
+  }
+}
+#mail .detail .detail_total {
+  padding: 50px 0 0 0;
+  width: 100%;
+  flex-direction: row;
+  justify-content: end;
+}
+#mail .detail .detail_total table {
+  width: 40%;
+  border-collapse: collapse;
+}
+@media (max-width: 680px) {
+  #mail .detail .detail_total table {
+    width: 100%;
+    padding: 10px 0 0 0;
+  }
+}
+#mail .detail .detail_total table th,
+#mail .detail .detail_total table td {
+  border: 1px solid gray;
+  padding: 10px;
+  font-size: 16px;
+}
+@media (max-width: 680px) {
+  #mail .detail .detail_total table th,
+  #mail .detail .detail_total table td {
+    font-size: 10px;
+  }
+}
+#mail .modeLivraison {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 35px 10px 35px;
+}
+#mail .modeLivraison .titreLivraison {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+#mail .modeLivraison .titreLivraison .icone_livraison {
+  font-size: 20px;
+}
+@media (max-width: 680px) {
+  #mail .modeLivraison .titreLivraison .icone_livraison {
+    font-size: 16px;
+  }
+}
+#mail .modeLivraison .titreLivraison h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #mail .modeLivraison .titreLivraison h6 {
+    font-size: 13px;
+  }
+}
+#mail .modeLivraison h5 {
+  font-weight: 700;
+  font-size: 17px;
+}
+#mail .modeLivraison h5 span {
+  font-weight: 200;
+}
+@media (max-width: 680px) {
+  #mail .modeLivraison h5 {
+    font-size: 13px;
+  }
+}
+#mail .remarque {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 35px 10px 35px;
+}
+#mail .remarque h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #mail .remarque h6 {
+    font-size: 13px;
+  }
+}
+#mail .remarque p {
+  font-size: 17px;
+}
+@media (max-width: 680px) {
+  #mail .remarque p {
+    font-size: 13px;
+  }
+}
+#mail .repetition_spectable {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  padding: 30px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #mail .repetition_spectable {
+    padding: 30px 20px 0 20px;
+  }
+}
+#mail .repetition_spectable .spectacle,
+#mail .repetition_spectable .repetition {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+#mail .repetition_spectable .spectacle .titre,
+#mail .repetition_spectable .repetition .titre {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#mail .repetition_spectable .spectacle .titre h6,
+#mail .repetition_spectable .repetition .titre h6 {
+  font-weight: 700;
+  font-size: 22px;
+}
+@media (max-width: 680px) {
+  #mail .repetition_spectable .spectacle .titre h6,
+  #mail .repetition_spectable .repetition .titre h6 {
+    font-size: 13px;
+  }
+}
+#mail .repetition_spectable .spectacle hr,
+#mail .repetition_spectable .repetition hr {
+  opacity: 0.4;
+}
+#mail .repetition_spectable .spectacle .body,
+#mail .repetition_spectable .repetition .body {
+  display: flex;
+  flex-direction: column;
+}
+#mail .repetition_spectable .spectacle .body h6,
+#mail .repetition_spectable .repetition .body h6 {
+  font-weight: 600;
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  #mail .repetition_spectable .spectacle .body h6,
+  #mail .repetition_spectable .repetition .body h6 {
+    font-size: 13px;
+  }
+}
+#mail .repetition_spectable .spectacle .body h6 span,
+#mail .repetition_spectable .repetition .body h6 span {
+  font-weight: 400;
+}
+#mail .message {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 110px;
+  align-items: center;
+  gap: 10%;
+  padding: 30px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #mail .message {
+    padding: 30px 20px 0 20px;
+    margin-left: 35px;
+  }
+}
+#mail .message p {
+  font-size: 17px;
+  text-align: center;
+}
+@media (max-width: 680px) {
+  #mail .message p {
+    font-size: 13px;
+  }
+}
+#mail .remerciement {
+  width: 100%;
+  padding: 30px 35px 0 35px;
+}
+@media (max-width: 680px) {
+  #mail .remerciement {
+    padding: 30px 20px 0 20px;
+  }
+}
+#mail .remerciement p {
+  font-size: 17px;
+}
+@media (max-width: 680px) {
+  #mail .remerciement p {
+    font-size: 13px;
   }
 }
 
