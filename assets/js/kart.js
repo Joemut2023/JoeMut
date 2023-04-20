@@ -145,33 +145,32 @@ class Kart {
    * @param {Number} itemId
    */
   static async removeItem(itemId) {
+    console.log(itemId);
     const userStatut = await Kart.getUserStatut();
     if (userStatut == false)
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
+    const pro_id = parseInt(itemId);
+    axios
+      .delete(`${SITE_URL}/panierDetail`, {
+        data: {
+          pro_id,
+        },
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then(async () => {
+        document.querySelector("#cart-item-count").innerHTML =
+          await Kart.getItemNumber();
+        Kart.kartRenderItems();
+      });
     let storedITems = Kart.getParsedBasket();
     if (storedITems.length > 0) {
       let produitPositionInArray = storedITems.findIndex(
         (produit) => produit.pro_id == itemId
       );
-
       storedITems.splice(produitPositionInArray, 1);
       localStorage.setItem("storedItems", JSON.stringify(storedITems));
-      const pro_id = parseInt(itemId);
-
-      axios
-        .delete(`${SITE_URL}/panierDetail`, {
-          data: {
-            pro_id,
-          },
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        })
-        .then(async () => {
-          document.querySelector("#cart-item-count").innerHTML =
-            await Kart.getItemNumber();
-          Kart.kartRenderItems();
-        });
     }
   }
 

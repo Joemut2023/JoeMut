@@ -322,20 +322,44 @@ var Kart = /*#__PURE__*/function () {
     key: "removeItem",
     value: function () {
       var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(itemId) {
-        var userStatut, storedITems, produitPositionInArray, pro_id;
+        var userStatut, pro_id, storedITems, produitPositionInArray;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
           while (1) switch (_context9.prev = _context9.next) {
             case 0:
-              _context9.next = 2;
+              console.log(itemId);
+              _context9.next = 3;
               return Kart.getUserStatut();
-            case 2:
+            case 3:
               userStatut = _context9.sent;
               if (!(userStatut == false)) {
-                _context9.next = 5;
+                _context9.next = 6;
                 break;
               }
               return _context9.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
-            case 5:
+            case 6:
+              pro_id = parseInt(itemId);
+              axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
+                data: {
+                  pro_id: pro_id
+                },
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              }).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+                return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+                  while (1) switch (_context8.prev = _context8.next) {
+                    case 0:
+                      _context8.next = 2;
+                      return Kart.getItemNumber();
+                    case 2:
+                      document.querySelector("#cart-item-count").innerHTML = _context8.sent;
+                      Kart.kartRenderItems();
+                    case 4:
+                    case "end":
+                      return _context8.stop();
+                  }
+                }, _callee8);
+              })));
               storedITems = Kart.getParsedBasket();
               if (storedITems.length > 0) {
                 produitPositionInArray = storedITems.findIndex(function (produit) {
@@ -343,31 +367,8 @@ var Kart = /*#__PURE__*/function () {
                 });
                 storedITems.splice(produitPositionInArray, 1);
                 localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                pro_id = parseInt(itemId);
-                axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
-                  data: {
-                    pro_id: pro_id
-                  },
-                  headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                  }
-                }).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-                  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-                    while (1) switch (_context8.prev = _context8.next) {
-                      case 0:
-                        _context8.next = 2;
-                        return Kart.getItemNumber();
-                      case 2:
-                        document.querySelector("#cart-item-count").innerHTML = _context8.sent;
-                        Kart.kartRenderItems();
-                      case 4:
-                      case "end":
-                        return _context8.stop();
-                    }
-                  }, _callee8);
-                })));
               }
-            case 7:
+            case 10:
             case "end":
               return _context9.stop();
           }
