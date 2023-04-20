@@ -6,205 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-       #mail {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-#mail .entete {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-#mail .entete img {
-  width: 15%;
-  height: 10vh;
-}
-#mail .salutation {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 40px 35px 0 35px;
-}
-#mail .salutation h4 {
-  font-weight: 700;
-  font-size: 22px;
-}
-#mail .salutation p {
-  font-size: 18px;
-}
-#mail .salutation p span {
-  font-weight: 700;
-}
-#mail .adresse {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
-  padding: 30px 35px 0 35px;
-}
-#mail .adresse .livraison,
-#mail .adresse .facturation {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-}
-#mail .adresse .livraison .titre,
-#mail .adresse .facturation .titre {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-#mail .adresse .livraison .titre .icone,
-#mail .adresse .facturation .titre .icone {
-  font-size: 20px;
-}
-#mail .adresse .livraison .titre h6,
-#mail .adresse .facturation .titre h6 {
-  font-weight: 700;
-  font-size: 22px;
-}
-#mail .adresse .livraison hr,
-#mail .adresse .facturation hr {
-  opacity: 0.4;
-}
-#mail .adresse .livraison .body,
-#mail .adresse .facturation .body {
-  display: flex;
-  flex-direction: column;
-}
-#mail .adresse .livraison .body h6,
-#mail .adresse .facturation .body h6 {
-  font-weight: 700;
-  font-size: 15px;
-}
-#mail .adresse .livraison .body p,
-#mail .adresse .facturation .body p {
-  font-size: 15px;
-}
-#mail .detail {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 35px 10px 35px;
-}
-#mail .detail table {
-  width: 100%;
-}
-#mail .detail table th,
-#mail .detail table td {
-  border: 1px solid gray;
-  padding: 10px;
-  font-size: 16px;
-}
-#mail .detail .detail_total {
-  padding: 50px 0 0 0;
-  width: 100%;
-  flex-direction: row;
-  justify-content: end;
-}
-#mail .detail .detail_total table {
-  width: 40%;
-  border-collapse: collapse;
-}
-#mail .detail .detail_total table th,
-#mail .detail .detail_total table td {
-  border: 1px solid gray;
-  padding: 10px;
-  font-size: 16px;
-}
-#mail .modeLivraison {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 30px 35px 10px 35px;
-}
-#mail .modeLivraison .titreLivraison {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 10px;
-}
-#mail .modeLivraison .titreLivraison .icone_livraison {
-  font-size: 20px;
-}
-#mail .modeLivraison .titreLivraison h6 {
-  font-weight: 700;
-  font-size: 22px;
-}
-#mail .modeLivraison h5 {
-  font-weight: 700;
-  font-size: 17px;
-}
-#mail .modeLivraison h5 span {
-  font-weight: 200;
-}
-#mail .repetition_spectable {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
-  padding: 30px 35px 0 35px;
-}
-#mail .repetition_spectable .spectacle, #mail .repetition_spectable .repetition {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-}
-#mail .repetition_spectable .spectacle .titre, #mail .repetition_spectable .repetition .titre {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-#mail .repetition_spectable .spectacle .titre h6, #mail .repetition_spectable .repetition .titre h6 {
-  font-weight: 700;
-  font-size: 22px;
-}
-#mail .repetition_spectable .spectacle hr, #mail .repetition_spectable .repetition hr {
-  opacity: 0.4;
-}
-#mail .repetition_spectable .spectacle .body, #mail .repetition_spectable .repetition .body {
-  display: flex;
-  flex-direction: column;
-}
-#mail .repetition_spectable .spectacle .body h6, #mail .repetition_spectable .repetition .body h6 {
-  font-weight: 600;
-  font-size: 15px;
-}
-#mail .repetition_spectable .spectacle .body h6 span, #mail .repetition_spectable .repetition .body h6 span {
-  font-weight: 400;
-}
-#mail .message {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: 110px;
-  align-items: center;
-  gap: 10%;
-  padding: 30px 35px 0 35px;
-}
-#mail .message p {
-  font-size: 17px;
-  text-align: center;
-}
-#mail .remerciement {
-  width: 100%;
-  padding: 30px 35px 0 35px;
-}
-#mail .remerciement p {
-  font-size: 17px;
-}
-    
   </style>
 </head>
 <body>
-  <div id="mail">
+    <div id="mail">
   <div class="entete">
     <img src="/images/logo.png" alt="" srcset="" />
   </div>
@@ -316,6 +121,10 @@
     </div>
     <h5>Mode de livraison :<span>Tout en livraison</span></h5>
   </div>
+  <div class="remarque">
+    <h6>Remarque</h6>
+    <p>J'ai aimé vos produits , merci ...</p>
+  </div>
   <div class="repetition_spectable">
     <div class="spectacle">
       <div class="titre">
@@ -354,6 +163,6 @@
   <button class="btn-send">send</button>
 </div>
 <script src="/javascripts/mail.js"></script>
-
+  
 </body>
 </html>
