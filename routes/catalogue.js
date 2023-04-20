@@ -6,6 +6,7 @@ const {
   Produit,
   Media,
   Tarif,
+  sequelize,
 } = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 const check_paginate_value = require("../helpers/check_paginate_value");
@@ -13,7 +14,27 @@ const check_paginate_value = require("../helpers/check_paginate_value");
  * @Route renvois tout
  */
 router.get("/", async function (req, res, next) {
+  let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
+  var orderCondition;
+  let choix;
+  if (orderby === "AàZ") {
+    orderCondition = [["pro_libelle", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "ZàA") {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PC") {
+    orderCondition = [[Tarif, "tar_ttc", "ASC"]];
+    choix = "Prix, croissant";
+  } else if (orderby === "PD") {
+    orderCondition = [[Tarif, "tar_ttc", "DESC"]];
+    choix = "Prix, décroissant";
+  } else {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Choisir";
+  }
+
   try {
     res.locals.titre = "catalogue";
     const typee_categories = await Type_categorie.findAll();
@@ -22,12 +43,13 @@ router.get("/", async function (req, res, next) {
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
-      order: [["pro_id", "DESC"]],
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
+      order: orderCondition,
     });
+    // res.json({ produits });
     let nbrPages = Math.ceil(allproducts.length / PAGINATION_LIMIT);
     let next = start > 0 ? page + 1 : null;
     let prev = end < 0 ? page - 1 : null;
@@ -42,6 +64,8 @@ router.get("/", async function (req, res, next) {
       end: end,
       prev: prev,
       next: next,
+      choix: choix,
+      orderby
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
@@ -56,7 +80,27 @@ router.get("/", async function (req, res, next) {
  */
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
+  let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
+  var orderCondition;
+  let choix;
+  if (orderby === "AàZ") {
+    orderCondition = [["pro_libelle", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "ZàA") {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PC") {
+    orderCondition = [[Tarif, "tar_ttc", "ASC"]];
+    choix = "Prix, croissant";
+  } else if (orderby === "PD") {
+    orderCondition = [[Tarif, "tar_ttc", "DESC"]];
+    choix = "Prix, décroissant";
+  } else {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Choisir";
+  }
+
   try {
     const categorie = await Categorie.findByPk(id, {
       offset: start,
@@ -68,7 +112,10 @@ router.get("/:id", async (req, res) => {
           { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         ],
       },
+      // include:{model:Type_categorie}
     });
+    const type_categorie = await Type_categorie.findByPk(categorie.tyc_id)
+    // res.json(type_categorie)
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
@@ -77,17 +124,21 @@ router.get("/:id", async (req, res) => {
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Categorie, where: { cat_id: id } },
       ],
+      order: orderCondition,
     });
     let nbrPages = Math.ceil(categorie.Produits.length / PAGINATION_LIMIT);
     res.locals.titre = categorie.cat_libelle;
     return res.render("catalogue/bycategorie", {
       categorie: categorie,
       produits: produits,
+      type_categorie:type_categorie,
       nbrPages: nbrPages,
       pageActive: page,
       start,
       end,
       categorie_id: id,
+      choix: choix,
+      orderby:orderby
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
@@ -103,8 +154,27 @@ router.get("/:id", async (req, res) => {
  */
 router.get("/type/:id", async (req, res) => {
   const id = req.params.id;
+  let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
   let totalProductBycat = 0;
+  var orderCondition;
+  let choix, ordre;
+  if (orderby === "AàZ") {
+    orderCondition = [["pro_libelle", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "ZàA") {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PC") {
+    orderCondition = [[Tarif, "tar_ttc", "ASC"]];
+    choix = "Prix, croissant";
+  } else if (orderby === "PD") {
+    orderCondition = [[Tarif, "tar_ttc", "DESC"]];
+    choix = "Prix, décroissant";
+  } else {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Choisir";
+  }
   try {
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
@@ -127,6 +197,7 @@ router.get("/type/:id", async (req, res) => {
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Categorie, where: { tyc_id: id } },
       ],
+      order: orderCondition,
     });
     res.locals.titre = type_categorie.tyc_libelle;
     let nbrPages = Math.ceil(totalProductBycat / PAGINATION_LIMIT);
@@ -139,6 +210,8 @@ router.get("/type/:id", async (req, res) => {
       type_categorie_id: id,
       start,
       end,
+      choix: choix,
+      orderby: orderby,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {

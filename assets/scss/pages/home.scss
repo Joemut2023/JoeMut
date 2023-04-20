@@ -12,7 +12,7 @@
   }
 
   .element-slider-suggestion {
-    
+
     .font-weight-light {
       margin-bottom: 20px;
       font-family: "Byciclette";
@@ -498,35 +498,63 @@
       height: 270px;
       width: 60%;
       margin: 0 auto 2% auto;
-      .suggestion-img{
-        object-fit: cover;
+
+      a {
+        display: inline-block;
+        height: 100%;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
 
     .paragraph {
       text-align: center;
       color: $color-secondary;
-      .libelle{
+
+      .libelle {
         font-size: 0.8rem;
+      }
+
+      P{
+        margin-bottom: 5px;
       }
     }
 
     .price {
       text-align: center;
       color: $color-important;
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
 
-      span {
+      .bar{
+        font-size: 20px;
+        font-weight: 500;
+        color:$color-primary
+      }
+      .btn-add {
         cursor: pointer;
+      }
+      p{
+        margin-bottom: 0px;
       }
     }
 
-    
+    .slick-list {
+      perspective: 1px;
+    }
 
+    .slick-track {
+      will-change: transform, transition;
+    }
 
   }
 
-  body {
-    margin: 50px;
-  }
+
+
 
 }

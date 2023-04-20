@@ -1,32 +1,35 @@
 const panierDetails = document.querySelector(".comment");
 const PanierPrice = document.querySelector(".panier-price");
 const emptyKartText = document.querySelector("#empty-product-kart");
-let storedITems = Kart.getParsedBasket();
+let storedITems = Kart.getAllPanierDetails();
 let TotalePrice = 0;
 
-const RenderKartProduct = () => {
+const RenderKartProduct = async () => {
   let panierDetailsHtml = ``;
-  storedITems = Kart.getParsedBasket();
-  storedITems.map((produit) => {
+  storedITems = await Kart.getAllPanierDetails();
+  storedITems?.map((produit) => {
     panierDetailsHtml += `
   <div class="articles row">
-    <div class="col-md-1 clo-sm-1 id">${produit.pro_ref}</div>
-  <div class="col-md-3 col-sm-4 image">
-    <img src="/images/produits/${produit.media}" class="img-fluid" alt="" />
+    <div class="col-md-1 col-sm-1 col-1 id">${produit.Produit.pro_ref}</div>
+  <div class="col-md-3 col-sm-4 col-4 image">
+    <span><img src="/images/produits/${
+      produit.Produit.Media[0].med_ressource
+    }" class="img-fluid" alt="" /></span>
   </div>
-  <div class="col-md-3 col-sm-7 description">
+  <div class="col-md-3 col-sm-7 col-7 description">
     <div class="desc">
       <a href="/article/${produit.pro_id}"><span>${
-      produit.pro_libelle
+      produit.Produit.pro_libelle
     }</span></a>
     </div>
     <p class="price">${produit.pad_ttc.toFixed(2)} €</p>
   </div>
-  <div class="col-md-5 col-sm-12 prices">
+  <div class="col-md-5 col-sm-12 col-12 prices">
     <div class="row">
-      <div class="col-md-6 col-sm-10 block-price">
+    <div class="hidden col-sm-4 col-3"></div>
+      <div class="col-md-10 col-sm-6 col-7 block-price">
         <div class="row compteur">
-          <div class="col-md-4 col-sm-6 qty-btn">
+          <div class="col-md-6 col-sm-6 col-6 qty-btn">
             <input type="text" class="number-value" value="${
               produit.pad_qte
             }" />
@@ -39,12 +42,12 @@ const RenderKartProduct = () => {
               </button>
             </div>
           </div>
-          <div class="col-md-8 col-sm-6 prx">
+          <div class="col-md-6 col-sm-6 col-6 prx">
             <span>${produit.pad_ttc.toFixed(2)} €</span>
           </div>
         </div>
       </div>
-      <div data-id="${produit.pro_id}" class="col-md-6 col-sm-2 delete">
+      <div data-id="${produit.pro_id}" class="col-md-2 col-sm-2 col-2 delete">
         <span><i  class="fa-solid fa-trash" ></i></span>
       </div>
     </div>
@@ -59,9 +62,9 @@ const RenderKartProduct = () => {
   let eventlistner = (callback) => {
     const btnTrash = document.querySelectorAll(".delete");
     btnTrash.forEach((element) => {
-      element.addEventListener("click", () => {
+      element.addEventListener("click", async () => {
         let itemId = element.dataset.id;
-        Kart.removeItem(itemId);
+        await Kart.removeItem(itemId);
         TotalPricesProducts();
         document.querySelector("#cart-item-count").innerHTML =
           Kart.getItemNumber();
@@ -75,16 +78,17 @@ const RenderKartProduct = () => {
     });
   };
   btnTrash.forEach((element) => {
-    element.addEventListener("click", () => {
+    element.addEventListener("click", async () => {
       TotalPricesProducts;
       let itemId = element.dataset.id;
-      Kart.removeItem(itemId);
+      await Kart.removeItem(itemId);
       TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-      RenderKartProduct();
-      eventlistner(() => {
-        RenderKartProduct();
+        await Kart.getItemNumber();
+      await RenderKartProduct();
+      eventlistner(async () => {
+        await Kart.removeItem(itemId);
+        await RenderKartProduct();
       });
     });
   });
@@ -96,14 +100,48 @@ const RenderKartProduct = () => {
   }
 };
 
-RenderKartProduct();
+(async () => {
+  await RenderKartProduct();
+  const btns_up = document.querySelectorAll(".btn-up");
+  const btns_down = document.querySelectorAll(".btn-down");
+  btns_up.forEach((element) => {
+    element.addEventListener("click", async () => {
+      let itemId = element.dataset.id;
+      let compteur = element.parentNode.parentNode.children[0].value;
+      compteur = isNaN(compteur) ? 1 : compteur;
+      compteur++;
 
-const btns_up = document.querySelectorAll(".btn-up");
-const btns_down = document.querySelectorAll(".btn-down");
+      const qte = await Kart.updateItemQuantity(itemId, "up");
+      console.log(qte);
+      element.parentNode.parentNode.children[0].value = qte;
+      TotalPricesProducts();
+      document.querySelector("#cart-item-count").innerHTML =
+      await  Kart.getItemNumber();
+    });
+  });
 
-const TotalPricesProducts = () => {
-  let storedITems = Kart.getParsedBasket();
-  let storedFrais = Kart.getParsedFrais();
+  btns_down.forEach((element) => {
+    element.addEventListener("click", async () => {
+      let itemId = element.dataset.id;
+      let decrement = element.parentNode.parentNode.children[0].value;
+
+      decrement = isNaN(decrement) ? 1 : decrement;
+      if (decrement > 1) {
+        decrement--;
+        const qte = await Kart.updateItemQuantity(itemId, "down");
+        console.log(qte);
+        document.querySelector("#cart-item-count").value = qte;
+        TotalPricesProducts();
+        
+      }
+      element.parentNode.parentNode.children[0].value = decrement;
+    });
+  });
+})();
+
+const TotalPricesProducts = async () => {
+  let storedITems = await Kart.getAllPanierDetails();
+  let storedFrais = await Kart.addFraisDivers();
   let totalPriceht = 0;
   let totalPoductPrice = 0;
   let totalQuantity = 0;
@@ -123,11 +161,15 @@ const TotalPricesProducts = () => {
     </div>
     <div class="item">
       <span class="title">Livraisons</span>
-      <span class="price">${storedFrais.frais_port.toFixed(2)} €</span>
+      <span class="price">${parseFloat(storedFrais.frais_port).toFixed(
+        2
+      )} €</span>
     </div>
     <div class="item">
       <span class="title">Frais de dossier</span>
-      <span class="price">${storedFrais.frais_dossier.toFixed(2)} €</span>
+      <span class="price">${parseFloat(storedFrais.frais_dossier).toFixed(
+        2
+      )} €</span>
     </div>
     <hr>
   </div>
@@ -165,35 +207,6 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-
-btns_up.forEach((element) => {
-  element.addEventListener("click", () => {
-    let itemId = element.dataset.id;
-    let compteur = element.parentNode.parentNode.children[0].value;
-    compteur = isNaN(compteur) ? 1 : compteur;
-    compteur++;
-    element.parentNode.parentNode.children[0].value = compteur;
-    Kart.updateItemQuantity(itemId, true);
-    TotalPricesProducts();
-    document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-  });
-});
-
-btns_down.forEach((element) => {
-  element.addEventListener("click", () => {
-    let itemId = element.dataset.id;
-    let decrement = element.parentNode.parentNode.children[0].value;
-    decrement = isNaN(decrement) ? 1 : decrement;
-    if (decrement > 1) {
-      decrement--;
-      Kart.updateItemQuantity(itemId, false);
-      TotalPricesProducts();
-      document.querySelector("#cart-item-count").innerHTML =
-        Kart.getItemNumber();
-    }
-    element.parentNode.parentNode.children[0].value = decrement;
-  });
-});
 
 link_parag.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
