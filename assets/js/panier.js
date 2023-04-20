@@ -112,9 +112,8 @@ const RenderKartProduct = async () => {
       compteur++;
 
       const qte = await Kart.updateItemQuantity(itemId, "up");
-      console.log(qte);
       element.parentNode.parentNode.children[0].value = qte;
-      TotalPricesProducts();
+      await TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
         await Kart.getItemNumber();
     });
@@ -129,9 +128,8 @@ const RenderKartProduct = async () => {
       if (decrement > 1) {
         decrement--;
         const qte = await Kart.updateItemQuantity(itemId, "down");
-        console.log(qte);
         document.querySelector("#cart-item-count").value = qte;
-        TotalPricesProducts();
+        await TotalPricesProducts();
       }
       element.parentNode.parentNode.children[0].value = decrement;
     });
@@ -228,7 +226,6 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-console.log(link_parag);
 link_parag?.addEventListener("click", function () {
   link_parag.classList.add("linkhide");
 
