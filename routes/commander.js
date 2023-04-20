@@ -17,13 +17,16 @@ router.get("/", async (req, res) => {
   res.locals.titre = "commander";
   let userId = req.session.userId;
   let { newadress } = req.query;
-  if (newadress) {
-    return res.render("commander/index");
-  }
+  
   try {
     const mode_livraisons = await Frais_port.findAll({
       where: { frp_actif: true },
     });
+    if (newadress) {
+      return res.render("commander/index",{
+        mode_livraisons: mode_livraisons,
+      });
+    }
     if (userId) {
       const adresses = await Adresse.findAll({
         where: {
