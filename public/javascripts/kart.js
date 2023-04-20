@@ -476,7 +476,7 @@ var Kart = /*#__PURE__*/function () {
     key: "kartRenderItems",
     value: function () {
       var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-        var userStatut, kartItemsElement, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
+        var userStatut, kartItemsElement, kartLoader, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
         return _regeneratorRuntime().wrap(function _callee12$(_context12) {
           while (1) switch (_context12.prev = _context12.next) {
             case 0:
@@ -491,19 +491,20 @@ var Kart = /*#__PURE__*/function () {
               return _context12.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               kartItemsElement = document.querySelector(".kart-items");
-              _context12.next = 8;
+              kartLoader = document.querySelector(".kart-loader");
+              _context12.next = 9;
               return Kart.addFraisDivers();
-            case 8:
+            case 9:
               fraisDivers = _context12.sent;
-              _context12.next = 11;
+              _context12.next = 12;
               return Kart.calculTotalPrice();
-            case 11:
+            case 12:
               price = _context12.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context12.next = 16;
+              _context12.next = 17;
               return Kart.getAllPanierDetails();
-            case 16:
+            case 17:
               panierDetail = _context12.sent;
               storedItemsHtml = "";
               kartProductQte = 0;
@@ -512,6 +513,7 @@ var Kart = /*#__PURE__*/function () {
                   kartProductQte = produit.pad_qte + kartProductQte;
                   storedItemsHtml += "\n              <div>\n                  <div class=\"kart-item\">\n                      <div class=\"kart-img\">\n                          <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                      </div>\n                      <div class=\"kart-content\">\n                          <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                          <div class=\"actions\">\n                              <span class=\"price\">").concat(produit.pad_qte, " x ").concat(produit.pad_ttc.toFixed(2), " \u20AC</span>\n                              <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n              <hr>\n              ");
                 });
+                kartLoader.style.display = kartItemsElement.innerHTML ? "none" : "block";
                 kartItemsElement.innerHTML = storedItemsHtml;
               } else {
                 kartItemsElement.innerHTML = "";
@@ -529,7 +531,7 @@ var Kart = /*#__PURE__*/function () {
                   document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
                 });
               });
-            case 24:
+            case 25:
             case "end":
               return _context12.stop();
           }

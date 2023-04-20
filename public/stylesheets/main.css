@@ -551,6 +551,9 @@
 #bloc-panier .offcanvas-body {
   height: 100%;
 }
+#bloc-panier .offcanvas-body .kart-loader {
+  display: block;
+}
 #bloc-panier .offcanvas-body .kart-items {
   min-height: max-content;
   height: max-content;

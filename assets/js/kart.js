@@ -139,8 +139,6 @@ class Kart {
             document.querySelector("#cart-item-count").innerHTML =
               await Kart.getItemNumber();
           }
-
-
         });
     } catch (error) {
       await Kart.RenderModal(itemForPanier, qte);
@@ -231,6 +229,7 @@ class Kart {
     }
 
     let kartItemsElement = document.querySelector(".kart-items");
+    let kartLoader = document.querySelector(".kart-loader");
     const fraisDivers = await Kart.addFraisDivers();
     const price = await Kart.calculTotalPrice();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
@@ -268,6 +267,7 @@ class Kart {
               <hr>
               `;
       });
+      kartLoader.style.display = kartItemsElement.innerHTML ? "none" : "block";
       kartItemsElement.innerHTML = storedItemsHtml;
     } else {
       kartItemsElement.innerHTML = ``;
