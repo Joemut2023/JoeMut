@@ -30,7 +30,7 @@ router.post("/", async (req, res, next) => {
     //   where: { pro_id },
     // });
 
-    const quantite = await Quantite.sum('qua_nbre',{
+    const quantite = await Quantite.sum("qua_nbre", {
       where: { pro_id },
     });
     if (oldPanierDetail == null) {
@@ -66,13 +66,8 @@ router.post("/", async (req, res, next) => {
     const newQuantite = oldPanierDetail.pad_qte + pad_qte;
 
     if (quantite) {
-      
       if (newQuantite > quantite) {
-        return res
-          .status(409)
-          .send(
-            `Vous avez déjà commandé la quantité disponible pour cet article`
-          );
+        return res.status(200).send("indisponible");
       }
     }
 

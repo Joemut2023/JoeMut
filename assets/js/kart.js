@@ -110,6 +110,7 @@ class Kart {
           },
         })
         .then(async (res) => {
+          if (res.data == "indisponible") return Kart.RenderMaxQteModal();
           let qte = res.data.panierDetail.pad_qte;
           await Kart.RenderModal(itemForPanier, qte);
           if (storedITems) {
@@ -384,6 +385,20 @@ class Kart {
                     <span>Finaliser le devis</span>
                 </a>
             </div>
+        </div>
+        `;
+    document.querySelector("#myModal .body-modal").innerHTML = html;
+  }
+  static async RenderMaxQteModal() {
+    let storedITems = Kart.getParsedBasket();
+    // document.querySelector(".body-modal-detail").style.display = "none";
+    const price = await Kart.calculTotalPrice();
+    const fraisDivers = await Kart.addFraisDivers();
+    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
+    const fraisPort = parseFloat(fraisDivers.frais_port);
+    let html = /*html*/ `
+        <div class="modal-body-commande">
+            <h5>Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
         </div>
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;

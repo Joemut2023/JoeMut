@@ -251,12 +251,18 @@ var Kart = /*#__PURE__*/function () {
                   return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                     while (1) switch (_context6.prev = _context6.next) {
                       case 0:
+                        if (!(res.data == "indisponible")) {
+                          _context6.next = 2;
+                          break;
+                        }
+                        return _context6.abrupt("return", Kart.RenderMaxQteModal());
+                      case 2:
                         qte = res.data.panierDetail.pad_qte;
-                        _context6.next = 3;
+                        _context6.next = 5;
                         return Kart.RenderModal(itemForPanier, qte);
-                      case 3:
+                      case 5:
                         if (!storedITems) {
-                          _context6.next = 13;
+                          _context6.next = 15;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -273,20 +279,20 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 10;
+                        _context6.next = 12;
                         return Kart.getItemNumber();
-                      case 10:
+                      case 12:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 18;
+                        _context6.next = 20;
                         break;
-                      case 13:
+                      case 15:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 17;
+                        _context6.next = 19;
                         return Kart.getItemNumber();
-                      case 17:
+                      case 19:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                      case 18:
+                      case 20:
                       case "end":
                         return _context6.stop();
                     }
@@ -572,6 +578,38 @@ var Kart = /*#__PURE__*/function () {
         return _RenderModal.apply(this, arguments);
       }
       return RenderModal;
+    }()
+  }, {
+    key: "RenderMaxQteModal",
+    value: function () {
+      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        var storedITems, price, fraisDivers, fraisDossier, fraisPort, html;
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) switch (_context14.prev = _context14.next) {
+            case 0:
+              storedITems = Kart.getParsedBasket(); // document.querySelector(".body-modal-detail").style.display = "none";
+              _context14.next = 3;
+              return Kart.calculTotalPrice();
+            case 3:
+              price = _context14.sent;
+              _context14.next = 6;
+              return Kart.addFraisDivers();
+            case 6:
+              fraisDivers = _context14.sent;
+              fraisDossier = parseFloat(fraisDivers.frais_dossier);
+              fraisPort = parseFloat(fraisDivers.frais_port);
+              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
+              document.querySelector("#myModal .body-modal").innerHTML = html;
+            case 11:
+            case "end":
+              return _context14.stop();
+          }
+        }, _callee14);
+      }));
+      function RenderMaxQteModal() {
+        return _RenderMaxQteModal.apply(this, arguments);
+      }
+      return RenderMaxQteModal;
     }()
   }]);
   return Kart;
