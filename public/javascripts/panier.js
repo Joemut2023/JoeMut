@@ -257,13 +257,3 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-link_parag === null || link_parag === void 0 ? void 0 : link_parag.addEventListener("click", function () {
-  link_parag.classList.add("linkhide");
-  code_promo_block.classList.remove("hide-promo");
-  code_promo_block.classList.add("code-promo");
-});
-btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
-  link_parag.classList.remove("linkhide");
-  code_promo_block.classList.remove("code-promo");
-  code_promo_block.classList.add("hide-promo");
-});

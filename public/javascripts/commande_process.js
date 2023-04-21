@@ -31,6 +31,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
     radio.addEventListener('click', function (e) {
       var frp_ttc = e.target.dataset.ttc;
+      console.log(frp_ttc, "commander2");
       var frp_id = e.target.value;
       localStorage.setItem('fraisDivers', JSON.stringify({
         frais_port: parseFloat(frp_ttc).toFixed(2),
@@ -39,11 +40,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }));
     });
   });
-  radios_adresses === null || radios_adresses === void 0 ? void 0 : radios_adresses.forEach(function (radio) {
-    radio.addEventListener('click', function (e) {
-      console.log(e.target);
-    });
-  });
+  // radios_adresses?.forEach(radio=>{
+  //     radio.addEventListener('click',(e)=>{
+  //         console.log(e.target);
+  //     })
+  // });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
       var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, params, panier;
