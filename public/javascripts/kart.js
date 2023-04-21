@@ -624,6 +624,14 @@ var Kart = /*#__PURE__*/function () {
       }
       return RenderMaxQteModal;
     }()
+  }, {
+    key: "RenderMaxQteUpdateModal",
+    value: function RenderMaxQteUpdateModal() {
+      var myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
+        keyboard: false
+      });
+      myModal.show();
+    }
   }]);
   return Kart;
 }();

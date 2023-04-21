@@ -116,11 +116,11 @@ class Kart {
 
           if (res.data == "indisponible") {
             return Kart.RenderMaxQteModal();
-          }else{
+          } else {
             let qte = res.data.panierDetail.pad_qte;
             await Kart.RenderModal(itemForPanier, qte);
           }
-          
+
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -414,5 +414,11 @@ class Kart {
         </div>
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;
+  }
+  static RenderMaxQteUpdateModal() {
+    var myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
+      keyboard: false,
+    });
+    myModal.show();
   }
 }
