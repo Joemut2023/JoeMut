@@ -277,6 +277,7 @@ class Kart {
       kartItemsElement.innerHTML = storedItemsHtml;
     } else {
       kartItemsElement.innerHTML = ``;
+      kartLoader.style.display = "none";
     }
 
     let kartInfosData = `
