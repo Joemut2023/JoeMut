@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get("/", (req, res, next) => {
     res.locals.titre = "devis";
-    res.render("mail/devis", {});
+    res.render("", {});
 });
 
 module.exports = router;
