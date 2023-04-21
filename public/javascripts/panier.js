@@ -130,20 +130,26 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   itemId = element.dataset.id;
                   compteur = element.parentNode.parentNode.children[0].value;
                   compteur = isNaN(compteur) ? 1 : compteur;
-                  compteur++;
-                  _context5.next = 6;
+                  // compteur++;
+                  _context5.next = 5;
                   return Kart.updateItemQuantity(itemId, "up");
-                case 6:
+                case 5:
                   qte = _context5.sent;
+                  if (!(qte == compteur)) {
+                    _context5.next = 8;
+                    break;
+                  }
+                  return _context5.abrupt("return", Kart.RenderMaxQteUpdateModal());
+                case 8:
                   element.parentNode.parentNode.children[0].value = qte;
-                  _context5.next = 10;
+                  _context5.next = 11;
                   return TotalPricesProducts();
-                case 10:
-                  _context5.next = 12;
+                case 11:
+                  _context5.next = 13;
                   return Kart.getItemNumber();
-                case 12:
-                  document.querySelector("#cart-item-count").innerHTML = _context5.sent;
                 case 13:
+                  document.querySelector("#cart-item-count").innerHTML = _context5.sent;
+                case 14:
                 case "end":
                   return _context5.stop();
               }

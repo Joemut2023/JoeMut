@@ -116,11 +116,11 @@ class Kart {
 
           if (res.data == "indisponible") {
             return Kart.RenderMaxQteModal();
-          }else{
+          } else {
             let qte = res.data.panierDetail.pad_qte;
             await Kart.RenderModal(itemForPanier, qte);
           }
-          
+
           if (storedITems) {
             let produitFilter = storedITems.filter(
               (produit) => produit.pro_id == item.pro_id
@@ -277,6 +277,7 @@ class Kart {
       kartItemsElement.innerHTML = storedItemsHtml;
     } else {
       kartItemsElement.innerHTML = ``;
+      kartLoader.style.display = "none";
     }
 
     let kartInfosData = `
@@ -336,11 +337,11 @@ class Kart {
     //   : null;
     const btnRemoveProduct = document.querySelectorAll("#remove-prod");
     btnRemoveProduct?.forEach((item) => {
-      item.addEventListener("click", () => {
+      item.addEventListener("click", async () => {
         let itemId = item.dataset.id;
-        Kart.removeItem(itemId);
+        await Kart.removeItem(itemId);
         document.querySelector("#cart-item-count").innerHTML =
-          Kart.getItemNumber();
+          await Kart.getItemNumber();
       });
     });
   }
@@ -349,7 +350,6 @@ class Kart {
    * @param {*} item
    */
   static async RenderModal(item, qte) {
-    let storedITems = Kart.getParsedBasket();
     const price = await Kart.calculTotalPrice();
     const fraisDivers = await Kart.addFraisDivers();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
@@ -413,5 +413,11 @@ class Kart {
         </div>
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;
+  }
+  static RenderMaxQteUpdateModal() {
+    var myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
+      keyboard: false,
+    });
+    myModal.show();
   }
 }

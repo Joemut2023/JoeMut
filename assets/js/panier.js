@@ -109,9 +109,10 @@ const RenderKartProduct = async () => {
       let itemId = element.dataset.id;
       let compteur = element.parentNode.parentNode.children[0].value;
       compteur = isNaN(compteur) ? 1 : compteur;
-      compteur++;
+      // compteur++;
 
       const qte = await Kart.updateItemQuantity(itemId, "up");
+      if (qte == compteur) return Kart.RenderMaxQteUpdateModal();
       element.parentNode.parentNode.children[0].value = qte;
       await TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =

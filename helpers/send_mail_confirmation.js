@@ -2,6 +2,8 @@ var nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
+const pdf = require('pdfkit');
+const puppeteer = require('puppeteer');
 
 module.exports = async (
   res,
@@ -9,7 +11,13 @@ module.exports = async (
   commande,
   adresseLiv,
   adresseFac,
-  panierDetails
+  panierDetails,
+  essayage,
+  modeLivraison,
+  sous_total,
+  taxe,
+  totalTTC,
+  totalHT
 ) => {
   let ejsFile = fs.readFileSync(
     path.join(__dirname, "../mailTemplate/index.ejs"),
@@ -19,21 +27,43 @@ module.exports = async (
     path.join(__dirname, "../mailTemplate/devis.ejs"),
     "utf8"
   );
-
   let html = ejs.render(ejsFile, {
     commande: commande,
     adresseLiv: adresseLiv,
     adresseFac: adresseFac,
     panierDetails: panierDetails,
+    modeLivraison: modeLivraison,
+    essayage: essayage,
+    sous_total: sous_total,
+    taxe: taxe,
+    totalTTC: totalTTC,
+    totalHT: totalHT,
   });
-
-  let pdf = ejs.render(ejsdevis, {
-    commande: commande,
-    adresseLiv: adresseLiv,
-    adresseFac: adresseFac,
-    panierDetails: panierDetails,
+  let pdfview = ejs.renderFile(
+    path.join(__dirname, "../mailTemplate/devis.ejs"),
+    {
+      commande: commande,
+      adresseLiv: adresseLiv,
+      adresseFac: adresseFac,
+      panierDetails: panierDetails,
+      modeLivraison: modeLivraison,
+      essayage: essayage,
+      sous_total: sous_total,
+      taxe,
+      totalTTC,
+      totalHT: totalHT,
+    }
+  );
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(`${process.env.APP_URL}devis`);
+  await page.pdf({
+    path: path.join(
+      __dirname,
+      "../public/pdf/devis/" + commande.com_id + ".pdf"
+    ),
   });
-
+  await page.close();
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -44,8 +74,8 @@ module.exports = async (
     });
     const mailOptions = {
       from: "myindavictoire@gmail.com",
-      to: "mavubapathy@gmail.com",
-      subject: "Message du client depuis le site",
+      to: "trigoyodila1996@gmail.com",
+      subject: "[AIGUILLE EN SCENE] Confirmation de commande",
       text: "Hello",
       html: html,
       // attachments: [

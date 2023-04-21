@@ -6,7 +6,8 @@ const {
   Panier,
   Commande,
   Panier_detail,
-  Autre_frais
+  Autre_frais,
+  Essayage
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
@@ -59,10 +60,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
-  let { frais, adresse, commande } = req.body;
+  let { frais, adresse, commande,essayages } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande
+    
     let panier = await Panier.findByPk(pan_id);
     let adress_item = await Adresse.findByPk(parseInt(adresse));
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
@@ -94,6 +96,14 @@ router.post("/", async (req, res) => {
       com_port: frais.frais_port,
       com_frais:sum
     });
+    for (let i = 0; i < essayages.length; i++) {
+     if (essayages[i] !== '') {
+      let essayage = await Essayage.create({
+        com_id:commande_item.com_id,
+        ess_repetition:essayages[i]
+      });
+     }
+    }
     // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
     let new_panier = await Panier.create({
       cli_id: userId,

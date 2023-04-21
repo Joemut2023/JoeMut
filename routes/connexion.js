@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   //user_login(req,res,'commander/index','/commander');
-
   const { credentials, panier_items } = req.body;
+  var lastCartExistsInCommande;
   try {
     const client = await Client.findOne({
       where: { cli_mail: credentials.cli_mail },
@@ -36,55 +36,24 @@ router.post("/", async (req, res) => {
     }
     var panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
-      include: [{ model: Commande, required: false, where: { com_id: null } }],
-      include: [{ model: Commande, required: false }],
-     // where: { '$Commande.com_id$': null }
+      order: [['pan_id', 'DESC']],
     });
-    if (!panier) {
+
+  
+    if (panier) {
+      lastCartExistsInCommande = await Commande.findOne({
+        where: { pan_id: panier.pan_id },
+      });
+      if (lastCartExistsInCommande) {
+        panier = await Panier.create({
+          cli_id: client.cli_id,
+        });
+        console.log(panier);
+      }
+    }else{
       panier = await Panier.create({
         cli_id: client.cli_id,
       });
-
-      if (panier_items && panier_items.length > 0) {
-        let insert_panier_details = async () => {
-          panier_items.forEach(async (item) => {
-            // récuperation du produit avec les bonnes infos
-            let produit = await Produit.findByPk(item.pro_id, {
-              include: [
-                {
-                  model: Tarif,
-                  attributes: ["tar_ttc", "tar_id", "tar_ht"],
-                  where: {
-                    [Op.and]: [
-                      {
-                        pro_id: item.pro_id,
-                      },
-                      {
-                        tar_statut: ACTIF,
-                      },
-                    ],
-                  },
-                },
-              ],
-            });
-            // insérer dans panier_details
-            let panier_dtl = await Panier_detail.create({
-              pro_id: produit.pro_id,
-              tar_id: produit.Tarifs[0].tar_id,
-              pan_id: panier.pan_id,
-              pad_qte: item.pad_qte,
-              pad_ht: produit.Tarifs[0].tar_ht,
-              pad_ttc: produit.Tarifs[0].tar_ttc,
-            });
-          });
-        };
-        await insert_panier_details();
-      }
-      // si des données panier_details sont envoyés insérés dans la bd
-    } else {
-      if (panier_items?.length > 0) {
-        // supprimer tout les paniers details et insérer des nouveaux
-      }
     }
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;

@@ -32,6 +32,7 @@
        // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
         let adresse = document.querySelector('[name=radio_adresse]').value;
+        let dates_essayages = [com_date_essayage,com_date_essayage_autre]
         let params = {
             //items : panier_details,
             frais:frais,
@@ -42,8 +43,10 @@
                 com_date_essayage_autre,
                 com_compl
             },
-            adresse:adresse
+            adresse:adresse,
+            essayages:dates_essayages
         }
+        stop;
         let panier = await axios.post('/commander',params,{
             headers: {
                 "X-Requested-With": "XMLHttpRequest",

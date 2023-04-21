@@ -46,7 +46,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, params, panier;
+      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -58,6 +58,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             com_compl = document.querySelector('[name=com_compl]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
             adresse = document.querySelector('[name=radio_adresse]').value;
+            dates_essayages = [com_date_essayage, com_date_essayage_autre];
             params = {
               //items : panier_details,
               frais: frais,
@@ -68,19 +69,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 com_date_essayage_autre: com_date_essayage_autre,
                 com_compl: com_compl
               },
-              adresse: adresse
+              adresse: adresse,
+              essayages: dates_essayages
             };
-            _context2.next = 11;
+            stop;
+            _context2.next = 13;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 11:
+          case 13:
             panier = _context2.sent;
             localStorage.setItem('storedItems', JSON.stringify([]));
             window.location.replace('/confirmation-commande');
-          case 14:
+          case 16:
           case "end":
             return _context2.stop();
         }
