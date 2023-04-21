@@ -394,4 +394,9 @@
     cursor: not-allowed !important;
     background: $color-white-secondary !important;
   }
+  .linkhide {
+    display: none;
+    transform: translateX(-100px);
+    transition: all 0.5s ease;
+  }
 }

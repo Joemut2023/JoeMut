@@ -3,10 +3,8 @@ const { Panier_detail } = require("../models");
 const getPanierDetail = async (req, res, next) => {
   const pan_id = req.session.panierId;
   if (typeof pan_id !== "undefined") {
-    const Produits = await Panier_detail.findAll({
-      where: { pan_id },
-    });
-    res.locals.pan_nbr = Produits.length;
+    const quantite = await Panier_detail.sum("pad_qte");
+    res.locals.pan_nbr = quantite;
   } else {
     res.locals.pan_nbr = 0;
   }

@@ -154,19 +154,13 @@ router.put("/", async (req, res) => {
         [Op.and]: [{ pro_id }, { pan_id }],
       },
     });
-    const quantite = await Quantite.findAll({
-      attributes: [
-        "qua_nbre",
-        "pro_id",
-        [Sequelize.fn("SUM", Sequelize.col("qua_nbre")), "qteTotal"],
-      ],
+    const quantite = await Quantite.sum("qua_nbre", {
       where: { pro_id },
     });
     if (quantite) {
-      const qteDispo = quantite[0].getDataValue("qteTotal");
       const newQuantite =
         action == "up" ? panierDetail.pad_qte + 1 : panierDetail.pad_qte - 1;
-      if (qteDispo >= newQuantite) {
+      if (quantite >= newQuantite) {
         const newpanierDetail = await panierDetail.update(
           {
             pad_qte: newQuantite,
