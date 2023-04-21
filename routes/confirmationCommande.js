@@ -34,11 +34,9 @@ router.get("/", async (req, res, next) => {
     let adresseFac = await Adresse.findOne({
       where: { adr_id: commande.com_adr_fac },
     });
-    let essayage = await Essayage.findOne({where:{com_id:commande.com_id}})
+    let essayage = await Essayage.findAll({where:{com_id:commande.com_id}});
     let modeLivraison = await Frais_port.findOne({where:{frp_id:commande.frp_id}})
 
-
-    console.log(adresseFac, adresseLiv);
     const panierDetails = await Panier_detail.findAll({
       include: [
         {
