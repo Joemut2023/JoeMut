@@ -9,7 +9,12 @@ module.exports = async (
   commande,
   adresseLiv,
   adresseFac,
-  panierDetails
+  panierDetails,
+  essayage,
+  modeLivraison,
+  sous_total,
+  taxe,
+  totalTTC
 ) => {
   let ejsFile = fs.readFileSync(
     path.join(__dirname, "../mailTemplate/index.ejs"),
@@ -25,6 +30,11 @@ module.exports = async (
     adresseLiv: adresseLiv,
     adresseFac: adresseFac,
     panierDetails: panierDetails,
+    modeLivraison: modeLivraison,
+    essayage: essayage,
+    sous_total: sous_total,
+    taxe: taxe,
+    totalTTC:totalTTC,
   });
 
   let pdf = ejs.render(ejsdevis, {
@@ -32,6 +42,11 @@ module.exports = async (
     adresseLiv: adresseLiv,
     adresseFac: adresseFac,
     panierDetails: panierDetails,
+    modeLivraison: modeLivraison,
+    essayage: essayage,
+    sous_total: sous_total,
+    taxe,
+    totalTTC,
   });
 
   try {
@@ -44,8 +59,8 @@ module.exports = async (
     });
     const mailOptions = {
       from: "myindavictoire@gmail.com",
-      to: "mavubapathy@gmail.com",
-      subject: "Message du client depuis le site",
+      to: "trigoyodila1996@gmail.com",
+      subject: "[AIGUILLE EN SCENE] Confirmation de commande",
       text: "Hello",
       html: html,
       // attachments: [

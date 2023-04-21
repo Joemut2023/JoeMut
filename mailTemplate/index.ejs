@@ -27,12 +27,12 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
-            <p style="font-size: 15px;">WC</p>
-            <p style="font-size: 15px;">21 bld Hausmann</p>
-            <p style="font-size: 15px;">75009</p>
-            <p style="font-size: 15px;">France</p>
-            <p style="font-size: 15px;">016114653</p>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= adresseLiv.adr_prenom %> <%= adresseLiv.adr_nom %></h6>
+            <p style="font-size: 15px;"><%= adresseLiv.adr_structure %></p>
+            <p style="font-size: 15px;"><%= adresseLiv.adr_adresse %></p>
+            <p style="font-size: 15px;"><%= adresseLiv.adr_comp %> <%= adresseLiv.adr_ville %></p>
+            <p style="font-size: 15px;"><%= adresseLiv.adr_pays %></p>
+            <p style="font-size: 15px;"><%=adresseLiv.adr_phone  %></p>
           </div>
           <hr style="opacity: 0.4;">
         </div>
@@ -43,72 +43,63 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 700; font-size: 15px;"><%= commande.Client.cli_nom %></h6>
-            <p style="font-size: 15px;">WCG</p>
-            <p style="font-size: 15px;">21 bld Hausmann</p>
-            <p style="font-size: 15px;">75009</p>
-            <p style="font-size: 15px;">France</p>
-            <p style="font-size: 15px;">016114653</p>
+            <h6 style="font-weight: 700; font-size: 15px;"><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></h6>
+            <p style="font-size: 15px;"><%= adresseFac.adr_structure %></p>
+            <p style="font-size: 15px;"><%= adresseFac.adr_adresse %></p>
+            <p style="font-size: 15px;"><%= adresseFac.adr_comp %> <%= adresseFac.adr_ville %></p>
+            <p style="font-size: 15px;"><%= adresseFac.adr_pays %></p>
+            <p style="font-size: 15px;"><%=adresseFac.adr_phone  %></p>
           </div>
           <hr style="opacity: 0.4;">
         </div>
       </div>
       <div class="detail" style="width: 100%;padding: 30px 35px 10px 35px;">
         <table role="presentation" style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background: #ffffff;" width="100%">
-          <tr>
+             <tr>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Réference</th>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produits</th>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Prix unitaire(HT)</th>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Quantité</th>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total(HT)</th>
           </tr>
+          <% panierDetails.forEach(element => { %>
           <tr>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">PC18</td>
-            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">PC19-Combishorht bleu</th>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9.00 £</td>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">2</td>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">18,00 £</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_ref %></td>
+            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_libelle %> </th>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2)%> €</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_qte%></td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
           </tr>
-          <tr>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">MR6</td>
-            <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">MR6-Robe sirène-Marin</th>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9.00 £</td>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">1</td>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">9,00 £</td>
-          </tr>
-          <!-- <tr>
-            <td>GEP23</td>
-            <th>GEP23-Ensemble pantalon saroule framboise à paillettes turquoises</th>
-            <td>12.00 £</td>
-            <td>1</td>
-            <td>12,00 £/td>
-        </tr> -->
+           
+          <% }) %>
+    
         </table>
+
         <div class="detail_total" style="padding: 50px 0 0 0; width: 100%; flex-direction: row; justify-content: end;">
           <table style="width: 40%; border-collapse: collapse;" width="40%">
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produit HT</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">39.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2) %> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Reductions HT</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">0.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_remise?commande.com_remise :0.00 %> €</th>
             </tr>
             <tr>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais dossier HT</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">15.00 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Autres frais</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Livraison</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">18.70 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ttc?commande.Frais_port.frp_ttc.toFixed(2):0.00%> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Incluant un total de taxes</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">6.50 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2) %> € </th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Montant total TTC</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">72.70 £</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= totalTTC.toFixed(2) %> € </th>
             </tr>
           </table>
         </div>
@@ -118,11 +109,11 @@
           <i class="fa-solid fa-truck icone_livraison" style="font-size: 20px;"></i>
           <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Livraison</h6>
         </div>
-        <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;">Tout en livraison</span></h5>
+        <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;"><%= modeLivraison.frp_libelle %></span></h5>
       </div>
       <div class="remarque" style="width: 100%;padding: 30px 35px 10px 35px">
         <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Remarque</h6>
-        <p style="font-size: 17px;">J'ai aimé vos produits , merci ...</p>
+        <p style="font-size: 17px;"><%= commande.com_comment %></p>
       </div>
       <div class="repetition_spectable" style="width: 100%;display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
         <div class="spectacle" style="width: 45%; margin-right: 10%;">
@@ -131,8 +122,8 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span style="font-weight: 400;">12-04-2023</span></h6>
-            <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span style="font-weight: 400;">20-04-2023</span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span style="font-weight: 400;"><%= commande.com_debut_spectacle %></span></h6>
+            <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span style="font-weight: 400;"><%= commande.com_fin_spectacle %></span></h6>
           </div>
           <hr style="opacity: 0.4;">
         </div>
@@ -142,8 +133,9 @@
           </div>
           <hr style="opacity: 0.4;">
           <div class="body">
-            <h6 style="font-weight: 600; font-size: 15px;">Date de repétition (1) : <span style="font-weight: 400;">12-04-2023</span></h6>
-            <h6 style="font-weight: 600; font-size: 15px;">Date de repétion (2) : <span style="font-weight: 400;">20-04-2023</span></h6>
+            <% essayage.forEach(element => { %>
+              <h6 style="font-weight: 600; font-size: 15px;">Date de repétition : <span style="font-weight: 400;"><%= element.ess_repetition %></span></h6>
+            <% }) %>
           </div>
           <hr style="opacity: 0.4;">
         </div>
