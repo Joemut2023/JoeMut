@@ -47,7 +47,7 @@ module.exports = async (
       to: "mavubapathy@gmail.com",
       subject: "Message du client depuis le site",
       text: "Hello",
-      html: html,
+      html: pdf,
       // attachments: [
       //   {
       //     filename: "mail.scss",
@@ -59,5 +59,5 @@ module.exports = async (
     transporter.sendMail(mailOptions).then(function (info) {
       console.log("Email sent: " + info.response);
     });
-  } catch (error) {}
+  } catch (error) { }
 };
