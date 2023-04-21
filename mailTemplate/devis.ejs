@@ -156,11 +156,11 @@
           </div>
           <div class="dates">
               <div class="devis-number">
-                  <span>Devis N°</span> <span> 2</span>
+                  <span>Devis N°</span> <span><%= commande.com_id %></span>
               </div>
               <div class="bordure"></div>
               <div class="devis-date">
-                  <span>Date :</span> <span>10-10-2022</span>
+                  <span>Date :</span> <span><%= commande.com_date %></span>
               </div>
           </div>
         </div>
@@ -169,22 +169,21 @@
           <div class="livraison">
              <h3>Adresse de livraison</h3>
              <ul>
-              <li>Blaise KINIALI</li>
-              <li>WCG</li>
-              <li>21 bld Hausmann</li>
-              <li>7009 Paris</li>
-              <li>France</li>
-              <li>0161104319</li></ul>
+              <li><%= adresseLiv.adr_prenom %> <%= adresseLiv.adr_nom %></li>
+              <li><%= adresseLiv.adr_structure %></li>
+              <li><%= adresseLiv.adr_adresse %></li>
+              <li><%= adresseLiv.adr_cp %> <%= adresseLiv.adr_ville %></li>
+              <li><%= adresseLiv.adr_pays %></li>
+              <li><%=adresseLiv.adr_phone  %></li></ul>
           </div>
           <div class="facturation">
               <h3>Adresse de facturation</h3>
              <ul>
-              <li>BLAISE Blaise KINIALI</li>
-              <li>17 BIS ALLEE DES GASSETS</li>
-              <li>77700 SERRIS</li>
-              <li>7009 Paris</li>
-              <li>France</li>
-              <li>0640776501</li></ul>
+              <li><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></li>
+              <li><%= adresseFac.adr_adresse %></li>
+              <li><%= adresseFac.adr_cp %> <%= adresseFac.adr_ville %></li>
+              <li><%= adresseFac.adr_pays %></li>
+              <li><%=adresseFac.adr_phone  %></li></ul>
           </div>
         </div>
       
@@ -195,27 +194,20 @@
                   <th scope="col">Reference</th>
                   <th scope="col">Produit</th>
                   <th scope="col">Prix unitaire (HT)</th>
+                  <th scope="col">Quantité</th>
                   <th scope="col">Total (HT)</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>GEP23</td>
-                  <td>GEP23 -Esemble pantalon sarouel frambois à paleittes turquoises</td>
-                  <td>10, 00$</td>
-                  <td>10, 00$</td>
+             <% panierDetails.forEach(element => { %>
+                 <tr>
+                    <td><%= element.Produit.pro_ref %></td>
+                    <td><%= element.Produit.pro_libelle %> </td>
+                    <td><%= element.pad_ht.toFixed(2)%> €</td>
+                    <td><%= element.pad_qte%></td>
+                    <td><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
                 </tr>
-                <tr>
-                  <td>MR6</td>
-                  <td>MR6-Robe sirene-Marin</td>
-                  <td>7, 50$</td>
-                  <td>7, 50$</td>
-                <tr>
-                  <td>PC19</td>
-                  <td>PC19 -Combishort blue royal</td>
-                  <td>10, 00$</td>
-                  <td>15, 00$</td>
-                </tr>
+              <% }) %>
               </tbody>
             </table>
         </div>
@@ -235,8 +227,8 @@
                 <tr>
                   <td>Produits</td>
                   <td>20.000 %</td>
-                  <td>32, 50$</td>
-                  <td>6, 50$</td>
+                  <td><%= sous_total.toFixed(2) %> €</td>
+                  <td><%= taxe.toFixed(2) %> €</td>
                 </tr>
               </tbody>
             </table>
@@ -246,28 +238,28 @@
             <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td id="title">Tota produits</td>
-                  <td>32, 50$</td>
+                  <td id="title">Total produits</td>
+                  <td><%= sous_total.toFixed(2) %> €</td>
                 </tr>
                 <tr>
                   <td id="title">Frais de livraison</td>
-                  <td>18, 70$</td>
+                  <td><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2):0.00%> €</td>
                 </tr>
                 <tr>
-                  <td id="title">Frais de dossier</td>
-                  <td>15, 00$</td>
+                  <td id="title">Autres frais</td>
+                  <td><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</td>
                 </tr>
                 <tr>
                   <th id="title">Total (HT)</th>
-                  <th>66, 20$</th>
+                  <th><%= totalHT.toFixed(2) %> €</th>
                 </tr>
                 <tr>
                   <th id="title">Taxe totale</th>
-                  <th>6, 50$</th>
+                  <th><%= taxe.toFixed(2) %> € </th>
                 </tr>
                 <tr>
                   <th id="title">Total</th>
-                  <th>72, 70$</th>
+                  <th><%= (totalHT + taxe).toFixed(2)%> €</th>
                 </tr>
               </tbody>
             </table>
@@ -279,7 +271,7 @@
             <i class="fa-solid fa-truck icone_livraison"></i>
             <h6>Livraison</h6>
           </div>
-          <h5>Mode de livraison :<span>Tout en livraison</span></h5>
+          <h5>Mode de livraison :<span><%= modeLivraison.frp_libelle %></span></h5>
           <div class="text-detail">
             <p>Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
               Vos costumes seront pre-réservés pendant 10 jours(sous réserve de disponibilité)
@@ -301,8 +293,8 @@
             </div>
             <hr />
             <div class="body">
-              <h6>Date de début : <span>12-04-2023</span></h6>
-              <h6>Date de fin : <span>20-04-2023</span></h6>
+              <h6>Date de début : <span><%= commande.com_debut_spectacle %></span></h6>
+              <h6>Date de fin : <span><%= commande.com_fin_spectacle %></span></h6>
             </div>
             <hr />
           </div>
@@ -312,8 +304,11 @@
             </div>
             <hr />
             <div class="body">
-              <h6>Date de repétition (1) : <span>12-04-2023</span></h6>
-              <h6>Date de repétion (2) : <span>20-04-2023</span></h6>
+              <% essayage.forEach(element => { %>
+               
+                <h6>Date de repétition : <span><%= element.ess_repetition %></span></h6>
+              <% }) %>
+             
             </div>
             <hr />
           </div>

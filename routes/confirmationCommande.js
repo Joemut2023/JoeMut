@@ -15,6 +15,7 @@ const {
   Essayage,
 } = require("../models");
 const send_mail_confirmation = require("../helpers/send_mail_confirmation");
+const { TVA } = require("../helpers/utils_const");
 
 router.get("/", async (req, res, next) => {
   res.locals.titre = "confirmation_commande";
@@ -61,25 +62,36 @@ router.get("/", async (req, res, next) => {
         pro_en_avant: 1,
       },
     });
-
+    
+    
+    let sous_totalCmd = 0 ;
     let sous_total = 0;
     let totalTTC = 0;
+    let totalHT = 0 
+    
 
     for (let index = 0; index < panierDetails.length; index++) {
-      sous_total += panierDetails[index].pad_ttc * panierDetails[index].pad_qte;
+      sous_totalCmd += panierDetails[index].pad_ttc * panierDetails[index].pad_qte;
+      sous_total += panierDetails[index].pad_ht * panierDetails[index].pad_qte;
     }
-    let taxe = sous_total * (1 + 0.2);
-  
-    let total = sous_total + commande.Frais_port.frp_ttc + commande.com_frais;
+    
+    let taxe = sous_total *  TVA;
+    
+    let totalCmd = sous_total + commande.Frais_port.frp_ttc + commande.com_frais;
+    // let total = sous_total + commande.Frais_port.frp_ht + commande.com_frais;
     // res.json({ panierDetails });
   
-    let autre_frais = commande.Frais_port.frp_ttc?commande.Frais_port.frp_ttc:0 
+    let livraison = commande.Frais_port.frp_ht?commande.Frais_port.frp_ht:0 
     totalTTC =
       sous_total +
       commande.com_remise +
       commande.com_frais +
       taxe +
-      autre_frais
+      livraison ;
+
+      totalHT = sous_total + livraison + commande.com_frais
+
+
         await send_mail_confirmation(
           res,
           req,
@@ -91,17 +103,18 @@ router.get("/", async (req, res, next) => {
           modeLivraison,
           sous_total,
           taxe,
-          totalTTC
-        )
+          totalTTC,
+          totalHT
+        );
   
     return res.render("confirmationCommande/index", {
       panierDetails: panierDetails,
       commande: commande,
       adresseLiv,
       adresseFac,
-      sous_total: sous_total,
+      sous_totalCmd: sous_totalCmd,
       produitsPopulaires: produitsPopulaires,
-      total: total,
+      totalCmd: totalCmd,
     });
   } catch (error) {
     console.log(error);
