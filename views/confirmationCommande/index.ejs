@@ -75,7 +75,7 @@
                 <tbody>
                   <tr>
                     <td>Sous-total</td>
-                    <td class="price-col"><%= sous_total.toFixed(2) %> €</td>
+                    <td class="price-col"><%= sous_totalCmd.toFixed(2) %> €</td>
                   </tr>
                   <% if (commande.Frais_port.frp_ttc) { %>
                   <tr>
@@ -94,7 +94,7 @@
                   <% } %>
                   <tr class="total-value">
                     <td>TOTAL TTC</td>
-                    <td class="price-col"><%= total.toFixed(2) %> €</td>
+                    <td class="price-col"><%= totalCmd.toFixed(2) %> €</td>
                   </tr>
                 </tbody>
               </table>
