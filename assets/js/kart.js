@@ -399,9 +399,6 @@ class Kart {
         </div>
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;
-    document.querySelector("#modal-btn-close").addEventListener("click", () => {
-      document.querySelector("#myModal .body-modal").innerHTML = ``;
-    });
   }
   static async RenderMaxQteModal() {
     let storedITems = Kart.getParsedBasket();
