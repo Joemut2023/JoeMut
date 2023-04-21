@@ -483,37 +483,37 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "kartRenderItems",
     value: function () {
-      var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+      var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
         var userStatut, kartItemsElement, kartLoader, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
-        return _regeneratorRuntime().wrap(function _callee12$(_context12) {
-          while (1) switch (_context12.prev = _context12.next) {
+        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+          while (1) switch (_context13.prev = _context13.next) {
             case 0:
-              _context12.next = 2;
+              _context13.next = 2;
               return Kart.getUserStatut();
             case 2:
-              userStatut = _context12.sent;
+              userStatut = _context13.sent;
               if (!(userStatut == false)) {
-                _context12.next = 5;
+                _context13.next = 5;
                 break;
               }
-              return _context12.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context13.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               kartItemsElement = document.querySelector(".kart-items");
               kartLoader = document.querySelector(".kart-loader");
-              _context12.next = 9;
+              _context13.next = 9;
               return Kart.addFraisDivers();
             case 9:
-              fraisDivers = _context12.sent;
-              _context12.next = 12;
+              fraisDivers = _context13.sent;
+              _context13.next = 12;
               return Kart.calculTotalPrice();
             case 12:
-              price = _context12.sent;
+              price = _context13.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context12.next = 17;
+              _context13.next = 17;
               return Kart.getAllPanierDetails();
             case 17:
-              panierDetail = _context12.sent;
+              panierDetail = _context13.sent;
               storedItemsHtml = "";
               kartProductQte = 0;
               if (panierDetail.length !== 0) {
@@ -534,17 +534,31 @@ var Kart = /*#__PURE__*/function () {
               //   : null;
               btnRemoveProduct = document.querySelectorAll("#remove-prod");
               btnRemoveProduct === null || btnRemoveProduct === void 0 ? void 0 : btnRemoveProduct.forEach(function (item) {
-                item.addEventListener("click", function () {
-                  var itemId = item.dataset.id;
-                  Kart.removeItem(itemId);
-                  document.querySelector("#cart-item-count").innerHTML = Kart.getItemNumber();
-                });
+                item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+                  var itemId;
+                  return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+                    while (1) switch (_context12.prev = _context12.next) {
+                      case 0:
+                        itemId = item.dataset.id;
+                        _context12.next = 3;
+                        return Kart.removeItem(itemId);
+                      case 3:
+                        _context12.next = 5;
+                        return Kart.getItemNumber();
+                      case 5:
+                        document.querySelector("#cart-item-count").innerHTML = _context12.sent;
+                      case 6:
+                      case "end":
+                        return _context12.stop();
+                    }
+                  }, _callee12);
+                })));
               });
             case 25:
             case "end":
-              return _context12.stop();
+              return _context13.stop();
           }
-        }, _callee12);
+        }, _callee13);
       }));
       function kartRenderItems() {
         return _kartRenderItems.apply(this, arguments);
@@ -558,34 +572,33 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "RenderModal",
     value: function () {
-      var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(item, qte) {
-        var storedITems, price, fraisDivers, fraisDossier, fraisPort, html;
-        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-          while (1) switch (_context13.prev = _context13.next) {
+      var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(item, qte) {
+        var price, fraisDivers, fraisDossier, fraisPort, html;
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) switch (_context14.prev = _context14.next) {
             case 0:
-              storedITems = Kart.getParsedBasket();
-              _context13.next = 3;
+              _context14.next = 2;
               return Kart.calculTotalPrice();
-            case 3:
-              price = _context13.sent;
-              _context13.next = 6;
+            case 2:
+              price = _context14.sent;
+              _context14.next = 5;
               return Kart.addFraisDivers();
-            case 6:
-              fraisDivers = _context13.sent;
+            case 5:
+              fraisDivers = _context14.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context13.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
-              _context13.next = 12;
+              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context14.next = 11;
               return Kart.getItemNumber();
-            case 12:
-              _context13.t1 = _context13.sent;
-              html = _context13.t0.concat.call(_context13.t0, _context13.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+            case 11:
+              _context14.t1 = _context14.sent;
+              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
               document.querySelector("#myModal .body-modal").innerHTML = html;
-            case 15:
+            case 14:
             case "end":
-              return _context13.stop();
+              return _context14.stop();
           }
-        }, _callee13);
+        }, _callee14);
       }));
       function RenderModal(_x7, _x8) {
         return _RenderModal.apply(this, arguments);
@@ -595,35 +608,43 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "RenderMaxQteModal",
     value: function () {
-      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
         var storedITems, price, fraisDivers, fraisDossier, fraisPort, html;
-        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
-          while (1) switch (_context14.prev = _context14.next) {
+        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+          while (1) switch (_context15.prev = _context15.next) {
             case 0:
               storedITems = Kart.getParsedBasket(); // document.querySelector(".body-modal-detail").style.display = "none";
-              _context14.next = 3;
+              _context15.next = 3;
               return Kart.calculTotalPrice();
             case 3:
-              price = _context14.sent;
-              _context14.next = 6;
+              price = _context15.sent;
+              _context15.next = 6;
               return Kart.addFraisDivers();
             case 6:
-              fraisDivers = _context14.sent;
+              fraisDivers = _context15.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
               html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
               document.querySelector("#myModal .body-modal").innerHTML = html;
             case 11:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
-        }, _callee14);
+        }, _callee15);
       }));
       function RenderMaxQteModal() {
         return _RenderMaxQteModal.apply(this, arguments);
       }
       return RenderMaxQteModal;
     }()
+  }, {
+    key: "RenderMaxQteUpdateModal",
+    value: function RenderMaxQteUpdateModal() {
+      var myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
+        keyboard: false
+      });
+      myModal.show();
+    }
   }]);
   return Kart;
 }();
