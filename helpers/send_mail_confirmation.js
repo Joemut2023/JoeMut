@@ -16,7 +16,8 @@ module.exports = async (
   modeLivraison,
   sous_total,
   taxe,
-  totalTTC
+  totalTTC,
+  totalHT
 ) => {
   let ejsFile = fs.readFileSync(
     path.join(__dirname, "../mailTemplate/index.ejs"),
@@ -35,23 +36,33 @@ module.exports = async (
     essayage: essayage,
     sous_total: sous_total,
     taxe: taxe,
-    totalTTC:totalTTC,
+    totalTTC: totalTTC,
+    totalHT: totalHT,
   });
-  let pdfview =  ejs.renderFile(path.join(__dirname, "../mailTemplate/devis.ejs"), {
-    commande: commande,
-    adresseLiv: adresseLiv,
-    adresseFac: adresseFac,
-    panierDetails: panierDetails,
-    modeLivraison: modeLivraison,
-    essayage: essayage,
-    sous_total: sous_total,
-    taxe,
-    totalTTC,
-  });
+  let pdfview = ejs.renderFile(
+    path.join(__dirname, "../mailTemplate/devis.ejs"),
+    {
+      commande: commande,
+      adresseLiv: adresseLiv,
+      adresseFac: adresseFac,
+      panierDetails: panierDetails,
+      modeLivraison: modeLivraison,
+      essayage: essayage,
+      sous_total: sous_total,
+      taxe,
+      totalTTC,
+      totalHT: totalHT,
+    }
+  );
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(`${ process.env.APP_URL}devis`);
-  await page.pdf({path:path.join(__dirname, "../public/pdf/devis/"+commande.com_id+".pdf")});
+  await page.goto(`${process.env.APP_URL}devis`);
+  await page.pdf({
+    path: path.join(
+      __dirname,
+      "../public/pdf/devis/" + commande.com_id + ".pdf"
+    ),
+  });
   await page.close();
   try {
     const transporter = nodemailer.createTransport({
