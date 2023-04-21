@@ -400,7 +400,9 @@ class Kart {
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;
     document.querySelector("#modal-btn-close").addEventListener("click", () => {
-      document.querySelector("#myModal .body-modal").innerHTML = ``;
+      document.querySelector("#myModal .body-modal").innerHTML = (
+        <img src="/images/loader.gif" alt="" />
+      );
     });
   }
   static async RenderMaxQteModal() {
