@@ -28,10 +28,14 @@ router.get("/", async (req, res, next) => {
         // { model: Adresse },
       ],
     });
-    let adresseLiv = await Adresse.findOne({where:{adr_id:commande.com_adr_liv}})
-    let adresseFac = await Adresse.findOne({where: { adr_id: commande.com_adr_fac }});
+    let adresseLiv = await Adresse.findOne({
+      where: { adr_id: commande.com_adr_liv },
+    });
+    let adresseFac = await Adresse.findOne({
+      where: { adr_id: commande.com_adr_fac },
+    });
 
-    console.log(adresseFac,adresseLiv);
+    console.log(adresseFac, adresseLiv);
     const panierDetails = await Panier_detail.findAll({
       include: [
         {
@@ -64,7 +68,14 @@ router.get("/", async (req, res, next) => {
 
     let total = sous_total + commande.Frais_port.frp_ttc + commande.com_frais;
     // res.json({ panierDetails });
-    await send_mail_confirmation(res,req,commande);
+    await send_mail_confirmation(
+      res,
+      req,
+      commande,
+      adresseLiv,
+      adresseFac,
+      panierDetails
+    );
     return res.render("confirmationCommande/index", {
       panierDetails: panierDetails,
       commande: commande,
