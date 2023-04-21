@@ -12,16 +12,17 @@
     radios?.forEach(radio=>{
         radio.addEventListener('click',(e)=>{
             let frp_ttc = e.target.dataset.ttc;
+            console.log(frp_ttc,"commander2");
             let frp_id = e.target.value;
             localStorage.setItem('fraisDivers',JSON.stringify({
                 frais_port:parseFloat(frp_ttc).toFixed(2),frais_dossier:15.5,frp_id:frp_id}))
         })
     });
-    radios_adresses?.forEach(radio=>{
-        radio.addEventListener('click',(e)=>{
-            console.log(e.target);
-        })
-    });
+    // radios_adresses?.forEach(radio=>{
+    //     radio.addEventListener('click',(e)=>{
+    //         console.log(e.target);
+    //     })
+    // });
     form_finalisation.addEventListener('submit',async (e)=>{
         e.preventDefault();
         let commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
