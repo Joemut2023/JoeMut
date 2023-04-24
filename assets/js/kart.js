@@ -104,7 +104,7 @@ class Kart {
       axios
         .post(`${SITE_URL}/panierDetail`, {
           pro_id: item.pro_id,
-          pad_qte: 1,
+          pad_qte: itemForPanier.pad_qte,
           headers: {
             "X-Requested-With": "XMLHttpRequest",
           },
@@ -118,7 +118,7 @@ class Kart {
             return Kart.RenderMaxQteModal();
           } else {
             let qte = res.data.panierDetail.pad_qte;
-            await Kart.RenderModal(itemForPanier, qte);
+            await Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
           }
 
           if (storedITems) {
@@ -159,6 +159,7 @@ class Kart {
       return (window.location.href = `${SITE_URL}/connexion/#page-connexion`);
     let kartLoader = document.querySelector(".kart-loader");
     const pro_id = parseInt(itemId);
+    Kart.RenderDeleteModal();
     axios
       .delete(`${SITE_URL}/panierDetail`, {
         data: {
@@ -171,7 +172,9 @@ class Kart {
       .then(async (res) => {
         document.querySelector("#cart-item-count").innerHTML =
           await Kart.getItemNumber();
+        Kart.HideDeleteModal();
         kartLoader.style.display = res.data ? "none" : "block";
+
         await Kart.kartRenderItems();
       });
     let storedITems = Kart.getParsedBasket();
@@ -390,7 +393,8 @@ class Kart {
                 )} €</span>
             </div>
             <div class="btn-achat">
-                <button class="continuer">Continuer mes achats</button>
+                <button class="continuer"  data-bs-dismiss="modal"
+                aria-label="Close">Continuer mes achats</button>
                 <a href="/panier/#page-panier" class="finaliser">
                     <i class="fa fa-check icon-succes"></i>
                     <span>Finaliser le devis</span>
@@ -400,7 +404,9 @@ class Kart {
         `;
     document.querySelector("#myModal .body-modal").innerHTML = html;
     document.querySelector("#modal-btn-close").addEventListener("click", () => {
-      document.querySelector("#myModal .body-modal").innerHTML = `<img src="/images/loader.gif" alt="" />`
+      document.querySelector(
+        "#myModal .body-modal"
+      ).innerHTML = `<img src="/images/loader.gif" alt="" />`;
     });
   }
   static async RenderMaxQteModal() {
@@ -418,9 +424,23 @@ class Kart {
     document.querySelector("#myModal .body-modal").innerHTML = html;
   }
   static RenderMaxQteUpdateModal() {
-    var myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
+    let myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
       keyboard: false,
     });
     myModal.show();
+  }
+  static RenderDeleteModal() {
+    let removeModal = new bootstrap.Modal(
+      document.querySelector("#removeModel"),
+      {
+        keyboard: false,
+      }
+    );
+    removeModal.show();
+  }
+  static HideDeleteModal() {
+    let removeModal = document.querySelector("#removeModel");
+    let modal = bootstrap.Modal.getInstance(removeModal);
+    modal.hide();
   }
 }

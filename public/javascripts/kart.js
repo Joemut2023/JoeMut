@@ -241,7 +241,7 @@ var Kart = /*#__PURE__*/function () {
               _context7.prev = 8;
               axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
-                pad_qte: 1,
+                pad_qte: itemForPanier.pad_qte,
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
@@ -262,7 +262,7 @@ var Kart = /*#__PURE__*/function () {
                       case 6:
                         _qte = res.data.panierDetail.pad_qte;
                         _context6.next = 9;
-                        return Kart.RenderModal(itemForPanier, _qte);
+                        return Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
                       case 9:
                         if (!storedITems) {
                           _context6.next = 19;
@@ -347,6 +347,7 @@ var Kart = /*#__PURE__*/function () {
             case 5:
               kartLoader = document.querySelector(".kart-loader");
               pro_id = parseInt(itemId);
+              Kart.RenderDeleteModal();
               axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
                 data: {
                   pro_id: pro_id
@@ -363,10 +364,11 @@ var Kart = /*#__PURE__*/function () {
                         return Kart.getItemNumber();
                       case 2:
                         document.querySelector("#cart-item-count").innerHTML = _context8.sent;
+                        Kart.HideDeleteModal();
                         kartLoader.style.display = res.data ? "none" : "block";
-                        _context8.next = 6;
+                        _context8.next = 7;
                         return Kart.kartRenderItems();
-                      case 6:
+                      case 7:
                       case "end":
                         return _context8.stop();
                     }
@@ -384,7 +386,7 @@ var Kart = /*#__PURE__*/function () {
                 storedITems.splice(produitPositionInArray, 1);
                 localStorage.setItem("storedItems", JSON.stringify(storedITems));
               }
-            case 10:
+            case 11:
             case "end":
               return _context9.stop();
           }
@@ -592,7 +594,7 @@ var Kart = /*#__PURE__*/function () {
               return Kart.getItemNumber();
             case 11:
               _context14.t1 = _context14.sent;
-              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
               document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#modal-btn-close").addEventListener("click", function () {
                 document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" />";
@@ -647,6 +649,21 @@ var Kart = /*#__PURE__*/function () {
         keyboard: false
       });
       myModal.show();
+    }
+  }, {
+    key: "RenderDeleteModal",
+    value: function RenderDeleteModal() {
+      var removeModal = new bootstrap.Modal(document.querySelector("#removeModel"), {
+        keyboard: false
+      });
+      removeModal.show();
+    }
+  }, {
+    key: "HideDeleteModal",
+    value: function HideDeleteModal() {
+      var removeModal = document.querySelector("#removeModel");
+      var modal = bootstrap.Modal.getInstance(removeModal);
+      modal.hide();
     }
   }]);
   return Kart;
