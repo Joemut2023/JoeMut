@@ -6,12 +6,6 @@ const path = require("path");
 const get_commande_data = require("../helpers/get_commande_data");
 const { log } = require("console");
 
-<<<<<<< HEAD
-
-router.get("/", (req, res, next) => {
-    res.locals.titre = "devis";
-    res.render("devis/index.ejs", {});
-=======
 router.get("/:id", async (req, res, next) => {
   let { id } = req.params;
   get_commande_data(parseInt(id), async (commande, adresseLiv, adresseFac, panierDetails,
@@ -38,7 +32,6 @@ router.get("/:id", async (req, res, next) => {
     });
     res.send(view)
   });
->>>>>>> develop
 });
 
 module.exports = router;

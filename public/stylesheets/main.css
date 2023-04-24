@@ -3560,7 +3560,7 @@
 }
 #page-historique .msg-error {
   width: 100%;
-  height: 150px;
+  height: max-content;
   border: solid 1px #a0b21f;
   margin-bottom: 100px;
   padding: 1rem;
@@ -3575,6 +3575,30 @@
     padding-right: 20px;
     margin-top: 50px;
   }
+}
+#page-historique .msg {
+  width: 100%;
+  height: max-content;
+  border: solid 1px #a0b21f;
+  margin-bottom: 100px;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+#page-historique .msg h6 {
+  font-size: 0.9375rem;
+}
+#page-historique .msg .commande-liste table {
+  background-color: #eeeeee;
+}
+#page-historique .msg .commande-liste table tbody .bg-warning {
+  color: white;
+  width: 140px;
+  border-radius: 3px;
+}
+#page-historique .msg .commande-liste table tbody .button a {
+  border: none;
+  color: #a0b21f;
+  text-decoration: none;
 }
 
 #page-reduction {
