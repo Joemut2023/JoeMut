@@ -393,7 +393,8 @@ class Kart {
                 )} €</span>
             </div>
             <div class="btn-achat">
-                <button class="continuer">Continuer mes achats</button>
+                <button class="continuer"  data-bs-dismiss="modal"
+                aria-label="Close">Continuer mes achats</button>
                 <a href="/panier/#page-panier" class="finaliser">
                     <i class="fa fa-check icon-succes"></i>
                     <span>Finaliser le devis</span>
