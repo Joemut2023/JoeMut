@@ -6253,6 +6253,11 @@ body {
   border: none;
   background-color: #a0b21f;
   color: white;
+  outline: none;
+}
+#admin-page-connexion .error {
+  width: 35%;
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=main.css.map */
