@@ -13,6 +13,7 @@ const {
   Frais_supp,
   Autre_frais,
   Essayage,
+  QUantite,
 } = require("../models");
 const send_mail_confirmation = require("../helpers/send_mail_confirmation");
 const { TVA } = require("../helpers/utils_const");
@@ -24,17 +25,9 @@ router.get("/", async (req, res, next) => {
   try {
     const commandeId = req.session.commandeId;
     const userId = req.session.userId;
-    await get_commande_data(commandeId,async (commande,adresseLiv,adresseFac,panierDetails,
-      essayage,
-      modeLivraison,
-      sous_total,
-      taxe,
-      totalTTC,
-      totalHT,sous_totalCmd,produitsPopulaires,totalCmd)=>{
-
-      await send_mail_confirmation(
-        res,
-        req,
+    await get_commande_data(
+      commandeId,
+      async (
         commande,
         adresseLiv,
         adresseFac,
@@ -44,18 +37,38 @@ router.get("/", async (req, res, next) => {
         sous_total,
         taxe,
         totalTTC,
-        totalHT
-      );
-      return res.render("confirmationCommande/index", {
-        panierDetails: panierDetails,
-        commande,
-        adresseLiv,
-        adresseFac,
-        sous_totalCmd: sous_totalCmd,
-        produitsPopulaires: produitsPopulaires,
-        totalCmd: totalCmd,
-      });
-    })
+        totalHT,
+        sous_totalCmd,
+        produitsPopulaires,
+        totalCmd,
+        quantiteOfEachProduct
+      ) => {
+        await send_mail_confirmation(
+          res,
+          req,
+          commande,
+          adresseLiv,
+          adresseFac,
+          panierDetails,
+          essayage,
+          modeLivraison,
+          sous_total,
+          taxe,
+          totalTTC,
+          totalHT
+        );
+        return res.render("confirmationCommande/index", {
+          panierDetails: panierDetails,
+          commande,
+          adresseLiv,
+          adresseFac,
+          sous_totalCmd: sous_totalCmd,
+          produitsPopulaires: produitsPopulaires,
+          totalCmd: totalCmd,
+          quantiteOfEachProduct: quantiteOfEachProduct,
+        });
+      }
+    );
   } catch (error) {
     console.error(error);
   }

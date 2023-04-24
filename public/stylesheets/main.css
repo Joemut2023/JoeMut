@@ -5385,6 +5385,12 @@
   font-size: 16px;
   font-weight: 600;
 }
+#page-confirmation-commande .main .content .card-block .details .quantite {
+  font-weight: 500;
+}
+#page-confirmation-commande .main .content .card-block .details .quantite span {
+  font-weight: 600;
+}
 #page-confirmation-commande .main .content .card-block .details p {
   margin-bottom: 5px;
   font-size: 16px;

@@ -11,10 +11,13 @@ const {
     Frais_supp,
     Autre_frais,
     Essayage,
+    Quantite
   } = require("../models");
 const { TVA } = require("../helpers/utils_const");
 module.exports = async (commandeId,callback)=>{
+  let quantiteOfEachProduct = [];
     try {
+      const allproducts = await Produit.findAll();
         let commande = await Commande.findByPk(commandeId, {
           include: [
             { model: Client, attributes: ["cli_mail", "cli_nom"] },
@@ -44,6 +47,19 @@ module.exports = async (commandeId,callback)=>{
             pan_id: commande.pan_id,
           },
         });
+
+        for (let index = 0; index < allproducts.length; index++) {
+          const quantiteInitial = await Quantite.sum("qua_nbre", {
+            where: {
+              pro_id: allproducts[index].pro_id,
+            },
+          });
+          quantiteOfEachProduct.push({
+            id: allproducts[index].pro_id,
+            qty: quantiteInitial,
+          });
+        }
+
         const produitsPopulaires = await Produit.findAll({
           limit: 16,
           include: [
@@ -89,7 +105,12 @@ module.exports = async (commandeId,callback)=>{
             sous_total,
             taxe,
             totalTTC,
-            totalHT,sous_totalCmd,produitsPopulaires,totalCmd);
+            totalHT,
+            sous_totalCmd,
+            produitsPopulaires,
+            totalCmd,
+            quantiteOfEachProduct
+          );
 
     }catch (error) {
         console.log(error);
