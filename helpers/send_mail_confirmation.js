@@ -58,7 +58,7 @@ module.exports = async (
     });
     const mailOptions = {
       from: "myindavictoire@gmail.com",
-      to: "seleshabani4@gmail.com",
+      to: "mavubapathy@gmail.com",
       subject: "[AIGUILLE EN SCENE] Confirmation de commande",
       html: html,
       attachments: [
