@@ -5252,14 +5252,32 @@
 #page-confirmation-commande .main .content-card .block {
   padding: 13px 13px 5px;
 }
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content-card .block {
+    padding-left: 0px;
+    text-align: left;
+  }
+}
 #page-confirmation-commande .main .content-card .block .col-md-12 span {
   color: #a0b21f;
   margin: 10px;
   font-size: 20px;
 }
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content-card .block .col-md-12 span {
+    padding-left: 0px;
+  }
+}
 #page-confirmation-commande .main .content-card .block .col-md-12 h3 {
   font-weight: 600;
   font-size: 20px;
+}
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content-card .block .col-md-12 h3 {
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.5;
+  }
 }
 #page-confirmation-commande .main .content-card .block .col-md-12 p {
   font-size: 14px;
@@ -5289,19 +5307,29 @@
 #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line {
   margin: 15px 0px;
 }
-#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .images .image {
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .line {
+    margin-bottom: 10px;
+  }
+}
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .line .images .image {
   vertical-align: middle;
 }
-#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .images .image img {
+#page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .line .images .image img {
   max-width: 100%;
-  height: 150px;
+  max-height: 150px;
   object-fit: cover;
   vertical-align: middle;
   margin-bottom: 10px;
 }
 @media (max-width: 680px) {
-  #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .total {
+  #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .line .total {
     font-weight: 600;
+  }
+}
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content .card-block .order-items .order-confirmation .order-line .line .title-product {
+    margin-bottom: 5px;
   }
 }
 #page-confirmation-commande .main .content .card-block .order-items .order-confirmation hr {
@@ -5333,7 +5361,6 @@
   padding: 20px 10px;
 }
 #page-confirmation-commande .main .content .card-block .details {
-  width: 50%;
   margin-left: 12px;
 }
 #page-confirmation-commande .main .content .card-block .details h1 {
@@ -5343,6 +5370,11 @@
 #page-confirmation-commande .main .content .card-block .details p {
   margin-bottom: 5px;
   font-size: 16px;
+}
+@media (max-width: 680px) {
+  #page-confirmation-commande .main .content .card-block .details p {
+    font-size: 14px;
+  }
 }
 #page-confirmation-commande .products .title {
   text-align: center;
