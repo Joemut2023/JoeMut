@@ -3211,11 +3211,17 @@
   margin: 0;
 }
 #page-panier .products .row .details p span {
-  font-size: 12px;
+  font-size: 14px;
 }
 #page-panier .products .row .details p a {
   text-decoration: none;
   color: #232323;
+}
+#page-panier .products .row .details .quantite {
+  font-weight: 500;
+}
+#page-panier .products .row .details .quantite span {
+  font-weight: 600;
 }
 #page-panier .products .row .details .ref {
   color: #7a7a7a;

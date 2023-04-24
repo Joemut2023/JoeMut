@@ -10,12 +10,15 @@ const {
   Promo,
   Panier_detail,
   Frais_port,
+  Quantite,
   Commande,
 } = require("../models");
 const { ACTIF } = require("../helpers/utils_const");
 
 router.get("/", async (req, res, next) => {
   res.locals.titre = "panier";
+  let quantiteOfEachProduct = [];
+  const allproducts = await Produit.findAll();
 
   try {
     const produitsPopulaires = await Produit.findAll({
@@ -28,9 +31,21 @@ router.get("/", async (req, res, next) => {
         pro_en_avant: 1,
       },
     });
+    for (let index = 0; index < allproducts.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: allproducts[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: allproducts[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
     // res.json({ produitsPopulaires });
     return res.render("panier/index", {
       produitsPopulaires,
+      quantiteOfEachProduct,
     });
   } catch (error) {}
 });
