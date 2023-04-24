@@ -17,7 +17,7 @@ $breakpoints: (
 $tablette: 1000px;
 $mobil: 680px;
 $moyen : 1115px;
-
+$extra:2560px;
 @mixin breakpoint($point) {
     @if $point==moyen {
         @media (max-width: $moyen) {
@@ -33,6 +33,11 @@ $moyen : 1115px;
 
     @else if $point==mobil {
         @media (max-width: $mobil) {
+            @content;
+        }
+    }
+    @else if $point==extra {
+        @media (max-width: $extra) {
             @content;
         }
     }
