@@ -191,6 +191,7 @@
   </head>
   <body>
     <div id="page-devis">
+<<<<<<< HEAD
       <div class="logo-dates">
         <div class="logo">
           <img
@@ -366,6 +367,135 @@
         <div class="spectacle">
           <div class="titre">
             <h6>Date spectacle</h6>
+=======
+        <div class="logo-dates">
+          <div class="logo">
+              <img src="/images/logo.png" class="logo-img img-fluid" alt="" srcset="" />
+          </div>
+          <div class="dates">
+              <div class="devis-number">
+                  <span>Devis N°</span> <span><%= commande.com_id %></span>
+              </div>
+              <div class="bordure"></div>
+              <div class="devis-date">
+                  <span>Date :</span> <span><%= commande.com_date %></span>
+              </div>
+          </div>
+        </div>
+      
+        <div class="adresses">
+          <div class="livraison">
+             <h3>Adresse de livraison</h3>
+             <ul>
+              <li><%= adresseLiv.adr_prenom %> <%= adresseLiv.adr_nom %></li>
+              <li><%= adresseLiv.adr_structure %></li>
+              <li><%= adresseLiv.adr_adresse %></li>
+              <li><%= adresseLiv.adr_cp %> <%= adresseLiv.adr_ville %></li>
+              <li><%= adresseLiv.adr_pays %></li>
+              <li><%=adresseLiv.adr_phone  %></li></ul>
+          </div>
+          <div class="facturation">
+              <h3>Adresse de facturation</h3>
+             <ul>
+              <li><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></li>
+              <li><%= adresseFac.adr_adresse %></li>
+              <li><%= adresseFac.adr_cp %> <%= adresseFac.adr_ville %></li>
+              <li><%= adresseFac.adr_pays %></li>
+              <li><%=adresseFac.adr_phone  %></li></ul>
+          </div>
+        </div>
+      
+        <div class="table-detail">
+          <table class="table  table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Reference</th>
+                  <th scope="col">Produit</th>
+                  <th scope="col">Prix unitaire (HT)</th>
+                  <th scope="col">Quantité</th>
+                  <th scope="col">Total (HT)</th>
+                </tr>
+              </thead>
+              <tbody>
+             <% panierDetails.forEach(element => { %>
+                 <tr>
+                    <td><%= element.Produit.pro_ref %></td>
+                    <td><%= element.Produit.pro_libelle %> </td>
+                    <td><%= element.pad_ht.toFixed(2)%> €</td>
+                    <td><%= element.pad_qte%></td>
+                    <td><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
+                </tr>
+              <% }) %>
+              </tbody>
+            </table>
+        </div>
+      
+        <div class="tables">
+          <div class="taxe-detail1">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">Details des taxes</th>
+                  <th scope="col">Taux de taxe</th>
+                  <th scope="col">Prix de base</th>
+                  <th scope="col">Taxe totale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Produits</td>
+                  <td>20.000 %</td>
+                  <td><%= sous_total.toFixed(2) %> €</td>
+                  <td><%= taxe.toFixed(2) %> €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      
+          <div class="taxe-detail2">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td id="title">Total produits</td>
+                  <td><%= sous_total.toFixed(2) %> €</td>
+                </tr>
+                <tr>
+                  <td id="title">Frais de livraison</td>
+                  <td><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2):0.00%> €</td>
+                </tr>
+                <tr>
+                  <td id="title">Autres frais</td>
+                  <td><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</td>
+                </tr>
+                <tr>
+                  <th id="title">Total (HT)</th>
+                  <th><%= totalHT.toFixed(2) %> €</th>
+                </tr>
+                <tr>
+                  <th id="title">Taxe totale</th>
+                  <th><%= taxe.toFixed(2) %> € </th>
+                </tr>
+                <tr>
+                  <th id="title">Total</th>
+                  <th><%= (totalHT + taxe).toFixed(2)%> €</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      
+        <div class="modeLivraison">
+          <div class="titreLivraison">
+            <i class="fa-solid fa-truck icone_livraison"></i>
+            <h6>Livraison</h6>
+          </div>
+          <h5>Mode de livraison :<span><%= modeLivraison.frp_libelle %></span></h5>
+          <div class="text-detail">
+            <p>Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
+              Vos costumes seront pre-réservés pendant 10 jours(sous réserve de disponibilité)
+              Passé de délai, sans confirmation de votre part, Aiguilles en scène se réserve le droit de les remettre en location.
+            </p>
+>>>>>>> develop
           </div>
           <hr />
           <div class="body">
@@ -374,6 +504,7 @@
           </div>
           <hr />
         </div>
+<<<<<<< HEAD
         <div class="repetition">
           <div class="titre">
             <h6>Date repétition</h6>
@@ -382,6 +513,33 @@
           <div class="body">
             <h6>Date de repétition (1) : <span>12-04-2023</span></h6>
             <h6>Date de repétion (2) : <span>20-04-2023</span></h6>
+=======
+        <div class="repetition_spectable">
+          <div class="spectacle">
+            <div class="titre">
+              <h6>Date spectacle</h6>
+            </div>
+            <hr />
+            <div class="body">
+              <h6>Date de début : <span><%= commande.com_debut_spectacle %></span></h6>
+              <h6>Date de fin : <span><%= commande.com_fin_spectacle %></span></h6>
+            </div>
+            <hr />
+          </div>
+          <div class="repetition">
+            <div class="titre">
+              <h6>Date repétition</h6>
+            </div>
+            <hr />
+            <div class="body">
+              <% essayage.forEach(element => { %>
+               
+                <h6>Date de repétition : <span><%= element.ess_repetition %></span></h6>
+              <% }) %>
+             
+            </div>
+            <hr />
+>>>>>>> develop
           </div>
           <hr />
         </div>

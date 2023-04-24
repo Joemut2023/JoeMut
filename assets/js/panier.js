@@ -109,9 +109,10 @@ const RenderKartProduct = async () => {
       let itemId = element.dataset.id;
       let compteur = element.parentNode.parentNode.children[0].value;
       compteur = isNaN(compteur) ? 1 : compteur;
-      compteur++;
+      // compteur++;
 
       const qte = await Kart.updateItemQuantity(itemId, "up");
+      if (qte == compteur) return Kart.RenderMaxQteUpdateModal();
       element.parentNode.parentNode.children[0].value = qte;
       await TotalPricesProducts();
       document.querySelector("#cart-item-count").innerHTML =
@@ -226,15 +227,3 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-link_parag?.addEventListener("click", function () {
-  link_parag.classList.add("linkhide");
-
-  code_promo_block.classList.remove("hide-promo");
-  code_promo_block.classList.add("code-promo");
-});
-
-btn_fermer?.addEventListener("click", function () {
-  link_parag.classList.remove("linkhide");
-  code_promo_block.classList.remove("code-promo");
-  code_promo_block.classList.add("hide-promo");
-});

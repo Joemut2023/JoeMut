@@ -64,4 +64,5 @@ typings/
 config/config.json
 
 public/images/produits
+public/pdf/devis/*
 assets/js/url.js

@@ -130,20 +130,26 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   itemId = element.dataset.id;
                   compteur = element.parentNode.parentNode.children[0].value;
                   compteur = isNaN(compteur) ? 1 : compteur;
-                  compteur++;
-                  _context5.next = 6;
+                  // compteur++;
+                  _context5.next = 5;
                   return Kart.updateItemQuantity(itemId, "up");
-                case 6:
+                case 5:
                   qte = _context5.sent;
+                  if (!(qte == compteur)) {
+                    _context5.next = 8;
+                    break;
+                  }
+                  return _context5.abrupt("return", Kart.RenderMaxQteUpdateModal());
+                case 8:
                   element.parentNode.parentNode.children[0].value = qte;
-                  _context5.next = 10;
+                  _context5.next = 11;
                   return TotalPricesProducts();
-                case 10:
-                  _context5.next = 12;
+                case 11:
+                  _context5.next = 13;
                   return Kart.getItemNumber();
-                case 12:
-                  document.querySelector("#cart-item-count").innerHTML = _context5.sent;
                 case 13:
+                  document.querySelector("#cart-item-count").innerHTML = _context5.sent;
+                case 14:
                 case "end":
                   return _context5.stop();
               }
@@ -251,13 +257,3 @@ if (storedITems.length == 0) {
   btnFinaliser.disabled = true;
   btnFinaliser.classList.add("btn-enabled");
 }
-link_parag === null || link_parag === void 0 ? void 0 : link_parag.addEventListener("click", function () {
-  link_parag.classList.add("linkhide");
-  code_promo_block.classList.remove("hide-promo");
-  code_promo_block.classList.add("code-promo");
-});
-btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
-  link_parag.classList.remove("linkhide");
-  code_promo_block.classList.remove("code-promo");
-  code_promo_block.classList.add("hide-promo");
-});
