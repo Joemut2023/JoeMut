@@ -2451,7 +2451,7 @@
   align-items: center;
   flex-wrap: wrap;
   column-gap: 14rem;
-  row-gap: 2.5rem;
+  row-gap: 4rem;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body {
@@ -2587,6 +2587,12 @@
 #nouvelleCollection .catalogue .cat-body .produit .detail .montant span {
   font-weight: 600;
   color: #a0b21f;
+}
+#nouvelleCollection .catalogue .cat-body .produit .detail .quantite {
+  font-weight: 500;
+}
+#nouvelleCollection .catalogue .cat-body .produit .detail .quantite span {
+  font-weight: 600;
 }
 #nouvelleCollection .catalogue .cat-pagination {
   padding: 10px 0;
