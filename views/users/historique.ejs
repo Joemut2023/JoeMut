@@ -40,13 +40,16 @@
                       </thead> 
                       <tbody> 
                         <tr>
-                            <td><%= commande.com_num %></td>
-                            <td><%= commande. com_date %></td>
-                            <td><%= commande.com_ttc %></td>
-                            <td>date database</td>
+                            <td>ORD-XKOQW</td>
+                            <td><%= moment(commande.com_date).format('MMMM Do YYYY, h:mm:ss a') %></td>
+                            <td><%= commande.com_ttc %>  £</td>
+                            <td>Devis</td>
                           <td><p class="bg-warning text-center color-white">Finalisation du devis</p></td>
-                          <td>date database</td>
-                          <td class="button"><a href="">Détails Commander à nouveau</a></td>
+                          <td> - </td>
+                          <td class="button">
+                            <a href="/commander/<%= commande.com_id%>">Détails</a>
+                            <a href="/commander/#page-commander/">Commander à nouveau</a>
+                          </td>
                         </tr>
                         </tbody>
                   </table>
