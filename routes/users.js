@@ -1,6 +1,12 @@
 var express = require("express");
 var router = express.Router();
 const { Adresse, Client, Commande } = require("../models");
+var moment = require('moment');
+
+
+// exports.index = function (req, res) {
+//   res.render('index', { moment: moment });
+// }
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
@@ -255,7 +261,8 @@ router.get("/historique", async function (req, res, next) {
     } else {
       return res.render("users/historique", {
         error: false,
-        commandeByUser
+        commandeByUser,
+        moment: moment
       });
     }
 
