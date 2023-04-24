@@ -149,12 +149,12 @@
     </style>
 </head>
 <body>
-    <div id="page-devis">
-        <div class="logo-dates">
-          <div class="logo">
-              <img src="/images/logo.png" class="logo-img img-fluid" alt="" srcset="" />
+    <div id="page-devis" style="width: 100%;">
+        <div class="logo-dates" style="width:100%;padding: 40px 35px 0 35px;" >
+          <div class="logo" style="width: 20%;">
+              <img src="/images/logo.png" class="logo-img img-fluid" alt="" srcset="" style="width: 100%;" />
           </div>
-          <div class="dates">
+          <div class="dates" style="width: 60%;">
               <div class="devis-number">
                   <span>Devis N°</span> <span><%= commande.com_id %></span>
               </div>
@@ -165,9 +165,10 @@
           </div>
         </div>
       
-        <div class="adresses">
+        <div class="adresses" style="width: 100%; display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
           <div class="livraison">
              <h3>Adresse de livraison</h3>
+             <hr style="opacity: 0.4;">
              <ul>
               <li><%= adresseLiv.adr_prenom %> <%= adresseLiv.adr_nom %></li>
               <li><%= adresseLiv.adr_structure %></li>
@@ -175,148 +176,151 @@
               <li><%= adresseLiv.adr_cp %> <%= adresseLiv.adr_ville %></li>
               <li><%= adresseLiv.adr_pays %></li>
               <li><%=adresseLiv.adr_phone  %></li></ul>
+              <hr style="opacity: 0.4;">
           </div>
           <div class="facturation">
               <h3>Adresse de facturation</h3>
+              <hr style="opacity: 0.4;">
              <ul>
               <li><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></li>
               <li><%= adresseFac.adr_adresse %></li>
               <li><%= adresseFac.adr_cp %> <%= adresseFac.adr_ville %></li>
               <li><%= adresseFac.adr_pays %></li>
               <li><%=adresseFac.adr_phone  %></li></ul>
+              <hr style="opacity: 0.4;">
           </div>
         </div>
       
-        <div class="table-detail">
-          <table class="table  table-bordered">
+        <div class="table-detail" style="width: 100%;padding: 30px 35px 10px 35px;">
+          <table class="table  table-bordered" style="border-collapse: collapse;">
               <thead>
                 <tr>
-                  <th scope="col">Reference</th>
-                  <th scope="col">Produit</th>
-                  <th scope="col">Prix unitaire (HT)</th>
-                  <th scope="col">Quantité</th>
-                  <th scope="col">Total (HT)</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Reference</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Produit</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Prix unitaire (HT)</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Quantité</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Total (HT)</th>
                 </tr>
               </thead>
               <tbody>
              <% panierDetails.forEach(element => { %>
                  <tr>
-                    <td><%= element.Produit.pro_ref %></td>
-                    <td><%= element.Produit.pro_libelle %> </td>
-                    <td><%= element.pad_ht.toFixed(2)%> €</td>
-                    <td><%= element.pad_qte%></td>
-                    <td><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_ref %></td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_libelle %> </td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2)%> €</td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_qte%></td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
                 </tr>
               <% }) %>
               </tbody>
             </table>
         </div>
       
-        <div class="tables">
-          <div class="taxe-detail1">
-            <table class="table table-borderless">
+        <div class="detail_total" style="padding: 30px 35px 10px 35px; width: 100%; flex-direction: row; justify-content: end;">
+         
+            <table class="table table-borderless" style="border-collapse: collapse;width: 60%;">
               <thead>
                 <tr>
-                  <th scope="col">Details des taxes</th>
-                  <th scope="col">Taux de taxe</th>
-                  <th scope="col">Prix de base</th>
-                  <th scope="col">Taxe totale</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Details des taxes</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Taux de taxe</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Prix de base</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Taxe totale</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Produits</td>
-                  <td>20.000 %</td>
-                  <td><%= sous_total.toFixed(2) %> €</td>
-                  <td><%= taxe.toFixed(2) %> €</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produits</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">20.000 %</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2) %> €</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2) %> €</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-      
-          <div class="taxe-detail2">
-            <table class="table table-borderless">
+   
+            <table class="table table-borderless" style="border-collapse: collapse;width: 30%;margin-top:10px;">
               <tbody>
                 <tr>
-                  <td id="title">Total produits</td>
-                  <td><%= sous_total.toFixed(2) %> €</td>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total produits</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2) %> €</td>
                 </tr>
                 <tr>
-                  <td id="title">Frais de livraison</td>
-                  <td><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2):0.00%> €</td>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais de livraison</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2):0.00%> €</td>
                 </tr>
                 <tr>
-                  <td id="title">Autres frais</td>
-                  <td><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</td>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Autres frais</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</td>
                 </tr>
                 <tr>
-                  <th id="title">Total (HT)</th>
-                  <th><%= totalHT.toFixed(2) %> €</th>
+                  <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total (HT)</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= totalHT.toFixed(2) %> €</th>
                 </tr>
                 <tr>
-                  <th id="title">Taxe totale</th>
-                  <th><%= taxe.toFixed(2) %> € </th>
+                  <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Taxe totale</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2) %> € </th>
                 </tr>
                 <tr>
-                  <th id="title">Total</th>
-                  <th><%= (totalHT + taxe).toFixed(2)%> €</th>
+                  <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (totalHT + taxe).toFixed(2)%> €</th>
                 </tr>
               </tbody>
             </table>
-          </div>
+
         </div>
       
-        <div class="modeLivraison">
-          <div class="titreLivraison">
+        <div class="modeLivraison" style="width: 100%;padding: 30px 35px 10px 35px;">
+          <div class="titreLivraison" style="width: 100%; display: flex; flex-direction: row">
             <i class="fa-solid fa-truck icone_livraison"></i>
-            <h6>Livraison</h6>
+            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Livraison</h6>
           </div>
-          <h5>Mode de livraison :<span><%= modeLivraison.frp_libelle %></span></h5>
-          <div class="text-detail">
-            <p>Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
+          <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;">Mode de livraison :<span><%= modeLivraison.frp_libelle %></span></h5>
+          </div>
+          <div class="text-detail" style="width:80%;padding: 30px 35px 10px 35px;">
+            <p style="text-align: center;" >Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
               Vos costumes seront pre-réservés pendant 10 jours(sous réserve de disponibilité)
               Passé de délai, sans confirmation de votre part, Aiguilles en scène se réserve le droit de les remettre en location.
             </p>
           </div>
       
-          <div class="text-detail2">
+          <div class="text-detail2" style="width: 100%;padding: 30px 35px 10px 35px;">
            <p>Veuillez faire valider votre demande :</p>
            <p> - Avec un <strong>cheque de caution de <span>290, 80$</span></strong> si le spectacle est prise en compte par <strong> une association</strong>;</p>
            <p>- Avec un <strong>bon de commande</strong> si il est prise en charge pour une <strong>collectivité teritoriale</strong>.</p>
           </div>
       
-        </div>
-        <div class="repetition_spectable">
-          <div class="spectacle">
-            <div class="titre">
-              <h6>Date spectacle</h6>
+        
+        <div class="repetition_spectable" style="width: 100%;display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
+          <div class="spectacle" style="width: 45%; margin-right: 10%;">
+            <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
+              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date spectacle</h6>
             </div>
-            <hr />
+            <hr style="opacity: 0.4;">
             <div class="body">
-              <h6>Date de début : <span><%= commande.com_debut_spectacle %></span></h6>
-              <h6>Date de fin : <span><%= commande.com_fin_spectacle %></span></h6>
+              <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span><%= commande.com_debut_spectacle %></span></h6>
+              <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span><%= commande.com_fin_spectacle %></span></h6>
             </div>
-            <hr />
+            <hr style="opacity: 0.4;">
           </div>
-          <div class="repetition">
-            <div class="titre">
-              <h6>Date repétition</h6>
+          <div class="repetition" style="width: 45%">
+            <div class="titre" style="width: 100%">
+              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date repétition</h6>
             </div>
-            <hr />
+            <hr style="opacity: 0.4;">
             <div class="body">
               <% essayage.forEach(element => { %>
                
-                <h6>Date de repétition : <span><%= element.ess_repetition %></span></h6>
+                <h6 style="font-weight: 600; font-size: 15px;">Date de repétition : <span><%= element.ess_repetition %></span></h6>
               <% }) %>
              
             </div>
-            <hr />
+            <hr style="opacity: 0.4;">
           </div>
         </div>
       
-        <div class="message">
+        <div class="message" style="width:80%;padding: 30px 35px 0 35px;">
         <p class="text-center mt-3"><i>AIGUILLES EN SCENE - 5 Rue des Agaces - 35650 Le Rheu - France</i></p>
         </div>
+        
       </div>
 </body>
 </html>
