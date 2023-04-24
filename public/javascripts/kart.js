@@ -347,6 +347,7 @@ var Kart = /*#__PURE__*/function () {
             case 5:
               kartLoader = document.querySelector(".kart-loader");
               pro_id = parseInt(itemId);
+              Kart.RenderDeleteModal();
               axios["delete"]("".concat(SITE_URL, "/panierDetail"), {
                 data: {
                   pro_id: pro_id
@@ -364,9 +365,10 @@ var Kart = /*#__PURE__*/function () {
                       case 2:
                         document.querySelector("#cart-item-count").innerHTML = _context8.sent;
                         kartLoader.style.display = res.data ? "none" : "block";
-                        _context8.next = 6;
+                        Kart.HideDeleteModal();
+                        _context8.next = 7;
                         return Kart.kartRenderItems();
-                      case 6:
+                      case 7:
                       case "end":
                         return _context8.stop();
                     }
@@ -384,7 +386,7 @@ var Kart = /*#__PURE__*/function () {
                 storedITems.splice(produitPositionInArray, 1);
                 localStorage.setItem("storedItems", JSON.stringify(storedITems));
               }
-            case 10:
+            case 11:
             case "end":
               return _context9.stop();
           }
@@ -647,6 +649,21 @@ var Kart = /*#__PURE__*/function () {
         keyboard: false
       });
       myModal.show();
+    }
+  }, {
+    key: "RenderDeleteModal",
+    value: function RenderDeleteModal() {
+      var removeModal = new bootstrap.Modal(document.querySelector("#removeModel"), {
+        keyboard: false
+      });
+      removeModal.show();
+    }
+  }, {
+    key: "HideDeleteModal",
+    value: function HideDeleteModal() {
+      var removeModal = document.querySelector("#removeModel");
+      var modal = bootstrap.Modal.getInstance(removeModal);
+      modal.hide();
     }
   }]);
   return Kart;
