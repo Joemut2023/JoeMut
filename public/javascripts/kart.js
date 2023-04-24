@@ -364,8 +364,8 @@ var Kart = /*#__PURE__*/function () {
                         return Kart.getItemNumber();
                       case 2:
                         document.querySelector("#cart-item-count").innerHTML = _context8.sent;
-                        kartLoader.style.display = res.data ? "none" : "block";
                         Kart.HideDeleteModal();
+                        kartLoader.style.display = res.data ? "none" : "block";
                         _context8.next = 7;
                         return Kart.kartRenderItems();
                       case 7:
