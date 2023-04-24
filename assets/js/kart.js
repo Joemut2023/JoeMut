@@ -172,8 +172,9 @@ class Kart {
       .then(async (res) => {
         document.querySelector("#cart-item-count").innerHTML =
           await Kart.getItemNumber();
-        kartLoader.style.display = res.data ? "none" : "block";
         Kart.HideDeleteModal();
+        kartLoader.style.display = res.data ? "none" : "block";
+
         await Kart.kartRenderItems();
       });
     let storedITems = Kart.getParsedBasket();
