@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const { Adresse, Client } = require("../models");
+const { Adresse, Client, Commande } = require("../models");
+
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "mon_compte";
@@ -233,10 +234,42 @@ router.get("/donnee", function (req, res, next) {
   res.locals.titre = "informations";
   res.render("users/donnee");
 });
-router.get("/historique", function (req, res, next) {
+
+
+router.get("/historique", async function (req, res, next) {
   res.locals.titre = "historique";
-  res.render("users/historique");
+
+  const clientId = req.session.userId;
+
+  try {
+    const commandeByUser = await Commande.findAll({
+      where: {
+        cli_id: clientId
+      }
+    })
+
+    if (commandeByUser.length === 0) {
+      return res.render("users/historique", {
+        error: true,
+      });
+    } else {
+      return res.render("users/historique", {
+        error: false,
+        commandeByUser
+      });
+    }
+
+  } catch (error) {
+    const errorMessage = "Erreur interne du serveur";
+    return res.render("users/historique", {
+      error: errorMessage,
+    });
+
+  }
 });
+
+
+
 router.get("/reduction", function (req, res, next) {
   res.locals.titre = "reduction";
   res.render("users/reduction");

@@ -73,6 +73,6 @@ router.post("/", async function (req, res) {
         error: false,
       });
     });
-  } catch (error) {}
+  } catch (error) { }
 });
 module.exports = router;
