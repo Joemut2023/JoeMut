@@ -1,11 +1,11 @@
-#error{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        width:400px;
-        @include breakpoint(mobil){
-            width: 150px;
-        }
+#error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 400px;
+    @include breakpoint(mobil) {
+      width: 150px;
     }
+  }
 }

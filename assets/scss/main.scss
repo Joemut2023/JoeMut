@@ -4,6 +4,7 @@
 @import "blocs/footer";
 @import "blocs/mobil-menu";
 @import "blocs/kart";
+@import "blocs/admin/sidebar";
 @import "pages/home";
 @import "pages/creation";
 @import "pages/contact";
@@ -28,8 +29,13 @@
 @import "pages/mensionLegale";
 @import "pages/adresses";
 @import "pages/confirmationcommande.scss";
-@import "pages/devis.scss";
 @import "pages/editAdress.scss";
 @import "pages/error.scss";
 @import "pages/mail.scss";
+<<<<<<< HEAD
 @import "pages/admin/admin.produit.scss"
+=======
+@import "pages/devis.scss";
+@import "pages/admin/admin.connexion";
+@import "pages/admin/admin.dashboard";
+>>>>>>> develop

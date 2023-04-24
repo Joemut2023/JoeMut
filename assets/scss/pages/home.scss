@@ -1,5 +1,5 @@
 #pages-home {
-  margin-top: 130px;
+  margin-top: 80px;
 
   .btn {
     background-color: $color-primary;
@@ -16,6 +16,9 @@
     .font-weight-light {
       margin-bottom: 20px;
       font-family: "Byciclette";
+    }
+    h2{
+      padding-bottom: 20px;
     }
 
   }
@@ -230,6 +233,8 @@
 
   .section-nos-creations {
     background-image: url(/images/banner-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 500px;
     color: $color-white;
     display: flex;

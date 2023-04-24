@@ -7,14 +7,14 @@ const get_commande_data = require("../helpers/get_commande_data");
 const { log } = require("console");
 
 router.get("/:id", async (req, res, next) => {
-  let {id} = req.params;
-  get_commande_data(parseInt(id),async (commande,adresseLiv,adresseFac,panierDetails,
+  let { id } = req.params;
+  get_commande_data(parseInt(id), async (commande, adresseLiv, adresseFac, panierDetails,
     essayage,
     modeLivraison,
     sous_total,
     taxe,
     totalTTC,
-    totalHT,sous_totalCmd,produitsPopulaires,totalCmd)=>{
+    totalHT, sous_totalCmd, produitsPopulaires, totalCmd) => {
     let view = await ejs.renderFile(path.join(__dirname, "../mailTemplate/devis.ejs"), {
       panierDetails: panierDetails,
       commande,

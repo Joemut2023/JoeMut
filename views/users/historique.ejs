@@ -9,6 +9,8 @@
         </nav>
     </div>
     <h2>Historique de vos commandes</h2>
+
+    <% if (error === true) { %>
     <div class="row">
         <div class="msg-error">
             <div class="alert alert-danger" role="alert">
@@ -17,4 +19,44 @@
             <h6>Vous trouverez ici vos commandes passées depuis la création de votre compte</h6>
         </div>
     </div>
+    <% } else { %>
+    <div class="row row-list">
+        <div class="msg">
+            <h6>Vous trouverez ici vos commandes passées depuis la création de votre compte</h6>
+
+            <div class="commande-liste">
+                <% commandeByUser && commandeByUser.forEach(function(commande) { %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">Reference de commande</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Prix total</th>
+                          <th scope="col">Finalisation</th>
+                          <th scope="col">Etat</th>
+                          <th scope="col">Facture</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead> 
+                      <tbody> 
+                        <tr>
+                            <td>ORD-XKOQW</td>
+                            <td><%= moment(commande.com_date).format('MMMM Do YYYY, h:mm:ss a') %></td>
+                            <td><%= commande.com_ttc %>  £</td>
+                            <td>Devis</td>
+                          <td><p class="bg-warning text-center color-white">Finalisation du devis</p></td>
+                          <td> - </td>
+                          <td class="button">
+                            <a href="/commander/<%= commande.com_id%>">Détails</a>
+                            <a href="/commander/#page-commander/">Commander à nouveau</a>
+                          </td>
+                        </tr>
+                        </tbody>
+                  </table>
+                  <% }); %>
+                  
+            </div>
+        </div>
+    </div>
+    <% } %>
 </div>

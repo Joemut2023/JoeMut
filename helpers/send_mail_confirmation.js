@@ -35,16 +35,16 @@ module.exports = async (
     totalTTC: totalTTC,
     totalHT: totalHT,
   });
-  const browser = await puppeteer.launch({headless:true});
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   page.isJavaScriptEnabled(false);
-  await page.goto(`${process.env.APP_URL}devis/${commande.com_id}`,{
-    timeout:60000
+  await page.goto(`${process.env.APP_URL}devis/${commande.com_id}`, {
+    timeout: 60000
   });
   await page.pdf({
-  path: path.join(
-     __dirname,
-    "../public/pdf/devis/" + commande.com_id + ".pdf"
+    path: path.join(
+      __dirname,
+      "../public/pdf/devis/" + commande.com_id + ".pdf"
     ),
   });
   await page.close();
@@ -64,15 +64,15 @@ module.exports = async (
       attachments: [
         {
           filename: commande.com_id + ".pdf",
-          path:path.join(
+          path: path.join(
             __dirname,
-           "../public/pdf/devis/" + commande.com_id + ".pdf"
-           ),
-         }
+            "../public/pdf/devis/" + commande.com_id + ".pdf"
+          ),
+        }
       ],
     };
     transporter.sendMail(mailOptions).then(function (info) {
       console.log("Email sent: " + info.response);
     });
-  } catch (error) {}
+  } catch (error) { }
 };

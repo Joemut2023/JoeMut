@@ -1,158 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Document</title>
     <style>
-        #page-devis {
-	 width: 95%;
-	 margin: auto;
-}
- #page-devis .logo-dates {
-	 display: flex;
-	 justify-content: space-between;
-}
- #page-devis .logo-dates .bordure {
-	 border: 1px solid green;
-}
- #page-devis .adresses {
-	 display: flex;
-	 margin-top: 50px;
-}
- #page-devis .adresses ul {
-	 list-style: none;
-}
- #page-devis .adresses .facturation {
-	 margin-left: 30%;
-}
- #page-devis .table-detail {
-	 text-align: center;
-}
- #page-devis .tables {
-	 display: flex;
-	 justify-content: space-between;
-}
- #page-devis .tables .taxe-detail1 {
-	 width: 45%;
-	 text-align: center;
-	 border: 1px solid #d4d2d2;
-	 margin-bottom: 20px;
-}
- #page-devis .tables .taxe-detail2 {
-	 width: 45%;
-	 text-align: center;
-}
- #page-devis .tables .taxe-detail2 .table-borderless {
-	 border: 1px solid #d4d2d2;
-}
- #page-devis .modeLivraison {
-	 width: 100%;
-	 display: flex;
-	 flex-direction: column;
-	 padding: 30px 35px 10px 35px;
-}
- #page-devis .modeLivraison .titreLivraison {
-	 width: 100%;
-	 display: flex;
-	 flex-direction: row;
-	 padding-bottom: 10px;
-}
- #page-devis .modeLivraison .titreLivraison .icone_livraison {
-	 font-size: 20px;
-}
- @media (max-width: 680px) {
-	 #page-devis .modeLivraison .titreLivraison .icone_livraison {
-		 font-size: 16px;
-	}
-}
- #page-devis .modeLivraison .titreLivraison h6 {
-	 font-weight: 700;
-	 font-size: 22px;
-}
- @media (max-width: 680px) {
-	 #page-devis .modeLivraison .titreLivraison h6 {
-		 font-size: 13px;
-	}
-}
- #page-devis .modeLivraison h5 {
-	 font-weight: 700;
-	 font-size: 17px;
-}
- #page-devis .modeLivraison h5 span {
-	 font-weight: 200;
-}
- @media (max-width: 680px) {
-	 #page-devis .modeLivraison h5 {
-		 font-size: 13px;
-	}
-}
- #page-devis .modeLivraison .text-detail2 {
-	 border: 1px solid #d4d2d2;
-	 padding: 15px;
-}
- #page-devis .repetition_spectable {
-	 width: 100%;
-	 display: flex;
-	 flex-direction: row;
-	 gap: 10%;
-	 padding: 30px 35px 0 35px;
-}
- @media (max-width: 680px) {
-	 #page-devis .repetition_spectable {
-		 padding: 30px 20px 0 20px;
-	}
-}
- #page-devis .repetition_spectable .spectacle, #page-devis .repetition_spectable .repetition {
-	 width: 45%;
-	 display: flex;
-	 flex-direction: column;
-}
- #page-devis .repetition_spectable .spectacle .titre, #page-devis .repetition_spectable .repetition .titre {
-	 width: 100%;
-	 display: flex;
-	 flex-direction: row;
-}
- #page-devis .repetition_spectable .spectacle .titre h6, #page-devis .repetition_spectable .repetition .titre h6 {
-	 font-weight: 700;
-	 font-size: 22px;
-}
- @media (max-width: 680px) {
-	 #page-devis .repetition_spectable .spectacle .titre h6, #page-devis .repetition_spectable .repetition .titre h6 {
-		 font-size: 13px;
-	}
-}
- #page-devis .repetition_spectable .spectacle hr, #page-devis .repetition_spectable .repetition hr {
-	 opacity: 0.4;
-}
- #page-devis .repetition_spectable .spectacle .body, #page-devis .repetition_spectable .repetition .body {
-	 display: flex;
-	 flex-direction: column;
-}
- #page-devis .repetition_spectable .spectacle .body h6, #page-devis .repetition_spectable .repetition .body h6 {
-	 font-weight: 600;
-	 font-size: 15px;
-}
- @media (max-width: 680px) {
-	 #page-devis .repetition_spectable .spectacle .body h6, #page-devis .repetition_spectable .repetition .body h6 {
-		 font-size: 13px;
-	}
-}
- #page-devis .repetition_spectable .spectacle .body h6 span, #page-devis .repetition_spectable .repetition .body h6 span {
-	 font-weight: 400;
-}
- #page-devis .message {
-	 font-size: smaller;
-}
- 
+      #page-devis {
+        width: 90%;
+        margin: auto;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+      #page-devis .logo-dates {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      #page-devis .logo-dates .bordure {
+        border: 1px solid green;
+      }
+      #page-devis .adresses {
+        display: flex;
+        margin-top: 50px;
+      }
+      #page-devis .adresses ul {
+        list-style: none;
+      }
+      #page-devis .adresses .facturation {
+        margin-left: 30%;
+      }
+      #page-devis .table-detail {
+        text-align: center;
+      }
+      #page-devis .table-detail table{
+        border: 1px solid rgb(209, 208, 208);
+      }
+      #page-devis .tables {
+        display: flex;
+        justify-content: space-between;
+      }
+      #page-devis .tables .taxe-detail1 {
+        width: 45%;
+        text-align: center;
+        border: 1px solid #d4d2d2;
+        margin-bottom: 20px;
+      }
+      #page-devis .tables .taxe-detail2 {
+        width: 45%;
+        text-align: center;
+      }
+      #page-devis .tables .taxe-detail2 .table-borderless {
+        border: 1px solid #d4d2d2;
+      }
+      #page-devis .modeLivraison {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 35px 10px 35px;
+      }
+      #page-devis .modeLivraison .titreLivraison {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+      }
+      #page-devis .modeLivraison .titreLivraison .icone_livraison {
+        font-size: 20px;
+      }
+      @media (max-width: 680px) {
+        #page-devis .modeLivraison .titreLivraison .icone_livraison {
+          font-size: 16px;
+        }
+      }
+      #page-devis .modeLivraison .titreLivraison{
+        display: flex;
+        gap: 10px;
+      }
+
+      #page-devis .modeLivraison .titreLivraison h6 {
+        font-weight: 700;
+        font-size: 22px;
+      }
+      @media (max-width: 680px) {
+        #page-devis .modeLivraison .titreLivraison h6 {
+          font-size: 13px;
+        }
+      }
+      #page-devis .modeLivraison h5 {
+        font-weight: 700;
+        font-size: 17px;
+      }
+
+      
+      #page-devis .modeLivraison h5 span {
+        font-weight: 200;
+      }
+      @media (max-width: 680px) {
+        #page-devis .modeLivraison h5 {
+          font-size: 13px;
+        }
+      }
+      #page-devis .modeLivraison .text-detail{
+        margin-top: 15px;
+      }
+
+      #page-devis .modeLivraison .client-comment{
+        border: 1px solid #d4d2d2;
+        padding: 15px;
+      }
+
+      #page-devis .modeLivraison .client-comment p .fa-arrow-right{
+       width: 20px;
+      }
+     
+      #page-devis .modeLivraison .text-detail2 {
+        border: 1px solid #d4d2d2;
+        padding: 15px;
+        margin-top: 15px;
+      }
+      #page-devis .repetition_spectable {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 10%;
+        padding: 30px 35px 0 35px;
+      }
+      @media (max-width: 680px) {
+        #page-devis .repetition_spectable {
+          padding: 30px 20px 0 20px;
+        }
+      }
+      #page-devis .repetition_spectable .spectacle,
+      #page-devis .repetition_spectable .repetition {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+      }
+      #page-devis .repetition_spectable .spectacle .titre,
+      #page-devis .repetition_spectable .repetition .titre {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+      }
+      #page-devis .repetition_spectable .spectacle .titre h6,
+      #page-devis .repetition_spectable .repetition .titre h6 {
+        font-weight: 700;
+        font-size: 22px;
+      }
+      @media (max-width: 680px) {
+        #page-devis .repetition_spectable .spectacle .titre h6,
+        #page-devis .repetition_spectable .repetition .titre h6 {
+          font-size: 13px;
+        }
+      }
+      #page-devis .repetition_spectable .spectacle hr,
+      #page-devis .repetition_spectable .repetition hr {
+        opacity: 0.4;
+      }
+      #page-devis .repetition_spectable .spectacle .body,
+      #page-devis .repetition_spectable .repetition .body {
+        display: flex;
+        flex-direction: column;
+      }
+      #page-devis .repetition_spectable .spectacle .body h6,
+      #page-devis .repetition_spectable .repetition .body h6 {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      @media (max-width: 680px) {
+        #page-devis .repetition_spectable .spectacle .body h6,
+        #page-devis .repetition_spectable .repetition .body h6 {
+          font-size: 13px;
+        }
+      }
+      #page-devis .repetition_spectable .spectacle .body h6 span,
+      #page-devis .repetition_spectable .repetition .body h6 span {
+        font-weight: 400;
+      }
+      #page-devis .message {
+        font-size: smaller;
+      }
     </style>
-</head>
-<body>
-    <div id="page-devis" style="width: 100%;">
-        <div class="logo-dates" style="width:100%;padding: 40px 35px 0 35px;" >
-          <div class="logo" style="width: 20%;">
-              <img src="/images/logo.png" class="logo-img img-fluid" alt="" srcset="" style="width: 100%;" />
+  </head>
+  <body>
+    <div id="page-devis">
+        <div class="logo-dates">
+          <div class="logo">
+              <img src="/images/logo.png" class="logo-img img-fluid" alt="" srcset="" />
           </div>
           <div class="dates" style="width: 60%;">
               <div class="devis-number">
@@ -281,18 +322,17 @@
               Passé de délai, sans confirmation de votre part, Aiguilles en scène se réserve le droit de les remettre en location.
             </p>
           </div>
-      
-          <div class="text-detail2" style="width: 100%;padding: 30px 35px 10px 35px;">
-           <p>Veuillez faire valider votre demande :</p>
-           <p> - Avec un <strong>cheque de caution de <span>290, 80$</span></strong> si le spectacle est prise en compte par <strong> une association</strong>;</p>
-           <p>- Avec un <strong>bon de commande</strong> si il est prise en charge pour une <strong>collectivité teritoriale</strong>.</p>
+          <hr />
+          <div class="body">
+            <h6>Date de début : <span>12-04-2023</span></h6>
+            <h6>Date de fin : <span>20-04-2023</span></h6>
           </div>
-      
-        
-        <div class="repetition_spectable" style="width: 100%;display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
-          <div class="spectacle" style="width: 45%; margin-right: 10%;">
-            <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
-              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date spectacle</h6>
+          <hr />
+        </div>
+        <div class="repetition_spectable">
+          <div class="spectacle">
+            <div class="titre">
+              <h6>Date spectacle</h6>
             </div>
             <hr style="opacity: 0.4;">
             <div class="body">
@@ -313,14 +353,33 @@
               <% }) %>
              
             </div>
+<<<<<<< HEAD
             <hr style="opacity: 0.4;">
+=======
+            <hr />
+<<<<<<< HEAD
+>>>>>>> develop
+>>>>>>> hotfix
+=======
+>>>>>>> hotfix
           </div>
+          <hr />
         </div>
+<<<<<<< HEAD
       
         <div class="message" style="width:80%;padding: 30px 35px 0 35px;">
         <p class="text-center mt-3"><i>AIGUILLES EN SCENE - 5 Rue des Agaces - 35650 Le Rheu - France</i></p>
         </div>
         
+=======
+>>>>>>> hotfix
       </div>
-</body>
+
+      <div class="message">
+        <p class="text-center mt-3">
+          <i>AIGUILLES EN SCENE - 5 Rue des Agaces - 35650 Le Rheu - France</i>
+        </p>
+      </div>
+    </div>
+  </body>
 </html>

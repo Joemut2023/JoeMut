@@ -39,8 +39,8 @@
         name="adr_structure"
         id=""
         value="<%= adressById.adr_structure ? adressById.adr_structure : '' %>"
+        required
       />
-      <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""><span>* </span> Nom</label>
@@ -73,8 +73,8 @@
         name="adr_societe"
         id=""
         value="<%= adressById.adr_societe %>"
+        required
       />
-      <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> Numéro de TVA</label>
@@ -112,7 +112,7 @@
       <label class="col-label-end" for="">Optionnel</label>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span>* </span>Code penal</label>
+      <label class="col-label" for=""> <span>* </span>Code postal</label>
       <input
         class="col-input"
         placeholder=""
