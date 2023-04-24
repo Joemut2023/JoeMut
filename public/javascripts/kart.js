@@ -241,7 +241,7 @@ var Kart = /*#__PURE__*/function () {
               _context7.prev = 8;
               axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
-                pad_qte: 1,
+                pad_qte: itemForPanier.pad_qte,
                 headers: {
                   "X-Requested-With": "XMLHttpRequest"
                 }
@@ -262,7 +262,7 @@ var Kart = /*#__PURE__*/function () {
                       case 6:
                         _qte = res.data.panierDetail.pad_qte;
                         _context6.next = 9;
-                        return Kart.RenderModal(itemForPanier, _qte);
+                        return Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
                       case 9:
                         if (!storedITems) {
                           _context6.next = 19;

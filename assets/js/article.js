@@ -60,8 +60,8 @@ btnAjouter.addEventListener("click", async () => {
     },
   });
   await Kart.addItem(produit.data, qte);
-  input.value = "1"
   myModal.style.display = "flex";
+  input.value = "1"
 });
 
 if (small_img_carousel.length > 1) {

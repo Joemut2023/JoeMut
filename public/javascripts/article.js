@@ -66,8 +66,8 @@ btnAjouter.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__
         _context.next = 7;
         return Kart.addItem(produit.data, qte);
       case 7:
-        input.value = "1";
         myModal.style.display = "flex";
+        input.value = "1";
       case 9:
       case "end":
         return _context.stop();

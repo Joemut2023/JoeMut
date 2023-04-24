@@ -104,7 +104,7 @@ class Kart {
       axios
         .post(`${SITE_URL}/panierDetail`, {
           pro_id: item.pro_id,
-          pad_qte: 1,
+          pad_qte: itemForPanier.pad_qte,
           headers: {
             "X-Requested-With": "XMLHttpRequest",
           },
@@ -118,7 +118,7 @@ class Kart {
             return Kart.RenderMaxQteModal();
           } else {
             let qte = res.data.panierDetail.pad_qte;
-            await Kart.RenderModal(itemForPanier, qte);
+            await Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
           }
 
           if (storedITems) {
