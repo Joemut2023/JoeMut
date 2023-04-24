@@ -1077,26 +1077,26 @@
 1077;26;MV3;MV3 - Veste officier;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence MV3;0;0;;1
 1078;26;MV2;MV2 - Gilet d'homme noir;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence MV2;0;0;;1
 1079;26;MV1;MV1 - Gilet d'homme bleu;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence MV1;0;0;;1
-1080;40;GV8A;GV8A - Gilet rouge satiné;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV8A;0;0;;1
-1081;40;GV2B;GV2B - Redingote écru courte;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV2B;0;0;;1
-1082;40;GV1B;GV1B - Veste queue de pie dorée;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV1B;0;0;;1
-1083;40;GV8B;GV8B - Gilet d'homme blanc;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV8B;0;0;;1
-1084;40;GV15;GV15 - Veste michael Jackson;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV15;0;0;;1
-1085;40;GV14;GV14 - Peignoir cachemire satin doré;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV14;0;0;;1
-1086;40;GV13;GV13 - Manteau velours rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV13;0;0;;1
-1087;40;GV16;GV16 - Manteau imperméable différentes couleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV16;0;0;;1
-1088;40;GV9;GV9 - Gilet assortiment de couleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV9;0;0;;1
-1089;40;GV17;GV17 - Veste queue de Pie noir et argent;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV17;0;0;;1
-1090;40;GV7;GV7 - Gilet homme noir;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV7;0;0;;1
-1091;40;GV6C;GV6C - Cache coeur dentelle rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6C;0;0;;1
-1092;40;GV6B;GV6B - Cache coeur dentelle rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6B;0;0;;1
-1093;40;GV6A;GV6A - Cache coeur dentelle noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6A;0;0;;1
-1094;40;GV3;GV3 - Redingote longue rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV3;0;0;;1
-1095;40;GV2A;GV2A - Redingote courte rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV2A;0;0;;1
-1096;40;GV4;GV4 - Redingote noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV4;0;0;;1
-1097;40;GV12;GV12 - Manteau velours marron;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV12;0;0;;1
-1098;40;GV24;GV24 - Veste rouge avec liseret bleu;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV24;0;0;;1
-1099;37;GRL15C;GRL15C - Robe longue 4 pans bleu lagon;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GRL15C;0;0;;1
+1080;40;GV8A;GV8A - Gilet rouge satiné;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV8A;0;1;;1
+1081;40;GV2B;GV2B - Redingote écru courte;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV2B;0;1;;1
+1082;40;GV1B;GV1B - Veste queue de pie dorée;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV1B;0;1;;1
+1083;40;GV8B;GV8B - Gilet d'homme blanc;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV8B;0;1;;1
+1084;40;GV15;GV15 - Veste michael Jackson;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV15;0;1;;1
+1085;40;GV14;GV14 - Peignoir cachemire satin doré;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV14;0;1;;1
+1086;40;GV13;GV13 - Manteau velours rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV13;0;1;;1
+1087;40;GV16;GV16 - Manteau imperméable différentes couleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV16;0;1;;1
+1088;40;GV9;GV9 - Gilet assortiment de couleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV9;0;1;;1
+1089;40;GV17;GV17 - Veste queue de Pie noir et argent;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV17;0;1;;1
+1090;40;GV7;GV7 - Gilet homme noir;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV7;0;1;;1
+1091;40;GV6C;GV6C - Cache coeur dentelle rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6C;0;1;;1
+1092;40;GV6B;GV6B - Cache coeur dentelle rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6B;0;1;;1
+1093;40;GV6A;GV6A - Cache coeur dentelle noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV6A;0;1;;1
+1094;40;GV3;GV3 - Redingote longue rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV3;0;1;;1
+1095;40;GV2A;GV2A - Redingote courte rouge;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV2A;0;1;;1
+1096;40;GV4;GV4 - Redingote noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV4;0;1;;1
+1097;40;GV12;GV12 - Manteau velours marron;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV12;0;1;;1
+1098;40;GV24;GV24 - Veste rouge avec liseret bleu;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV24;0;1;;1
+1099;37;GRL15C;GRL15C - Robe longue 4 pans bleu lagon;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GRL15C;0;1;;1
 1100;40;GV30;GV30 - Veste officier noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV30;0;0;;1
 1101;37;GRL11;GRL11 - Robe bronze à  manches;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GRL11;0;0;;1
 1102;40;GV2C;GV2C - Redingote bleu royal;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GV2C;0;0;;1
@@ -1357,7 +1357,7 @@
 1357;43;ACC9;ACC9 - Serre tête fleurs rigide;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACC9;0;0;;1
 1358;43;ACC11;ACC11 - Cercle de fleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACC11;0;0;;1
 1359;43;ACC10B;ACC10B - Serre tête fleurs souple;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACC10B;0;0;;1
-1360;44;ACCTA6;ACCTA6 - Tablier de cuisinier blanc;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCTA6;0;0;;1
+1360;44;ACCTA6;ACCTA6 - Tablier de cuisinier blanc;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCTA6;0;1;;1
 1361;44;ACCTA3;ACCTA3 - Tabliers serveuses ados/adultes;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCTA3;0;0;;1
 1362;44;ACCTA7;ACCTA7 - Tablier de peintre;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCTA7;0;0;;1
 1363;44;ACCTA1;ACCTA1 - Tablier nounou;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCTA1;0;0;;1
@@ -1378,7 +1378,7 @@
 1378;45;ACC17;ACC17 - Echarpe orange;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACC17;0;0;;1
 1379;45;ACCV4;ACCV4 - Voiles assortiment de couleurs;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence ACCV4;0;0;;1
 1380;37;GR29;GR29 - Robe asymétrique col mao bleu royal;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GR29;0;0;;1
-1381;31;GH46A;GH46A - Marinière rouille;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GH46A;0;0;;1
+1381;31;GH46A;GH46A - Marinière rouille;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GH46A;0;1;;1
 1382;31;GH46B;GH46B - Marinière safran;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GH46B;0;0;;1
 1383;31;GH31E;GH31E - Haut col mao argent;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GH31E;0;0;;1
 1384;31;GH21L;GH21L - Chemise homme en stretch noire;Quantité insuffisante ? Laissez-nous un message en précisant la référence du produit, ou appelez au 06 14 29 99 81;Référence GH21L;0;0;;1

@@ -322,6 +322,15 @@
   color: #232323;
 }
 
+#header-banner {
+  width: 100%;
+  height: auto;
+}
+#header-banner img {
+  object-fit: cover;
+  width: 100%;
+}
+
 #details-infos {
   display: flex;
   flex-direction: row;
@@ -642,7 +651,7 @@
 }
 
 #pages-home {
-  margin-top: 130px;
+  margin-top: 80px;
   /*
   caroussel 
   */
@@ -659,6 +668,9 @@
 #pages-home .element-slider-suggestion .font-weight-light {
   margin-bottom: 20px;
   font-family: "Byciclette";
+}
+#pages-home .element-slider-suggestion h2 {
+  padding-bottom: 20px;
 }
 #pages-home .section-location {
   display: flex;
@@ -850,6 +862,8 @@
 }
 #pages-home .section-nos-creations {
   background-image: url(/images/banner-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 500px;
   color: #fff;
   display: flex;
