@@ -650,6 +650,14 @@
   display: none;
 }
 
+#bloc-admin-sidebarMenu {
+  min-height: 100vh;
+  position: fixed;
+}
+#bloc-admin-sidebarMenu a {
+  color: #fff;
+}
+
 #pages-home {
   margin-top: 80px;
   /*
