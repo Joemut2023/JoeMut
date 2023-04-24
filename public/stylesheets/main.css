@@ -6109,4 +6109,9 @@
   }
 }
 
+#admin-page-produits .table td,
+#admin-page-produits .table th {
+  vertical-align: middle;
+}
+
 /*# sourceMappingURL=main.css.map */

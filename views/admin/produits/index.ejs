@@ -1,3 +1,58 @@
 <div id="admin-page-produits">
-    <h1>produits</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Image</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Reéférence</th>
+        <th scope="col">Categorie</th>
+        <th scope="col">Prix ht</th>
+        <th scope="col">Prix ttc</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% produits.forEach(element => { %>
+      <tr>
+        <th scope="row"><%= element.pro_id %></th>
+        <td width="200">
+          <img
+            src="/images/produits/<%= element.Media[0].med_ressource %>"
+            alt=""
+            class="img-fluid w-25 h-25 img-content"
+          />
+        </td>
+        <td><%= element.pro_libelle %></td>
+        <td><%= element.pro_ref %></td>
+        <td><%= element.Categorie.cat_libelle %></td>
+        <td>3</td>
+        <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
+        <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
+        <td>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="fa-solid fa-magnifying-glass"></i>Rechercher</a
+                >
+              </li>
+              <li><a class="dropdown-item" href="#">Prévisualiser</a></li>
+              <li><a class="dropdown-item" href="#">Supprimer</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>
