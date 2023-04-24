@@ -242,7 +242,7 @@
       align-items: center;
       flex-wrap: wrap;
       column-gap: 14rem;
-      row-gap:2.5rem;
+      row-gap:4rem;
       @include breakpoint(mobil) {
         padding:30px 0 30px 15px;
         display:flex;
@@ -365,6 +365,12 @@
             span{
               font-weight: 600;
               color: $color-primary;
+            }
+          }
+          .quantite{
+            font-weight: 500;
+            span{
+              font-weight: 600;
             }
           }
         }

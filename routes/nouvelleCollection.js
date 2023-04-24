@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Produit, Media, Tarif } = require("../models");
+const { Produit, Media, Tarif, Quantite } = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 const check_paginate_value = require("../helpers/check_paginate_value");
 
@@ -9,6 +9,8 @@ router.get("/", async (req, res) => {
   let orderby = req.query.orderby;
   var orderCondition;
   let choix;
+   let quantiteOfEachProduct = [];
+
   if (orderby === "AàZ") {
     orderCondition = [["pro_libelle", "ASC"]];
     choix = "Nom, A à Z";
@@ -27,6 +29,7 @@ router.get("/", async (req, res) => {
   }
   try {
     res.locals.titre = "nouvelle collection";
+     const allproducts = await Produit.findAll();
     const nouveauProduits = await Produit.findAll({
       // offset: start,
       // limit: PAGINATION_LIMIT,
@@ -45,6 +48,19 @@ router.get("/", async (req, res) => {
       where: { pro_new_collect: 1 },
       
     });
+
+    for (let index = 0; index < allproducts.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: allproducts[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: allproducts[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
     let nbrPages = Math.ceil(nouveauProduits.length / PAGINATION_LIMIT);
     let next = start > 0 ? page + 1 : null;
     let prev = end < 0 ? page - 1 : null;
@@ -59,6 +75,7 @@ router.get("/", async (req, res) => {
       next: next,
       choix: choix,
       orderby: orderby,
+      quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
