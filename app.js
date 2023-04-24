@@ -27,18 +27,17 @@ var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
 var devisRouter = require("./routes/devis")
 var panierDetailRouter = require("./routes/panierDetail");
-
-const AdminJS = require("adminjs");
-const AdminJSExpress = require("@adminjs/express");
-const AdminJSSequelize = require("@adminjs/sequelize");
+// const AdminJS = require("adminjs");
+// const AdminJSExpress = require("@adminjs/express");
+// const AdminJSSequelize = require("@adminjs/sequelize");
 const sessions = require("express-session");
 const db = require("./models");
-const { Components, componentLoader } = require("./admin/ComponentLoader");
+//const { Components, componentLoader } = require("./admin/ComponentLoader");
 const getCategorie = require("./middleware/categorie");
 const setAuthorizedUser = require("./middleware/setAuthorizedUser");
 const getPanierDetail = require("./middleware/getPanierDetail");
 var app = express();
-
+var adminRouter = require('./routes/admin/admin.router');
 require("./config/db").sync();
 const oneDay = 1000 * 60 * 60 * 24;
 // view engine setup
@@ -86,26 +85,28 @@ app.use("/error", errorRouter);
 app.use("/fraisDossier", fraisDossier);
 app.use("/panierDetail", auth, panierDetailRouter)
 app.use("/mail", mailRouter);
+app.use('/admin',adminRouter);
 
-AdminJS.registerAdapter({
-  Resource: AdminJSSequelize.Resource,
-  Database: AdminJSSequelize.Database,
-});
-const admin = new AdminJS({
-  //resources:[Categorie]
-  dashboard: {
-    component: AdminJS.bundle("admin/pages-components/dashboard"),
-  },
-  databases: [db],
-  branding: {
-    companyName: "AES",
-    withMadeWithLove: false,
-    logo: "/images/logo.png",
-    favicon: "/images/favicon.ico",
-  },
-});
-const adminRouter = AdminJSExpress.buildRouter(admin);
-app.use(admin.options.rootPath, adminRouter);
+
+// AdminJS.registerAdapter({
+//   Resource: AdminJSSequelize.Resource,
+//   Database: AdminJSSequelize.Database,
+// });
+// const admin = new AdminJS({
+//   //resources:[Categorie]
+//   dashboard: {
+//     component: AdminJS.bundle("admin/pages-components/dashboard"),
+//   },
+//   databases: [db],
+//   branding: {
+//     companyName: "AES",
+//     withMadeWithLove: false,
+//     logo: "/images/logo.png",
+//     favicon: "/images/favicon.ico",
+//   },
+// });
+// const adminRouter = AdminJSExpress.buildRouter(admin);
+// app.use(admin.options.rootPath, adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   // next(createError(404));
