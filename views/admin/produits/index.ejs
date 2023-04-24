@@ -2,6 +2,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col">ID</th>
         <th scope="col">Image</th>
         <th scope="col">Nom</th>
@@ -16,7 +17,16 @@
     <tbody>
       <% produits.forEach(element => { %>
       <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
         <th scope="row"><%= element.pro_id %></th>
+
         <td width="200">
           <img
             src="/images/produits/<%= element.Media[0].med_ressource %>"
@@ -31,23 +41,31 @@
         <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
         <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
         <td>
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
+          <i scope="col" class="fa-solid fa-pen"></i>
+          <div scope="col" class="dropdown">
+            <i
+              class="fa-solid dropdown-toggle fa-ellipsis-vertical"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-            >
-              Dropdown button
-            </button>
+            ></i>
+
             <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" href="#"
-                  ><i class="fa-solid fa-magnifying-glass"></i>Rechercher</a
+                  ><i class="fa-solid fa-magnifying-glass"></i> Rechercher</a
                 >
               </li>
-              <li><a class="dropdown-item" href="#">Prévisualiser</a></li>
-              <li><a class="dropdown-item" href="#">Supprimer</a></li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="fa-solid fa-trash"></i> Supprimer</a
+                >
+              </li>
             </ul>
           </div>
         </td>
