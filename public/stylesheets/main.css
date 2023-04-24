@@ -1622,7 +1622,7 @@
   align-items: center;
   flex-wrap: wrap;
   column-gap: 14rem;
-  row-gap: 2.5rem;
+  row-gap: 4rem;
 }
 @media (max-width: 680px) {
   #pages-catalogue .catalogue .cat-body, #pages-bycategorie .catalogue .cat-body, #pages-catalogue-type .catalogue .cat-body {
@@ -1758,6 +1758,12 @@
 #pages-catalogue .catalogue .cat-body .produit .detail .montant span, #pages-bycategorie .catalogue .cat-body .produit .detail .montant span, #pages-catalogue-type .catalogue .cat-body .produit .detail .montant span {
   font-weight: 600;
   color: #a0b21f;
+}
+#pages-catalogue .catalogue .cat-body .produit .detail .quantite, #pages-bycategorie .catalogue .cat-body .produit .detail .quantite, #pages-catalogue-type .catalogue .cat-body .produit .detail .quantite {
+  font-weight: 500;
+}
+#pages-catalogue .catalogue .cat-body .produit .detail .quantite span, #pages-bycategorie .catalogue .cat-body .produit .detail .quantite span, #pages-catalogue-type .catalogue .cat-body .produit .detail .quantite span {
+  font-weight: 600;
 }
 #pages-catalogue .catalogue .cat-pagination, #pages-bycategorie .catalogue .cat-pagination, #pages-catalogue-type .catalogue .cat-pagination {
   padding: 10px 0;

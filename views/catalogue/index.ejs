@@ -235,6 +235,7 @@
             <%= produit.pro_libelle%></a
           >
           <div>Ref: <span><%= produit.pro_ref %></span></div>
+          <div class="quantite">Quantité initiale : <span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %></span></div>
           <div class="montant">
             <div><%= produit.Tarifs[0].tar_ttc %> €</div>
             <span>|</span>

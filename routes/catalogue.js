@@ -6,6 +6,7 @@ const {
   Produit,
   Media,
   Tarif,
+  Quantite,
   sequelize,
 } = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
@@ -13,9 +14,11 @@ const check_paginate_value = require("../helpers/check_paginate_value");
 /**
  * @Route renvois tout
  */
+
 router.get("/", async function (req, res, next) {
   let orderby = req.query.orderby;
   let { page, start, end } = check_paginate_value(req);
+  let quantiteOfEachProduct = []
   var orderCondition;
   let choix;
   if (orderby === "AàZ") {
@@ -40,6 +43,19 @@ router.get("/", async function (req, res, next) {
     const typee_categories = await Type_categorie.findAll();
     const categories = await Categorie.findAll();
     const allproducts = await Produit.findAll();
+    
+    for (let index = 0; index < allproducts.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: allproducts[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: allproducts[index].pro_id,
+        qty:quantiteInitial
+      });
+    }
+
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
@@ -49,7 +65,8 @@ router.get("/", async function (req, res, next) {
       ],
       order: orderCondition,
     });
-    // res.json({ produits });
+
+    // res.json({ quantiteOfEachProduct });
     let nbrPages = Math.ceil(allproducts.length / PAGINATION_LIMIT);
     let next = start > 0 ? page + 1 : null;
     let prev = end < 0 ? page - 1 : null;
@@ -65,7 +82,8 @@ router.get("/", async function (req, res, next) {
       prev: prev,
       next: next,
       choix: choix,
-      orderby
+      orderby,
+      quantiteOfEachProduct: quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
@@ -84,6 +102,8 @@ router.get("/:id", async (req, res) => {
   let { page, start, end } = check_paginate_value(req);
   var orderCondition;
   let choix;
+  let quantiteOfEachProduct = [];
+
   if (orderby === "AàZ") {
     orderCondition = [["pro_libelle", "ASC"]];
     choix = "Nom, A à Z";
@@ -102,6 +122,7 @@ router.get("/:id", async (req, res) => {
   }
 
   try {
+    const allproducts = await Produit.findAll();
     const categorie = await Categorie.findByPk(id, {
       offset: start,
       limit: PAGINATION_LIMIT,
@@ -112,9 +133,21 @@ router.get("/:id", async (req, res) => {
           { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         ],
       },
-      // include:{model:Type_categorie}
     });
-    const type_categorie = await Type_categorie.findByPk(categorie.tyc_id)
+
+    for (let index = 0; index < allproducts.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: allproducts[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: allproducts[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
+    const type_categorie = await Type_categorie.findByPk(categorie.tyc_id);
     // res.json(type_categorie)
     const produits = await Produit.findAll({
       offset: start,
@@ -131,14 +164,15 @@ router.get("/:id", async (req, res) => {
     return res.render("catalogue/bycategorie", {
       categorie: categorie,
       produits: produits,
-      type_categorie:type_categorie,
+      type_categorie: type_categorie,
       nbrPages: nbrPages,
       pageActive: page,
       start,
       end,
       categorie_id: id,
       choix: choix,
-      orderby:orderby
+      orderby: orderby,
+      quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
@@ -159,6 +193,9 @@ router.get("/type/:id", async (req, res) => {
   let totalProductBycat = 0;
   var orderCondition;
   let choix, ordre;
+  let quantiteOfEachProduct = [];
+
+
   if (orderby === "AàZ") {
     orderCondition = [["pro_libelle", "ASC"]];
     choix = "Nom, A à Z";
@@ -176,6 +213,7 @@ router.get("/type/:id", async (req, res) => {
     choix = "Choisir";
   }
   try {
+    const allproducts = await Produit.findAll();
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
         model: Categorie,
@@ -199,6 +237,19 @@ router.get("/type/:id", async (req, res) => {
       ],
       order: orderCondition,
     });
+
+    for (let index = 0; index < allproducts.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: allproducts[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: allproducts[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
     res.locals.titre = type_categorie.tyc_libelle;
     let nbrPages = Math.ceil(totalProductBycat / PAGINATION_LIMIT);
     return res.render("catalogue/bytype", {
@@ -212,6 +263,7 @@ router.get("/type/:id", async (req, res) => {
       end,
       choix: choix,
       orderby: orderby,
+      quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {
