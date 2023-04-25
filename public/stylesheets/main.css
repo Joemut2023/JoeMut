@@ -6034,6 +6034,13 @@
 #admin-page-produits .table th {
   vertical-align: middle;
 }
+#admin-page-produits .table .dropdown {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  left: -300px;
+  border: none;
+}
 
 #page-devis {
   width: 95%;
@@ -6258,6 +6265,44 @@ body {
   border: none;
   background-color: #a0b21f;
   color: white;
+  outline: none;
+}
+#admin-page-connexion .error {
+  width: 35%;
+  margin-top: 10px;
+}
+
+#admin-page-devis .table-container {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+#admin-blocs-produitHeader .breadcrumb {
+  margin-top: 2.5%;
+}
+#admin-blocs-produitHeader a {
+  text-decoration: none !important;
+}
+#admin-blocs-produitHeader .fil-ariane-item {
+  color: #7a7a7a !important;
+}
+#admin-blocs-produitHeader .produit-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 3%;
+}
+#admin-blocs-produitHeader .produit-menu h1 {
+  font-weight: 300 !important;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn {
+  margin-top: 1%;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
+  margin-left: 10px;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .btn-info {
+  color: #fff !important;
 }
 
 /*# sourceMappingURL=main.css.map */

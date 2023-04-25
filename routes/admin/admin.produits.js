@@ -15,10 +15,10 @@ router.get("/", async (req, res) => {
       ],
     });
 
-    // res.render("produits/index", {
-    //   produits: produits,
-    // });
-     return res.status(200).send(produits);
+    res.render("produits/index", {
+      produits: produits,
+    });
+    //  return res.status(200).send(produits);
   } catch (error) {
     res.status(500).render("article/index", {
       error: true,
