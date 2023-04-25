@@ -42,32 +42,35 @@
         <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
         <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
         <td>
-          <i  class="fa-solid fa-pen"></i>
-          <div  class="dropdown">
-            <i
-              class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            ></i>
+          <div class="d-flex justify-content-between">
+            <i class="fa-solid fa-pen"></i>
+            <div class="dropdown">
+              <i
+                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
 
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="fa-solid fa-magnifying-glass"></i> Rechercher</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="fa-solid fa-trash"></i> Supprimer</a
-                >
-              </li>
-            </ul>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                  >
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-trash"></i> Supprimer</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
         </td>
       </tr>

@@ -8,13 +8,18 @@
             vertical-align: middle
         }
 
-        .dropdown-menu {
-            position: relative;
-            width: max-content;
-            margin: auto;
-            left: -30px;
-            border: none;
+        .dropdown :hover>.dropdown-menu {
+            display: block;
+        }
 
+        .dropdown-menu {
+            inset: 21px 0px auto auto;
+        }
+
+        .td-actions {
+            // width: 62px !important;
+            // height: 65px !important;
+            // padding: 15px;
         }
 
     }

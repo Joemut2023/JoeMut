@@ -6037,14 +6037,12 @@
 #admin-page-produits .table th {
   vertical-align: middle;
 }
-#admin-page-produits .table .dropdown-menu {
-  position: relative;
-  width: max-content;
-  margin: auto;
-  left: -30px;
-  border: none;
+#admin-page-produits .table .dropdown :hover > .dropdown-menu {
+  display: block;
 }
-
+#admin-page-produits .table .dropdown-menu {
+  inset: 21px 0px auto auto;
+}
 #page-devis {
   width: 95%;
   margin: auto;
