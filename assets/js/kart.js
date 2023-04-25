@@ -8,9 +8,9 @@ class Kart {
    *
    * @returns Array
    */
-  static getParsedBasket() {
-    return JSON.parse(localStorage.getItem("storedItems"));
-  }
+  // static getParsedBasket() {
+  //   return JSON.parse(localStorage.getItem("storedItems"));
+  // }
   /**
    *
    * @returns Array of all product in panierDetails
@@ -177,14 +177,14 @@ class Kart {
 
         await Kart.kartRenderItems();
       });
-    let storedITems = Kart.getParsedBasket();
-    if (storedITems.length > 0) {
-      let produitPositionInArray = storedITems.findIndex(
-        (produit) => produit.pro_id == itemId
-      );
-      storedITems.splice(produitPositionInArray, 1);
-      localStorage.setItem("storedItems", JSON.stringify(storedITems));
-    }
+    // let storedITems = Kart.getParsedBasket();
+    // if (storedITems.length > 0) {
+    //   let produitPositionInArray = storedITems.findIndex(
+    //     (produit) => produit.pro_id == itemId
+    //   );
+    //   storedITems.splice(produitPositionInArray, 1);
+    //   localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    // }
   }
 
   /**
@@ -199,14 +199,14 @@ class Kart {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    storedITems = Kart.getParsedBasket();
-    let produitPositionInArray = storedITems.findIndex(
-      (produit) => produit.pro_id == itemId
-    );
-    action
-      ? (storedITems[produitPositionInArray].pad_qte += 1)
-      : (storedITems[produitPositionInArray].pad_qte -= 1);
-    localStorage.setItem("storedItems", JSON.stringify(storedITems));
+    // storedITems = Kart.getParsedBasket();
+    // let produitPositionInArray = storedITems.findIndex(
+    //   (produit) => produit.pro_id == itemId
+    // );
+    // action
+    //   ? (storedITems[produitPositionInArray].pad_qte += 1)
+    //   : (storedITems[produitPositionInArray].pad_qte -= 1);
+    // localStorage.setItem("storedItems", JSON.stringify(storedITems));
     return panierDetail.data.pad_qte;
   }
 
@@ -410,7 +410,7 @@ class Kart {
     });
   }
   static async RenderMaxQteModal() {
-    let storedITems = Kart.getParsedBasket();
+    // let storedITems = Kart.getParsedBasket();
     // document.querySelector(".body-modal-detail").style.display = "none";
     const price = await Kart.calculTotalPrice();
     const fraisDivers = await Kart.addFraisDivers();

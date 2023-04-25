@@ -18,22 +18,20 @@ var Kart = /*#__PURE__*/function () {
     _classCallCheck(this, Kart);
   }
   _createClass(Kart, null, [{
-    key: "getParsedBasket",
+    key: "getAllPanierDetails",
     value:
     /**
      *
      * @returns Array
      */
-    function getParsedBasket() {
-      return JSON.parse(localStorage.getItem("storedItems"));
-    }
+    // static getParsedBasket() {
+    //   return JSON.parse(localStorage.getItem("storedItems"));
+    // }
     /**
      *
      * @returns Array of all product in panierDetails
      */
-  }, {
-    key: "getAllPanierDetails",
-    value: function () {
+    function () {
       var _getAllPanierDetails = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var panier;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -331,7 +329,7 @@ var Kart = /*#__PURE__*/function () {
     key: "removeItem",
     value: function () {
       var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(itemId) {
-        var userStatut, kartLoader, pro_id, storedITems, produitPositionInArray;
+        var userStatut, kartLoader, pro_id;
         return _regeneratorRuntime().wrap(function _callee9$(_context9) {
           while (1) switch (_context9.prev = _context9.next) {
             case 0:
@@ -378,15 +376,15 @@ var Kart = /*#__PURE__*/function () {
                   return _ref2.apply(this, arguments);
                 };
               }());
-              storedITems = Kart.getParsedBasket();
-              if (storedITems.length > 0) {
-                produitPositionInArray = storedITems.findIndex(function (produit) {
-                  return produit.pro_id == itemId;
-                });
-                storedITems.splice(produitPositionInArray, 1);
-                localStorage.setItem("storedItems", JSON.stringify(storedITems));
-              }
-            case 11:
+              // let storedITems = Kart.getParsedBasket();
+              // if (storedITems.length > 0) {
+              //   let produitPositionInArray = storedITems.findIndex(
+              //     (produit) => produit.pro_id == itemId
+              //   );
+              //   storedITems.splice(produitPositionInArray, 1);
+              //   localStorage.setItem("storedItems", JSON.stringify(storedITems));
+              // }
+            case 9:
             case "end":
               return _context9.stop();
           }
@@ -405,7 +403,7 @@ var Kart = /*#__PURE__*/function () {
     key: "updateItemQuantity",
     value: function () {
       var _updateItemQuantity = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(itemId, action) {
-        var panierDetail, produitPositionInArray;
+        var panierDetail;
         return _regeneratorRuntime().wrap(function _callee10$(_context10) {
           while (1) switch (_context10.prev = _context10.next) {
             case 0:
@@ -419,14 +417,8 @@ var Kart = /*#__PURE__*/function () {
               });
             case 2:
               panierDetail = _context10.sent;
-              storedITems = Kart.getParsedBasket();
-              produitPositionInArray = storedITems.findIndex(function (produit) {
-                return produit.pro_id == itemId;
-              });
-              action ? storedITems[produitPositionInArray].pad_qte += 1 : storedITems[produitPositionInArray].pad_qte -= 1;
-              localStorage.setItem("storedItems", JSON.stringify(storedITems));
               return _context10.abrupt("return", panierDetail.data.pad_qte);
-            case 8:
+            case 4:
             case "end":
               return _context10.stop();
           }
@@ -614,24 +606,23 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderMaxQteModal",
     value: function () {
       var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
-        var storedITems, price, fraisDivers, fraisDossier, fraisPort, html;
+        var price, fraisDivers, fraisDossier, fraisPort, html;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
           while (1) switch (_context15.prev = _context15.next) {
             case 0:
-              storedITems = Kart.getParsedBasket(); // document.querySelector(".body-modal-detail").style.display = "none";
-              _context15.next = 3;
+              _context15.next = 2;
               return Kart.calculTotalPrice();
-            case 3:
+            case 2:
               price = _context15.sent;
-              _context15.next = 6;
+              _context15.next = 5;
               return Kart.addFraisDivers();
-            case 6:
+            case 5:
               fraisDivers = _context15.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
               html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
               document.querySelector("#myModal .body-modal").innerHTML = html;
-            case 11:
+            case 10:
             case "end":
               return _context15.stop();
           }

@@ -129,7 +129,8 @@ const RenderKartProduct = async () => {
       if (decrement > 1) {
         decrement--;
         const qte = await Kart.updateItemQuantity(itemId, "down");
-        document.querySelector("#cart-item-count").value = qte;
+        document.querySelector("#cart-item-count").innerHTML =
+          await Kart.getItemNumber();
         await TotalPricesProducts();
       }
       element.parentNode.parentNode.children[0].value = decrement;

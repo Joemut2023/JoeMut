@@ -166,7 +166,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   decrement = element.parentNode.parentNode.children[0].value;
                   decrement = isNaN(decrement) ? 1 : decrement;
                   if (!(decrement > 1)) {
-                    _context6.next = 11;
+                    _context6.next = 13;
                     break;
                   }
                   decrement--;
@@ -174,12 +174,15 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   return Kart.updateItemQuantity(itemId, "down");
                 case 7:
                   qte = _context6.sent;
-                  document.querySelector("#cart-item-count").value = qte;
-                  _context6.next = 11;
+                  _context6.next = 10;
+                  return Kart.getItemNumber();
+                case 10:
+                  document.querySelector("#cart-item-count").innerHTML = _context6.sent;
+                  _context6.next = 13;
                   return TotalPricesProducts();
-                case 11:
+                case 13:
                   element.parentNode.parentNode.children[0].value = decrement;
-                case 12:
+                case 14:
                 case "end":
                   return _context6.stop();
               }
