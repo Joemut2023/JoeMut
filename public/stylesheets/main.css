@@ -6030,15 +6030,18 @@
   }
 }
 
+#admin-page-produits {
+  margin-top: 2%;
+}
 #admin-page-produits .table td,
 #admin-page-produits .table th {
   vertical-align: middle;
 }
-#admin-page-produits .table .dropdown {
+#admin-page-produits .table .dropdown-menu {
   position: relative;
   width: max-content;
   margin: auto;
-  left: -300px;
+  left: -30px;
   border: none;
 }
 

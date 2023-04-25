@@ -1,4 +1,6 @@
 #admin-page-produits {
+    margin-top: 2%;
+
     .table {
 
         td,
@@ -6,11 +8,11 @@
             vertical-align: middle
         }
 
-        .dropdown {
+        .dropdown-menu {
             position: relative;
             width: max-content;
             margin: auto;
-            left: -300px;
+            left: -30px;
             border: none;
 
         }

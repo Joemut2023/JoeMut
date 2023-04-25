@@ -7,10 +7,10 @@
         <th scope="col">ID</th>
         <th scope="col">Image</th>
         <th scope="col">Nom</th>
-        <th scope="col">Reéférence</th>
+        <th scope="col">Référence</th>
         <th scope="col">Categorie</th>
-        <th scope="col">Prix ht</th>
-        <th scope="col">Prix ttc</th>
+        <th scope="col">Montant HT</th>
+        <th scope="col">Montant TTC</th>
         <th scope="col">Quantité</th>
         <th scope="col">Actions</th>
       </tr>
@@ -28,11 +28,11 @@
         </td>
         <th scope="row"><%= element.pro_id %></th>
 
-        <td width="200">
+        <td width="60">
           <img
             src="/images/produits/<%= element.Media[0].med_ressource %>"
             alt=""
-            class="img-fluid w-25 h-25 img-content"
+            class="img-fluid w-100 h-25 img-content"
           />
         </td>
         <td><%= element.pro_libelle %></td>
@@ -42,8 +42,8 @@
         <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
         <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
         <td>
-          <i scope="col" class="fa-solid fa-pen"></i>
-          <div scope="col" class="dropdown">
+          <i  class="fa-solid fa-pen"></i>
+          <div  class="dropdown">
             <i
               class="fa-solid dropdown-toggle fa-ellipsis-vertical"
               type="button"
