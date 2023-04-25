@@ -249,7 +249,6 @@ class Kart {
     if (panierDetail.length !== 0) {
       panierDetail?.map((produit) => {
         kartProductQte = produit.pad_qte + kartProductQte;
-
         storedItemsHtml += `
               <div>
                   <div class="kart-item">
@@ -265,7 +264,9 @@ class Kart {
                           <div class="actions">
                               <span class="price">${
                                 produit.pad_qte
-                              } x ${produit.pad_ttc.toFixed(2)} €</span>
+                              } x ${parseFloat(produit.pad_ttc).toFixed(
+          2
+        )} €</span>
                               <button id="remove-prod" data-id="${
                                 produit.pro_id
                               }" class="btn-close"></button>
