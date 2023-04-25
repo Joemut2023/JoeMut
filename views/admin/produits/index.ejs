@@ -38,9 +38,13 @@
         <td><%= element.pro_libelle %></td>
         <td><%= element.pro_ref %></td>
         <td><%= element.Categorie.cat_libelle %></td>
-        <td>3</td>
         <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
         <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
+        <td>
+          <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty
+          ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty :
+          "non renseignée" %>
+        </td>
         <td>
           <div class="d-flex justify-content-between">
             <i class="fa-solid fa-pen"></i>
