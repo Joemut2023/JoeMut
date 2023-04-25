@@ -1,27 +1,28 @@
 #adresses {
-    padding: 3% 7%;
+  padding: 3% 7%;
 
-    a {
-        text-decoration: none;
-        color: $color-secondary;
-    }
+  a {
+    text-decoration: none;
+    color: $color-secondary;
+  }
 
-    .adresse-main-content {
+  .adresse-main-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5%;
+    padding: 4% 2%;
+
+    .adresse-item {
+      width: 20%;
+      .item-actions {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 5%;
-        padding: 4% 2%;
-
-        .adresse-item {
-            width: 20%;
-            .item-actions {
-                display: flex;
-                gap: 5%;
-                .fa-pencil, .fa-trash{
-                    color: $color-primary;
-                }
-            }
+        .fa-pencil,
+        .fa-trash {
+          color: $color-primary;
         }
+      }
     }
+  }
 }

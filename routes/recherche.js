@@ -1,33 +1,69 @@
 var express = require("express");
 var router = express.Router();
-var { Produit, Media, Tarif } = require("../models");
+var { Produit, Media, Tarif, Quantite } = require("../models");
 const { Op } = require("sequelize");
 const check_paginate_value = require("../helpers/check_paginate_value");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
+
 router.get("/", async (req, res, next) => {
-  const search = req.query.search;
+  const { search, orderby } = req.query;
+  
+  var orderCondition;
+  let choix;
+  let quantiteOfEachProduct = [];
+
   let { page, start, end } = check_paginate_value(req);
 
+  if (orderby === "AZ") {
+    orderCondition = [["pro_libelle", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "ZA") {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PC") {
+    orderCondition = [[Tarif, "tar_ttc", "ASC"]];
+    choix = "Prix, croissant";
+  } else if (orderby === "PD") {
+    orderCondition = [[Tarif, "tar_ttc", "DESC"]];
+    choix = "Prix, décroissant";
+  } else {
+    orderCondition = [["pro_libelle", "DESC"]];
+    choix = "Choisir";
+  }
+ 
   try {
     const all_produits = await Produit.findAll({
-      order: [["pro_id", "DESC"]],
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ttc"] },
+      ],
+      where: { pro_libelle: { [Op.substring]: search } },
+      order: orderCondition,
+    });
 
-      ],
-      where: { pro_libelle: { [Op.substring]: search } },
-    });
     const produits = await Produit.findAll({
-      limit: start,
+      offset: start,
       limit: PAGINATION_LIMIT,
-      order: [["pro_id", "DESC"]],
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ttc"] },
       ],
       where: { pro_libelle: { [Op.substring]: search } },
+      order: orderCondition,
     });
+    
+    for (let index = 0; index < all_produits.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: all_produits[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: all_produits[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
     let nbrPages = Math.ceil(all_produits.length / PAGINATION_LIMIT);
     res.locals.titre = `recherche - ${search}`;
     res.render("recherche/index", {
@@ -37,7 +73,10 @@ router.get("/", async (req, res, next) => {
       pageActive: page,
       start,
       end,
+      choix: choix,
+      orderby: orderby,
       produitsNbr: all_produits.length,
+      quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("error/serverError", {

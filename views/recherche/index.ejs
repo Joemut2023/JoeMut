@@ -11,28 +11,28 @@
       <span class="title">Il y a <%= produitsNbr %> produits.</span>
     </div>
     <div class="col-md-6 filtre-content">
-      <div class="">
+      <div class="tri">
         <span class="title">Trier par: </span>
       </div>
       <div class="input" id="input">
-        <span id="choix">Choisir</span>
+        <span id="choix"><%= choix ? choix : "Choisir" %></span>
         <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
         <div class="content content-hide" id="content">
           <ul>
-            <li class="item-choice">Pertinente</li>
-            <li class="item-choice">Nom, A à Z</li>
-            <li class="item-choice">Nom, Z à A</li>
+            <a href="/recherche"> <li class="item-choice">Pertinente</li></a>
+            <a href="/recherche/?search=<%= search %>&orderby=AZ"><li class="item-choice">Nom, A à Z</li></a>
+            <a href="/recherche/?search=<%= search %>&orderby=ZA"><li class="item-choice">Nom, Z à A</li></a>
+            <a href="/recherche/?search=<%= search %>&orderby=PC"><li class="item-choice">Prix, croissant</li></a>
+            <a href="/recherche/?search=<%= search %>&orderby=PD"><li class="item-choice">Prix, décroissant</li></a>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-   
-
   <div class="row resultat_image">
     <% produits.forEach(produit => { %>
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-4 item">
+    <div class="col-sm-6 col-md-4 col-lg-4 col-6 item">
       <div class="image">
         <a href="/article/<%= produit.dataValues.pro_id %>">
           <img
@@ -45,15 +45,15 @@
       <div class="details">
         <p class="desc">
           <span>
-            <a href="/article/<%= produit.dataValues.pro_id %>"
-              ><%= produit.dataValues.pro_libelle %></a
-            ></span
-          >
+            <a href="/article/<%= produit.dataValues.pro_id %>"><%= produit.dataValues.pro_libelle %></a></span>
         </p>
 
         <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
+        <div class="quantite">Quantité initiale : <span>  <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty : "0" %></span></div>
         <div>
-          <p class="price"><%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
+          <p class="price">
+            <%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2) %> €
+          </p>
           <p class="bar">|</p>
           <p
             class="price btn button-ajouter"
@@ -81,7 +81,7 @@
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=1#page-recherche"
+              href="/recherche/?search=<%= search %>&page=1&orderby=<%= orderby %>#page-recherche"
               >1</a
             >
           </li>
@@ -89,14 +89,14 @@
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=2#page-recherche"
+              href="/recherche/?search=<%= search %>&page=2&orderby=<%= orderby %>#page-recherche"
               >2</a
             >
           </li>
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=3#page-recherche"
+              href="/recherche/?search=<%= search %>&page=3&orderby=<%= orderby %>#page-recherche"
               >3</a
             >
           </li>
@@ -104,28 +104,28 @@
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=<%= pageActive -1 %>#page-recherche"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive -1 %>&orderby=<%= orderby %>#page-recherche"
               ><%= pageActive-1 %></a
             >
           </li>
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=<%= pageActive %>#page-recherche"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive %>&orderby=<%= orderby %>#page-recherche"
               ><%= pageActive %></a
             >
           </li>
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=<%= pageActive+1 %>#page-recherche"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive+1 %>&orderby=<%= orderby %>#page-recherche"
               ><%= pageActive+1 %></a
             >
           </li>
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=<%= pageActive+2 %>#page-recherche"
+              href="/recherche/?search=<%= search %>&page=<%= pageActive+2 %>&orderby=<%= orderby %>#page-recherche"
               ><%= pageActive+2 %></a
             >
           </li>
@@ -134,7 +134,7 @@
           <li class="page-item">
             <a
               class="page-link"
-              href="/recherche/?search=<%= search %>&page=<%= nbrPages %>#page-recherche"
+              href="/recherche/?search=<%= search %>&page=<%= nbrPages %>&orderby=<%= orderby %>#page-recherche"
               ><%= nbrPages %></a
             >
           </li>
