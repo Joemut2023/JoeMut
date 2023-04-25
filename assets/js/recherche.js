@@ -8,8 +8,8 @@ input_choix.addEventListener("click", function () {
   content.classList.add("content");
 });
 
-item_select.forEach((element) => {
-    element.addEventListener("click", function(){
-        choix.textContent = element.textContent
-    })
-});
+// item_select.forEach((element) => {
+//     element.addEventListener("click", function(){
+//         choix.textContent = element.textContent
+//     })
+// });

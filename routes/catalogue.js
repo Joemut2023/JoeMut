@@ -148,7 +148,7 @@ router.get("/:id", async (req, res) => {
     }
 
     const type_categorie = await Type_categorie.findByPk(categorie.tyc_id);
-    // res.json(type_categorie)
+   
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
