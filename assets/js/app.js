@@ -1,0 +1,1 @@
+Decimal.set({ precision: 2 });

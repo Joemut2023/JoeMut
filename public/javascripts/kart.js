@@ -58,9 +58,9 @@ var Kart = /*#__PURE__*/function () {
       return getAllPanierDetails;
     }()
     /**
-     *
-     * @returns Array
-     */
+     * recuperer le statut du client
+     * @returns userId or false
+    */
   }, {
     key: "getUserStatut",
     value: function () {
@@ -93,6 +93,10 @@ var Kart = /*#__PURE__*/function () {
       }
       return getUserStatut;
     }()
+    /**
+     * 
+     * @returns Object
+     */
   }, {
     key: "getParsedFrais",
     value: function () {
@@ -112,10 +116,6 @@ var Kart = /*#__PURE__*/function () {
       }
       return getParsedFrais;
     }()
-    /**
-     * recuperer le statut du client
-     * @returns userId or false
-     */
     /**
      * recuperer le nombre d'artcile au panier
      * @returns Numeric
@@ -502,18 +502,19 @@ var Kart = /*#__PURE__*/function () {
               return Kart.calculTotalPrice();
             case 12:
               price = _context13.sent;
-              fraisDossier = parseFloat(fraisDivers.frais_dossier);
-              fraisPort = parseFloat(fraisDivers.frais_port);
-              _context13.next = 17;
+              fraisDossier = new Decimal(parseFloat(fraisDivers.frais_dossier));
+              ;
+              fraisPort = new Decimal(parseFloat(fraisDivers.frais_port));
+              _context13.next = 18;
               return Kart.getAllPanierDetails();
-            case 17:
+            case 18:
               panierDetail = _context13.sent;
               storedItemsHtml = "";
-              kartProductQte = 0;
+              kartProductQte = 0; // console.log(fraisDoss.toString(),fraisPrt.toString());
               if (panierDetail.length !== 0) {
                 panierDetail === null || panierDetail === void 0 ? void 0 : panierDetail.map(function (produit) {
                   kartProductQte = produit.pad_qte + kartProductQte;
-                  storedItemsHtml += "\n              <div>\n                  <div class=\"kart-item\">\n                      <div class=\"kart-img\">\n                          <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                      </div>\n                      <div class=\"kart-content\">\n                          <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                          <div class=\"actions\">\n                              <span class=\"price\">").concat(produit.pad_qte, " x ").concat(parseFloat(produit.pad_ttc).toFixed(2), " \u20AC</span>\n                              <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n              <hr>\n              ");
+                  storedItemsHtml += "\n              <div>\n                  <div class=\"kart-item\">\n                      <div class=\"kart-img\">\n                          <img src=\"/images/produits/".concat(produit.Produit.Media[0].med_ressource, "\" alt=\"\">\n                      </div>\n                      <div class=\"kart-content\">\n                          <a href=\"/article/").concat(produit.pro_id, "\">").concat(produit.Produit.pro_libelle, "</a>\n                          <div class=\"actions\">\n                              <span class=\"price\">").concat(produit.pad_qte, " x ").concat(new Decimal(produit.pad_ttc).toString(), " \u20AC</span>\n                              <button id=\"remove-prod\" data-id=\"").concat(produit.pro_id, "\" class=\"btn-close\"></button>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n              <hr>\n              ");
                 });
                 kartLoader.style.display = kartItemsElement.innerHTML ? "none" : "block";
                 kartItemsElement.innerHTML = storedItemsHtml;
@@ -521,7 +522,7 @@ var Kart = /*#__PURE__*/function () {
                 kartItemsElement.innerHTML = "";
                 kartLoader.style.display = "none";
               }
-              kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
+              kartInfosData = "\n    <div>\n    <p id=\"par-empty-data\">Aucun produit dans le chariot.</p>\n      <div class=\"kart-article\">\n        <div class=\"nbr-article\">\n          <span>".concat(kartProductQte, " articles</span>\n        </div>\n        <div class=\"price\">\n          <span>").concat(new Decimal(price.kartProductPrice).toString(), " \u20AC</span>\n        </div>\n      </div>\n\n      <div class=\"kart-livraison\">\n        <div class=\"total\">\n          <span>Livraison</span>\n        </div>\n        <div class=\"price-total\">\n        <span>").concat(new Decimal(fraisPort).toString(), " \u20AC</span> \n        </div>\n      </div>\n      <div class=\"kart-livraison\">\n      <div class=\"total\">\n        <span>Frais dossier</span>\n      </div>\n      <div class=\"price-total\">\n        <span>").concat(new Decimal(fraisDossier).toString(), " \u20AC</span>\n      </div>\n    </div>\n\n      <div class=\"kart-total\">\n        <div class=\"total\">\n          <span>Total</span>\n        </div>\n        <div class=\"price-total\">\n          <span>").concat(new Decimal(price.totalPrice).toString(), " \u20AC</span>\n        </div>\n      </div>\n      <hr>\n      <div class=\"kart-btns\">\n      <a href=\"/panier/#page-panier\" class=\"btn-voirpanier\">\n        <button>\n          Voir le <br />\n          panier\n        </button>\n      </a>\n      <a href=\"/commander/#page-commander\" class=\"btn-commander\">\n        <button>Commander</button>\n      </a>\n    </div>\n    </div>\n    ");
               document.querySelector("#kart-infos").innerHTML = kartInfosData;
               // storedITems.length != 0
               //   ? (document.querySelector("#par-empty-data").style.display = "block")
@@ -548,7 +549,7 @@ var Kart = /*#__PURE__*/function () {
                   }, _callee12);
                 })));
               });
-            case 25:
+            case 26:
             case "end":
               return _context13.stop();
           }
@@ -581,12 +582,12 @@ var Kart = /*#__PURE__*/function () {
               fraisDivers = _context14.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(item.pad_ttc.toFixed(2), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toString(), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
               _context14.next = 11;
               return Kart.getItemNumber();
             case 11:
               _context14.t1 = _context14.sent;
-              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(price.kartProductPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisPort).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(parseFloat(fraisDossier).toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(price.totalPrice.toFixed(2), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(new Decimal(price.kartProductPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisPort).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisDossier).toString(), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(new Decimal(price.totalPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
               document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#modal-btn-close").addEventListener("click", function () {
                 document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" />";

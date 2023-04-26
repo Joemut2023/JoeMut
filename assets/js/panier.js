@@ -22,7 +22,7 @@ const RenderKartProduct = async () => {
       produit.Produit.pro_libelle
     }</span></a>
     </div>
-    <p class="price">${produit.pad_ttc.toFixed(2)} €</p>
+    <p class="price">${(new Decimal(produit.pad_ttc)).toString()} €</p>
   </div>
   <div class="col-md-5 col-sm-12 col-12 prices">
     <div class="row">
@@ -43,7 +43,7 @@ const RenderKartProduct = async () => {
             </div>
           </div>
           <div class="col-md-6 col-sm-6 col-6 prx">
-            <span>${produit.pad_ttc.toFixed(2)} €</span>
+            <span>${(new Decimal(produit.pad_ttc)).toString()} €</span>
           </div>
         </div>
       </div>
@@ -156,25 +156,21 @@ const TotalPricesProducts = async () => {
   <div class="frais">
     <div class="item">
       <span class="title">${totalQuantity} articles</span>
-      <span class="price">${totalPriceht.toFixed(2)}  €</span>
+      <span class="price">${(new Decimal(totalPriceht)).toString()}  €</span>
     </div>
     <div class="item">
       <span class="title">Livraisons</span>
-      <span class="price">${parseFloat(storedFrais.frais_port).toFixed(
-        2
-      )} €</span>
+      <span class="price">${(new Decimal(storedFrais.frais_port)).toString()} €</span>
     </div>
     <div class="item">
       <span class="title">Frais de dossier</span>
-      <span class="price">${parseFloat(storedFrais.frais_dossier).toFixed(
-        2
-      )} €</span>
+      <span class="price">${(new Decimal(storedFrais.frais_dossier)).toString()} €</span>
     </div>
     <hr>
   </div>
   <div class="item total">
   <span>TTC</span>
-  <span>${totalPoductPrice.toFixed(2)} €</span>
+  <span>${(new Decimal(totalPoductPrice)).toString()} €</span>
 </div>
 <div class="promo">
   <div class="link">
