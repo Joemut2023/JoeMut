@@ -7,20 +7,12 @@
         th {
             vertical-align: middle
         }
-
         .dropdown :hover>.dropdown-menu {
             display: block;
         }
 
         .dropdown-menu {
-            inset: 21px 0px auto auto;
+            inset: 5px 0px auto auto;
         }
-
-        .td-actions {
-            // width: 62px !important;
-            // height: 65px !important;
-            // padding: 15px;
-        }
-
     }
 }
