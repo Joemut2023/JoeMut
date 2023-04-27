@@ -14,11 +14,17 @@ const {
   Adresse
 } = require("../../models/");
 const moment = require("moment");
+const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 
 router.get("/", async (req, res) => {
+  let {page, start, end} = check_admin_paginate_value(req);
   try {
     let commandes_data = [];
+   // let total_pad_ttc = 0;
     let commandes = await Commande.findAll({
+    //  offset: 0, // specify the number of rows to skip
+      //limit: 10, // specify the maximum number of rows to return
       attributes: [
         "com_id",
         "com_date",
@@ -28,29 +34,43 @@ router.get("/", async (req, res) => {
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
-        [
-          Sequelize.fn("SUM", Sequelize.col("Panier.Panier_details.pad_ttc")),
-          "total_pad_ttc",
-        ],
+        // include other columns from the Commande model that you want to return
+        // ...
+        // [
+        //   Sequelize.fn("SUM", Sequelize.col("Panier.Panier_details.pad_ttc")),
+        //   "total_pad_ttc",
+        // ],
       ],
       include: [
-        { model: Client, attributes: ["cli_mail", "cli_nom", "cli_prenom"] },
-        { model: Frais_port },
+        {
+          model: Client,
+        //  attributes: [], // do not select any columns from the Client model
+        },
+        {
+          model: Frais_port,
+          //attributes: [], // do not select any columns from the Frais_port model
+        },
         //  { model: Essayage },
         {
           model: Panier,
-          attributes: ["pan_id"],
+       //   attributes: [], // do not select any columns from the Panier model
           include: [
             {
               model: Panier_detail,
-              attributes: [],
+             // attributes: [], // do not select any columns from the Panier_detail model
             },
           ],
         },
       ],
-      group: ["Commande.com_id"],
+      //group: ["Commande.com_id"],
     });
+
+    // console.log(commandes[0].getDataValue('total_pad_ttc') );
     for (let commande of commandes) {
+      let pad_ttc = 0
+      commande.Panier.Panier_details.forEach(pad => {
+        pad_ttc = pad_ttc + pad.pad_ttc;
+      });
       let paniers = await Panier.findOne({
         where: { pan_id: commande.pan_id },
         include: {
@@ -67,10 +87,10 @@ router.get("/", async (req, res) => {
           adr_id:commande.com_adr_liv
         }
       })
-      //console.log(essayages);
-      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv });
+      
+      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
-
+    console.log(commandes_data[0]);
     res.render("devis/index", {
       commandes: commandes_data,
       moment,
