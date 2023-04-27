@@ -100,7 +100,7 @@
                             <td><%= commande.commande.Client.cli_nom %></td>
                             <td><%= commande.adresseLivraison.adr_societe %></td>
                             <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
-                            <td><%= commande.Panier_details.length %></td>
+                            <td class="td-modal-container"><span class="td-modal" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
                             <td><%= commande.commande.getDataValue('total_pad_ttc')  %>€</td>
                             <td><%= commande.commande.Frais_port.frp_libelle %></td>
                             <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
@@ -150,4 +150,19 @@
             </tbody>
           </table>
     </div>
+
+    <div class="modal fade" id="modal-devis" tabindex="-1" aria-labelledby="modal-devisLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-devisLabel">Produit de la commande</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h1>hello</h1>
+            </div>
+          </div>
+        </div>
+    </div>
 </div>
+<script src="/javascripts/admin/devis.js"></script>
