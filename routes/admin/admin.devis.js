@@ -7,6 +7,8 @@ const {
   Client,
   Tarif,
   Frais_port,
+  Produit,
+  Media,
   Essayage,
   Sequelize,
   Adresse
@@ -76,6 +78,26 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.send("erreur");
+  }
+});
+
+router.get('/:panier',async (req,res)=>{
+  const panier = req.params.panier;
+  try {
+    const produits = await Panier_detail.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_ref", "pro_libelle"],
+          include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
+        },
+      ],
+      where: { pan_id:panier },
+    });
+    return res.json(produits);
+  } catch (error) {
+    console.log(error);
+    return res.json({ error: error });
   }
 });
 
