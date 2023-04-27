@@ -1,13 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const { Produit, Quantite, Tarif, Media, Categorie } = require("../../models");
-const { PAGINATION_LIMIT } = require("../../helpers/utils_const");
+const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
+const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async (req, res) => {
   let quantiteOfEachProduct = [];
+  let { page, start, end } = check_admin_paginate_value(req);
   try {
+    // const url = { SITE_URL };
+    // console.log(url, "site web");
     const produits = await Produit.findAll({
-      limit: 20,
+      offset: start,
+      limit: PAGINATION_LIMIT_ADMIN,
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
@@ -35,9 +40,15 @@ router.get("/", async (req, res) => {
       });
     }
 
+    let nbrPages = Math.ceil(allProduits.length / PAGINATION_LIMIT_ADMIN);
     res.render("produits/index", {
       produits: produits,
-      quantiteOfEachProduct: quantiteOfEachProduct,
+      quantiteOfEachProduct,
+      nbrPages,
+      pageActive: page,
+      start,
+      end,
+      produitsNbr: allProduits.length,
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
