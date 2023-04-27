@@ -1,24 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const { Taille } = require("../../models");
+const { Couleur } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 router.get("/", async (req, res) => {
   let { page, start, end } = check_admin_paginate_value(req);
   try {
-    const Alltailles = await Taille.findAll();
-    const tailles = await Taille.findAll({
+    const AllCouleurs = await Couleur.findAll();
+    const Couleurs = await Couleur.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
     });
-    let nbrPages = Math.ceil(Alltailles.length / PAGINATION_LIMIT_ADMIN);
-    res.render("tailles/index", {
-      tailles,
+    let nbrPages = Math.ceil(AllCouleurs.length / PAGINATION_LIMIT_ADMIN);
+    res.render("couleurs/index", {
+      Couleurs,
       nbrPages,
       pageActive: page,
       start,
       end,
-      taillesNbr: Alltailles.length,
+      taillesNbr: AllCouleurs.length,
     });
   } catch (error) {
     res.status(500).render("article/index", {
