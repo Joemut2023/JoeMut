@@ -1,0 +1,75 @@
+<div id="admin-blocs-produitHeader">
+  <div class="produit-menu">
+    <h1>Tailles</h1>
+    <div class="produit-menu-btn">
+      <button type="button" class="btn btn-info">
+        <i class="fa-solid fa-circle-plus"></i> Ajouter une valeur
+      </button>
+      <button type="button" class="btn btn-secondary">
+        <i class="fa-solid fa-gear"></i> Modules recommandés
+      </button>
+      <button type="button" class="btn btn-outline-secondary">Aide</button>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">ID</th>
+        <th scope="col">Valeur</th>
+        <th scope="col">Ordre</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tailles.forEach(element => { %>
+      <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
+        <th scope="row"><%= element.tai_id %></th>
+
+        <td><%= element.tai_libelle %></td>
+        <td><%= element.tai_ordre %></td>
+        <td>
+          <div class="d-flex gap-4">
+            <i class="fa-solid fa-pen"></i>
+            <div class="dropdown">
+              <i
+                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                  >
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-trash"></i> Supprimer</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
