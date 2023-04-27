@@ -15,6 +15,7 @@ const auth = require("../middleware/auth");
 
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
+  let quantiteOfEachProduct = [];
   try {
     res.locals.titre = "catalogue";
     const article = await Produit.findOne({
@@ -78,6 +79,18 @@ router.get("/:id", async (req, res, next) => {
       },
     });
    
+    for (let index = 0; index < produits_similaires.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: produits_similaires[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: produits_similaires[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
     const priceArticle = await Produit.findOne({
       include: [
         {
@@ -105,7 +118,8 @@ router.get("/:id", async (req, res, next) => {
       priceArticle: priceArticle,
       produits_similaires: produits_similaires,
       taillesQuantites: taillesQuantites,
-      quantiteInitial:quantiteInitial
+      quantiteInitial: quantiteInitial,
+      quantiteOfEachProduct,
     });
   } catch (error) {
     res.status(500).render("article/index", {

@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 var nodemailer = require("nodemailer");
-const { Produit, Media, Tarif } = require("../models");
+const { Produit, Media, Tarif, Quantite } = require("../models");
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "Accueil";
+  let quantiteOfEachProduct = [];
+
   const produits = await Produit.findAll({
     limit: 10,
     order: [["pro_id", "DESC"]],
@@ -14,8 +16,22 @@ router.get("/", async (req, res, next) => {
       { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
     ],
   });
+
+  for (let index = 0; index < produits.length; index++) {
+    const quantiteInitial = await Quantite.sum("qua_nbre", {
+      where: {
+        pro_id: produits[index].pro_id,
+      },
+    });
+    quantiteOfEachProduct.push({
+      id: produits[index].pro_id,
+      qty: quantiteInitial,
+    });
+  }
+
   res.render("default/index", {
     produits: produits,
+    quantiteOfEachProduct,
   });
 });
 

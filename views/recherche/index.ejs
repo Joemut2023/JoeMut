@@ -49,7 +49,7 @@
         </p>
 
         <p class="ref">Ref : <%= produit.dataValues.pro_ref %></p>
-        <div class="quantite">Quantité initiale : <span>  <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty : "0" %></span></div>
+        <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty > 1 ? "articles" : "article" %></div>
         <div>
           <p class="price">
             <%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2) %> €

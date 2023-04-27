@@ -115,6 +115,7 @@
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div class="quantite">Quantité initiale : <span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span></div>
+          <div class="quantite"><span><%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
             <p class="bar">|</p>

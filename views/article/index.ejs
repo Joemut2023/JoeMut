@@ -224,7 +224,7 @@
               aria-labelledby="home-tab"
               tabindex="0"
             >
-              <%= article.pro_details %>
+              <%= article.pro_description %>
             </div>
             <div
               class="tab-pane fade content-two"
@@ -233,7 +233,7 @@
               aria-labelledby="profile-tab"
               tabindex="0"
             >
-              <%= article.pro_description %>
+              <%= article.pro_details %>
             </div>
           </div>
         </div>
@@ -262,6 +262,7 @@
             >
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
+          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2) %>€</p>
             <p class="bar">|</p>
