@@ -6139,7 +6139,30 @@
 #admin-page-categories .table-content {
   margin-top: 20px;
 }
+#admin-page-categories .table-content a {
+  color: #25b9d7;
+}
 #admin-page-categories .table-content .td-icones .icons {
+  margin: 8px;
+  color: grey;
+}
+
+#admin-page-souscat {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#admin-page-souscat .ajouter-typecat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-souscat .ajouter-typecat .button button {
+  width: 100px;
+  color: white;
+}
+#admin-page-souscat .table-content {
+  margin-top: 20px;
+}
+#admin-page-souscat .table-content .td-icones .icons {
   margin: 8px;
   color: grey;
 }
