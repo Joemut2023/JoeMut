@@ -6442,6 +6442,38 @@ body {
 
 #admin-page-panier {
   width: 100%;
+  margin-top: 2%;
+}
+
+#admin-blocs-panierHeader .breadcrumb {
+  margin-top: 2.5%;
+}
+#admin-blocs-panierHeader a {
+  text-decoration: none !important;
+}
+#admin-blocs-panierHeader .link-panier {
+  color: black;
+}
+#admin-blocs-panierHeader .fil-ariane-item {
+  color: #7a7a7a !important;
+}
+#admin-blocs-panierHeader .produit-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 3%;
+}
+#admin-blocs-panierHeader .produit-menu h1 {
+  font-weight: 300 !important;
+}
+#admin-blocs-panierHeader .produit-menu .produit-menu-btn {
+  margin-top: 1%;
+}
+#admin-blocs-panierHeader .produit-menu .produit-menu-btn button {
+  margin-left: 10px;
+}
+#admin-blocs-panierHeader .produit-menu .produit-menu-btn .btn-info {
+  color: #fff !important;
 }
 
 /*# sourceMappingURL=main.css.map */

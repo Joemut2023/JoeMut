@@ -101,9 +101,11 @@
         <li class="page-item">
           <a class="page-link" href="/admin/produits/?&page=3">3</a>
         </li>
-        <% } else if (pageActive !== 73)  { %>
+        <% } else if (pageActive !== nbrPages) { %>
         <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= pageActive -1 %>"
+          <a
+            class="page-link"
+            href="/admin/produits/?&page=<%= pageActive -1 %>"
             ><%= pageActive-1 %></a
           >
         </li>
