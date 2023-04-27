@@ -6,7 +6,12 @@ const { PAGINATION_LIMIT } = require("../../helpers/utils_const");
 router.get("/", async (req, res) => {
 
     try {
-        const listeType = await Type_categorie.findAll();
+        const listeType = await Type_categorie.findAll({
+            // include: [{
+            //     model: Categorie,
+            //     where: { cat_id: Sequelize.col('tyc_id') }
+            // }]
+        });
 
         res.render("categories/index", {
             listeType,
