@@ -1132,6 +1132,12 @@
 #pages-home .product .paragraph P {
   margin-bottom: 5px;
 }
+#pages-home .product .paragraph .quantite {
+  font-weight: 500;
+}
+#pages-home .product .paragraph .quantite span {
+  font-weight: 600;
+}
 #pages-home .product .price {
   text-align: center;
   color: #363a42;
