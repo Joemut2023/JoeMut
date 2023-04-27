@@ -23,8 +23,8 @@ router.get("/", async (req, res) => {
     let commandes_data = [];
    // let total_pad_ttc = 0;
     let commandes = await Commande.findAll({
-    //  offset: 0, // specify the number of rows to skip
-      //limit: 10, // specify the maximum number of rows to return
+      offset: start,
+      limit: PAGINATION_LIMIT_ADMIN,
       attributes: [
         "com_id",
         "com_date",
@@ -34,38 +34,27 @@ router.get("/", async (req, res) => {
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
-        // include other columns from the Commande model that you want to return
-        // ...
-        // [
-        //   Sequelize.fn("SUM", Sequelize.col("Panier.Panier_details.pad_ttc")),
-        //   "total_pad_ttc",
-        // ],
       ],
       include: [
         {
           model: Client,
-        //  attributes: [], // do not select any columns from the Client model
         },
         {
           model: Frais_port,
-          //attributes: [], // do not select any columns from the Frais_port model
         },
-        //  { model: Essayage },
         {
           model: Panier,
-       //   attributes: [], // do not select any columns from the Panier model
           include: [
             {
               model: Panier_detail,
-             // attributes: [], // do not select any columns from the Panier_detail model
             },
           ],
         },
       ],
       //group: ["Commande.com_id"],
     });
+    let commandesNbr = await Commande.findAndCountAll();
 
-    // console.log(commandes[0].getDataValue('total_pad_ttc') );
     for (let commande of commandes) {
       let pad_ttc = 0
       commande.Panier.Panier_details.forEach(pad => {
@@ -90,10 +79,15 @@ router.get("/", async (req, res) => {
       
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
-    console.log(commandes_data[0]);
+
+    let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,
       moment,
+      pageActive: page,
+      start,
+      end,
+      nbrPages
     });
   } catch (error) {
     console.log(error);
