@@ -9,6 +9,7 @@ const {
   Frais_port,
   Essayage,
   Sequelize,
+  Adresse
 } = require("../../models/");
 const moment = require("moment");
 
@@ -23,6 +24,8 @@ router.get("/", async (req, res) => {
         "com_fin_spectacle",
         "pan_id",
         "frp_id",
+        "com_adr_liv",
+        "com_adr_fac",
         [
           Sequelize.fn("SUM", Sequelize.col("Panier.Panier_details.pad_ttc")),
           "total_pad_ttc",
@@ -45,7 +48,6 @@ router.get("/", async (req, res) => {
       ],
       group: ["Commande.com_id"],
     });
-
     for (let commande of commandes) {
       let paniers = await Panier.findOne({
         where: { pan_id: commande.pan_id },
@@ -58,12 +60,16 @@ router.get("/", async (req, res) => {
           com_id: commande.com_id,
         },
       });
-
+      let adress_liv = await Adresse.findOne({
+        where:{
+          adr_id:commande.com_adr_liv
+        }
+      })
       //console.log(essayages);
-      commandes_data.push({ commande, ...paniers, essayage: essayages });
+      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv });
     }
 
-    console.log(commandes_data[0].commande.Frais_port.frp_libelle);
+    console.log(commandes_data[0].adresseLivraison.adr_societe);
     res.render("devis/index", {
       commandes: commandes_data,
       moment,
