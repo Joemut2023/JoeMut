@@ -1,7 +1,32 @@
-#bloc-admin-sidebarMenu{
+#bloc-admin-sidebarMenu {
+    color: $color-white;
     min-height: 100vh;
     position: fixed;
+
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+
     a {
         color: $color-white;
+    }
+
+    a:active {
+        color: yellow;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    button {
+        color: $color-white;
+    }
+
+    .btn-toggle-nav a {
+        display: inline-flex;
+        padding: 0.1875rem 0.5rem;
+        margin-top: 0.125rem;
+        margin-left: 1.4rem;
+        text-decoration: none;
     }
 }

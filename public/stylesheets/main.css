@@ -657,11 +657,31 @@
 }
 
 #bloc-admin-sidebarMenu {
+  color: #fff;
   min-height: 100vh;
   position: fixed;
 }
+#bloc-admin-sidebarMenu ::after,
+#bloc-admin-sidebarMenu ::before {
+  box-sizing: border-box;
+}
 #bloc-admin-sidebarMenu a {
   color: #fff;
+}
+#bloc-admin-sidebarMenu a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+#bloc-admin-sidebarMenu button {
+  color: #fff;
+}
+#bloc-admin-sidebarMenu .btn-toggle-nav a {
+  display: inline-flex;
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  margin-left: 1.4rem;
+  text-decoration: none;
 }
 
 #pages-home {
@@ -6131,6 +6151,41 @@
 #admin-page-categories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-categories .ajouter-typecat .button button {
+  width: 100px;
+  color: white;
+}
+#admin-page-categories .table-content {
+  margin-top: 20px;
+}
+#admin-page-categories .table-content a {
+  color: #25b9d7;
+}
+#admin-page-categories .table-content .td-icones .icons {
+  margin: 8px;
+  color: grey;
+}
+
+#admin-page-souscat {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#admin-page-souscat .ajouter-typecat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-souscat .ajouter-typecat .button button {
+  width: 100px;
+  color: white;
+}
+#admin-page-souscat .table-content {
+  margin-top: 20px;
+}
+#admin-page-souscat .table-content .td-icones .icons {
+  margin: 8px;
+  color: grey;
 }
 
 #page-devis {
