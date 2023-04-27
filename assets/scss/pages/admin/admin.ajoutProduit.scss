@@ -16,7 +16,7 @@
         .text {
           margin-top: 5px;
           font-size: 14px;
-          color: rgb(236, 96, 96);
+          color: rgb(204, 67, 67);
         }
       }
 
@@ -33,33 +33,57 @@
 
         span {
           font-size: 16px;
-          color: rgb(132, 132, 236);
+          color: rgb(41, 144, 228);
         }
       }
     }
 
     .bloc-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      align-items: center;
+
+      div {
         display: flex;
-        justify-content: flex-end;
-        gap: 15px;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
 
-        div{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            span{
-                font-size: 18px;
-                color: gray;
-            }
-
-            p{
-                font-size: 14px;
-                color: gray;
-            }
+        span {
+          font-size: 18px;
+          color: gray;
         }
+
+        p {
+          font-size: 14px;
+          color: gray;
+        }
+      }
     }
   }
+
+  
+  .tabs-container {
+    margin-top: 30px;
+    .tabs-left {
+      nav {
+        .nav {
+          padding: 0px 20px;
+          button {
+            color: gray;
+            margin-right: 30px;
+          }
+          .clicked {
+            border-top: 2px solid rgb(204, 67, 67);
+          }
+          
+        }
+      }
+
+      .tab-content {
+      }
+    }
+  }
+
 }

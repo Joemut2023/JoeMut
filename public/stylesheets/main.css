@@ -6401,7 +6401,7 @@ body {
 #page-admin-ajoutProduit .product-container .bloc-left .left .text {
   margin-top: 5px;
   font-size: 14px;
-  color: rgb(236, 96, 96);
+  color: rgb(204, 67, 67);
 }
 #page-admin-ajoutProduit .product-container .bloc-left .right {
   display: flex;
@@ -6415,7 +6415,7 @@ body {
 }
 #page-admin-ajoutProduit .product-container .bloc-left .right span {
   font-size: 16px;
-  color: rgb(132, 132, 236);
+  color: rgb(41, 144, 228);
 }
 #page-admin-ajoutProduit .product-container .bloc-right {
   display: flex;
@@ -6436,6 +6436,19 @@ body {
 #page-admin-ajoutProduit .product-container .bloc-right div p {
   font-size: 14px;
   color: gray;
+}
+#page-admin-ajoutProduit .tabs-container {
+  margin-top: 30px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav {
+  padding: 0px 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav button {
+  color: gray;
+  margin-right: 30px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav .clicked {
+  border-top: 2px solid rgb(204, 67, 67);
 }
 
 /*# sourceMappingURL=main.css.map */
