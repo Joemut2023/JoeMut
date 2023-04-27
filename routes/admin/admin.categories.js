@@ -30,6 +30,7 @@ router.get("/", async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
+        const categorie = await Type_categorie.findByPk(id);
         const subcategories = await Categorie.findAll({
             where: { tyc_id: id },
             include: [{ model: Type_categorie }],
@@ -37,6 +38,7 @@ router.get('/:id', async (req, res) => {
 
         res.render("souscat/index", {
             subcategories,
+            categorie,
             success: true
         });
 
