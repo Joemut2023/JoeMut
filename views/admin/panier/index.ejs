@@ -9,11 +9,13 @@
         <th scope="col">Client</th>
         <th scope="col">Total</th>
         <th scope="col">Transporteur</th>
+        <th scope="col">Date</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-        <tr>
+      <% panier.forEach(element => { %>
+            <tr>
             <td scope="row">
           <input
             class="form-check-input"
@@ -22,13 +24,20 @@
             id="flexCheckDefault"
           />
             </td>
-            <td scope="row">2</td>
+            <td scope="row"><%= element.pan_id %></td>
             <td scope="row">42</td>
-            <td scope="row">F.Disudi</td>
-            <td scope="row">29889€</td>
+            <td scope="row"><% if ((typeof element.Client.cli_nom !== "undefined")) { %>
+             <%= (element.Client.cli_prenom.charAt(0))%>. <%= element.Client.cli_nom %>
+            <% } %></td>
+            <td scope="row"><% if (typeof element.Panier_details[0] !== "undefined" ) { %>
+             <%=element.Panier_details[0].pad_ttc  %>
+            <% } %></td>
             <td scope="row">Tout en  livraison</td>
-            <td scope="row"></td>
+            <td scope="row"><%= element.pan_date.getDate()%>/<%= element.pan_date.getMonth()%>/<%= element.pan_date.getFullYear()%>   <%= element.pan_date.getHours()%>:<%=element.pan_date.getMinutes()%>:<%= element.pan_date.getSeconds() %> </td>
+            <td scope="row"><i class="fa fa-search-plus"></i></td>
         </tr>
+      <% }) %>
+   
     </tbody>
 
 </div>
