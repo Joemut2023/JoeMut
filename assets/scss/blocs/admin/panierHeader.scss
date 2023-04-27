@@ -1,0 +1,41 @@
+#admin-blocs-panierHeader {
+    .breadcrumb {
+        margin-top: 2.5%;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+     .link-panier{
+            color: black;
+        }
+
+    .fil-ariane-item {
+        color: $color-secondary !important;
+    }
+
+    .produit-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 3%;
+
+        h1 {
+            font-weight: 300 !important;
+        }
+
+        .produit-menu-btn {
+            margin-top: 1%;
+
+            button {
+                margin-left: 10px;
+            }
+
+            .btn-info {
+                color: $color-white !important;
+            }
+        }
+    }
+
+   
+}
