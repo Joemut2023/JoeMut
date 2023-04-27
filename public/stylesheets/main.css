@@ -6387,4 +6387,55 @@ body {
   color: #fff !important;
 }
 
+#page-admin-ajoutProduit {
+  padding: 20px 0px;
+  font-family: "Manrope", sans-serif;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .left div input {
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .left div input:focus {
+  box-shadow: inset 0 -1px 0 transparent;
+  outline: 1px solid #a0b21f;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .left .text {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgb(236, 96, 96);
+}
+#page-admin-ajoutProduit .product-container .bloc-left .right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  align-self: center;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .right .form-select:focus {
+  box-shadow: inset 0 -1px 0 transparent;
+  outline: 1px solid #a0b21f;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .right span {
+  font-size: 16px;
+  color: rgb(132, 132, 236);
+}
+#page-admin-ajoutProduit .product-container .bloc-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  align-items: center;
+}
+#page-admin-ajoutProduit .product-container .bloc-right div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#page-admin-ajoutProduit .product-container .bloc-right div span {
+  font-size: 18px;
+  color: gray;
+}
+#page-admin-ajoutProduit .product-container .bloc-right div p {
+  font-size: 14px;
+  color: gray;
+}
+
 /*# sourceMappingURL=main.css.map */
