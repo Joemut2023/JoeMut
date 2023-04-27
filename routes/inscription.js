@@ -52,40 +52,40 @@ router.post("/", async (req, res, next) => {
     });
 
     // add in panier_detail
-   if (panier_items && panier_items.length > 0) {
-     let insert_panier_details = async () => {
-       panier_items.forEach(async (item) => {
-         // récuperation du produit avec les bonnes infos
-         let produit = await Produit.findByPk(item.pro_id, {
-           include: [
-             {
-               model: Tarif,
-               attributes: ["tar_ttc", "tar_id", "tar_ht"],
-               where: {
-                 [Op.and]: [
-                   {
-                     pro_id: item.pro_id,
-                   },
-                   {
-                     tar_statut: ACTIF,
-                   },
-                 ],
-               },
-             },
-           ],
-         });
-         // insérer dans panier_details
-         let panier_dtl = await Panier_detail.create({
-           pro_id: produit.pro_id,
-           tar_id: produit.Tarifs[0].tar_id,
-           pan_id: panier.pan_id,
-           pad_qte: item.pad_qte,
-           pad_ht: produit.Tarifs[0].tar_ht,
-         });
-       });
-     };
-     await insert_panier_details();
-   }
+  //  if (panier_items && panier_items.length > 0) {
+  //    let insert_panier_details = async () => {
+  //      panier_items.forEach(async (item) => {
+  //        // récuperation du produit avec les bonnes infos
+  //        let produit = await Produit.findByPk(item.pro_id, {
+  //          include: [
+  //            {
+  //              model: Tarif,
+  //              attributes: ["tar_ttc", "tar_id", "tar_ht"],
+  //              where: {
+  //                [Op.and]: [
+  //                  {
+  //                    pro_id: item.pro_id,
+  //                  },
+  //                  {
+  //                    tar_statut: ACTIF,
+  //                  },
+  //                ],
+  //              },
+  //            },
+  //          ],
+  //        });
+  //        // insérer dans panier_details
+  //        let panier_dtl = await Panier_detail.create({
+  //          pro_id: produit.pro_id,
+  //          tar_id: produit.Tarifs[0].tar_id,
+  //          pan_id: panier.pan_id,
+  //          pad_qte: item.pad_qte,
+  //          pad_ht: produit.Tarifs[0].tar_ht,
+  //        });
+  //      });
+  //    };
+  //    await insert_panier_details();
+  //  }
 
 
     req.session.panierId = panier.pan_id;

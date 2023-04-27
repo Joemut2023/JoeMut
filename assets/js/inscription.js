@@ -15,7 +15,7 @@ btn.addEventListener("click", function (e) {
 btn_enregistrer.addEventListener("click", async function (e) {
   e.preventDefault();
 
-  let panier_items = JSON.parse(localStorage.getItem("storedItems"));
+  //let panier_items = JSON.parse(localStorage.getItem("storedItems"));
   let homme = document.getElementById("homme");
   let femme = document.getElementById("femme");
   let cli_nom = document.getElementById("nom").value;
@@ -30,7 +30,7 @@ btn_enregistrer.addEventListener("click", async function (e) {
       cli_mail: cli_mail,
       cli_pwd: cli_pwd,
     },
-    panier_items: panier_items,
+   // panier_items: panier_items,
   };
   await axios.post(`${SITE_URL}/inscription`, data, {
     headers: {

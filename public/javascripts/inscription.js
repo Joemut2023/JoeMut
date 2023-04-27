@@ -15,12 +15,13 @@ btn.addEventListener("click", function (e) {
 });
 btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var panier_items, homme, femme, cli_nom, cli_prenom, cli_mail, cli_pwd, data;
+    var homme, femme, cli_nom, cli_prenom, cli_mail, cli_pwd, data;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           e.preventDefault();
-          panier_items = JSON.parse(localStorage.getItem("storedItems"));
+
+          //let panier_items = JSON.parse(localStorage.getItem("storedItems"));
           homme = document.getElementById("homme");
           femme = document.getElementById("femme");
           cli_nom = document.getElementById("nom").value;
@@ -34,18 +35,18 @@ btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
               cli_prenom: cli_prenom,
               cli_mail: cli_mail,
               cli_pwd: cli_pwd
-            },
-            panier_items: panier_items
+            }
+            // panier_items: panier_items,
           };
-          _context.next = 11;
+          _context.next = 10;
           return axios.post("".concat(SITE_URL, "/inscription"), data, {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
-        case 11:
+        case 10:
           window.location.href = "".concat(SITE_URL, "/mon-compte");
-        case 12:
+        case 11:
         case "end":
           return _context.stop();
       }

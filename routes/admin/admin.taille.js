@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Taille } = require("../../models");
+<<<<<<< HEAD
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 router.get("/", async (req, res) => {
@@ -19,6 +20,13 @@ router.get("/", async (req, res) => {
       start,
       end,
       taillesNbr: Alltailles.length,
+=======
+router.get("/", async (req, res) => {
+  try {
+    const tailles = await Taille.findAll();
+    res.render("tailles/index", {
+      tailles,
+>>>>>>> rebase/Develop
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
