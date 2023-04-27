@@ -6122,8 +6122,9 @@
   display: block;
 }
 #admin-page-produits .table .dropdown-menu {
-  inset: 21px 0px auto auto;
+  inset: 5px 0px auto auto;
 }
+
 #page-devis {
   width: 95%;
   margin: auto;
