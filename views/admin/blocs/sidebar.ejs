@@ -4,40 +4,86 @@
 >
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
-      <li class="nav-item">
+      <li class="nav-item mb-3">
         <a class="nav-link active" aria-current="page" href="/admin/dashboard">
           <span data-feather="home"></span>
-          Tableau de bord
+          <i class="fa-solid fa-arrow-trend-up"></i> Tableau de bord
         </a>
       </li>
+      <hr />
+      <h5 class="p-3">VENDRE</h5>
       <li class="nav-item">
-        <a class="nav-link" href="/admin/devis">
-          <span data-feather="file"></span>
-          Dévis
-        </a>
+        <button
+          class="btn btn-toggle nav-link align-items-center rounded"
+          data-bs-toggle="collapse"
+          data-bs-target="#commande-collapse"
+          aria-expanded="true"
+        >
+          <i class="fa-solid fa-bag-shopping"></i> Commandes
+        </button>
+        <div class="collapse ml-2" id="commande-collapse" style>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a href="/admin/devis" class="link-dark rounded">Commandes</a>
+            </li>
+            <li>
+              <a href="/admin/paniers" class="link-dark rounded">Paniers</a>
+            </li>
+            <li>
+              <a href="/admin/factures" class="link-dark rounded">Facture</a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/admin/produits">
-          <span data-feather="shopping-cart"></span>
-          Produits
-        </a>
+        <button
+          class="btn btn-toggle nav-link align-items-center rounded"
+          data-bs-toggle="collapse"
+          data-bs-target="#catalogue-collapse"
+          aria-expanded="true"
+        >
+          <i class="fa-solid fa-shop"></i> Catalogue
+        </button>
+        <div class="collapse ml-2" id="catalogue-collapse" style>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a href="/admin/produits" class="link-dark rounded">Produits</a>
+            </li>
+            <li><a href="#" class="link-dark rounded">Type catégorie</a></li>
+            <li>
+              <a href="/admin/couleurs" class="link-dark rounded">Couleurs</a>
+            </li>
+            <li>
+              <a href="/admin/tailles" class="link-dark rounded">Tailles</a>
+            </li>
+            <li><a href="#" class="link-dark rounded">Frais port</a></li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/admin/paniers">
-          <span data-feather="shopping-cart"></span>
-          Paniers
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/couleurs">
-          <span data-feather="shopping-cart"></span>
-          Couleurs
-        </a>
-      </li><li class="nav-item">
-        <a class="nav-link" href="/admin/tailles">
-          <span data-feather="shopping-cart"></span>
-          Tailles
-        </a>
+        <button
+          class="btn btn-toggle nav-link align-items-center rounded"
+          data-bs-toggle="collapse"
+          data-bs-target="#client-collapse"
+          aria-expanded="true"
+        >
+          <i class="fa-solid fa-users"></i> Clients
+        </button>
+        <div class="collapse ml-2" id="client-collapse" style>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <a href="/admin/clients" class="link-dark rounded">Clients</a>
+            </li>
+            <li>
+              <a href="/admin/typecategorie" class="link-dark rounded"
+                >Type catégorie</a
+              >
+            </li>
+            <li>
+              <a href="/admin/adresse" class="link-dark rounded">Adresse</a>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </div>

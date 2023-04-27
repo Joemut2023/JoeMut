@@ -657,11 +657,31 @@
 }
 
 #bloc-admin-sidebarMenu {
+  color: #fff;
   min-height: 100vh;
   position: fixed;
 }
+#bloc-admin-sidebarMenu ::after,
+#bloc-admin-sidebarMenu ::before {
+  box-sizing: border-box;
+}
 #bloc-admin-sidebarMenu a {
   color: #fff;
+}
+#bloc-admin-sidebarMenu a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+#bloc-admin-sidebarMenu button {
+  color: #fff;
+}
+#bloc-admin-sidebarMenu .btn-toggle-nav a {
+  display: inline-flex;
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  margin-left: 1.4rem;
+  text-decoration: none;
 }
 
 #pages-home {
@@ -6125,9 +6145,24 @@
   inset: 5px 0px auto auto;
 }
 
+#admin-page-categories {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 #admin-page-categories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-categories .ajouter-typecat .button button {
+  width: 100px;
+  color: white;
+}
+#admin-page-categories .table-content {
+  margin-top: 20px;
+}
+#admin-page-categories .table-content .td-icones .icons {
+  margin: 8px;
+  color: grey;
 }
 
 #page-devis {
@@ -6425,6 +6460,11 @@ body {
   color: #fff !important;
 }
 
+#admin-page-panier {
+  width: 100%;
+  margin-top: 2%;
+}
+
 #admin-blocs-panierHeader .breadcrumb {
   margin-top: 2.5%;
 }
@@ -6454,11 +6494,6 @@ body {
 }
 #admin-blocs-panierHeader .produit-menu .produit-menu-btn .btn-info {
   color: #fff !important;
-}
-
-#admin-page-panier {
-  width: 100%;
-  margin-top: 2%;
 }
 
 /*# sourceMappingURL=main.css.map */
