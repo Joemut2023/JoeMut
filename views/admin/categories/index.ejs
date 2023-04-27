@@ -21,7 +21,7 @@
         <% listeType?.forEach((element) => { %>
             <tr>
                 <td><%= element.tyc_id %></td>
-                <td><%= element.tyc_libelle %></td>
+                <td><a href="/admin/type-categories/<%= element.tyc_id %>"><%= element.tyc_libelle %></a></td>
                 <td class="td-icones">
                     <i class="fa-solid fa-eye icons"></i> 
                     <i class="fas fa-edit icons"></i>

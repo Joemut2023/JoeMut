@@ -6131,18 +6131,6 @@
 #admin-page-categories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-}
-#admin-page-categories .ajouter-typecat .button button {
-  width: 100px;
-  color: white;
-}
-#admin-page-categories .table-content {
-  margin-top: 20px;
-}
-#admin-page-categories .table-content .td-icones .icons {
-  margin: 8px;
-  color: grey;
 }
 
 #page-devis {

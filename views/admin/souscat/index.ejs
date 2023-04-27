@@ -1,0 +1,34 @@
+<div id="admin-page-souscat">
+    <div class="ajouter-typecat">
+        <div class="text">
+            <h4><strong><%= categorie.tyc_libelle %></strong></h4>
+        </div>
+        <div class="button">
+            <button class="btn btn-info">
+                <span>+</span>
+                <span>Ajouter</span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="table-content">     
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Libellé</th>
+                <th>Actions</th>
+            </tr>
+            <% subcategories?.forEach((element) => { %>
+                <tr>
+                    <td><%= element.cat_id %></td>
+                    <td><%= element.cat_libelle %></td>
+                    <td class="td-icones">
+                        <i class="fa-solid fa-eye icons"></i> 
+                        <i class="fas fa-edit icons"></i>
+                        <i class="fa fa-trash icons" aria-hidden="true"></i>
+                    </td>
+                </tr>
+            <% }) %>
+           
+        </table>
+    </div>
