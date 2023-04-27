@@ -69,7 +69,6 @@ router.get("/", async (req, res) => {
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv });
     }
 
-    console.log(commandes_data[0].adresseLivraison.adr_societe);
     res.render("devis/index", {
       commandes: commandes_data,
       moment,

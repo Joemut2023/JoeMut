@@ -83,63 +83,70 @@
               </tr>
             </thead>
             <tbody>
-                <% commandes.forEach(commande => { %>
-                    <tr>
-                        <td scope="row">
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                        </td>
-                        <th><%= commande.commande.com_id %></th>
-                        <td>Mark</td>
-                        <td><%= commande.commande.Client.cli_prenom %></td>
-                        <td><%= commande.commande.Client.cli_nom %></td>
-                        <td><%= commande.adresseLivraison.adr_societe %></td>
-                        <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
-                        <td><%= commande.Panier_details.length %></td>
-                        <td><%= commande.commande.getDataValue('total_pad_ttc')  %>€</td>
-                        <td><%= commande.commande.Frais_port.frp_libelle %></td>
-                        <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
-                        <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
-                        <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>
-                        <td><input type="radio" name="" id=""></td>
-                        <td>
-                            <div class="d-flex justify-content-between">
-                              <i class="fa-solid fa-pen"></i>
-                              <div class="dropdown">
-                                <i
-                                  class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                                  type="button"
-                                  data-bs-toggle="dropdown"
-                                  aria-expanded="false"
-                                ></i>
-                  
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a class="dropdown-item" href="#"
-                                      ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                                    >
-                                  </li>
-                                  <li>
-                                    <a class="dropdown-item" href="#"
-                                      ><i class="fa-solid fa-copy"></i> Dupliquer</a
-                                    >
-                                  </li>
-                  
-                                  <li>
-                                    <a class="dropdown-item" href="#"
-                                      ><i class="fa-solid fa-trash"></i> Supprimer</a
-                                    >
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                        </td>
-                    </tr>
-                <% }) %>
+                <% if ((typeof commandes !== 'undefined') && commandes.length > 0) { %>
+                    <% commandes.forEach(commande => { %>
+                        <tr>
+                            <td scope="row">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  value=""
+                                  id="flexCheckDefault"
+                                />
+                            </td>
+                            <th><%= commande.commande.com_id %></th>
+                            <td>Mark</td>
+                            <td><%= commande.commande.Client.cli_prenom %></td>
+                            <td><%= commande.commande.Client.cli_nom %></td>
+                            <td><%= commande.adresseLivraison.adr_societe %></td>
+                            <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
+                            <td><%= commande.Panier_details.length %></td>
+                            <td><%= commande.commande.getDataValue('total_pad_ttc')  %>€</td>
+                            <td><%= commande.commande.Frais_port.frp_libelle %></td>
+                            <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
+                            <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
+                            <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>
+                            <td><input type="radio" name="" id=""></td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                  <i class="fa-solid fa-pen"></i>
+                                  <div class="dropdown">
+                                    <i
+                                      class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                                      type="button"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                    ></i>
+                      
+                                    <ul class="dropdown-menu">
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                                        >
+                                      </li>
+                      
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          ><i class="fa-solid fa-trash"></i> Supprimer</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <div class="alert alert-primary" role="alert">
+                        Il n'y a aucune commande dans votre base des données pour l'instant.
+                    </div>
+                <% } %>
+                
             </tbody>
           </table>
     </div>
