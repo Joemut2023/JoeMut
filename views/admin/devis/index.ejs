@@ -101,7 +101,7 @@
                             <td><%= commande.adresseLivraison.adr_societe %></td>
                             <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
                             <td class="td-modal-container"><span class="td-modal" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
-                            <td><%= commande.commande.getDataValue('total_pad_ttc')  %>€</td>
+                            <td><%= commande.total_pad_ttc  %>€</td>
                             <td><%= commande.commande.Frais_port.frp_libelle %></td>
                             <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
@@ -149,7 +149,56 @@
                 
             </tbody>
           </table>
+
+          <div class="cat-pagination">
+            <% if (nbrPages > 1) { %>
+            <nav>
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=1">1</a>
+                </li>
+                <% if (pageActive === 1 || pageActive ===2) { %>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=2">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=3">3</a>
+                </li>
+                <% } else if (pageActive !== 73)  { %>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=<%= pageActive -1 %>"
+                    ><%= pageActive-1 %></a
+                  >
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=<%= pageActive %>"
+                    ><%= pageActive %></a
+                  >
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=<%= pageActive+1 %>"
+                    ><%= pageActive+1 %></a
+                  >
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=<%= pageActive+2 %>"
+                    ><%= pageActive+2 %></a
+                  >
+                </li>
+                <li class="page-item">...</li>
+                <% } %>
+                <li class="page-item">
+                  <a class="page-link" href="/admin/devis?&page=<%= nbrPages %>"
+                    ><%= nbrPages %></a
+                  >
+                </li>
+              </ul>
+            </nav>
+        
+            <% } %>
+          </div>
     </div>
+
 
     <div class="modal fade" id="modal-devis" tabindex="-1" aria-labelledby="modal-devisLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

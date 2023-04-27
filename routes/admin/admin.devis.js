@@ -14,11 +14,17 @@ const {
   Adresse
 } = require("../../models/");
 const moment = require("moment");
+const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 
 router.get("/", async (req, res) => {
+  let {page, start, end} = check_admin_paginate_value(req);
   try {
     let commandes_data = [];
+   // let total_pad_ttc = 0;
     let commandes = await Commande.findAll({
+      offset: start,
+      limit: PAGINATION_LIMIT_ADMIN,
       attributes: [
         "com_id",
         "com_date",
@@ -28,29 +34,32 @@ router.get("/", async (req, res) => {
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
-        [
-          Sequelize.fn("SUM", Sequelize.col("Panier.Panier_details.pad_ttc")),
-          "total_pad_ttc",
-        ],
       ],
       include: [
-        { model: Client, attributes: ["cli_mail", "cli_nom", "cli_prenom"] },
-        { model: Frais_port },
-        //  { model: Essayage },
+        {
+          model: Client,
+        },
+        {
+          model: Frais_port,
+        },
         {
           model: Panier,
-          attributes: ["pan_id"],
           include: [
             {
               model: Panier_detail,
-              attributes: [],
             },
           ],
         },
       ],
-      group: ["Commande.com_id"],
+      //group: ["Commande.com_id"],
     });
+    let commandesNbr = await Commande.findAndCountAll();
+
     for (let commande of commandes) {
+      let pad_ttc = 0
+      commande.Panier.Panier_details.forEach(pad => {
+        pad_ttc = pad_ttc + pad.pad_ttc;
+      });
       let paniers = await Panier.findOne({
         where: { pan_id: commande.pan_id },
         include: {
@@ -67,13 +76,18 @@ router.get("/", async (req, res) => {
           adr_id:commande.com_adr_liv
         }
       })
-      //console.log(essayages);
-      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv });
+      
+      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
 
+    let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,
       moment,
+      pageActive: page,
+      start,
+      end,
+      nbrPages
     });
   } catch (error) {
     console.log(error);
