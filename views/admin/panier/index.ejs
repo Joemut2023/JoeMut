@@ -29,15 +29,19 @@
                 <% if(element.Commande){ %>
               <%= element.Commande.com_id %>
                <% } else{ %>
-                <span style="border:1px solid red;border-radius: 10px;color:white;background-color: rgb(218, 22, 22);padding:3px 4px;">Non commandé</span>
+                <span style="border:1px solid rgb(241, 60, 60);border-radius:5px;color:white;background-color: rgb(241, 60, 60);padding:3px 4px;">Non commandé</span>
                 <% } %>
             </td>
             <td scope="row" class="text-center w-25" ><% if ((typeof element.Client.cli_nom !== "undefined")) { %>
              <%= (element.Client.cli_prenom.charAt(0).toUpperCase())%>. <%= element.Client.cli_nom %>
             <% } %></td>
-            <td scope="row" class="text-center"><% if (typeof element.Panier_details[0] !== "undefined" ) { %>
-             <%=element.Panier_details[0].pad_ttc  %>
-            <% } %></td>
+            <td scope="row" class="text-center">
+               <% if(element.Commande){ %>
+              <%= element.Commande.com_ttc %> €
+               <% } else{ %>
+                <span style="border:1px solid rgb(17, 204, 73);border-radius: 5px;color:white;background-color: rgb(17, 204, 73);padding:3px 4px;"><%=element.Panier_details[0]?.pad_ttc  %> €</span>
+                <% } %>
+              </td>
             <td scope="row" class="text-center w-25" >
             <% if(element.Commande){ %>
               <%= element.Commande.Frais_port.frp_libelle %>

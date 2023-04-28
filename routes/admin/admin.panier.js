@@ -22,7 +22,7 @@ router.get("/", async function (req, res) {
             },
             {
               model:Commande,
-              attributes:["com_id"],
+              attributes:["com_id","com_ttc"],
               include:{
                 model:Frais_port,
                 attributes:["frp_libelle"]
