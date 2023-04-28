@@ -92,7 +92,7 @@
         <li class="page-item">
           <a class="page-link" href="/admin/tailles/?&page=3">3</a>
         </li>
-        <% } else if (pageActive !== nbrPages) { %>
+        <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
         <li class="page-item">
           <a class="page-link" href="/admin/tailles/?&page=<%= pageActive -1 %>"
             ><%= pageActive-1 %></a
