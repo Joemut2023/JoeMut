@@ -6572,6 +6572,95 @@ body {
 
 #admin-page-panier-detail {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  gap: 10px;
+}
+#admin-page-panier-detail .total-panier {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  padding: 25px 0;
+}
+#admin-page-panier-detail .total-panier .cart-total {
+  font-size: 3rem;
+  color: rgb(28, 122, 230);
+  margin-right: 4px;
+}
+#admin-page-panier-detail .total-panier .montant {
+  display: flex;
+  flex-direction: column;
+  padding: 4% 0 0 0;
+}
+#admin-page-panier-detail .total-panier .montant h4 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+#admin-page-panier-detail .total-panier .montant h5 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+#admin-page-panier-detail .total-panier .montant h6 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(28, 122, 230);
+}
+#admin-page-panier-detail .information {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  padding: 25px 0;
+}
+#admin-page-panier-detail .information .info-client {
+  display: flex;
+  flex-direction: column;
+}
+#admin-page-panier-detail .information .info-client h3 {
+  font-size: 1.2rem;
+}
+#admin-page-panier-detail .information .info-client div {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+#admin-page-panier-detail .information .info-client div h4 {
+  font-size: 1rem;
+}
+#admin-page-panier-detail .information .info-client div span {
+  border: 1px solid black;
+  padding: 2px 7px;
+  font-size: 0.8rem;
+}
+#admin-page-panier-detail .information .info-client p {
+  font-size: 0.8rem;
+}
+#admin-page-panier-detail .information .info-commande {
+  display: flex;
+  flex-direction: column;
+}
+#admin-page-panier-detail .information .info-commande h3 {
+  font-size: 1.2rem;
+}
+#admin-page-panier-detail .information .info-commande h4 {
+  font-size: 1rem;
+}
+#admin-page-panier-detail .information .info-commande p {
+  font-size: 0.8rem;
+}
+#admin-page-panier-detail div table thead tr th {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+#admin-page-panier-detail div table tbody tr td {
+  font-weight: 400;
+  font-size: 0.8rem;
 }
 
 #admin-page-facture input[type=date] {
