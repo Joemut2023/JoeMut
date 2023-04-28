@@ -1,5 +1,8 @@
 #admin-page-panier{
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     margin-top: 2%;
     tr{
         height:10px;

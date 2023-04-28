@@ -1,6 +1,6 @@
 <%- include('../blocs/panierHeader') %>
 <div id="admin-page-panier">
-    <table class="table table-striped">
+      <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -42,7 +42,7 @@
                 <span style="border:1px solid rgb(17, 204, 73);border-radius: 5px;color:white;background-color: rgb(17, 204, 73);padding:3px 4px;"><%=element.Panier_details[0]?.pad_ttc  %> €</span>
                 <% } %>
               </td>
-            <td scope="row" class="text-center w-25" >
+            <td scope="row" class="text-center w-50" >
             <% if(element.Commande){ %>
               <%= element.Commande.Frais_port.frp_libelle %>
                <% } else{ %>
@@ -55,5 +55,60 @@
       <% }) %>
    
     </tbody>
+    </table>
+      <div>
+    <% if (nbrPages > 1) { %>
+    <div class="row affichage">
+      <p>
+        Affichage <span><%= start %> - <%= end %></span> de
+        <span><%= panierNbr%></span>
+      </p>
+    </div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=1">1</a>
+        </li>
+        <% if (pageActive === 1 || pageActive ===2) { %>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=2">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=3">3</a>
+        </li>
+        <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="/admin/paniers/?&page=<%= pageActive -1 %>"
+            ><%= pageActive-1 %></a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=<%= pageActive %>"
+            ><%= pageActive %></a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=<%= pageActive+1 %>"
+            ><%= pageActive+1 %></a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=<%= pageActive+2 %>"
+            ><%= pageActive+2 %></a
+          >
+        </li>
+        <li class="page-item">...</li>
+        <% } %>
+        <li class="page-item">
+          <a class="page-link" href="/admin/paniers/?&page=<%= nbrPages %>"
+            ><%= nbrPages %></a
+          >
+        </li>
+      </ul>
+    </nav>
 
+    <% } %>
+  </div>
 </div>
