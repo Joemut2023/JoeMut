@@ -25,11 +25,11 @@
           />
             </td>
             <td scope="row" class="text-center"><%= element.pan_id %></td>
-            <td scope="row" class="text-center">
+            <td scope="row" class="text-center w-25">
                 <% if(element.Commande){ %>
               <%= element.Commande.com_id %>
                <% } else{ %>
-                Non commandé
+                <span style="border:1px solid red;border-radius: 10px;color:white;background-color: rgb(218, 22, 22);padding:3px 4px;">Non commandé</span>
                 <% } %>
             </td>
             <td scope="row"><% if ((typeof element.Client.cli_nom !== "undefined")) { %>
