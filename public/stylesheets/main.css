@@ -6530,4 +6530,12 @@ body {
   color: #fff !important;
 }
 
+#admin-page-facture input[type=date] {
+  height: 30px;
+  width: 40%;
+}
+#admin-page-facture .btn-generer {
+  text-align: right;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
-    res.status(500).render("article/index", {
+    res.status(500).render("produits/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
