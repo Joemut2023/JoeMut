@@ -1,5 +1,6 @@
 #admin-page-frais-port {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: small;
   .ajouter-typecat {
     display: flex;
     justify-content: space-between;
@@ -12,8 +13,9 @@
 
     .button {
       button {
-        width: 100px;
+        width: 90px;
         color: white;
+        font-size: small;
       }
     }
   }
@@ -26,7 +28,6 @@
 
     .td-icones {
       .icons {
-        margin: 8px;
         color: grey;
       }
     }

@@ -6201,6 +6201,7 @@
 
 #admin-page-frais-port {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: small;
 }
 #admin-page-frais-port .ajouter-typecat {
   display: flex;
@@ -6212,8 +6213,9 @@
   color: #25b9d7;
 }
 #admin-page-frais-port .ajouter-typecat .button button {
-  width: 100px;
+  width: 90px;
   color: white;
+  font-size: small;
 }
 #admin-page-frais-port .table-content {
   margin-top: 20px;
@@ -6222,7 +6224,6 @@
   color: #25b9d7;
 }
 #admin-page-frais-port .table-content .td-icones .icons {
-  margin: 8px;
   color: grey;
 }
 
