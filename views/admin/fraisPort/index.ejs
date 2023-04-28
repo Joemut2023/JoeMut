@@ -35,24 +35,26 @@
                 <th>TTC</th>
                 <th>Actions</th>
             </tr>
-         
+      
+           <% fraisPort.forEach(element => { %>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11 £</td>
-                    <td>12 £</td>
+                    <td><%= element.frp_id  %></td>
+                    <td><%= element.frp_libelle %></td>
+                    <td> <%= element.frp_debut %></td>
+                    <td> <%= element.frp_fin %></td>
+                    <td> <%= element.frp_actif %></td>
+                    <td> <%= element.frp_default %></td>
+                    <td> <%= element.frp_description %></td>
+                    <td> <%= element.frp_img %></td>
+                    <td> <%= element.frp_ht %> £</td>
+                    <td><%= element.frp_ttc %> £</td>
                     <td class="td-icones">
                         <i class="fa-solid fa-eye icons"></i> 
                         <i class="fas fa-edit icons"></i>
                         <i class="fa fa-trash icons" aria-hidden="true"></i>
                     </td>
                 </tr>
+            <% }) %>
            
           </table>
     </div>
