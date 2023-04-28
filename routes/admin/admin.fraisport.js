@@ -10,16 +10,22 @@ router.get("/", async (req, res) => {
     try {
 
         const essayage = await Mode_liv_essayage.findByPk(mle_id)
-        const spectacle = await Mode_liv_essayage.findByPk(mls_id)
+        const spectacle = await Mode_liv_spectacle.findByPk(mls_id)
+        const fraisPort = await Frais_port.findAll()
 
         res.render("fraisPort/index", {
-            listeType,
+            fraisPort,
+            essayage,
+            spectacle,
             success: true
         });
     } catch (error) {
         console.error(error);
-        res.status(500).render("fraisPort/index",
-            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
+        res.status(500).render("fraisPort/index", {
+            message: 'Une erreur est survenue lors de la récupération des types de catégories.',
+            error,
+            success: false
+        }
         );
     }
 
