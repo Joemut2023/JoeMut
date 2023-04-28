@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { Panier, Panier_detail, Commande, Client } = require("../../models");
+const {
+  Panier,
+  Panier_detail,
+  Commande,
+  Client,
+  Frais_port,
+} = require("../../models");
 
 router.get("/", async function (req, res) {
   try {
@@ -13,11 +19,19 @@ router.get("/", async function (req, res) {
             {
                 model:Panier_detail,
                 attributes:["pad_ttc"]
+            },
+            {
+              model:Commande,
+              attributes:["com_id"],
+              include:{
+                model:Frais_port,
+                attributes:["frp_libelle"]
+              }
             }
         ]
     })
     
-    // return res.json(commande)
+    // return res.json(panier)
 
     return res.render("panier/index",{panier});
     
