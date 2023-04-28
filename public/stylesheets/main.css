@@ -6498,6 +6498,15 @@ body {
   width: 100%;
   margin-top: 2%;
 }
+#admin-page-panier tr {
+  height: 10px;
+}
+#admin-page-panier tr th {
+  font-size: 0.95rem;
+}
+#admin-page-panier tr td {
+  font-size: 0.8rem;
+}
 
 #admin-blocs-panierHeader .breadcrumb {
   margin-top: 2.5%;
