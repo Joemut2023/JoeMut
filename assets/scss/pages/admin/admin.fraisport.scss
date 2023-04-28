@@ -1,0 +1,34 @@
+#admin-page-frais-port {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  .ajouter-typecat {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    .fil-ariane-item {
+      text-decoration: none;
+      color: $color-blue-admin;
+    }
+
+    .button {
+      button {
+        width: 100px;
+        color: white;
+      }
+    }
+  }
+  .table-content {
+    margin-top: 20px;
+
+    a {
+      color: $color-blue-admin;
+    }
+
+    .td-icones {
+      .icons {
+        margin: 8px;
+        color: grey;
+      }
+    }
+  }
+}

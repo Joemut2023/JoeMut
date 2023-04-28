@@ -6199,6 +6199,33 @@
   color: grey;
 }
 
+#admin-page-frais-port {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#admin-page-frais-port .ajouter-typecat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-frais-port .ajouter-typecat .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
+#admin-page-frais-port .ajouter-typecat .button button {
+  width: 100px;
+  color: white;
+}
+#admin-page-frais-port .table-content {
+  margin-top: 20px;
+}
+#admin-page-frais-port .table-content a {
+  color: #25b9d7;
+}
+#admin-page-frais-port .table-content .td-icones .icons {
+  margin: 8px;
+  color: grey;
+}
+
 #page-devis {
   width: 95%;
   margin: auto;

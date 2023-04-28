@@ -4,6 +4,7 @@ const loginRouter = require('./admin.connexion');
 const devisRouter = require('./admin.devis');
 const produitsRouter = require('./admin.produits');
 const categoriesRouter = require("./admin.categories");
+const fraisPortRouter = require("./admin.fraisport")
 const dashboardRouter = require('./admin.dashboard');
 const adminIsAuth = require("../../middleware/admin/admin.auth");
 const adminLayout = require("../../middleware/admin/admin.layout");
@@ -21,6 +22,7 @@ router.use("/dashboard", [adminLayout], dashboardRouter);
 router.use("/tailles/", [adminLayout], taillesRouter);
 router.use("/couleurs/", [adminLayout], CouleurRouter);
 router.use('/type-categories', [adminLayout], categoriesRouter);
+router.use('/frais-port', [adminLayout], fraisPortRouter)
 
 
 module.exports = router;
