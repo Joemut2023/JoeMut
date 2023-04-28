@@ -2,16 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { Type_categorie, Categorie } = require("../../models");
 const { PAGINATION_LIMIT } = require("../../helpers/utils_const");
+const Form = require("../../helpers/components/form");
 
 router.get("/", async (req, res) => {
 
     try {
-        const listeType = await Type_categorie.findAll({
-            // include: [{
-            //     model: Categorie,
-            //     where: { cat_id: Sequelize.col('tyc_id') }
-            // }]
-        });
+        const listeType = await Type_categorie.findAll();
 
         res.render("categories/index", {
             listeType,
@@ -25,8 +21,15 @@ router.get("/", async (req, res) => {
     }
 
 })
+router.get('/add', (req, res) => {
 
+    let formObj = new Form([{ element: 'input', type: 'text', value: '', name: 'tyc_libelle', label: 'nom de la catégorie', attributes: `data-id="${1}"` }]);
+    formObj.textarea({ element: 'textarea', type: 'text', value: '', name: 'tyc_libelle', label: 'description catégorie', attributes: `data-id="${2}"` });
 
+    res.render("categories/add", {
+        formObj
+    });
+})
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
@@ -54,5 +57,6 @@ router.get('/:id', async (req, res) => {
     }
 
 });
+
 
 module.exports = router

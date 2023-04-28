@@ -6199,6 +6199,34 @@
   color: grey;
 }
 
+#admin-page-frais-port {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: small;
+}
+#admin-page-frais-port .ajouter-typecat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+#admin-page-frais-port .ajouter-typecat .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
+#admin-page-frais-port .ajouter-typecat .button button {
+  width: 90px;
+  color: white;
+  font-size: small;
+}
+#admin-page-frais-port .table-content {
+  margin-top: 20px;
+}
+#admin-page-frais-port .table-content a {
+  color: #25b9d7;
+}
+#admin-page-frais-port .table-content .td-icones .icons {
+  color: grey;
+}
+
 #page-devis {
   width: 95%;
   margin: auto;
@@ -6633,6 +6661,14 @@ body {
 #admin-page-panier-detail div table tbody tr td {
   font-weight: 400;
   font-size: 0.8rem;
+}
+
+#admin-page-facture input[type=date] {
+  height: 30px;
+  width: 40%;
+}
+#admin-page-facture .btn-generer {
+  text-align: right;
 }
 
 /*# sourceMappingURL=main.css.map */
