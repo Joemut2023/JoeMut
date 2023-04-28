@@ -53,5 +53,12 @@ let nbrPages = Math.ceil(allPaniers.length / PAGINATION_LIMIT_ADMIN);
   } catch (error) {}
   
 });
+router.get('/:id',async function(req,res){
+
+  try {
+    return res.render("panier/detail");
+    
+  } catch (error) {}
+})
 
 module.exports = router;
