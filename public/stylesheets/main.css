@@ -6133,6 +6133,10 @@
   justify-content: space-between;
   margin-top: 50px;
 }
+#admin-page-categories .ajouter-typecat .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
 #admin-page-categories .ajouter-typecat .button button {
   width: 100px;
   color: white;
@@ -6155,6 +6159,13 @@
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
+}
+#admin-page-souscat .ajouter-typecat .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
+#admin-page-souscat .ajouter-typecat #cat {
+  font-size: 15px;
 }
 #admin-page-souscat .ajouter-typecat .button button {
   width: 100px;
