@@ -7,6 +7,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var modalDevis = new bootstrap.Modal(document.querySelector('#modal-devis'), {});
 var allModalToggler = document.querySelectorAll('.td-modal-container');
 var modalDevisBody = document.querySelector('#modal-devis .modal-body');
+var accordionsTriggers = document.querySelectorAll('.tr-id');
+accordionsTriggers.forEach(function (accordionTrigger) {
+  accordionTrigger.addEventListener('click', function (e) {
+    var id = parseInt(e.target.dataset.id);
+    var accordionElt = document.querySelector("#tr-accordion-".concat(id));
+    accordionElt.style.display === '' ? accordionElt.style.display = 'table-row' : accordionElt.style.display = '';
+    //accordionElt.style.display = 'flex'
+    console.log(accordionElt.style.display);
+  });
+});
 allModalToggler.forEach(function (modalToggler) {
   modalToggler.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {

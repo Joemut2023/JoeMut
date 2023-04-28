@@ -1,9 +1,27 @@
 #admin-page-devis{
+    font-size: 13px;
+    .bloc-recherche{
+        label{
+            font-size: 13px;
+        }
+        #devis-search-Form{
+            padding: 0;
+            .mb-2{
+                .form-control{
+                    height: 30px;
+                }
+            }
+        }
+    }
     .table-container{
         width: 100%;
         overflow-x: scroll;
         table{
-            .td-modal{
+            .tr-accordion{
+                display: none;
+                padding-left: 20px;
+            }
+            .td-modal,.tr-id{
                 padding: 5px;
                 cursor: pointer;
                 border-radius: 5px;
@@ -11,8 +29,12 @@
                 color: $color-white;
                 text-align: center;
                 position: relative;
+                
+            }
+            .td-modal{
                 left: 40%;
             }
+            
         }
     }
     #modal-devis{
@@ -26,7 +48,7 @@
                 margin-bottom: 25px;
                 .modalDevis-img{
                     width: 20%;
-                    height: 100px;
+                    height: 50px;
                     img{
                         width: 100%;
                         height: 100%;
@@ -35,7 +57,7 @@
                 }
                 .modalDevis-txt{
                     h2{
-                        font-size: 17px;
+                        font-size: 14px;
                     }
                 }
             }

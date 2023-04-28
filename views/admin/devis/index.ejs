@@ -2,14 +2,14 @@
     <div class="row bloc-recherche">
         <div class="container px-5 my-5">
             <h3>Rechercher un dévis</h3>
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form id="devis-search-Form" data-sb-form-api-token="API_TOKEN">
                 <div class="row">
                     <div class="form-group col-md-3">
-                        <div class="form-floating mb-2">
+                        <div class="mb-2">
                             <label class="form-label" for="reference">Référence</label>
                             <input class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
                         </div>
-                        <div class="form-floating mb-2">
+                        <div class="mb-2">
                             <label class="form-label" for="livraison">Livraison</label>
                             <input class="form-control" id="livraison" type="text" placeholder="Livraison" data-sb-validations="" />
                         </div>
@@ -19,17 +19,17 @@
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <div class="mb-2 form-floating">
+                        <div class="mb-2">
                             <label class="form-label" for="client">Nom</label>
                             <input class="form-control" id="client" type="text" placeholder="client" data-sb-validations="" />
                         </div>
-                        <div class="mb-2 form-floating">
+                        <div class="mb-2">
                             <label class="form-label" for="prenom">Prénom</label>
                             <input class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <div class="form-floating mb-2">
+                        <div class="mb-2">
                             <label class="form-label" for="refProduits">Réf produits</label>
                             <input class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
                         </div>
@@ -43,20 +43,25 @@
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <div class="form-floating mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="structure">Structure</label>
                             <input class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="mb-2">
                             <label class="form-label" for="total">Total</label>
                             <input class="form-control" id="total" type="text" placeholder="Total" data-sb-validations="" />
                         </div>
-                        <div class="form-floating mb-3">
-                            <label class="form-label" for="etat">Etat</label>
-                            <input class="form-control" id="etat" type="text" placeholder="Etat" data-sb-validations="" />
+                        <div class="mb-2">
+                          <label class="form-label" for="total"></label>
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>Etat</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
                         </div>
                     </div>
-                    <button class="btn text-white btn-info">Rechercher</button>
+                    <button class="btn text-white btn-info mt-2">Rechercher</button>
                 </div>
             </form>
         </div>
@@ -94,7 +99,7 @@
                                   id="flexCheckDefault"
                                 />
                             </td>
-                            <th><%= commande.commande.com_id %></th>
+                            <th><span class="tr-id" data-id="<%= commande.commande.com_id %>"><%= commande.commande.com_id %></span></th>
                             <td>Mark</td>
                             <td><%= commande.commande.Client.cli_prenom %></td>
                             <td><%= commande.commande.Client.cli_nom %></td>
@@ -139,6 +144,11 @@
                                   </div>
                                 </div>
                             </td>
+                        </tr>
+                        <tr class="tr-accordion" id="tr-accordion-<%= commande.commande.com_id %>">
+                          <td colspan="14">
+                            <p>gcg</p>
+                          </td>
                         </tr>
                     <% }) %>
                 <% } else { %>
