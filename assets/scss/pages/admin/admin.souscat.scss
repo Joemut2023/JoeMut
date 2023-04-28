@@ -5,6 +5,15 @@
     justify-content: space-between;
     margin-top: 50px;
 
+    .fil-ariane-item {
+      text-decoration: none;
+      color: $color-blue-admin;
+    }
+
+    #cat {
+      font-size: 15px;
+    }
+
     .button {
       button {
         width: 100px;
