@@ -1,7 +1,17 @@
 const modalDevis = new bootstrap.Modal(document.querySelector('#modal-devis'), {});
 let allModalToggler = document.querySelectorAll('.td-modal-container');
 const modalDevisBody = document.querySelector('#modal-devis .modal-body');
+const accordionsTriggers = document.querySelectorAll('.tr-id');
 
+accordionsTriggers.forEach(accordionTrigger=>{
+    accordionTrigger.addEventListener('click',(e)=>{
+        let id = parseInt(e.target.dataset.id);
+        let accordionElt = document.querySelector(`#tr-accordion-${id}`);
+        accordionElt.style.display === ''? accordionElt.style.display = 'table-row':accordionElt.style.display = ''; 
+        //accordionElt.style.display = 'flex'
+        console.log(accordionElt.style.display);
+    })
+})
 allModalToggler.forEach(modalToggler=>{
     modalToggler.addEventListener('click',async (e)=>{
         let commandeId = parseInt(e.target.dataset.commande);
@@ -24,4 +34,6 @@ allModalToggler.forEach(modalToggler=>{
         modalDevisBody.innerHTML = modalDevisHtml;
         modalDevis.show();
     });
-})
+});
+
+
