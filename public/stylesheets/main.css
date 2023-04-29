@@ -6476,6 +6476,15 @@ body {
 #admin-page-devis .table-container table .tr-accordion {
   display: none;
   padding-left: 20px;
+  animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 #admin-page-devis .table-container table .td-modal, #admin-page-devis .table-container table .tr-id {
   padding: 5px;

@@ -20,6 +20,11 @@
             .tr-accordion{
                 display: none;
                 padding-left: 20px;
+                animation: fadeIn 1s;
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
             }
             .td-modal,.tr-id{
                 padding: 5px;
