@@ -99,7 +99,7 @@
                                   id="flexCheckDefault"
                                 />
                             </td>
-                            <th><span class="tr-id" data-id="<%= commande.commande.com_id %>"><%= commande.commande.com_id %></span></th>
+                            <th><span class="tr-id" data-id="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.commande.com_id %></span></th>
                             <td>Mark</td>
                             <td><%= commande.commande.Client.cli_prenom %></td>
                             <td><%= commande.commande.Client.cli_nom %></td>
@@ -146,8 +146,10 @@
                             </td>
                         </tr>
                         <tr class="tr-accordion" id="tr-accordion-<%= commande.commande.com_id %>">
-                          <td colspan="14">
-                            <p>gcg</p>
+                          <td colspan="14" class="td-body">
+                            <div>
+                              
+                            </div>
                           </td>
                         </tr>
                     <% }) %>

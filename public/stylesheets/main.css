@@ -6478,6 +6478,9 @@ body {
   padding-left: 20px;
   animation: fadeIn 1s;
 }
+#admin-page-devis .table-container table .tr-accordion .td-body div {
+  width: 100%;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

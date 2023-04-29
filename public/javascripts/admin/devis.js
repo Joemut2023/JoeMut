@@ -9,29 +9,53 @@ var allModalToggler = document.querySelectorAll('.td-modal-container');
 var modalDevisBody = document.querySelector('#modal-devis .modal-body');
 var accordionsTriggers = document.querySelectorAll('.tr-id');
 accordionsTriggers.forEach(function (accordionTrigger) {
-  accordionTrigger.addEventListener('click', function (e) {
-    var id = parseInt(e.target.dataset.id);
-    var accordionElt = document.querySelector("#tr-accordion-".concat(id));
-    accordionElt.style.display === '' ? accordionElt.style.display = 'table-row' : accordionElt.style.display = '';
-    //accordionElt.style.display = 'flex'
-    console.log(accordionElt.style.display);
-  });
-});
-allModalToggler.forEach(function (modalToggler) {
-  modalToggler.addEventListener('click', /*#__PURE__*/function () {
+  accordionTrigger.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-      var commandeId, panierId, produits, modalDevisHtml;
+      var id, panierId, produits, accordionElt, tdBody, tdBodyHtml;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            commandeId = parseInt(e.target.dataset.commande);
+            id = parseInt(e.target.dataset.id);
             panierId = parseInt(e.target.dataset.panier);
             _context.next = 4;
             return axios("".concat(SITE_URL, "/admin/devis/").concat(panierId));
           case 4:
             produits = _context.sent;
+            accordionElt = document.querySelector("#tr-accordion-".concat(id));
+            tdBody = document.querySelector("#tr-accordion-".concat(id, " .td-body div"));
+            tdBodyHtml = "";
+            produits.data.forEach(function (pad) {
+              tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                </div>\n            ");
+            });
+            tdBody.innerHTML = tdBodyHtml;
+            accordionElt.style.display === '' ? accordionElt.style.display = 'table-row' : accordionElt.style.display = '';
+            // console.log(accordionElt.style.display);
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+});
+allModalToggler.forEach(function (modalToggler) {
+  modalToggler.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var commandeId, panierId, produits, modalDevisHtml;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            commandeId = parseInt(e.target.dataset.commande);
+            panierId = parseInt(e.target.dataset.panier);
+            _context2.next = 4;
+            return axios("".concat(SITE_URL, "/admin/devis/").concat(panierId));
+          case 4:
+            produits = _context2.sent;
             modalDevisHtml = "";
-            _context.next = 8;
+            _context2.next = 8;
             return produits.data.forEach(function (pad) {
               modalDevisHtml += /*html*/"\n                <div class=\"modalDevis-item\">\n                    <div class=\"modalDevis-img\">\n                        <img src=\"/images/produits/".concat(pad.Produit.Media[0].med_ressource, "\" alt=\"\"/>\n                    </div>\n                    <div class=\"modalDevis-txt\">\n                        <h2>").concat(pad.Produit.pro_libelle, "</h2>\n                        <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    </div>\n                </div>\n            ");
             });
@@ -40,12 +64,12 @@ allModalToggler.forEach(function (modalToggler) {
             modalDevis.show();
           case 10:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }));
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }());
 });

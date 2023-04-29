@@ -1,3 +1,4 @@
+
 #admin-page-devis{
     font-size: 13px;
     .bloc-recherche{
@@ -21,6 +22,11 @@
                 display: none;
                 padding-left: 20px;
                 animation: fadeIn 1s;
+                .td-body{
+                    div{
+                        width: 100%;
+                    }
+                }
                 @keyframes fadeIn {
                     from { opacity: 0; }
                     to { opacity: 1; }
