@@ -209,10 +209,22 @@
                 font-style: italic;
                 color: rgba(0, 0, 0, 0.6);
               }
+
+              .description{
+                .content{
+                  height: 120px;
+                }
+
+                .title-desc{
+                  margin-bottom: 10px;
+                }
+              }
             }
 
             .right {
+              margin-top: 20px;
               .quantity {
+                margin-bottom: 20px;
                 .title {
                   display: flex;
                   align-items: center;
@@ -236,6 +248,57 @@
                   margin-bottom: 10px;
                   input{
                     width: 40%;
+                  }
+                }
+
+                .param{
+                  span{
+                    font-size: 14px;
+
+                    strong{
+                      color: rgb(41, 144, 228) ;
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+
+              .price{
+
+                margin-top: 80px;
+                .title {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  color: rgba(0, 0, 0, 0.7);
+                  margin-bottom: 20px;
+
+                  h2 {
+                    margin-bottom: 0px;
+                    font-weight: 600;
+                    font-size: 25px;
+                  }
+
+                  span {
+                    margin-top: 3px;
+                    color: rgb(41, 144, 228);
+                  }
+                }
+
+                .price-inputs{
+                  margin-bottom: 15px;
+                  p{
+                    margin-bottom: 5px;
+                  }
+                }
+
+                .regle{
+                  p{
+                    margin-bottom: 5px;
+                  }
+
+                  select{
+                    margin-bottom: 10px;
                   }
                 }
 

@@ -6559,6 +6559,18 @@ body {
   font-style: italic;
   color: rgba(0, 0, 0, 0.6);
 }
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .content {
+  height: 120px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .title-desc {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right {
+  margin-top: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity {
+  margin-bottom: 20px;
+}
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .title {
   display: flex;
   align-items: center;
@@ -6585,6 +6597,44 @@ body {
   font-size: 14px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .param span strong {
+  color: rgb(41, 144, 228);
+  cursor: pointer;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price {
+  margin-top: 80px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .price-inputs {
+  margin-bottom: 15px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .price-inputs p {
+  margin-bottom: 5px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .regle p {
+  margin-bottom: 5px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .regle select {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .param span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .price .param span strong {
   color: rgb(41, 144, 228);
   cursor: pointer;
 }
