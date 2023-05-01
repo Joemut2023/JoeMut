@@ -4,6 +4,7 @@ var button1 = document.querySelector(".btn-tab-1");
 var button2 = document.querySelector(".btn-tab-2");
 var button3 = document.querySelector(".btn-tab-3");
 var button4 = document.querySelector(".btn-tab-4");
+var input_file = document.querySelector(".inputfile");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");

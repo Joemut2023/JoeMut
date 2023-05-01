@@ -46,7 +46,7 @@
 
   <div class="tabs-container row">
 
-    <div class="tabs-left col-md-8">
+    <div class="tabs">
       <nav>
         <div class="nav" id="nav-tab" role="tablist">
           <button class="nav-link btn-tab-1 active clicked" id="nav-essentiel-tab" data-bs-toggle="tab" data-bs-target="#nav-essentiel" type="button" role="tab" aria-controls="nav-essentiel" aria-selected="true">Essentiels</button>
@@ -58,20 +58,98 @@
 
       <div class="tab-content" id="nav-tabContent">
 
-        <div class="tab-pane fade show active" id="nav-essentiel" role="tabpanel" aria-labelledby="nav-home-tab">Essentiels</div>
+        <div class="tab-pane fade show active content-essentiel" id="nav-essentiel" role="tabpanel" aria-labelledby="nav-home-tab">
+
+         <div class="row img">
+           <div class="images col-md-8">
+            <input type="file" id="file" class="inputfile" />
+            <label for="file"><span><i class="fa-solid fa-camera"></i></span></label>
+            <p>Déposer vos images ici</p>
+            <p class="medium">ou selectionnez les fichiers</p>
+            <p class="taille">Taille recommandée de 800 x 800 pour le thème par défaut<br /> format JPG, GIF ou PNG</p>
+          </div>
+
+          <div class="right col-md-4">
+
+            <div class="decli">
+              <div class="title">
+                <h2>Déclinaisons</h2>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+
+              <div class="selects">
+                <div>
+                  <input type="radio" id="huey" name="drone" value="huey" checked>
+                  <label for="huey">produit simple</label>
+                </div>
+
+                <div>
+                  <input type="radio" id="dewey" name="drone" value="dewey">
+                  <label for="dewey">produit avec déclinaisons</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="ref">
+              <div class="title">
+                <h2>Réference</h2>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control"/>
+              </div>
+            </div>
+          </div>
+         </div>
+
+         <div class="row recap">
+          <div class="col-md-8 left">
+            <p class="title">Récapulatif</p>
+            <div class="content">
+              <p>le résume est une phrase qui décrit brièvement votre produit</p>
+              <p>Il apparait tout en haut de la fiche de votre boutique, dans les listes de produits, et 
+                dans les resultats des moteurs de recherche (d'ou son importance pour le SEO) pour fournir 
+                davantage informations sur votre produit, utilisez l'onglet "Description"
+              </p>
+              <!-- <textarea name="" id="" cols="30" rows="10">le résume est une phrase qui décrit brièvement votre produit<br/>
+              Il apparait tout en haut de la fiche de votre boutique, dans les listes de produits, et 
+                dans les resultats des moteurs de recherche (d'ou son importance pour le SEO) pour fournir 
+                davantage informations sur votre produit, utilisez l'onglet "Description"</textarea> -->
+            </div>
+            <p class="caractere">1 de 800 caractères autorisées</p>
+          </div>
+          <div class="col-md-4 right">
+            <div class="quantity">
+              <div class="title">
+                <h2>Quantité</h2>
+                 <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" value="0"/>
+              </div>
+              <div class="param">
+                <span>Paramètres avancés dans </span>
+                <span><strong><i class="fa-solid fa-arrow-up-right-from-square"></i> Quantites</strong></span>
+              </div>
+            </div>
+
+          </div>
+         </div>
+
+        </div>
 
 
 
-        <div class="tab-pane fade" id="nav-quantite" role="tabpanel" aria-labelledby="nav-profile-tab">Quantite</div>
+        <div class="tab-pane fade content-quantite" id="nav-quantite" role="tabpanel" aria-labelledby="nav-profile-tab">Quantite</div>
 
-        <div class="tab-pane fade" id="nav-livraison" role="tabpanel" aria-labelledby="nav-contact-tab">Livraison</div>
+        <div class="tab-pane fade content-livraison" id="nav-livraison" role="tabpanel" aria-labelledby="nav-contact-tab">Livraison</div>
 
-        <div class="tab-pane fade" id="nav-prix" role="tabpanel" aria-labelledby="nav-contact-tab">Prix</div>
+        <div class="tab-pane fade content-prix" id="nav-prix" role="tabpanel" aria-labelledby="nav-contact-tab">Prix</div>
       </div>
 
     </div>
 
-    <div class="tabs-right col-md-4"></div>
+    <!-- <div class="tabs-right col-md-4"></div> -->
 
   </div>
 </div>

@@ -6440,15 +6440,153 @@ body {
 #page-admin-ajoutProduit .tabs-container {
   margin-top: 30px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav {
+#page-admin-ajoutProduit .tabs-container .tabs nav .nav {
   padding: 0px 20px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav button {
+#page-admin-ajoutProduit .tabs-container .tabs nav .nav button {
   color: gray;
   margin-right: 30px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs-left nav .nav .clicked {
+#page-admin-ajoutProduit .tabs-container .tabs nav .nav .clicked {
   border-top: 2px solid rgb(204, 67, 67);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content {
+  padding: 15px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel {
+  width: 100%;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img {
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images:hover {
+  border: 1px solid rgba(204, 67, 67, 0.4);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images .inputfile {
+  display: none;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images span {
+  font-size: 50px;
+  color: rgba(0, 0, 0, 0.2);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images p {
+  font-size: 15px;
+  margin-bottom: 0px;
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images .medium {
+  font-weight: 600;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .images .taille {
+  font-style: italic;
+  text-align: center;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right {
+  padding: 0px 20px;
+  margin-top: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .decli {
+  margin-bottom: 30px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .decli .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .decli .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .decli .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .decli .selects {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .title {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content {
+  padding: 20px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 10px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .caractere {
+  text-align: right;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .form-group {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .form-group input {
+  width: 40%;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .param span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .right .quantity .param span strong {
+  color: rgb(41, 144, 228);
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */
