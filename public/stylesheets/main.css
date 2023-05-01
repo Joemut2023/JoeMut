@@ -6756,5 +6756,21 @@ body {
   font-weight: 600;
   font-size: 25px;
 }
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
+  margin: 10px 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .add-cat button span {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .add-cat button:hover span {
+  color: white !important;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .footer-product .title {
+  margin: 10px 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
 
 /*# sourceMappingURL=main.css.map */

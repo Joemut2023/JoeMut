@@ -469,6 +469,39 @@
               }
             }
           }
+
+          .product{
+
+            .left{
+              .produit{
+                .title{
+                  margin: 10px 0px;
+                  font-weight: 600;
+                  font-size: 20px;
+                }
+
+                .add-cat {
+                button span {
+                  color: rgb(41, 144, 228);
+                }
+
+                button {
+                  &:hover span {
+                    color: white !important;
+                  }
+                }
+              }
+              }
+
+              .footer-product{
+                .title{
+                  margin: 10px 0px;
+                  font-weight: 600;
+                  font-size: 20px;
+                }
+              }
+            }
+          }
         }
       }
     }
