@@ -210,12 +210,12 @@
                 color: rgba(0, 0, 0, 0.6);
               }
 
-              .description{
-                .content{
+              .description {
+                .content {
                   height: 120px;
                 }
 
-                .title-desc{
+                .title-desc {
                   margin-bottom: 10px;
                 }
               }
@@ -244,27 +244,26 @@
                   }
                 }
 
-                .form-group{
+                .form-group {
                   margin-bottom: 10px;
-                  input{
+                  input {
                     width: 40%;
                   }
                 }
 
-                .param{
-                  span{
+                .param {
+                  span {
                     font-size: 14px;
 
-                    strong{
-                      color: rgb(41, 144, 228) ;
+                    strong {
+                      color: rgb(41, 144, 228);
                       cursor: pointer;
                     }
                   }
                 }
               }
 
-              .price{
-
+              .price {
                 margin-top: 80px;
                 .title {
                   display: flex;
@@ -285,33 +284,188 @@
                   }
                 }
 
-                .price-inputs{
+                .price-inputs {
                   margin-bottom: 15px;
-                  p{
+                  p {
                     margin-bottom: 5px;
                   }
                 }
 
-                .regle{
-                  p{
+                .regle {
+                  p {
                     margin-bottom: 5px;
                   }
 
-                  select{
+                  select {
                     margin-bottom: 10px;
                   }
                 }
 
-                .param{
-                  span{
+                .param {
+                  span {
                     font-size: 14px;
 
-                    strong{
-                      color: rgb(41, 144, 228) ;
+                    strong {
+                      color: rgb(41, 144, 228);
                       cursor: pointer;
                     }
                   }
                 }
+              }
+            }
+          }
+
+          .caracteristique {
+            margin-top: 20px;
+            .left {
+              .title {
+                margin: 15px 0px;
+                font-weight: 600;
+                font-size: 20px;
+              }
+              .line {
+                margin-bottom: 15px;
+                div p {
+                  margin-bottom: 10px;
+                  color: rgba(0, 0, 0, 0.6);
+                }
+
+                .person {
+                  .form-group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    input {
+                      width: 80%;
+                    }
+
+                    span {
+                      color: rgba(0, 0, 0, 0.6);
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+
+              .add-cat {
+                button span {
+                  color: rgb(41, 144, 228);
+                }
+
+                button {
+                  &:hover span {
+                    color: white !important;
+                  }
+                }
+              }
+
+              .marque {
+                margin-top: 50px;
+
+                .choice {
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  select {
+                    max-width: 40%;
+                  }
+
+                  span {
+                    color: rgba(0, 0, 0, 0.6);
+                  }
+                }
+              }
+            }
+
+            .right {
+              margin-top: 20px;
+              .categories {
+                
+                .title {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  color: rgba(0, 0, 0, 0.7);
+                  margin-bottom: 10px;
+
+                  h2 {
+                    margin-bottom: 0px;
+                    font-weight: 600;
+                    font-size: 25px;
+                  }
+
+                  span {
+                    margin-top: 3px;
+                    color: rgb(41, 144, 228);
+                  }
+                }
+
+                .content{
+                  border: 1px solid rgba(0, 0, 0, 0.2);
+                  padding: 15px 15px 30px 15px;
+
+                  .tit-cat{
+                    margin: 10px 0px;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                  }
+
+                  .accueil{
+                    padding: 10px;
+                    margin: 10px 0px;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+
+                    .button{
+                      padding: 5px 10px;
+                      background: rgb(41, 144, 228);
+                      border: none;
+                      color: white;
+                      border-radius: 5px;
+
+                      span{
+                        color: black;
+                        margin-left: 10px;
+                        cursor: pointer;
+                      }
+                    }
+                  }
+
+                  .deployer{
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                    margin: 15px 0px;
+                    display: flex;
+                    span{
+                      font-size: 14px;
+                    }
+
+                    .title{
+                      margin-left: 10px;
+                    }
+                    
+                  }
+
+                  .cat-prin{
+
+                    div{
+                      display: flex;
+                      gap: 10px;
+
+                      span{
+                        font-size: 14px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .add-cat{
+                margin-top: 20px;
+                .title h2{
+                   margin-bottom: 0px;
+                   font-weight: 600;
+                   font-size: 25px;
+                }
+
               }
             }
           }

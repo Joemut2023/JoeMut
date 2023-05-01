@@ -6638,5 +6638,123 @@ body {
   color: rgb(41, 144, 228);
   cursor: pointer;
 }
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique {
+  margin-top: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title {
+  margin: 15px 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .line {
+  margin-bottom: 15px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .line div p {
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .line .person .form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .line .person .form-group input {
+  width: 80%;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .line .person .form-group span {
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .add-cat button span {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .add-cat button:hover span {
+  color: white !important;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .marque {
+  margin-top: 50px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .marque .choice {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .marque .choice select {
+  max-width: 40%;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .marque .choice span {
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right {
+  margin-top: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 15px 15px 30px 15px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .tit-cat {
+  margin: 10px 0px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .accueil {
+  padding: 10px;
+  margin: 10px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .accueil .button {
+  padding: 5px 10px;
+  background: rgb(41, 144, 228);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .accueil .button span {
+  color: black;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 15px 0px;
+  display: flex;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer .title {
+  margin-left: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .cat-prin div {
+  display: flex;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .cat-prin div span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .add-cat {
+  margin-top: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .add-cat .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
 
 /*# sourceMappingURL=main.css.map */
