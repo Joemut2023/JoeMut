@@ -8,8 +8,6 @@ router.get("/", async (req, res) => {
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   try {
-    // const url = { SITE_URL };
-    // console.log(url, "site web");
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
