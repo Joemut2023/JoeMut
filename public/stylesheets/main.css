@@ -6561,6 +6561,8 @@ body {
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .content {
   height: 120px;
+  width: 100%;
+  outline: none;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .title-desc {
   margin-bottom: 10px;

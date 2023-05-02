@@ -182,7 +182,9 @@
                   <span><i class="fa-solid fa-bars-staggered"></i></span>
                   Modifier avec creative Elements
                 </button>
-                <div class="content"></div>
+                <div>
+                  <textarea class="content"></textarea>
+                </div>
                 <p class="caractere">0 de 21844 caractères autorisées</p>
               </div>
             </div>
@@ -266,42 +268,54 @@
           <div class="row caracteristique">
             <div class="left col-md-8">
               <p class="title">Caracteristiques</p>
-              <div class="row line">
-                <div class="col-md-4">
-                  <p>Caracteristique</p>
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Choisissez une caracteristique</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+              <div class="lines">
+                <div class="titles row">
+                  <div class="col-md-4"><p>Caracteristique</p></div>
+                  <div class="col-md-4"> <p>Valeur predefinie</p></div>
+                  <div class="col-md-4"> <p>Ou valeur personnalisée</p></div>
                 </div>
-                <div class="col-md-4">
-                  <p>Valeur predefinie</p>
-                  <div class="form-group has-feedback has-feedback-left">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Choisissez une valeur"
-                    />
+                <div class="row line">
+                  <div class="col-md-4">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Choisissez une caracteristique</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
                   </div>
-                </div>
-                <div class="col-md-4 person">
-                  <p>Ou valeur personnalisée</p>
-                  <div class="form-group">
-                    <input type="text" class="form-control" />
-                    <span class="delete col-md-1">
-                      <i class="fa-solid fa-trash"></i>
-                    </span>
+                  <div class="col-md-4">
+                    <div class="form-group has-feedback has-feedback-left">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Choisissez une valeur"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4 person">
+                    <div class="form-group">
+                      <input type="text" class="form-control" />
+                      <span class="delete col-md-1">
+                        <i class="fa-solid fa-trash"></i>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="add-cat">
-                <button type="button" class="btn btn-outline-secondary"><span><i class="fa-solid fa-circle-plus"></i> Ajouter une caracteristique</span></button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-add-caracteristic"
+                >
+                  <span
+                    ><i class="fa-solid fa-circle-plus"></i> Ajouter une
+                    caracteristique</span
+                  >
+                </button>
               </div>
 
               <div class="marque">
@@ -319,7 +333,6 @@
                   <span> <i class="fa-solid fa-trash"></i></span>
                 </div>
               </div>
-
             </div>
 
             <div class="right col-md-4">
@@ -331,11 +344,17 @@
 
                 <div class="content">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Rechercher des Catégories" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Rechercher des Catégories"
+                    />
                   </div>
                   <p class="tit-cat">catégoties associées</p>
                   <div class="accueil">
-                    <span class="button">Accueil <span><i class="fa-solid fa-xmark"></i></span></span>
+                    <span class="button"
+                      >Accueil <span><i class="fa-solid fa-xmark"></i></span
+                    ></span>
                   </div>
                   <div class="deployer">
                     <span><i class="fa-solid fa-chevron-down"></i></span>
@@ -346,8 +365,16 @@
                     <div>
                       <span><i class="fa-solid fa-chevron-right"></i></span>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">ACCUEIL</label>
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                          checked
+                        />
+                        <label class="form-check-label" for="flexCheckChecked"
+                          >ACCUEIL</label
+                        >
                       </div>
                     </div>
                   </div>
@@ -357,10 +384,14 @@
                   <div class="title">
                     <h2>Créer une catégorie</h2>
                   </div>
-                   <button type="button" class="btn btn-outline-secondary"><span><i class="fa-solid fa-circle-plus"></i> Créer une catégorie</span></button>
+                  <button type="button" class="btn btn-outline-secondary">
+                    <span
+                      ><i class="fa-solid fa-circle-plus"></i> Créer une
+                      catégorie</span
+                    >
+                  </button>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -369,8 +400,13 @@
               <div class="produit">
                 <p class="title">Produit associé</p>
                 <div class="add-cat">
-                <button type="button" class="btn btn-outline-secondary"><span><i class="fa-solid fa-circle-plus"></i> Ajouter un produit associé</span></button>
-              </div>
+                  <button type="button" class="btn btn-outline-secondary">
+                    <span
+                      ><i class="fa-solid fa-circle-plus"></i> Ajouter un
+                      produit associé</span
+                    >
+                  </button>
+                </div>
               </div>
 
               <div class="footer-product">
