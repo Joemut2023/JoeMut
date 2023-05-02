@@ -7,7 +7,6 @@ const input_file = document.querySelector(".inputfile");
 
 const lines = document.querySelector(".lines");
 const btn_add = document.querySelector(".btn-add-caracteristic");
-const btns_delete = document.querySelectorAll(".delete");
 
 console.log("buttons ", btns_delete);
 
@@ -80,13 +79,15 @@ function appendLine() {
 }
 
 btn_add.addEventListener("click", function () {
-  // e.preventDefault();
   appendLine();
-  console.log("buttons", btns_delete)
+  const btns_delete = document.querySelectorAll(".delete");
+  console.log("mon button", btns_delete)
+ 
 });
 
 btns_delete.forEach((element) => {
-  element.addEventListener("click", function () {
+  element.addEventListener("click", function (e) {
+    e.preventDefault()
     console.log("BONJOUR ");
   });
 });
