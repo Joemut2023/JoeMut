@@ -1,4 +1,5 @@
 #admin-page-viewDevis{
+    padding-bottom: 50px;
     .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty,.CodeMirror-code{
         background-color: white;
     }
@@ -161,6 +162,20 @@
                     
                 }
             }
+            .commande-tabs{
+                nav{
+                    .nav.nav-tabs{
+                        .nav-link.active{
+                            border: none;
+                            background-color: $color-white;
+                            border-top: solid 5px $color-blue-admin;
+                            border-radius: 0;
+
+                        }
+                    }
+                }
+            }
         }
     }
+    
 }

@@ -7143,6 +7143,7 @@ body {
 }
 
 #admin-page-viewDevis {
+  padding-bottom: 50px;
   font-size: 14px;
 }
 #admin-page-viewDevis .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty, #admin-page-viewDevis .CodeMirror-code {
@@ -7293,6 +7294,12 @@ body {
   justify-content: space-between;
   align-items: baseline;
   align-content: flex-start;
+}
+#admin-page-viewDevis .content .right .commande-tabs nav .nav.nav-tabs .nav-link.active {
+  border: none;
+  background-color: #fff;
+  border-top: solid 5px #25b9d7;
+  border-radius: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
