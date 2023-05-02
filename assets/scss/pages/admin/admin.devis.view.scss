@@ -1,4 +1,7 @@
 #admin-page-viewDevis{
+    .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty,.CodeMirror-code{
+        background-color: white;
+    }
     font-size: 14px;
     h2{
         font-size: 14px;
@@ -110,6 +113,7 @@
         .right{
             width: 65%;
             .produit-list{
+                margin-bottom: 40px;
                 .produit-list-title{
                     padding: 20px;
                     border-bottom: solid 1px gray;
@@ -145,6 +149,16 @@
                     flex-wrap: wrap;
                     gap: 30px;
                     padding: 20px;
+                }
+            }
+            .devis-note{
+                .devis-note-form-action{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    align-content: flex-start;
+                    
                 }
             }
         }

@@ -25,7 +25,7 @@
             <option value="3">Three</option>
         </select>
         <button type="button" class="btn btn-secondary shadow">Mettre à jour l'état</button>
-        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le dévis</button>
+        <button type="button" class="btn     shadow"><i class="fa-solid fa-print"></i> Imprimer le dévis</button>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i> Envoyer le dévis</button>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le bon d'essayage</button>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
@@ -194,6 +194,19 @@
                     </div>
                 </div>
             </div>
+            <div class="devis-note">
+                <h2>Note de devis</h2>
+                <form action="">
+                    <div class="mb-3">
+                        <textarea class="simplemde" id="devis-note-textarea" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="devis-note-form-action">
+                        <p>Afficher cette note de commande sur la facture <input type="checkbox" name="" id=""></p>
+                        <button class="btn btn-light">Sauver</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<script src="/javascripts/admin/devis.view.js"></script>

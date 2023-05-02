@@ -7145,6 +7145,9 @@ body {
 #admin-page-viewDevis {
   font-size: 14px;
 }
+#admin-page-viewDevis .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty, #admin-page-viewDevis .CodeMirror-code {
+  background-color: white;
+}
 #admin-page-viewDevis h2 {
   font-size: 14px;
 }
@@ -7246,6 +7249,9 @@ body {
 #admin-page-viewDevis .content .right {
   width: 65%;
 }
+#admin-page-viewDevis .content .right .produit-list {
+  margin-bottom: 40px;
+}
 #admin-page-viewDevis .content .right .produit-list .produit-list-title {
   padding: 20px;
   border-bottom: solid 1px gray;
@@ -7280,6 +7286,13 @@ body {
   flex-wrap: wrap;
   gap: 30px;
   padding: 20px;
+}
+#admin-page-viewDevis .content .right .devis-note .devis-note-form-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: flex-start;
 }
 
 /*# sourceMappingURL=main.css.map */
