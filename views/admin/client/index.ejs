@@ -15,7 +15,8 @@
       </tr>
     </thead>
     <tbody>
-      <% clients.forEach(element => { %>
+      <% if ((typeof clients !== 'undefined') && clients.length > 0) { %> <%
+      clients.forEach(element => { %>
       <tr>
         <td scope="row">
           <input
@@ -45,7 +46,11 @@
 
         <td><%= element.cli_inscription %></td>
       </tr>
-      <% }) %>
+      <% }) %> <% }else { %>
+      <div class="alert alert-primary" role="alert">
+        Il n'y a aucun client dans votre base des données pour l'instant.
+      </div>
+      <% } %>
     </tbody>
   </table>
   <div class="cat-pagination">

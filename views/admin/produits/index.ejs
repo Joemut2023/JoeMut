@@ -16,7 +16,8 @@
       </tr>
     </thead>
     <tbody>
-      <% produits.forEach(element => { %>
+      <% if ((typeof produits !== 'undefined') && produits.length > 0) { %> <%
+      produits.forEach(element => { %>
       <tr>
         <td scope="row">
           <input
@@ -78,7 +79,11 @@
           </div>
         </td>
       </tr>
-      <% }) %>
+      <% }) %> <% }else { %>
+      <div class="alert alert-primary" role="alert">
+        Il n'y a aucun coproduitmande dans votre base des données pour l'instant.
+      </div>
+      <% } %>
     </tbody>
   </table>
   <div class="cat-pagination">

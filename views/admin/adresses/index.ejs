@@ -17,57 +17,63 @@
       </tr>
     </thead>
     <tbody>
-      <% adresses.forEach(element => { %>
-      <tr>
-        <td scope="row">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </td>
-        <th scope="row"><%= element.adr_id %></th>
-        <td><%= element.adr_nom %></td>
-        <td><%= element.adr_prenom %></td>
-        <td><%= element.adr_adresse %></td>
-        <td><%= element.adr_cp %></td>
-        <td><%= element.adr_ville %></td>
-        <td><%= element.adr_pays %></td>
-        <td>
-          <div class="d-flex gap-4">
-            <i class="fa-solid fa-pen"></i>
-            <div class="dropdown">
-              <i
-                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              ></i>
-
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
-                  >
-                </li>
-
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-trash"></i> Supprimer</a
-                  >
-                </li>
-              </ul>
+      <% if ((typeof produits !== 'undefined') && produits.length > 0) { %>
+        <% adresses.forEach(element => { %>
+        <tr>
+          <td scope="row">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </td>
+          <th scope="row"><%= element.adr_id %></th>
+          <td><%= element.adr_nom %></td>
+          <td><%= element.adr_prenom %></td>
+          <td><%= element.adr_adresse %></td>
+          <td><%= element.adr_cp %></td>
+          <td><%= element.adr_ville %></td>
+          <td><%= element.adr_pays %></td>
+          <td>
+            <div class="d-flex gap-4">
+              <i class="fa-solid fa-pen"></i>
+              <div class="dropdown">
+                <i
+                  class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                ></i>
+  
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                    >
+                  </li>
+  
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><i class="fa-solid fa-trash"></i> Supprimer</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
+          </td>
+        </tr>
+        <% }) %>
+        <% }else { %>
+          <div class="alert alert-primary" role="alert">
+            Il n'y a aucune adresse dans votre base des données pour l'instant.
           </div>
-        </td>
-      </tr>
-      <% }) %>
+          <% } %>
     </tbody>
   </table>
   <div class="cat-pagination">
