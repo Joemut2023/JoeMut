@@ -18,8 +18,8 @@ body {
   flex-direction: row;
   justify-content: center;
   gap: 12%;
-  height: 10vh;
-  padding-top: 2vh;
+  height: 6vh;
+  padding-top: 1vh;
   color: #fff;
   font-weight: 300;
 }
