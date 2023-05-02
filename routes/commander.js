@@ -7,7 +7,8 @@ const {
   Commande,
   Panier_detail,
   Autre_frais,
-  Essayage
+  Essayage,
+  Client,
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
@@ -60,6 +61,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
+
+  
   let { frais, adresse, commande,essayages } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
@@ -69,6 +72,7 @@ router.post("/", async (req, res) => {
     let adress_item = await Adresse.findByPk(parseInt(adresse));
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
+    const user = await Client.findOne({ where: { cli_id: userId } });
     let today = new Date();
     const sum = await Autre_frais.sum('auf_ttc', {
       where: {
@@ -94,7 +98,10 @@ router.post("/", async (req, res) => {
       com_ht: somme_ht,
       com_ttc: somme_ttc,
       com_port: frais.frais_port,
-      com_frais:sum
+      com_frais: sum,
+      com_num: ` ${user.cli_nom.substring(0,3).toUpperCase()}-${
+        panier.pan_id
+      }-${new Date().getFullYear()}`,
     });
     for (let i = 0; i < essayages.length; i++) {
      if (essayages[i] !== '') {
