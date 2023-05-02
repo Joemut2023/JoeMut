@@ -1,0 +1,73 @@
+<%- include('../blocs/adresseHeader') %>
+<div id="admin-page-adresse" class="mt-4 border rounded-top">
+  <h6 class="p-3">Adresse 191</h6>
+  <hr />
+  <table class="p-3 table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">ID</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Code postal</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Pays</th>
+        <th scope="col">Adresse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% adresses.forEach(element => { %>
+      <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
+        <th scope="row"><%= element.adr_id %></th>
+        <td><%= element.adr_nom %></td>
+        <td><%= element.adr_prenom %></td>
+        <td><%= element.adr_adresse %></td>
+        <td><%= element.adr_cp %></td>
+        <td><%= element.adr_ville %></td>
+        <td><%= element.adr_pays %></td>
+        <td>
+          <div class="d-flex gap-4">
+            <i class="fa-solid fa-pen"></i>
+            <div class="dropdown">
+              <i
+                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                  >
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-trash"></i> Supprimer</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

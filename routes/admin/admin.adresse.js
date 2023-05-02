@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { Facture } = require("../../models");
+const { Adresse } = require("../../models");
 router.get("/", async (req, res) => {
   try {
-    res.render("adresses/index", {});
+    const adresses = await Adresse.findAll();
+    res.render("adresses/index", { adresses });
   } catch (error) {
     res.status(500).render("factures/index", {
       error: true,
