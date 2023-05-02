@@ -38,8 +38,9 @@ router.post("/", async (req, res, next) => {
       tit_id: credentials.tit_id,
       cli_nom: credentials.cli_nom,
       cli_prenom: credentials.cli_prenom,
-      cli_mail : credentials.cli_mail,
+      cli_mail: credentials.cli_mail,
       cli_pwd: pwdhashed,
+      cli_inscription: new Date(new Date().setDate(new Date().getDate())),
     });
 
     //create for client panier
