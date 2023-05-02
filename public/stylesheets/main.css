@@ -7255,6 +7255,7 @@ body {
 }
 
 #admin-page-viewDevis {
+  padding-bottom: 50px;
   font-size: 14px;
 }
 #admin-page-viewDevis .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty, #admin-page-viewDevis .CodeMirror-code {
@@ -7405,6 +7406,44 @@ body {
   justify-content: space-between;
   align-items: baseline;
   align-content: flex-start;
+}
+#admin-page-viewDevis .content .right .commande-tabs nav .nav.nav-tabs .nav-link {
+  color: #232323;
+}
+#admin-page-viewDevis .content .right .commande-tabs nav .nav.nav-tabs .nav-link.active {
+  border: none;
+  background-color: #fff;
+  border-top: solid 5px #25b9d7;
+  border-radius: 0;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat {
+  padding: 20px;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-items {
+  width: 100%;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-items .nav-etat-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: solid 1px #7a7a7a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-items .nav-etat-item .etat-action {
+  cursor: pointer;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5%;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-actions .select-etat {
+  width: 40%;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-actions .btn {
+  width: 30%;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,4 +1,5 @@
 #admin-page-viewDevis{
+    padding-bottom: 50px;
     .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty,.CodeMirror-code{
         background-color: white;
     }
@@ -161,6 +162,52 @@
                     
                 }
             }
+            .commande-tabs{
+                nav{
+                    .nav.nav-tabs{
+                        .nav-link{
+                            color: $color-black;
+                        }
+                        .nav-link.active{
+                            border: none;
+                            background-color: $color-white;
+                            border-top: solid 5px $color-blue-admin;
+                            border-radius: 0;
+
+                        }
+                    }
+                }
+                #nav-etat{
+                    padding: 20px;
+                    .nav-etat-items{
+                        width: 100%;
+                        .nav-etat-item{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            border-top: solid 1px $color-secondary;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            .etat-action{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .nav-etat-actions{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        gap: 5%;
+                        .select-etat{
+                            width: 40%;
+                        }
+                        .btn{
+                            width: 30%;
+                        }
+                    }
+                }
+            }
         }
     }
+    
 }
