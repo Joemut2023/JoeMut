@@ -1,0 +1,51 @@
+<%- include('../blocs/clientHeader') %>
+<div class="pt-4">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse e-mail</th>
+        <th scope="col">Active</th>
+        <th scope="col">Offres partenaires</th>
+        <th scope="col">Inscription</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% clients.forEach(element => { %>
+      <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
+        <th scope="row"><%= element.cli_id %></th>
+        <td><%= element.Titre.tit_libelle %></td>
+        <td><%= element.cli_prenom %></td>
+        <td><%= element.cli_nom %></td>
+        <td><%= element.cli_mail %></td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" value="" <%=
+            element.cli_activation ? "checked" :"" %> />
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" value="" <%=
+            element.cli_partenaire ? "checked" :"" %> />
+          </div>
+        </td>
+
+        <td><%= element.cli_inscription %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
