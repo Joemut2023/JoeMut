@@ -32,7 +32,11 @@ module.exports = async (commandeId,callback)=>{
         });
         let essayage = await Essayage.findAll({where:{com_id:commande.com_id}});
         let modeLivraison = await Frais_port.findOne({where:{frp_id:commande.frp_id}})
-    
+        
+
+        //create ref for a command
+        const refCommande = ` ${commande.Client.cli_nom.substring(0,3).toUpperCase()}-${commande.com_id}-${new Date().getFullYear()}`;
+         
         const panierDetails = await Panier_detail.findAll({
           include: [
             {
@@ -109,7 +113,8 @@ module.exports = async (commandeId,callback)=>{
             sous_totalCmd,
             produitsPopulaires,
             totalCmd,
-            quantiteOfEachProduct
+            quantiteOfEachProduct,
+            refCommande
           );
 
     }catch (error) {

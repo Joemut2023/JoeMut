@@ -41,7 +41,8 @@ router.get("/", async (req, res, next) => {
         sous_totalCmd,
         produitsPopulaires,
         totalCmd,
-        quantiteOfEachProduct
+        quantiteOfEachProduct,
+        refCommande
       ) => {
         await send_mail_confirmation(
           res,
@@ -66,6 +67,7 @@ router.get("/", async (req, res, next) => {
           produitsPopulaires: produitsPopulaires,
           totalCmd: totalCmd,
           quantiteOfEachProduct: quantiteOfEachProduct,
+          refCommande,
         });
       }
     );
