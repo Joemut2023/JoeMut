@@ -6702,8 +6702,10 @@ body {
 }
 
 #page-admin-ajoutProduit {
-  padding: 20px 0px;
+  width: 100%;
+  padding-top: 20px;
   font-family: "Manrope", sans-serif;
+  position: relative;
 }
 #page-admin-ajoutProduit .product-container .bloc-left .left div input {
   font-size: 20px;
@@ -7087,6 +7089,20 @@ body {
   margin: 10px 0px;
   font-weight: 600;
   font-size: 20px;
+}
+#page-admin-ajoutProduit .navbar {
+  width: 100%;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background: white;
+  box-shadow: -1px -9px 12px -14px rgb(66, 68, 90);
+}
+#page-admin-ajoutProduit .navbar .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=main.css.map */

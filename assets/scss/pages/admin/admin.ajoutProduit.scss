@@ -1,6 +1,8 @@
 #page-admin-ajoutProduit {
-  padding: 20px 0px;
+  width: 100%;
+  padding-top: 20px;
   font-family: $typograohie;
+  position: relative;
 
   .product-container {
     .bloc-left {
@@ -382,7 +384,6 @@
             .right {
               margin-top: 20px;
               .categories {
-                
                 .title {
                   display: flex;
                   align-items: center;
@@ -402,29 +403,29 @@
                   }
                 }
 
-                .content{
+                .content {
                   border: 1px solid rgba(0, 0, 0, 0.2);
                   padding: 15px 15px 30px 15px;
 
-                  .tit-cat{
+                  .tit-cat {
                     margin: 10px 0px;
                     text-transform: uppercase;
                     font-size: 14px;
                   }
 
-                  .accueil{
+                  .accueil {
                     padding: 10px;
                     margin: 10px 0px;
                     border: 1px solid rgba(0, 0, 0, 0.2);
 
-                    .button{
+                    .button {
                       padding: 5px 10px;
                       background: rgb(41, 144, 228);
                       border: none;
                       color: white;
                       border-radius: 5px;
 
-                      span{
+                      span {
                         color: black;
                         margin-left: 10px;
                         cursor: pointer;
@@ -432,27 +433,25 @@
                     }
                   }
 
-                  .deployer{
+                  .deployer {
                     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                     margin: 15px 0px;
                     display: flex;
-                    span{
+                    span {
                       font-size: 14px;
                     }
 
-                    .title{
+                    .title {
                       margin-left: 10px;
                     }
-                    
                   }
 
-                  .cat-prin{
-
-                    div{
+                  .cat-prin {
+                    div {
                       display: flex;
                       gap: 10px;
 
-                      span{
+                      span {
                         font-size: 14px;
                       }
                     }
@@ -460,43 +459,41 @@
                 }
               }
 
-              .add-cat{
+              .add-cat {
                 margin-top: 20px;
-                .title h2{
-                   margin-bottom: 0px;
-                   font-weight: 600;
-                   font-size: 25px;
+                .title h2 {
+                  margin-bottom: 0px;
+                  font-weight: 600;
+                  font-size: 25px;
                 }
-
               }
             }
           }
 
-          .product{
-
-            .left{
-              .produit{
-                .title{
+          .product {
+            .left {
+              .produit {
+                .title {
                   margin: 10px 0px;
                   font-weight: 600;
                   font-size: 20px;
                 }
 
                 .add-cat {
-                button span {
-                  color: rgb(41, 144, 228);
-                }
+                  button span {
+                    color: rgb(41, 144, 228);
+                  }
 
-                button {
-                  &:hover span {
-                    color: white !important;
+                  button {
+                    &:hover span {
+                      color: white !important;
+                    }
                   }
                 }
               }
-              }
 
-              .footer-product{
-                .title{
+              .footer-product {
+                .title {
                   margin: 10px 0px;
                   font-weight: 600;
                   font-size: 20px;
@@ -506,6 +503,23 @@
           }
         }
       }
+    }
+  }
+
+  .navbar{
+    width: 100%;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background: white;
+    box-shadow: -1px -9px 12px -14px rgba(66, 68, 90, 1);
+    // border: 1px solid red;
+
+    .buttons{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
