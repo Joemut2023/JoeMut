@@ -107,19 +107,19 @@
           aria-labelledby="nav-home-tab"
         >
           <div class="row img">
-            <div class="images col-md-8">
-              <input type="file" id="file" class="inputfile" />
-              <label for="file"
-                ><span><i class="fa-solid fa-camera"></i></span
-              ></label>
+            <div class="col-md-8 block-image">
+             <div class="images">
+               <input type="file" id="file" class="file" multiple="multiple" accept="image/*" />
+              <span><i class="fa-solid fa-camera"></i></span>
               <p>Déposer vos images ici</p>
               <p class="medium">ou selectionnez les fichiers</p>
               <p class="taille">
                 Taille recommandée de 800 x 800 pour le thème par défaut<br />
                 format JPG, GIF ou PNG
               </p>
+             </div>
+              <output></output>
             </div>
-
             <div class="right col-md-4">
               <div class="decli">
                 <div class="title">

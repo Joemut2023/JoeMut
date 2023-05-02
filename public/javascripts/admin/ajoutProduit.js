@@ -43,8 +43,52 @@ function appendLine() {
 btn_add.addEventListener("click", function () {
   appendLine();
 });
-btns_delete.forEach(function (element) {
-  element.addEventListener("click", function () {
-    console.log("BONJOUR ");
-  });
+
+// btns_delete.forEach((element) => {
+//   element.addEventListener("click", function () {
+//     console.log("BONJOUR ");
+//   });
+// });
+
+// traitement image
+var inputDiv = document.querySelector(".images");
+var inputImage = document.querySelector(".file");
+var output = document.querySelector("output");
+var imagesArray = [];
+inputImage.addEventListener("change", function () {
+  var files = inputImage.files;
+  for (var i = 0; i < files.length; i++) {
+    imagesArray.push(files[i]);
+  }
+  displayImages();
 });
+inputImage.addEventListener("drop", function (e) {
+  e.preventDefault();
+  var files = e.dataTransfer.files;
+  var _loop = function _loop(i) {
+    if (!files[i].type.match("image")) return "continue";
+    if (imagesArray.every(function (imge) {
+      return imge.name !== files[i].name;
+    })) imagesArray.push(files[i]);
+  };
+  for (var i = 0; i < files.length; i++) {
+    var _ret = _loop(i);
+    if (_ret === "continue") continue;
+  }
+  displayImages();
+});
+function displayImages() {
+  var images = "";
+  imagesArray.forEach(function (image, index) {
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+  });
+  output.style.display = "flex";
+  output.innerHTML = images;
+}
+function deleteImage(index) {
+  imagesArray.splice(index, 1);
+  displayImages();
+  if (imagesArray.length === 0) {
+    output.style.display = "none";
+  }
+}
