@@ -7191,7 +7191,9 @@ body {
   padding: 15px 0px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .title {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty {
   margin-bottom: 50px;
@@ -7238,6 +7240,14 @@ body {
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .preferences .inputs p {
   margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison {
+  padding: 15px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .title {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 20px;
 }
 #page-admin-ajoutProduit .navbar {
   width: 100%;

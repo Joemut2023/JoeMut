@@ -561,7 +561,9 @@
         padding: 15px 0px;
 
         .title {
-          margin-bottom: 15px;
+          margin-bottom: 0px;
+          font-weight: 600;
+          font-size: 20px;
         }
 
         .qty {
@@ -638,6 +640,17 @@
             }
           }
         }
+      }
+
+      .content-livraison{
+        padding: 15px 0px;
+
+        .title {
+          margin-bottom: 0px;
+          font-weight: 600;
+          font-size: 20px;
+        }
+        
       }
     }
   }
