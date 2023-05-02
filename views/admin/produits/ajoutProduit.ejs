@@ -1,0 +1,456 @@
+<div id="page-admin-ajoutProduit">
+  <div class="product-container row">
+    <div class="bloc-left col-md-8">
+      <div class="row">
+        <div class="left col-md-8">
+          <div class="form-group has-feedback has-feedback-left">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Saisissez le nom de votre produit"
+            />
+            <span
+              class="glyphicon glyphicon-info-sign form-control-feedback"
+            ></span>
+          </div>
+          <p class="text">This value should be not blank</p>
+        </div>
+
+        <div class="right col-md-4">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>produit standard</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <span><i class="fa-solid fa-circle-info"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloc-right col-md-4">
+      <div>
+        <span><i class="fa-solid fa-square-poll-vertical"></i></span>
+        <p>Ventes</p>
+      </div>
+      <div>
+        <span><i class="fa-solid fa-rectangle-list"></i></span>
+        <p>Liste des produits</p>
+      </div>
+      <div>
+        <span><i class="fa-solid fa-circle-question"></i></span>
+        <p>Aide</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-container row">
+    <div class="tabs">
+      <nav>
+        <div class="nav" id="nav-tab" role="tablist">
+          <button
+            class="nav-link btn-tab-1 active clicked"
+            id="nav-essentiel-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-essentiel"
+            type="button"
+            role="tab"
+            aria-controls="nav-essentiel"
+            aria-selected="true"
+          >
+            Essentiels
+          </button>
+          <button
+            class="nav-link btn-tab-2"
+            id="nav-quantite-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-quantite"
+            type="button"
+            role="tab"
+            aria-controls="nav-quantite"
+            aria-selected="false"
+          >
+            Quantite
+          </button>
+          <button
+            class="nav-link btn-tab-3"
+            id="nav-livraison-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-livraison"
+            type="button"
+            role="tab"
+            aria-controls="nav-livraison"
+            aria-selected="false"
+          >
+            Livraison
+          </button>
+          <button
+            class="nav-link btn-tab-4"
+            id="nav-prix-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-prix"
+            type="button"
+            role="tab"
+            aria-controls="nav-prix"
+            aria-selected="false"
+          >
+            Prix
+          </button>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active content-essentiel"
+          id="nav-essentiel"
+          role="tabpanel"
+          aria-labelledby="nav-home-tab"
+        >
+          <div class="row img">
+            <div class="images col-md-8">
+              <input type="file" id="file" class="inputfile" />
+              <label for="file"
+                ><span><i class="fa-solid fa-camera"></i></span
+              ></label>
+              <p>Déposer vos images ici</p>
+              <p class="medium">ou selectionnez les fichiers</p>
+              <p class="taille">
+                Taille recommandée de 800 x 800 pour le thème par défaut<br />
+                format JPG, GIF ou PNG
+              </p>
+            </div>
+
+            <div class="right col-md-4">
+              <div class="decli">
+                <div class="title">
+                  <h2>Déclinaisons</h2>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+
+                <div class="selects">
+                  <div>
+                    <input
+                      type="radio"
+                      id="huey"
+                      name="drone"
+                      value="huey"
+                      checked
+                    />
+                    <label for="huey">produit simple</label>
+                  </div>
+
+                  <div>
+                    <input type="radio" id="dewey" name="drone" value="dewey" />
+                    <label for="dewey">produit avec déclinaisons</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ref">
+                <div class="title">
+                  <h2>Réference</h2>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row recap">
+            <div class="col-md-8 left">
+              <div>
+                <p class="title">Récapulatif</p>
+                <div class="content">
+                  <p>
+                    le résume est une phrase qui décrit brièvement votre produit
+                  </p>
+                  <p>
+                    Il apparait tout en haut de la fiche de votre boutique, dans
+                    les listes de produits, et dans les resultats des moteurs de
+                    recherche (d'ou son importance pour le SEO) pour fournir
+                    davantage informations sur votre produit, utilisez l'onglet
+                    "Description"
+                  </p>
+                </div>
+                <p class="caractere">1 de 800 caractères autorisées</p>
+              </div>
+              <div class="description">
+                <p class="title title-desc">Description</p>
+                <button type="button" class="btn btn-danger">
+                  <span><i class="fa-solid fa-bars-staggered"></i></span>
+                  Modifier avec creative Elements
+                </button>
+                <div>
+                  <textarea class="content"></textarea>
+                </div>
+                <p class="caractere">0 de 21844 caractères autorisées</p>
+              </div>
+            </div>
+
+            <div class="col-md-4 right">
+              <div class="quantity">
+                <div class="title">
+                  <h2>Quantité</h2>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                  <input type="text" class="form-control" value="0" />
+                </div>
+                <div class="param">
+                  <span>Paramètres avancés dans </span>
+                  <span
+                    ><strong
+                      ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      Quantites</strong
+                    ></span
+                  >
+                </div>
+              </div>
+
+              <div class="price">
+                <div class="title">
+                  <h2>Prix</h2>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="price-inputs row">
+                  <div class="col-md-6">
+                    <p>HT</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="0,0000"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">€</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <p>TTC</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="0"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">€</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="regle">
+                  <p>Règle de taxe</p>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>FR taux standard (20%)</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="param">
+                  <span>Paramètres avancés dans </span>
+                  <span
+                    ><strong
+                      ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      Quantites</strong
+                    ></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row caracteristique">
+            <div class="left col-md-8">
+              <p class="title">Caracteristiques</p>
+              <div class="lines">
+                <div class="titles row">
+                  <div class="col-md-4"><p>Caracteristique</p></div>
+                  <div class="col-md-4"> <p>Valeur predefinie</p></div>
+                  <div class="col-md-4"> <p>Ou valeur personnalisée</p></div>
+                </div>
+                <div class="row line">
+                  <div class="col-md-4">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Choisissez une caracteristique</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group has-feedback has-feedback-left">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Choisissez une valeur"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4 person">
+                    <div class="form-group">
+                      <input type="text" class="form-control" />
+                      <span class="delete col-md-1">
+                        <i class="fa-solid fa-trash"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-cat">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-add-caracteristic"
+                >
+                  <span
+                    ><i class="fa-solid fa-circle-plus"></i> Ajouter une
+                    caracteristique</span
+                  >
+                </button>
+              </div>
+
+              <div class="marque">
+                <p class="title">Marque</p>
+                <div class="choice">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Choisissez une marque</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <span> <i class="fa-solid fa-trash"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="right col-md-4">
+              <div class="categories">
+                <div class="title">
+                  <h2>Catégories</h2>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+
+                <div class="content">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Rechercher des Catégories"
+                    />
+                  </div>
+                  <p class="tit-cat">catégoties associées</p>
+                  <div class="accueil">
+                    <span class="button"
+                      >Accueil <span><i class="fa-solid fa-xmark"></i></span
+                    ></span>
+                  </div>
+                  <div class="deployer">
+                    <span><i class="fa-solid fa-chevron-down"></i></span>
+                    <span class="title">DÉPLOYER</span>
+                  </div>
+                  <div class="cat-prin">
+                    <p>catégories principales</p>
+                    <div>
+                      <span><i class="fa-solid fa-chevron-right"></i></span>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                          checked
+                        />
+                        <label class="form-check-label" for="flexCheckChecked"
+                          >ACCUEIL</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="add-cat">
+                  <div class="title">
+                    <h2>Créer une catégorie</h2>
+                  </div>
+                  <button type="button" class="btn btn-outline-secondary">
+                    <span
+                      ><i class="fa-solid fa-circle-plus"></i> Créer une
+                      catégorie</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row product">
+            <div class="left col-md-8">
+              <div class="produit">
+                <p class="title">Produit associé</p>
+                <div class="add-cat">
+                  <button type="button" class="btn btn-outline-secondary">
+                    <span
+                      ><i class="fa-solid fa-circle-plus"></i> Ajouter un
+                      produit associé</span
+                    >
+                  </button>
+                </div>
+              </div>
+
+              <div class="footer-product">
+                <p class="title">DisplayFooterProduct</p>
+                <button type="button" class="btn btn-danger">
+                  <span><i class="fa-solid fa-bars-staggered"></i></span>
+                  Modifier avec creative Elements
+                </button>
+              </div>
+            </div>
+            <div class="right col-md-4"></div>
+          </div>
+        </div>
+
+        <div
+          class="tab-pane fade content-quantite"
+          id="nav-quantite"
+          role="tabpanel"
+          aria-labelledby="nav-profile-tab"
+        >
+          Quantite
+        </div>
+
+        <div
+          class="tab-pane fade content-livraison"
+          id="nav-livraison"
+          role="tabpanel"
+          aria-labelledby="nav-contact-tab"
+        >
+          Livraison
+        </div>
+
+        <div
+          class="tab-pane fade content-prix"
+          id="nav-prix"
+          role="tabpanel"
+          aria-labelledby="nav-contact-tab"
+        >
+          Prix
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="tabs-right col-md-4"></div> -->
+  </div>
+</div>
+<script src="/javascripts/admin/ajoutProduit.js"></script>

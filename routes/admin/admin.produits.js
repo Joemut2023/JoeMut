@@ -59,4 +59,9 @@ router.get("/", async (req, res) => {
   }
 });
 
+// post 
+router.get("/add", (req, res) => {
+  res.render("produits/ajoutProduit");
+});
+
 module.exports = router;
