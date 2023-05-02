@@ -77,6 +77,34 @@
                     }
                 }
             }
+            .bloc-adresse{
+                margin-top: 40px;
+                .bloc-adresse-title{
+                    border-bottom: solid 1px gray;
+                    padding-bottom: 10px;
+                    padding-left: 20px;
+                    padding-top: 10px;
+                }
+                .bloc-adresse-content{
+                    padding: 20px;
+                    .bloc-adresse-content-spectacle{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        margin-bottom: 10px;
+                    }
+                    .bloc-adresse-content-repetition{
+                        .date-repetition-item{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            .date-repetition-item-trash{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -7220,5 +7220,31 @@ body {
 #admin-page-viewDevis .content .left .bloc-client .bloc-client-commentaire p {
   cursor: pointer;
 }
+#admin-page-viewDevis .content .left .bloc-adresse {
+  margin-top: 40px;
+}
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-title {
+  border-bottom: solid 1px gray;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content {
+  padding: 20px;
+}
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-spectacle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-repetition .date-repetition-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-repetition .date-repetition-item .date-repetition-item-trash {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=main.css.map */
