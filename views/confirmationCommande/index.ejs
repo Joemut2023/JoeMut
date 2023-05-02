@@ -109,7 +109,9 @@
 
           <div class="details">
             <h1 class="title">DÉTAILS DE LA COMMANDE:</h1>
-            <p>Référence de la commande : <%= refCommande %></p>
+            <p>Référence de la commande : <% if (refCommande) { %>
+             <%= refCommande %>
+            <% } %></p>
             <p>Moyen de paiement : Devis</p>
             <p>Mode de livraison : <%= commande.Frais_port.frp_libelle %></p>
             <p><%= commande.com_comment %></p>

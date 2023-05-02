@@ -21,7 +21,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/produit.csv"))
             pro_new_collect:parseInt(produit[5]),
             pro_en_avant:parseInt(produit[6]),
             pro_comment:produit[7],
-            pro_statut:parseInt(produit[8]),
+            pro_statut:1,
         });
     });
     

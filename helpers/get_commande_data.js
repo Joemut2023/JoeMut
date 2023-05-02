@@ -35,7 +35,7 @@ module.exports = async (commandeId,callback)=>{
         
 
         //create ref for a command
-        const refCommande = ` ${commande.Client.cli_nom.substring(0,3).toUpperCase()}-${commande.com_id}-${new Date().getFullYear()}`;
+        const refCommande = commande.com_num;
          
         const panierDetails = await Panier_detail.findAll({
           include: [
