@@ -27,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     tai_id: DataTypes.INTEGER,
     pro_id: DataTypes.INTEGER,
-    qua_nbre: DataTypes.INTEGER
+    qua_nbre:{
+      type:DataTypes.INTEGER,
+      defaultValue:1
+    }
   }, {
     sequelize,
     modelName: 'Quantite',
