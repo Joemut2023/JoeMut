@@ -1,4 +1,7 @@
 #admin-page-viewDevis{
+    .CodeMirror.cm-s-paper.CodeMirror-wrap.CodeMirror-empty,.CodeMirror-code{
+        background-color: white;
+    }
     font-size: 14px;
     h2{
         font-size: 14px;
@@ -25,8 +28,9 @@
         margin-top: 40px;
         display: flex;
         flex-direction: row;
+        gap: 5%;
         .left{
-            width: 35%;
+            width: 30%;
             .bloc-client{
                 h3{
                     font-size: 16px;
@@ -75,6 +79,86 @@
                     p{
                         cursor: pointer;
                     }
+                }
+            }
+            .bloc-adresse{
+                margin-top: 40px;
+                .bloc-adresse-title{
+                    border-bottom: solid 1px gray;
+                    padding-bottom: 10px;
+                    padding-left: 20px;
+                    padding-top: 10px;
+                }
+                .bloc-adresse-content{
+                    padding: 20px;
+                    .bloc-adresse-content-spectacle{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        margin-bottom: 10px;
+                    }
+                    .bloc-adresse-content-repetition{
+                        .date-repetition-item{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            .date-repetition-item-trash{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .right{
+            width: 65%;
+            .produit-list{
+                margin-bottom: 40px;
+                .produit-list-title{
+                    padding: 20px;
+                    border-bottom: solid 1px gray;
+                }
+                .table-actions{
+                    display: flex;
+                    flex-direction: row;
+                    padding: 20px;
+                    .item-par-page{
+                        width: 40%;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 5%;
+                        .input-group{
+                            width: 30%;
+                        }
+                    }
+                    .buttons{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        .btn{
+                            width: 40%;
+                            font-size: 14px;
+                        }
+                    }
+                    
+                }
+                .table-resume{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 30px;
+                    padding: 20px;
+                }
+            }
+            .devis-note{
+                .devis-note-form-action{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    align-content: flex-start;
+                    
                 }
             }
         }
