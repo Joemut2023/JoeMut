@@ -1,5 +1,8 @@
 @import "fonts";
 @import "variables";
+body{
+    background: #eaebec;
+}
 @import "blocs/header";
 @import "blocs/footer";
 @import "blocs/mobil-menu";
@@ -46,3 +49,4 @@
 @import "pages/admin/admin.PanierDetail";
 @import "pages/admin/admin.facture.scss";
 @import "pages/admin/admin.ajoutProduit.scss";
+@import "pages/admin/admin.devis.view";

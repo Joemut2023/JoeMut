@@ -13,7 +13,8 @@ const {
   Sequelize,
   Adresse,
   Mode_liv_essayage,
-  Mode_liv_spectacle
+  Mode_liv_spectacle,
+  Titre
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -129,7 +130,54 @@ router.get('/:panier',async (req,res)=>{
 
 router.get('/view/:commandeId',async (req,res)=>{
   const {commandeId} = req.params;
-  res.render("devis/view");
+  let commande = await Commande.findOne({
+    where:{
+      com_id:commandeId
+    },
+    attributes: [
+      "com_id",
+      "com_date",
+      "com_debut_spectacle",
+      "com_fin_spectacle",
+      "pan_id",
+      "frp_id",
+      "com_adr_liv",
+      "com_adr_fac",
+    ],
+    include: [
+      {
+        model: Client,
+        include:[
+          {
+            model:Titre
+          }
+        ]
+      },
+      {
+        model: Frais_port,
+        include :[
+          {
+            model:Mode_liv_essayage
+          },
+          {
+            model:Mode_liv_spectacle
+          }
+        ]
+      },
+      {
+        model: Panier,
+        include: [
+          {
+            model: Panier_detail,
+          },
+        ],
+      },
+    ]
+  });
+  console.log(commande);
+  res.render("devis/view",{
+    commande
+  });
 })
 
 module.exports = router;
