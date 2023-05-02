@@ -63,9 +63,8 @@
 
           <td scope="row"><%= element.pad_ttc.toFixed(2) %> €</td>
           <td scope="row"><%= element.pad_qte%></td>
-          <td scope="row"><%= element.Produit.Quantites[0]?.qua_nbre %></td>
-
-          <td scope="row"><%= (element.pad_ttc * element.pad_qte.toFixed(2) )%> €</td>
+          <td scope="row"><%= sumQty?.find(item=>item.id === element.Produit.pro_id).qty %></td>
+          <td scope="row"><%= (element.pad_ttc * element.pad_qte ).toFixed(2)%> €</td>
           <td></td>
           <td scope="row"></td>
         </tr>
@@ -79,22 +78,24 @@
     <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <td>Total produits :</td>
-        <td>32,00 €</td>
+        <td><%= somme_ttc.toFixed(2) %> €</td>
       </tr>
       </table>
-      <hr>
+      <!-- <hr>
       <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <td>Total emballage cadeau :</td>
         <td>32,00 €</td>
       </tr>
-    </table>
+    </table> -->
 
     <hr>
       <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <td>Total frais port : </td>
-        <td>32,00 €</td>
+        <td>    <% if (panier.Commande) { %>
+    <%= panier.Commande.Frais_port.frp_ttc.toFixed(2)%> €
+      <% } %></td>
       </tr>
     </table>
       
@@ -102,7 +103,9 @@
     <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <th class="">Total : </td>
-        <th class="">32,00 €</td>
+          <th>    <% if (panier.Commande) { %>
+    <%= (panier.Commande.Frais_port.frp_ttc + somme_ttc).toFixed(2)%> €
+      <% } %></th>
       </tr>
     </table>
     <hr>

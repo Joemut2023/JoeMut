@@ -31,10 +31,10 @@ router.get("/", async function (req, res) {
         },
         {
           model: Commande,
-          attributes: ["com_id", "com_ttc"],
+          attributes: ["com_id", "com_ttc", "com_date"],
           include: {
             model: Frais_port,
-            attributes: ["frp_libelle"],
+            attributes: ["frp_libelle", "frp_ttc"],
           },
         },
       ],
@@ -76,41 +76,52 @@ router.get('/:id',async function(req,res){
           attributes: ["com_id", "com_ttc", "com_date"],
           include: {
             model: Frais_port,
-            attributes: ["frp_libelle"],
+            attributes: ["frp_libelle","frp_ttc"],
           },
         },
       ],
     });
-    const titre = await Titre.findOne({where:{tit_id:panier.Client.tit_id}})
+    const titre = await Titre.findOne({
+      where: { tit_id: panier.Client.tit_id },
+    });
 
     const panier_detail = await Panier_detail.findAll({
       where: { pan_id: panier.pan_id },
       include: [
         {
           model: Produit,
-          attributes: ["pro_libelle", "pro_ref"],
+          attributes: ["pro_libelle", "pro_ref","pro_id"],
           include: [
             { model: Media, attributes: ["med_ressource"] },
             { model: Quantite, attributes: ["qua_nbre"] },
           ],
-        }
+        },
       ],
     });
-let stock_quantite = []
-panier_detail.forEach(element => {
-  let somme
-  for (let index = 0; index < element.Produit.Quantites?.length; index++) {
-     somme = somme + element.Produit.Quantites[index]?.qua_nbre;
 
-      stock_quantite.push({
-        qty: somme,
-      });
+    const somme_ttc = await Panier_detail.sum("pad_ttc", {
+      where: { pan_id: id },
+    });
+     
+    let sumQty = [];
+    for (let index = 0; index < panier_detail.length; index++) {
+
+     const totalqty = await Quantite.sum("qua_nbre",{where:{pro_id:panier_detail[index].Produit.pro_id}}); 
+     sumQty.push({
+       id: panier_detail[index].Produit.pro_id,
+       qty: totalqty,
+     });
+      
     }
-});
-
-  //  return  res.json(stock_quantite)
-    return res.render("panier/detail",{titre,panier,panier_detail});
-    
+    //  res.json(sumQty);
+    // return res.json(panier_detail[0]);
+    return res.render("panier/detail", {
+      titre,
+      panier,
+      panier_detail,
+      somme_ttc,
+      sumQty
+    });
   } catch (error) {}
 })
 
