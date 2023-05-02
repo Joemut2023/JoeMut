@@ -108,16 +108,22 @@
         >
           <div class="row img">
             <div class="col-md-8 block-image">
-             <div class="images">
-               <input type="file" id="file" class="file" multiple="multiple" accept="image/*" />
-              <span><i class="fa-solid fa-camera"></i></span>
-              <p>Déposer vos images ici</p>
-              <p class="medium">ou selectionnez les fichiers</p>
-              <p class="taille">
-                Taille recommandée de 800 x 800 pour le thème par défaut<br />
-                format JPG, GIF ou PNG
-              </p>
-             </div>
+              <div class="images">
+                <input
+                  type="file"
+                  id="file"
+                  class="file"
+                  multiple="multiple"
+                  accept="image/*"
+                />
+                <span><i class="fa-solid fa-camera"></i></span>
+                <p>Déposer vos images ici</p>
+                <p class="medium">ou selectionnez les fichiers</p>
+                <p class="taille">
+                  Taille recommandée de 800 x 800 pour le thème par défaut<br />
+                  format JPG, GIF ou PNG
+                </p>
+              </div>
               <output></output>
             </div>
             <div class="right col-md-4">
@@ -271,8 +277,8 @@
               <div class="lines">
                 <div class="titles row">
                   <div class="col-md-4"><p>Caracteristique</p></div>
-                  <div class="col-md-4"> <p>Valeur predefinie</p></div>
-                  <div class="col-md-4"> <p>Ou valeur personnalisée</p></div>
+                  <div class="col-md-4"><p>Valeur predefinie</p></div>
+                  <div class="col-md-4"><p>Ou valeur personnalisée</p></div>
                 </div>
                 <div class="row line">
                   <div class="col-md-4">
@@ -427,7 +433,105 @@
           role="tabpanel"
           aria-labelledby="nav-profile-tab"
         >
-          Quantite
+          <h3 class="title">Quantités</h3>
+          <div class="row qty">
+            <div class="left col-md-9 col-sm-12">
+              <div class="quantity row">
+                <div class="col-md-6 qty-left">
+                  <p>Quantité</p>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" value="0" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-md-6 qty-right">
+                  <div class="title-qty">
+                    <p>Quantité minimale pour la vente</p>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" value="1" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="right col-md-3"></div>
+          </div>
+          <div class="stock">
+            <h3 class="title">Stock</h3>
+            <div class="emplacement">
+              <p>Emplacement du stock</p>
+              <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="niveau">
+              <p>Niveau de stock bas</p>
+              <div class="row">
+                <div class="col-md-5 input">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Laissez vide pour désactiver"
+                  />
+                </div>
+
+                <div class="form-check col-md-7">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked"
+                    >M'envoyer un email quand la quantite est en dessous ou égal
+                    à ce niveau
+                    <span><i class="fa-solid fa-circle-info"></i></span
+                  ></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preferences">
+            <h3>Préférences de disponibilité</h3>
+            <p>Comportement si rupture de stock</p>
+            <div class="radios">
+              <div>
+                <input type="radio" id="refus" name="rupture" checked />
+                <label for="refus">Refuser les commandes</label>
+              </div>
+
+              <div>
+                <input type="radio" id="accapt" name="rupture" value="dewey" />
+                <label for="accapt">Accepter les commandes</label>
+              </div>
+
+              <div>
+                <input type="radio" id="default" name="rupture" value="louie" />
+                <label for="default">Utiliser le comportement par défaut</label>
+              </div>
+            </div>
+            <div class="row inputs">
+              <div class="col-md-4">
+                <p>Libellé si en stcock</p>
+                <div class="form-group">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p>Si rupture de stock</p>
+                <div class="form-group">
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p>Date de disponibilité</p>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="YYYY-MM-DD" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div

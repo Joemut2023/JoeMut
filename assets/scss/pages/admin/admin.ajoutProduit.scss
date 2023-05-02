@@ -556,6 +556,96 @@
           }
         }
       }
+
+      .content-quantite{
+        padding: 15px 0px;
+
+        .title{
+          margin-bottom: 15px;
+        }
+
+        .qty{
+          margin-bottom: 50px;
+          .left{
+
+          .quantity{
+
+            .qty-left{
+              p{
+                margin-bottom: 5px;
+              }
+            }
+
+            .qty-right{
+               .title-qty {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  color: rgba(0, 0, 0, 0.7);
+
+                  p {
+                    margin-bottom: 5px;
+                  }
+
+                  span {
+                    margin-top: -4px;
+                    color: rgb(41, 144, 228);
+                  }
+                }
+            }
+          }
+        }
+        }
+
+        .stock{
+          p{
+            margin-bottom: 10px;
+          }
+
+          .emplacement{
+            margin-bottom: 20px;
+
+             .form-group{
+            width: 36%;
+          }
+          }
+
+          .niveau{
+            
+            .row {
+
+
+              .form-check {
+
+                label span{
+                  font-size: 16px;
+                  color: rgb(41, 144, 228);
+                }
+              }
+            } 
+          }
+        }
+
+        .preferences{
+          margin-top: 20px;
+
+          .radios{
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+            div{
+              margin-bottom: 10px;
+            }
+          }
+
+          .inputs{
+            p{
+              margin-bottom: 10px;
+              color: rgba(0, 0, 0, 0.6);
+            }
+          }
+        }
+        
+      }
     }
   }
 
