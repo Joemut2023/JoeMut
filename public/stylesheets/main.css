@@ -6501,6 +6501,20 @@ body {
 #admin-page-devis .table-container table .td-modal {
   left: 40%;
 }
+#admin-page-devis .table-container table tr .col-livraison div {
+  width: 100%;
+}
+#admin-page-devis .table-container table tr .col-livraison div h5 {
+  font-size: 14px;
+  margin: 0;
+}
+#admin-page-devis .table-container table tr .col-livraison div div {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  align-items: center;
+  align-content: center;
+}
 #admin-page-devis #modal-devis .modal-body {
   display: flex;
   flex-direction: column;

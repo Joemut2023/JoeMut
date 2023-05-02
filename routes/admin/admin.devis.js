@@ -95,6 +95,10 @@ router.get("/", async (req, res) => {
   }
 });
 
+/**
+ * @param panier Numeric
+ * @returns [Array] liste des panier détails pour une commande
+ */
 router.get('/:panier',async (req,res)=>{
   const panier = req.params.panier;
   try {
@@ -114,5 +118,10 @@ router.get('/:panier',async (req,res)=>{
     return res.json({ error: error });
   }
 });
+
+router.get('/view/:commandeId',async (req,res)=>{
+  const {commandeId} = req.params;
+  res.render("devis/view");
+})
 
 module.exports = router;
