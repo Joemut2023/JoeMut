@@ -61,10 +61,16 @@
             <span>Ref : <%= element.Produit.pro_ref %></span>
           </td>
 
-          <td scope="row"><%= element.pad_ttc.toFixed(2) %> €</td>
-          <td scope="row"><%= element.pad_qte%></td>
+          <td scope="row">
+            <% if (element.pad_ttc) { %>
+              <%= element.pad_ttc.toFixed(2) %> €</td>
+            <% } %>
+          <td scope="row"><%= element?.pad_qte%></td>
           <td scope="row"><%= sumQty?.find(item=>item.id === element.Produit.pro_id).qty %></td>
-          <td scope="row"><%= (element.pad_ttc * element.pad_qte ).toFixed(2)%> €</td>
+          <td scope="row">
+              <% if (element.pad_ttc) { %>
+              <%= (element.pad_ttc * element.pad_qte ).toFixed(2)%> €</td>
+            <% } %>
           <td></td>
           <td scope="row"></td>
         </tr>
@@ -78,7 +84,10 @@
     <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <td>Total produits :</td>
-        <td><%= somme_ttc.toFixed(2) %> €</td>
+        <td> <% if (somme_ttc) { %>
+          <%= somme_ttc?.toFixed(2) %> €</td>
+        <% } %>
+          
       </tr>
       </table>
       <!-- <hr>
