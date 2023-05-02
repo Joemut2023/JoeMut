@@ -115,7 +115,12 @@
                             <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
                             <td class="td-modal-container"><span class="td-modal" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
                             <td><%= commande.total_pad_ttc  %>€</td>
-                            <td><%= commande.commande.Frais_port.frp_libelle %></td>
+                            <td class="data-livraison">
+                              <div>
+                                <p><%= commande.commande.Frais_port.Mode_liv_essayage.mle_libelle %></p>
+                                <p><%= commande.commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
+                              </div>
+                            </td>
                             <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>

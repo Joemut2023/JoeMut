@@ -6515,6 +6515,15 @@ body {
   align-items: center;
   align-content: center;
 }
+#admin-page-devis .table-container table tr .data-livraison div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5%;
+  align-items: center;
+  justify-items: center;
+  padding-top: 10%;
+}
 #admin-page-devis #modal-devis .modal-body {
   display: flex;
   flex-direction: column;

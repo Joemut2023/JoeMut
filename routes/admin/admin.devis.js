@@ -11,7 +11,9 @@ const {
   Media,
   Essayage,
   Sequelize,
-  Adresse
+  Adresse,
+  Mode_liv_essayage,
+  Mode_liv_spectacle
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -41,6 +43,14 @@ router.get("/", async (req, res) => {
         },
         {
           model: Frais_port,
+          include :[
+            {
+              model:Mode_liv_essayage
+            },
+            {
+              model:Mode_liv_spectacle
+            }
+          ]
         },
         {
           model: Panier,
@@ -75,11 +85,9 @@ router.get("/", async (req, res) => {
         where:{
           adr_id:commande.com_adr_liv
         }
-      })
-      
+      })  
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
-
     let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,
