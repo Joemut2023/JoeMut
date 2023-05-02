@@ -11,7 +11,10 @@ const {
   Media,
   Essayage,
   Sequelize,
-  Adresse
+  Adresse,
+  Mode_liv_essayage,
+  Mode_liv_spectacle,
+  Titre
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -41,6 +44,14 @@ router.get("/", async (req, res) => {
         },
         {
           model: Frais_port,
+          include :[
+            {
+              model:Mode_liv_essayage
+            },
+            {
+              model:Mode_liv_spectacle
+            }
+          ]
         },
         {
           model: Panier,
@@ -75,11 +86,9 @@ router.get("/", async (req, res) => {
         where:{
           adr_id:commande.com_adr_liv
         }
-      })
-      
+      })  
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
-
     let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,
@@ -95,6 +104,10 @@ router.get("/", async (req, res) => {
   }
 });
 
+/**
+ * @param panier Numeric
+ * @returns [Array] liste des panier détails pour une commande
+ */
 router.get('/:panier',async (req,res)=>{
   const panier = req.params.panier;
   try {
@@ -114,5 +127,57 @@ router.get('/:panier',async (req,res)=>{
     return res.json({ error: error });
   }
 });
+
+router.get('/view/:commandeId',async (req,res)=>{
+  const {commandeId} = req.params;
+  let commande = await Commande.findOne({
+    where:{
+      com_id:commandeId
+    },
+    attributes: [
+      "com_id",
+      "com_date",
+      "com_debut_spectacle",
+      "com_fin_spectacle",
+      "pan_id",
+      "frp_id",
+      "com_adr_liv",
+      "com_adr_fac",
+    ],
+    include: [
+      {
+        model: Client,
+        include:[
+          {
+            model:Titre
+          }
+        ]
+      },
+      {
+        model: Frais_port,
+        include :[
+          {
+            model:Mode_liv_essayage
+          },
+          {
+            model:Mode_liv_spectacle
+          }
+        ]
+      },
+      {
+        model: Panier,
+        include: [
+          {
+            model: Panier_detail,
+          },
+        ],
+      },
+    ]
+  });
+  console.log(commande);
+  res.render("devis/view",{
+    commande
+  });
+})
 
 module.exports = router;

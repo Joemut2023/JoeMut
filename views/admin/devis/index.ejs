@@ -79,7 +79,15 @@
                 <th scope="col">Date</th>
                 <th scope="col">Produit</th>
                 <th scope="col">Total</th>
-                <th scope="col">Livraison</th>
+                <th scope="col" class="col-livraison">
+                  <div>
+                    <h5>Livraison</h5>
+                    <div>
+                      <p>Répetition</p>
+                      <p>Spéctacle</p>
+                    </div>
+                  </div>
+                </th>
                 <th scope="col">Début</th>
                 <th scope="col">Fin</th>
                 <th scope="col">Répetition</th>
@@ -107,7 +115,12 @@
                             <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
                             <td class="td-modal-container"><span class="td-modal" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
                             <td><%= commande.total_pad_ttc  %>€</td>
-                            <td><%= commande.commande.Frais_port.frp_libelle %></td>
+                            <td class="data-livraison">
+                              <div>
+                                <p><%= commande.commande.Frais_port.Mode_liv_essayage.mle_libelle %></p>
+                                <p><%= commande.commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
+                              </div>
+                            </td>
                             <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>
@@ -125,19 +138,24 @@
                       
                                     <ul class="dropdown-menu">
                                       <li>
-                                        <a class="dropdown-item" href="#"
+                                        <a class="dropdown-item" href="/admin/devis/view/<%= commande.commande.com_id %>"
                                           ><i class="fa-solid fa-eye"></i> Prévisualiser</a
                                         >
                                       </li>
                                       <li>
                                         <a class="dropdown-item" href="#"
-                                          ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                                          ><i class="fa-solid fa-truck-moving"></i>Bon de livraison</a
                                         >
                                       </li>
                       
                                       <li>
                                         <a class="dropdown-item" href="#"
-                                          ><i class="fa-solid fa-trash"></i> Supprimer</a
+                                          ><i class="fa-solid fa-shirt"></i>Bon d'essayage</a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          ><i class="fa-solid fa-money-bill"></i>Facture</a
                                         >
                                       </li>
                                     </ul>

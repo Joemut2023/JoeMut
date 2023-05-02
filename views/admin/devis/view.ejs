@@ -1,0 +1,116 @@
+<div id="admin-page-viewDevis">
+    <div id="admin-blocs-panierHeader" class="border-bottom">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a class="fil-ariane-item" href="/admin/devis">Commandes</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <a href="#" class="link-panier">N° <%= commande.com_id %></a>
+            </li>
+          </ol>
+        </nav>
+        <div class="produit-menu">
+          <h1>Devis N° <%= commande.com_id %> de <%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></h1>
+          <div class="produit-menu-btn">
+            <button type="button" class="btn btn-outline-secondary">Aide</button>
+          </div>
+        </div>
+    </div>
+    <div class="actions">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Finalisation du dévis</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <button type="button" class="btn btn-secondary shadow">Mettre à jour l'état</button>
+        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le dévis</button>
+        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i> Envoyer le dévis</button>
+        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le bon d'essayage</button>
+        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
+    </div>
+    <div class="content">
+        <div class="left">
+            <div class="card shadow bloc-client">
+                <h3 class="bloc-client-title">Client</h3>
+                <div class="bloc-client-name">
+                    <p><i class="fa-solid fa-id-card"></i> <span>M Eric Guermah</span></p>
+                    <a href="">Plus de details</a>
+                </div>
+                <div class="row bloc-client-info">
+                    <div class="col-md-12">
+                        <div>
+                            <h2>E-mail :</h2>
+                            <p>eric.guermah@gmail.com</p>
+                        </div>
+                        <div>
+                            <h2>Compte créé :</h2>
+                            <p>eric.guermah@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <h2>Commande validées :</h2>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <h2>Total dépensé depuis inscription :</h2>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bloc-client-adresse">
+                    <div class="col-md-5 adresse-item">
+                        <div>
+                            <h2>
+                                <span>Adresse de livraison</span>
+                                <div class="dropdown">
+                                    <i
+                                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    id="dropdownadress-1"
+                                  ></i>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
+                                      <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
+                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+                            <p>Eric Guermah</p>
+                            <p>5, rue des agaces</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-2 adresse-item">
+                        <div>
+                            <h2>
+                                <span>Adresse de facturation</span>
+                                <div class="dropdown">
+                                    <i
+                                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    id="dropdownadress-2"
+                                  ></i>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
+                                      <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
+                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+                            <p>Eric Guermah</p>
+                            <p>5, rue des agaces</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bloc-client-commentaire">
+                    <h2>Commentaire privé</h2>
+                    <p><i class="fa-solid fa-plus"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

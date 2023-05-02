@@ -45,7 +45,36 @@
             .td-modal{
                 left: 40%;
             }
-            
+            tr{
+                .col-livraison{
+                    div{
+                        width: 100%;
+                        h5{
+                            font-size: 14px;
+                            margin: 0;
+                        }
+                        div{
+                            display: flex;
+                            flex-direction: row;
+                            gap: 5%;
+                            align-items: center;
+                            align-content: center;
+                        }
+                    }
+                }
+                .data-livraison{
+                    div{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        gap: 5%;
+                        align-items: center;
+                        justify-items: center;
+                        padding-top: 10%;
+                    }
+                }
+                
+            }
         }
     }
     #modal-devis{
