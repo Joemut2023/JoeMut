@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Retour.belongsTo(models.Detail_expedition, {
         foreignKey: "dex_id",
       });
+        Retour.belongsTo(models.User, {
+          foreignKey: "usr_id",
+        });
     }
   }
   Retour.init(
