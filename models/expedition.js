@@ -24,6 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       Expedition.hasMany(models.Detail_expedition, {
         foreignKey: "exp_id",
       });
+      Expedition.belongsTo(models.Document, {
+        foreignKey: "doc_id",
+      });
+       Expedition.belongsTo(models.User, {
+         foreignKey: "usr_id",
+       });
     }
   }
   Expedition.init(
@@ -48,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Expedition",
-      timestamps:false
+      timestamps: false,
     }
   );
   return Expedition;

@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       Document.belongsTo(models.Commande, {
         foreignKey: "com_id",
       });
+      Document.hasMany(models.Expedition, {
+        foreignKey: "doc_id",
+      });
     }
   }
   Document.init(
