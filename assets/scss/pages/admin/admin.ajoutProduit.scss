@@ -889,6 +889,11 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+
+      .btn-primary{
+         background: rgb(41, 144, 228) !important;
+            border-color: rgb(41, 144, 228);
+      }
     }
   }
 }
