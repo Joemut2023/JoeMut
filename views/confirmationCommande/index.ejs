@@ -60,13 +60,13 @@
                       <div class="col-sm-7 col-12">
                         <div class="row">
                           <div class="col-4 text-sm-center text-xs-left">
-                            <%= element.pad_ttc.toFixed(2) %> €
+                            <%= element.pad_ttc.toFixed(2).toString().replace(".",",") %> €
                           </div>
                           <div class="col-4 text-sm-center text-xs-left">
                             <%= element.pad_qte %>
                           </div>
                           <div class="col-4 text-sm-center text-xs-left total">
-                            <%= (element.pad_ttc * element.pad_qte).toFixed(2)%>
+                            <%= (element.pad_ttc * element.pad_qte).toFixed(2).toString().replace(".",",")%>
                             €
                           </div>
                         </div>
