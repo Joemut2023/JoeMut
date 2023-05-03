@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       Client.hasMany(models.Commentaire,{
         foreignKey:"cli_id"
       })
+       Client.hasMany(models.Expedition, {
+         foreignKey: "cli_id",
+       });
     }
   }
   Client.init(

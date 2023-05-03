@@ -35,13 +35,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "pro_id",
       });
 
-      Produit.hasMany(models.Panier_detail,{
-        foreignKey:"pro_id",
+      Produit.hasMany(models.Panier_detail, {
+        foreignKey: "pro_id",
       });
 
-       Produit.hasMany(models.Commentaire, {
-         foreignKey: "pro_id",
-       });
+      Produit.hasMany(models.Commentaire, {
+        foreignKey: "pro_id",
+      });
+      Produit.hasMany(models.Detail_expedition, {
+        foreignKey: "pro_id",
+      });
     }
   }
   Produit.init(
@@ -60,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       pro_en_avant: DataTypes.BOOLEAN,
       pro_comment: DataTypes.STRING,
       pro_statut: DataTypes.BOOLEAN,
-      pro_position:DataTypes.INTEGER,
+      pro_position: DataTypes.INTEGER,
     },
     {
       sequelize,

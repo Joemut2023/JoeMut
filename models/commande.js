@@ -39,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       Commande.belongsTo(models.Adresse, {
         foreignKey: "com_adr_fac",
       });
+      Commande.hasMany(models.Expedition, {
+        foreignKey: "com_id",
+      });
     }
   }
   Commande.init(
