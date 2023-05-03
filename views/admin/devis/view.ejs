@@ -134,7 +134,7 @@
         </div>
         <div class="right">
             <div class="card shadow produit-list">
-                <h2 class="produit-list-title">Produit (8)</h2>
+                <h2 class="produit-list-title">Produit (<%= commande.Panier.Panier_details.length %>)</h2>
                 <table class="table">
                     <thead>
                       <tr>
@@ -149,16 +149,50 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+                        <% commande.Panier.Panier_details.forEach(panier_detail => { %>
+                            <tr>
+                                <th scope="row" class="tr-th-produit">
+                                    <div>
+                                        <div class="tr-th-produit-img">
+                                            <img src="/images/produits/<%= panier_detail.Produit.Media[0].med_ressource  %>" alt="">
+                                        </div>
+                                        <div class="tr-th-produit-text">
+                                            <p><%= panier_detail.Produit.pro_libelle  %></p>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>Mark</td>
+                                <td><%= panier_detail.pad_ttc.toString().replace('.', ',') %>€</td>
+                                <td><%= panier_detail.pad_qte %></td>
+                                <% var sum = 0 %>
+                                <% panier_detail.Produit.Quantites.forEach(qte => sum = sum + qte['qua_nbre'])%>
+                                <td><%= sum %></td>
+                                <td><%= panier_detail.Produit.Applies.length === 0? 'Non':'remise' %></td>
+                                <td><%= panier_detail.pad_ttc * panier_detail.pad_qte %>€</td>
+                                <td>
+                                    <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>">
+                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
+                                <td colspan="8" class="form-edit-prod" >
+                                    <div>
+                                        <form class="row g-3">
+                                            <div class="col-auto">
+                                              <input type="text" readonly class="form-control">
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="text" class="form-control">
+                                            </div>
+                                            <div class="col-auto">
+                                              <button type="submit" class="btn btn-primary mb-3">Modifier</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
                     </tbody>
                 </table>
                 <div class="table-actions">

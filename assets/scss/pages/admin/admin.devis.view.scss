@@ -29,9 +29,9 @@
         margin-top: 40px;
         display: flex;
         flex-direction: row;
-        gap: 5%;
+        gap: 2%;
         .left{
-            width: 30%;
+            width: 28%;
             .bloc-client{
                 h3{
                     font-size: 16px;
@@ -112,12 +112,39 @@
             }
         }
         .right{
-            width: 65%;
+            width: 70%;
             .produit-list{
                 margin-bottom: 40px;
                 .produit-list-title{
                     padding: 20px;
                     border-bottom: solid 1px gray;
+                }
+                .table{
+                    .tr-th-produit{
+                        div{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            gap: 5%;
+                            justify-content: space-between;
+                            .tr-th-produit-img{
+                                width: 20%;
+                                height: 100px;
+                            }
+                            .tr-th-produit-text{
+                                width: 55%;
+                            }
+                        }
+                    }
+                    .btn-edit-prod{
+                        cursor: pointer;
+                        i{
+                            width: 100%;
+                        }
+                    }
+                    .tr-form-edit-prod{
+                        display: none;
+                    }
                 }
                 .table-actions{
                     display: flex;
