@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       Commande.hasMany(models.Chronologie, {
         foreignKey: "com_id",
       });
+      Commande.hasMany(models.Document, {
+        foreignKey: "com_id",
+      });
       Commande.belongsTo(models.Client, {
         foreignKey: "cli_id",
       });
