@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Transporteur.hasMany(models.Expedition, {
+        foreignKey: "trs_id",
+      });
     }
   }
   Transporteur.init(
