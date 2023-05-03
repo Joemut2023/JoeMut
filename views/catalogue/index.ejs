@@ -2,7 +2,7 @@
   <div class="group-catalogue">
     <div class="title">
       <a class="title_accueil" href="">Accueil</a>
-      <a class="title_catalogue" href="/catalogue">/ catalogue</a>
+      <a class="title_catalogue" href="/catalogue">/ Catalogue</a>
     </div>
     <div class="list">
       <div class="border"></div>
@@ -237,7 +237,7 @@
           <div>Ref: <span><%= produit.pro_ref %></span></div>
           <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div class="montant">
-            <div><%= produit.Tarifs[0].tar_ttc %> €</div>
+            <div><%= produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",")  %> €</div>
             <span>|</span>
             <button
               class="button-ajouter"

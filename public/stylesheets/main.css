@@ -6227,6 +6227,10 @@
   color: white;
   font-size: small;
 }
+#admin-page-frais-port .ajouter-typecat .button button a {
+  text-decoration: none;
+  color: white;
+}
 #admin-page-frais-port .table-content {
   margin-top: 20px;
 }
@@ -6235,6 +6239,38 @@
 }
 #admin-page-frais-port .table-content .td-icones .icons {
   color: grey;
+}
+
+#page-admin-ajouter-fraisPort {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#page-admin-ajouter-fraisPort .text {
+  margin-top: 30px;
+}
+#page-admin-ajouter-fraisPort .text .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
+#page-admin-ajouter-fraisPort .form {
+  width: 80%;
+  margin: auto;
+  margin-top: 25px;
+  border: 1px solid #b3b0b0;
+  padding: 20px;
+}
+#page-admin-ajouter-fraisPort .form input:focus {
+  outline: none;
+}
+#page-admin-ajouter-fraisPort .form .text-area {
+  width: 100%;
+  margin: auto;
+}
+#page-admin-ajouter-fraisPort .form .button {
+  text-align: center;
+  margin-top: 20px;
+}
+#page-admin-ajouter-fraisPort .form .button button {
+  width: 50%;
 }
 
 #page-devis {
