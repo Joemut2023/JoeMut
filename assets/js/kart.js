@@ -26,7 +26,7 @@ class Kart {
   /**
    * recuperer le statut du client
    * @returns userId or false
-  */
+   */
   static async getUserStatut() {
     try {
       const userStatut = await axios.get(`${SITE_URL}/connexion/userStatut`, {
@@ -38,13 +38,12 @@ class Kart {
     } catch (error) {}
   }
   /**
-   * 
+   *
    * @returns Object
    */
   static async getParsedFrais() {
     return JSON.parse(localStorage.getItem("fraisDivers"));
   }
-
 
   /**
    * recuperer le nombre d'artcile au panier
@@ -241,12 +240,12 @@ class Kart {
     let kartLoader = document.querySelector(".kart-loader");
     const fraisDivers = await Kart.addFraisDivers();
     const price = await Kart.calculTotalPrice();
-    const fraisDossier = new Decimal(parseFloat(fraisDivers.frais_dossier));;
+    const fraisDossier = new Decimal(parseFloat(fraisDivers.frais_dossier));
     const fraisPort = new Decimal(parseFloat(fraisDivers.frais_port));
     let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-   // console.log(fraisDoss.toString(),fraisPrt.toString());
+    // console.log(fraisDoss.toString(),fraisPrt.toString());
     if (panierDetail.length !== 0) {
       panierDetail?.map((produit) => {
         kartProductQte = produit.pad_qte + kartProductQte;
@@ -265,7 +264,9 @@ class Kart {
                           <div class="actions">
                               <span class="price">${
                                 produit.pad_qte
-                              } x ${(new Decimal(produit.pad_ttc)).toString()} €</span>
+                              } x ${new Decimal(
+          produit.pad_ttc
+        ).toString()} €</span>
                               <button id="remove-prod" data-id="${
                                 produit.pro_id
                               }" class="btn-close"></button>
@@ -291,7 +292,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${(new Decimal(price.kartProductPrice)).toString()} €</span>
+          <span>${new Decimal(price.kartProductPrice).toString()} €</span>
         </div>
       </div>
 
@@ -300,7 +301,7 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-        <span>${(new Decimal(fraisPort)).toString()} €</span> 
+        <span>${new Decimal(fraisPort).toString()} €</span> 
         </div>
       </div>
       <div class="kart-livraison">
@@ -308,7 +309,7 @@ class Kart {
         <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${(new Decimal(fraisDossier)).toString()} €</span>
+        <span>${new Decimal(fraisDossier).toString()} €</span>
       </div>
     </div>
 
@@ -317,7 +318,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${(new Decimal(price.totalPrice)).toString()} €</span>
+          <span>${new Decimal(price.totalPrice).toString()} €</span>
         </div>
       </div>
       <hr>
@@ -362,7 +363,9 @@ class Kart {
             <img src="/images/produits/${item.media}" alt="" srcset="" />
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
-            <div class="product-montant">${(new Decimal(item.pad_ttc)).toString()}€</div>
+            <div class="product-montant">${new Decimal(
+              item.pad_ttc
+            ).toString()}€</div>
             <div class="product-quantity">Quantité : <span> ${qte} </span></div>
             </div>
         </div>
@@ -370,19 +373,27 @@ class Kart {
             <h5>Il y a ${await Kart.getItemNumber()} articles dans votre panier.</h5>
             <div class="sous-total">
                 <span class="sous-total-titre">Sous-total :</span>
-                <span class="sous-total-montant">${(new Decimal(price.kartProductPrice)).toString()} €</span>
+                <span class="sous-total-montant">${new Decimal(
+                  price.kartProductPrice
+                ).toString()} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
-                <span class="transport-montant">${(new Decimal(fraisPort)).toString()} €</span>
+                <span class="transport-montant">${new Decimal(
+                  fraisPort
+                ).toString()} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">frais dossier:</span>
-                <span class="transport-montant">${(new Decimal(fraisDossier)).toString()} €</span>
+                <span class="transport-montant">${new Decimal(
+                  fraisDossier
+                ).toString()} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
-                <span class="total-montant">${(new Decimal(price.totalPrice)).toString()} €</span>
+                <span class="total-montant">${new Decimal(
+                  price.totalPrice
+                ).toString()} €</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer"  data-bs-dismiss="modal"
@@ -402,12 +413,6 @@ class Kart {
     });
   }
   static async RenderMaxQteModal() {
-    // let storedITems = Kart.getParsedBasket();
-    // document.querySelector(".body-modal-detail").style.display = "none";
-    const price = await Kart.calculTotalPrice();
-    const fraisDivers = await Kart.addFraisDivers();
-    const fraisDossier = parseFloat(fraisDivers.frais_dossier);
-    const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="modal-body-commande">
             <h5>Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>

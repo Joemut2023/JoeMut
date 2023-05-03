@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       Commande.hasMany(models.Frais_supp, {
         foreignKey: "com_id",
       });
+      Commande.hasMany(models.Chronologie, {
+        foreignKey: "com_id",
+      });
+      Commande.hasMany(models.Document, {
+        foreignKey: "com_id",
+      });
       Commande.belongsTo(models.Client, {
         foreignKey: "cli_id",
       });
@@ -28,15 +34,23 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "pan_id",
       });
       Commande.belongsTo(models.Adresse, {
-        foreignKey: "com_adr_liv"
-      })
+        foreignKey: "com_adr_liv",
+      });
       Commande.belongsTo(models.Adresse, {
         foreignKey: "com_adr_fac",
+      });
+      Commande.hasMany(models.Expedition, {
+        foreignKey: "com_id",
+      });
+      Commande.hasMany(models.Paiement, {
+        foreignKey: "com_id",
+      });
+      Commande.hasMany(models.Facturation, {
+        foreignKey: "com_id",
       });
     }
   }
   Commande.init(
-
     {
       com_id: {
         type: DataTypes.INTEGER,

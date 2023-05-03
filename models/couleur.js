@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       Couleur.hasMany(models.Mouvement, {
         foreignKey: "cou_id",
       });
+       Couleur.hasMany(models.Detail_expedition, {
+         foreignKey: "cou_id",
+       });
     }
   }
   Couleur.init(

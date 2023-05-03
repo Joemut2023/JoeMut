@@ -264,23 +264,96 @@
                                 <td>@mdo</td>
                                 <td>
                                     <div>
-                                        <button class="btn btn-primary">Saisir un paiement</button>
-                                        <button class="btn btn-primary">Saisir une note</button>
+                                        <button class="btn btn-primary btn-form-doc-paiement">Saisir un paiement</button>
+                                        <button class="btn btn-primary btn-form-doc-note">Saisir une note</button>
                                         <button class="btn btn-light"><i class="fa-solid fa-trash"></i></button>
                                     </div>
                                 </td>
                               </tr>
-                             <!-- <tr class="tr-form-note">
-                                <td colspan="5"></td>
+                             <tr class="tr-form-note">
+                                <td colspan="5">
+                                    <form class="row g-3">
+                                        <div class="col-auto">
+                                            <textarea class="form-control" id="" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="col-auto">
+                                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                        </div>
+                                    </form>
+                                </td>
                               </tr>
                               <tr class="tr-form-paiement">
-                                <td colspan="5"></td>
-                              </tr>-->
+                                <td colspan="5">
+                                    <form class="row g-3">
+                                        <div class="col-auto">
+                                          <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                          <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                        </div>
+                                    </form>
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                     </div>
-                    <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">...</div>
-                    <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">...</div>
+                    <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Transporteur</th>
+                                <th scope="col">Poids</th>
+                                <th scope="col">Frais  d'expedition</th>
+                                <th scope="col">Numéro de suivi</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Produit</th>
+                                <th scope="col" class="th-quantite">
+                                    <div>
+                                        <p>Quantité</p>
+                                        <div>
+                                            <p>En location</p>
+                                            <p>En retour</p>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col">Etat</th>
+                                <th scope="col">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
