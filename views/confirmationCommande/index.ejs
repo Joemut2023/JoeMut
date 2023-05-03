@@ -60,13 +60,13 @@
                       <div class="col-sm-7 col-12">
                         <div class="row">
                           <div class="col-4 text-sm-center text-xs-left">
-                            <%= element.pad_ttc.toFixed(2) %> €
+                            <%= element.pad_ttc.toFixed(2).toString().replace(".",",") %> €
                           </div>
                           <div class="col-4 text-sm-center text-xs-left">
                             <%= element.pad_qte %>
                           </div>
                           <div class="col-4 text-sm-center text-xs-left total">
-                            <%= (element.pad_ttc * element.pad_qte).toFixed(2)%>
+                            <%= (element.pad_ttc * element.pad_qte).toFixed(2).toString().replace(".",",")%>
                             €
                           </div>
                         </div>
@@ -81,26 +81,26 @@
                 <tbody>
                   <tr>
                     <td>Sous-total</td>
-                    <td class="price-col"><%= sous_totalCmd.toFixed(2) %> €</td>
+                    <td class="price-col"><%= sous_totalCmd.toFixed(2).toString().replace(".",",") %> €</td>
                   </tr>
                   <% if (commande.Frais_port.frp_ttc) { %>
                   <tr>
                     <td>Frais de livraison</td>
                     <td class="price-col">
-                      <%= commande.Frais_port.frp_ttc.toFixed(2) %> €
+                      <%= commande.Frais_port.frp_ttc.toFixed(2).toString().replace(".",",") %> €
                     </td>
                   </tr>
                   <% } %> <% if (commande.com_frais) { %>
                   <tr>
                     <td>Autres frais</td>
                     <td class="price-col">
-                      <%= commande.com_frais.toFixed(2) %> €de
+                      <%= commande.com_frais.toFixed(2).toString().replace(".",",") %> € de
                     </td>
                   </tr>
                   <% } %>
                   <tr class="total-value">
                     <td>TOTAL TTC</td>
-                    <td class="price-col"><%= totalCmd.toFixed(2) %> €</td>
+                    <td class="price-col"><%= totalCmd.toFixed(2).toString().replace(".",",") %> €</td>
                   </tr>
                 </tbody>
               </table>
@@ -140,7 +140,7 @@
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div>
-            <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
+            <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %> €</p>
             <p class="bar">|</p>
             <p
               class="price btn button-ajouter"
