@@ -227,6 +227,11 @@
                         }
                     }
                 }
+                #nav-document{
+                    .tr-form-note,.tr-form-paiement{
+                        display: none;
+                    }
+                }
             }
         }
     }

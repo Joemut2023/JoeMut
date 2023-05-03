@@ -7472,5 +7472,8 @@ body {
 #admin-page-viewDevis .content .right .commande-tabs #nav-retour .th-quantite div div p {
   margin: 0;
 }
+#admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
+  display: none;
+}
 
 /*# sourceMappingURL=main.css.map */
