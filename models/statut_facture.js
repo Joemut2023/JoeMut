@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Statut_facture.hasMany(models.Facturation, {
+        foreignKey: "stf_id",
+      });
     }
   }
   Statut_facture.init(

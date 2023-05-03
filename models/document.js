@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       Document.hasMany(models.Paiement, {
         foreignKey: "doc_id",
       });
+      Document.hasMany(models.Facturation, {
+        foreignKey: "doc_id",
+      });
     }
   }
   Document.init(
