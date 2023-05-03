@@ -1,0 +1,96 @@
+<div id="page-admin-ajouter-fraisPort">
+  <div class="text">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a class="fil-ariane-item" href="#">Referentiel</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <a class="fil-ariane-item" href="/admin/frais-port">Frais port</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Ajouter</span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="form">
+      <form action="">
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label for="date" class="col-form-label">Date debut</label>
+            <input type="date" id="date" class="form-control" name="date_debut"
+            aria-labelledby=dateHelpInline">
+          </div>
+
+          <div class="col-6">
+            <label for="date" class="col-form-label">Date fin</label>
+            <input
+              type="date"
+              id="date"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="date_fin"
+            />
+          </div>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label class="col-form-label">Actif</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="actif"
+            >
+              <option value="1">true</option>
+              <option value="2" selected>false</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="col-form-label">Default</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="defaut"
+            >
+              <option value="1">true</option>
+              <option value="2" selected>false</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row text-area">
+          <label class="col-form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="floatingTextarea"
+            name="desc"
+          ></textarea>
+        </div>
+
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label for="number" class="col-form-label">HT</label>
+            <input type="number" id="date" class="form-control" name="ht"
+            aria-labelledby=dateHelpInline">
+          </div>
+
+          <div class="col-6">
+            <label for="date" class="col-form-label">TTC</label>
+            <input
+              type="number"
+              id="number"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="ttc"
+            />
+          </div>
+        </div>
+        <div class="button">
+          <button class="btn btn-primary">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

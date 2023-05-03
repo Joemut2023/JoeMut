@@ -15,7 +15,7 @@
         <div class="button">
             <button class="btn btn-info">
                 <span>+</span>
-                <span>Ajouter</span>
+                <span> <a href="/admin/frais-port/ajouter">Ajouter </a></span>
             </button>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 <th>Actif</th>
                 <th>Default</th>
                 <th>Description</th>
-                <th>Image</th>
+                <!-- <th>Image</th> -->
                 <th>HT</th>
                 <th>TTC</th>
                 <th>Actions</th>
@@ -45,7 +45,7 @@
                     <td> <%= element.frp_actif %></td>
                     <td> <%= element.frp_default %></td>
                     <td> <%= element.frp_description %></td>
-                    <td> <%= element.frp_img %></td>
+                    <!-- <td> <%= element.frp_img %></td> -->
                     <td><%= element.frp_ht.toFixed(2).toString().replace(".", ",") %> €</td>
                     <td><%= element.frp_ttc.toFixed(2).toString().replace(".", ",")%> €</td>
                     <td class="td-icones">

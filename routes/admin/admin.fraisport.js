@@ -31,4 +31,32 @@ router.get("/", async (req, res) => {
 
 })
 
+
+router.get("/ajouter", async (req, res) => {
+    const { data_debut, date_fin, actif, defaut, desc, ht, ttc } = req.body
+
+    try {
+        const frais_port = await Frais_port.create({
+            data_debut, date_fin, actif, defaut, desc, ht, ttc
+        })
+
+        if (frais_port) {
+            res.redirect("fraisPort/index", {
+                frais_port,
+                success: true
+            })
+        }
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).render("fraisPort/ajouter", {
+            message: 'Une erreur est survenue lors de la récupération des types de catégories.',
+            error,
+            success: false
+        }
+        );
+    }
+})
+
 module.exports = router

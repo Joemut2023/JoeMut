@@ -8,7 +8,10 @@ router.get("/", async (req, res) => {
       where: { frp_default: true },
     });
     return res.json(fraisPort);
-  } catch (error) {}
+  } catch (error) { }
 });
+
+
+
 
 module.exports = router;
