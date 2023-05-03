@@ -708,23 +708,202 @@
           role="tabpanel"
           aria-labelledby="nav-contact-tab"
         >
-          Prix
+          <div class="titles">
+            <p class="title">Delai de livraison</p>
+            <span><i class="fa-solid fa-circle-info"></i></span>
+          </div>
+
+          <div class="row prices">
+            <div class="col-md-6 left">
+              <div class="left-ht">
+                <p>Prix de vente (HT)</p>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="0,000000"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
+              <div class="left-ttc">
+                <p>Prix de vente (HT)</p>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="0"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 right">
+              <div class="title">
+                <p>Prix de vente unitaire (HT)</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="inputs">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="0,000000"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
+                  <span class="input-group-text">€</span>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Par kilo, par litre"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="taxe">
+            <div class="regle-param">
+              <p>Règle de taxe</p>
+              <div class="regle">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>FR taux standard (20%)</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="param">
+                  <span
+                    ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Gérer les règles de taxe</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div>
+              <input type="radio" id="promo" name="promo" value="promo" />
+              <label for="promo"
+                >Afficher un bandeau "Promo !" sur la fiche produit et sur les
+                listes de produits</label
+              >
+            </div>
+            <div class="alerte">
+              <span><i class="fa-solid fa-circle-info"></i></span>
+              <p>Prix de vente final : <strong>0,00 € TTC</strong> / 0,00 €</p>
+            </div>
+          </div>
+
+          <div class="prix">
+            <div class="top">
+              <div class="titles">
+                <p class="title">Prix d'achat</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="left-ht">
+                <p>Prix d'achat (HT)</p>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="0,000000"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="titles">
+                <p class="title">Prix spéifiques</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="add-cat">
+                <button type="button" class="btn btn-outline-primary">
+                  <span
+                    ><i class="fa-solid fa-circle-plus"></i> Ajouter un produit
+                    specifique</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="priorites">
+            <div class="titles">
+              <p class="title">Gestion des priorités</p>
+              <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+            <div>
+              <span>Priorités</span>
+              <div class="row">
+                <div class="col-md-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Boutique</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Devise</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Pays</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Groupe</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- <div class="tabs-right col-md-4"></div> -->
+    </div>
+
+    <div class="navbar">
+      <div class="buttons">
+        <div>
+          <button type="button" class="btn btn-secondary">Previsualiser</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary">Enregistrer</button>
         </div>
       </div>
     </div>
-
-    <!-- <div class="tabs-right col-md-4"></div> -->
   </div>
-
-  <div class="navbar">
-    <div class="buttons">
-      <div>
-        <button type="button" class="btn btn-secondary">Previsualiser</button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-primary">Enregistrer</button>
-      </div>
-    </div>
-  </div>
+  <script src="/javascripts/admin/ajoutProduit.js"></script>
 </div>
-<script src="/javascripts/admin/ajoutProduit.js"></script>

@@ -7318,6 +7318,99 @@ body {
 #page-admin-ajoutProduit .tabs-container .tabs .content-livraison .transporteur .checks div label {
   font-size: 14px;
 }
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix {
+  padding: 15px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles p {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .title span {
+  margin-top: -15px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices {
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ht,
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ttc {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ht p,
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ttc p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .right .inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .right .inputs div {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .regle-param .regle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .regle-param .regle select {
+  max-width: 300px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  background: rgb(142, 194, 236);
+  border-radius: 10px;
+  width: max-content;
+  border: 1px solid rgb(41, 144, 228);
+  margin-top: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte span {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte p {
+  margin-bottom: 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top {
+  margin: 50px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top .left-ht p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top .left-ht .input-group {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .bottom {
+  margin: 0px 0px 40px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .priorites div .row {
+  margin-top: 10px;
+}
 #page-admin-ajoutProduit .navbar {
   width: 100%;
   padding: 10px;
