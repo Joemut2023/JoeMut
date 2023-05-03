@@ -59,16 +59,15 @@
                 </div>
                 <div class="price">
                   <p>
-                    <%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €
+                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €</strong>
                   </p>
                   <span class="bar">|</span>
                   <span
                       class="btn-add button-ajouter"
                       data-id="<%= produit.pro_id %>"
                       data-bs-toggle="modal"
-                      data-bs-target="#parent_modal"
-                      >Ajouter</span
-                    >
+                      data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
+                 
                 </div>
               </div>
             </li>
