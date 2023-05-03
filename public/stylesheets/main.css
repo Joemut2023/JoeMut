@@ -7466,6 +7466,10 @@ body {
   display: flex;
   justify-content: space-between;
 }
+#page-admin-ajoutProduit .navbar .buttons .btn-primary {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
+}
 
 #admin-page-viewDevis {
   padding-bottom: 50px;
@@ -7677,6 +7681,60 @@ body {
 }
 #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
   display: none;
+}
+
+#page-admin-ajoutAdresse {
+  font-family: "Manrope", sans-serif;
+}
+#page-admin-ajoutAdresse .top {
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+#page-admin-ajoutAdresse .top p {
+  font-size: 14px;
+}
+#page-admin-ajoutAdresse .top p strong {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutAdresse .top .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#page-admin-ajoutAdresse .form {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+#page-admin-ajoutAdresse .form .item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+#page-admin-ajoutAdresse .form .item .parag {
+  flex: 1;
+  text-align: right;
+}
+#page-admin-ajoutAdresse .form .item .parag span {
+  color: red;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 {
+  flex: 3;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 label {
+  font-size: 13px;
+  margin-top: 5px;
+}
+#page-admin-ajoutAdresse .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+#page-admin-ajoutAdresse .buttons .btn-primary {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
 }
 
 /*# sourceMappingURL=main.css.map */
