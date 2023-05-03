@@ -69,14 +69,18 @@
     margin-top: 30px;
     .tabs {
       nav {
+        background: rgb(223, 211, 211);
+        padding-top: 10px;
         .nav {
           padding: 0px 20px;
           button {
             color: rgba(0, 0, 0, 0.7);
             margin-right: 30px;
+            
           }
           .clicked {
             border-top: 2px solid rgb(204, 67, 67);
+            background: white;
           }
         }
       }
