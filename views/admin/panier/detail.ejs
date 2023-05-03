@@ -6,7 +6,7 @@
       <h4>Total du panier</h4>
       <h5>PANIER N° <%= panier.pan_id %></h5>
       <h6><% if (panier.Commande) { %>
-       <%= panier.Commande.com_ttc%>€
+       <%= parseFloat(panier.Commande.com_ttc).toFixed(2).toString().replace(".",",")%>€
       <% } %></h6>
     </div>
   </div>
