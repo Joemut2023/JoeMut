@@ -206,6 +206,27 @@
                         }
                     }
                 }
+                #nav-retour{
+                    .th-quantite{
+                        div{
+                            display: flex;
+                            flex-direction: column;
+                            padding: 0;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+                            div{
+                                display: flex;
+                                flex-direction: row;
+                                gap: 20px;
+                                justify-content: space-between;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
