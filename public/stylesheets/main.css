@@ -6809,7 +6809,7 @@ body {
   padding: 0px 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav button {
-  color: gray;
+  color: rgba(0, 0, 0, 0.7);
   margin-right: 30px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav .clicked {
@@ -7245,9 +7245,78 @@ body {
   padding: 15px 0px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-livraison .title {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .tit {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .dimensions {
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .dimensions p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai {
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles p {
   margin-bottom: 0px;
   font-weight: 600;
   font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .radios {
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .radios div {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv {
+  color: rgba(0, 0, 0, 0.6);
+  margin: 20px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block {
+  padding: 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block p {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block input {
+  width: 95%;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison p {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison .input-group {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison .input-group input {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .transporteur .checks div {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .transporteur .checks div label {
+  font-size: 14px;
 }
 #page-admin-ajoutProduit .navbar {
   width: 100%;

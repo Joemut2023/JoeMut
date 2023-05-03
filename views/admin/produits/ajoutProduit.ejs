@@ -439,7 +439,7 @@
               <div class="quantity row">
                 <div class="col-md-6 qty-left">
                   <p>Quantité</p>
-                  <div class="form-group has-feedback has-feedback-left">
+                  <div class="form-group">
                     <input type="text" value="0" class="form-control" />
                   </div>
                 </div>
@@ -448,7 +448,7 @@
                     <p>Quantité minimale pour la vente</p>
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
-                  <div class="form-group has-feedback has-feedback-left">
+                  <div class="form-group">
                     <input type="text" value="1" class="form-control" />
                   </div>
                 </div>
@@ -545,11 +545,11 @@
           aria-labelledby="nav-contact-tab"
         >
           <p class="title">Dimensions du paquet</p>
-          <p>
+          <p class="tit">
             Ajustez vos frais de livraison en renseignant les dimensions du
             produit
           </p>
-          <div class="row">
+          <div class="row dimensions">
             <div class="col-md-10">
               <div class="row">
                 <div class="col-md-3">
@@ -606,7 +606,98 @@
           </div>
           <div class="delai">
             <div class="titles">
-              
+              <p class="title">Delai de livraison</p>
+              <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+            <div class="radios">
+              <div>
+                <input type="radio" id="aucun" name="delai" checked />
+                <label for="aucun">Aucun</label>
+              </div>
+
+              <div>
+                <input type="radio" id="default" name="delai" value="dewey" />
+                <label for="default">Delai de livraison par defaut</label>
+              </div>
+
+              <div>
+                <input type="radio" id="produit" name="delai" value="louie" />
+                <label for="produit"
+                  >Delai de livraison spécifique pour ce produit</label
+                >
+              </div>
+            </div>
+            <div class="row liv">
+              <div class="col-md-6 block">
+                <p>Delai de livraison pour les produits en stock :</p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Livraison entre 3 et 4 jours"
+                  />
+                </div>
+                <span>Laisser vide pour désactiver</span>
+              </div>
+              <div class="col-md-6 block">
+                <p>Delai de livraison pour les produits en stock :</p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Livraison entre 5 et 7 jours"
+                  />
+                </div>
+                <span>Laisser vide pour désactiver</span>
+              </div>
+            </div>
+            <div class="frais-livraison">
+              <div class="titles">
+                <p class="title">Frais de livraison</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <p>
+                Des frais de transports additionnels s'appliquent-ils à ce
+                produit ?
+              </p>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="0,000000"
+                  aria-label="Dollar amount (with dot and two decimal places)"
+                />
+                <span class="input-group-text">€</span>
+              </div>
+            </div>
+          </div>
+          <div class="transporteur">
+            <p class="title">Transporteurs disponibles</p>
+            <div class="checks">
+              <div>
+                <input type="checkbox" name="my-checkbox" id="opt-in" />
+                <label for="opt-in"
+                  >21 - Retrait dans nos locaux AES (je viendrai prendre le
+                  colis d'essayage et les costumes pour mon spectacle dans vos
+                  locaux.)</label
+                >
+              </div>
+              <div>
+                <input type="checkbox" name="my-checkbox" id="opt-in" />
+                <label for="opt-in"
+                  >22 - Retrait dans nos locaux AES (je viendrai prendre le
+                  colis d'essayage et les costumes pour mon spectacle dans vos
+                  locaux.)</label
+                >
+              </div>
+              <div>
+                <input type="checkbox" name="my-checkbox" id="opt-in" />
+                <label for="opt-in"
+                  >15 - Essayage en livraison/Spectacle chez AES (je souhaite la
+                  livraison du clis d'essayage à domicile et je viendrais
+                  chercher les</label
+                >
+              </div>
             </div>
           </div>
         </div>

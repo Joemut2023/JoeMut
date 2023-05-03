@@ -72,7 +72,7 @@
         .nav {
           padding: 0px 20px;
           button {
-            color: gray;
+            color: rgba(0, 0, 0, 0.7);
             margin-right: 30px;
           }
           .clicked {
@@ -642,15 +642,102 @@
         }
       }
 
-      .content-livraison{
+      .content-livraison {
         padding: 15px 0px;
 
         .title {
-          margin-bottom: 0px;
+          margin-bottom: 10px;
           font-weight: 600;
           font-size: 20px;
         }
-        
+
+        .tit {
+          font-size: 14px;
+        }
+
+        .dimensions {
+          color: rgba(0, 0, 0, 0.6);
+          margin-bottom: 20px;
+          p {
+            margin-bottom: 10px;
+          }
+        }
+
+        .delai {
+          margin-bottom: 20px;
+          .titles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+
+            p {
+              margin-bottom: 0px;
+              font-weight: 600;
+              font-size: 20px;
+            }
+
+            span {
+              margin-top: 3px;
+              color: rgb(41, 144, 228);
+            }
+          }
+
+          .radios {
+            color: rgba(0, 0, 0, 0.6);
+            div {
+              font-size: 14px;
+              margin-bottom: 10px;
+            }
+          }
+        }
+
+        .liv {
+          color: rgba(0, 0, 0, 0.6);
+          margin: 20px 0px;
+
+          .block {
+            padding: 0px;
+            p {
+              margin-bottom: 10px;
+              font-size: 14px;
+            }
+            span {
+              font-size: 14px;
+            }
+
+            input {
+              width: 95%;
+              font-size: 14px;
+            }
+          }
+        }
+
+        .frais-livraison {
+          p {
+            font-size: 14px;
+          }
+
+          .input-group {
+            width: max-content;
+            input {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .transporteur {
+          .checks {
+            div {
+              margin-bottom: 10px;
+
+              label {
+                font-size: 14px;
+              }
+            }
+          }
+        }
       }
     }
   }
