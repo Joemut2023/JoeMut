@@ -1,6 +1,10 @@
 #admin-blocs-produitHeader {
     background-color: $color-white;
     padding: 1%;
+    z-index: 10;
+    width: 100%;
+    position: sticky;
+    top: 6.4%;
 
     .breadcrumb {
         margin-top: 2.5%;

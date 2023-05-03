@@ -6161,6 +6161,9 @@
   font-size: 0.9rem;
   font-weight: 300;
 }
+#admin-page-clients .client-content {
+  background-color: #fff;
+}
 #admin-page-clients .table {
   background-color: #fff;
 }
@@ -6594,6 +6597,10 @@ body {
 #admin-blocs-produitHeader {
   background-color: #fff;
   padding: 1%;
+  z-index: 10;
+  width: 100%;
+  position: sticky;
+  top: 6.4%;
 }
 #admin-blocs-produitHeader .breadcrumb {
   margin-top: 2.5%;

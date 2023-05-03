@@ -14,13 +14,19 @@
         .fa-envelope {
             color: $color-button-secondary;
         }
-        p{
+
+        p {
             font-size: 0.8rem;
         }
-        h6{
+
+        h6 {
             font-size: 0.9rem;
             font-weight: 300;
         }
+    }
+
+    .client-content {
+        background-color: $color-white;
     }
 
     .table {
