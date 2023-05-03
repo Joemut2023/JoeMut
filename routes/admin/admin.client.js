@@ -22,11 +22,26 @@ router.get("/", async (req, res) => {
       produitsNbr: AllClients.length,
     });
   } catch (error) {
-    res.status(500).render("factures/index", {
+    res.status(500).render("client/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
   }
+});
+router.delete("/", async (req, res) => {
+  console.log(req.params, "params");
+  console.log(req.query, "query");
+  try {
+    // const client = Client.destroy({ where: { cli_id } });
+  } catch (error) {
+    res.status(500).render("client/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+router.get("/add", (req, res) => {
+  res.render("client/addClient");
 });
 
 module.exports = router;

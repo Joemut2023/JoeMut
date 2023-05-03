@@ -1,10 +1,14 @@
 #admin-blocs-produitHeader {
+    background-color: $color-white;
+    padding: 1%;
+
     .breadcrumb {
         margin-top: 2.5%;
     }
 
     a {
         text-decoration: none !important;
+        color: $color-white !important;
     }
 
     .fil-ariane-item {
@@ -17,7 +21,9 @@
         justify-content: space-between;
         margin-top: 3%;
 
-        h1 {
+        h1,
+        h2,
+        h3 {
             font-weight: 300 !important;
         }
 
@@ -34,5 +40,5 @@
         }
     }
 
-   
+
 }
