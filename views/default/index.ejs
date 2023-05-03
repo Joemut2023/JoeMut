@@ -59,7 +59,7 @@
                 </div>
                 <div class="price">
                   <p>
-                    <%= (produit.Tarifs[0].tar_ttc).toFixed(2) %> €
+                    <%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €
                   </p>
                   <span class="bar">|</span>
                   <span

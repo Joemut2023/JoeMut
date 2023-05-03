@@ -52,7 +52,7 @@
               <a href=""><%= produit.Produit.pro_libelle %></a>
               <div>Ref: <span><%= produit.Produit.pro_ref %></span></div>
               <div class="montant">
-                <div><%= produit.Produit.Tarifs[0].tar_ttc %> £</div>
+                <div><%= produit.Produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",") %> €</div>
                 <button class="button-ajouter" data-id="<%= produit.Produit.pro_id %>">Ajouter</button>
               </div>
             </div>

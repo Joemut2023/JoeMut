@@ -39,8 +39,8 @@
         <td><%= element.pro_libelle %></td>
         <td><%= element.pro_ref %></td>
         <td><%= element.Categorie.cat_libelle %></td>
-        <td><%= element.Tarifs[0].tar_ht.toFixed(2) %> €</td>
-        <td><%= element.Tarifs[0].tar_ttc.toFixed(2) %> €</td>
+        <td><%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%> €</td>
+        <td><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",")%> €</td>
         <td>
           <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty
           ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty :
