@@ -40,7 +40,7 @@
               <%= element.Commande.com_ttc %> €
                <% } else{ %>
                 <% if (element.Panier_details[0]) { %>
-                  <span style="border:1px solid rgb(17, 204, 73);border-radius: 5px;color:white;background-color: rgb(17, 204, 73);padding:3px 8px;"><%=element.Panier_details[0].pad_ttc %> €</span>
+                  <span style="border:1px solid rgb(17, 204, 73);border-radius: 5px;color:white;background-color: rgb(17, 204, 73);padding:3px 8px;"><%=element.Panier_details[0].pad_ttctoFixed(2).toString().replace(".",",") %> €</span>
                 <% } %>
                 <% } %>
               </td>
