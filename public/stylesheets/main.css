@@ -6170,6 +6170,7 @@
 #admin-page-clients .table td,
 #admin-page-clients .table th {
   vertical-align: middle;
+  font-size: 0.8rem;
 }
 #admin-page-clients .table .dropdown :hover > .dropdown-menu {
   display: block;
@@ -6178,6 +6179,9 @@
   inset: 5px 0px auto auto;
 }
 
+#admin-page-add-clients {
+  background-color: #fff;
+}
 #admin-page-adresse {
   margin-top: 2%;
 }
@@ -6603,7 +6607,7 @@ body {
   top: 6.4%;
 }
 #admin-blocs-produitHeader .breadcrumb {
-  margin-top: 2.5%;
+  margin-top: 1%;
 }
 #admin-blocs-produitHeader a {
   text-decoration: none !important;
@@ -6620,7 +6624,8 @@ body {
 }
 #admin-blocs-produitHeader .produit-menu h1,
 #admin-blocs-produitHeader .produit-menu h2,
-#admin-blocs-produitHeader .produit-menu h3 {
+#admin-blocs-produitHeader .produit-menu h3,
+#admin-blocs-produitHeader .produit-menu h4 {
   font-weight: 300 !important;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn {
