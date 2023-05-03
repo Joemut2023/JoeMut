@@ -6805,6 +6805,10 @@ body {
 #page-admin-ajoutProduit .tabs-container {
   margin-top: 30px;
 }
+#page-admin-ajoutProduit .tabs-container .tabs nav {
+  background: rgb(223, 211, 211);
+  padding-top: 10px;
+}
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav {
   padding: 0px 20px;
 }
@@ -6814,6 +6818,7 @@ body {
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav .clicked {
   border-top: 2px solid rgb(204, 67, 67);
+  background: white;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content {
   padding: 15px 0px;
