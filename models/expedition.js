@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       Expedition.belongsTo(models.Commande, {
         foreignKey: "com_id",
       });
+      Expedition.hasMany(models.Detail_expedition, {
+        foreignKey: "exp_id",
+      });
     }
   }
   Expedition.init(
@@ -45,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Expedition",
+      timestamps:false
     }
   );
   return Expedition;

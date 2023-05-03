@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Retour extends Model {
     /**
@@ -11,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Retour.belongsTo(models.Detail_expedition, {
+        foreignKey: "dex_id",
+      });
     }
   }
   Retour.init(
