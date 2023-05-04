@@ -6271,6 +6271,36 @@
   width: 50%;
 }
 
+#page-admin-edit-fraisPort {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#page-admin-edit-fraisPort .text {
+  margin-top: 10px;
+}
+#page-admin-edit-fraisPort .text .fil-ariane-item {
+  text-decoration: none;
+  color: #25b9d7;
+}
+#page-admin-edit-fraisPort .form {
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+}
+#page-admin-edit-fraisPort .form input:focus {
+  outline: none;
+}
+#page-admin-edit-fraisPort .form .text-area {
+  width: 100%;
+  margin: auto;
+}
+#page-admin-edit-fraisPort .form .button {
+  text-align: center;
+  margin-top: 20px;
+}
+#page-admin-edit-fraisPort .form .button button {
+  width: 50%;
+}
+
 #page-devis {
   width: 95%;
   margin: auto;

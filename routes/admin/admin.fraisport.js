@@ -77,4 +77,69 @@ router.post("/ajouter", async (req, res) => {
     }
 })
 
+
+router.get("/edit/:id", async function (req, res, next) {
+    try {
+        const fraisPortId = await Frais_port.findOne({
+            where: {
+                frp_id: req.params.id,
+            },
+        });
+        return res.render("fraisPort/editer", {
+            fraisPortId,
+        });
+    } catch (error) {
+        error = "une erreur est survenue";
+        return res.render("fraisPort/editer", {
+            error,
+        });
+    }
+});
+
+router.post("/edit/:id", async (req, res) => {
+    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description } = req.body
+
+    try {
+
+        if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
+            {
+                return res.json({
+                    error: true,
+                    errorMsg: "Veillez remplir tout les champs",
+                });
+            }
+        }
+
+        const updatedFrais = await Frais_port.update({
+            frp_debut: frp_debut,
+            frp_fin: frp_fin,
+            frp_actif: frp_actif,
+            frp_default: frp_default,
+            frp_ht: frp_ht,
+            frp_ttc: frp_ttc,
+            frp_libelle: frp_libelle,
+            frp_description: frp_description
+        }, {
+            where: {
+                frp_id: req.params.id
+            }
+        })
+
+        return res.render("fraisPort/editer", {
+            success: true,
+            updatedFrais
+        })
+
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).render("fraisPort/editer", {
+            message: 'Une erreur est survenue lors de la récupération des types de catégories.',
+            error,
+            success: false
+        }
+        );
+    }
+})
+
 module.exports = router
