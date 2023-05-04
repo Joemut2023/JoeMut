@@ -1,4 +1,4 @@
-<div id="admin-blocs-produitHeader">
+<div id="admin-blocs-produitHeader" class="border-bottom">
   <h6 class="pt-3">Clients</h6>
   <div class="produit-menu">
     <h4>Créer un nouveau client</h4>
@@ -10,139 +10,170 @@
     </div>
   </div>
 </div>
+
+<% if (typeof errorMsg !== 'undefined') { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMsg %></div>
+<% } %> <% if (typeof succesMsg == 'string') { %>
+<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<% } %>
+
 <div id="admin-page-add-clients" class="mt-3 rounded mb-5">
   <div class="header-add-client d-flex gap-2 p-2 pb-0">
     <i class="fa-solid fa-user mt-1"></i>
     <p>Client</p>
   </div>
   <hr />
-  <form action="" class="p-2 d-flex flex-column gap-4">
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="">Titre</label>
+  <form method="POST" action="/admin/clients/add">
+    <div class="d-flex flex-column gap-4">
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="">Titre</label>
+        </div>
+        <div class="w-50" aria-label="Basic radio toggle  group">
+          <% titres.forEach(element => { %>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="tit_id"
+              id="<%= `flexRadioDefault/${element.tit_id}` %>"
+              value="<%= element.tit_id %>"
+              required
+            />
+            <label
+              class="form-check-label"
+              for="flexRadioDefault<%= element.tit_id %>"
+              ><%= element.tit_libelle %>
+            </label>
+          </div>
+          <% }) %>
+        </div>
       </div>
-      <div class="w-50">
-        <div class="form-check">
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPrenom">Prénom</label>
+        </div>
+        <div class="w-50">
           <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
+            type="text"
+            class="form-control"
+            id="InputPrenom"
+            aria-describedby="prenomHelp"
+            name="cli_prenom"
+            required
           />
-          <label class="form-check-label" for="flexRadioDefault1"> M </label>
+          <small id="prenomHelp" class="form-text text-muted"
+            >Seules les lettres et le point(.),suivi d'un espace, sont
+            autorisés.</small
+          >
         </div>
-        <div class="form-check">
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Nom</label>
+        </div>
+        <div class="w-50">
           <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
+            type="text"
+            class="form-control"
+            id="InputNom"
+            aria-describedby="nomHelp"
+            name="cli_nom"
+            required
           />
-          <label class="form-check-label" for="flexRadioDefault2"> Mme </label>
+          <small id="nomHelp" class="form-text text-muted"
+            >Seules les lettres et le point(.),suivi d'un espace, sont
+            autorisés.</small
+          >
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputEmail">E-mail</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="email"
+            class="form-control"
+            id="InputEmail"
+            name="cli_mail"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPassword">Mot de passe</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="password"
+            class="form-control"
+            id="InputPassword"
+            name="cli_pwd"
+            required
+          />
+        </div>
+      </div>
+      <!-- <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPassword">Date de naissance</label>
+        </div>
+        <div class="d-flex gap-4 w-50">
+          <select
+            id="selectYear"
+            class="form-select form-select-sm"
+            aria-label=".form-select-sm"
+          >
+            <% for( let index = 1903; index <= 2023; index++ ) { %>
+            <option value="<%= index %>" class=""><%= index %></option>
+  
+            <% } %></select
+          ><select
+            id="selectMonth"
+            class="form-select form-select-sm"
+            aria-label=".form-select-sm"
+          >
+            <% for( let index = 1; index <= 12; index++ ) { %>
+            <option value="<%= index %>" class=""><%= index %></option>
+  
+            <% } %></select
+          ><select
+            id="selectDay"
+            class="form-select form-select-sm"
+            aria-label=".form-select-sm"
+          >
+            <% for( let index = 1; index <= 31; index++ ) { %>
+            <option value="<%= index %>" class=""><%= index %></option>
+  
+            <% } %>
+          </select>
+        </div>
+      </div> -->
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Activé</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="activateClient"
+              name="cli_activation"
+              value="true"
+              type="checkbox"
+              checked
+            />
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputPrenom">Prénom</label>
-      </div>
-      <div class="w-50">
-        <input
-          type="text"
-          class="form-control"
-          id="InputPrenom"
-          aria-describedby="prenomHelp"
-        />
-        <small id="prenomHelp" class="form-text text-muted"
-          >Seules les lettres et le point(.),suivi d'un espace, sont
-          autorisés.</small
-        >
-      </div>
-    </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputNom">Nom</label>
-      </div>
-      <div class="w-50">
-        <input
-          type="text"
-          class="form-control"
-          id="InputNom"
-          aria-describedby="nomHelp"
-        />
-        <small id="nomHelp" class="form-text text-muted"
-          >Seules les lettres et le point(.),suivi d'un espace, sont
-          autorisés.</small
-        >
-      </div>
-    </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputEmail">E-mail</label>
-      </div>
-      <div class="w-50">
-        <input type="email" class="form-control" id="InputEmail" />
-      </div>
-    </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputPassword">Mot de passe</label>
-      </div>
-      <div class="w-50">
-        <input type="password" class="form-control" id="InputPassword" />
-      </div>
-    </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputPassword">Date de naissance</label>
-      </div>
-      <div class="d-flex gap-4 w-50">
-        <select
-          id="selectYear"
-          class="form-select form-select-sm"
-          aria-label=".form-select-sm"
-        >
-          <% for( let index = 1903; index <= 2023; index++ ) { %>
-          <option value="<%= index %>" class=""><%= index %></option>
-
-          <% } %></select
-        ><select
-          id="selectMonth"
-          class="form-select form-select-sm"
-          aria-label=".form-select-sm"
-        >
-          <% for( let index = 1; index <= 12; index++ ) { %>
-          <option value="<%= index %>" class=""><%= index %></option>
-
-          <% } %></select
-        ><select
-          id="selectDay"
-          class="form-select form-select-sm"
-          aria-label=".form-select-sm"
-        >
-          <% for( let index = 1; index <= 31; index++ ) { %>
-          <option value="<%= index %>" class=""><%= index %></option>
-
-          <% } %>
-        </select>
-      </div>
-    </div>
-    <div class="form-group d-flex gap-4">
-      <div class="d-flex justify-content-end label-div">
-        <label for="InputNom">Activé</label>
-      </div>
-      <div class="w-50">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" value="" checked />
-        </div>
-      </div>
+    <hr />
+    <div class="d-flex justify-content-between p-2">
+      <button type="button" class="btn btn-outline-secondary">
+        <a href="/admin/clients">Annuler</a>
+      </button>
+      <button type="submit" class="btn btn-info">Enregistrer</button>
     </div>
   </form>
-  <hr />
-  <div class="d-flex justify-content-between p-2">
-    <button type="button" class="btn btn-outline-secondary">
-      <a href="/admin/clients">Annuler</a>
-    </button>
-    <button type="button" class="btn btn-info">Enregistrer</button>
-  </div>
 </div>
