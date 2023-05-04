@@ -1,0 +1,175 @@
+<div id="admin-blocs-produitHeader" class="border-bottom">
+  <h6 class="pt-3">Clients</h6>
+  <div class="produit-menu">
+    <h4>
+      Modification du client <%= clients.cli_nom %> <%= clients.cli_prenom %>
+    </h4>
+    <div class="produit-menu-btn">
+      <button type="button" class="btn btn-outline-secondary">Aide</button>
+    </div>
+  </div>
+</div>
+<% if (typeof succesMsg == 'string') { %>
+<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<% } %> <% if (typeof nothingMsg == 'string') { %>
+<div class="alert alert-dark mt-3" role="alert"><%= nothingMsg %></div>
+<% } %>
+
+<div id="admin-page-add-clients" class="mt-3 rounded mb-5">
+  <div class="header-add-client d-flex gap-2 p-2 pb-0">
+    <i class="fa-solid fa-user mt-1"></i>
+    <p>Client</p>
+  </div>
+  <hr />
+  <form method="POST" action="/admin/clients/update">
+    <div class="d-flex flex-column gap-4">
+      <input type="hidden" name="cli_id" value="<%= clients.cli_id %>" />
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="">Titre</label>
+        </div>
+        <div class="w-50" aria-label="Basic radio toggle  group">
+          <% titres.forEach(element => { %>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tit_id" id="<%=
+            `flexRadioDefault/${element.tit_id}` %>" value="<%= element.tit_id
+            %>" required <%= clients.tit_id == element.tit_id ? "checked" :"" %>
+            />
+            <label
+              class="form-check-label"
+              for="flexRadioDefault<%= element.tit_id %>"
+              ><%= element.tit_libelle %>
+            </label>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPrenom">Prénom</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="text"
+            class="form-control"
+            id="InputPrenom"
+            aria-describedby="prenomHelp"
+            name="cli_prenom"
+            required
+            value="<%= clients.cli_prenom %>"
+          />
+          <small id="prenomHelp" class="form-text text-muted"
+            >Seules les lettres et le point(.),suivi d'un espace, sont
+            autorisés.</small
+          >
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Nom</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="text"
+            class="form-control"
+            id="InputNom"
+            aria-describedby="nomHelp"
+            name="cli_nom"
+            value="<%= clients.cli_nom %>"
+            required
+          />
+          <small id="nomHelp" class="form-text text-muted"
+            >Seules les lettres et le point(.),suivi d'un espace, sont
+            autorisés.</small
+          >
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputEmail">E-mail</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="email"
+            class="form-control"
+            id="InputEmail"
+            name="cli_mail"
+            value="<%= clients.cli_mail %>"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPassword">Mot de passe</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="password"
+            class="form-control"
+            id="InputPassword"
+            name="cli_pwd"
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNumber">Téléphone</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="text"
+            class="form-control"
+            id="InputNumber"
+            aria-describedby="nomHelp"
+            name="cli_num"
+            value="<%= clients.cli_num %>"
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Activé</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="activateClient"
+            name="cli_activation" value="true" type="checkbox" <%=
+            clients.cli_activation ? "checked" :"" %> />
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="partenaireClient">Partenaire</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="partenaireClient"
+            name="cli_partenaire" value="true" type="checkbox" <%=
+            clients.cli_partenaire ? "checked" :"" %> />
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="newsletter">Newsletter</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="newsletterClient"
+            name="cli_newsletter" value="true" type="checkbox" <%=
+            clients.cli_newsletter ? "checked" :"" %> />
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-between p-2">
+      <button type="button" class="btn btn-outline-secondary">
+        <a href="/admin/clients">Annuler</a>
+      </button>
+      <button type="submit" class="btn btn-info">Enregistrer</button>
+    </div>
+  </form>
+</div>

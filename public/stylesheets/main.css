@@ -6165,6 +6165,10 @@
 #admin-page-clients .client-content {
   background-color: #fff;
 }
+#admin-page-clients a {
+  text-decoration: none !important;
+  color: #232323;
+}
 #admin-page-clients .table {
   background-color: #fff;
 }
