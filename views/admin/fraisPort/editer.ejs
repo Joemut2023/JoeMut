@@ -1,0 +1,118 @@
+<div id="page-admin-edit-fraisPort">
+  <div class="text">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a class="fil-ariane-item" href="#">Referentiel</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <a class="fil-ariane-item" href="/admin/frais-port">Frais port</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Ajouter</span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="form">
+      <form
+        action="/admin/frais-port/edit/<%= fraisPortId?.frp_id %>"
+        method="POST"
+      >
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label for="date" class="col-form-label">Date debut</label>
+            <input type="date" id="date" class="form-control input-group"
+            name="frp_debut" aria-labelledby=dateHelpInline"
+            value="<%=fraisPortId.frp_debut %>">
+          </div>
+
+          <div class="col-6">
+            <label for="date" class="col-form-label">Date fin</label>
+            <input
+              type="date"
+              id="date"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="frp_fin"
+              value="<%=  fraisPortId.frp_fin %>"
+            />
+          </div>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label class="col-form-label">Actif</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="frp_actif"
+              value="<%=  fraisPortId.frp_actif %>"
+            >
+              <option value="1">true</option>
+              <option value="2" selected>false</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="col-form-label">Default</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="frp_default"
+            >
+              <option value="1">true</option>
+              <option value="2">false</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <label for="libelle" class="col-form-label">libelle</label>
+            <input
+              type="texte"
+              id="libelle"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="frp_libelle"
+              value="<%=  fraisPortId.frp_libelle %>"
+            />
+          </div>
+          <div class="col-6">
+            <label class="col-form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="floatingTextarea"
+              name="frp_description"
+            >
+              <%= fraisPortId.frp_description %>
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label for="number" class="col-form-label">Prix HT</label>
+            <input type="number" id="date" class="form-control" name="frp_ht"
+            aria-labelledby=dateHelpInline" value="<%= fraisPortId.frp_ht %>">
+          </div>
+
+          <div class="col-6">
+            <label for="date" class="col-form-label">Prix TTC</label>
+            <input
+              type="number"
+              id="number"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="frp_ttc"
+              value="<%= fraisPortId.frp_ttc %>"
+            />
+          </div>
+        </div>
+        <div class="button">
+          <button class="btn btn-primary">Mettre à jour</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

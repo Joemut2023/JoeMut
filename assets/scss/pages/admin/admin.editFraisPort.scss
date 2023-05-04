@@ -1,0 +1,34 @@
+#page-admin-edit-fraisPort {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  .text {
+    margin-top: 10px;
+    .fil-ariane-item {
+      text-decoration: none;
+      color: $color-blue-admin;
+    }
+  }
+
+  .form {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+
+    input:focus {
+      outline: none;
+    }
+
+    .text-area {
+      width: 100%;
+      margin: auto;
+    }
+
+    .button {
+      text-align: center;
+      margin-top: 20px;
+      button {
+        width: 50%;
+      }
+    }
+  }
+}
