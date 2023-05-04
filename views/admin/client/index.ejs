@@ -1,58 +1,136 @@
 <%- include('../blocs/clientHeader') %>
-<div class="pt-4">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">ID</th>
-        <th scope="col">Titre</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Adresse e-mail</th>
-        <th scope="col">Active</th>
-        <th scope="col">Offres partenaires</th>
-        <th scope="col">Inscription</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if ((typeof clients !== 'undefined') && clients.length > 0) { %> <%
-      clients.forEach(element => { %>
-      <tr>
-        <td scope="row">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </td>
-        <th scope="row"><%= element.cli_id %></th>
-        <td><%= element.Titre.tit_libelle %></td>
-        <td><%= element.cli_prenom %></td>
-        <td><%= element.cli_nom %></td>
-        <td><%= element.cli_mail %></td>
-        <td>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" value="" <%=
-            element.cli_activation ? "checked" :"" %> />
-          </div>
-        </td>
-        <td>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" value="" <%=
-            element.cli_partenaire ? "checked" :"" %> />
-          </div>
-        </td>
-
-        <td><%= element.cli_inscription %></td>
-      </tr>
-      <% }) %> <% }else { %>
-      <div class="alert alert-primary" role="alert">
-        Il n'y a aucun client dans votre base des données pour l'instant.
+<div class="pt-4" id="admin-page-clients">
+  <div class="d-flex p-2 menu-bar rounded">
+    <div class="d-flex justify-content-center pt-3 gap-2 w-25">
+      <i class="fa-solid fa-user fa-2xl"></i>
+      <div>
+        <p>
+          Clients <br />
+          <span>TOUT TEMPS</span>
+        </p>
       </div>
-      <% } %>
-    </tbody>
-  </table>
+    </div>
+    <div class="d-flex justify-content-center pt-3 gap-2 w-25">
+      <i class="fa-solid fa-calendar fa-2xl"></i>
+      <div>
+        <p>
+          Age moyen <br />
+          <span>TOUT TEMPS</span>
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center pt-3 gap-2 w-25">
+      <i class="fa-solid fa-bag-shopping fa-2xl"></i>
+      <div>
+        <p>
+          Commandes par client <br />
+          <span>TOUT TEMPS</span>
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center pt-3 gap-2 w-25">
+      <i class="fa-solid fa-envelope fa-xl"></i>
+      <div>
+        <p>
+          Inscriptions à la newsletter <br />
+          <span>TOUT TEMPS</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="client-content mt-3">
+    <div class="d-flex justify-content-between p-3 pb-0">
+      <h6>Gérez vos clients (<%= produitsNbr%>)</h6>
+      <i class="fa-solid fa-gear"></i>
+    </div>
+    <hr />
+    <table class="table mt-4 table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">ID</th>
+          <th scope="col">Titre</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Adresse e-mail</th>
+          <th scope="col">Active</th>
+          <th scope="col">Offres partenaires</th>
+          <th scope="col">Inscription</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if ((typeof clients !== 'undefined') && clients.length > 0) { %> <%
+        clients.forEach(element => { %>
+        <tr>
+          <td scope="row">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </td>
+          <th scope="row"><%= element.cli_id %></th>
+          <td><%= element.Titre.tit_libelle %></td>
+          <td><%= element.cli_prenom %></td>
+          <td><%= element.cli_nom %></td>
+          <td><%= element.cli_mail %></td>
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" value="" <%=
+              element.cli_activation ? "checked" :"" %> />
+            </div>
+          </td>
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" value="" <%=
+              element.cli_partenaire ? "checked" :"" %> />
+            </div>
+          </td>
+
+          <td><%= element.cli_inscription %></td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <i class="fa-solid fa-pen"></i>
+              <div class="dropdown">
+                <i
+                  class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                ></i>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      ><i class="fa-solid fa-magnifying-glass"></i> Afficher</a
+                    >
+                  </li>
+
+                  <li>
+                    <form
+                      method="post"
+                      action="/admin/clients/<%= element.cli_id %>?_method=delete"
+                    >
+                      <a class="dropdown-item" href=""
+                        ><i class="fa-solid fa-trash"></i> Supprimer</a
+                      >
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <% }) %> <% }else { %>
+        <div class="alert alert-primary" role="alert">
+          Il n'y a aucun client dans votre base des données pour l'instant.
+        </div>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
   <div class="cat-pagination">
     <% if (nbrPages > 1) { %>
     <div class="row affichage">

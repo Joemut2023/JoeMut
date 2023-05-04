@@ -1,0 +1,49 @@
+#admin-page-clients {
+    .menu-bar {
+        background-color: $color-white;
+
+        .fa-user,
+        .fa-bag-shopping {
+            color: $color-blue-admin;
+        }
+
+        .fa-calendar {
+            color: $color-red-admin;
+        }
+
+        .fa-envelope {
+            color: $color-button-secondary;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+
+        h6 {
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+    }
+
+    .client-content {
+        background-color: $color-white;
+    }
+
+    .table {
+        background-color: $color-white;
+
+        td,
+        th {
+            vertical-align: middle;
+            font-size: 0.8rem;
+        }
+
+        .dropdown :hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            inset: 5px 0px auto auto;
+        }
+    }
+}

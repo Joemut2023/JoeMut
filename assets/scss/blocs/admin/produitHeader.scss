@@ -1,10 +1,18 @@
 #admin-blocs-produitHeader {
+    background-color: $color-white;
+    padding: 1%;
+    z-index: 10;
+    width: 100%;
+    position: sticky;
+    top: 6.4%;
+
     .breadcrumb {
-        margin-top: 2.5%;
+        margin-top: 1%;
     }
 
     a {
         text-decoration: none !important;
+        color: $color-white !important;
     }
 
     .fil-ariane-item {
@@ -15,14 +23,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: 3%;
+        margin-top: 2%;
 
-        h1 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-weight: 300 !important;
         }
 
         .produit-menu-btn {
-            margin-top: 1%;
 
             button {
                 margin-left: 10px;
@@ -34,5 +44,5 @@
         }
     }
 
-   
+
 }

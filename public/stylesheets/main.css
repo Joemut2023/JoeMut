@@ -6142,6 +6142,64 @@
   inset: 5px 0px auto auto;
 }
 
+#admin-page-clients .menu-bar {
+  background-color: #fff;
+}
+#admin-page-clients .menu-bar .fa-user,
+#admin-page-clients .menu-bar .fa-bag-shopping {
+  color: #25b9d7;
+}
+#admin-page-clients .menu-bar .fa-calendar {
+  color: #ec5b5b;
+}
+#admin-page-clients .menu-bar .fa-envelope {
+  color: #61ce70;
+}
+#admin-page-clients .menu-bar p {
+  font-size: 0.8rem;
+}
+#admin-page-clients .menu-bar h6 {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+#admin-page-clients .client-content {
+  background-color: #fff;
+}
+#admin-page-clients .table {
+  background-color: #fff;
+}
+#admin-page-clients .table td,
+#admin-page-clients .table th {
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+#admin-page-clients .table .dropdown :hover > .dropdown-menu {
+  display: block;
+}
+#admin-page-clients .table .dropdown-menu {
+  inset: 5px 0px auto auto;
+}
+
+#admin-page-add-clients {
+  background-color: #fff;
+}
+#admin-page-add-clients .btn-info {
+  color: #fff;
+}
+#admin-page-add-clients .label-div {
+  width: 40%;
+}
+#admin-page-add-clients a {
+  text-decoration: none !important;
+  color: #232323;
+}
+#admin-page-add-clients a:hover {
+  color: #fff;
+}
+#admin-page-add-clients label {
+  font-size: 0.9rem;
+}
+
 #admin-page-adresse {
   margin-top: 2%;
 }
@@ -6592,11 +6650,20 @@ body {
   font-size: 14px;
 }
 
+#admin-blocs-produitHeader {
+  background-color: #fff;
+  padding: 1%;
+  z-index: 10;
+  width: 100%;
+  position: sticky;
+  top: 6.4%;
+}
 #admin-blocs-produitHeader .breadcrumb {
-  margin-top: 2.5%;
+  margin-top: 1%;
 }
 #admin-blocs-produitHeader a {
   text-decoration: none !important;
+  color: #fff !important;
 }
 #admin-blocs-produitHeader .fil-ariane-item {
   color: #7a7a7a !important;
@@ -6605,13 +6672,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 3%;
+  margin-top: 2%;
 }
-#admin-blocs-produitHeader .produit-menu h1 {
+#admin-blocs-produitHeader .produit-menu h1,
+#admin-blocs-produitHeader .produit-menu h2,
+#admin-blocs-produitHeader .produit-menu h3,
+#admin-blocs-produitHeader .produit-menu h4 {
   font-weight: 300 !important;
-}
-#admin-blocs-produitHeader .produit-menu .produit-menu-btn {
-  margin-top: 1%;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;
