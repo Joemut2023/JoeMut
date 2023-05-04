@@ -28,6 +28,10 @@
     .client-content {
         background-color: $color-white;
     }
+    a {
+        text-decoration: none !important;
+        color: $color-black;
+    }
 
     .table {
         background-color: $color-white;

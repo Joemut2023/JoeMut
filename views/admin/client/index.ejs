@@ -38,6 +38,9 @@
       </div>
     </div>
   </div>
+  <% if (typeof succesMsg == 'string') { %>
+  <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+  <% } %>
   <div class="client-content mt-3">
     <div class="d-flex justify-content-between p-3 pb-0">
       <h6>Gérez vos clients (<%= produitsNbr%>)</h6>
@@ -92,7 +95,19 @@
           <td><%= element.cli_inscription %></td>
           <td>
             <div class="d-flex justify-content-between">
-              <i class="fa-solid fa-pen"></i>
+              <form method="get" action="/admin/clients/update/?cli_id">
+                <input
+                  type="hidden"
+                  name="cli_id"
+                  value="<%= element.cli_id %>"
+                />
+                <button class="dropdown-item" type="submit">
+                  
+                    <i class="fa-solid fa-pen"></i
+                  >
+                </button>
+              </form>
+
               <div class="dropdown">
                 <i
                   class="fa-solid dropdown-toggle fa-ellipsis-vertical"
@@ -100,22 +115,22 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 ></i>
-
                 <ul class="dropdown-menu">
                   <li>
                     <a class="dropdown-item" href="#"
                       ><i class="fa-solid fa-magnifying-glass"></i> Afficher</a
                     >
                   </li>
-
                   <li>
-                    <form
-                      method="post"
-                      action="/admin/clients/<%= element.cli_id %>?_method=delete"
-                    >
-                      <a class="dropdown-item" href=""
-                        ><i class="fa-solid fa-trash"></i> Supprimer</a
-                      >
+                    <form method="post" action="/admin/clients/delete">
+                      <input
+                        type="hidden"
+                        name="cli_id"
+                        value="<%= element.cli_id %>"
+                      />
+                      <button class="dropdown-item" type="submit">
+                        <i class="fa-solid fa-trash"></i> Supprimer
+                      </button>
                     </form>
                   </li>
                 </ul>
