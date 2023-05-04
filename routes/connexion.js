@@ -21,25 +21,30 @@ router.get("/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   //user_login(req,res,'commander/index','/commander');
-  const { credentials, panier_items } = req.body;
+  const { cli_mail, cli_pwd } = req.body;
   var lastCartExistsInCommande;
   try {
     const client = await Client.findOne({
-      where: { cli_mail: credentials.cli_mail },
+      where: { cli_mail: cli_mail },
     });
     if (!client) {
-      return res.json("mot de passe incorrect");
+      return res.render("connexion/index",{
+        error:true,
+        errorMsg:"Utilisateur ou mot de passe incorect"
+      });
     }
-    const valid = await bcrypt.compare(credentials.cli_pwd, client.cli_pwd);
+    const valid = await bcrypt.compare(cli_pwd, client.cli_pwd);
     if (!valid) {
-      return res.json("mot de passe incorrect");
+      return res.render("connexion/index",{
+        error:true,
+        errorMsg:"Utilisateur ou mot de passe incorect"
+      });
     }
     var panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
       order: [['pan_id', 'DESC']],
     });
 
-  
     if (panier) {
       lastCartExistsInCommande = await Commande.findOne({
         where: { pan_id: panier.pan_id },
@@ -48,7 +53,7 @@ router.post("/", async (req, res) => {
         panier = await Panier.create({
           cli_id: client.cli_id,
         });
-        console.log(panier);
+        //console.log(panier);
       }
     }else{
       panier = await Panier.create({
@@ -59,10 +64,15 @@ router.post("/", async (req, res) => {
     req.session.userId = client.cli_id;
     res.locals.user = client;
     req.session.userId = client.cli_id;
-    return res.json(panier.pan_id);
+    //console.log('ooooooooooooo');
+    return res.redirect("/mon-compte");;
   } catch (error) {
-    console.log(error);
-    return res.status(500).json(error);
+    //console.log(error);
+    return res.render("connexion/index",{
+      error:true,
+      errorMsg:"Erreur serveur"
+    });
+   // return res.status(500).json(error);
   }
 });
 router.get("/panier-details/:pan_id", async (req, res) => {
