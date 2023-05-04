@@ -15,12 +15,12 @@
     </nav>
 
     <div class="form">
-      <form action="">
+      <form action="/admin/frais-port/ajouter" method="POST">
         <div class="row g-3 align-items-center">
           <div class="col-6">
             <label for="date" class="col-form-label">Date debut</label>
-            <input type="date" id="date" class="form-control" name="date_debut"
-            aria-labelledby=dateHelpInline">
+            <input type="date" id="date" class="form-control input-group"
+            name="frp_debut" aria-labelledby=dateHelpInline">
           </div>
 
           <div class="col-6">
@@ -30,7 +30,7 @@
               id="date"
               class="form-control"
               aria-labelledby="passwordHelpInline"
-              name="date_fin"
+              name="frp_fin"
             />
           </div>
         </div>
@@ -40,7 +40,7 @@
             <select
               class="form-select"
               aria-label="Default select example"
-              name="actif"
+              name="frp_actif"
             >
               <option value="1">true</option>
               <option value="2" selected>false</option>
@@ -52,7 +52,7 @@
             <select
               class="form-select"
               aria-label="Default select example"
-              name="defaut"
+              name="frp_default"
             >
               <option value="1">true</option>
               <option value="2" selected>false</option>
@@ -60,30 +60,42 @@
           </div>
         </div>
 
-        <div class="row text-area">
-          <label class="col-form-label">Description</label>
-          <textarea
-            class="form-control"
-            id="floatingTextarea"
-            name="desc"
-          ></textarea>
+        <div class="row">
+          <div class="col-6">
+            <label for="libelle" class="col-form-label">libelle</label>
+            <input
+              type="texte"
+              id="libelle"
+              class="form-control"
+              aria-labelledby="passwordHelpInline"
+              name="frp_libelle"
+            />
+          </div>
+          <div class="col-6">
+            <label class="col-form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="floatingTextarea"
+              name="frp_description"
+            ></textarea>
+          </div>
         </div>
 
         <div class="row g-3 align-items-center">
           <div class="col-6">
-            <label for="number" class="col-form-label">HT</label>
-            <input type="number" id="date" class="form-control" name="ht"
+            <label for="number" class="col-form-label">Prix HT</label>
+            <input type="number" id="date" class="form-control" name="frp_ht"
             aria-labelledby=dateHelpInline">
           </div>
 
           <div class="col-6">
-            <label for="date" class="col-form-label">TTC</label>
+            <label for="date" class="col-form-label">Prix TTC</label>
             <input
               type="number"
               id="number"
               class="form-control"
               aria-labelledby="passwordHelpInline"
-              name="ttc"
+              name="frp_ttc"
             />
           </div>
         </div>

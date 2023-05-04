@@ -30,27 +30,45 @@ router.get("/", async (req, res) => {
     }
 
 })
+// post 
+router.get("/ajouter", (req, res) => {
+    res.render("fraisPort/ajouter");
+});
 
-
-router.get("/ajouter", async (req, res) => {
-    const { data_debut, date_fin, actif, defaut, desc, ht, ttc } = req.body
+router.post("/ajouter", async (req, res) => {
+    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description } = req.body
 
     try {
-        const frais_port = await Frais_port.create({
-            data_debut, date_fin, actif, defaut, desc, ht, ttc
+
+        if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
+            {
+                return res.json({
+                    error: true,
+                    errorMsg: "Veillez remplir tout les champs",
+                });
+            }
+        }
+
+        const newFrais = await Frais_port.create({
+            frp_debut: frp_debut,
+            frp_fin: frp_fin,
+            frp_actif: frp_actif,
+            frp_default: frp_default,
+            frp_ht: frp_ht,
+            frp_ttc: frp_ttc,
+            frp_libelle: frp_libelle,
+            frp_description: frp_description
         })
 
-        if (frais_port) {
-            res.redirect("fraisPort/index", {
-                frais_port,
-                success: true
-            })
-        }
+        return res.render("fraisPort/ajouter", {
+            success: true,
+            newFrais
+        })
 
 
     } catch (error) {
         console.error(error);
-        res.status(500).render("fraisPort/ajouter", {
+        return res.status(500).render("fraisPort/ajouter", {
             message: 'Une erreur est survenue lors de la récupération des types de catégories.',
             error,
             success: false
