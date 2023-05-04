@@ -7809,7 +7809,7 @@ body {
   justify-content: space-between;
 }
 #page-admin-ajoutAdresse .form {
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   padding: 20px 0px;
 }
@@ -7820,18 +7820,29 @@ body {
   gap: 30px;
 }
 #page-admin-ajoutAdresse .form .item .parag {
-  flex: 1;
+  flex: 2;
   text-align: right;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.7);
 }
 #page-admin-ajoutAdresse .form .item .parag span {
   color: red;
 }
 #page-admin-ajoutAdresse .form .item .mb-3 {
-  flex: 3;
+  flex: 4;
 }
 #page-admin-ajoutAdresse .form .item .mb-3 label {
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 5px;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 input, #page-admin-ajoutAdresse .form .item .mb-3 select, #page-admin-ajoutAdresse .form .item .mb-3 textarea {
+  border-color: #bbb;
+  font-size: 15px;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 input:focus, #page-admin-ajoutAdresse .form .item .mb-3 select:focus, #page-admin-ajoutAdresse .form .item .mb-3 textarea:focus {
+  box-shadow: inset 0 -1px 0 transparent;
+  border-color: rgb(41, 144, 228);
+  outline: 1px solid rgb(41, 144, 228);
 }
 #page-admin-ajoutAdresse .buttons {
   display: flex;
