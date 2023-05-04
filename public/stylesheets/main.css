@@ -7483,7 +7483,8 @@ body {
   font-size: 14px;
 }
 #admin-page-viewDevis .actions {
-  margin-top: 20px;
+  margin: 0;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -7497,8 +7498,9 @@ body {
 #admin-page-viewDevis .actions .btn {
   padding: 0;
   padding-bottom: 5px;
+  padding-left: 5px;
   padding-right: 5px;
-  padding-right: 5px;
+  font-size: 13px;
 }
 #admin-page-viewDevis .content {
   margin-top: 40px;
@@ -7595,11 +7597,11 @@ body {
   justify-content: space-between;
 }
 #admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-img {
-  width: 20%;
-  height: 100px;
+  width: 15%;
+  height: 50px;
 }
 #admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-text {
-  width: 55%;
+  width: 65%;
 }
 #admin-page-viewDevis .content .right .produit-list .table .btn-edit-prod {
   cursor: pointer;
@@ -7647,6 +7649,9 @@ body {
   justify-content: space-between;
   align-items: baseline;
   align-content: flex-start;
+}
+#admin-page-viewDevis .content .right .commande-tabs {
+  margin-bottom: 20px;
 }
 #admin-page-viewDevis .content .right .commande-tabs nav .nav.nav-tabs .nav-link {
   color: #232323;
@@ -7705,6 +7710,19 @@ body {
 }
 #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
   display: none;
+}
+#admin-page-viewDevis .content .right .paiements-bloc h2 {
+  padding: 10px;
+  border-bottom: solid 1px gray;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .table {
+  padding: 5px;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .table thead {
+  border-bottom: solid 2px #25b9d7;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .form-bloc-paiement {
+  padding: 5px;
 }
 
 #page-admin-ajoutAdresse {
