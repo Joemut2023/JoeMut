@@ -6,15 +6,14 @@
       <button type="button" class="btn btn-outline-secondary">Aide</button>
     </div>
   </div>
-
   <form action="/admin/adresse/add" method="post">
     <div class="form">
-       <div class="item">
+      <div class="item">
         <div class="parag">
           <p><span>*</span> E-mail du client</p>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" required name="cli_mail"/>
+          <input type="email" class="form-control" required name="cli_mail" />
         </div>
       </div>
       <!-- <div class="item">
@@ -32,23 +31,27 @@
         </div>
       </div> -->
       <div class="item">
-        <div class="parag"><p><span>*</span> Prénom</p></div>
+        <div class="parag">
+          <p><span>*</span> Prénom</p>
+        </div>
         <div class="mb-3">
-          <input type="text" class="form-control" name="adr_prenom" required/>
+          <input type="text" class="form-control" name="adr_prenom" required />
           <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
         </div>
       </div>
       <div class="item">
-        <div class="parag"><p><span>*</span> Nom</p></div>
+        <div class="parag">
+          <p><span>*</span> Nom</p>
+        </div>
         <div class="mb-3">
-          <input type="text" class="form-control" name="adr_nom" required/>
+          <input type="text" class="form-control" name="adr_nom" required />
           <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
         </div>
       </div>
       <div class="item">
         <div class="parag"><p>Nom de la structure</p></div>
         <div class="mb-3">
-          <input type="text" class="form-control" name="adr_societe" />
+          <input type="text" class="form-control" name="adr_structure" />
           <label>Caractères intedits : <>=()</label>
         </div>
       </div>
@@ -70,13 +73,13 @@
           <p><span>*</span> Adresse</p>
         </div>
         <div class="mb-3">
-          <input type="text" class="form-control" name="adr_adresse" required/>
+          <input type="text" class="form-control" name="adr_adresse" required />
         </div>
       </div>
       <div class="item">
         <div class="parag"><p>Adresse 2</p></div>
         <div class="mb-3">
-          <input type="text" class="form-control" name="adr_comp"/>
+          <input type="text" class="form-control" name="adr_comp" />
         </div>
       </div>
       <div class="item">
@@ -84,7 +87,7 @@
           <p><span>*</span> Code postal</p>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" name="adr_cp" required/>
+          <input type="number" class="form-control" name="adr_cp" required />
         </div>
       </div>
       <div class="item">
@@ -92,7 +95,7 @@
           <p><span>*</span> Ville</p>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" name="adr_ville" required/>
+          <input type="text" class="form-control" name="adr_ville" required />
         </div>
       </div>
       <div class="item">
@@ -100,7 +103,12 @@
           <p><span>*</span> Pays</p>
         </div>
         <div class="mb-3">
-          <select class="form-select" aria-label="Default select example" name="adr_pays" required>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="adr_pays"
+            required
+          >
             <option selected>France</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -113,7 +121,7 @@
           <p>Téléphone</p>
         </div>
         <div class="mb-3">
-          <input type="email" class="form-control" name="adr_phone"/>
+          <input type="number" class="form-control" name="adr_phone" />
         </div>
       </div>
       <!-- <div class="item">
@@ -137,6 +145,35 @@
           <label>Caractères interdits : <> {}</label>
         </div>
       </div> -->
+
+    <div
+      class="modal fade sendModal"
+      id="sendModalLabel"
+      tabindex="-1"
+      aria-labelledby="sendModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="title">
+              <span><i class="fa-solid fa-circle-check"></i></span>
+              <h3>Adresse ajoutée avecsucces</h3>
+            </div>
+            <div class="button">
+              <button
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                class="close-avis"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     </div>
     <div class="buttons">
       <button type="button" class="btn btn-outline-secondary">Annuler</button>
