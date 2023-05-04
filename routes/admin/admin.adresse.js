@@ -95,7 +95,8 @@ router.post("/add", async (req, res) => {
 
       if (adresse) {
         success = "Adresse ajouté!";
-        return res.render("adresses/ajoutAdresse", { success });
+        res.redirect("/admin/adresse");
+        // return res.render("adresses/ajoutAdresse", { success });
       }
     } catch (err) {
       error = "Erreur interne du serveur";
