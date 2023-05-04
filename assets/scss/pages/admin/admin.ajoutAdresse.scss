@@ -69,6 +69,11 @@
     .btn-primary {
       background: rgb(41, 144, 228) !important;
       border-color: rgb(41, 144, 228);
+
+      a{
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 }
