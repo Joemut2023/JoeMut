@@ -1,0 +1,6 @@
+﻿ech_id;ech_libelle;ech_delai;ech_actif
+1;A réception;0;1
+2;15 jours;15;1
+3;30 jours;30;1
+4;45 jours;45;1
+5;60 jours;60;1

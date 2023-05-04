@@ -1,0 +1,17 @@
+﻿stc_id;stc_libelle;stc_actif
+1;Finalisation du devis;1
+2;Génération du bon d'essayage;1
+3;Commande validée;1
+4;Préparation colisage essayage;1
+5;Expédition colis essayage ;1
+6;Livraison colis essayage;1
+7;En attente de retour essayage;1
+8;Retour essayage;1
+9;Préparation colisage spectacle;1
+10;Epéition colis spectacle ;1
+11;Livraison colis spectacle;1
+12;En attente de retour spectacle;1
+13;Retour spectacle;1
+14;Commande soldée;1
+15;Commande close;1
+16;Abandonnée;1

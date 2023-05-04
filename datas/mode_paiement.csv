@@ -1,0 +1,6 @@
+mop_id;mop_libelle;mop_actif
+1;Carte bancaire;1
+2;Chéque;1
+3;Espéces;1
+4;Ordre de prélèvement;1
+5;Virement bancaire;1

@@ -1,0 +1,9 @@
+﻿stf_id;stf_libelle;stf_actif
+1;Brouillon;1
+2;Validée;1
+3;En attente de paiement;1
+4;Payée;1
+5;Impayée;1
+6;En recouvrement;1
+7;Abandonnée;1
+8;Avoir;1
