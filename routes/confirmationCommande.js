@@ -44,6 +44,7 @@ router.get("/", async (req, res, next) => {
         quantiteOfEachProduct,
         refCommande
       ) => {
+        
         await send_mail_confirmation(
           res,
           req,
@@ -58,6 +59,7 @@ router.get("/", async (req, res, next) => {
           totalTTC,
           totalHT
         );
+
         return res.render("confirmationCommande/index", {
           panierDetails: panierDetails,
           commande,

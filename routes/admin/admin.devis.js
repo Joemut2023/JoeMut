@@ -14,7 +14,10 @@ const {
   Adresse,
   Mode_liv_essayage,
   Mode_liv_spectacle,
-  Titre
+  Titre,
+  Quantite,
+  Apply,
+  Promo
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -169,12 +172,31 @@ router.get('/view/:commandeId',async (req,res)=>{
         include: [
           {
             model: Panier_detail,
+            include:[{
+              model:Produit,
+              include:[
+              {
+                model:Media
+              },
+              {
+                model:Quantite
+              },
+              {
+                model:Apply,
+                include:[
+                  {
+                    model:Promo
+                  }
+                ]
+              }
+            ]
+            }]
           },
         ],
       },
     ]
   });
-  console.log(commande);
+  console.log(commande.Panier.Panier_details[0].Produit.Applies.length);
   res.render("devis/view",{
     commande
   });

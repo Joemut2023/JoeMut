@@ -1873,7 +1873,7 @@
 
 #page-promotion {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   padding: 20px 5rem;
@@ -2278,7 +2278,7 @@
 
 #nouvelleCollection {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   padding: 20px 5rem;
@@ -5766,6 +5766,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 60vh;
 }
 #error img {
   width: 400px;
@@ -6869,15 +6870,20 @@ body {
 #page-admin-ajoutProduit .tabs-container {
   margin-top: 30px;
 }
+#page-admin-ajoutProduit .tabs-container .tabs nav {
+  background: rgb(223, 211, 211);
+  padding-top: 10px;
+}
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav {
   padding: 0px 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav button {
-  color: gray;
+  color: rgba(0, 0, 0, 0.7);
   margin-right: 30px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav .clicked {
   border-top: 2px solid rgb(204, 67, 67);
+  background: white;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content {
   padding: 15px 0px;
@@ -7309,9 +7315,171 @@ body {
   padding: 15px 0px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-livraison .title {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .tit {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .dimensions {
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .dimensions p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai {
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles p {
   margin-bottom: 0px;
   font-weight: 600;
   font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .titles span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .radios {
+  color: rgba(0, 0, 0, 0.6);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .delai .radios div {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv {
+  color: rgba(0, 0, 0, 0.6);
+  margin: 20px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block {
+  padding: 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block p {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block span {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .liv .block input {
+  width: 95%;
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison p {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison .input-group {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .frais-livraison .input-group input {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .transporteur .checks div {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-livraison .transporteur .checks div label {
+  font-size: 14px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix {
+  padding: 15px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles p {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .titles span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .title span {
+  margin-top: -15px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices {
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ht,
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ttc {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ht p,
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .left .left-ttc p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .right .inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prices .right .inputs div {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .regle-param .regle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .regle-param .regle select {
+  max-width: 300px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  background: rgb(142, 194, 236);
+  border-radius: 10px;
+  width: max-content;
+  border: 1px solid rgb(41, 144, 228);
+  margin-top: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte span {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .taxe .alerte p {
+  margin-bottom: 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top {
+  margin: 50px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top .left-ht p {
+  margin-bottom: 10px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .top .left-ht .input-group {
+  width: max-content;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .prix .bottom {
+  margin: 0px 0px 40px 0px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-prix .priorites div .row {
+  margin-top: 10px;
 }
 #page-admin-ajoutProduit .navbar {
   width: 100%;
@@ -7327,6 +7495,10 @@ body {
   display: flex;
   justify-content: space-between;
 }
+#page-admin-ajoutProduit .navbar .buttons .btn-primary {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
+}
 
 #admin-page-viewDevis {
   padding-bottom: 50px;
@@ -7339,7 +7511,8 @@ body {
   font-size: 14px;
 }
 #admin-page-viewDevis .actions {
-  margin-top: 20px;
+  margin: 0;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -7353,17 +7526,18 @@ body {
 #admin-page-viewDevis .actions .btn {
   padding: 0;
   padding-bottom: 5px;
+  padding-left: 5px;
   padding-right: 5px;
-  padding-right: 5px;
+  font-size: 13px;
 }
 #admin-page-viewDevis .content {
   margin-top: 40px;
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  gap: 2%;
 }
 #admin-page-viewDevis .content .left {
-  width: 30%;
+  width: 28%;
 }
 #admin-page-viewDevis .content .left .bloc-client h3 {
   font-size: 16px;
@@ -7434,7 +7608,7 @@ body {
   cursor: pointer;
 }
 #admin-page-viewDevis .content .right {
-  width: 65%;
+  width: 70%;
 }
 #admin-page-viewDevis .content .right .produit-list {
   margin-bottom: 40px;
@@ -7442,6 +7616,29 @@ body {
 #admin-page-viewDevis .content .right .produit-list .produit-list-title {
   padding: 20px;
   border-bottom: solid 1px gray;
+}
+#admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: space-between;
+}
+#admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-img {
+  width: 15%;
+  height: 50px;
+}
+#admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-text {
+  width: 65%;
+}
+#admin-page-viewDevis .content .right .produit-list .table .btn-edit-prod {
+  cursor: pointer;
+}
+#admin-page-viewDevis .content .right .produit-list .table .btn-edit-prod i {
+  width: 100%;
+}
+#admin-page-viewDevis .content .right .produit-list .table .tr-form-edit-prod {
+  display: none;
 }
 #admin-page-viewDevis .content .right .produit-list .table-actions {
   display: flex;
@@ -7481,6 +7678,9 @@ body {
   align-items: baseline;
   align-content: flex-start;
 }
+#admin-page-viewDevis .content .right .commande-tabs {
+  margin-bottom: 20px;
+}
 #admin-page-viewDevis .content .right .commande-tabs nav .nav.nav-tabs .nav-link {
   color: #232323;
 }
@@ -7518,6 +7718,93 @@ body {
 }
 #admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-actions .btn {
   width: 30%;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-retour .th-quantite div {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-retour .th-quantite div div {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-retour .th-quantite div div p {
+  margin: 0;
+}
+#admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
+  display: none;
+}
+#admin-page-viewDevis .content .right .paiements-bloc h2 {
+  padding: 10px;
+  border-bottom: solid 1px gray;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .table {
+  padding: 5px;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .table thead {
+  border-bottom: solid 2px #25b9d7;
+}
+#admin-page-viewDevis .content .right .paiements-bloc .form-bloc-paiement {
+  padding: 5px;
+}
+
+#page-admin-ajoutAdresse {
+  font-family: "Manrope", sans-serif;
+}
+#page-admin-ajoutAdresse .top {
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+#page-admin-ajoutAdresse .top p {
+  font-size: 14px;
+}
+#page-admin-ajoutAdresse .top p strong {
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutAdresse .top .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#page-admin-ajoutAdresse .form {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+#page-admin-ajoutAdresse .form .item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+#page-admin-ajoutAdresse .form .item .parag {
+  flex: 1;
+  text-align: right;
+}
+#page-admin-ajoutAdresse .form .item .parag span {
+  color: red;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 {
+  flex: 3;
+}
+#page-admin-ajoutAdresse .form .item .mb-3 label {
+  font-size: 13px;
+  margin-top: 5px;
+}
+#page-admin-ajoutAdresse .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+#page-admin-ajoutAdresse .buttons .btn-primary {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
 }
 
 /*# sourceMappingURL=main.css.map */

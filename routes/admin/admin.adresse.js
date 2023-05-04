@@ -28,4 +28,9 @@ router.get("/", async (req, res) => {
   }
 });
 
+// post
+router.get("/add", async (req, res) => {
+  res.render("adresses/ajoutAdresse")
+})
+
 module.exports = router;

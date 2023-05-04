@@ -4,6 +4,8 @@ const path = require("path");
 const ejs = require("ejs");
 const pdf = require('pdfkit');
 const puppeteer = require('puppeteer');
+const {Document} = require("../models");
+const { DEVIS } = require("./utils_const");
 
 module.exports = async (
   res,
@@ -44,10 +46,20 @@ module.exports = async (
   await page.pdf({
     path: path.join(
       __dirname,
-      "../public/pdf/devis/" + commande.com_id + ".pdf"
+      "../public/pdf/devis/" + commande.com_num.trimStart() + ".pdf"
     ),
   });
   await page.close();
+
+  try {
+    await Document.create({
+      tdo_id:DEVIS,
+      com_id:commande.com_id,
+      doc_date:new Date(new Date().setDate(new Date().getDate()))
+    })
+  } catch (error) {
+    console.log(error);
+  }
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -63,10 +75,10 @@ module.exports = async (
       html: html,
       attachments: [
         {
-          filename: commande.com_id + ".pdf",
+          filename: commande.com_num.trimStart() + ".pdf",
           path: path.join(
             __dirname,
-            "../public/pdf/devis/" + commande.com_id + ".pdf"
+            "../public/pdf/devis/" + commande.com_num.trimStart() + ".pdf"
           ),
         }
       ],

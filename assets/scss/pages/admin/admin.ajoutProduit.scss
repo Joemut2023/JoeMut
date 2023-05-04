@@ -69,14 +69,18 @@
     margin-top: 30px;
     .tabs {
       nav {
+        background: rgb(223, 211, 211);
+        padding-top: 10px;
         .nav {
           padding: 0px 20px;
           button {
-            color: gray;
+            color: rgba(0, 0, 0, 0.7);
             margin-right: 30px;
+            
           }
           .clicked {
             border-top: 2px solid rgb(204, 67, 67);
+            background: white;
           }
         }
       }
@@ -642,16 +646,232 @@
         }
       }
 
-      .content-livraison{
+      .content-livraison {
         padding: 15px 0px;
 
         .title {
-          margin-bottom: 0px;
+          margin-bottom: 10px;
           font-weight: 600;
           font-size: 20px;
         }
-        
+
+        .tit {
+          font-size: 14px;
+        }
+
+        .dimensions {
+          color: rgba(0, 0, 0, 0.6);
+          margin-bottom: 20px;
+          p {
+            margin-bottom: 10px;
+          }
+        }
+
+        .delai {
+          margin-bottom: 20px;
+          .titles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+
+            p {
+              margin-bottom: 0px;
+              font-weight: 600;
+              font-size: 20px;
+            }
+
+            span {
+              margin-top: 3px;
+              color: rgb(41, 144, 228);
+            }
+          }
+
+          .radios {
+            color: rgba(0, 0, 0, 0.6);
+            div {
+              font-size: 14px;
+              margin-bottom: 10px;
+            }
+          }
+        }
+
+        .liv {
+          color: rgba(0, 0, 0, 0.6);
+          margin: 20px 0px;
+
+          .block {
+            padding: 0px;
+            p {
+              margin-bottom: 10px;
+              font-size: 14px;
+            }
+            span {
+              font-size: 14px;
+            }
+
+            input {
+              width: 95%;
+              font-size: 14px;
+            }
+          }
+        }
+
+        .frais-livraison {
+          p {
+            font-size: 14px;
+          }
+
+          .input-group {
+            width: max-content;
+            input {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .transporteur {
+          .checks {
+            div {
+              margin-bottom: 10px;
+
+              label {
+                font-size: 14px;
+              }
+            }
+          }
+        }
       }
+
+      .content-prix {
+
+        padding: 15px 0px;
+        .titles {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: rgba(0, 0, 0, 0.7);
+          margin-bottom: 10px;
+
+          p {
+            margin-bottom: 0px;
+            font-weight: 600;
+            font-size: 20px;
+          }
+
+          span {
+            margin-top: 3px;
+            color: rgb(41, 144, 228);
+          }
+        }
+
+        .title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: rgba(0, 0, 0, 0.7);
+          // margin-bottom: 10px;
+
+          span {
+            margin-top: -15px;
+            color: rgb(41, 144, 228);
+          }
+        }
+
+        .prices {
+          margin-bottom: 20px;
+          .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .left-ht,
+            .left-ttc {
+              width: max-content;
+
+              p {
+                margin-bottom: 10px;
+              }
+            }
+          }
+
+          .right {
+            .inputs {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              div {
+                width: max-content;
+              }
+            }
+          }
+        }
+
+        .taxe {
+          .regle-param {
+            .regle {
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              margin-bottom: 10px;
+              select {
+                max-width: 300px;
+              }
+            }
+          }
+
+          .alerte{
+            display: flex;
+            // align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+            background: rgb(142, 194, 236);
+            border-radius: 10px;
+            width: max-content;
+            border: 1px solid rgb(41, 144, 228);
+            margin-top: 10px;
+
+            span{
+              color: rgb(41, 144, 228);
+            }
+
+            p{
+              margin-bottom: 0px;
+            }
+          }
+        }
+
+        .prix{
+          
+          .top{
+            margin:50px 0px;
+
+            .left-ht{
+              p{
+                margin-bottom: 10px;
+              }
+
+              .input-group{
+                width: max-content;
+              }
+            }
+          }
+
+          .bottom{
+            margin:0px 0px 40px 0px;
+          }
+        }
+
+        .priorites{
+
+          div .row{
+            margin-top: 10px;
+          }
+        }
+      }
+
     }
   }
 
@@ -669,6 +889,11 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+
+      .btn-primary{
+         background: rgb(41, 144, 228) !important;
+            border-color: rgb(41, 144, 228);
+      }
     }
   }
 }

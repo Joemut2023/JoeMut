@@ -134,7 +134,7 @@
         </div>
         <div class="right">
             <div class="card shadow produit-list">
-                <h2 class="produit-list-title">Produit (8)</h2>
+                <h2 class="produit-list-title">Produit (<%= commande.Panier.Panier_details.length %>)</h2>
                 <table class="table">
                     <thead>
                       <tr>
@@ -149,16 +149,57 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+                        <% commande.Panier.Panier_details.forEach(panier_detail => { %>
+                            <tr>
+                                <th scope="row" class="tr-th-produit">
+                                    <div>
+                                        <div class="tr-th-produit-img">
+                                            <img src="/images/produits/<%= panier_detail.Produit.Media[0].med_ressource  %>" alt="">
+                                        </div>
+                                        <div class="tr-th-produit-text">
+                                            <p><%= panier_detail.Produit.pro_libelle  %></p>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>Mark</td>
+                                <td><%= panier_detail.pad_ttc.toString().replace('.', ',') %>€</td>
+                                <td><%= panier_detail.pad_qte %></td>
+                                <% var sum = 0 %>
+                                <% panier_detail.Produit.Quantites.forEach(qte => sum = sum + qte['qua_nbre'])%>
+                                <td><%= sum %></td>
+                                <td>
+                                    <% if (panier_detail.Produit.Applies.length === 0) { %>
+                                        <span class="btn btn-remise-prod" data-pad="<%= panier_detail.pad_id %>">
+                                            Ajouter une remise sur le produit
+                                        </span>
+                                    <% } else { %>
+                                        <span>Remise</span>
+                                    <% } %>
+                                <td><%= panier_detail.pad_ttc * panier_detail.pad_qte %>€</td>
+                                <td>
+                                    <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>">
+                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
+                                <td colspan="8" class="form-edit-prod" >
+                                    <div>
+                                        <form class="row g-3">
+                                            <div class="col-auto">
+                                              <input type="text" readonly class="form-control">
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="text" class="form-control">
+                                            </div>
+                                            <div class="col-auto">
+                                              <button type="submit" class="btn btn-primary mb-3">Modifier</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
                     </tbody>
                 </table>
                 <div class="table-actions">
@@ -264,23 +305,151 @@
                                 <td>@mdo</td>
                                 <td>
                                     <div>
-                                        <button class="btn btn-primary">Saisir un paiement</button>
-                                        <button class="btn btn-primary">Saisir une note</button>
+                                        <button class="btn btn-primary btn-form-doc-paiement">Saisir un paiement</button>
+                                        <button class="btn btn-primary btn-form-doc-note">Saisir une note</button>
                                         <button class="btn btn-light"><i class="fa-solid fa-trash"></i></button>
                                     </div>
                                 </td>
                               </tr>
-                             <!-- <tr class="tr-form-note">
-                                <td colspan="5"></td>
+                             <tr class="tr-form-note">
+                                <td colspan="5">
+                                    <form class="row g-3">
+                                        <div class="col-auto">
+                                            <textarea class="form-control" id="" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="col-auto">
+                                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                        </div>
+                                    </form>
+                                </td>
                               </tr>
                               <tr class="tr-form-paiement">
-                                <td colspan="5"></td>
-                              </tr>-->
+                                <td colspan="5">
+                                    <form class="row g-3">
+                                        <div class="col-auto">
+                                          <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                          <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                        </div>
+                                    </form>
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                     </div>
-                    <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">...</div>
-                    <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">...</div>
+                    <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Transporteur</th>
+                                <th scope="col">Poids</th>
+                                <th scope="col">Frais  d'expedition</th>
+                                <th scope="col">Numéro de suivi</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Produit</th>
+                                <th scope="col" class="th-quantite">
+                                    <div>
+                                        <p>Quantité</p>
+                                        <div>
+                                            <p>En location</p>
+                                            <p>En retour</p>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col">Etat</th>
+                                <th scope="col">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="paiements-bloc card shadow">
+                <h2>Paiement (0)</h2>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Moyen de paiement</th>
+                        <th scope="col">ID de la transaction</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Facture</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <div class="form-bloc-paiement">
+                    <form class="row g-3">
+                        <div class="col-auto">
+                            <input type="date" class="form-control" name="" id="">
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Moyen de paiement</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="" id="" placeholder="ID de la transaction">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="" id="" placeholder="Montant">
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Facture</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

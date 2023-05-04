@@ -6,7 +6,7 @@
       <h4>Total du panier</h4>
       <h5>PANIER N° <%= panier.pan_id %></h5>
       <h6><% if (panier.Commande) { %>
-       <%= panier.Commande.com_ttc%>€
+       <%= parseFloat(panier.Commande.com_ttc).toFixed(2).toString().replace(".",",")%>€
       <% } %></h6>
     </div>
   </div>
@@ -63,13 +63,13 @@
 
           <td scope="row">
             <% if (element.pad_ttc) { %>
-              <%= element.pad_ttc.toFixed(2) %> €</td>
+              <%= element.pad_ttc.toFixed(2).toString().replace(".",",") %> €</td>
             <% } %>
           <td scope="row"><%= element?.pad_qte%></td>
           <td scope="row"><%= sumQty?.find(item=>item.id === element.Produit.pro_id).qty %></td>
           <td scope="row">
               <% if (element.pad_ttc) { %>
-              <%= (element.pad_ttc * element.pad_qte ).toFixed(2)%> €</td>
+              <%= (element.pad_ttc * element.pad_qte ).toFixed(2).toString().replace(".",",")%> €</td>
             <% } %>
           <td></td>
           <td scope="row"></td>
@@ -85,7 +85,7 @@
       <tr class="d-flex flex-row justify-content-between">
         <td>Total produits :</td>
         <td> <% if (somme_ttc) { %>
-          <%= somme_ttc?.toFixed(2) %> €</td>
+          <%= somme_ttc?.toFixed(2).toString().replace(".",",") %> €</td>
         <% } %>
           
       </tr>
@@ -103,7 +103,7 @@
       <tr class="d-flex flex-row justify-content-between">
         <td>Total frais port : </td>
         <td>    <% if (panier.Commande) { %>
-    <%= panier.Commande.Frais_port.frp_ttc.toFixed(2)%> €
+    <%= panier.Commande.Frais_port.frp_ttc.toFixed(2).toString().replace(".",",")%> €
       <% } %></td>
       </tr>
     </table>
@@ -113,7 +113,7 @@
       <tr class="d-flex flex-row justify-content-between">
         <th class="">Total : </td>
           <th>    <% if (panier.Commande) { %>
-    <%= (panier.Commande.Frais_port.frp_ttc + somme_ttc).toFixed(2)%> €
+    <%= (panier.Commande.Frais_port.frp_ttc + somme_ttc).toFixed(2).toString().replace(".",",")%> €
       <% } %></th>
       </tr>
     </table>

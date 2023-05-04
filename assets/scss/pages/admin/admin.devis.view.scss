@@ -8,7 +8,8 @@
         font-size: 14px;
     }
     .actions{
-        margin-top: 20px;
+        margin: 0;
+        padding-top: 10px;
         display: flex;
         flex-direction: row;
         gap: 15px;
@@ -21,17 +22,18 @@
         .btn{
             padding: 0;
             padding-bottom: 5px;
+            padding-left: 5px;
             padding-right: 5px;
-            padding-right: 5px;
+            font-size: 13px;
         }
     }
     .content{
         margin-top: 40px;
         display: flex;
         flex-direction: row;
-        gap: 5%;
+        gap: 2%;
         .left{
-            width: 30%;
+            width: 28%;
             .bloc-client{
                 h3{
                     font-size: 16px;
@@ -112,12 +114,39 @@
             }
         }
         .right{
-            width: 65%;
+            width: 70%;
             .produit-list{
                 margin-bottom: 40px;
                 .produit-list-title{
                     padding: 20px;
                     border-bottom: solid 1px gray;
+                }
+                .table{
+                    .tr-th-produit{
+                        div{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            gap: 5%;
+                            justify-content: space-between;
+                            .tr-th-produit-img{
+                                width: 15%;
+                                height: 50px;
+                            }
+                            .tr-th-produit-text{
+                                width: 65%;
+                            }
+                        }
+                    }
+                    .btn-edit-prod{
+                        cursor: pointer;
+                        i{
+                            width: 100%;
+                        }
+                    }
+                    .tr-form-edit-prod{
+                        display: none;
+                    }
                 }
                 .table-actions{
                     display: flex;
@@ -163,6 +192,7 @@
                 }
             }
             .commande-tabs{
+                margin-bottom: 20px;
                 nav{
                     .nav.nav-tabs{
                         .nav-link{
@@ -205,6 +235,47 @@
                             width: 30%;
                         }
                     }
+                }
+                #nav-retour{
+                    .th-quantite{
+                        div{
+                            display: flex;
+                            flex-direction: column;
+                            padding: 0;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+                            div{
+                                display: flex;
+                                flex-direction: row;
+                                gap: 20px;
+                                justify-content: space-between;
+                                p{
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                #nav-document{
+                    .tr-form-note,.tr-form-paiement{
+                        display: none;
+                    }
+                }
+            }
+            .paiements-bloc{
+                h2{
+                    padding: 10px;
+                    border-bottom: solid 1px gray;
+                }
+                .table{
+                    padding: 5px;
+                    thead{
+                        border-bottom: solid 2px $color-blue-admin;
+                    }
+                }
+                .form-bloc-paiement{
+                    padding: 5px;
                 }
             }
         }

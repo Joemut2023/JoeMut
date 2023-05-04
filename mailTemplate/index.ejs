@@ -65,9 +65,9 @@
           <tr>
             <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_ref %></td>
             <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_libelle %> </th>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2)%> €</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2).toString().replace(".",",")%> €</td>
             <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_qte%></td>
-            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2) %> €</td>
+            <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2).toString().replace(".",",") %> €</td>
           </tr>
            
           <% }) %>
@@ -78,7 +78,7 @@
           <table style="width: 40%; border-collapse: collapse;" width="40%">
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produit HT</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2) %> €</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2).toString().replace(".",",") %> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Reductions HT</th>
@@ -86,19 +86,19 @@
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Autres frais</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2):0.00 %> €</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2).toString().replace(".",","):0.00 %> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Livraison</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ttc?commande.Frais_port.frp_ht.toFixed(2):0.00%> €</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ttc?commande.Frais_port.frp_ht.toFixed(2).toString().replace(".",","):0.00%> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Incluant un total de taxes</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2) %> € </th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2).toString().replace(".",",") %> € </th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Montant total TTC</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= totalTTC.toFixed(2) %> € </th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= totalTTC.toFixed(2).toString().replace(".",",") %> € </th>
             </tr>
           </table>
         </div>

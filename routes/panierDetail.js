@@ -34,6 +34,11 @@ router.post("/", async (req, res, next) => {
       where: { pro_id },
     });
     if (oldPanierDetail == null) {
+      if (quantite) {
+        if (pad_qte > quantite) {
+          return res.status(200).send("indisponible");
+        }
+      }
       const promo = await Apply.findOne({
         where: { pro_id },
         include: [

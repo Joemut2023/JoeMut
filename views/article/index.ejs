@@ -121,7 +121,7 @@
       <h1><%= article.pro_libelle %></h1>
       <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
-        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2) %> €</p>
+        <p class="number"><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %> €</p>
         <p class="title">TTC</p>
       </div>
       <div class="informations">
@@ -264,7 +264,7 @@
           <p class="ref">Ref: <%= element.pro_ref %></p>
           <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div>
-            <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2) %>€</p>
+            <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %>€</p>
             <p class="bar">|</p>
             <button
               data-id="<%= element.pro_id %>"

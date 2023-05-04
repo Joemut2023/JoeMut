@@ -60,7 +60,7 @@ var Kart = /*#__PURE__*/function () {
     /**
      * recuperer le statut du client
      * @returns userId or false
-    */
+     */
   }, {
     key: "getUserStatut",
     value: function () {
@@ -94,7 +94,7 @@ var Kart = /*#__PURE__*/function () {
       return getUserStatut;
     }()
     /**
-     * 
+     *
      * @returns Object
      */
   }, {
@@ -503,11 +503,10 @@ var Kart = /*#__PURE__*/function () {
             case 12:
               price = _context13.sent;
               fraisDossier = new Decimal(parseFloat(fraisDivers.frais_dossier));
-              ;
               fraisPort = new Decimal(parseFloat(fraisDivers.frais_port));
-              _context13.next = 18;
+              _context13.next = 17;
               return Kart.getAllPanierDetails();
-            case 18:
+            case 17:
               panierDetail = _context13.sent;
               storedItemsHtml = "";
               kartProductQte = 0; // console.log(fraisDoss.toString(),fraisPrt.toString());
@@ -549,7 +548,7 @@ var Kart = /*#__PURE__*/function () {
                   }, _callee12);
                 })));
               });
-            case 26:
+            case 25:
             case "end":
               return _context13.stop();
           }
@@ -607,23 +606,13 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderMaxQteModal",
     value: function () {
       var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
-        var price, fraisDivers, fraisDossier, fraisPort, html;
+        var html;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
           while (1) switch (_context15.prev = _context15.next) {
             case 0:
-              _context15.next = 2;
-              return Kart.calculTotalPrice();
-            case 2:
-              price = _context15.sent;
-              _context15.next = 5;
-              return Kart.addFraisDivers();
-            case 5:
-              fraisDivers = _context15.sent;
-              fraisDossier = parseFloat(fraisDivers.frais_dossier);
-              fraisPort = parseFloat(fraisDivers.frais_port);
               html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
               document.querySelector("#myModal .body-modal").innerHTML = html;
-            case 10:
+            case 2:
             case "end":
               return _context15.stop();
           }
