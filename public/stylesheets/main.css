@@ -7817,5 +7817,9 @@ body {
   background: rgb(41, 144, 228) !important;
   border-color: rgb(41, 144, 228);
 }
+#page-admin-ajoutAdresse .buttons .btn-primary a {
+  text-decoration: none;
+  color: white;
+}
 
 /*# sourceMappingURL=main.css.map */
