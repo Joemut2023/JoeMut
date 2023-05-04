@@ -1,5 +1,24 @@
 #admin-page-add-clients {
     background-color: $color-white;
 
-    .header-add-client {}
+    .btn-info {
+        color: $color-white;
+    }
+
+    .label-div {
+        width: 40%;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: $color-black;
+    }
+
+    a:hover {
+        color: $color-white;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
 }

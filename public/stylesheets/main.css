@@ -6182,6 +6182,23 @@
 #admin-page-add-clients {
   background-color: #fff;
 }
+#admin-page-add-clients .btn-info {
+  color: #fff;
+}
+#admin-page-add-clients .label-div {
+  width: 40%;
+}
+#admin-page-add-clients a {
+  text-decoration: none !important;
+  color: #232323;
+}
+#admin-page-add-clients a:hover {
+  color: #fff;
+}
+#admin-page-add-clients label {
+  font-size: 0.9rem;
+}
+
 #admin-page-adresse {
   margin-top: 2%;
 }
@@ -6620,16 +6637,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 #admin-blocs-produitHeader .produit-menu h1,
 #admin-blocs-produitHeader .produit-menu h2,
 #admin-blocs-produitHeader .produit-menu h3,
 #admin-blocs-produitHeader .produit-menu h4 {
   font-weight: 300 !important;
-}
-#admin-blocs-produitHeader .produit-menu .produit-menu-btn {
-  margin-top: 1%;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;
