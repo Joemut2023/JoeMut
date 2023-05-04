@@ -1,61 +1,64 @@
 <div id="admin-page-frais-port">
-    <div class="ajouter-typecat">
-        <div class="text">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a class="fil-ariane-item" href="#">Referentiel</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                   <span>Frais port</span>
-                  </li>
-                </ol>
-              </nav>
-        </div>
-        <div class="button">
-            <button class="btn btn-info">
-                <span>+</span>
-                <span> <a href="/admin/frais-port/ajouter">Ajouter </a></span>
-            </button>
-        </div>
+  <div class="ajouter-typecat">
+    <div class="text">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a class="fil-ariane-item" href="#">Referentiel</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span>Frais port</span>
+          </li>
+        </ol>
+      </nav>
     </div>
-    
-    <div class="table-content">     
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Libellé</th>
-                <th> Date debut</th>
-                <th>Date fin</th>
-                <th>Actif</th>
-                <th>Default</th>
-                <th>Description</th>
-                <!-- <th>Image</th> -->
-                <th>HT</th>
-                <th>TTC</th>
-                <th>Actions</th>
-            </tr>
-      
-           <% fraisPort.forEach(element => { %>
-                <tr>
-                    <td><%= element.frp_id  %></td>
-                    <td><%= element.frp_libelle %></td>
-                    <td> <%= element.frp_debut %></td>
-                    <td> <%= element.frp_fin %></td>
-                    <td> <%= element.frp_actif %></td>
-                    <td> <%= element.frp_default %></td>
-                    <td> <%= element.frp_description %></td>
-                    <!-- <td> <%= element.frp_img %></td> -->
-                    <td><%= element.frp_ht.toFixed(2).toString().replace(".", ",") %> €</td>
-                    <td><%= element.frp_ttc.toFixed(2).toString().replace(".", ",")%> €</td>
-                    <td class="td-icones">
-                        <i class="fa-solid fa-eye icons"></i> 
-                        <i class="fas fa-edit icons"></i>
-                        <i class="fa fa-trash icons" aria-hidden="true"></i>
-                    </td>
-                </tr>
-            <% }) %>
-           
-          </table>
+    <div class="button">
+      <button class="btn btn-info">
+        <span>+</span>
+        <span> <a href="/admin/frais-port/ajouter">Ajouter </a></span>
+      </button>
     </div>
-    </div>
+  </div>
+
+  <div class="table-content">
+    <table class="table table-striped">
+      <tr>
+        <th>Id</th>
+        <th>Libellé</th>
+        <th>Date debut</th>
+        <th>Date fin</th>
+        <th>Actif</th>
+        <th>Default</th>
+        <th>Description</th>
+        <!-- <th>Image</th> -->
+        <th>HT</th>
+        <th>TTC</th>
+        <th>Actions</th>
+      </tr>
+
+      <% fraisPort.forEach(element => { %>
+      <tr>
+        <td><%= element.frp_id %></td>
+        <td><%= element.frp_libelle %></td>
+        <td><%= element.frp_debut %></td>
+        <td><%= element.frp_fin %></td>
+        <td><%= element.frp_actif %></td>
+        <td><%= element.frp_default %></td>
+        <td><%= element.frp_description %></td>
+        <!-- <td> <%= element.frp_img %></td> -->
+        <td>
+          <%= element.frp_ht?.toFixed(2).toString().replace(".", ",") %> €
+        </td>
+        <td>
+          <%= element.frp_ttc?.toFixed(2).toString().replace(".", ",")%> €
+        </td>
+        <td class="td-icones">
+          <i class="fa-solid fa-eye icons"></i>
+          <i class="fas fa-edit icons"></i>
+          <i class="fa fa-trash icons" aria-hidden="true"></i>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+</div>
