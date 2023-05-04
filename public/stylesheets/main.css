@@ -6246,18 +6246,16 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 #page-admin-ajouter-fraisPort .text {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 #page-admin-ajouter-fraisPort .text .fil-ariane-item {
   text-decoration: none;
   color: #25b9d7;
 }
 #page-admin-ajouter-fraisPort .form {
-  width: 80%;
+  width: 90%;
+  padding: 10px;
   margin: auto;
-  margin-top: 25px;
-  border: 1px solid #b3b0b0;
-  padding: 20px;
 }
 #page-admin-ajouter-fraisPort .form input:focus {
   outline: none;
