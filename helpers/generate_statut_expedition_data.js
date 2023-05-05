@@ -13,6 +13,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/statut_expedition.csv"))
     //results.shift();
     results.map(async (data) => {
       await Statut_expedition.create({
+        id: parseInt(data.statut.split(";")[0]),
         ste_libelle: data.statut.split(";")[1],
         ste_actif: parseInt(data.statut.split(";")[2]),
       });
