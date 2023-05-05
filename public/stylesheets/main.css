@@ -699,6 +699,9 @@
   border-radius: 5px;
   font-family: "Cardo";
 }
+#pages-home .element-slider-suggestion {
+  margin: 0px;
+}
 #pages-home .element-slider-suggestion .font-weight-light {
   margin-bottom: 20px;
   font-family: "Byciclette";
@@ -1079,10 +1082,7 @@
 #pages-home .section-contact form {
   font-family: "Byciclette !important";
 }
-#pages-home .carousel {
-  margin: 20px;
-}
-#pages-home .carousel__view {
+#pages-home .element-slider-suggestion .carousel__view {
   width: 95%;
   height: 400px;
   background: white;
@@ -1090,26 +1090,7 @@
   overflow: hidden;
   position: relative;
 }
-#pages-home .carousel__control {
-  position: absolute;
-  z-index: 1;
-  height: 400px;
-  width: 70px;
-  transition: background-color 0.3s;
-  display: table;
-}
-#pages-home .carousel__control .icon {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-#pages-home .carousel__control:first-of-type {
-  left: 0;
-}
-#pages-home .carousel__control:last-of-type {
-  right: 0;
-}
-#pages-home .product-list {
+#pages-home .element-slider-suggestion .carousel__view .product-list {
   position: absolute;
   margin: 0;
   padding: 0%;
@@ -1118,47 +1099,47 @@
   list-style: none;
   height: 400px;
 }
-#pages-home .product-list__item {
+#pages-home .element-slider-suggestion .carousel__view .product-list__item {
   width: 300px;
   height: 400px;
   display: inline-block;
 }
-#pages-home .product {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product {
   display: table;
   height: 100%;
   width: 100%;
   margin-right: 100px;
 }
-#pages-home .product .item-card-img {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .item-card-img {
   height: 270px;
   width: 60%;
   margin: 0 auto 2% auto;
 }
-#pages-home .product .item-card-img a {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .item-card-img a {
   display: inline-block;
   height: 100%;
 }
-#pages-home .product .item-card-img a img {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .item-card-img a img {
   height: 100%;
   object-fit: cover;
 }
-#pages-home .product .paragraph {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .paragraph {
   text-align: center;
   color: #7a7a7a;
 }
-#pages-home .product .paragraph .libelle {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .paragraph .libelle {
   font-size: 0.8rem;
 }
-#pages-home .product .paragraph P {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .paragraph P {
   margin-bottom: 5px;
 }
-#pages-home .product .paragraph .quantite {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .paragraph .quantite {
   font-weight: 500;
 }
-#pages-home .product .paragraph .quantite span {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .paragraph .quantite span {
   font-weight: 600;
 }
-#pages-home .product .price {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .price {
   text-align: center;
   color: #363a42;
   display: flex;
@@ -1166,22 +1147,34 @@
   justify-content: center;
   align-items: center;
 }
-#pages-home .product .price .bar {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .price .bar {
   font-size: 20px;
   font-weight: 500;
   color: #a0b21f;
 }
-#pages-home .product .price .btn-add {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .price .btn-add {
   cursor: pointer;
 }
-#pages-home .product .price p {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .price p {
   margin-bottom: 0px;
 }
-#pages-home .product .slick-list {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .slick-list {
   perspective: 1px;
 }
-#pages-home .product .slick-track {
+#pages-home .element-slider-suggestion .carousel__view .product-list .product .slick-track {
   will-change: transform, transition;
+}
+#pages-home .element-slider-suggestion .carousel__view .swiper-pagination {
+  border: 2px solid red;
+  margin-top: 20px !important;
+}
+#pages-home .element-slider-suggestion .carousel__view .swiper-pagination .swiper-pagination-bullet {
+  background: black !important;
+}
+#pages-home .element-slider-suggestion .carousel__view .swiper-button-next::after,
+#pages-home .element-slider-suggestion .carousel__view .swiper-button-prev::after {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 2rem;
 }
 
 #page-creation {
