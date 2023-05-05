@@ -436,7 +436,7 @@
   .element-slider-suggestion {
     .carousel__view {
       width: 95%;
-      height: 400px;
+      height: 450px;
       background: white;
       margin: 0 auto 5% auto;
       overflow: hidden;
@@ -444,8 +444,6 @@
 
       .product-list {
         position: absolute;
-        margin: 0;
-        padding: 0%;
         transition: transform 0.3s;
         transform: translateX(0px);
         list-style: none;
@@ -533,9 +531,7 @@
       }
 
       .swiper-pagination {
-        border: 2px solid red;
-        margin-top: 20px !important;
-
+        bottom: 15px !important;
         .swiper-pagination-bullet {
           background: black !important;
         }
@@ -544,7 +540,7 @@
       .swiper-button-next::after,
       .swiper-button-prev::after {
         color: rgba(0, 0, 0, 0.6);
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
     }
   }

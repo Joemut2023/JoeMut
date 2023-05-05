@@ -31,6 +31,7 @@
 </div>
 <div id="pages-home">
   <div class="element-slider-suggestion">
+    <div class="">
       <h2 class="font-weight-light text-center">NOS SUGGESTIONS !</h2>
       <!-- <div class="carousel js-product-carousel">
         <div class="carousel__view">
@@ -74,8 +75,9 @@
           </ul>
         </div>
       </div> -->
+      <div class="carousel js-product-carousel">
         <div class="swiper carousel__view">
-          <ul class="swiper-wrapper product-list">
+          <ul class="swiper-wrapper product-list js-product-list ">
             <% produits.forEach(produit => { %>
             <li class="swiper-slide product-list__item">
               <div data-slide="1" class="product">
@@ -111,6 +113,8 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
+      </div>
+    </div>
   </div>
   <div class="section-location">
     <div class="section-location-img"></div>

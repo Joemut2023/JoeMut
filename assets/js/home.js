@@ -49,9 +49,10 @@ var swiper = new Swiper(".carousel__view", {
   spaceBetween: 20,
 
   autoplay: {
-    delay: 5000,
+    delay: 3000,
     disableOnInteraction: false,
   },
+
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
