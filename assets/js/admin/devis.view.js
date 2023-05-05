@@ -37,9 +37,15 @@ btnEditProds.forEach(btnEditProd=>{
 
 // adresse 
 btnUpdateExistAdresseFacturation.addEventListener('click',async(e)=>{
+    let commandeId = e.target.dataset.commande
+    let adresseId = e.target.dataset.adresse
+    let adresse = await axios.get('/admin/adresse/byAjax/'+adresseId);
     modalUpdateAdressFacturation.show();
 })
 btnUpdateExistAdresseLivraison.addEventListener('click',async(e)=>{
+    let commandeId = e.target.dataset.commande
+    let adresseId = e.target.dataset.adresse
+    let adresse = await axios.get('/admin/adresse/byAjax/'+adresseId);
     modalUpdateAdressLivraison.show();
 })
 

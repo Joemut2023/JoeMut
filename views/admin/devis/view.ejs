@@ -74,7 +74,9 @@
                                     id="dropdownadress-1"
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
-                                      <li class="btn-update-exist-adresse-livraison"><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
+                                      <li class="btn-update-exist-adresse-livraison" data-adresse="<%= adresse_livraion.adr_id %>" data-commande="<%= commande.com_id %>">
+                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                      </li>
                                       <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-livraison"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
@@ -96,7 +98,9 @@
                                     id="dropdownadress-2"
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
-                                      <li class="btn-update-exist-adresse-facturation"><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
+                                      <li class="btn-update-exist-adresse-facturation" data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>">
+                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                      </li>
                                       <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-facturation"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
