@@ -33,7 +33,7 @@
   <div class="element-slider-suggestion">
     <div class="">
       <h2 class="font-weight-light text-center">NOS SUGGESTIONS !</h2>
-      <div class="carousel js-product-carousel">
+      <!-- <div class="carousel js-product-carousel">
         <div class="carousel__view">
           <span class="carousel__control js-carousel-prev"
             ><i class="icon"><i class="fa-solid fa-chevron-left"></i></i
@@ -73,6 +73,45 @@
             </li>
             <% }) %>
           </ul>
+        </div>
+      </div> -->
+      <div class="carousel js-product-carousel">
+        <div class="swiper carousel__view">
+          <ul class="swiper-wrapper product-list js-product-list ">
+            <% produits.forEach(produit => { %>
+            <li class="swiper-slide product-list__item">
+              <div data-slide="1" class="product">
+                <div class="item-card-img">
+                  <a href="/article/<%= produit.pro_id %>"
+                    ><img
+                      src="/images/produits/<%= produit.Media[0].med_ressource %>"
+                      class="img-fluid suggestion-img"
+                  /></a>
+                </div>
+                <div class="paragraph">
+                  <p class="libelle"><%= produit.pro_libelle %></p>
+                  <p><%= produit.pro_ref %></p>
+                  <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
+                </div>
+                <div class="price">
+                  <p>
+                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €</strong>
+                  </p>
+                  <span class="bar">|</span>
+                  <span
+                      class="btn-add button-ajouter"
+                      data-id="<%= produit.pro_id %>"
+                      data-bs-toggle="modal"
+                      data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
+                 
+                </div>
+              </div>
+            </li>
+            <% }) %>
+          </ul>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
     </div>
