@@ -11,10 +11,10 @@
   </div>
 </div>
 
-<% if (typeof errorMsg !== 'undefined') { %>
-<div class="alert alert-danger mt-3" role="alert"><%= errorMsg %></div>
-<% } %> <% if (typeof succesMsg == 'string') { %>
+<% if (typeof succesMsg == 'string') { %>
 <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<% } %> <% if (typeof nothingMsg == 'string') { %>
+<div class="alert alert-dark mt-3" role="alert"><%= nothingMsg %></div>
 <% } %>
 
 <div id="admin-page-add-clients" class="mt-3 rounded mb-5">
@@ -23,8 +23,9 @@
     <p>Client</p>
   </div>
   <hr />
-  <form method="POST" action="/admin/promo/add">
+  <form method="POST" action="/admin/promo/update">
     <div class="d-flex flex-column gap-4">
+        <input type="hidden" name="prm_id" value="<%= promos.prm_id %>" />
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
           <label for="InputCode">Code promo</label>
@@ -36,6 +37,7 @@
             id="InputCode"
             aria-describedby="codeHelp"
             name="prm_code"
+            value="<%= promos.prm_code %>"
             required
           />
         </div>
@@ -52,6 +54,7 @@
             aria-describedby="pourcentageNomHelp"
             name="prm_pourcent"
             min="1"
+            value="<%= promos.prm_pourcent %>"
             required
           />
         </div>
@@ -68,6 +71,7 @@
             aria-describedby="valeurHelp"
             name="prm_valeur"
             min="1"
+            value="<%= promos.prm_valeur%>"
             required
           />
         </div>
@@ -83,7 +87,7 @@
             id="inputDebut"
             name="prm_debut"
             required
-            value="<%= new Date().toISOString().substring(0,10) %>"
+            value="<%= promos.prm_debut %>"
           />
         </div>
       </div>
@@ -98,7 +102,7 @@
             id="inputFIn"
             name="prm_fin"
             required
-            value="<%= new Date().toISOString().substring(0,10) %>"
+            value="<%= promos.prm_fin %>"
           />
         </div>
       </div>
@@ -109,13 +113,8 @@
         </div>
         <div class="w-50">
           <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              id="activateClient"
-              name="prm_actif"
-              value="true"
-              type="checkbox"
-              checked
+            <input class="form-check-input" id="activateClient" name="prm_actif"
+            value="true" type="checkbox" <%= promos.prm_actif ? "checked" :"" %>
             />
           </div>
         </div>

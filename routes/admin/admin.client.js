@@ -109,7 +109,6 @@ router.post("/update", async (req, res) => {
     cli_partenaire,
     cli_id,
   } = req.body;
-  console.log(req.body);
   try {
     const titres = await Titre.findAll();
     const update = await Client.update(

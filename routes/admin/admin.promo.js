@@ -79,5 +79,41 @@ router.get("/update", async (req, res) => {
     });
   }
 });
+router.post("/update", async (req, res) => {
+  const {
+    prm_code,
+    prm_pourcent,
+    prm_valeur,
+    prm_debut,
+    prm_fin,
+    prm_actif,
+    prm_id,
+  } = req.body;
+  try {
+    const newPromos = await Promo.update(
+      {
+        prm_code,
+        prm_pourcent,
+        prm_valeur,
+        prm_debut,
+        prm_fin,
+        prm_actif,
+      },
+      { where: { prm_id } }
+    );
+    const promos = await Promo.findOne({ where: { prm_id } });
+    if (newPromos[0] == 1) {
+      const succesMsg = "la promo a été mise à jour avec succès";
+      return res.render("promo/update", { promos, succesMsg });
+    }
+    const nothingMsg = "aucune nouvelle information trouvée ";
+    res.render("promo/update", { promos, nothingMsg });
+  } catch (error) {
+    res.status(500).render("promo/update", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
 
 module.exports = router;
