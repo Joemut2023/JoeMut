@@ -6690,49 +6690,6 @@ body {
   font-size: 14px;
 }
 
-.menu-bar {
-  background-color: #fff;
-}
-.menu-bar .fa-user,
-.menu-bar .fa-bag-shopping {
-  color: #25b9d7;
-}
-.menu-bar .fa-dollar-sign {
-  color: #ec5b5b;
-}
-.menu-bar .fa-money-check-dollar {
-  color: #61ce70;
-}
-.menu-bar p {
-  font-size: 0.8rem;
-}
-.menu-bar h6 {
-  font-size: 0.9rem;
-  font-weight: 300;
-}
-
-#admin-page-promo .promo {
-  background-color: #fff;
-}
-#admin-page-promo a {
-  text-decoration: none !important;
-  color: #232323;
-}
-#admin-page-promo .table {
-  background-color: #fff;
-}
-#admin-page-promo .table td,
-#admin-page-promo .table th {
-  vertical-align: middle;
-  font-size: 0.9rem;
-}
-#admin-page-promo .table .dropdown :hover > .dropdown-menu {
-  display: block;
-}
-#admin-page-promo .table .dropdown-menu {
-  inset: 5px 0px auto auto;
-}
-
 #admin-blocs-produitHeader {
   background-color: #fff;
   padding: 1%;
