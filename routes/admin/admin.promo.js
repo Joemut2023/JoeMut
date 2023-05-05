@@ -57,7 +57,6 @@ router.post("/add", async (req, res) => {
 });
 router.post("/delete", async (req, res) => {
   const prm_id = req.body.prm_id;
-  console.log(prm_id, "prm");
   try {
     await Promo.destroy({ where: { prm_id } });
     res.redirect("/admin/promo");
