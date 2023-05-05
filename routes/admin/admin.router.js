@@ -14,6 +14,7 @@ const couleurRouter = require("./admin.couleurs");
 const factureRouter = require("./admin.facture");
 const adresseRouter = require("./admin.adresse");
 const clientRouter = require("./admin.client");
+const promoRouter = require("./admin.promo");
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout], devisRouter);
@@ -29,5 +30,5 @@ router.use("/frais-port", [adminLayout], fraisPortRouter);
 router.use("/factures", [adminLayout], factureRouter);
 router.use("/adresse", [adminLayout], adresseRouter);
 router.use("/clients", [adminLayout], clientRouter);
-
+router.use("/promo", [adminLayout], promoRouter);
 module.exports = router;
