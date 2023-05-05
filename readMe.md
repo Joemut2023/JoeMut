@@ -18,4 +18,6 @@
 * `node helpers/generate_quantites_data.js`
 * `node helpers/generate_frais_port_data.js`
 * `node helpers/generate_tarif_data.js`
+* `node helpers/generate_statut_expedition_data.js`
+* `node helpers/generate_statut_commande_data.js`
 ```
