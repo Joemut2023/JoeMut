@@ -39,6 +39,7 @@ router.get("/", async (req, res) => {
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
+        "com_num"
       ],
       include: [
         {
