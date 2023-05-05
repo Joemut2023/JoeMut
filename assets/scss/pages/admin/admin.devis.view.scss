@@ -283,6 +283,38 @@
                 }
             }
         }
+
+    }
+    
+    .modal-list-adresse{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        .mb-3{
+            width: 35%;
+            font-size: 13px;
+            border: solid 1px $color-blue-admin;
+            padding: 0;
+            label{
+                display: flex;
+                width: 100%;
+                flex-direction: row-reverse;
+                gap: 20px;
+                padding-left: 20px;
+                word-wrap: break-word;
+                cursor: pointer;
+                div{
+                    width: 90%;
+                    margin: 0;
+                    padding: 0;
+                    p{
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
     }
     
 }

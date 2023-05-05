@@ -8,6 +8,12 @@
   font-family: BycicletteThin;
   src: url(fonts/Bicyclette-Thin.woff);
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #bloc-header .top-bar {
   background-color: #a0b21f;
   display: flex;
@@ -7789,6 +7795,36 @@ body {
 }
 #admin-page-viewDevis .content .right .paiements-bloc .form-bloc-paiement {
   padding: 5px;
+}
+#admin-page-viewDevis .modal-list-adresse {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+#admin-page-viewDevis .modal-list-adresse .mb-3 {
+  width: 35%;
+  font-size: 13px;
+  border: solid 1px #25b9d7;
+  padding: 0;
+}
+#admin-page-viewDevis .modal-list-adresse .mb-3 label {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  gap: 20px;
+  padding-left: 20px;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+#admin-page-viewDevis .modal-list-adresse .mb-3 label div {
+  width: 90%;
+  margin: 0;
+  padding: 0;
+}
+#admin-page-viewDevis .modal-list-adresse .mb-3 label div p {
+  margin: 0;
+  padding: 0;
 }
 
 #page-admin-ajoutAdresse {

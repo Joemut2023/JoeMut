@@ -460,116 +460,137 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/devis/commande/add-essayage" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="input-add-adresse" class="form-label">date</label>
+                        <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
         </div>
-        <form action="/admin/devis/commande/add-essayage" method="post">
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="input-add-adresse" class="form-label">date</label>
-                    <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
-                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                  </div>
+    </div>   
+    <!-- modal pour adresse livraison -->
+    <div class="modal fade" id="modal-update-adresse-livraions" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
-      </div>
+            <form action="#" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
+        </div>
     </div>
-</div>
-
-<!-- modal pour adresse livraison -->
-<div class="modal fade" id="modal-update-adresse-livraions" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="#" method="post">
-            <div class="modal-body">
-                <div class="mb-3">
+    <div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post">
+                <div class="modal-body modal-list-adresse">
+                    <% adresses.forEach(adresse => { %>
+                    <div class="mb-3">
+                        <label for="radio-adresse-livraison-<%= adresse.adr_id %>">
+                            <div>
+                                <p><%= adresse.adr_structure %></p>
+                                <p><%= adresse.adr_nom %></p>
+                                <p><%= adresse.adr_societe %></p>
+                                <p><%= adresse.adr_adresse %></p>
+                            </div>
+                            <input type="radio" name="adresse" id="radio-adresse-livraison-<%= adresse.adr_id %>">
+                        </label>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="modal-footer">
                     <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
-      </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
+        </div>
     </div>
-</div>
-<div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!--modal pour adresse facturation-->
+    <div class="modal fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
         </div>
-        <form action="#" method="post">
-            <div class="modal-body">
-                <div class="mb-3">
-                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
-      </div>
     </div>
-</div>
-<!--modal pour adresse facturation-->
-<div class="modal fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="#" method="post">
-            <div class="modal-body">
-                <div class="mb-3">
+    <div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="post">
+                <div class="modal-body modal-list-adresse">
+                    <% adresses.forEach(adresse => { %>
+                    <div class="mb-3">
+                        <label for="radio-adresse-facturation-<%= adresse.adr_id %>">
+                            <div>
+                                <p><%= adresse.adr_structure %></p>
+                                <p><%= adresse.adr_nom %></p>
+                                <p><%= adresse.adr_societe %></p>
+                                <p><%= adresse.adr_adresse %></p>
+                            </div>
+                            <input type="radio" name="adresse" id="radio-adresse-facturation-<%= adresse.adr_id %>">
+                        </label>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="modal-footer">
                     <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
-      </div>
-    </div>
-</div>
-<div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
         </div>
-        <form action="#" method="post">
-            <div class="modal-body">
-                <div class="mb-3">
-                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
-      </div>
     </div>
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>

@@ -27,7 +27,6 @@ router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
     let commandes_data = [];
-   // let total_pad_ttc = 0;
     let commandes = await Commande.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
@@ -68,7 +67,6 @@ router.get("/", async (req, res) => {
       //group: ["Commande.com_id"],
     });
     let commandesNbr = await Commande.findAndCountAll();
-
     for (let commande of commandes) {
       let pad_ttc = 0
       commande.Panier.Panier_details.forEach(pad => {
@@ -200,19 +198,20 @@ router.get('/view/:commandeId',async (req,res)=>{
         }
       ]
     });
+    let adresses = await Adresse.findAll({
+      cli_id:commande.cli_id
+    })
     let adresse_livraion = await Adresse.findOne({
       adr_id:commande.com_adr_liv
     });
     let adresse_facturation = await Adresse.findOne({
       adr_id:commande.com_adr_fac,
-      // include:[{
-      //   model:Client
-      // }]
     });
     res.render("devis/view",{
       commande,
       adresse_livraion,
-      adresse_facturation
+      adresse_facturation,
+      adresses
     });
   } catch (error) {
     res.render("devis/view",{
