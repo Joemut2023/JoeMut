@@ -5,8 +5,7 @@
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
         <a href="/admin/promo/add">
-          <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau code
-          promo</a
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle promo</a
         >
       </button>
       <button type="button" class="btn btn-outline-secondary">Aide</button>
@@ -101,11 +100,11 @@
           </td>
           <td>
             <div class="d-flex gap-4">
-              <form method="get" action="/admin/clients/update/?cli_id">
+              <form method="get" action="/admin/promo/update/?prm_id">
                 <input
                   type="hidden"
-                  name="cli_id"
-                  value="<%= element.cli_id %>"
+                  name="prm_id"
+                  value="<%= element.prm_id %>"
                 />
                 <button class="dropdown-item" type="submit">
                   <i class="fa-solid fa-pen"></i>

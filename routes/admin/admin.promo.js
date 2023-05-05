@@ -68,5 +68,17 @@ router.post("/delete", async (req, res) => {
     });
   }
 });
+router.get("/update", async (req, res) => {
+  const prm_id = req.query.prm_id;
+  try {
+    const promos = await Promo.findOne({ where: { prm_id } });
+    res.render("promo/update", { promos });
+  } catch (error) {
+    res.status(500).render("promo/update", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
 
 module.exports = router;
