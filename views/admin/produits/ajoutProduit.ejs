@@ -46,196 +46,395 @@
 
   <form action="">
     <div class="tabs-container row">
-    <div class="tabs">
-      <nav>
-        <div class="nav" id="nav-tab" role="tablist">
-          <button
-            class="nav-link btn-tab-1 active clicked"
-            id="nav-essentiel-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-essentiel"
-            type="button"
-            role="tab"
-            aria-controls="nav-essentiel"
-            aria-selected="true"
-          >
-            Essentiels
-          </button>
-          <button
-            class="nav-link btn-tab-2"
-            id="nav-quantite-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-quantite"
-            type="button"
-            role="tab"
-            aria-controls="nav-quantite"
-            aria-selected="false"
-          >
-            Quantite
-          </button>
-          <button
-            class="nav-link btn-tab-3"
-            id="nav-livraison-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-livraison"
-            type="button"
-            role="tab"
-            aria-controls="nav-livraison"
-            aria-selected="false"
-          >
-            Livraison
-          </button>
-          <button
-            class="nav-link btn-tab-4"
-            id="nav-prix-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-prix"
-            type="button"
-            role="tab"
-            aria-controls="nav-prix"
-            aria-selected="false"
-          >
-            Prix
-          </button>
-        </div>
-      </nav>
+      <div class="tabs">
+        <nav>
+          <div class="nav" id="nav-tab" role="tablist">
+            <button
+              class="nav-link btn-tab-1 active clicked"
+              id="nav-essentiel-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-essentiel"
+              type="button"
+              role="tab"
+              aria-controls="nav-essentiel"
+              aria-selected="true"
+            >
+              Essentiels
+            </button>
+            <button
+              class="nav-link btn-tab-2"
+              id="nav-quantite-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-quantite"
+              type="button"
+              role="tab"
+              aria-controls="nav-quantite"
+              aria-selected="false"
+            >
+              Quantite
+            </button>
+            <button
+              class="nav-link btn-tab-3"
+              id="nav-livraison-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-livraison"
+              type="button"
+              role="tab"
+              aria-controls="nav-livraison"
+              aria-selected="false"
+            >
+              Livraison
+            </button>
+            <button
+              class="nav-link btn-tab-4"
+              id="nav-prix-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-prix"
+              type="button"
+              role="tab"
+              aria-controls="nav-prix"
+              aria-selected="false"
+            >
+              Prix
+            </button>
+          </div>
+        </nav>
 
-      <div class="tab-content" id="nav-tabContent">
-        <div
-          class="tab-pane fade show active content-essentiel"
-          id="nav-essentiel"
-          role="tabpanel"
-          aria-labelledby="nav-home-tab"
-        >
-          <div class="row img">
-            <div class="col-md-8 block-image">
-              <div class="images">
-                <input
-                  type="file"
-                  id="file"
-                  class="file"
-                  multiple="multiple"
-                  accept="image/*"
-                />
-                <span><i class="fa-solid fa-camera"></i></span>
-                <p>Déposer vos images ici</p>
-                <p class="medium">ou selectionnez les fichiers</p>
-                <p class="taille">
-                  Taille recommandée de 800 x 800 pour le thème par défaut<br />
-                  format JPG, GIF ou PNG
-                </p>
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active content-essentiel"
+            id="nav-essentiel"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="row img">
+              <div class="col-md-8 block-image">
+                <div class="images">
+                  <input
+                    type="file"
+                    id="file"
+                    class="file"
+                    multiple="multiple"
+                    accept="image/*"
+                  />
+                  <span><i class="fa-solid fa-camera"></i></span>
+                  <p>Déposer vos images ici</p>
+                  <p class="medium">ou selectionnez les fichiers</p>
+                  <p class="taille">
+                    Taille recommandée de 800 x 800 pour le thème par défaut<br />
+                    format JPG, GIF ou PNG
+                  </p>
+                </div>
+                <output></output>
               </div>
-              <output></output>
+              <div class="right col-md-4">
+                <div class="ref">
+                  <div class="title">
+                    <h2>Réference</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+
+                <div class="quantity">
+                  <div class="title">
+                    <h2>Quantité</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div>
+                  <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" class="form-control" value="0" />
+                  </div>
+                  <div class="param">
+                    <span>Paramètres avancés dans </span>
+                    <span
+                      ><strong
+                        ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Quantites</strong
+                      ></span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="right col-md-4">
-              <div class="decli">
-                <div class="title">
-                  <h2>Déclinaisons</h2>
-                  <span><i class="fa-solid fa-circle-info"></i></span>
-                </div>
 
-                <div class="selects">
+            <div class="row recap">
+              <div class="col-md-8 left">
+                <div>
+                  <p class="title">Récapulatif</p>
+                  <div class="content">
+                    <p>
+                      le résume est une phrase qui décrit brièvement votre
+                      produit
+                    </p>
+                    <p>
+                      Il apparait tout en haut de la fiche de votre boutique,
+                      dans les listes de produits, et dans les resultats des
+                      moteurs de recherche (d'ou son importance pour le SEO)
+                      pour fournir davantage informations sur votre produit,
+                      utilisez l'onglet "Description"
+                    </p>
+                  </div>
+                  <p class="caractere">1 de 800 caractères autorisées</p>
+                </div>
+                <div class="description">
+                  <p class="title title-desc">Description</p>
                   <div>
-                    <input
-                      type="radio"
-                      id="huey"
-                      name="drone"
-                      value="huey"
-                      checked
-                    />
-                    <label for="huey">produit simple</label>
+                    <textarea class="content"></textarea>
+                  </div>
+                  <p class="caractere">0 de 21844 caractères autorisées</p>
+                </div>
+              </div>
+
+              <div class="col-md-4 right">
+                <div class="price">
+                  <div class="title">
+                    <h2>Prix</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div>
+                  <div class="price-inputs row">
+                    <div class="col-md-6">
+                      <p>HT</p>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          value="0,0000"
+                          aria-label="Dollar amount (with dot and two decimal places)"
+                        />
+                        <span class="input-group-text">€</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <p>TTC</p>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          value="0"
+                          aria-label="Dollar amount (with dot and two decimal places)"
+                        />
+                        <span class="input-group-text">€</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="regle">
+                    <p>Règle de taxe</p>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>FR taux standard (20%)</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="param">
+                    <span>Paramètres avancés dans </span>
+                    <span
+                      ><strong
+                        ><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Quantites</strong
+                      ></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row caracteristique">
+              <div class="right col-md-8">
+                <div class="categories">
+                  <div class="title">
+                    <h2>Catégories</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
 
-                  <div>
-                    <input type="radio" id="dewey" name="drone" value="dewey" />
-                    <label for="dewey">produit avec déclinaisons</label>
+                  <div class="content">
+                    <div>
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option selected>Choisissez une categorie</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <p class="tit-cat">Type categorie</p>
+                    <div class="accueil">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option selected>Type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="add-cat">
+                    <div class="title">
+                      <h2>Créer une catégorie</h2>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary">
+                      <span
+                        ><i class="fa-solid fa-circle-plus"></i> Créer une
+                        catégorie</span
+                      >
+                    </button>
                   </div>
                 </div>
               </div>
 
-              <div class="ref">
-                <div class="title">
-                  <h2>Réference</h2>
-                  <span><i class="fa-solid fa-circle-info"></i></span>
+              <div class="left col-md-4"></div>
+            </div>
+          </div>
+
+          <div
+            class="tab-pane fade content-quantite"
+            id="nav-quantite"
+            role="tabpanel"
+            aria-labelledby="nav-profile-tab"
+          >
+            <p class="title">Quantités</p>
+            <div class="row qty">
+              <div class="left col-md-9 col-sm-12">
+                <div class="quantity row">
+                  <div class="col-md-6 qty-left">
+                    <p>Quantité</p>
+                    <div class="form-group">
+                      <input type="text" value="0" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 qty-right">
+                    <div class="title-qty">
+                      <p>Quantité minimale pour la vente</p>
+                      <span><i class="fa-solid fa-circle-info"></i></span>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" value="1" class="form-control" />
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="right col-md-3"></div>
+            </div>
+            <!-- <div class="stock">
+              <h3 class="title">Stock</h3>
+              <div class="emplacement">
+                <p>Emplacement du stock</p>
                 <div class="form-group has-feedback has-feedback-left">
                   <input type="text" class="form-control" />
                 </div>
               </div>
-            </div>
-          </div>
+              <div class="niveau">
+                <p>Niveau de stock bas</p>
+                <div class="row">
+                  <div class="col-md-5 input">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Laissez vide pour désactiver"
+                    />
+                  </div>
 
-          <div class="row recap">
-            <div class="col-md-8 left">
-              <div>
-                <p class="title">Récapulatif</p>
-                <div class="content">
-                  <p>
-                    le résume est une phrase qui décrit brièvement votre produit
-                  </p>
-                  <p>
-                    Il apparait tout en haut de la fiche de votre boutique, dans
-                    les listes de produits, et dans les resultats des moteurs de
-                    recherche (d'ou son importance pour le SEO) pour fournir
-                    davantage informations sur votre produit, utilisez l'onglet
-                    "Description"
-                  </p>
+                  <div class="form-check col-md-7">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckChecked"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked"
+                      >M'envoyer un email quand la quantite est en dessous ou
+                      égal à ce niveau
+                      <span><i class="fa-solid fa-circle-info"></i></span
+                    ></label>
+                  </div>
                 </div>
-                <p class="caractere">1 de 800 caractères autorisées</p>
               </div>
-              <div class="description">
-                <p class="title title-desc">Description</p>
-                <button type="button" class="btn btn-danger">
-                  <span><i class="fa-solid fa-bars-staggered"></i></span>
-                  Modifier avec creative Elements
-                </button>
+            </div> -->
+
+            <!-- <div class="preferences">
+              <p class="title">Préférences de disponibilité</p>
+              <p>Comportement si rupture de stock</p>
+              <div class="radios">
                 <div>
-                  <textarea class="content"></textarea>
+                  <input type="radio" id="refus" name="rupture" checked />
+                  <label for="refus">Refuser les commandes</label>
                 </div>
-                <p class="caractere">0 de 21844 caractères autorisées</p>
-              </div>
-            </div>
 
-            <div class="col-md-4 right">
-              <div class="quantity">
-                <div class="title">
-                  <h2>Quantité</h2>
-                  <span><i class="fa-solid fa-circle-info"></i></span>
+                <div>
+                  <input
+                    type="radio"
+                    id="accapt"
+                    name="rupture"
+                    value="dewey"
+                  />
+                  <label for="accapt">Accepter les commandes</label>
                 </div>
-                <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" value="0" />
-                </div>
-                <div class="param">
-                  <span>Paramètres avancés dans </span>
-                  <span
-                    ><strong
-                      ><i class="fa-solid fa-arrow-up-right-from-square"></i>
-                      Quantites</strong
-                    ></span
+
+                <div>
+                  <input
+                    type="radio"
+                    id="default"
+                    name="rupture"
+                    value="louie"
+                  />
+                  <label for="default"
+                    >Utiliser le comportement par défaut</label
                   >
                 </div>
               </div>
-
-              <div class="price">
-                <div class="title">
-                  <h2>Prix</h2>
-                  <span><i class="fa-solid fa-circle-info"></i></span>
-                </div>
-                <div class="price-inputs row">
-                  <div class="col-md-6">
-                    <p>HT</p>
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        value="0,0000"
-                        aria-label="Dollar amount (with dot and two decimal places)"
-                      />
-                      <span class="input-group-text">€</span>
-                    </div>
+              <div class="row inputs">
+                <div class="col-md-4">
+                  <p>Libellé si en stcock</p>
+                  <div class="form-group">
+                    <input type="text" class="form-control" />
                   </div>
-                  <div class="col-md-6">
-                    <p>TTC</p>
+                </div>
+                <div class="col-md-4">
+                  <p>Si rupture de stock</p>
+                  <div class="form-group">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <p>Date de disponibilité</p>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <div
+            class="tab-pane fade content-livraison"
+            id="nav-livraison"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            <p class="title">Dimensions du paquet</p>
+            <p class="tit">
+              Ajustez vos frais de livraison en renseignant les dimensions du
+              produit
+            </p>
+            <div class="row dimensions">
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-3">
+                    <p>Largeur</p>
                     <div class="input-group">
                       <input
                         type="text"
@@ -243,12 +442,215 @@
                         value="0"
                         aria-label="Dollar amount (with dot and two decimal places)"
                       />
-                      <span class="input-group-text">€</span>
+                      <span class="input-group-text">cm</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <p>Hauteur</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="0"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">cm</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <p>Profondeur</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="0"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">cm</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <p>Poids</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="0"
+                        aria-label="Dollar amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">kg</span>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <div class="delai">
+              <div class="titles">
+                <p class="title">Delai de livraison</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div class="radios">
+                <div>
+                  <input type="radio" id="aucun" name="delai" checked />
+                  <label for="aucun">Aucun</label>
+                </div>
+
+                <div>
+                  <input type="radio" id="default" name="delai" value="dewey" />
+                  <label for="default">Delai de livraison par defaut</label>
+                </div>
+
+                <div>
+                  <input type="radio" id="produit" name="delai" value="louie" />
+                  <label for="produit"
+                    >Delai de livraison spécifique pour ce produit</label
+                  >
+                </div>
+              </div>
+              <div class="row liv">
+                <div class="col-md-6 block">
+                  <p>Delai de livraison pour les produits en stock :</p>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Livraison entre 3 et 4 jours"
+                    />
+                  </div>
+                  <span>Laisser vide pour désactiver</span>
+                </div>
+                <div class="col-md-6 block">
+                  <p>Delai de livraison pour les produits en stock :</p>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Livraison entre 5 et 7 jours"
+                    />
+                  </div>
+                  <span>Laisser vide pour désactiver</span>
+                </div>
+              </div>
+              <div class="frais-livraison">
+                <div class="titles">
+                  <p class="title">Frais de livraison</p>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <p>
+                  Des frais de transports additionnels s'appliquent-ils à ce
+                  produit ?
+                </p>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="0,000000"
+                    aria-label="Dollar amount (with dot and two decimal places)"
+                  />
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
+            </div>
+            <div class="transporteur">
+              <p class="title">Transporteurs disponibles</p>
+              <div class="checks">
+                <div>
+                  <input type="checkbox" name="my-checkbox" id="opt-in" />
+                  <label for="opt-in"
+                    >21 - Retrait dans nos locaux AES (je viendrai prendre le
+                    colis d'essayage et les costumes pour mon spectacle dans vos
+                    locaux.)</label
+                  >
+                </div>
+                <div>
+                  <input type="checkbox" name="my-checkbox" id="opt-in" />
+                  <label for="opt-in"
+                    >22 - Retrait dans nos locaux AES (je viendrai prendre le
+                    colis d'essayage et les costumes pour mon spectacle dans vos
+                    locaux.)</label
+                  >
+                </div>
+                <div>
+                  <input type="checkbox" name="my-checkbox" id="opt-in" />
+                  <label for="opt-in"
+                    >15 - Essayage en livraison/Spectacle chez AES (je souhaite
+                    la livraison du clis d'essayage à domicile et je viendrais
+                    chercher les</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="tab-pane fade content-prix"
+            id="nav-prix"
+            role="tabpanel"
+            aria-labelledby="nav-contact-tab"
+          >
+            <div class="titles">
+              <p class="title">Delai de livraison</p>
+              <span><i class="fa-solid fa-circle-info"></i></span>
+            </div>
+
+            <div class="row prices">
+              <div class="col-md-6 left">
+                <div class="left-ht">
+                  <p>Prix de vente (HT)</p>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="0,000000"
+                      aria-label="Dollar amount (with dot and two decimal places)"
+                    />
+                    <span class="input-group-text">€</span>
+                  </div>
+                </div>
+                <div class="left-ttc">
+                  <p>Prix de vente (HT)</p>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="0"
+                      aria-label="Dollar amount (with dot and two decimal places)"
+                    />
+                    <span class="input-group-text">€</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 right">
+                <div class="title">
+                  <p>Prix de vente unitaire (HT)</p>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="inputs">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="0,000000"
+                      aria-label="Dollar amount (with dot and two decimal places)"
+                    />
+                    <span class="input-group-text">€</span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Par kilo, par litre"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="taxe">
+              <div class="regle-param">
+                <p>Règle de taxe</p>
                 <div class="regle">
-                  <p>Règle de taxe</p>
                   <select
                     class="form-select"
                     aria-label="Default select example"
@@ -258,654 +660,137 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                </div>
-                <div class="param">
-                  <span>Paramètres avancés dans </span>
-                  <span
-                    ><strong
+                  <div class="param">
+                    <span
                       ><i class="fa-solid fa-arrow-up-right-from-square"></i>
-                      Quantites</strong
-                    ></span
-                  >
+                      Gérer les règles de taxe</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div>
+                <input type="radio" id="promo" name="promo" value="promo" />
+                <label for="promo"
+                  >Afficher un bandeau "Promo !" sur la fiche produit et sur les
+                  listes de produits</label
+                >
+              </div>
+              <div class="alerte">
+                <span><i class="fa-solid fa-circle-info"></i></span>
+                <p>
+                  Prix de vente final : <strong>0,00 € TTC</strong> / 0,00 €
+                </p>
+              </div>
+            </div>
+
+            <div class="prix">
+              <div class="top">
+                <div class="titles">
+                  <p class="title">Prix d'achat</p>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="left-ht">
+                  <p>Prix d'achat (HT)</p>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="0,000000"
+                      aria-label="Dollar amount (with dot and two decimal places)"
+                    />
+                    <span class="input-group-text">€</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="titles">
+                  <p class="title">Prix spéifiques</p>
+                  <span><i class="fa-solid fa-circle-info"></i></span>
+                </div>
+                <div class="add-cat">
+                  <button type="button" class="btn btn-outline-primary">
+                    <span
+                      ><i class="fa-solid fa-circle-plus"></i> Ajouter un
+                      produit specifique</span
+                    >
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row caracteristique">
-            <div class="left col-md-8">
-              <p class="title">Caracteristiques</p>
-              <div class="lines">
-                <div class="titles row">
-                  <div class="col-md-4"><p>Caracteristique</p></div>
-                  <div class="col-md-4"><p>Valeur predefinie</p></div>
-                  <div class="col-md-4"><p>Ou valeur personnalisée</p></div>
-                </div>
-                <div class="row line">
-                  <div class="col-md-4">
+            <div class="priorites">
+              <div class="titles">
+                <p class="title">Gestion des priorités</p>
+                <span><i class="fa-solid fa-circle-info"></i></span>
+              </div>
+              <div>
+                <span>Priorités</span>
+                <div class="row">
+                  <div class="col-md-3">
                     <select
                       class="form-select"
                       aria-label="Default select example"
                     >
-                      <option selected>Choisissez une caracteristique</option>
+                      <option selected>Boutique</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                   </div>
-                  <div class="col-md-4">
-                    <div class="form-group has-feedback has-feedback-left">
-                      <input
-                        type="number"
-                        class="form-control"
-                        placeholder="Choisissez une valeur"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4 person">
-                    <div class="form-group">
-                      <input type="text" class="form-control" />
-                      <span class="delete col-md-1">
-                        <i class="fa-solid fa-trash"></i>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="add-cat">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-add-caracteristic"
-                >
-                  <span
-                    ><i class="fa-solid fa-circle-plus"></i> Ajouter une
-                    caracteristique</span
-                  >
-                </button>
-              </div>
-
-              <div class="marque">
-                <p class="title">Marque</p>
-                <div class="choice">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Choisissez une marque</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                  <span> <i class="fa-solid fa-trash"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="right col-md-4">
-              <div class="categories">
-                <div class="title">
-                  <h2>Catégories</h2>
-                  <span><i class="fa-solid fa-circle-info"></i></span>
-                </div>
-
-                <div class="content">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Rechercher des Catégories"
-                    />
-                  </div>
-                  <p class="tit-cat">catégoties associées</p>
-                  <div class="accueil">
-                    <span class="button"
-                      >Accueil <span><i class="fa-solid fa-xmark"></i></span
-                    ></span>
-                  </div>
-                  <div class="deployer">
-                    <span><i class="fa-solid fa-chevron-down"></i></span>
-                    <span class="title">DÉPLOYER</span>
-                  </div>
-                  <div class="cat-prin">
-                    <p>catégories principales</p>
-                    <div>
-                      <span><i class="fa-solid fa-chevron-right"></i></span>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                          checked
-                        />
-                        <label class="form-check-label" for="flexCheckChecked"
-                          >ACCUEIL</label
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="add-cat">
-                  <div class="title">
-                    <h2>Créer une catégorie</h2>
-                  </div>
-                  <button type="button" class="btn btn-outline-secondary">
-                    <span
-                      ><i class="fa-solid fa-circle-plus"></i> Créer une
-                      catégorie</span
+                  <div class="col-md-3">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
                     >
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row product">
-            <div class="left col-md-8">
-              <div class="produit">
-                <p class="title">Produit associé</p>
-                <div class="add-cat">
-                  <button type="button" class="btn btn-outline-secondary">
-                    <span
-                      ><i class="fa-solid fa-circle-plus"></i> Ajouter un
-                      produit associé</span
+                      <option selected>Devise</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
                     >
-                  </button>
-                </div>
-              </div>
-
-              <div class="footer-product">
-                <p class="title">DisplayFooterProduct</p>
-                <button type="button" class="btn btn-danger">
-                  <span><i class="fa-solid fa-bars-staggered"></i></span>
-                  Modifier avec creative Elements
-                </button>
-              </div>
-            </div>
-            <div class="right col-md-4"></div>
-          </div>
-        </div>
-
-        <div
-          class="tab-pane fade content-quantite"
-          id="nav-quantite"
-          role="tabpanel"
-          aria-labelledby="nav-profile-tab"
-        >
-          <p class="title">Quantités</p>
-          <div class="row qty">
-            <div class="left col-md-9 col-sm-12">
-              <div class="quantity row">
-                <div class="col-md-6 qty-left">
-                  <p>Quantité</p>
-                  <div class="form-group">
-                    <input type="text" value="0" class="form-control" />
+                      <option selected>Pays</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
                   </div>
-                </div>
-                <div class="col-md-6 qty-right">
-                  <div class="title-qty">
-                    <p>Quantité minimale pour la vente</p>
-                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  <div class="col-md-3">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Groupe</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
                   </div>
-                  <div class="form-group">
-                    <input type="text" value="1" class="form-control" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="right col-md-3"></div>
-          </div>
-          <div class="stock">
-            <h3 class="title">Stock</h3>
-            <div class="emplacement">
-              <p>Emplacement du stock</p>
-              <div class="form-group has-feedback has-feedback-left">
-                <input type="text" class="form-control" />
-              </div>
-            </div>
-            <div class="niveau">
-              <p>Niveau de stock bas</p>
-              <div class="row">
-                <div class="col-md-5 input">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Laissez vide pour désactiver"
-                  />
-                </div>
-
-                <div class="form-check col-md-7">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckChecked"
-                  />
-                  <label class="form-check-label" for="flexCheckChecked"
-                    >M'envoyer un email quand la quantite est en dessous ou égal
-                    à ce niveau
-                    <span><i class="fa-solid fa-circle-info"></i></span
-                  ></label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="preferences">
-            <p class="title">Préférences de disponibilité</p>
-            <p>Comportement si rupture de stock</p>
-            <div class="radios">
-              <div>
-                <input type="radio" id="refus" name="rupture" checked />
-                <label for="refus">Refuser les commandes</label>
-              </div>
-
-              <div>
-                <input type="radio" id="accapt" name="rupture" value="dewey" />
-                <label for="accapt">Accepter les commandes</label>
-              </div>
-
-              <div>
-                <input type="radio" id="default" name="rupture" value="louie" />
-                <label for="default">Utiliser le comportement par défaut</label>
-              </div>
-            </div>
-            <div class="row inputs">
-              <div class="col-md-4">
-                <p>Libellé si en stcock</p>
-                <div class="form-group">
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <p>Si rupture de stock</p>
-                <div class="form-group">
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <p>Date de disponibilité</p>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="YYYY-MM-DD"
-                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          class="tab-pane fade content-livraison"
-          id="nav-livraison"
-          role="tabpanel"
-          aria-labelledby="nav-contact-tab"
-        >
-          <p class="title">Dimensions du paquet</p>
-          <p class="tit">
-            Ajustez vos frais de livraison en renseignant les dimensions du
-            produit
-          </p>
-          <div class="row dimensions">
-            <div class="col-md-10">
-              <div class="row">
-                <div class="col-md-3">
-                  <p>Largeur</p>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="0"
-                      aria-label="Dollar amount (with dot and two decimal places)"
-                    />
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <p>Hauteur</p>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="0"
-                      aria-label="Dollar amount (with dot and two decimal places)"
-                    />
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <p>Profondeur</p>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="0"
-                      aria-label="Dollar amount (with dot and two decimal places)"
-                    />
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <p>Poids</p>
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      value="0"
-                      aria-label="Dollar amount (with dot and two decimal places)"
-                    />
-                    <span class="input-group-text">kg</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2"></div>
-          </div>
-          <div class="delai">
-            <div class="titles">
-              <p class="title">Delai de livraison</p>
-              <span><i class="fa-solid fa-circle-info"></i></span>
-            </div>
-            <div class="radios">
-              <div>
-                <input type="radio" id="aucun" name="delai" checked />
-                <label for="aucun">Aucun</label>
-              </div>
-
-              <div>
-                <input type="radio" id="default" name="delai" value="dewey" />
-                <label for="default">Delai de livraison par defaut</label>
-              </div>
-
-              <div>
-                <input type="radio" id="produit" name="delai" value="louie" />
-                <label for="produit"
-                  >Delai de livraison spécifique pour ce produit</label
-                >
-              </div>
-            </div>
-            <div class="row liv">
-              <div class="col-md-6 block">
-                <p>Delai de livraison pour les produits en stock :</p>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Livraison entre 3 et 4 jours"
-                  />
-                </div>
-                <span>Laisser vide pour désactiver</span>
-              </div>
-              <div class="col-md-6 block">
-                <p>Delai de livraison pour les produits en stock :</p>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Livraison entre 5 et 7 jours"
-                  />
-                </div>
-                <span>Laisser vide pour désactiver</span>
-              </div>
-            </div>
-            <div class="frais-livraison">
-              <div class="titles">
-                <p class="title">Frais de livraison</p>
-                <span><i class="fa-solid fa-circle-info"></i></span>
-              </div>
-              <p>
-                Des frais de transports additionnels s'appliquent-ils à ce
-                produit ?
-              </p>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  value="0,000000"
-                  aria-label="Dollar amount (with dot and two decimal places)"
-                />
-                <span class="input-group-text">€</span>
-              </div>
-            </div>
-          </div>
-          <div class="transporteur">
-            <p class="title">Transporteurs disponibles</p>
-            <div class="checks">
-              <div>
-                <input type="checkbox" name="my-checkbox" id="opt-in" />
-                <label for="opt-in"
-                  >21 - Retrait dans nos locaux AES (je viendrai prendre le
-                  colis d'essayage et les costumes pour mon spectacle dans vos
-                  locaux.)</label
-                >
-              </div>
-              <div>
-                <input type="checkbox" name="my-checkbox" id="opt-in" />
-                <label for="opt-in"
-                  >22 - Retrait dans nos locaux AES (je viendrai prendre le
-                  colis d'essayage et les costumes pour mon spectacle dans vos
-                  locaux.)</label
-                >
-              </div>
-              <div>
-                <input type="checkbox" name="my-checkbox" id="opt-in" />
-                <label for="opt-in"
-                  >15 - Essayage en livraison/Spectacle chez AES (je souhaite la
-                  livraison du clis d'essayage à domicile et je viendrais
-                  chercher les</label
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="tab-pane fade content-prix"
-          id="nav-prix"
-          role="tabpanel"
-          aria-labelledby="nav-contact-tab"
-        >
-          <div class="titles">
-            <p class="title">Delai de livraison</p>
-            <span><i class="fa-solid fa-circle-info"></i></span>
-          </div>
-
-          <div class="row prices">
-            <div class="col-md-6 left">
-              <div class="left-ht">
-                <p>Prix de vente (HT)</p>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="0,000000"
-                    aria-label="Dollar amount (with dot and two decimal places)"
-                  />
-                  <span class="input-group-text">€</span>
-                </div>
-              </div>
-              <div class="left-ttc">
-                <p>Prix de vente (HT)</p>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="0"
-                    aria-label="Dollar amount (with dot and two decimal places)"
-                  />
-                  <span class="input-group-text">€</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 right">
-              <div class="title">
-                <p>Prix de vente unitaire (HT)</p>
-                <span><i class="fa-solid fa-circle-info"></i></span>
-              </div>
-              <div class="inputs">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="0,000000"
-                    aria-label="Dollar amount (with dot and two decimal places)"
-                  />
-                  <span class="input-group-text">€</span>
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Par kilo, par litre"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="taxe">
-            <div class="regle-param">
-              <p>Règle de taxe</p>
-              <div class="regle">
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>FR taux standard (20%)</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <div class="param">
-                  <span
-                    ><i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    Gérer les règles de taxe</span
-                  >
-                </div>
-              </div>
-            </div>
-            <div>
-              <input type="radio" id="promo" name="promo" value="promo" />
-              <label for="promo"
-                >Afficher un bandeau "Promo !" sur la fiche produit et sur les
-                listes de produits</label
-              >
-            </div>
-            <div class="alerte">
-              <span><i class="fa-solid fa-circle-info"></i></span>
-              <p>Prix de vente final : <strong>0,00 € TTC</strong> / 0,00 €</p>
-            </div>
-          </div>
-
-          <div class="prix">
-            <div class="top">
-              <div class="titles">
-                <p class="title">Prix d'achat</p>
-                <span><i class="fa-solid fa-circle-info"></i></span>
-              </div>
-              <div class="left-ht">
-                <p>Prix d'achat (HT)</p>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    value="0,000000"
-                    aria-label="Dollar amount (with dot and two decimal places)"
-                  />
-                  <span class="input-group-text">€</span>
-                </div>
-              </div>
-            </div>
-            <div class="bottom">
-              <div class="titles">
-                <p class="title">Prix spéifiques</p>
-                <span><i class="fa-solid fa-circle-info"></i></span>
-              </div>
-              <div class="add-cat">
-                <button type="button" class="btn btn-outline-primary">
-                  <span
-                    ><i class="fa-solid fa-circle-plus"></i> Ajouter un produit
-                    specifique</span
-                  >
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="priorites">
-            <div class="titles">
-              <p class="title">Gestion des priorités</p>
-              <span><i class="fa-solid fa-circle-info"></i></span>
-            </div>
-            <div>
-              <span>Priorités</span>
-              <div class="row">
-                <div class="col-md-3">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Boutique</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Devise</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Pays</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Groupe</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <!-- <div class="tabs-right col-md-4"></div> -->
       </div>
-
-      <!-- <div class="tabs-right col-md-4"></div> -->
     </div>
+  </form>
 
-    <div class="navbar">
-      <div class="buttons">
-        <div>
-          <button type="button" class="btn btn-secondary">Previsualiser</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-primary">Enregistrer</button>
-        </div>
+  <div class="navbar">
+    <div class="buttons">
+      <div>
+        <button type="button" class="btn btn-secondary">Previsualiser</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div>
   </div>
-  </form>
-  <script src="/javascripts/admin/ajoutProduit.js"></script>
 </div>
+
+<script src="/javascripts/admin/ajoutProduit.js"></script>

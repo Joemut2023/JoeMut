@@ -2,7 +2,6 @@
   width: 100%;
   padding-top: 20px;
   font-family: $typograohie;
-  position: relative;
 
   .product-container {
     .bloc-left {
@@ -189,51 +188,63 @@
             .right {
               padding: 0px 20px;
               margin-top: 20px;
-              .decli {
-                margin-bottom: 30px;
-                .title {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  color: rgba(0, 0, 0, 0.7);
-                  margin-bottom: 10px;
-
-                  h2 {
-                    margin-bottom: 0px;
-                    font-weight: 600;
-                    font-size: 25px;
-                  }
-
-                  span {
-                    margin-top: 3px;
-                    color: rgb(41, 144, 228);
-                  }
-                }
-
-                .selects {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                }
-              }
-
+             
               .ref {
+                margin-bottom: 15px;
                 .title {
                   display: flex;
                   align-items: center;
                   gap: 10px;
-                  color: rgba(0, 0, 0, 0.7);
                   margin-bottom: 20px;
 
                   h2 {
                     margin-bottom: 0px;
                     font-weight: 600;
-                    font-size: 25px;
+                    font-size: 22px;
                   }
 
                   span {
                     margin-top: 3px;
                     color: rgb(41, 144, 228);
+                  }
+                }
+              }
+
+               .quantity {
+                margin-bottom: 20px;
+                .title {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 20px;
+
+                  h2 {
+                    margin-bottom: 0px;
+                    font-weight: 600;
+                    font-size: 22px;
+                  }
+
+                  span {
+                    margin-top: 3px;
+                    color: rgb(41, 144, 228);
+                  }
+                }
+
+                .form-group {
+                  margin-bottom: 10px;
+                  input {
+                    width: 40%;
+                  }
+                }
+
+                .param {
+                  span {
+                    font-size: 14px;
+
+                    strong {
+                      color: rgb(41, 144, 228);
+                      cursor: pointer;
+                    }
                   }
                 }
               }
@@ -283,60 +294,19 @@
             }
 
             .right {
-              margin-top: 20px;
-              .quantity {
-                margin-bottom: 20px;
-                .title {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  color: rgba(0, 0, 0, 0.7);
-                  margin-bottom: 20px;
-
-                  h2 {
-                    margin-bottom: 0px;
-                    font-weight: 600;
-                    font-size: 25px;
-                  }
-
-                  span {
-                    margin-top: 3px;
-                    color: rgb(41, 144, 228);
-                  }
-                }
-
-                .form-group {
-                  margin-bottom: 10px;
-                  input {
-                    width: 40%;
-                  }
-                }
-
-                .param {
-                  span {
-                    font-size: 14px;
-
-                    strong {
-                      color: rgb(41, 144, 228);
-                      cursor: pointer;
-                    }
-                  }
-                }
-              }
-
+               padding: 0px 20px;
               .price {
-                margin-top: 80px;
+                margin-top: 20px;
                 .title {
                   display: flex;
                   align-items: center;
                   gap: 10px;
-                  color: rgba(0, 0, 0, 0.7);
                   margin-bottom: 20px;
 
                   h2 {
                     margin-bottom: 0px;
                     font-weight: 600;
-                    font-size: 25px;
+                    font-size: 22px;
                   }
 
                   span {
@@ -354,11 +324,11 @@
 
                 .regle {
                   p {
-                    margin-bottom: 5px;
+                    margin-bottom: 15px;
                   }
 
                   select {
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                   }
                 }
 
@@ -462,33 +432,15 @@
 
                 .content {
                   border: 1px solid rgba(0, 0, 0, 0.2);
-                  padding: 15px 15px 30px 15px;
+                  padding: 20px 15px 30px 15px;
 
                   .tit-cat {
-                    margin: 10px 0px;
+                    margin: 15px 0px;
                     text-transform: uppercase;
                     font-size: 14px;
+                    font-weight: 600;
                   }
 
-                  .accueil {
-                    padding: 10px;
-                    margin: 10px 0px;
-                    border: 1px solid rgba(0, 0, 0, 0.2);
-
-                    .button {
-                      padding: 5px 10px;
-                      background: rgb(41, 144, 228);
-                      border: none;
-                      color: white;
-                      border-radius: 5px;
-
-                      span {
-                        color: black;
-                        margin-left: 10px;
-                        cursor: pointer;
-                      }
-                    }
-                  }
 
                   .deployer {
                     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -815,8 +767,13 @@
               display: flex;
               align-items: center;
               gap: 15px;
-              margin-bottom: 10px;
+              margin-bottom: 15px;
+               p{
+                margin-bottom: 15px;
+               }
+
               select {
+                margin-top: 10px;
                 max-width: 300px;
               }
             }

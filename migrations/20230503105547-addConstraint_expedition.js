@@ -23,8 +23,8 @@ module.exports = {
       type: "foreign key",
       name: "doc_id_fk_exp",
       references: {
-        field: "doc_id",
         table: "Documents",
+        field: "doc_id"
       },
     });
   },
