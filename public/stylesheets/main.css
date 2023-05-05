@@ -6718,7 +6718,7 @@ body {
 #admin-page-promo .table td,
 #admin-page-promo .table th {
   vertical-align: middle;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 #admin-page-promo .table .dropdown :hover > .dropdown-menu {
   display: block;

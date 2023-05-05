@@ -1,7 +1,7 @@
 <div id="admin-blocs-produitHeader" class="border-bottom">
   <h6>Promo</h6>
   <div class="produit-menu">
-    <h4>Gérer vos  promos</h4>
+    <h4>Gérer vos promos</h4>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
         <a href="/admin/promo/add">
@@ -90,7 +90,15 @@
           <td><%= element.prm_valeur %></td>
           <td><%= element.prm_debut%></td>
           <td><%= element.prm_fin%></td>
-          <td><%= element.prm_actif%></td>
+          <td>
+            <% if (element.prm_actif) { %>
+
+            <span class="badge text-bg-success">activé</span>
+            <% } else { %>
+
+            <span class="badge text-bg-danger">inactif</span>
+            <% } %>
+          </td>
           <td>
             <div class="d-flex gap-4">
               <form method="get" action="/admin/clients/update/?cli_id">
@@ -118,11 +126,11 @@
                     >
                   </li>
                   <li>
-                    <form method="post" action="/admin/clients/delete">
+                    <form method="post" action="/admin/promo/delete">
                       <input
                         type="hidden"
-                        name="cli_id"
-                        value="<%= element.cli_id %>"
+                        name="prm_id"
+                        value="<%= element.prm_id %>"
                       />
                       <button class="dropdown-item" type="submit">
                         <i class="fa-solid fa-trash"></i> Supprimer
