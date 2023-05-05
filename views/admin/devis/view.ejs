@@ -485,22 +485,57 @@
         </div>
     </div>   
     <!-- modal pour adresse livraison -->
-    <div class="modal fade" id="modal-update-adresse-livraion" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
+    <div class="modal modal-lg fade" id="modal-update-adresse-livraion" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="#" method="post">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                      </div>
+            <form action="#" class="fom" method="post">
+                <div class="mb-3">
+                  <label class="form-label" for=""> Nom de la structure</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_structure" required/>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                <div class="mb-3">
+                  <label class="form-label" for=""><span>* </span> Nom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_nom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Prenom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_prenom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Société</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_societe" id="" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Numéro de TVA</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_num_tva" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_adresse" id=""/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Complément d'adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_comp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Code postal</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_cp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Ville</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_ville" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Pays</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_pays" id="" />
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button class="btn btn-primary" type="submit">Enregistrer</button>
                 </div>
             </form>
           </div>
@@ -539,22 +574,57 @@
         </div>
     </div>
     <!--modal pour adresse facturation-->
-    <div class="modal fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
+    <div class="modal modal-lg fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="#" method="post">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                      </div>
+            <form action="#" class="fom" method="post">
+                <div class="mb-3">
+                  <label class="form-label" for=""> Nom de la structure</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_structure" required/>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                <div class="mb-3">
+                  <label class="form-label" for=""><span>* </span> Nom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_nom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Prenom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_prenom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Société</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_societe" id="" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Numéro de TVA</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_num_tva" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_adresse" id=""/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Complément d'adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_comp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Code postal</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_cp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Ville</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_ville" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Pays</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_pays" id="" />
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button class="btn btn-primary" type="submit">Enregistrer</button>
                 </div>
             </form>
           </div>
