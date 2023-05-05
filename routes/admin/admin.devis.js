@@ -201,11 +201,12 @@ router.get('/view/:commandeId',async (req,res)=>{
     let adresses = await Adresse.findAll({
       cli_id:commande.cli_id
     })
+    
     let adresse_livraion = await Adresse.findOne({
-      adr_id:commande.com_adr_liv
+      where:{adr_id:commande.com_adr_liv}
     });
     let adresse_facturation = await Adresse.findOne({
-      adr_id:commande.com_adr_fac,
+      where:{adr_id:commande.com_adr_fac}
     });
     res.render("devis/view",{
       commande,
@@ -220,7 +221,6 @@ router.get('/view/:commandeId',async (req,res)=>{
   }
   
 })
-
 /**
  * ajout date essayage
  */
@@ -248,6 +248,33 @@ router.post('/commande/delete/essayage',async (req,res)=>{
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     
+  }
+})
+router.post('/commande/update-adresse-facturation',async(req,res)=>{
+  const {adresse,com_id} = req.body;
+  try {
+    let commande = await Commande.update(
+    {
+      com_adr_fac:adresse
+    },
+    {where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+    //res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
+router.post('/commande/update-adresse-livraison',async(req,res)=>{
+  const {adresse,com_id} = req.body;
+  try {
+    let commande = await Commande.update(
+    {
+      com_adr_liv:adresse
+    },
+    {where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 module.exports = router;
