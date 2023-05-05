@@ -41,7 +41,7 @@
             ><i class="icon"><i class="fa-solid fa-chevron-right"></i></i
           ></span>
           <ul class="product-list js-product-list">
-            <% produits.forEach(produit=> { %>
+            <% produits.forEach(produit => { %>
             <li class="product-list__item">
               <div data-slide="1" class="product">
                 <div class="item-card-img">
@@ -56,21 +56,21 @@
                   <p><%= produit.pro_ref %></p>
                   <div class="quantite">
                     <span>
-                      <%= quantiteOfEachProduct.find(element=> element.id ===
+                      <%= quantiteOfEachProduct.find(element => element.id ===
                       produit.pro_id).qty ? quantiteOfEachProduct.find(element
-                      => element.id === produit.pro_id).qty : "0" %>
-                    </span>
-                    <%= quantiteOfEachProduct.find(element=> element.id ===
+                      => element.id === produit.pro_id).qty : "0" %></span
+                    >
+                    <%= quantiteOfEachProduct.find(element => element.id ===
                     produit.pro_id).qty > 1 ? "articles" : "article" %>
                   </div>
                 </div>
                 <div class="price">
                   <p>
-                    <strong>
-                      <%=
+                    <strong
+                      ><%=
                       (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".",
-                      "," ) %> €
-                    </strong>
+                      ",") %> €</strong
+                    >
                   </p>
                   <span class="bar">|</span>
                   <span
@@ -251,11 +251,11 @@
     </div>
   </div>
   <div class="section-contact container">
-    <%if (typeof error !=='undefined' && error==true) { %>
+    <%if (typeof error !== 'undefined' && error == true) { %>
     <div class="alert alert-danger mssg" role="alert">
       <%= (errorMsg) ? errorMsg : '' %>
     </div>
-    <% } %> <%if (typeof error==null && error==false) { %>
+    <% } %> <%if (typeof error == null && error == false) { %>
     <div class="alert alert-success mssg" role="alert">
       <%= (messages) ? messages : '' %>
     </div>
