@@ -194,9 +194,12 @@ router.get('/view/:commandeId',async (req,res)=>{
           },
         ],
       },
+      {
+        model:Essayage
+      }
     ]
   });
-  console.log(commande.Panier.Panier_details[0].Produit.Applies.length);
+  console.log(commande.Essayages);
   res.render("devis/view",{
     commande
   });
