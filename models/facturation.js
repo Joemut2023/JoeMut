@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       Facturation.belongsTo(models.Statut_facture, {
         foreignKey: "stf_id",
       });
+      Facturation.belongsTo(models.Echeance,{
+        foreignKey:'ech_id'
+      })
     }
   }
   Facturation.init(
@@ -37,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       fac_date: DataTypes.DATE,
       fac_montant: DataTypes.FLOAT,
       fac_comment: DataTypes.STRING,
+      ech_id:DataTypes.INTEGER,
     },
     {
       sequelize,
