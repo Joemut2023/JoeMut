@@ -7633,6 +7633,9 @@ body {
   gap: 10px;
   margin-bottom: 10px;
 }
+#admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-repetition h2 {
+  cursor: pointer;
+}
 #admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-repetition .date-repetition-item {
   display: flex;
   flex-direction: row;

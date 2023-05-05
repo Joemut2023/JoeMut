@@ -120,7 +120,7 @@
                         <div class="date-spectacle-fin">28/01/2023</div>
                     </div>
                     <div class="bloc-adresse-content-repetition">
-                        <h2>
+                        <h2  data-bs-toggle="modal" data-bs-target="#modal-add-essayage">
                             <span>Date de répétition</span>
                             <span><i class="fa-solid fa-plus"></i></span>
                         </h2>
@@ -453,6 +453,29 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essaye pour cette commande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="post">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="input-add-adresse" class="form-label">Adresse</label>
+                    <input type="date" class="form-control" id="input-add-adresse" placeholder="name@example.com">
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+      </div>
     </div>
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>

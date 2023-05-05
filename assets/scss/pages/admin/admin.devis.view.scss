@@ -101,6 +101,9 @@
                         margin-bottom: 10px;
                     }
                     .bloc-adresse-content-repetition{
+                        h2{
+                            cursor: pointer;
+                        }
                         .date-repetition-item{
                             display: flex;
                             flex-direction: row;
