@@ -202,4 +202,17 @@ router.get('/view/:commandeId',async (req,res)=>{
   });
 })
 
+router.post('/commande/add-essayage',async (req,res)=>{
+  const {com_id,ess_repetition} = req.body;
+  try {
+    await Essayage.create({
+      com_id,
+      ess_repetition
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    //gestion erreur
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
 module.exports = router;

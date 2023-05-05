@@ -463,11 +463,12 @@
           <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="" method="post">
+        <form action="/admin/devis/commande/add-essayage" method="post">
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="input-add-adresse" class="form-label">date</label>
-                    <input type="date" class="form-control" id="input-add-adresse" placeholder="name@example.com">
+                    <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
                   </div>
             </div>
             <div class="modal-footer">
