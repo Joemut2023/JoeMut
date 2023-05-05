@@ -12,15 +12,13 @@
   }
 
   .element-slider-suggestion {
-
     .font-weight-light {
       margin-bottom: 20px;
       font-family: "Byciclette";
     }
-    h2{
+    h2 {
       padding-bottom: 20px;
     }
-
   }
 
   .section-location {
@@ -415,7 +413,6 @@
       }
     }
 
-
     h1 {
       font-family: "Byciclette";
       text-transform: uppercase;
@@ -436,16 +433,16 @@
   caroussel 
   */
 
-
   .carousel {
-    margin: 20px;
+    margin: 10px;
+    // border: 1px solid red;
 
     &__view {
-      width: 95%;
+      width: 100%;
       height: 400px;
       background: white;
-      //border: solid 1px red;
-      margin: 0 auto 5% auto;
+      // border: solid 1px blue;
+      padding: 10px;
       overflow: hidden;
       position: relative;
     }
@@ -455,13 +452,16 @@
       z-index: 1;
       height: 400px;
       width: 70px;
-      transition: background-color .3s;
+      transition: background-color 0.3s;
       display: table;
+      // border: 1px solid yellow;
 
       .icon {
         display: table-cell;
         vertical-align: middle;
         text-align: center;
+        cursor: pointer;
+        font-size: larger;
       }
 
       &:first-of-type {
@@ -478,26 +478,25 @@
     position: absolute;
     margin: 0;
     padding: 0%;
-    transition: transform .3s;
+    transition: transform 0.3s;
     transform: translateX(0px);
     list-style: none;
     height: 400px;
-
-    //border: solid 1px black;
+    // border: solid 1px black;
 
     &__item {
       width: 300px;
       height: 400px;
-      //border: solid 1px green;
+      // border: solid 1px green;
       display: inline-block;
     }
   }
 
   .product {
-    display: table;
     height: 100%;
     width: 100%;
     margin-right: 100px;
+    // border: 1px solid red;
 
     .item-card-img {
       height: 270px;
@@ -523,14 +522,14 @@
         font-size: 0.8rem;
       }
 
-      P{
+      P {
         margin-bottom: 5px;
       }
 
-      .quantite{
+      .quantite {
         font-weight: 500;
 
-        span{
+        span {
           font-weight: 600;
         }
       }
@@ -544,15 +543,15 @@
       justify-content: center;
       align-items: center;
 
-      .bar{
+      .bar {
         font-size: 20px;
         font-weight: 500;
-        color:$color-primary
+        color: $color-primary;
       }
       .btn-add {
         cursor: pointer;
       }
-      p{
+      p {
         margin-bottom: 0px;
       }
     }
@@ -564,10 +563,5 @@
     .slick-track {
       will-change: transform, transition;
     }
-
   }
-
-
-
-
 }

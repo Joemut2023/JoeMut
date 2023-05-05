@@ -1,19 +1,19 @@
 <div id="header-banner">
-  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img" />
+  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img">
 </div>
 <div id="details-infos">
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <img src="/images/picto01.png" class="img-fluid" alt="">
     <h6>VOUS IMAGINEZ, NOUS CRÉONS</h6>
     <p>Création, réalisation et confection personalisée</p>
   </div>
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <img src="/images/picto01.png" class="img-fluid" alt="">
     <h6>VOUS CHERCHEZ, NOUS AVONS</h6>
     <p>18000 costumes - 1362 références tous styles de danses</p>
   </div>
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <img src="/images/picto01.png" class="img-fluid" alt="">
     <h6>VOTRE DEVIS EN LIGNE</h6>
     <p>Intéractif, rapide et accessible 24/24 h</p>
   </div>
@@ -34,56 +34,48 @@
       <h2 class="font-weight-light text-center">NOS SUGGESTIONS !</h2>
       <div class="carousel js-product-carousel">
         <div class="carousel__view">
-          <span class="carousel__control js-carousel-prev"
-            ><i class="icon"><i class="fa-solid fa-chevron-left"></i></i
-          ></span>
-          <span href="#" class="carousel__control js-carousel-next"
-            ><i class="icon"><i class="fa-solid fa-chevron-right"></i></i
-          ></span>
+          <span class="carousel__control js-carousel-prev"><i class="icon"><i
+                class="fa-solid fa-chevron-left"></i></i></span>
+          <span href="#" class="carousel__control js-carousel-next"><i class="icon"><i
+                class="fa-solid fa-chevron-right"></i></i></span>
           <ul class="product-list js-product-list">
-            <% produits.forEach(produit => { %>
-            <li class="product-list__item">
-              <div data-slide="1" class="product">
-                <div class="item-card-img">
-                  <a href="/article/<%= produit.pro_id %>"
-                    ><img
-                      src="/images/produits/<%= produit.Media[0].med_ressource %>"
-                      class="img-fluid suggestion-img"
-                  /></a>
-                </div>
-                <div class="paragraph">
-                  <p class="libelle"><%= produit.pro_libelle %></p>
-                  <p><%= produit.pro_ref %></p>
-                  <div class="quantite">
-                    <span>
-                      <%= quantiteOfEachProduct.find(element => element.id ===
-                      produit.pro_id).qty ? quantiteOfEachProduct.find(element
-                      => element.id === produit.pro_id).qty : "0" %></span
-                    >
-                    <%= quantiteOfEachProduct.find(element => element.id ===
-                    produit.pro_id).qty > 1 ? "articles" : "article" %>
+            <% produits.forEach(produit=> { %>
+              <li class="product-list__item">
+                <div data-slide="1" class="product">
+                  <div class="item-card-img">
+                    <a href="/article/<%= produit.pro_id %>"><img
+                        src="/images/produits/<%= produit.Media[0].med_ressource %>"
+                        class="img-fluid suggestion-img" /></a>
+                  </div>
+                  <div class="paragraph">
+                    <p class="libelle">
+                      <%= produit.pro_libelle %>
+                    </p>
+                    <p>
+                      <%= produit.pro_ref %>
+                    </p>
+                    <div class="quantite"><span>
+                        <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty ?
+                          quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %>
+                      </span>
+                      <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty > 1 ? "articles" :
+                        "article" %>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <p>
+                      <strong>
+                        <%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %> €
+                      </strong>
+                    </p>
+                    <span class="bar">|</span>
+                    <span class="btn-add button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal"
+                      data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
+
                   </div>
                 </div>
-                <div class="price">
-                  <p>
-                    <strong
-                      ><%=
-                      (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".",
-                      ",") %> €</strong
-                    >
-                  </p>
-                  <span class="bar">|</span>
-                  <span
-                    class="btn-add button-ajouter"
-                    data-id="<%= produit.pro_id %>"
-                    data-bs-toggle="modal"
-                    data-bs-target="#parent_modal"
-                    ><strong>Ajouter</strong></span
-                  >
-                </div>
-              </div>
-            </li>
-            <% }) %>
+              </li>
+              <% }) %>
           </ul>
         </div>
       </div>
@@ -178,9 +170,7 @@
         <img src="/images/sommaire-2.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">LA NOUVELLE COLLECTION</h2>
-          <a href="/nouvelleCollection/#nouvelleCollection" class="cta-item-btn"
-            >Découvrir</a
-          >
+          <a href="/nouvelleCollection/#nouvelleCollection" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
@@ -201,21 +191,15 @@
         <img src="/images/sommaire-5.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">SUR YOUTUBE</h2>
-          <a
-            href="https://www.youtube.com/channel/UCYAveH1UzFJ-fMx0OFx7efg?app=desktop"
-            target="_blank"
-            class="cta-item-btn"
-            >Découvrir</a
-          >
+          <a href="https://www.youtube.com/channel/UCYAveH1UzFJ-fMx0OFx7efg?app=desktop" target="_blank"
+            class="cta-item-btn">Découvrir</a>
         </div>
       </div>
       <div class="cta-item">
         <img src="/images/sommaire-6.jpg" alt="" class="cta-item-img" />
         <div class="cta-item-content">
           <h2 class="cta-item-content-title">PROMOTIONS</h2>
-          <a href="/promotion/#page-promotion" class="cta-item-btn"
-            >Découvrir</a
-          >
+          <a href="/promotion/#page-promotion" class="cta-item-btn">Découvrir</a>
         </div>
       </div>
     </section>
@@ -251,42 +235,33 @@
     </div>
   </div>
   <div class="section-contact container">
-    <%if (typeof error !== 'undefined' && error == true) { %>
-    <div class="alert alert-danger mssg" role="alert">
-      <%= (errorMsg) ? errorMsg : '' %>
-    </div>
-    <% } %> <%if (typeof error == null && error == false) { %>
-    <div class="alert alert-success mssg" role="alert">
-      <%= (messages) ? messages : '' %>
-    </div>
-    <% } %>
+    <%if (typeof error !=='undefined' && error==true) { %>
+      <div class="alert alert-danger mssg" role="alert">
+        <%= (errorMsg) ? errorMsg : '' %>
+      </div>
+      <% } %>
+        <%if (typeof error==null && error==false) { %>
+          <div class="alert alert-success mssg" role="alert">
+            <%= (messages) ? messages : '' %>
+          </div>
+          <% } %>
 
-    <h1>NOUS CONTACTER</h1>
-    <form method="post" action="/">
-      <div class="mb-3">
-        <input
-          type="email"
-          placeholder="votre e-mail"
-          class="form-control"
-          id="email"
-          name="email"
-          aria-describedby="emailHelp"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Choisir un fichier</label>
-        <input class="form-control" type="file" id="file" name="file" />
-      </div>
-      <div class="mb-3">
-        <textarea
-          class="form-control"
-          placeholder="Comment pouvons-nous vous aider?"
-          name="textarea"
-          id="textarea"
-        ></textarea>
-      </div>
-      <button class="btn">Envoyer</button>
-    </form>
+            <h1>NOUS CONTACTER</h1>
+            <form method="post" action="/">
+              <div class="mb-3">
+                <input type="email" placeholder="votre e-mail" class="form-control" id="email" name="email"
+                  aria-describedby="emailHelp" />
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Choisir un fichier</label>
+                <input class="form-control" type="file" id="file" name="file" />
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" placeholder="Comment pouvons-nous vous aider?" name="textarea"
+                  id="textarea"></textarea>
+              </div>
+              <button class="btn">Envoyer</button>
+            </form>
   </div>
 </div>
 <script src="/javascripts/suggestion_carousel.js"></script>

@@ -9,7 +9,7 @@ router.get("/", async (req, res, next) => {
   let quantiteOfEachProduct = [];
 
   const produits = await Produit.findAll({
-    limit: 10,
+    limit: 12,
     order: [["pro_id", "DESC"]],
     include: [
       { model: Media, attributes: ["med_id", "med_ressource"] },
@@ -41,7 +41,7 @@ router.post("/", async function (req, res, next) {
   const { email, file, textarea } = req.body;
 
   const produits = await Produit.findAll({
-    limit: 10,
+    limit: 12,
     order: [["pro_id", "DESC"]],
     include: [
       { model: Media, attributes: ["med_id", "med_ressource"] },

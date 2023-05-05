@@ -1080,13 +1080,13 @@
   font-family: "Byciclette !important";
 }
 #pages-home .carousel {
-  margin: 20px;
+  margin: 10px;
 }
 #pages-home .carousel__view {
-  width: 95%;
+  width: 100%;
   height: 400px;
   background: white;
-  margin: 0 auto 5% auto;
+  padding: 10px;
   overflow: hidden;
   position: relative;
 }
@@ -1102,6 +1102,8 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  cursor: pointer;
+  font-size: larger;
 }
 #pages-home .carousel__control:first-of-type {
   left: 0;
@@ -1124,7 +1126,6 @@
   display: inline-block;
 }
 #pages-home .product {
-  display: table;
   height: 100%;
   width: 100%;
   margin-right: 100px;
