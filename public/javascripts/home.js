@@ -50,7 +50,7 @@ var swiper = new Swiper(".carousel__view", {
   loop: true,
   spaceBetween: 20,
   autoplay: {
-    delay: 3000,
+    delay: 5000,
     disableOnInteraction: false
   },
   navigation: {
