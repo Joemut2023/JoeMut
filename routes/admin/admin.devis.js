@@ -209,7 +209,6 @@ router.get('/view/:commandeId',async (req,res)=>{
       //   model:Client
       // }]
     });
-    console.log(adresse_facturation.Client);
     res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -239,4 +238,17 @@ router.post('/commande/add-essayage',async (req,res)=>{
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
+router.post('/commande/delete/essayage',async (req,res)=>{
+  const {com_id,ess_id} = req.body;
+  try {
+    await Essayage.destroy({
+      where:{
+        ess_id
+      }
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    
+  }
+})
 module.exports = router;

@@ -127,7 +127,11 @@
                         <% commande.Essayages?.forEach(date_essayage => { %>
                             <div class="date-repetition-item">
                                 <span><%= date_essayage.ess_repetition %></span>
-                                <span class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></span>
+                                <form action="/admin/devis/commande/delete/essayage" method="post">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <input type="hidden" name="ess_id" value="<%= date_essayage.ess_id %>">
+                                    <button type="submit" class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></button>
+                                </form>
                             </div>
                         <% }) %>
                     </div>

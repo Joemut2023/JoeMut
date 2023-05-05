@@ -7643,6 +7643,7 @@ body {
 }
 #admin-page-viewDevis .content .left .bloc-adresse .bloc-adresse-content .bloc-adresse-content-repetition .date-repetition-item .date-repetition-item-trash {
   cursor: pointer;
+  border: none;
 }
 #admin-page-viewDevis .content .right {
   width: 70%;
