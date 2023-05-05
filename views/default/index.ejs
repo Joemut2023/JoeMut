@@ -1,32 +1,31 @@
-
 <div id="header-banner">
-  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img">
+  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img" />
 </div>
 <div id="details-infos">
   <div class="infos-content">
-      <img src="/images/picto01.png" class="img-fluid" alt="">
-      <h6>VOUS IMAGINEZ, NOUS CRÉONS</h6>
-      <p>Création, réalisation et confection personalisée</p>
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <h6>VOUS IMAGINEZ, NOUS CRÉONS</h6>
+    <p>Création, réalisation et confection personalisée</p>
   </div>
   <div class="infos-content">
-      <img src="/images/picto01.png" class="img-fluid" alt="">
-      <h6>VOUS CHERCHEZ, NOUS AVONS</h6>
-      <p>18000 costumes - 1362 références tous styles de danses</p>
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <h6>VOUS CHERCHEZ, NOUS AVONS</h6>
+    <p>18000 costumes - 1362 références tous styles de danses</p>
   </div>
   <div class="infos-content">
-      <img src="/images/picto01.png" class="img-fluid" alt="">
-      <h6>VOTRE DEVIS EN LIGNE</h6>
-      <p>Intéractif, rapide et accessible 24/24 h</p>
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <h6>VOTRE DEVIS EN LIGNE</h6>
+    <p>Intéractif, rapide et accessible 24/24 h</p>
   </div>
   <div class="infos-content">
-      <img src="/images/picto01.png" class="img-fluid" alt=""/>
-      <h6>ON S’OCCUPE DE TOUT</h6>
-      <p>un seul interlocuteur, un seul contrat, une seule facture</p>
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
+    <h6>ON S’OCCUPE DE TOUT</h6>
+    <p>un seul interlocuteur, un seul contrat, une seule facture</p>
   </div>
   <div class="infos-content">
-      <img src="/images/picto01.png" alt=""/>
-      <h6>LA SOLUTION CLÉ EN MAIN</h6>
-      <p>Fini les problèmes de lavage,stockage et entretien</p>
+    <img src="/images/picto01.png" alt="" />
+    <h6>LA SOLUTION CLÉ EN MAIN</h6>
+    <p>Fini les problèmes de lavage,stockage et entretien</p>
   </div>
 </div>
 <div id="pages-home">
@@ -55,19 +54,32 @@
                 <div class="paragraph">
                   <p class="libelle"><%= produit.pro_libelle %></p>
                   <p><%= produit.pro_ref %></p>
-                  <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
+                  <div class="quantite">
+                    <span>
+                      <%= quantiteOfEachProduct.find(element => element.id ===
+                      produit.pro_id).qty ? quantiteOfEachProduct.find(element
+                      => element.id === produit.pro_id).qty : "0" %></span
+                    >
+                    <%= quantiteOfEachProduct.find(element => element.id ===
+                    produit.pro_id).qty > 1 ? "articles" : "article" %>
+                  </div>
                 </div>
                 <div class="price">
                   <p>
-                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €</strong>
+                    <strong
+                      ><%=
+                      (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".",
+                      ",") %> €</strong
+                    >
                   </p>
                   <span class="bar">|</span>
                   <span
-                      class="btn-add button-ajouter"
-                      data-id="<%= produit.pro_id %>"
-                      data-bs-toggle="modal"
-                      data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
-                 
+                    class="btn-add button-ajouter"
+                    data-id="<%= produit.pro_id %>"
+                    data-bs-toggle="modal"
+                    data-bs-target="#parent_modal"
+                    ><strong>Ajouter</strong></span
+                  >
                 </div>
               </div>
             </li>
