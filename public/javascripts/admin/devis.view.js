@@ -43,11 +43,18 @@ btnEditProds.forEach(function (btnEditProd) {
 // adresse 
 btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+    var commandeId, adresseId, adresse;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
+          commandeId = e.target.dataset.commande;
+          adresseId = e.target.dataset.adresse;
+          _context.next = 4;
+          return axios.get('/admin/adresse/byAjax/' + adresseId);
+        case 4:
+          adresse = _context.sent;
           modalUpdateAdressFacturation.show();
-        case 1:
+        case 6:
         case "end":
           return _context.stop();
       }
@@ -59,11 +66,18 @@ btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function
 }());
 btnUpdateExistAdresseLivraison.addEventListener('click', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+    var commandeId, adresseId, adresse;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
+          commandeId = e.target.dataset.commande;
+          adresseId = e.target.dataset.adresse;
+          _context2.next = 4;
+          return axios.get('/admin/adresse/byAjax/' + adresseId);
+        case 4:
+          adresse = _context2.sent;
           modalUpdateAdressLivraison.show();
-        case 1:
+        case 6:
         case "end":
           return _context2.stop();
       }
