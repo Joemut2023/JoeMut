@@ -74,8 +74,8 @@
                                     id="dropdownadress-1"
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
-                                      <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
-                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      <li data-bs-toggle="modal" data-bs-target="#modal-update-adresse-livraions"><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
+                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-livraison"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
                             </h2>
@@ -97,7 +97,7 @@
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
                                       <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
-                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-facturation"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
                             </h2>
@@ -474,6 +474,93 @@
                 <div class="mb-3">
                     <label for="input-add-adresse" class="form-label">date</label>
                     <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<!-- modal pour adresse livraison -->
+<div class="modal fade" id="modal-update-adresse-livraions" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="#" method="post">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="#" method="post">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!--modal pour adresse facturation-->
+<div class="modal fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="#" method="post">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="#" method="post">
+            <div class="modal-body">
+                <div class="mb-3">
                     <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
                   </div>
             </div>
