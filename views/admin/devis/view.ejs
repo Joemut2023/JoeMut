@@ -116,12 +116,20 @@
                 </div>
             </div>
             <div class="card shadow bloc-adresse">
-                <h2 class="bloc-adresse-title">Dates (5)</h2>
+                <h2 class="bloc-adresse-title">Dates</h2>
                 <div class="bloc-adresse-content">
                     <div class="bloc-adresse-content-spectacle">
                         <h2>Date de spectacle</h2>
-                        <div class="date-spectacle-debut"><%= commande.com_debut_spectacle %></div>
-                        <div class="date-spectacle-fin"><%= commande.com_fin_spectacle %></div>
+                        <div class="date-spectacle-debut">
+                          <div>
+                            <p><%= commande.com_debut_spectacle %> (début) <i class="fa-solid fa-pencil"></i></p>
+                          </div>
+                        </div>
+                        <div class="date-spectacle-fin">
+                          <div>
+                            <p><%= commande.com_fin_spectacle %> (fin) <i class="fa-solid fa-pencil"></i></p>
+                          </div>
+                        </div>
                     </div>
                     <div class="bloc-adresse-content-repetition">
                         <h2  data-bs-toggle="modal" data-bs-target="#modal-add-essayage">
