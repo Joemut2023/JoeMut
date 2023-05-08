@@ -49,17 +49,20 @@ router.get("/add", async (req, res) => {
 });
 router.post("/add", async (req, res) => {
   const { pro_id, prm_id } = req.body;
-  console.log(req.body, "content");
-  console.log(req.params, "params");
-  console.log(req.query, "query");
   try {
     const promos = await Promo.findAll();
     const produits = await Produit.findAll();
-    // const oldApply = await Apply.findOne({
-    //   where: { [Op.and]: [{ pro_id, prm_id }] },
-    // });
+    const oldApply = await Apply.findOne({
+      where: { [Op.and]: [{ pro_id, prm_id }] },
+    });
+    if (oldApply) {
+      const errorMsg = "cette promo est déjà appliquée à ce produit";
+      return res.render("apply/add", { promos, produits, errorMsg });
+    }
+    await Apply.create({ pro_id, prm_id });
+    const succesMsg = "la promo a été ajoutée au produit";
 
-    return res.render("apply/add", { promos, produits });
+    return res.render("apply/add", { promos, produits, succesMsg });
   } catch (error) {
     res.status(500).render("apply/add", {
       error: true,
