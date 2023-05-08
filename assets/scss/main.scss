@@ -1,10 +1,12 @@
 @import "fonts";
 @import "variables";
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 @import "blocs/header";
 @import "blocs/footer";
 @import "blocs/mobil-menu";
@@ -59,3 +61,4 @@
 @import "pages/admin/admin.ajoutProduit.scss";
 @import "pages/admin/admin.devis.view";
 @import "pages/admin/admin.ajoutAdresse";
+@import "pages/admin/admin.apply.scss";

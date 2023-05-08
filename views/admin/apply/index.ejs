@@ -1,11 +1,12 @@
 <div id="admin-blocs-produitHeader" class="border-bottom">
-  <h6>Promo</h6>
+  <h6>Produits en promo</h6>
   <div class="produit-menu">
-    <h4>Gérer vos promos</h4>
+    <h4>Gérer vos les produits en promo</h4>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
-        <a href="/admin/promo/add">
-          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle promo</a
+        <a href="/admin/apply/add">
+          <i class="fa-solid fa-circle-plus"></i> Appliquer une promo à un
+          produit</a
         >
       </button>
       <button type="button" class="btn btn-outline-secondary">Aide</button>
@@ -50,10 +51,10 @@
     </div>
   </div>
 </div>
-<div id="admin-page-promo">
-  <div class="promo-content mt-3">
+<div id="admin-page-apply">
+  <div class="apply-content mt-3 mb-5">
     <div class="d-flex justify-content-between p-3 pb-0">
-      <h6>Gérez vos promos</h6>
+      <h6>Produits en promo</h6>
       <i class="fa-solid fa-gear"></i>
     </div>
     <hr />
@@ -67,14 +68,15 @@
           <th scope="col">Valeur</th>
           <th scope="col">Date debut</th>
           <th scope="col">Date fin</th>
-          <th scope="col">status</th>
-          <th scope="col">Appliquée à une commande</th>
+          <th scope="col">Status</th>
+          <th scope="col">Image</th>
+          <th scope="col">Nom produit</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% if ((typeof promos !== 'undefined') && promos.length > 0) { %> <%
-        promos.forEach(element => { %>
+        <% if ((typeof applies !== 'undefined') && applies.length > 0) { %> <%
+        applies.forEach(element => { %>
         <tr>
           <td scope="row">
             <input
@@ -84,14 +86,14 @@
               id="flexCheckDefault"
             />
           </td>
-          <th scope="row"><%= element.prm_id %></th>
-          <td><%= element.prm_code %></td>
-          <td><%= element.prm_pourcent %></td>
-          <td><%= element.prm_valeur %></td>
-          <td><%= element.prm_debut%></td>
-          <td><%= element.prm_fin%></td>
+          <th scope="row"><%= element.app_id %></th>
+          <td><%= element.Promo.prm_code %></td>
+          <td><%= element.Promo.prm_pourcent %></td>
+          <td><%= element.Promo.prm_valeur %></td>
+          <td><%= element.Promo.prm_debut%></td>
+          <td><%= element.Promo.prm_fin%></td>
           <td>
-            <% if (element.prm_actif) { %>
+            <% if (element.Promo.prm_actif) { %>
 
             <span class="badge text-bg-success">activé</span>
             <% } else { %>
@@ -100,14 +102,13 @@
             <% } %>
           </td>
           <td width="60">
-            <% if (element.prm_commande) { %>
-
-            <span class="badge text-bg-info">oui</span>
-            <% } else { %>
-
-            <span class="badge text-bg-warning">non</span>
-            <% } %>
+            <img
+              src="/images/produits/<%= element.Produit.Media[0].med_ressource %>"
+              alt=""
+              class="img-fluid w-100 h-25 img-content"
+            />
           </td>
+          <td><%= element.Produit.pro_libelle%></td>
           <td>
             <div class="d-flex gap-4">
               <form method="get" action="/admin/promo/update/?prm_id">
@@ -142,11 +143,11 @@
                     </form>
                   </li>
                   <li>
-                    <form method="post" action="/admin/promo/delete">
+                    <form method="post" action="/admin/apply/delete">
                       <input
                         type="hidden"
-                        name="prm_id"
-                        value="<%= element.prm_id %>"
+                        name="app_id"
+                        value="<%= element.app_id %>"
                       />
                       <button class="dropdown-item" type="submit">
                         <i class="fa-solid fa-trash"></i> Supprimer
@@ -160,7 +161,7 @@
         </tr>
         <% }) %> <% }else { %>
         <div class="alert alert-primary" role="alert">
-          Il n'y a aucune promo dans votre base des données pour l'instant.
+          Aucune promo n'est appliquée à un produit pour l'instant.
         </div>
         <% } %>
       </tbody>

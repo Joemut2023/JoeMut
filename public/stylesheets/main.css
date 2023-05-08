@@ -7929,4 +7929,22 @@ body {
   color: white;
 }
 
+#admin-page-apply .apply-content {
+  background-color: #fff;
+}
+#admin-page-apply .table {
+  background-color: #fff;
+}
+#admin-page-apply .table td,
+#admin-page-apply .table th {
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+#admin-page-apply .table .dropdown :hover > .dropdown-menu {
+  display: block;
+}
+#admin-page-apply .table .dropdown-menu {
+  inset: 5px 0px auto auto;
+}
+
 /*# sourceMappingURL=main.css.map */

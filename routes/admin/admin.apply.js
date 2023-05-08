@@ -1,16 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const { Promo } = require("../../models");
+const { Promo, Apply, Produit, Media } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async (req, res) => {
   try {
-    const promos = await Promo.findAll();
-    res.render("promo/index", { promos });
+    const applies = await Apply.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_libelle"],
+          include: { model: Media, attributes: ["med_ressource"] },
+        },
+        {
+          model: Promo,
+          attributes: [
+            "prm_code",
+            "prm_pourcent",
+            "prm_valeur",
+            "prm_debut",
+            "prm_fin",
+          ],
+        },
+      ],
+    });
+    res.render("apply/index", { applies });
+    // res.json(applies);
   } catch (error) {
-    res.status(500).render("promo/index", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -18,9 +37,11 @@ router.get("/", async (req, res) => {
 });
 router.get("/add", async (req, res) => {
   try {
-    res.render("promo/add");
+    const promos = await Promo.findAll();
+    const produits = await Produit.findAll();
+    res.render("apply/add", {  promos,  produits });
   } catch (error) {
-    res.status(500).render("promo/add", {
+    res.status(500).render("apply/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -70,12 +91,12 @@ router.post("/add", async (req, res) => {
   }
 });
 router.post("/delete", async (req, res) => {
-  const prm_id = req.body.prm_id;
+  const app_id = req.body.app_id;
   try {
-    await Promo.destroy({ where: { prm_id } });
-    res.redirect("/admin/promo");
+    await Apply.destroy({ where: { app_id } });
+    res.redirect("/admin/apply");
   } catch (error) {
-    res.status(500).render("promo/index", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
