@@ -1,0 +1,25 @@
+#admin-page-add-apply {
+
+    background-color: $color-white;
+
+    .btn-info {
+        color: $color-white;
+    }
+
+    .label-div {
+        width: 40%;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: $color-black;
+    }
+
+    a:hover {
+        color: $color-white;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+}

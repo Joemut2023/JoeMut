@@ -1,10 +1,12 @@
 @import "fonts";
 @import "variables";
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 @import "blocs/header";
 @import "blocs/footer";
 @import "blocs/mobil-menu";
@@ -40,6 +42,7 @@
 @import "pages/admin/admin.produit.scss";
 @import "pages/admin/admin.client.scss";
 @import "pages/admin/admin.addClient.scss";
+@import "pages/admin/admin.addApply.scss";
 @import "pages/admin/admin.adresse.scss";
 @import "pages/admin/admin.categories.scss";
 @import "pages/admin/admin.souscat.scss";
@@ -60,3 +63,4 @@
 @import "pages/admin/admin.devis.view";
 @import "pages/admin/admin.ajoutAdresse";
 @import "pages/admin/admin.editProduit.scss";
+@import "pages/admin/admin.apply.scss";

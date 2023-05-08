@@ -6200,6 +6200,26 @@
   font-size: 0.9rem;
 }
 
+#admin-page-add-apply {
+  background-color: #fff;
+}
+#admin-page-add-apply .btn-info {
+  color: #fff;
+}
+#admin-page-add-apply .label-div {
+  width: 40%;
+}
+#admin-page-add-apply a {
+  text-decoration: none !important;
+  color: #232323;
+}
+#admin-page-add-apply a:hover {
+  color: #fff;
+}
+#admin-page-add-apply label {
+  font-size: 0.9rem;
+}
+
 #admin-page-adresse {
   margin-top: 2%;
 }
@@ -8681,6 +8701,24 @@ body {
 }
 #page-admin-editProduit .message p .danger {
   color: rgb(228, 228, 58);
+}
+
+#admin-page-apply .apply-content {
+  background-color: #fff;
+}
+#admin-page-apply .table {
+  background-color: #fff;
+}
+#admin-page-apply .table td,
+#admin-page-apply .table th {
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+#admin-page-apply .table .dropdown :hover > .dropdown-menu {
+  display: block;
+}
+#admin-page-apply .table .dropdown-menu {
+  inset: 5px 0px auto auto;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,23 @@
+#admin-page-apply {
+    .apply-content {
+        background-color: $color-white;
+    }
+
+    .table {
+        background-color: $color-white;
+
+        td,
+        th {
+            vertical-align: middle;
+            font-size: 0.8rem;
+        }
+
+        .dropdown :hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            inset: 5px 0px auto auto;
+        }
+    }
+}

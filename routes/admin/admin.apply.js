@@ -1,27 +1,35 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const { Promo } = require("../../models");
+const { Op } = require("sequelize");
+const { Promo, Apply, Produit, Media } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async (req, res) => {
   try {
-    const promos = await Promo.findAll();
-    res.render("promo/index", { promos });
-  } catch (error) {
-    res.status(500).render("promo/index", {
-      error: true,
-      errorMsg: "une erreur est survenue ",
+    const applies = await Apply.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_libelle"],
+          include: { model: Media, attributes: ["med_ressource"] },
+        },
+        {
+          model: Promo,
+          attributes: [
+            "prm_code",
+            "prm_pourcent",
+            "prm_valeur",
+            "prm_debut",
+            "prm_fin",
+          ],
+        },
+      ],
     });
-  }
-});
-router.get("/all", async (req, res) => {
-  try {
-    const promos = await Promo.findAll();
-    return res.status(200).send(promos);
+    res.render("apply/index", { applies });
+    // res.json(applies);
   } catch (error) {
-    res.status(500).render("promo/index", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -29,64 +37,44 @@ router.get("/all", async (req, res) => {
 });
 router.get("/add", async (req, res) => {
   try {
-    res.render("promo/add");
+    const promos = await Promo.findAll();
+    const produits = await Produit.findAll();
+    res.render("apply/add", { promos, produits });
   } catch (error) {
-    res.status(500).render("promo/add", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
   }
 });
 router.post("/add", async (req, res) => {
-  const {
-    prm_code,
-    prm_pourcent,
-    prm_valeur,
-    prm_debut,
-    prm_fin,
-    prm_actif,
-    prm_commande,
-  } = req.body;
-
+  const { pro_id, prm_id } = req.body;
+  console.log(req.body, "content");
+  console.log(req.params, "params");
+  console.log(req.query, "query");
   try {
-    if (prm_fin < prm_debut) {
-      const errorMsg =
-        "La création de la promo a échouée : la date du début de la promo doit être inférieure à la date de fin";
-      return res.render("promo/add", { errorMsg });
-    }
-    const oldPromo = await Promo.findOne({ where: { prm_code } });
-    if (oldPromo) {
-      const errorMsg = "Cette promo existe déjà";
-      return res.render("promo/add", {
-        errorMsg,
-      });
-    }
-    console.log(prm_commande, "pour une commande");
-    await Promo.create({
-      prm_code,
-      prm_pourcent,
-      prm_valeur,
-      prm_debut,
-      prm_fin,
-      prm_actif,
-      prm_commande,
-    });
-    const succesMsg = "promo créée et enregistrée avec succès";
-    res.render("promo/add", { succesMsg });
+    const promos = await Promo.findAll();
+    const produits = await Produit.findAll();
+    // const oldApply = await Apply.findOne({
+    //   where: { [Op.and]: [{ pro_id, prm_id }] },
+    // });
+
+    return res.render("apply/add", { promos, produits });
   } catch (error) {
-    res.status(500).render("promo/add", {
+    res.status(500).render("apply/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
+    console.log(error);
   }
 });
 router.post("/delete", async (req, res) => {
-  const prm_id = req.body.prm_id;
+  const app_id = req.body.app_id;
   try {
-    await Promo.destroy({ where: { prm_id } });
-    res.redirect("/admin/promo");
+    await Apply.destroy({ where: { app_id } });
+    res.redirect("/admin/apply");
   } catch (error) {
-    res.status(500).render("promo/index", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -115,6 +103,7 @@ router.post("/update", async (req, res) => {
     prm_id,
     prm_commande,
   } = req.body;
+  console.log(prm_commande, "commande");
   const statusUpdate = typeof prm_actif == "undefined" ? false : true;
   const prmCommande = typeof prm_commande == "undefined" ? false : true;
   try {

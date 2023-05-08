@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Promo.hasMany(models.Apply,{
-        foreignKey:"prm_id"
-      })
-      Promo.hasMany(models.Panier_detail,{
-        foreignKey:"prm_id"
-      })
+      Promo.hasMany(models.Apply, {
+        foreignKey: "prm_id",
+      });
+      Promo.hasMany(models.Panier_detail, {
+        foreignKey: "prm_id",
+      });
     }
   }
   Promo.init(
@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       prm_debut: DataTypes.DATEONLY,
       prm_fin: DataTypes.DATEONLY,
       prm_actif: DataTypes.BOOLEAN,
+      prm_commande: DataTypes.BOOLEAN,
     },
     {
       sequelize,
