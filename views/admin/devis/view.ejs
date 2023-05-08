@@ -74,13 +74,15 @@
                                     id="dropdownadress-1"
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
-                                      <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
-                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      <li class="btn-update-exist-adresse-livraison" data-adresse="<%= adresse_livraion.adr_id %>" data-commande="<%= commande.com_id %>">
+                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                      </li>
+                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-livraison"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
                             </h2>
-                            <p>Eric Guermah</p>
-                            <p>5, rue des agaces</p>
+                            <p><%= adresse_livraion.adr_nom %></p>
+                            <p><%= adresse_livraion.adr_adresse %></p>
                         </div>
                     </div>
                     <div class="col-md-5 offset-2 adresse-item">
@@ -96,13 +98,15 @@
                                     id="dropdownadress-2"
                                   ></i>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
-                                      <li><a class="dropdown-item" href="#">Modifier une adresse existante</a></li>
-                                      <li><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      <li class="btn-update-exist-adresse-facturation" data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>">
+                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                      </li>
+                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-facturation"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
                                     </ul>
                                 </div>
                             </h2>
-                            <p>Eric Guermah</p>
-                            <p>5, rue des agaces</p>
+                            <p><%= adresse_facturation.adr_nom %></p>
+                            <p><%= adresse_facturation.adr_adresse %></p>
                         </div>
                     </div>
                 </div>
@@ -116,18 +120,24 @@
                 <div class="bloc-adresse-content">
                     <div class="bloc-adresse-content-spectacle">
                         <h2>Date de spectacle</h2>
-                        <div class="date-spectacle-debut">27/01/2023</div>
-                        <div class="date-spectacle-fin">28/01/2023</div>
+                        <div class="date-spectacle-debut"><%= commande.com_debut_spectacle %></div>
+                        <div class="date-spectacle-fin"><%= commande.com_fin_spectacle %></div>
                     </div>
                     <div class="bloc-adresse-content-repetition">
-                        <h2>
+                        <h2  data-bs-toggle="modal" data-bs-target="#modal-add-essayage">
                             <span>Date de répétition</span>
                             <span><i class="fa-solid fa-plus"></i></span>
                         </h2>
-                        <div class="date-repetition-item">
-                            <span>27/01/2023</span>
-                            <span class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></span>
-                        </div>
+                        <% commande.Essayages?.forEach(date_essayage => { %>
+                            <div class="date-repetition-item">
+                                <span><%= date_essayage.ess_repetition %></span>
+                                <form action="/admin/devis/commande/delete/essayage" method="post">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <input type="hidden" name="ess_id" value="<%= date_essayage.ess_id %>">
+                                    <button type="submit" class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+                        <% }) %>
                     </div>
                 </div>
             </div>
@@ -452,6 +462,208 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/devis/commande/add-essayage" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="input-add-adresse" class="form-label">date</label>
+                        <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>   
+    <!-- modal pour adresse livraison -->
+    <div class="modal modal-lg fade" id="modal-update-adresse-livraion" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" class="fom" method="post">
+                <div class="mb-3">
+                  <label class="form-label" for=""> Nom de la structure</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_structure" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""><span>* </span> Nom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_nom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Prenom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_prenom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Société</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_societe" id="" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Numéro de TVA</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_num_tva" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_adresse" id=""/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Complément d'adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_comp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Code postal</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_cp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Ville</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_ville" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Pays</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_pays" id="" />
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/devis/commande/update-adresse-livraison" method="post">
+                <div class="modal-body modal-list-adresse">
+                    <% adresses.forEach(adresse => { %>
+                    <div class="mb-3">
+                        <label for="radio-adresse-livraison-<%= adresse.adr_id %>">
+                            <div>
+                                <p><%= adresse.adr_structure %></p>
+                                <p><%= adresse.adr_nom %></p>
+                                <p><%= adresse.adr_societe %></p>
+                                <p><%= adresse.adr_adresse %></p>
+                            </div>
+                            <input type="radio" name="adresse" id="radio-adresse-livraison-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
+                        </label>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <!--modal pour adresse facturation-->
+    <div class="modal modal-lg fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" class="fom" method="post">
+                <div class="mb-3">
+                  <label class="form-label" for=""> Nom de la structure</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_structure" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""><span>* </span> Nom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_nom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Prenom</label>
+                  <input class="form-control" placeholder="Romain" type="text" name="adr_prenom" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Société</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_societe" id="" required/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Numéro de TVA</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_num_tva" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_adresse" id=""/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> Complément d'adresse</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_comp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Code postal</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_cp" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Ville</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_ville" id="" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for=""> <span>* </span>Pays</label>
+                  <input class="form-control" placeholder="" type="text" name="adr_pays" id="" />
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/devis/commande/update-adresse-facturation" method="post">
+                <div class="modal-body modal-list-adresse">
+                    <% adresses.forEach(adresse => { %>
+                    <div class="mb-3">
+                        <label for="radio-adresse-facturation-<%= adresse.adr_id %>">
+                            <div>
+                                <p><%= adresse.adr_structure %></p>
+                                <p><%= adresse.adr_nom %></p>
+                                <p><%= adresse.adr_societe %></p>
+                                <p><%= adresse.adr_adresse %></p>
+                            </div>
+                            <input type="radio" name="adresse" id="radio-adresse-facturation-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
+                        </label>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+          </div>
         </div>
     </div>
 </div>

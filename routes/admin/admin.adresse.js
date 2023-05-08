@@ -111,5 +111,20 @@ router.post("/add", async (req, res) => {
     });
   }
 });
+router.get('/byAjax/:id',async (req,res)=>{
+  const {id} = req.params;
+  try {
+    let adresse = await Adresse.findOne({
+      where:{adr_id:id}
+    })
+    if (!adresse) {
+      res.status(501).json('aucune adresse');
+    }else{
+      res.status(200).json(adresse);
+    }
+  } catch (error) {
+    res.json(error);
+  }
+})
 
 module.exports = router;

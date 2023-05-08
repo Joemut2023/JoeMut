@@ -12,6 +12,10 @@
   }
 
   .element-slider-suggestion {
+<<<<<<< HEAD
+=======
+    margin: 0px;
+>>>>>>> develop
     .font-weight-light {
       margin-bottom: 20px;
       font-family: "Byciclette";
@@ -432,6 +436,7 @@
   /*
   caroussel 
   */
+<<<<<<< HEAD
 
   .carousel {
     margin: 10px;
@@ -443,10 +448,18 @@
       background: white;
       // border: solid 1px blue;
       padding: 10px;
+=======
+  .element-slider-suggestion {
+    .carousel__view {
+      width: 95%;
+      height: 450px;
+      background: white;
+      margin: 0 auto 5% auto;
+>>>>>>> develop
       overflow: hidden;
       position: relative;
-    }
 
+<<<<<<< HEAD
     &__control {
       position: absolute;
       z-index: 1;
@@ -467,13 +480,45 @@
       &:first-of-type {
         left: 0;
       }
+=======
+      .product-list {
+        position: absolute;
+        transition: transform 0.3s;
+        transform: translateX(0px);
+        list-style: none;
+        height: 400px;
 
-      &:last-of-type {
-        right: 0;
-      }
-    }
-  }
+        &__item {
+          width: 300px;
+          height: 400px;
+          //border: solid 1px green;
+          display: inline-block;
+        }
+>>>>>>> develop
 
+        .product {
+          display: table;
+          height: 100%;
+          width: 100%;
+          margin-right: 100px;
+
+          .item-card-img {
+            height: 270px;
+            width: 60%;
+            margin: 0 auto 2% auto;
+
+            a {
+              display: inline-block;
+              height: 100%;
+
+              img {
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+
+<<<<<<< HEAD
   .product-list {
     position: absolute;
     margin: 0;
@@ -497,31 +542,55 @@
     width: 100%;
     margin-right: 100px;
     // border: 1px solid red;
+=======
+          .paragraph {
+            text-align: center;
+            color: $color-secondary;
 
-    .item-card-img {
-      height: 270px;
-      width: 60%;
-      margin: 0 auto 2% auto;
+            .libelle {
+              font-size: 0.8rem;
+            }
+>>>>>>> develop
 
-      a {
-        display: inline-block;
-        height: 100%;
+            P {
+              margin-bottom: 5px;
+            }
 
-        img {
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-    }
+            .quantite {
+              font-weight: 500;
 
-    .paragraph {
-      text-align: center;
-      color: $color-secondary;
+              span {
+                font-weight: 600;
+              }
+            }
+          }
 
-      .libelle {
-        font-size: 0.8rem;
-      }
+          .price {
+            text-align: center;
+            color: $color-important;
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
 
+            .bar {
+              font-size: 20px;
+              font-weight: 500;
+              color: $color-primary;
+            }
+            .btn-add {
+              cursor: pointer;
+            }
+            p {
+              margin-bottom: 0px;
+            }
+          }
+
+          .slick-list {
+            perspective: 1px;
+          }
+
+<<<<<<< HEAD
       P {
         margin-bottom: 5px;
       }
@@ -531,18 +600,22 @@
 
         span {
           font-weight: 600;
+=======
+          .slick-track {
+            will-change: transform, transition;
+          }
         }
       }
-    }
 
-    .price {
-      text-align: center;
-      color: $color-important;
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      align-items: center;
+      .swiper-pagination {
+        bottom: 15px !important;
+        .swiper-pagination-bullet {
+          background: black !important;
+>>>>>>> develop
+        }
+      }
 
+<<<<<<< HEAD
       .bar {
         font-size: 20px;
         font-weight: 500;
@@ -563,5 +636,13 @@
     .slick-track {
       will-change: transform, transition;
     }
+=======
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 1.5rem;
+      }
+    }
+>>>>>>> develop
   }
 }

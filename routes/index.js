@@ -3,19 +3,22 @@ const router = express.Router();
 var nodemailer = require("nodemailer");
 const { Produit, Media, Tarif, Quantite } = require("../models");
 
+
+
 /* GET home page. */
 router.get("/", async (req, res, next) => {
   res.locals.titre = "Accueil";
   let quantiteOfEachProduct = [];
 
   const produits = await Produit.findAll({
-    limit: 12,
+    limit: 8,
     order: [["pro_id", "DESC"]],
     include: [
       { model: Media, attributes: ["med_id", "med_ressource"] },
       { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
     ],
   });
+
 
   for (let index = 0; index < produits.length; index++) {
     const quantiteInitial = await Quantite.sum("qua_nbre", {

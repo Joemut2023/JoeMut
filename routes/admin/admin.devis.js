@@ -27,7 +27,6 @@ router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
     let commandes_data = [];
-   // let total_pad_ttc = 0;
     let commandes = await Commande.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
@@ -40,6 +39,7 @@ router.get("/", async (req, res) => {
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
+        "com_num"
       ],
       include: [
         {
@@ -68,7 +68,6 @@ router.get("/", async (req, res) => {
       //group: ["Commande.com_id"],
     });
     let commandesNbr = await Commande.findAndCountAll();
-
     for (let commande of commandes) {
       let pad_ttc = 0
       commande.Panier.Panier_details.forEach(pad => {
@@ -133,73 +132,150 @@ router.get('/:panier',async (req,res)=>{
 
 router.get('/view/:commandeId',async (req,res)=>{
   const {commandeId} = req.params;
-  let commande = await Commande.findOne({
-    where:{
-      com_id:commandeId
-    },
-    attributes: [
-      "com_id",
-      "com_date",
-      "com_debut_spectacle",
-      "com_fin_spectacle",
-      "pan_id",
-      "frp_id",
-      "com_adr_liv",
-      "com_adr_fac",
-    ],
-    include: [
-      {
-        model: Client,
-        include:[
-          {
-            model:Titre
-          }
-        ]
+  try {
+    let commande = await Commande.findOne({
+      where:{
+        com_id:commandeId
       },
-      {
-        model: Frais_port,
-        include :[
-          {
-            model:Mode_liv_essayage
-          },
-          {
-            model:Mode_liv_spectacle
-          }
-        ]
-      },
-      {
-        model: Panier,
-        include: [
-          {
-            model: Panier_detail,
-            include:[{
-              model:Produit,
-              include:[
-              {
-                model:Media
-              },
-              {
-                model:Quantite
-              },
-              {
-                model:Apply,
+      attributes: [
+        "com_id",
+        "com_date",
+        "com_debut_spectacle",
+        "com_fin_spectacle",
+        "pan_id",
+        "frp_id",
+        "com_adr_liv",
+        "com_adr_fac",
+      ],
+      include: [
+        {
+          model: Client,
+          include:[
+            {
+              model:Titre
+            }
+          ]
+        },
+        {
+          model: Frais_port,
+          include :[
+            {
+              model:Mode_liv_essayage
+            },
+            {
+              model:Mode_liv_spectacle
+            }
+          ]
+        },
+        {
+          model: Panier,
+          include: [
+            {
+              model: Panier_detail,
+              include:[{
+                model:Produit,
                 include:[
-                  {
-                    model:Promo
-                  }
-                ]
-              }
-            ]
-            }]
-          },
-        ],
-      },
-    ]
-  });
-  console.log(commande.Panier.Panier_details[0].Produit.Applies.length);
-  res.render("devis/view",{
-    commande
-  });
+                {
+                  model:Media
+                },
+                {
+                  model:Quantite
+                },
+                {
+                  model:Apply,
+                  include:[
+                    {
+                      model:Promo
+                    }
+                  ]
+                }
+              ]
+              }]
+            },
+          ],
+        },
+        {
+          model:Essayage
+        }
+      ]
+    });
+    let adresses = await Adresse.findAll({
+      cli_id:commande.cli_id
+    })
+    
+    let adresse_livraion = await Adresse.findOne({
+      where:{adr_id:commande.com_adr_liv}
+    });
+    let adresse_facturation = await Adresse.findOne({
+      where:{adr_id:commande.com_adr_fac}
+    });
+    res.render("devis/view",{
+      commande,
+      adresse_livraion,
+      adresse_facturation,
+      adresses
+    });
+  } catch (error) {
+    res.render("devis/view",{
+      error:true
+    });
+  }
+  
 })
-
+/**
+ * ajout date essayage
+ */
+router.post('/commande/add-essayage',async (req,res)=>{
+  const {com_id,ess_repetition} = req.body;
+  try {
+    await Essayage.create({
+      com_id,
+      ess_repetition
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    //gestion erreur
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
+router.post('/commande/delete/essayage',async (req,res)=>{
+  const {com_id,ess_id} = req.body;
+  try {
+    await Essayage.destroy({
+      where:{
+        ess_id
+      }
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    
+  }
+})
+router.post('/commande/update-adresse-facturation',async(req,res)=>{
+  const {adresse,com_id} = req.body;
+  try {
+    let commande = await Commande.update(
+    {
+      com_adr_fac:adresse
+    },
+    {where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+    //res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
+router.post('/commande/update-adresse-livraison',async(req,res)=>{
+  const {adresse,com_id} = req.body;
+  try {
+    let commande = await Commande.update(
+    {
+      com_adr_liv:adresse
+    },
+    {where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
 module.exports = router;

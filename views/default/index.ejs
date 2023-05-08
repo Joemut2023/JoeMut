@@ -1,19 +1,19 @@
 <div id="header-banner">
-  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img">
+  <img src="/images/banner.jpg" alt="" srcset="" class="img-fluid barner-img" />
 </div>
 <div id="details-infos">
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="">
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
     <h6>VOUS IMAGINEZ, NOUS CRÉONS</h6>
     <p>Création, réalisation et confection personalisée</p>
   </div>
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="">
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
     <h6>VOUS CHERCHEZ, NOUS AVONS</h6>
     <p>18000 costumes - 1362 références tous styles de danses</p>
   </div>
   <div class="infos-content">
-    <img src="/images/picto01.png" class="img-fluid" alt="">
+    <img src="/images/picto01.png" class="img-fluid" alt="" />
     <h6>VOTRE DEVIS EN LIGNE</h6>
     <p>Intéractif, rapide et accessible 24/24 h</p>
   </div>
@@ -32,15 +32,51 @@
   <div class="element-slider-suggestion">
     <div class="">
       <h2 class="font-weight-light text-center">NOS SUGGESTIONS !</h2>
-      <div class="carousel js-product-carousel">
+      <!-- <div class="carousel js-product-carousel">
         <div class="carousel__view">
           <span class="carousel__control js-carousel-prev"><i class="icon"><i
                 class="fa-solid fa-chevron-left"></i></i></span>
           <span href="#" class="carousel__control js-carousel-next"><i class="icon"><i
                 class="fa-solid fa-chevron-right"></i></i></span>
           <ul class="product-list js-product-list">
+            <% produits.forEach(produit => { %>
+            <li class="product-list__item">
+              <div data-slide="1" class="product">
+                <div class="item-card-img">
+                  <a href="/article/<%= produit.pro_id %>"
+                    ><img
+                      src="/images/produits/<%= produit.Media[0].med_ressource %>"
+                      class="img-fluid suggestion-img"
+                  /></a>
+                </div>
+                <div class="paragraph">
+                  <p class="libelle"><%= produit.pro_libelle %></p>
+                  <p><%= produit.pro_ref %></p>
+                  <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
+                </div>
+                <div class="price">
+                  <p>
+                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €</strong>
+                  </p>
+                  <span class="bar">|</span>
+                  <span
+                      class="btn-add button-ajouter"
+                      data-id="<%= produit.pro_id %>"
+                      data-bs-toggle="modal"
+                      data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
+
+                  </div>
+                </div>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
+      </div> -->
+      <div class="carousel js-product-carousel">
+        <div class="swiper carousel__view">
+          <ul class="swiper-wrapper product-list js-product-list ">
             <% produits.forEach(produit=> { %>
-              <li class="product-list__item">
+              <li class="swiper-slide product-list__item">
                 <div data-slide="1" class="product">
                   <div class="item-card-img">
                     <a href="/article/<%= produit.pro_id %>"><img
@@ -71,12 +107,14 @@
                     <span class="bar">|</span>
                     <span class="btn-add button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal"
                       data-bs-target="#parent_modal"><strong>Ajouter</strong></span>
-
                   </div>
                 </div>
               </li>
               <% }) %>
           </ul>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
     </div>

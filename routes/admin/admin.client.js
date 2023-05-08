@@ -55,8 +55,6 @@ router.get("/add", async (req, res) => {
 router.post("/add", async (req, res) => {
   const { cli_prenom, cli_nom, cli_pwd, cli_mail, cli_activation, tit_id } =
     req.body;
-  const data = req.body;
-
   try {
     const titres = await Titre.findAll();
     const oldClient = await Client.findOne({ where: { cli_mail } });
@@ -111,7 +109,6 @@ router.post("/update", async (req, res) => {
     cli_partenaire,
     cli_id,
   } = req.body;
-  console.log(req.body);
   try {
     const titres = await Titre.findAll();
     const update = await Client.update(
@@ -134,7 +131,7 @@ router.post("/update", async (req, res) => {
       return res.render("client/updateClient", { titres, clients, succesMsg });
     }
     const nothingMsg = "aucune nouvelle information trouvée ";
-    res.render("client/updateClient", { titres, clients,nothingMsg });
+    res.render("client/updateClient", { titres, clients, nothingMsg });
   } catch (error) {
     res.status(500).render("client/updateClient", {
       error: true,
