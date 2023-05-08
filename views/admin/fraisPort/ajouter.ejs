@@ -19,29 +19,19 @@
         <div class="row g-3 align-items-center">
           <div class="col-6">
             <label for="date" class="col-form-label">Date debut</label>
-            <input type="date" id="date" class="form-control input-group"
-            name="frp_debut" aria-labelledby=dateHelpInline">
+            <input type="date" id="date" class="form-control input-group" name="frp_debut"
+              aria-labelledby=dateHelpInline">
           </div>
 
           <div class="col-6">
             <label for="date" class="col-form-label">Date fin</label>
-            <input
-              type="date"
-              id="date"
-              class="form-control"
-              aria-labelledby="passwordHelpInline"
-              name="frp_fin"
-            />
+            <input type="date" id="date" class="form-control" aria-labelledby="passwordHelpInline" name="frp_fin" />
           </div>
         </div>
         <div class="row g-3 align-items-center">
           <div class="col-6">
             <label class="col-form-label">Actif</label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="frp_actif"
-            >
+            <select class="form-select" aria-label="Default select example" name="frp_actif">
               <option value="1">true</option>
               <option value="2" selected>false</option>
             </select>
@@ -49,13 +39,33 @@
 
           <div class="col-6">
             <label class="col-form-label">Default</label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="frp_default"
-            >
+            <select class="form-select" aria-label="Default select example" name="frp_default">
               <option value="1">true</option>
               <option value="2" selected>false</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-3 align-items-center">
+          <div class="col-6">
+            <label class="col-form-label">Mode de livraison essayage</label>
+            <select class="form-select" aria-label="Default select example" name="mle_id">
+              <% liv_essayage && liv_essayage.forEach((element)=> { %>
+                <option value="<%= element.mle_id %>">
+                  <%= element.mle_libelle %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="col-form-label">Mode de livraison spectacle</label>
+            <select class="form-select" aria-label="Default select example" name="mls_id">
+              <% liv_spectacle && liv_spectacle.forEach((element)=> { %>
+                <option value="<%= element.mls_id %>">
+                  <%= element.mls_libelle %>
+                </option>
+                <% }) %>
             </select>
           </div>
         </div>
@@ -63,40 +73,24 @@
         <div class="row">
           <div class="col-6">
             <label for="libelle" class="col-form-label">libelle</label>
-            <input
-              type="texte"
-              id="libelle"
-              class="form-control"
-              aria-labelledby="passwordHelpInline"
-              name="frp_libelle"
-            />
+            <input type="texte" id="libelle" class="form-control" aria-labelledby="passwordHelpInline"
+              name="frp_libelle" />
           </div>
           <div class="col-6">
             <label class="col-form-label">Description</label>
-            <textarea
-              class="form-control"
-              id="floatingTextarea"
-              name="frp_description"
-            ></textarea>
+            <textarea class="form-control" id="floatingTextarea" name="frp_description"></textarea>
           </div>
         </div>
 
         <div class="row g-3 align-items-center">
           <div class="col-6">
             <label for="number" class="col-form-label">Prix HT</label>
-            <input type="number" id="date" class="form-control" name="frp_ht"
-            aria-labelledby=dateHelpInline">
+            <input type="number" id="date" class="form-control" name="frp_ht" aria-labelledby=dateHelpInline">
           </div>
 
           <div class="col-6">
             <label for="date" class="col-form-label">Prix TTC</label>
-            <input
-              type="number"
-              id="number"
-              class="form-control"
-              aria-labelledby="passwordHelpInline"
-              name="frp_ttc"
-            />
+            <input type="number" id="number" class="form-control" aria-labelledby="passwordHelpInline" name="frp_ttc" />
           </div>
         </div>
         <div class="button">

@@ -4,19 +4,26 @@ const { Frais_port, Mode_liv_essayage, Mode_liv_spectacle } = require("../../mod
 const { PAGINATION_LIMIT } = require("../../helpers/utils_const");
 
 router.get("/", async (req, res) => {
-    const mle_id = req.query.mle_id
-    const mls_id = req.query.mls_id
 
     try {
 
-        const essayage = await Mode_liv_essayage.findByPk(mle_id)
-        const spectacle = await Mode_liv_spectacle.findByPk(mls_id)
-        const fraisPort = await Frais_port.findAll()
-
+        const fraisPort = await Frais_port.findAll({
+            include: [
+                {
+                    model: Mode_liv_essayage,
+                    required: true,
+                    attributes: ["mle_libelle"],
+                },
+                {
+                    model: Mode_liv_spectacle,
+                    required: true,
+                    attributes: ["mls_libelle"],
+                },
+            ],
+        })
+        //return res.json(fraisPort)
         res.render("fraisPort/index", {
             fraisPort,
-            essayage,
-            spectacle,
             success: true
         });
     } catch (error) {
@@ -31,18 +38,32 @@ router.get("/", async (req, res) => {
 
 })
 // post 
-router.get("/ajouter", (req, res) => {
-    res.render("fraisPort/ajouter");
+router.get("/ajouter", async (req, res) => {
+    try {
+        const liv_essayage = await Mode_liv_essayage.findAll()
+        const liv_spectacle = await Mode_liv_spectacle.findAll()
+
+        res.render("fraisPort/ajouter", {
+            liv_essayage,
+            liv_spectacle
+        });
+
+    } catch (error) {
+
+    }
 });
 
 router.post("/ajouter", async (req, res) => {
-    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description } = req.body
+    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description, mls_id, mle_id } = req.body
 
     try {
 
+        const liv_essayage = await Mode_liv_essayage.findAll()
+        const liv_spectacle = await Mode_liv_spectacle.findAll()
+
         if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
             {
-                return res.json({
+                return res.render({
                     error: true,
                     errorMsg: "Veillez remplir tout les champs",
                 });
@@ -57,12 +78,17 @@ router.post("/ajouter", async (req, res) => {
             frp_ht: frp_ht,
             frp_ttc: frp_ttc,
             frp_libelle: frp_libelle,
-            frp_description: frp_description
+            frp_description: frp_description,
+            mle_id: mle_id,
+            mls_id: mls_id
+
         })
 
         return res.render("fraisPort/ajouter", {
             success: true,
-            newFrais
+            newFrais,
+            liv_essayage,
+            liv_spectacle
         })
 
 
@@ -80,13 +106,27 @@ router.post("/ajouter", async (req, res) => {
 
 router.get("/edit/:id", async function (req, res, next) {
     try {
-        const fraisPortId = await Frais_port.findOne({
+
+        const liv_essayage = await Mode_liv_essayage.findAll()
+        const liv_spectacle = await Mode_liv_spectacle.findAll()
+        const fraisPort = await Frais_port.findOne({
             where: {
                 frp_id: req.params.id,
             },
         });
+
+        const fraisPortId = fraisPort.frp_id
+        // return res.json({
+        //     fraisPortId,
+        //     fraisPort,
+        //     liv_essayage,
+        //     liv_spectacle
+        // })
         return res.render("fraisPort/editer", {
             fraisPortId,
+            fraisPort,
+            liv_essayage,
+            liv_spectacle
         });
     } catch (error) {
         error = "une erreur est survenue";
@@ -97,18 +137,9 @@ router.get("/edit/:id", async function (req, res, next) {
 });
 
 router.post("/edit/:id", async (req, res) => {
-    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description } = req.body
+    const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description, mls_id, mle_id } = req.body
 
     try {
-
-        if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
-            {
-                return res.json({
-                    error: true,
-                    errorMsg: "Veillez remplir tout les champs",
-                });
-            }
-        }
 
         const updatedFrais = await Frais_port.update({
             frp_debut: frp_debut,
@@ -118,17 +149,14 @@ router.post("/edit/:id", async (req, res) => {
             frp_ht: frp_ht,
             frp_ttc: frp_ttc,
             frp_libelle: frp_libelle,
-            frp_description: frp_description
-        }, {
-            where: {
-                frp_id: req.params.id
-            }
-        })
+            frp_description: frp_description,
+            mle_id: mle_id,
+            mls_id: mls_id
 
-        return res.render("fraisPort/editer", {
-            success: true,
-            updatedFrais
-        })
+        }, { where: { frp_id: req.params.id } })
+
+
+        return res.redirect("/admin/frais-port")
 
 
     } catch (error) {
