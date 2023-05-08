@@ -1,3 +1,5 @@
+const { SITE_URL } = require("../url");
+
 const button1 = document.querySelector(".btn-tab-1");
 const button2 = document.querySelector(".btn-tab-2");
 const button3 = document.querySelector(".btn-tab-3");
@@ -87,7 +89,14 @@ function deleteImage(index) {
   }
 }
 
-function addTaille() {
+async function addTaille() {
+  const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+  alert(taille)
+  // return panier.data;
   console.log("FONCTIONNE");
   const line = document.createElement("div");
   line.classList.add("quantity", "row");
@@ -99,10 +108,14 @@ function addTaille() {
                           class="form-select"
                           aria-label="Default select example"
                         >
-                          <option selected>Taille</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+
+                        ${taille.map((data, index) => {
+                          return (
+                            <option value={data.tai_libelle}>
+                              {data.tai_libelle}
+                            </option>
+                          );
+                        })}
                         </select>
                       </div>
                     </div>

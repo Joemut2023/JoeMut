@@ -1,6 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Produit, Quantite, Tarif, Media, Categorie } = require("../../models");
+const {
+  Produit,
+  Quantite,
+  Tarif,
+  Media,
+  Categorie,
+  Taille,
+  Type_categorie,
+} = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
@@ -57,13 +65,32 @@ router.get("/", async (req, res) => {
   }
 });
 
-// post 
-router.get("/add", (req, res) => {
-  res.render("produits/ajoutProduit");
+router.get("/add/tailles", async (req, res) => {
+  try {
+    const taille = await Taille.findAll();
+    console.log("trgo")
+    res.status(200).json(taille);
+  } catch (error) {
+    console.log(error.message)
+  }
 });
 
-router.get("/:id",async function(req,res){
+router.get("/add", async (req, res) => {
+  try {
+    const typeCategorie = await Type_categorie.findAll();
+    const taille = await Taille.findAll();
+
+    // return res.json({ taille });
+
+    res.render("produits/ajoutProduit", {
+      typeCategorie,
+      taille,
+    });
+  } catch (error) {}
+});
+
+router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");
-})
+});
 
 module.exports = router;

@@ -261,10 +261,13 @@ sur votre produit,utilisez l'onglet 'Description' "
                         class="form-select"
                         aria-label="Default select example"
                       >
-                        <option selected>Choisissez une categorie</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <!-- <option selected>Choisissez une categorie</option> -->
+                        <% typeCategorie.forEach(element => { %>
+                            <option value=" <%= element.tyc_libelle %> "><%= element.tyc_libelle %></option>
+                        <% }) %>
+                        
+                        <!-- <option value="2">Two</option>
+                        <option value="3">Three</option> -->
                       </select>
                     </div>
                     <p class="tit-cat">Type categorie</p>
@@ -370,10 +373,10 @@ sur votre produit,utilisez l'onglet 'Description' "
                           class="form-select"
                           aria-label="Default select example"
                         >
-                          <option selected>Taille</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <% taille.forEach(element => { %>
+                          <option value="<%= element.tai_libelle %>"><%= element.tai_libelle %></option>
+                        <% }) %>
+                         
                         </select>
                       </div>
                     </div>
@@ -398,7 +401,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                   >
                     <span
                       ><i class="fa-solid fa-circle-plus"></i> Ajouter une
-                      taille</span
+                      quantité</span
                     >
                   </button>
                 </div>

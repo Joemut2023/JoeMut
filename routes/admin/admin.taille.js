@@ -3,6 +3,14 @@ const router = express.Router();
 const { Taille } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+
+// router.get("/all", async (req, res) => {
+//   try {
+//     const taille = await Taille.findAll();
+//     res.status(200).json(taille);
+//   } catch (error) {}
+// });
+
 router.get("/", async (req, res) => {
   let { page, start, end } = check_admin_paginate_value(req);
   try {

@@ -23,7 +23,7 @@ router.use("/dashboard", [adminLayout], dashboardRouter);
 router.use("/paniers", [adminLayout], panierRouter);
 router.use("/categories", [adminLayout], categoriesRouter);
 router.use("/dashboard", [adminLayout], dashboardRouter);
-router.use("/tailles/", [adminLayout], taillesRouter);
+router.use("/tailles", [adminLayout], taillesRouter);
 router.use("/couleurs/", [adminLayout], couleurRouter);
 router.use("/type-categories", [adminLayout], categoriesRouter);
 router.use("/frais-port", [adminLayout], fraisPortRouter);
