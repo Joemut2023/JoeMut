@@ -8388,12 +8388,15 @@ body {
   padding: 15px 0px;
 }
 #page-admin-editProduit .tabs-container .tabs .content-quantite .title {
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 20px;
 }
 #page-admin-editProduit .tabs-container .tabs .content-quantite .qty {
   margin-bottom: 50px;
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .left .quantity {
+  margin-bottom: 20px;
 }
 #page-admin-editProduit .tabs-container .tabs .content-quantite .qty .left .quantity .qty-left p {
   margin-bottom: 5px;
@@ -8408,6 +8411,30 @@ body {
   margin-bottom: 5px;
 }
 #page-admin-editProduit .tabs-container .tabs .content-quantite .qty .left .quantity .qty-right .title-qty span {
+  margin-top: -4px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete {
+  display: flex;
+  align-items: center;
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete span {
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty p {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+#page-admin-editProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty span {
   margin-top: -4px;
   color: rgb(41, 144, 228);
 }
