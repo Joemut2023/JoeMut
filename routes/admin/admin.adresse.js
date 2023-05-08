@@ -38,7 +38,6 @@ router.get("/add", async (req, res) => {
     success
   });
 });
-
 router.post("/add", async (req, res) => {
   res.locals.titre = "nouvelle adresse";
   let error, success
@@ -126,5 +125,47 @@ router.get('/byAjax/:id',async (req,res)=>{
     res.json(error);
   }
 })
+router.post('/update-from-commande',async(req,res)=>{
+  const {
+    adr_structure,
+    adr_nom,
+    adr_prenom,
+    adr_societe,
+    adr_adresse,
+    adr_comp,
+    adr_cp,
+    adr_ville,
+    adr_num_tva,
+    adr_phone,
+    adr_pays,
+    adr_id,
+    com_id
+  } = req.body;
 
+  try {
+    const updateAdresse = await Adresse.update(
+      {
+        adr_structure,
+        adr_nom,
+        adr_prenom,
+        adr_societe,
+        adr_adresse,
+        adr_comp,
+        adr_cp,
+        adr_ville,
+        adr_num_tva,
+        adr_phone,
+        adr_pays,
+      },
+      {
+        where: {
+          adr_id: adr_id,
+        },
+      }
+    );
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (err) {
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
 module.exports = router;

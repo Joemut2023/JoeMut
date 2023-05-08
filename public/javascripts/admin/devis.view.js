@@ -12,7 +12,9 @@ var btnEditProds = document.querySelectorAll('.btn-edit-prod');
 var btnUpdateExistAdresseFacturation = document.querySelector('.btn-update-exist-adresse-facturation');
 var btnUpdateExistAdresseLivraison = document.querySelector('.btn-update-exist-adresse-livraison');
 var modalUpdateAdressFacturationEl = document.querySelector('#modal-update-adresse-facturation');
+var modalUpdateAdressFacturationElForm = document.querySelector('#modal-update-adresse-facturation .modal-dialog .modal-content .modal-content-form');
 var modalUpdateAdressLivraisonEl = document.querySelector('#modal-update-adresse-livraion');
+var modalUpdateAdressLivraisonElForm = document.querySelector('#modal-update-adresse-livraion .modal-dialog .modal-content .modal-content-form');
 var modalUpdateAdressFacturation = new bootstrap.Modal(modalUpdateAdressFacturationEl);
 var modalUpdateAdressLivraison = new bootstrap.Modal(modalUpdateAdressLivraisonEl);
 
@@ -25,9 +27,16 @@ var modalUpdateAdressLivraison = new bootstrap.Modal(modalUpdateAdressLivraisonE
     initialValue: "Tapez ici..."
   });
 })();
+
+/**
+ * Affichage du formulaire de note de commande => Tabs (Documents)
+ */
 btnDocFormNote.addEventListener('click', function (e) {
   trFormNote.style.display === '' ? trFormNote.style.display = 'table-row' : trFormNote.style.display = '';
 });
+/**
+ * Affichage du formulaire de note de paiement => Tabs (Documents)
+ */
 btnDocFormPaiement.addEventListener('click', function (e) {
   trFormPaiement.style.display === '' ? trFormPaiement.style.display = 'table-row' : trFormPaiement.style.display = '';
 });
@@ -41,6 +50,9 @@ btnEditProds.forEach(function (btnEditProd) {
 }, true);
 
 // adresse 
+/**
+ * formulaire modification adresse de facturation existante 
+ */
 btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
     var commandeId, adresseId, adresse;
@@ -53,8 +65,10 @@ btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function
           return axios.get('/admin/adresse/byAjax/' + adresseId);
         case 4:
           adresse = _context.sent;
+          // console.log(modalUpdateAdressFacturationElForm,adresse);
           modalUpdateAdressFacturation.show();
-        case 6:
+          showModalUpdateAdresse(modalUpdateAdressFacturationElForm, adresse, commandeId);
+        case 7:
         case "end":
           return _context.stop();
       }
@@ -77,7 +91,9 @@ btnUpdateExistAdresseLivraison.addEventListener('click', /*#__PURE__*/function (
         case 4:
           adresse = _context2.sent;
           modalUpdateAdressLivraison.show();
-        case 6:
+          console.log(adresse);
+          showModalUpdateAdresse(modalUpdateAdressLivraisonElForm, adresse, commandeId);
+        case 8:
         case "end":
           return _context2.stop();
       }
@@ -87,3 +103,6 @@ btnUpdateExistAdresseLivraison.addEventListener('click', /*#__PURE__*/function (
     return _ref2.apply(this, arguments);
   };
 }());
+var showModalUpdateAdresse = function showModalUpdateAdresse(modal, adresse, commandeId) {
+  modal.innerHTML = /*html*/"\n    <form action=\"/admin/adresse/update-from-commande\" method=\"post\">\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Nom de la structure</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_structure\" required value=\"".concat(adresse.data.adr_structure, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"><span>* </span>Nom</label>\n            <input class=\"form-control\" placeholder=\"Romain\" type=\"text\" name=\"adr_nom\" id=\"\" value=\"").concat(adresse.data.adr_nom, "\" />\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Prenom</label>\n            <input class=\"form-control\" placeholder=\"Romain\" type=\"text\" name=\"adr_prenom\" id=\"\" value=\"").concat(adresse.data.adr_prenom, "\" />\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Soci\xE9t\xE9</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_societe\" id=\"\" required value=\"").concat(adresse.data.adr_societe, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Num\xE9ro de TVA</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_num_tva\" id=\"\" value=\"").concat(adresse.data.adr_num_tva, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Adresse</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_adresse\" id=\"\" value=\"").concat(adresse.data.adr_adresse, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Compl\xE9ment d'adresse</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_comp\" id=\"\" value=\"").concat(adresse.data.adr_comp, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Code postal</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_cp\" id=\"\" value=\"").concat(adresse.data.adr_cp, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Ville</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_ville\" id=\"\" value=\"").concat(adresse.data.adr_ville, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Pays</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_pays\" id=\"\" value=\"").concat(adresse.data.adr_pays, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <input type=\"hidden\" name=\"com_id\" value=\"").concat(commandeId, "\">\n            <input type=\"hidden\" name=\"adr_id\" value=\"").concat(adresse.data.adr_id, "\">\n            <button class=\"btn btn-primary\" type=\"submit\">Enregistrer</button>\n        </div>\n    </form>\n    ");
+};
