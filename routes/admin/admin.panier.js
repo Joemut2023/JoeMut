@@ -10,6 +10,9 @@ const {
   Produit,
   Media,
   Quantite,
+  Tarif,
+  Promo,
+  Apply
 } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -127,10 +130,31 @@ router.get('/:id',async function(req,res){
 router.post('/add-panier-detail',async (req,res)=>{
   const {pro_id,pan_id,com_id,pad_qte} = req.body;
   try {
-    let pad = await Panier_detail.create({
-      pro_id:parseInt(pro_id),
-      pad_qte:parseInt(pad_qte),
-      pan_id:parseInt(pan_id)
+    const promo = await Apply.findOne({
+      where: { pro_id },
+      include: [
+        {
+          model: Promo,
+          attributes: ["prm_pourcent"],
+          where: { prm_actif: true },
+        },
+      ],
+    });
+    let prm_id = promo ? promo.prm_id : null;
+    let pad_remise = promo ? promo.Promo.prm_pourcent : null;
+    const tarif = await Tarif.findOne({ where: { pro_id } });
+    let tar_id = tarif.tar_id;
+    let pad_ht = tarif.tar_ht;
+    let pad_ttc = tarif.tar_ttc;
+    const panierDetail = await Panier_detail.create({
+      pro_id,
+      tar_id,
+      prm_id,
+      pan_id,
+      pad_qte,
+      pad_ht,
+      pad_ttc,
+      pad_remise,
     });
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
