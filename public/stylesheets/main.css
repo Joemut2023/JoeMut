@@ -8581,5 +8581,20 @@ body {
   background: rgb(41, 144, 228) !important;
   border-color: rgb(41, 144, 228);
 }
+#page-admin-editProduit .message {
+  width: 100%;
+  border: 1px solid rgb(228, 228, 58);
+  border-radius: 10px;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center center;
+}
+#page-admin-editProduit .message p {
+  font-size: 1rem;
+}
+#page-admin-editProduit .message p .danger {
+  color: rgb(228, 228, 58);
+}
 
 /*# sourceMappingURL=main.css.map */
