@@ -28,9 +28,22 @@ router.get("/add", async (req, res) => {
   }
 });
 router.post("/add", async (req, res) => {
-  const { prm_code, prm_pourcent, prm_valeur, prm_debut, prm_fin, prm_actif } =
-    req.body;
+  const {
+    prm_code,
+    prm_pourcent,
+    prm_valeur,
+    prm_debut,
+    prm_fin,
+    prm_actif,
+    prm_commande,
+  } = req.body;
+
   try {
+    if (prm_fin < prm_debut) {
+      const errorMsg =
+        "La création de la promo a échouée : la date du début de la promo doit être inférieure à la date de fin";
+      return res.render("promo/add", { errorMsg });
+    }
     const oldPromo = await Promo.findOne({ where: { prm_code } });
     if (oldPromo) {
       const errorMsg = "Cette promo existe déjà";
@@ -38,13 +51,15 @@ router.post("/add", async (req, res) => {
         errorMsg,
       });
     }
-    const promos = await Promo.create({
+    console.log(prm_commande, "pour une commande");
+    await Promo.create({
       prm_code,
       prm_pourcent,
       prm_valeur,
       prm_debut,
       prm_fin,
       prm_actif,
+      prm_commande,
     });
     const succesMsg = "promo créée et enregistrée avec succès";
     res.render("promo/add", { succesMsg });
@@ -88,8 +103,18 @@ router.post("/update", async (req, res) => {
     prm_fin,
     prm_actif,
     prm_id,
+    prm_commande,
   } = req.body;
+  console.log(prm_commande, "commande");
+  const statusUpdate = typeof prm_actif == "undefined" ? false : true;
+  const prmCommande = typeof prm_commande == "undefined" ? false : true;
   try {
+    if (prm_fin < prm_debut) {
+      const promos = await Promo.findOne({ where: { prm_id } });
+      const nothingMsg =
+        "La création de la promo a échouée : la date du début de la promo doit être inférieure à la date de fin";
+      return res.render("promo/update", { promos, nothingMsg });
+    }
     const newPromos = await Promo.update(
       {
         prm_code,
@@ -97,7 +122,8 @@ router.post("/update", async (req, res) => {
         prm_valeur,
         prm_debut,
         prm_fin,
-        prm_actif,
+        prm_actif: statusUpdate,
+        prm_commande: prmCommande,
       },
       { where: { prm_id } }
     );

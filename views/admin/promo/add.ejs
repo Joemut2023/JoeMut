@@ -1,7 +1,7 @@
 <div id="admin-blocs-produitHeader" class="border-bottom">
   <h6 class="pt-3">Promo</h6>
   <div class="produit-menu">
-    <h4>Créer un nouveau code promo</h4>
+    <h4>Créer une nouvelle promo</h4>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
         <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau code promo
@@ -113,6 +113,23 @@
               class="form-check-input"
               id="activateClient"
               name="prm_actif"
+              value="true"
+              type="checkbox"
+              checked
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Pour une commande</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="activateClient"
+              name="prm_commande"
               value="true"
               type="checkbox"
               checked

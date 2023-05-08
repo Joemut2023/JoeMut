@@ -4,7 +4,9 @@
     <h4>Modifier une promo</h4>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
-        <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle promo
+        <a href="/admin/promo/add">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle promo
+        </a>
       </button>
       <button type="button" class="btn btn-outline-secondary">Aide</button>
     </div>
@@ -25,7 +27,7 @@
   <hr />
   <form method="POST" action="/admin/promo/update">
     <div class="d-flex flex-column gap-4">
-        <input type="hidden" name="prm_id" value="<%= promos.prm_id %>" />
+      <input type="hidden" name="prm_id" value="<%= promos.prm_id %>" />
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
           <label for="InputCode">Code promo</label>
@@ -116,6 +118,18 @@
             <input class="form-check-input" id="activateClient" name="prm_actif"
             value="true" type="checkbox" <%= promos.prm_actif ? "checked" :"" %>
             />
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNom">Appliqué à une commande</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="activateClient"
+            name="prm_commande" value="true" type="checkbox" <%=
+            promos.prm_commande ? "checked" :"" %> />
           </div>
         </div>
       </div>

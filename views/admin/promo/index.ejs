@@ -68,6 +68,7 @@
           <th scope="col">Date debut</th>
           <th scope="col">Date fin</th>
           <th scope="col">status</th>
+          <th scope="col">Appliquée à une commande</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -96,6 +97,15 @@
             <% } else { %>
 
             <span class="badge text-bg-danger">inactif</span>
+            <% } %>
+          </td>
+          <td width="60">
+            <% if (element.prm_commande) { %>
+
+            <span class="badge text-bg-info">oui</span>
+            <% } else { %>
+
+            <span class="badge text-bg-warning">non</span>
             <% } %>
           </td>
           <td>
