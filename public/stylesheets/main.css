@@ -6980,7 +6980,7 @@ body {
   margin-top: 30px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav {
-  background: rgb(223, 211, 211);
+  background: rgb(226, 223, 223);
   padding-top: 10px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs nav .nav {
@@ -7138,20 +7138,22 @@ body {
   cursor: pointer;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .title {
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   font-weight: 600;
   font-size: 20px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content {
-  padding: 20px 10px;
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left div .content-recap,
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left div .content-recap {
+  height: 200px;
+  width: 100%;
+  outline: none;
+  padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 10px 0px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content p {
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-style: italic;
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left textarea::placeholder {
   color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  text-align: left;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .caractere {
   text-align: right;
@@ -7159,11 +7161,6 @@ body {
   font-size: 14px;
   font-style: italic;
   color: rgba(0, 0, 0, 0.6);
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .content {
-  height: 120px;
-  width: 100%;
-  outline: none;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .description .title-desc {
   margin-bottom: 10px;
@@ -7262,13 +7259,12 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(0, 0, 0, 0.7);
   margin-bottom: 10px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title h2 {
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title p {
   margin-bottom: 0px;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .title span {
   margin-top: 3px;
@@ -7284,23 +7280,24 @@ body {
   font-size: 14px;
   font-weight: 600;
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 15px 0px;
-  display: flex;
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .comment .title {
+  margin: 20px 0px 10px 0px;
+  font-weight: 600;
+  font-size: 20px;
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer span {
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .comment div .content-comment {
+  height: 100px;
+  width: 100%;
+  outline: none;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .comment .caractere {
+  text-align: right;
+  margin-bottom: 5px;
   font-size: 14px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .deployer .title {
-  margin-left: 10px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .cat-prin div {
-  display: flex;
-  gap: 10px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .categories .content .cat-prin div span {
-  font-size: 14px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .add-cat {
   margin-top: 20px;
@@ -7309,6 +7306,24 @@ body {
   margin-bottom: 0px;
   font-weight: 600;
   font-size: 25px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title p {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 22px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title span {
+  margin-top: 2px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .form-check {
+  margin-bottom: 10px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
   margin: 10px 0px;
@@ -7330,12 +7345,15 @@ body {
   padding: 15px 0px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .title {
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty {
   margin-bottom: 50px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity {
+  margin-bottom: 20px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .qty-left p {
   margin-bottom: 5px;
@@ -7350,6 +7368,32 @@ body {
   margin-bottom: 5px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .qty-right .title-qty span {
+  margin-top: -4px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete {
+  display: flex;
+  align-items: center;
+  padding-top: 25px;
+  padding-left: 15px;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete span {
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty p {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .right .qty-right .title-qty span {
   margin-top: -4px;
   color: rgb(41, 144, 228);
 }
