@@ -211,9 +211,13 @@
                                     <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
                                         <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil btn-edit-prod"></i>
                                     </button>
-                                    <button class="btn btn-primary btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
+                                    <form action="/admin/devis/commande/delete-panier-detail" method="post">
+                                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                      <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                      <button type="submit" class="btn btn-primary btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
                                         <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-trash"></i>
-                                    </button>
+                                      </button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
