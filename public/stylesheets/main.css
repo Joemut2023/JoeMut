@@ -8152,9 +8152,14 @@ body {
   font-size: 20px;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content {
-  padding: 20px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 10px 0px;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content .content_text {
+  padding: 0 2px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content p {
   margin-bottom: 5px;
