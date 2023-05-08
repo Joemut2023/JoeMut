@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
 const { Promo, Apply, Produit, Media } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -39,55 +39,33 @@ router.get("/add", async (req, res) => {
   try {
     const promos = await Promo.findAll();
     const produits = await Produit.findAll();
-    res.render("apply/add", {  promos,  produits });
+    res.render("apply/add", { promos, produits });
   } catch (error) {
-    res.status(500).render("apply/add", {
+    res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
   }
 });
 router.post("/add", async (req, res) => {
-  const {
-    prm_code,
-    prm_pourcent,
-    prm_valeur,
-    prm_debut,
-    prm_fin,
-    prm_actif,
-    prm_commande,
-  } = req.body;
-
+  const { pro_id, prm_id } = req.body;
+  console.log(req.body, "content");
+  console.log(req.params, "params");
+  console.log(req.query, "query");
   try {
-    if (prm_fin < prm_debut) {
-      const errorMsg =
-        "La création de la promo a échouée : la date du début de la promo doit être inférieure à la date de fin";
-      return res.render("promo/add", { errorMsg });
-    }
-    const oldPromo = await Promo.findOne({ where: { prm_code } });
-    if (oldPromo) {
-      const errorMsg = "Cette promo existe déjà";
-      return res.render("promo/add", {
-        errorMsg,
-      });
-    }
-    console.log(prm_commande, "pour une commande");
-    await Promo.create({
-      prm_code,
-      prm_pourcent,
-      prm_valeur,
-      prm_debut,
-      prm_fin,
-      prm_actif,
-      prm_commande,
-    });
-    const succesMsg = "promo créée et enregistrée avec succès";
-    res.render("promo/add", { succesMsg });
+    const promos = await Promo.findAll();
+    const produits = await Produit.findAll();
+    // const oldApply = await Apply.findOne({
+    //   where: { [Op.and]: [{ pro_id, prm_id }] },
+    // });
+
+    return res.render("apply/add", { promos, produits });
   } catch (error) {
-    res.status(500).render("promo/add", {
+    res.status(500).render("apply/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
+    console.log(error);
   }
 });
 router.post("/delete", async (req, res) => {

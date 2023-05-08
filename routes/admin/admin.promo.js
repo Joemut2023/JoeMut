@@ -16,6 +16,17 @@ router.get("/", async (req, res) => {
     });
   }
 });
+router.get("/all", async (req, res) => {
+  try {
+    const promos = await Promo.findAll();
+    return res.status(200).send(promos);
+  } catch (error) {
+    res.status(500).render("promo/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
 router.get("/add", async (req, res) => {
   try {
     res.render("promo/add");
@@ -104,7 +115,6 @@ router.post("/update", async (req, res) => {
     prm_id,
     prm_commande,
   } = req.body;
-  console.log(prm_commande, "commande");
   const statusUpdate = typeof prm_actif == "undefined" ? false : true;
   const prmCommande = typeof prm_commande == "undefined" ? false : true;
   try {
