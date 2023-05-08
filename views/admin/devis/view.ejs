@@ -189,9 +189,9 @@
                                     
                                   </div>
                                 </td>
-                                <td><%= panier_detail.pad_ttc.toString().replace('.', ',') %>€</td>
+                                <td><%= panier_detail.pad_ttc?.toString().replace('.', ',') %>€</td>
                                 <% var sum = 0 %>
-                                <% panier_detail.Produit.Quantites.forEach(qte => sum = sum + qte['qua_nbre'])%>
+                                <% panier_detail.Produit.Quantites?.forEach(qte => sum = sum + qte['qua_nbre'])%>
                                 <td class="td-produit-qte">
                                   <div>
                                     <span class="<%= panier_detail.pad_qte > sum ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
@@ -240,26 +240,17 @@
                     </tbody>
                 </table>
                 <div class="form-add-panier-detail-container">
-                  <form action="" autocomplete="off" method="post" class="row g-3">
+                  <form action="/admin/paniers/add-panier-detail" autocomplete="off" method="post" class="row g-3">
                     <div class="col-auto autocomplete" style="width:300px;">
-                      <input id="myInput" type="text" name="myCountry" placeholder="Tapez le nom d'un produit" class="form-control add-panier-detail-input-name">
+                      <input id="myInput" type="text" name="pro_libelle" placeholder="Tapez le nom d'un produit" class="form-control add-panier-detail-input-name">
                     </div>
-                    <!--<div class="col-auto">
-                      <input type="text" class="form-control add-panier-detail-input-name" list="produitdatalistOptions" placeholder="Taper le nom du produit" name="pro_libelle">
-                    </div>
-                    <div class="produit-autocomplete">
-
-                    </div>
-                    <datalist id="produitdatalistOptions">
-                      
-                    </datalist>-->
                     <div class="col-auto">
                       <input type="number" class="form-control" placeholder="Quantité" name="pad_qte">
                     </div>
                     <div class="col-auto">
                       <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                      <input type="hidden" name="pad_id" value="<%= commande.Panier.pan_id %>">
-                      <input type="hidden" name="pro_id">
+                      <input type="hidden" name="pan_id" value="<%= commande.Panier.pan_id %>">
+                      <input type="hidden" name="pro_id" class="hidden-input-pro-id-add-panier_detail">
                       <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
                       <button class="btn btn-secondary mb-3 btn-disable-add-panier-detail">annuler</button>
                     </div>

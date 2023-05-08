@@ -170,6 +170,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                 b.addEventListener("click", function (e) {
                   inp.value = this.getElementsByTagName("input")[0].value;
                   inp.dataset.produit = produit.pro_id;
+                  document.querySelector('.hidden-input-pro-id-add-panier_detail').value = produit.pro_id;
                   closeAllLists();
                 });
                 a.appendChild(b);
