@@ -6200,6 +6200,26 @@
   font-size: 0.9rem;
 }
 
+#admin-page-add-apply {
+  background-color: #fff;
+}
+#admin-page-add-apply .btn-info {
+  color: #fff;
+}
+#admin-page-add-apply .label-div {
+  width: 40%;
+}
+#admin-page-add-apply a {
+  text-decoration: none !important;
+  color: #232323;
+}
+#admin-page-add-apply a:hover {
+  color: #fff;
+}
+#admin-page-add-apply label {
+  font-size: 0.9rem;
+}
+
 #admin-page-adresse {
   margin-top: 2%;
 }
