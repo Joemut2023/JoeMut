@@ -219,11 +219,13 @@
                             <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
                                 <td colspan="8" class="form-edit-prod" >
                                     <div>
-                                        <form class="row g-3">
+                                        <form action="/admin/devis/commande/update-panier-detail" method="post" class="row g-3">
                                             <div class="col-auto">
-                                              <input type="text" class="form-control" placeholder="quantité">
+                                              <input type="text" class="form-control" placeholder="quantité" name="pad_qte">
                                             </div>
                                             <div class="col-auto">
+                                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                              <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
                                               <button type="submit" class="btn btn-primary mb-3">Modifier</button>
                                             </div>
                                         </form>

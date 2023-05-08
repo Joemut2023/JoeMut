@@ -278,4 +278,16 @@ router.post('/commande/update-adresse-livraison',async(req,res)=>{
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
+router.post('/commande/update-panier-detail',async (req,res)=>{
+  const {pad_id,pad_qte,com_id} = req.body;
+  
+  try {
+    await Panier_detail.update({
+      pad_qte
+    },{where:{pad_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
 module.exports = router;
