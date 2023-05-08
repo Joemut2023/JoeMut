@@ -239,6 +239,32 @@
                         <% }) %>
                     </tbody>
                 </table>
+                <div class="form-add-panier-detail-container">
+                  <form action="" autocomplete="off" method="post" class="row g-3">
+                    <div class="col-auto autocomplete" style="width:300px;">
+                      <input id="myInput" type="text" name="myCountry" placeholder="Tapez le nom d'un produit" class="form-control add-panier-detail-input-name">
+                    </div>
+                    <!--<div class="col-auto">
+                      <input type="text" class="form-control add-panier-detail-input-name" list="produitdatalistOptions" placeholder="Taper le nom du produit" name="pro_libelle">
+                    </div>
+                    <div class="produit-autocomplete">
+
+                    </div>
+                    <datalist id="produitdatalistOptions">
+                      
+                    </datalist>-->
+                    <div class="col-auto">
+                      <input type="number" class="form-control" placeholder="Quantité" name="pad_qte">
+                    </div>
+                    <div class="col-auto">
+                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                      <input type="hidden" name="pad_id" value="<%= commande.Panier.pan_id %>">
+                      <input type="hidden" name="pro_id">
+                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                      <button class="btn btn-secondary mb-3 btn-disable-add-panier-detail">annuler</button>
+                    </div>
+                </form>
+                </div>
                 <div class="table-actions">
                     <div class="item-par-page">
                         <p>Elements par page : </p>
@@ -247,7 +273,7 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <button type="button" class="btn btn-light"><i class="fa-solid fa-plus"></i>Ajouter un produit</button>
+                        <button type="button" class="btn btn-light btn-add-panier-detail"><i class="fa-solid fa-plus"></i>Ajouter un produit</button>
                         <button type="button" class="btn btn-light"><i class="fa-solid fa-plus"></i>Ajouter une reduction</button>
                     </div>
                 </div>

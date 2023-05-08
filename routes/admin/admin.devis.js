@@ -302,5 +302,5 @@ router.post('/commande/delete-panier-detail',async (req,res)=>{
   } catch (error) {
     res.redirect(`/admin/devis/view/${com_id}`);
   }
-})
+}) 
 module.exports = router;
