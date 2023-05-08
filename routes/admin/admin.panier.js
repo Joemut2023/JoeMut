@@ -123,6 +123,20 @@ router.get('/:id',async function(req,res){
       sumQty
     });
   } catch (error) {}
+});
+router.post('/add-panier-detail',async (req,res)=>{
+  const {pro_id,pan_id,com_id,pad_qte} = req.body;
+  try {
+    let pad = await Panier_detail.create({
+      pro_id:parseInt(pro_id),
+      pad_qte:parseInt(pad_qte),
+      pan_id:parseInt(pan_id)
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+  //  res.redirect(`/admin/devis/view/${com_id}`);
+  }
 })
 
 module.exports = router;
