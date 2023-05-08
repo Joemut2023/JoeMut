@@ -62,4 +62,8 @@ router.get("/add", (req, res) => {
   res.render("produits/ajoutProduit");
 });
 
+router.get("/:id",async function(req,res){
+  res.render("produits/editProduit");
+})
+
 module.exports = router;
