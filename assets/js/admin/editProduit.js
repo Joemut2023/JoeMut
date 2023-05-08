@@ -6,7 +6,8 @@ const button4 = document.querySelector(".btn-tab-4");
 const input_file = document.querySelector(".inputfile");
 
 const lines = document.querySelector(".lines");
-const btn_add = document.querySelector(".btn-add-caracteristic");
+const btnAdd = document.querySelector(".btn-add-taille");
+
 const btns_delete = document.querySelectorAll(".delete");
 
 console.log("buttons ", btns_delete);
@@ -85,3 +86,41 @@ function deleteImage(index) {
     output.style.display = "none";
   }
 }
+
+function addTaille() {
+  console.log("FONCTIONNE");
+  const line = document.createElement("div");
+  line.classList.add("quantity", "row");
+
+  line.innerHTML = `
+     <div class="col-md-5 qty-left">
+                      <div class="form-group">
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option selected>Taille</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-5 qty-right">
+                      <div class="title-qty"></div>
+                      <div class="form-group">
+                        <input type="number" value="0" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-md-2 delete">
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </div>
+                  </div>
+  `;
+
+  lines.appendChild(line);
+}
+
+btnAdd.addEventListener("click", function () {
+  addTaille();
+});
