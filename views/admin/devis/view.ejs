@@ -179,11 +179,24 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td>Mark</td>
+                                <td>
+                                  <div class="form-check form-switch">
+                                    <% if (panier_detail.Produit.pro_statut === true) { %>
+                                      <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" checked disabled>
+                                    <% } else { %>
+                                      <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" disabled>
+                                    <% } %>
+                                    
+                                  </div>
+                                </td>
                                 <td><%= panier_detail.pad_ttc.toString().replace('.', ',') %>€</td>
-                                <td><%= panier_detail.pad_qte %></td>
                                 <% var sum = 0 %>
                                 <% panier_detail.Produit.Quantites.forEach(qte => sum = sum + qte['qua_nbre'])%>
+                                <td class="td-produit-qte">
+                                  <div>
+                                    <span class="<%= panier_detail.pad_qte > sum ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
+                                  </div>
+                                </td>
                                 <td><%= sum %></td>
                                 <td>
                                     <% if (panier_detail.Produit.Applies.length === 0) { %>
@@ -194,9 +207,12 @@
                                         <span>Remise</span>
                                     <% } %>
                                 <td><%= panier_detail.pad_ttc * panier_detail.pad_qte %>€</td>
-                                <td>
-                                    <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>">
-                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil"></i>
+                                <td class="td-produit-actions">
+                                    <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
+                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil btn-edit-prod"></i>
+                                    </button>
+                                    <button class="btn btn-primary btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
+                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -205,10 +221,7 @@
                                     <div>
                                         <form class="row g-3">
                                             <div class="col-auto">
-                                              <input type="text" readonly class="form-control">
-                                            </div>
-                                            <div class="col-auto">
-                                              <input type="text" class="form-control">
+                                              <input type="text" class="form-control" placeholder="quantité">
                                             </div>
                                             <div class="col-auto">
                                               <button type="submit" class="btn btn-primary mb-3">Modifier</button>

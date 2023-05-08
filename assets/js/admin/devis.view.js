@@ -40,8 +40,8 @@ btnEditProds.forEach(btnEditProd=>{
         const trFormEditPro = document.querySelector(`.tr-form-edit-prod-${padId}`);
         console.log(`.tr-form-edit-prod-${padId}`,padId);
         trFormEditPro.style.display === ''?trFormEditPro.style.display='table-row':trFormEditPro.style.display='';
-    })
-},true)
+    },true)
+})
 
 // adresse 
 /**

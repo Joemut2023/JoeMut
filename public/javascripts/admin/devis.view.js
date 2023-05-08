@@ -46,8 +46,8 @@ btnEditProds.forEach(function (btnEditProd) {
     var trFormEditPro = document.querySelector(".tr-form-edit-prod-".concat(padId));
     console.log(".tr-form-edit-prod-".concat(padId), padId);
     trFormEditPro.style.display === '' ? trFormEditPro.style.display = 'table-row' : trFormEditPro.style.display = '';
-  });
-}, true);
+  }, true);
+});
 
 // adresse 
 /**

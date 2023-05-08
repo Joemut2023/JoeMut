@@ -7708,6 +7708,11 @@ body {
 #admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-text {
   width: 65%;
 }
+#admin-page-viewDevis .content .right .produit-list .table .btn-remise-prod {
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+}
 #admin-page-viewDevis .content .right .produit-list .table .btn-edit-prod {
   cursor: pointer;
 }
@@ -7716,6 +7721,22 @@ body {
 }
 #admin-page-viewDevis .content .right .produit-list .table .tr-form-edit-prod {
   display: none;
+}
+#admin-page-viewDevis .content .right .produit-list .table .td-produit-qte div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+#admin-page-viewDevis .content .right .produit-list .table .td-produit-qte div span {
+  width: 50%;
+  height: 50%;
+}
+#admin-page-viewDevis .content .right .produit-list .table .td-produit-qte div .span-colored {
+  background-color: #25b9d7;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
 }
 #admin-page-viewDevis .content .right .produit-list .table-actions {
   display: flex;
