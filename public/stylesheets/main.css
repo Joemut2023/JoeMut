@@ -8026,26 +8026,31 @@ body {
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .file {
   width: 100%;
   height: 100%;
-  position: absolute;
-  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  list-style: none;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .file li {
+  width: 15%;
+  height: 15vh;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .file li label .added {
+  font-size: 30px;
   cursor: pointer;
 }
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images span {
-  font-size: 50px;
-  color: rgba(0, 0, 0, 0.2);
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .file li img {
+  width: 100%;
+  height: 100%;
 }
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images p {
-  font-size: 15px;
-  margin-bottom: 0px;
-  color: rgba(0, 0, 0, 0.6);
-}
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .medium {
-  font-weight: 600;
-}
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .taille {
-  font-style: italic;
-  text-align: center;
-  font-size: 14px;
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .file li p {
+  font-size: 12px;
+  margin-bottom: 0;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image output {
   width: 100%;

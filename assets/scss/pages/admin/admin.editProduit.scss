@@ -95,6 +95,7 @@
             .block-image {
               margin-bottom: 10px;
               .images {
+                // background-color: red;
                 display: flex;
                 gap: 5px;
                 flex-direction: column;
@@ -111,31 +112,56 @@
                 .file {
                   width: 100%;
                   height: 100%;
-                  position: absolute;
-                  opacity: 0;
-                  cursor: pointer;
+                  display: flex;
+                  flex-direction: row;
+                  gap:10px;
+                  list-style: none;
+                  // position: absolute;
+                  // opacity: 0;
+                  // cursor: pointer;
+                  li{
+                    width:15%;
+                    height:15vh;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    label .added{
+                      font-size: 30px;
+                      cursor: pointer;
+                    }
+                    img{
+                      width:100%;
+                      height: 100%;
+                    }
+                    p{
+                      font-size: 12px;
+                      margin-bottom: 0;
+                    }
+                  }
                 }
 
-                span {
-                  font-size: 50px;
-                  color: rgba(0, 0, 0, 0.2);
-                }
+                // span {
+                //   font-size: 50px;
+                //   color: rgba(0, 0, 0, 0.2);
+                // }
 
-                p {
-                  font-size: 15px;
-                  margin-bottom: 0px;
-                  color: rgba(0, 0, 0, 0.6);
-                }
+                // p {
+                //   font-size: 15px;
+                //   margin-bottom: 0px;
+                //   color: rgba(0, 0, 0, 0.6);
+                // }
 
-                .medium {
-                  font-weight: 600;
-                }
+                // .medium {
+                //   font-weight: 600;
+                // }
 
-                .taille {
-                  font-style: italic;
-                  text-align: center;
-                  font-size: 14px;
-                }
+                // .taille {
+                //   font-style: italic;
+                //   text-align: center;
+                //   font-size: 14px;
+                // }
               }
               output {
                 width: 100%;
