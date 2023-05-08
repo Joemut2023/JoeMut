@@ -87,7 +87,7 @@
                 </div>
                 <div class="desc">
                   <p class="utile">
-                    Quantité initiale : <%= quantiteInitial %>
+                    Quantité initiale : <%= quantiteInitial ? quantiteInitial : "1" %>
                   </p>
                   <p class="utile">Tailles disponibles :</p>
                   <% if (taillesQuantites.length > 0) { %> <%
@@ -126,7 +126,7 @@
       </div>
       <div class="informations">
         <div class="description">
-          <p class="utile">Quantité initiale : <%= quantiteInitial %></p>
+          <p class="utile">Quantité initiale : <%= quantiteInitial ? quantiteInitial : "1" %></p>
           <p class="utile">Tailles disponibles :</p>
           <% if (taillesQuantites.length > 0) { %> <%
           taillesQuantites.forEach(element => { %>
@@ -262,7 +262,7 @@
             >
           </p>
           <p class="ref">Ref: <%= element.pro_ref %></p>
-          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
+          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div>
             <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %>€</p>
             <p class="bar">|</p>

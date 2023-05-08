@@ -1,0 +1,54 @@
+.menu-bar {
+    background-color: $color-white;
+
+    .fa-user,
+    .fa-bag-shopping {
+        color: $color-blue-admin;
+    }
+
+    .fa-dollar-sign {
+        color: $color-red-admin;
+    }
+
+    .fa-money-check-dollar {
+        color: $color-button-secondary;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    h6 {
+        font-size: 0.9rem;
+        font-weight: 300;
+    }
+}
+
+#admin-page-promo {
+    .promo {
+        background-color: $color-white;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: $color-black;
+    }
+
+    .table {
+        background-color: $color-white;
+
+        td,
+        th {
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        .dropdown :hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            inset: 5px 0px auto auto;
+        }
+    }
+}

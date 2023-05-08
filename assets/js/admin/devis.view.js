@@ -3,7 +3,14 @@ const btnDocFormPaiement = document.querySelector('.btn-form-doc-paiement');
 const trFormNote = document.querySelector('.tr-form-note');
 const trFormPaiement = document.querySelector('.tr-form-paiement');
 const btnEditProds = document.querySelectorAll('.btn-edit-prod');
+const btnUpdateExistAdresseFacturation = document.querySelector('.btn-update-exist-adresse-facturation');
+const btnUpdateExistAdresseLivraison = document.querySelector('.btn-update-exist-adresse-livraison');
+const modalUpdateAdressFacturationEl = document.querySelector('#modal-update-adresse-facturation');
+const modalUpdateAdressLivraisonEl = document.querySelector('#modal-update-adresse-livraion');
+const modalUpdateAdressFacturation = new bootstrap.Modal(modalUpdateAdressFacturationEl);
+const modalUpdateAdressLivraison = new bootstrap.Modal(modalUpdateAdressLivraisonEl);
 
+//simple MDE
 (()=>{
     var simplemde = new SimpleMDE({
         element: document.querySelector("#devis-note-textarea"),
@@ -12,6 +19,7 @@ const btnEditProds = document.querySelectorAll('.btn-edit-prod');
         initialValue: "Tapez ici...",
     });
 })();
+
 btnDocFormNote.addEventListener('click',(e)=>{
     trFormNote.style.display === ''?trFormNote.style.display='table-row':trFormNote.style.display='';
 })
@@ -26,5 +34,20 @@ btnEditProds.forEach(btnEditProd=>{
         trFormEditPro.style.display === ''?trFormEditPro.style.display='table-row':trFormEditPro.style.display='';
     })
 },true)
+
+// adresse 
+btnUpdateExistAdresseFacturation.addEventListener('click',async(e)=>{
+    let commandeId = e.target.dataset.commande
+    let adresseId = e.target.dataset.adresse
+    let adresse = await axios.get('/admin/adresse/byAjax/'+adresseId);
+    modalUpdateAdressFacturation.show();
+})
+btnUpdateExistAdresseLivraison.addEventListener('click',async(e)=>{
+    let commandeId = e.target.dataset.commande
+    let adresseId = e.target.dataset.adresse
+    let adresse = await axios.get('/admin/adresse/byAjax/'+adresseId);
+    modalUpdateAdressLivraison.show();
+})
+
 
 
