@@ -357,38 +357,45 @@ sur votre produit,utilisez l'onglet 'Description' "
             <p class="title">Quantités</p>
             <div class="row qty">
               <div class="left col-md-8 col-sm-12">
-                <div class="quantity row">
-                  <div class="col-md-5 qty-left">
-                    <p>Taille</p>
-                    <div class="form-group">
-                      <select
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Taille</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
+                <div class="lines">
+                  <div class="row">
+                    <div class="col-md-5"><p>Taille</p></div>
+                    <div class="col-md-5"><p>Quantité</p></div>
+                    <div class="col-md-2"></div>
                   </div>
-                  <div class="col-md-5 qty-right">
-                    <div class="title-qty">
-                      <p>Quantité</p>
+                  <div class="quantity row">
+                    <div class="col-md-5 qty-left">
+                      <div class="form-group">
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option selected>Taille</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <input type="number" value="0" class="form-control" />
+                    <div class="col-md-5 qty-right">
+                      <div class="title-qty"></div>
+                      <div class="form-group">
+                        <input type="number" value="0" class="form-control" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-2 delete">
-                    <span><i class="fa-solid fa-trash"></i></span>
+                    <div class="col-md-2 delete">
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </div>
                   </div>
                 </div>
                 <div class="add-cat">
                   <div class="title">
                     <p>Ajouter une taille</p>
                   </div>
-                  <button type="button" class="btn btn-outline-secondary">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary btn-add-taille"
+                  >
                     <span
                       ><i class="fa-solid fa-circle-plus"></i> Ajouter une
                       taille</span

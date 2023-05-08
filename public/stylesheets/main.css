@@ -7374,8 +7374,6 @@ body {
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete {
   display: flex;
   align-items: center;
-  padding-top: 25px;
-  padding-left: 15px;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .content-quantite .qty .left .quantity .delete span {
   cursor: pointer;
