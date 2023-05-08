@@ -12,10 +12,16 @@ var btnEditProds = document.querySelectorAll('.btn-edit-prod');
 var btnUpdateExistAdresseFacturation = document.querySelector('.btn-update-exist-adresse-facturation');
 var btnUpdateExistAdresseLivraison = document.querySelector('.btn-update-exist-adresse-livraison');
 var modalUpdateAdressFacturationEl = document.querySelector('#modal-update-adresse-facturation');
+var modalUpdateAdressFacturationElForm = document.querySelector('#modal-update-adresse-facturation .modal-dialog .modal-content .modal-content-form');
 var modalUpdateAdressLivraisonEl = document.querySelector('#modal-update-adresse-livraion');
+var modalUpdateAdressLivraisonElForm = document.querySelector('#modal-update-adresse-livraion .modal-dialog .modal-content .modal-content-form');
 var modalUpdateAdressFacturation = new bootstrap.Modal(modalUpdateAdressFacturationEl);
 var modalUpdateAdressLivraison = new bootstrap.Modal(modalUpdateAdressLivraisonEl);
-
+var btnShowAddPanierDetailForm = document.querySelector('.btn-add-panier-detail');
+var btnDisableAddPanierDetailForm = document.querySelector('.btn-disable-add-panier-detail');
+var addPanierDetailForm = document.querySelector('.form-add-panier-detail-container');
+var addPanierDetailInputLibelle = document.querySelector('.add-panier-detail-input-name');
+//const produitdatalistOptions = document.querySelector('#produitdatalistOptions');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -25,9 +31,16 @@ var modalUpdateAdressLivraison = new bootstrap.Modal(modalUpdateAdressLivraisonE
     initialValue: "Tapez ici..."
   });
 })();
+
+/**
+ * Affichage du formulaire de note de commande => Tabs (Documents)
+ */
 btnDocFormNote.addEventListener('click', function (e) {
   trFormNote.style.display === '' ? trFormNote.style.display = 'table-row' : trFormNote.style.display = '';
 });
+/**
+ * Affichage du formulaire de note de paiement => Tabs (Documents)
+ */
 btnDocFormPaiement.addEventListener('click', function (e) {
   trFormPaiement.style.display === '' ? trFormPaiement.style.display = 'table-row' : trFormPaiement.style.display = '';
 });
@@ -37,10 +50,13 @@ btnEditProds.forEach(function (btnEditProd) {
     var trFormEditPro = document.querySelector(".tr-form-edit-prod-".concat(padId));
     console.log(".tr-form-edit-prod-".concat(padId), padId);
     trFormEditPro.style.display === '' ? trFormEditPro.style.display = 'table-row' : trFormEditPro.style.display = '';
-  });
-}, true);
+  }, true);
+});
 
 // adresse 
+/**
+ * formulaire modification adresse de facturation existante 
+ */
 btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
     var commandeId, adresseId, adresse;
@@ -53,8 +69,10 @@ btnUpdateExistAdresseFacturation.addEventListener('click', /*#__PURE__*/function
           return axios.get('/admin/adresse/byAjax/' + adresseId);
         case 4:
           adresse = _context.sent;
+          // console.log(modalUpdateAdressFacturationElForm,adresse);
           modalUpdateAdressFacturation.show();
-        case 6:
+          showModalUpdateAdresse(modalUpdateAdressFacturationElForm, adresse, commandeId);
+        case 7:
         case "end":
           return _context.stop();
       }
@@ -77,7 +95,9 @@ btnUpdateExistAdresseLivraison.addEventListener('click', /*#__PURE__*/function (
         case 4:
           adresse = _context2.sent;
           modalUpdateAdressLivraison.show();
-        case 6:
+          console.log(adresse);
+          showModalUpdateAdresse(modalUpdateAdressLivraisonElForm, adresse, commandeId);
+        case 8:
         case "end":
           return _context2.stop();
       }
@@ -87,3 +107,123 @@ btnUpdateExistAdresseLivraison.addEventListener('click', /*#__PURE__*/function (
     return _ref2.apply(this, arguments);
   };
 }());
+var showModalUpdateAdresse = function showModalUpdateAdresse(modal, adresse, commandeId) {
+  modal.innerHTML = /*html*/"\n    <form action=\"/admin/adresse/update-from-commande\" method=\"post\">\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Nom de la structure</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_structure\" required value=\"".concat(adresse.data.adr_structure, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"><span>* </span>Nom</label>\n            <input class=\"form-control\" placeholder=\"Romain\" type=\"text\" name=\"adr_nom\" id=\"\" value=\"").concat(adresse.data.adr_nom, "\" />\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Prenom</label>\n            <input class=\"form-control\" placeholder=\"Romain\" type=\"text\" name=\"adr_prenom\" id=\"\" value=\"").concat(adresse.data.adr_prenom, "\" />\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Soci\xE9t\xE9</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_societe\" id=\"\" required value=\"").concat(adresse.data.adr_societe, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Num\xE9ro de TVA</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_num_tva\" id=\"\" value=\"").concat(adresse.data.adr_num_tva, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Adresse</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_adresse\" id=\"\" value=\"").concat(adresse.data.adr_adresse, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> Compl\xE9ment d'adresse</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_comp\" id=\"\" value=\"").concat(adresse.data.adr_comp, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Code postal</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_cp\" id=\"\" value=\"").concat(adresse.data.adr_cp, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Ville</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_ville\" id=\"\" value=\"").concat(adresse.data.adr_ville, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <label class=\"form-label\" for=\"\"> <span>* </span>Pays</label>\n            <input class=\"form-control\" placeholder=\"\" type=\"text\" name=\"adr_pays\" id=\"\" value=\"").concat(adresse.data.adr_pays, "\"/>\n        </div>\n        <div class=\"mb-3\">\n            <input type=\"hidden\" name=\"com_id\" value=\"").concat(commandeId, "\">\n            <input type=\"hidden\" name=\"adr_id\" value=\"").concat(adresse.data.adr_id, "\">\n            <button class=\"btn btn-primary\" type=\"submit\">Enregistrer</button>\n        </div>\n    </form>\n    ");
+};
+btnShowAddPanierDetailForm.addEventListener('click', function (e) {
+  addPanierDetailForm.style.display = 'block';
+});
+btnDisableAddPanierDetailForm.addEventListener('click', function (e) {
+  e.preventDefault();
+  addPanierDetailForm.style.display = 'none';
+});
+
+// addPanierDetailInputLibelle.addEventListener('keydown',async (e)=>{
+//     var eventSource = e.key ? 'input':'list';
+//    console.log(e.key);
+//     if (e.target.value.toString() !== '') {
+//         let produits = await axios.get(`${SITE_URL}/admin/produits/autocomplete-search/${e.target.value.toString()}`)
+//         //produitdatalistOptions
+//         console.log(produits.data);
+//         var datalistOptions = ``;
+//         produits.data.map(produit=>{
+//             datalistOptions += `<option data-id="${produit.pro_id}" value="${produit.pro_libelle}">`
+//         });
+//         produitdatalistOptions.innerHTML = datalistOptions;
+//     }
+// })
+// addPanierDetailInputLibelle.addEventListener('input',(e)=>{
+//     let value = e.target.value;
+//     let pro_id = e.target.dataset.id;
+//     if (typeof eventSource != 'undefined' && eventSource === 'list') {
+//         console.log(pro_id);
+//         console.log('CLICKED! ',value,pro_id);
+//     }
+// })
+_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  var produits, autocomplete;
+  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    while (1) switch (_context3.prev = _context3.next) {
+      case 0:
+        autocomplete = function _autocomplete(inp, arr) {
+          var currentFocus;
+          inp.addEventListener("input", function (e) {
+            var a,
+              b,
+              i,
+              val = this.value;
+            closeAllLists();
+            if (!val) {
+              return false;
+            }
+            currentFocus = -1;
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            this.parentNode.appendChild(a);
+            arr.forEach(function (produit) {
+              if (produit.pro_libelle.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                b = document.createElement("DIV");
+                b.innerHTML = "<strong>" + produit.pro_libelle.substr(0, val.length) + "</strong>";
+                b.innerHTML += produit.pro_libelle.substr(val.length);
+                b.innerHTML += "<input type='hidden' data-produit='" + produit.pro_id + "' value='" + produit.pro_libelle + "'>";
+                b.addEventListener("click", function (e) {
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  inp.dataset.produit = produit.pro_id;
+                  closeAllLists();
+                });
+                a.appendChild(b);
+              }
+            });
+          });
+          inp.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+              currentFocus++;
+              addActive(x);
+            } else if (e.keyCode == 38) {
+              currentFocus--;
+              addActive(x);
+            } else if (e.keyCode == 13) {
+              e.preventDefault();
+              if (currentFocus > -1) {
+                if (x) x[currentFocus].click();
+              }
+            }
+          });
+          function addActive(x) {
+            if (!x) return false;
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = x.length - 1;
+            x[currentFocus].classList.add("autocomplete-active");
+          }
+          function removeActive(x) {
+            for (var i = 0; i < x.length; i++) {
+              x[i].classList.remove("autocomplete-active");
+            }
+          }
+          function closeAllLists(elmnt) {
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+              if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+              }
+            }
+          }
+          document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+          });
+        };
+        _context3.next = 3;
+        return axios.get("".concat(SITE_URL, "/admin/produits/allbyJson"));
+      case 3:
+        produits = _context3.sent;
+        autocomplete(document.getElementById("myInput"), produits.data);
+      case 5:
+      case "end":
+        return _context3.stop();
+    }
+  }, _callee3);
+}))();
