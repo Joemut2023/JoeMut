@@ -79,9 +79,9 @@ router.get('/allbyJson',async (req,res)=>{
   }
 })
 // post 
-router.get("/add", (req, res) => {
-  res.render("produits/ajoutProduit");
-});
+// router.get("/add", (req, res) => {
+//   res.render("produits/ajoutProduit");
+// });
 
 router.get("/categorie/:id", async (req, res) => {
   try {
