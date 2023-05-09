@@ -85,11 +85,11 @@ class Kart {
     return fraisDivers;
   }
 
-  static async addCodePromo(pro_code) {
-    try {
-      axios.post(`${SITE_URL/}`);
-    } catch (error) {}
-  }
+  // static async addCodePromo(pro_code) {
+  //   try {
+  //     axios.post(`${SITE_URL/}`);
+  //   } catch (error) {}
+  // }
 
   static async addItem(item, qte = null) {
     const userStatut = await Kart.getUserStatut();

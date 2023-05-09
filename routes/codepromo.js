@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { Promo, Apply, Panier_detail } = require("../models");
+const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   const { prm_code } = req.body;
+  //   const pan_id = req.session.panierId;
+  const pan_id = 3;
   try {
     const codePromo = await Promo.findOne({ where: { prm_code } });
     if (!codePromo) {
@@ -26,6 +29,7 @@ router.get("/", async (req, res) => {
     if (!codePromo.prm_actif) {
       return res.status(400).send("le code promo renseigné n'est pas actif");
     }
+
     const apply = await Apply.findOne({ where: { prm_id: codePromo.prm_id } });
     if (!apply)
       return res
@@ -33,16 +37,45 @@ router.get("/", async (req, res) => {
         .send(
           "le code promo renseigné n'est pas encore applicable sur les produits"
         );
+
     const panierDetail = await Panier_detail.findOne({
-      where: { pro_id: apply.pro_id },
+      where: { [Op.and]: [{ pro_id: apply.pro_id }, { pan_id }] },
     });
+
     if (!panierDetail)
       return res
         .status(400)
         .send(
           "le code promo renseigné n'est applicable sur aucun produit se trouvant sur votre panier"
         );
-    return res.json({ codePromo, apply, panierDetail });
+    let pad_remise = 0;
+    if (codePromo.prm_pourcent) {
+      pad_remise =
+        panierDetail.pad_ht *
+        panierDetail.pad_qte *
+        (codePromo.prm_pourcent / 100);
+    } else {
+      pad_remise = codePromo.prm_valeur;
+    }
+
+    pad_remise = panierDetail.pad_remise
+      ? panierDetail.pad_remise + pad_remise
+      : pad_remise;
+
+    const newPanierDetail = await Panier_detail.update(
+      { pad_remise },
+      { where: { pad_id: panierDetail.pad_id } }
+    );
+
+    console.log(newPanierDetail[0]);
+
+    if (newPanierDetail[0] == 1) {
+      return res.json({ codePromo, apply, panierDetail });
+    }
+
+    return res.json("data");
+
+    // return res.json({ codePromo, apply, panierDetail });
   } catch (error) {}
 });
 
