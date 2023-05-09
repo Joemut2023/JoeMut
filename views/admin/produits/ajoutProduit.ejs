@@ -263,9 +263,11 @@ sur votre produit,utilisez l'onglet 'Description' "
                       >
                         <!-- <option selected>Choisissez une categorie</option> -->
                         <% typeCategorie.forEach(element => { %>
-                            <option value=" <%= element.tyc_libelle %> "><%= element.tyc_libelle %></option>
+                        <option value=" <%= element.tyc_libelle %> ">
+                          <%= element.tyc_libelle %>
+                        </option>
                         <% }) %>
-                        
+
                         <!-- <option value="2">Two</option>
                         <option value="3">Three</option> -->
                       </select>
@@ -373,10 +375,11 @@ sur votre produit,utilisez l'onglet 'Description' "
                           class="form-select"
                           aria-label="Default select example"
                         >
-                        <% taille.forEach(element => { %>
-                          <option value="<%= element.tai_libelle %>"><%= element.tai_libelle %></option>
-                        <% }) %>
-                         
+                          <% taille.forEach(element => { %>
+                          <option value="<%= element.tai_libelle %>">
+                            <%= element.tai_libelle %>
+                          </option>
+                          <% }) %>
                         </select>
                       </div>
                     </div>
@@ -393,7 +396,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
                 <div class="add-cat">
                   <div class="title">
-                    <p>Ajouter une taille</p>
+                    <p>Ajouter une quantité</p>
                   </div>
                   <button
                     type="button"

@@ -1,5 +1,3 @@
-const { SITE_URL } = require("../url");
-
 const button1 = document.querySelector(".btn-tab-1");
 const button2 = document.querySelector(".btn-tab-2");
 const button3 = document.querySelector(".btn-tab-3");
@@ -89,18 +87,11 @@ function deleteImage(index) {
   }
 }
 
-async function addTaille() {
-  const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-  });
-  alert(taille)
-  // return panier.data;
-  console.log("FONCTIONNE");
+async function addTaille(taille) {
   const line = document.createElement("div");
   line.classList.add("quantity", "row");
 
+  console.log(taille);
   line.innerHTML = `
      <div class="col-md-5 qty-left">
                       <div class="form-group">
@@ -108,14 +99,10 @@ async function addTaille() {
                           class="form-select"
                           aria-label="Default select example"
                         >
-
-                        ${taille.map((data, index) => {
-                          return (
-                            <option value={data.tai_libelle}>
-                              {data.tai_libelle}
-                            </option>
-                          );
-                        })}
+                      ${taille.data.map(
+                        (item) =>
+                          `<option value=${item.tai_libelle}>${item.tai_libelle}</option>`
+                      )}
                         </select>
                       </div>
                     </div>
@@ -134,6 +121,12 @@ async function addTaille() {
   lines.appendChild(line);
 }
 
-btnAdd.addEventListener("click", function () {
-  addTaille();
+btnAdd.addEventListener("click", async function () {
+  const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+  // console.log(taille);
+  addTaille(taille);
 });

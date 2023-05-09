@@ -80,39 +80,48 @@ function deleteImage(index) {
     output.style.display = "none";
   }
 }
-function addTaille() {
+function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-    var taille, line;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(taille) {
+    var line;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          _context.next = 2;
-          return axios.get("".concat(SITE_URL, "/taille/all"), {
-            headers: {
-              "X-Requested-With": "XMLHttpRequest"
-            }
-          });
-        case 2:
-          taille = _context.sent;
-          // return panier.data;
-          console.log("FONCTIONNE");
           line = document.createElement("div");
           line.classList.add("quantity", "row");
-          line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select\"\n                          aria-label=\"Default select example\"\n                        >\n\n                        ".concat(taille.map(function (data, index) {
-            return;
-          }), "\n                        //   <% taille.forEach(element => { %>\n                        //   <option value=\"<%= element.tai_libelle %>\"><%= element.tai_libelle %></option>\n                        // <% }) %>\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
+          console.log(taille);
+          line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
+            return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
+          }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
           lines.appendChild(line);
-        case 8:
+        case 5:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
-    }, _callee);
+    }, _callee2);
   }));
   return _addTaille.apply(this, arguments);
 }
-btnAdd.addEventListener("click", function () {
-  addTaille();
-});
+btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var taille;
+  return _regeneratorRuntime().wrap(function _callee$(_context) {
+    while (1) switch (_context.prev = _context.next) {
+      case 0:
+        _context.next = 2;
+        return axios.get("".concat(SITE_URL, "/admin/produits/add/tailles"), {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 2:
+        taille = _context.sent;
+        // console.log(taille);
+        addTaille(taille);
+      case 4:
+      case "end":
+        return _context.stop();
+    }
+  }, _callee);
+})));
