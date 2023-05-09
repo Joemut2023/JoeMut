@@ -146,6 +146,12 @@ router.get('/view/:commandeId',async (req,res)=>{
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
+        "com_remise",
+        "com_port",
+        "com_frais",
+        "com_ht",
+        "com_tva",
+        "com_ttc"
       ],
       include: [
         {
@@ -285,9 +291,24 @@ router.post('/commande/update-panier-detail',async (req,res)=>{
     await Panier_detail.update({
       pad_qte
     },{where:{pad_id}});
+    let commande = await Commande.findOne({where:{com_id}});
+    let panierDetail = await Panier_detail.findOne({where:{pad_id}});
+    let panierDetails = await Panier_detail.findAll({
+      where:{pan_id:panierDetail.pan_id}
+    });
+    var somme_commande_ht = 0;
+    panierDetails.forEach(panierDetail => {
+      somme_commande_ht += panierDetail.pad_ht * panierDetail.pad_qte
+    });
+    let somme_commande_ttc = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
+    let updatedCommande = await Commande.update({
+      com_ht:somme_commande_ht,
+      com_ttc:somme_commande_ttc
+    },{where:{com_id}});
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    res.redirect(`/admin/devis/view/${com_id}`);
+    console.log(error);
+   // res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande/delete-panier-detail',async (req,res)=>{

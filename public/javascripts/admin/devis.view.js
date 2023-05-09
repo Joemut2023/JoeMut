@@ -132,10 +132,11 @@ btnAddReductionOnCommande.addEventListener('click', function (e) {
 btnDisableAddRemiseForm.addEventListener('click', function (e) {
   e.preventDefault();
   addRemiseForm.style.display = 'none';
-})
+});
 /**
  * Autocompletion pour ajout produit
- */( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+ */
+_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var produits, autocomplete;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
     while (1) switch (_context3.prev = _context3.next) {
@@ -222,4 +223,4 @@ btnDisableAddRemiseForm.addEventListener('click', function (e) {
         return _context3.stop();
     }
   }, _callee3);
-})))();
+}))();

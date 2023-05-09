@@ -136,13 +136,14 @@ btnDisableAddPanierDetailForm.addEventListener('click',(e)=>{
     e.preventDefault();
     addPanierDetailForm.style.display = 'none';
 });
+
 btnAddReductionOnCommande.addEventListener('click',(e)=>{
     addRemiseForm.style.display = 'block';
-})
+});
 btnDisableAddRemiseForm.addEventListener('click',(e)=>{
     e.preventDefault();
     addRemiseForm.style.display = 'none';
-})
+});
 /**
  * Autocompletion pour ajout produit
  */
