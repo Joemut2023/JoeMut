@@ -83,6 +83,7 @@ router.get("/categorie/:id", async(req, res)=>{
     console.log(error.message);
   }
 })
+//render for create
 router.get("/add", async (req, res) => {
   try {
     const typeCategorie = await Type_categorie.findAll();
@@ -97,6 +98,29 @@ router.get("/add", async (req, res) => {
   } catch (error) {}
 });
 
+router.post('/',async (req,res) =>{
+
+  const {cat_id,pro_ref,pro_libelle,pro_description,pro_details,pro_new_collect,pro_en_avant,pro_comment,pro_statut} = req.body
+
+  try {
+    const oldProduct = await Produit.findOne({where:{pro_ref}})
+    if(oldProduct) return res.status(409).send("produit existe déjà")
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+})
+
+
+
+
+
+
+
+
+
+
+//render for editting
 router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");
 });

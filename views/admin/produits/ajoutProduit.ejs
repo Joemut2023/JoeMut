@@ -6,7 +6,7 @@
           <div class="form-group has-feedback has-feedback-left">
             <input
               type="text"
-              class="form-control"
+              class="form-control pro-libelle"
               placeholder="Saisissez le nom de votre produit"
             />
             <span
@@ -63,7 +63,7 @@
             >
               Quantite
             </button>
-            <button
+            <!-- <button
               class="nav-link btn-tab-3"
               id="nav-livraison-tab"
               data-bs-toggle="tab"
@@ -74,8 +74,8 @@
               aria-selected="false"
             >
               Livraison
-            </button>
-            <button
+            </button> -->
+            <!-- <button
               class="nav-link btn-tab-4"
               id="nav-prix-tab"
               data-bs-toggle="tab"
@@ -86,7 +86,7 @@
               aria-selected="false"
             >
               Prix
-            </button>
+            </button> -->
           </div>
         </nav>
 
@@ -105,7 +105,7 @@
                     id="file"
                     class="file"
                     multiple="multiple"
-                    accept="image/*"
+                    accept="image/jpg, image/jpeg, image/gif, image/png"
                   />
                   <span><i class="fa-solid fa-camera"></i></span>
                   <p>Déposer vos images ici</p>
@@ -124,28 +124,9 @@
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control pro-ref" />
                   </div>
                 </div>
-
-                <!-- <div class="quantity">
-                  <div class="title">
-                    <h2>Quantité</h2>
-                    <span><i class="fa-solid fa-circle-info"></i></span>
-                  </div>
-                  <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control" value="0" />
-                  </div>
-                  <div class="param">
-                    <span>Paramètres avancés dans </span>
-                    <span
-                      ><strong
-                        ><i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        Quantites</strong
-                      ></span
-                    >
-                  </div>
-                </div> -->
               </div>
             </div>
 
@@ -155,34 +136,19 @@
                   <p class="title">Récapulatif</p>
                   <div>
                     <textarea
-                      class="content-recap"
+                      class="content-recap pro-details"
                       maxlength="800"
                       placeholder="Le résumé est une phrase qui décrit brièvement votre produit"
                     ></textarea>
                   </div>
-                  <!-- <div class="content">
-                    <p>
-                      le résume est une phrase qui décrit brièvement votre
-                      produit
-                    </p>
-                    <p>
-                      Il apparait tout en haut de la fiche de votre boutique, dans les listes de produits, et dans les resultats des
-moteurs de recherche (d'ou son importance pour le SEO) pour fournir davantage informations 
-sur votre produit,utilisez l'onglet 'Description' "
-                      Il apparait tout en haut de la fiche de votre boutique,
-                      dans les listes de produits, et dans les resultats des
-                      moteurs de recherche (d'ou son importance pour le SEO)
-                      pour fournir davantage informations sur votre produit,
-                      utilisez l'onglet "Description"
-                    </p>
-                  </div> -->
+                
                   <p class="caractere">1 de 800 caractères autorisées</p>
                 </div>
                 <div class="description">
                   <p class="title title-desc">Description</p>
                   <div>
                     <textarea
-                      class="content-recap"
+                      class="content-recap pro-description"
                       maxlength="21844"
                     ></textarea>
                   </div>
@@ -202,7 +168,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                       <div class="input-group">
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control tar-ht"
                           value="0,0000"
                           aria-label="Dollar amount (with dot and two decimal places)"
                         />
@@ -214,7 +180,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                       <div class="input-group">
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control tar-ttc"
                           value="0"
                           aria-label="Dollar amount (with dot and two decimal places)"
                         />
@@ -272,13 +238,6 @@ sur votre produit,utilisez l'onglet 'Description' "
                     </div>
                     <p class="tit-cat">Type categorie</p>
                     <div class="accueil">
-                      <!-- <select
-                        class="form-select select-type-cat"
-                        aria-label="Default select example"
-                      >
-                        <option selected>choisir une catégorie</option>
-                        <option class="option">choisir une catégorie</option>
-                      </select> -->
                     </div>
                   </div>
 
@@ -298,7 +257,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                     <p class="title title-desc">Commentaire</p>
                     <div>
                       <textarea
-                        class="content-comment"
+                        class="content-comment pro-comment"
                         maxlength="200"
                       ></textarea>
                     </div>
@@ -314,7 +273,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-new-collect"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -325,7 +284,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-en-avant"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -336,7 +295,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-statut"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -368,11 +327,11 @@ sur votre produit,utilisez l'onglet 'Description' "
                     <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
-                          class="form-select"
+                          class="form-select select-taille"
                           aria-label="Default select example"
                         >
                           <% taille.forEach(element => { %>
-                          <option value="<%= element.tai_libelle %>">
+                          <option value="<%= element.tai_id %>">
                             <%= element.tai_libelle %>
                           </option>
                           <% }) %>
@@ -511,7 +470,7 @@ sur votre produit,utilisez l'onglet 'Description' "
             </div> -->
           </div>
 
-          <div
+          <!-- <div
             class="tab-pane fade content-livraison"
             id="nav-livraison"
             role="tabpanel"
@@ -673,9 +632,9 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div
+          <!-- <div
             class="tab-pane fade content-prix"
             id="nav-prix"
             role="tabpanel"
@@ -865,7 +824,7 @@ sur votre produit,utilisez l'onglet 'Description' "
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- <div class="tabs-right col-md-4"></div> -->
@@ -879,7 +838,7 @@ sur votre produit,utilisez l'onglet 'Description' "
         <button type="button" class="btn btn-secondary">Previsualiser</button>
       </div>
       <div>
-        <button type="button" class="btn btn-primary">Enregistrer</button>
+        <button type="button"  class="btn btn-primary enregistrer">Enregistrer</button>
       </div>
     </div>
   </div>

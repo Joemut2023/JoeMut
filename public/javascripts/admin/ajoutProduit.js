@@ -8,37 +8,44 @@ var button1 = document.querySelector(".btn-tab-1");
 var button2 = document.querySelector(".btn-tab-2");
 var button3 = document.querySelector(".btn-tab-3");
 var button4 = document.querySelector(".btn-tab-4");
+var btnEnregistrer = document.querySelector(".enregistrer");
 var input_file = document.querySelector(".inputfile");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
 var selectCategorie = document.querySelector(".select-categorie");
-// const selectTypeCategorie = document.querySelector(".select-type-cat");
 var categorieParent = document.querySelector(".accueil");
+var selectTaille = document.querySelector(".select-taille");
+selectTaille.addEventListener("change", function () {
+  console.log("value taille", this.value);
+});
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
-  button3.classList.remove("clicked");
-  button4.classList.remove("clicked");
+  // button3.classList.remove("clicked");
+  // button4.classList.remove("clicked");
 });
+
 button2.addEventListener("click", function () {
   button1.classList.remove("clicked");
   button2.classList.add("clicked");
-  button3.classList.remove("clicked");
-  button4.classList.remove("clicked");
+  // button3.classList.remove("clicked");
+  // button4.classList.remove("clicked");
 });
-button3.addEventListener("click", function () {
-  button1.classList.remove("clicked");
-  button3.classList.add("clicked");
-  button2.classList.remove("clicked");
-  button4.classList.remove("clicked");
-});
-button4.addEventListener("click", function () {
-  button1.classList.remove("clicked");
-  button4.classList.add("clicked");
-  button2.classList.remove("clicked");
-  button3.classList.remove("clicked");
-});
+
+// button3.addEventListener("click", function () {
+//   button1.classList.remove("clicked");
+//   button3.classList.add("clicked");
+//   button2.classList.remove("clicked");
+//   button4.classList.remove("clicked");
+// });
+
+// button4.addEventListener("click", function () {
+//   button1.classList.remove("clicked");
+//   button4.classList.add("clicked");
+//   button2.classList.remove("clicked");
+//   button3.classList.remove("clicked");
+// });
 
 // traitement image
 var inputDiv = document.querySelector(".images");
@@ -158,3 +165,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee2, this);
 })));
+btnEnregistrer.addEventListener("click", function () {
+  var categorieselect = document.querySelector(".select-type-cat");
+  console.log(categorieselect.value);
+});
