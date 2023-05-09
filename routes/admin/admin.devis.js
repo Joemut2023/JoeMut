@@ -146,6 +146,12 @@ router.get('/view/:commandeId',async (req,res)=>{
         "frp_id",
         "com_adr_liv",
         "com_adr_fac",
+        "com_remise",
+        "com_port",
+        "com_frais",
+        "com_ht",
+        "com_tva",
+        "com_ttc"
       ],
       include: [
         {

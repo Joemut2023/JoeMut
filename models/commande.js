@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       com_tva: DataTypes.DECIMAL,
       com_port: DataTypes.FLOAT,
       com_frais: DataTypes.FLOAT,
-      com_ttc: DataTypes.DECIMAL,
+      com_ttc: DataTypes.FLOAT,
       com_infos: DataTypes.STRING,
       com_comment: DataTypes.TEXT,
       com_adr_liv: DataTypes.INTEGER,

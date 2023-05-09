@@ -140,8 +140,10 @@ router.post('/add-panier-detail',async (req,res)=>{
         },
       ],
     });
+
     let prm_id = promo ? promo.prm_id : null;
     let pad_remise = promo ? promo.Promo.prm_pourcent : null;
+    let commande = await Commande.findOne({where:{com_id}});
     const tarif = await Tarif.findOne({ where: { pro_id } });
     let tar_id = tarif.tar_id;
     let pad_ht = tarif.tar_ht;
@@ -156,6 +158,14 @@ router.post('/add-panier-detail',async (req,res)=>{
       pad_ttc,
       pad_remise,
     });
+    let somme_commande_ht = await Panier_detail.sum("pad_ht",{
+      where: { pan_id },
+    });
+    let somme_commande_ttc = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
+    let updatedCommande = await Commande.update({
+      com_ht:somme_commande_ht,
+      com_ttc:somme_commande_ttc
+    },{where:{com_id}});
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     console.log(error);
@@ -230,7 +240,7 @@ router.post('/add-commande-remise',async (req,res)=>{
         prm_commande:true
       })
     }
-    console.log(remise);
+
     let updatedCommande = await Commande.update({
       com_remise:remise,
       com_code_promo:prm_name

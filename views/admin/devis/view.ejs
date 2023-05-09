@@ -327,21 +327,31 @@
                 <div class="table-resume">
                     <div>
                         <h2>Produits</h2>
+                        <p><%= commande.com_ht %> €</p>
                     </div>
                     <div>
                         <h2>Réductions</h2>
+                        <p>-<%= commande?.com_remise %> €</p>
                     </div>
                     <div>
                         <h2>Livraison</h2>
+                        <p><%= commande.com_port %> €</p>
                     </div>
                     <div>
                         <h2>Autres Frais</h2>
+                        <p><%= commande.com_frais  %></p>
                     </div>
                     <div>
                         <h2>Taxes</h2>
+                        <p><%= commande.com_tva %></p>
                     </div>
                     <div>
                         <h2>Total</h2>
+                        <% if (commande.com_remise) { %>
+                          <p><%= commande.com_ttc - commande.com_remise %> €</p>
+                        <% } else { %>
+                          <p><%= commande.com_ttc %> €</p>
+                        <% } %>
                     </div>
                 </div>
             </div>
