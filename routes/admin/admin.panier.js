@@ -184,6 +184,8 @@ router.post('/add-remise',async (req,res)=>{
       prm_id:promo.prm_id,
       pro_id:parseInt(pro_id)
     });
+
+    
     let panier_detail = await Panier_detail.update({
       prm_id:promo.prm_id
     });
