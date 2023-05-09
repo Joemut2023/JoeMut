@@ -10,6 +10,14 @@ var button3 = document.querySelector(".btn-tab-3");
 var button4 = document.querySelector(".btn-tab-4");
 var btnEnregistrer = document.querySelector(".enregistrer");
 var input_file = document.querySelector(".inputfile");
+var pro_libelle = document.querySelector(".pro-libelle");
+var pro_ref = document.querySelector(".pro-ref").value;
+var pro_description = document.querySelector(".pro-description");
+var pro_details = document.querySelector(".pro-details");
+var pro_comment = document.querySelector(".pro-comment");
+var collect = document.querySelector(".pro-new-collect");
+var avant = document.querySelector(".pro-en-avant");
+var statut = document.querySelector(".pro-statut");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
@@ -93,10 +101,10 @@ function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
@@ -106,9 +114,9 @@ function _addTaille() {
           lines.appendChild(line);
         case 4:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _addTaille.apply(this, arguments);
 }
@@ -165,7 +173,39 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee2, this);
 })));
-btnEnregistrer.addEventListener("click", function () {
-  var categorieselect = document.querySelector(".select-type-cat");
-  console.log(categorieselect.value);
-});
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, data, produit;
+  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    while (1) switch (_context3.prev = _context3.next) {
+      case 0:
+        categorieselect = document.querySelector(".select-type-cat");
+        cat_id = categorieselect ? categorieselect.value : 1;
+        pro_new_collect = collect.checked ? 1 : 0;
+        pro_en_avant = avant.checked ? 1 : 0;
+        pro_statut = statut.checked ? 1 : 0;
+        data = {
+          cat_id: cat_id,
+          pro_ref: pro_ref,
+          pro_libelle: pro_libelle.value,
+          pro_description: pro_description.value,
+          pro_details: pro_details.value,
+          pro_new_collect: pro_new_collect,
+          pro_en_avant: pro_en_avant,
+          pro_comment: pro_comment.value,
+          pro_statut: pro_statut
+        };
+        _context3.next = 8;
+        return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 8:
+        produit = _context3.sent;
+        console.log(produit);
+      case 10:
+      case "end":
+        return _context3.stop();
+    }
+  }, _callee3);
+})));

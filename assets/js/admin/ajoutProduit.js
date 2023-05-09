@@ -5,6 +5,14 @@ const button4 = document.querySelector(".btn-tab-4");
 const btnEnregistrer = document.querySelector(".enregistrer");
 
 const input_file = document.querySelector(".inputfile");
+const pro_libelle = document.querySelector(".pro-libelle");
+const pro_ref = document.querySelector(".pro-ref").value;
+const pro_description = document.querySelector(".pro-description");
+const pro_details = document.querySelector(".pro-details");
+const pro_comment = document.querySelector(".pro-comment");
+const collect = document.querySelector(".pro-new-collect");
+const avant = document.querySelector(".pro-en-avant");
+const statut = document.querySelector(".pro-statut");
 
 const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
@@ -170,8 +178,29 @@ selectCategorie.addEventListener("change", async function () {
   listCategorie(categorie);
 });
 
-
-btnEnregistrer.addEventListener("click", function () {
+btnEnregistrer.addEventListener("click", async function () {
   const categorieselect = document.querySelector(".select-type-cat");
-   console.log(categorieselect.value);
+  const cat_id = categorieselect ? categorieselect.value : 1;
+  const pro_new_collect = collect.checked ? 1 : 0;
+  const pro_en_avant = avant.checked ? 1 : 0;
+  const pro_statut = statut.checked ? 1 : 0;
+
+  const data = {
+    cat_id,
+    pro_ref,
+    pro_libelle: pro_libelle.value,
+    pro_description: pro_description.value,
+    pro_details: pro_details.value,
+    pro_new_collect,
+    pro_en_avant,
+    pro_comment: pro_comment.value,
+    pro_statut,
+  };
+
+  const produit = await axios.post(`${SITE_URL}/admin/produits/`, data, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+   console.log(produit);
 });

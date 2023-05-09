@@ -105,7 +105,20 @@ router.post('/',async (req,res) =>{
   try {
     const oldProduct = await Produit.findOne({where:{pro_ref}})
     if(oldProduct) return res.status(409).send("produit existe déjà")
+    //create product
+    const product = await Produit.create({
+      cat_id,
+      pro_ref,
+      pro_libelle,
+      pro_description,
+      pro_details,
+      pro_new_collect,
+      pro_en_avant,
+      pro_comment,
+      pro_statut,
+    });
     
+    return res.status(201).json({product})
   } catch (error) {
     console.log(error.message);
   }
