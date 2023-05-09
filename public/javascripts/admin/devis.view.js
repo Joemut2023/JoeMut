@@ -22,6 +22,9 @@ var btnDisableAddPanierDetailForm = document.querySelector('.btn-disable-add-pan
 var addPanierDetailForm = document.querySelector('.form-add-panier-detail-container');
 var addPanierDetailInputLibelle = document.querySelector('.add-panier-detail-input-name');
 var btnsAddremises = document.querySelectorAll('.btn-remise-prod');
+var addRemiseForm = document.querySelector('.form-add-commande-remise-container');
+var btnAddReductionOnCommande = document.querySelector('.btn-add-commande-reduction');
+var btnDisableAddRemiseForm = document.querySelector('.btn-disable-add-remise-form');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -123,11 +126,16 @@ btnDisableAddPanierDetailForm.addEventListener('click', function (e) {
   e.preventDefault();
   addPanierDetailForm.style.display = 'none';
 });
-
+btnAddReductionOnCommande.addEventListener('click', function (e) {
+  addRemiseForm.style.display = 'block';
+});
+btnDisableAddRemiseForm.addEventListener('click', function (e) {
+  e.preventDefault();
+  addRemiseForm.style.display = 'none';
+})
 /**
  * Autocompletion pour ajout produit
- */
-_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+ */( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var produits, autocomplete;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
     while (1) switch (_context3.prev = _context3.next) {
@@ -214,4 +222,4 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         return _context3.stop();
     }
   }, _callee3);
-}))();
+})))();

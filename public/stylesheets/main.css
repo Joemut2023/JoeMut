@@ -7893,6 +7893,10 @@ body {
 #admin-page-viewDevis .content .right .produit-list .form-add-panier-detail-container #myInputautocomplete-list div:hover {
   background-color: #25b9d7;
 }
+#admin-page-viewDevis .content .right .produit-list .form-add-commande-remise-container {
+  display: none;
+  padding: 5px;
+}
 #admin-page-viewDevis .content .right .produit-list .table-actions {
   display: flex;
   flex-direction: row;

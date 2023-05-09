@@ -288,7 +288,26 @@
                       <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
                       <button class="btn btn-secondary mb-3 btn-disable-add-panier-detail">annuler</button>
                     </div>
-                </form>
+                  </form>
+                </div>
+                <div class="form-add-commande-remise-container">
+                  <form action="" method="post" class="row g-3">
+                    <div class="col-auto">
+                      <select class="form-select" aria-label="Default select" name="type_promo">
+                        <option selected>Type</option>
+                        <option value="1">Pourcentage</option>
+                        <option value="2">Valeur</option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
+                    </div>
+                    <div class="col-auto">
+                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                      <button class="btn btn-secondary btn-disable-add-remise-form mb-3">Annuler</button>
+                    </div>
+                  </form>
                 </div>
                 <div class="table-actions">
                     <div class="item-par-page">
@@ -299,7 +318,7 @@
                     </div>
                     <div class="buttons">
                         <button type="button" class="btn btn-light btn-add-panier-detail"><i class="fa-solid fa-plus"></i>Ajouter un produit</button>
-                        <button type="button" class="btn btn-light"><i class="fa-solid fa-plus"></i>Ajouter une reduction</button>
+                        <button type="button" class="btn btn-light btn-add-commande-reduction"><i class="fa-solid fa-plus"></i>Ajouter une reduction</button>
                     </div>
                 </div>
                 <div class="table-resume">
