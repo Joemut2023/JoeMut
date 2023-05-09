@@ -161,7 +161,7 @@ router.post('/add-panier-detail',async (req,res)=>{
     console.log(error);
   //  res.redirect(`/admin/devis/view/${com_id}`);
   }
-})
+});
 router.post('/add-remise',async (req,res)=>{
   const {type_promo,prm_valeur,com_id,pad_id,pro_id} = req.body;
   try {
@@ -201,6 +201,19 @@ router.post('/add-remise',async (req,res)=>{
     //console.log(error);
     res.redirect(`/admin/devis/view/${com_id}`);
   }
+});
+router.post('/add-commande-remise',async (req,res)=>{
+  const {prm_name,prm_valeur,com_id} = req.body;
+  try {
+    let commande = await Commande.findOne({
+      where:{com_id}
+    });
+    // créer une promo
+    // modifier la commande prm_code
+  } catch (error) {
+    
+  }
+  res.redirect(`/admin/devis/view/${com_id}`);
 })
 
 module.exports = router;

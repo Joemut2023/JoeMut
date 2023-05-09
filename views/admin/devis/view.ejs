@@ -291,7 +291,10 @@
                   </form>
                 </div>
                 <div class="form-add-commande-remise-container">
-                  <form action="" method="post" class="row g-3">
+                  <form action="/admin/paniers/add-commande-remise" method="post" class="row g-3">
+                    <div class="col-auto">
+                      <input type="text" class="form-control" placeholder="Code promo" name="prm_name">
+                    </div>
                     <div class="col-auto">
                       <select class="form-select" aria-label="Default select" name="type_promo">
                         <option selected>Type</option>
