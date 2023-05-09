@@ -236,6 +236,30 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr class="tr-form-remise-prod <%= "tr-form-remise-prod-"+panier_detail.pad_id%>">
+                              <td colspan="8">
+                                <div>
+                                  <form action="" method="post" class="row g-3">
+                                    <div class="col-auto">
+                                      <select class="form-select" aria-label="Default select example">
+                                        <option selected>Type</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-auto">
+                                      <input type="number" class="form-control" placeholder="Valeur" name="">
+                                    </div>
+                                    <div class="col-auto">
+                                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                      <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </td>
+                            </tr>
                         <% }) %>
                     </tbody>
                 </table>

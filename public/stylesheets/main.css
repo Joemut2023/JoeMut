@@ -7786,6 +7786,9 @@ body {
 #admin-page-viewDevis .content .right .produit-list .table .tr-form-edit-prod {
   display: none;
 }
+#admin-page-viewDevis .content .right .produit-list .table .tr-form-remise-prod {
+  display: none;
+}
 #admin-page-viewDevis .content .right .produit-list .table .td-produit-qte div {
   display: flex;
   justify-content: center;

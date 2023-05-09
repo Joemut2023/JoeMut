@@ -21,7 +21,7 @@ var btnShowAddPanierDetailForm = document.querySelector('.btn-add-panier-detail'
 var btnDisableAddPanierDetailForm = document.querySelector('.btn-disable-add-panier-detail');
 var addPanierDetailForm = document.querySelector('.form-add-panier-detail-container');
 var addPanierDetailInputLibelle = document.querySelector('.add-panier-detail-input-name');
-//const produitdatalistOptions = document.querySelector('#produitdatalistOptions');
+var btnsAddremises = document.querySelectorAll('.btn-remise-prod');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -38,6 +38,13 @@ var addPanierDetailInputLibelle = document.querySelector('.add-panier-detail-inp
 btnDocFormNote.addEventListener('click', function (e) {
   trFormNote.style.display === '' ? trFormNote.style.display = 'table-row' : trFormNote.style.display = '';
 });
+btnsAddremises === null || btnsAddremises === void 0 ? void 0 : btnsAddremises.forEach(function (btnRemise) {
+  btnRemise.addEventListener('click', function (e) {
+    var padId = e.target.dataset.pad;
+    var trFormProduitRemise = document.querySelector(".tr-form-remise-prod-".concat(padId));
+    trFormProduitRemise.style.display === '' ? trFormProduitRemise.style.display = 'table-row' : trFormProduitRemise.style.display = '';
+  });
+});
 /**
  * Affichage du formulaire de note de paiement => Tabs (Documents)
  */
@@ -48,7 +55,6 @@ btnEditProds.forEach(function (btnEditProd) {
   btnEditProd.addEventListener('click', function (e) {
     var padId = e.target.dataset.pad;
     var trFormEditPro = document.querySelector(".tr-form-edit-prod-".concat(padId));
-    console.log(".tr-form-edit-prod-".concat(padId), padId);
     trFormEditPro.style.display === '' ? trFormEditPro.style.display = 'table-row' : trFormEditPro.style.display = '';
   }, true);
 });
@@ -118,28 +124,9 @@ btnDisableAddPanierDetailForm.addEventListener('click', function (e) {
   addPanierDetailForm.style.display = 'none';
 });
 
-// addPanierDetailInputLibelle.addEventListener('keydown',async (e)=>{
-//     var eventSource = e.key ? 'input':'list';
-//    console.log(e.key);
-//     if (e.target.value.toString() !== '') {
-//         let produits = await axios.get(`${SITE_URL}/admin/produits/autocomplete-search/${e.target.value.toString()}`)
-//         //produitdatalistOptions
-//         console.log(produits.data);
-//         var datalistOptions = ``;
-//         produits.data.map(produit=>{
-//             datalistOptions += `<option data-id="${produit.pro_id}" value="${produit.pro_libelle}">`
-//         });
-//         produitdatalistOptions.innerHTML = datalistOptions;
-//     }
-// })
-// addPanierDetailInputLibelle.addEventListener('input',(e)=>{
-//     let value = e.target.value;
-//     let pro_id = e.target.dataset.id;
-//     if (typeof eventSource != 'undefined' && eventSource === 'list') {
-//         console.log(pro_id);
-//         console.log('CLICKED! ',value,pro_id);
-//     }
-// })
+/**
+ * Autocompletion pour ajout produit
+ */
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var produits, autocomplete;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
