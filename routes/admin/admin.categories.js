@@ -24,6 +24,35 @@ router.get("/", async (req, res) => {
 
 })
 
+router.get("/ajout", async (req, res) => {
+    res.render("categories/add")
+})
+
+router.post("/ajout", async (req, res) => {
+    const { tyc_libelle } = req.body;
+
+    try {
+        if (tyc_libelle == "") {
+            return res.render({ error: true, message: "Champs obligatoire" });
+        }
+
+        const typeCatExists = await Type_categorie.findOne({ where: { tyc_libelle } });
+        if (typeCatExists) {
+            return res.render({ message: 'ce type categories existe deja. Veuillez changer le nom' });
+        } else {
+            await Type_categorie.create({
+                tyc_libelle: tyc_libelle
+            });
+            res.redirect("/admin/type-categories");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).render("categories/add",
+            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
+        );
+    }
+});
+
 
 router.get("/edit/:id", async (req, res) => {
 
@@ -113,7 +142,15 @@ router.get("/:id/edit", async (req, res) => {
     }
 })
 
-router.post("/:id/edit", async (req, res) => {
+
+
+router.get("/:id/post", async (req, res) => {
+    res.render("souscat/editCat")
+})
+
+
+
+router.post("/:id/post", async (req, res) => {
     const { cat_libelle } = req.body
 
     try {
@@ -129,13 +166,68 @@ router.post("/:id/edit", async (req, res) => {
             cat_libelle: cat_libelle,
 
         }, { where: { cat_id: req.params.id } })
-
-        const one = 1
         return res.redirect(`/admin/type-categories/${typeCat.tyc_id}`)
     } catch (error) {
-
+        console.error(error);
+        res.status(500).render("souscat/editCat",
+            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
+        );
     }
 })
+
+
+//
+router.get("/:id/ajout", async (req, res) => {
+    res.render("souscat/addCat")
+})
+
+
+router.post("/:id/ajout", async (req, res) => {
+    const { cat_libelle, tyc_libelle } = req.body
+
+    try {
+        if (cat_libelle == "" || tyc_libelle == "") {
+            return res.render({ error: true, message: "Champs obligatoire" });
+        }
+
+        // const findCat = await Categorie.findOne({
+        //     where: {
+        //         cat_id: req.params.id,
+        //     },
+        // });
+        const typeCat = await Type_categorie.findOne({
+            where: { tyc_id: findCat.tyc_id }
+        })
+
+        const CatExists = await Categorie.findOne({ where: { cat_libelle } });
+        if (CatExists) {
+            return res.render({ message: 'Cette existe deja. Veuillez changer le nom' });
+        } else {
+            await Categorie.create({
+                cat_libelle: cat_libelle,
+                tyc_libelle: req.body.tyc_libelle
+            });
+            return res.redirect(`/admin/type-categories/${typeCat.tyc_id}`)
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).render("souscat/addCat",
+            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
+        );
+    }
+
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-<div id="page-admin-edit-Cat">
+<div id="page-admin-ajout-cat">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -16,16 +16,16 @@
     </nav>
 
 
-    <form action="/admin/type-categories/<%= findCat.cat_id %>/post" method="POST">
+    <form action="/admin/type-categories/id/ajouter" method="POST">
         <div class="content">
             <div class="row formulaire">
                 <div class="col-8">
                     <input type="texte" id="libelle" class="form-control" aria-labelledby="passwordHelpInline"
-                        name="cat_libelle" value="<%= findCat.cat_libelle %>" />
+                        name="cat_libelle" />
                 </div>
 
                 <div class="button col-4">
-                    <button type="submit" class="btn">Mettre à jour</button>
+                    <button type="submit" class="btn">Ajouter</button>
                 </div>
             </div>
         </div>
