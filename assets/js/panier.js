@@ -186,12 +186,13 @@ const TotalPricesProducts = async () => {
   </div>
   <div class="hide-promo promo_block">
     <div class="btn-promo">
-      <input type="text" placeholder="Code promo" />
-      <button>Ajouter</button>
+      <input id="input-code-promo" type="text" placeholder="Code promo" />
+      <button id="btn-code-promo">Ajouter</button>
     </div>
     <p class="fermer">Fermer</p>
   </div>
 </div>
+<p id="promo-notice"><span id="promo-notice-asterics">*</span> entrer uniquement le code promo pour un produit</p>
 <a href="/commander/#page-commander" class="button">
   <button class="enable">Finaliser le Devis</button>
 </a>
@@ -203,6 +204,8 @@ const TotalPricesProducts = async () => {
   const code_promo_block = document.querySelector(".promo_block");
   const btn_fermer = document.querySelector(".fermer");
   const btnFinaliser = document.querySelector(".enable");
+  const btnCodePromo = document.querySelector("#btn-code-promo");
+  const inputCodePromo = document.querySelector("#input-code-promo");
   if (storedITems.length == 0) {
     emptyKartText.style.display = "block";
     btnFinaliser.disabled = true;
@@ -213,6 +216,11 @@ const TotalPricesProducts = async () => {
 
     code_promo_block.classList.remove("hide-promo");
     code_promo_block.classList.add("code-promo");
+    console.log(inputCodePromo);
+    console.log(btnCodePromo);
+    btnCodePromo.addEventListener("click", () => {
+      console.log(inputCodePromo.value);
+    });
   });
 
   btn_fermer?.addEventListener("click", function () {
@@ -222,13 +230,13 @@ const TotalPricesProducts = async () => {
   });
 };
 TotalPricesProducts();
-const link_parag = document.querySelector(".btnpromo");
-const btn_promo = document.querySelector(".btn-promo");
-const code_promo_block = document.querySelector(".promo_block");
-const btn_fermer = document.querySelector(".fermer");
-const btnFinaliser = document.querySelector(".enable");
-if (storedITems.length == 0) {
-  emptyKartText.style.display = "block";
-  btnFinaliser.disabled = true;
-  btnFinaliser.classList.add("btn-enabled");
-}
+// const link_parag = document.querySelector(".btnpromo");
+// const btn_promo = document.querySelector(".btn-promo");
+// const code_promo_block = document.querySelector(".promo_block");
+// const btn_fermer = document.querySelector(".fermer");
+// const btnFinaliser = document.querySelector(".enable");
+// if (storedITems.length == 0) {
+//   emptyKartText.style.display = "block";
+//   btnFinaliser.disabled = true;
+//   btnFinaliser.classList.add("btn-enabled");
+// }

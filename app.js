@@ -25,8 +25,9 @@ var mailRouter = require("./routes/mail");
 var auth = require("./middleware/auth");
 var mensionLegaleRouter = require("./routes/mensionLegale");
 var confirmationCommandeRouter = require("./routes/confirmationCommande");
-var devisRouter = require("./routes/devis")
+var devisRouter = require("./routes/devis");
 var panierDetailRouter = require("./routes/panierDetail");
+var codePromoRouter = require("./routes/codepromo");
 // const AdminJS = require("adminjs");
 // const AdminJSExpress = require("@adminjs/express");
 // const AdminJSSequelize = require("@adminjs/sequelize");
@@ -38,7 +39,7 @@ const setAuthorizedUser = require("./middleware/setAuthorizedUser");
 const getPanierDetail = require("./middleware/getPanierDetail");
 const layout = require("./middleware/layout");
 var app = express();
-var adminRouter = require('./routes/admin/admin.router');
+var adminRouter = require("./routes/admin/admin.router");
 require("./config/db").sync();
 const oneDay = 1000 * 60 * 60 * 24;
 // view engine setup
@@ -65,29 +66,29 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(setAuthorizedUser);
 app.use(getPanierDetail);
-app.use("/",[layout], indexRouter);
-app.use("/creation", [layout],creationRouter);
-app.use("/contact",[layout], contactRouter);
-app.use("/catalogue",[layout], catalogueRouter);
-app.use("/promotion",[layout], promotionRouter);
-app.use("/recherche",[layout], rechercheRouter);
-app.use("/article",[layout], articleRouter);
-app.use("/nouvelleCollection", [layout],nouvelleCollectionRouter);
-app.use("/mon-compte", [auth,layout], usersRouter);
-app.use("/panier", [auth,layout], panierRouter);
-app.use("/inscription",[layout], inscriptionRouter);
-app.use("/connexion", [layout],connexionRouter);
-app.use("/commander", [auth,layout], commanderRouter);
-app.use("/mensionLegale",[layout], mensionLegaleRouter);
-app.use("/confirmation-commande", [auth,layout], confirmationCommandeRouter);
-app.use("/devis", [layout],devisRouter)
-app.use("/fraisPort", [layout],fraisPortRouter);
-app.use("/error", [layout],errorRouter);
-app.use("/fraisDossier", [layout],fraisDossier);
-app.use("/panierDetail", [auth,layout], panierDetailRouter)
-app.use("/mail", [layout],mailRouter);
-app.use('/admin',[layout],adminRouter);
-
+app.use("/", [layout], indexRouter);
+app.use("/creation", [layout], creationRouter);
+app.use("/contact", [layout], contactRouter);
+app.use("/catalogue", [layout], catalogueRouter);
+app.use("/promotion", [layout], promotionRouter);
+app.use("/recherche", [layout], rechercheRouter);
+app.use("/article", [layout], articleRouter);
+app.use("/nouvelleCollection", [layout], nouvelleCollectionRouter);
+app.use("/mon-compte", [auth, layout], usersRouter);
+app.use("/panier", [auth, layout], panierRouter);
+app.use("/inscription", [layout], inscriptionRouter);
+app.use("/connexion", [layout], connexionRouter);
+app.use("/commander", [auth, layout], commanderRouter);
+app.use("/mensionLegale", [layout], mensionLegaleRouter);
+app.use("/confirmation-commande", [auth, layout], confirmationCommandeRouter);
+app.use("/devis", [layout], devisRouter);
+app.use("/fraisPort", [layout], fraisPortRouter);
+app.use("/error", [layout], errorRouter);
+app.use("/fraisDossier", [layout], fraisDossier);
+app.use("/panierDetail", [auth, layout], panierDetailRouter);
+app.use("/mail", [layout], mailRouter);
+app.use("/admin", [layout], adminRouter);
+app.use("/codePromo", [layout], codePromoRouter);
 
 // AdminJS.registerAdapter({
 //   Resource: AdminJSSequelize.Resource,

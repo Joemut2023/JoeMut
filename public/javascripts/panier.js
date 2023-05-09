@@ -197,7 +197,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
 }))();
 var TotalPricesProducts = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
-    var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml, link_parag, btn_promo, code_promo_block, btn_fermer, btnFinaliser;
+    var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml, link_parag, btn_promo, code_promo_block, btn_fermer, btnFinaliser, btnCodePromo, inputCodePromo;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
@@ -217,13 +217,15 @@ var TotalPricesProducts = /*#__PURE__*/function () {
             totalPriceht += element.pad_qte * element.pad_ttc;
           });
           totalPoductPrice = totalPriceht + parseFloat(storedFrais.frais_port) + parseFloat(storedFrais.frais_dossier);
-          PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(totalQuantity > 1 ? "".concat(totalQuantity, " articles") : "".concat(totalQuantity, " article"), "</span>\n      <span class=\"price\">").concat(new Decimal(totalPriceht).toString(), "  \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">").concat(new Decimal(storedFrais.frais_port).toString(), " \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">").concat(new Decimal(storedFrais.frais_dossier).toString(), " \u20AC</span>\n    </div>\n    <hr>\n  </div>\n  <div class=\"item total\">\n  <span>TTC</span>\n  <span>").concat(new Decimal(totalPoductPrice).toString(), " \u20AC</span>\n</div>\n<div class=\"promo\">\n  <div class=\"link\">\n    <p class=\"btnpromo\"><span>Vous avez un code promo ?</span></p>\n  </div>\n  <div class=\"hide-promo promo_block\">\n    <div class=\"btn-promo\">\n      <input type=\"text\" placeholder=\"Code promo\" />\n      <button>Ajouter</button>\n    </div>\n    <p class=\"fermer\">Fermer</p>\n  </div>\n</div>\n<a href=\"/commander/#page-commander\" class=\"button\">\n  <button class=\"enable\">Finaliser le Devis</button>\n</a>\n  ");
+          PanierPriceHtml = " \n  <div class=\"frais\">\n    <div class=\"item\">\n      <span class=\"title\">".concat(totalQuantity > 1 ? "".concat(totalQuantity, " articles") : "".concat(totalQuantity, " article"), "</span>\n      <span class=\"price\">").concat(new Decimal(totalPriceht).toString(), "  \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Livraisons</span>\n      <span class=\"price\">").concat(new Decimal(storedFrais.frais_port).toString(), " \u20AC</span>\n    </div>\n    <div class=\"item\">\n      <span class=\"title\">Frais de dossier</span>\n      <span class=\"price\">").concat(new Decimal(storedFrais.frais_dossier).toString(), " \u20AC</span>\n    </div>\n    <hr>\n  </div>\n  <div class=\"item total\">\n  <span>TTC</span>\n  <span>").concat(new Decimal(totalPoductPrice).toString(), " \u20AC</span>\n</div>\n<div class=\"promo\">\n  <div class=\"link\">\n    <p class=\"btnpromo\"><span>Vous avez un code promo ?</span></p>\n  </div>\n  <div class=\"hide-promo promo_block\">\n    <div class=\"btn-promo\">\n      <input id=\"input-code-promo\" type=\"text\" placeholder=\"Code promo\" />\n      <button id=\"btn-code-promo\">Ajouter</button>\n    </div>\n    <p class=\"fermer\">Fermer</p>\n  </div>\n</div>\n<p id=\"promo-notice\"><span id=\"promo-notice-asterics\">*</span> entrer uniquement le code promo pour un produit</p>\n<a href=\"/commander/#page-commander\" class=\"button\">\n  <button class=\"enable\">Finaliser le Devis</button>\n</a>\n  ");
           PanierPrice.innerHTML = PanierPriceHtml;
           link_parag = document.querySelector(".btnpromo");
           btn_promo = document.querySelector(".btn-promo");
           code_promo_block = document.querySelector(".promo_block");
           btn_fermer = document.querySelector(".fermer");
           btnFinaliser = document.querySelector(".enable");
+          btnCodePromo = document.querySelector("#btn-code-promo");
+          inputCodePromo = document.querySelector("#input-code-promo");
           if (storedITems.length == 0) {
             emptyKartText.style.display = "block";
             btnFinaliser.disabled = true;
@@ -233,13 +235,18 @@ var TotalPricesProducts = /*#__PURE__*/function () {
             link_parag.classList.add("linkhide");
             code_promo_block.classList.remove("hide-promo");
             code_promo_block.classList.add("code-promo");
+            console.log(inputCodePromo);
+            console.log(btnCodePromo);
+            btnCodePromo.addEventListener("click", function () {
+              console.log(inputCodePromo.value);
+            });
           });
           btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
             link_parag.classList.remove("linkhide");
             code_promo_block.classList.remove("code-promo");
             code_promo_block.classList.add("hide-promo");
           });
-        case 21:
+        case 23:
         case "end":
           return _context8.stop();
       }
@@ -250,13 +257,13 @@ var TotalPricesProducts = /*#__PURE__*/function () {
   };
 }();
 TotalPricesProducts();
-var link_parag = document.querySelector(".btnpromo");
-var btn_promo = document.querySelector(".btn-promo");
-var code_promo_block = document.querySelector(".promo_block");
-var btn_fermer = document.querySelector(".fermer");
-var btnFinaliser = document.querySelector(".enable");
-if (storedITems.length == 0) {
-  emptyKartText.style.display = "block";
-  btnFinaliser.disabled = true;
-  btnFinaliser.classList.add("btn-enabled");
-}
+// const link_parag = document.querySelector(".btnpromo");
+// const btn_promo = document.querySelector(".btn-promo");
+// const code_promo_block = document.querySelector(".promo_block");
+// const btn_fermer = document.querySelector(".fermer");
+// const btnFinaliser = document.querySelector(".enable");
+// if (storedITems.length == 0) {
+//   emptyKartText.style.display = "block";
+//   btnFinaliser.disabled = true;
+//   btnFinaliser.classList.add("btn-enabled");
+// }
