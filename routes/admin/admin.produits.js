@@ -1,6 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Produit, Quantite, Tarif, Media, Categorie } = require("../../models");
+const {
+  Produit,
+  Quantite,
+  Tarif,
+  Media,
+  Categorie,
+  Taille,
+  Type_categorie,
+} = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { Op } = require("sequelize");
@@ -75,9 +83,122 @@ router.get("/add", (req, res) => {
   res.render("produits/ajoutProduit");
 });
 
-router.get("/:id",async function(req,res){
+router.get("/categorie/:id", async (req, res) => {
+  try {
+    const categorie = await Categorie.findAll({
+      where: { tyc_id: req.params.id },
+    });
+    res.json(categorie);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+//render for create
+router.get("/add", async (req, res) => {
+  try {
+    const typeCategorie = await Type_categorie.findAll();
+    const taille = await Taille.findAll();
+
+    // return res.json({ taille });
+
+    res.render("produits/ajoutProduit", {
+      typeCategorie,
+      taille,
+    });
+  } catch (error) {}
+});
+
+router.post("/", async (req, res) => {
+  const {
+    cat_id,
+    pro_ref,
+    pro_libelle,
+    pro_description,
+    pro_details,
+    pro_new_collect,
+    pro_en_avant,
+    pro_comment,
+    pro_statut,
+  } = req.body;
+
+  try {
+    const product = await Produit.create({
+      cat_id,
+      pro_ref,
+      pro_libelle,
+      pro_description,
+      pro_details,
+      pro_new_collect,
+      pro_en_avant,
+      pro_comment,
+      pro_statut,
+    });
+    return res.status(201).json({ product });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/media/:id", async function (req, res) {
+  const { med_libelle, med_ressource } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const media = await Media.create({
+      pro_id: produit.pro_id,
+      tym_id: 1,
+      med_libelle,
+      med_ressource,
+      mimetype: "image/jpeg",
+    });
+
+    return res.status(201).json(media);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/tarif/:id", async function (req, res) {
+  const { tar_ht, tar_ttc } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const tarif = await Tarif.create({
+      pro_id: produit.pro_id,
+      tar_debut:new Date(new Date().setDate(new Date().getDate())),
+      tar_fin: null,
+      tar_ht,
+      tar_ttc,
+      tar_statut: 1,
+    });
+
+    return res.status(201).json(tarif);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/qty/:id", async function (req, res) {
+  const { qua_nbre, tai_id } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const qty = await Quantite.create({
+      pro_id: produit.pro_id,
+      tai_id,
+      qua_nbre,
+    });
+
+    return res.status(201).json(qty);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+//render for editting
+router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");
-})
+});
 
 router.get('/autocomplete-search/:query',async (req,res)=>{
   const {query} = req.params;
