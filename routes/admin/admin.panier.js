@@ -165,7 +165,14 @@ router.post('/add-panier-detail',async (req,res)=>{
 router.post('/add-remise',async (req,res)=>{
   const {type_promo,prm_valeur,com_id,pad_id,pro_id} = req.body;
   try {
+    var remise,totalHt;
+    const panierDetail = await Panier_detail.findOne({
+      where:{pad_id:pad_id}
+    });
+    totalHt = (panierDetail.pad_qte * panierDetail.pad_ht);
     if (parseInt(type_promo) === TYPE_PROMO_POURCENTAGE  ) {
+      remise = parseFloat(totalHt * (prm_valeur/100));
+      
       var promo = await Promo.create({
         prm_pourcent:parseInt(prm_valeur),
         prm_debut:new Date(new Date().setDate(new Date().getDate())),
@@ -173,6 +180,7 @@ router.post('/add-remise',async (req,res)=>{
         prm_actif:true
       })
     }else{
+      remise = prm_valeur;
       var promo = await Promo.create({
         prm_valeur:parseFloat(prm_valeur),
         prm_debut:new Date(new Date().setDate(new Date().getDate())),
@@ -184,13 +192,13 @@ router.post('/add-remise',async (req,res)=>{
       prm_id:promo.prm_id,
       pro_id:parseInt(pro_id)
     });
-
-    
     let panier_detail = await Panier_detail.update({
-      prm_id:promo.prm_id
-    });
+      prm_id:promo.prm_id,
+      pad_remise:remise
+    },{where:{pad_id:pad_id}});
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+    //console.log(error);
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
