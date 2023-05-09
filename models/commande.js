@@ -82,6 +82,7 @@ module.exports = (sequelize, DataTypes) => {
       com_adr_liv: DataTypes.INTEGER,
       com_adr_fac: DataTypes.INTEGER,
       pan_id: DataTypes.INTEGER,
+      com_code_promo:DataTypes.STRING
     },
     {
       sequelize,
