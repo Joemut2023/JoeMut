@@ -239,21 +239,21 @@
                             <tr class="tr-form-remise-prod <%= "tr-form-remise-prod-"+panier_detail.pad_id%>">
                               <td colspan="8">
                                 <div>
-                                  <form action="" method="post" class="row g-3">
+                                  <form action="/admin/paniers/add-remise" method="post" class="row g-3">
                                     <div class="col-auto">
-                                      <select class="form-select" aria-label="Default select example">
+                                      <select class="form-select" aria-label="Default select" name="type_promo">
                                         <option selected>Type</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="1">Pourcentage</option>
+                                        <option value="2">Valeur</option>
                                       </select>
                                     </div>
                                     <div class="col-auto">
-                                      <input type="number" class="form-control" placeholder="Valeur" name="">
+                                      <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
                                     </div>
                                     <div class="col-auto">
                                       <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                                       <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                      <input type="hidden" name="pro_id" value="<%= panier_detail.Produit.pro_id %>">
                                       <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
                                     </div>
                                   </form>
