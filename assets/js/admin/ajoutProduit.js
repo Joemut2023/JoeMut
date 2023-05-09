@@ -13,6 +13,8 @@ const pro_comment = document.querySelector(".pro-comment");
 const collect = document.querySelector(".pro-new-collect");
 const avant = document.querySelector(".pro-en-avant");
 const statut = document.querySelector(".pro-statut");
+const ht = document.querySelector(".tar-ht");
+const ttc = document.querySelector(".tar-ttc");
 
 const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
@@ -185,6 +187,8 @@ btnEnregistrer.addEventListener("click", async function () {
   const pro_new_collect = collect.checked ? 1 : 0;
   const pro_en_avant = avant.checked ? 1 : 0;
   const pro_statut = statut.checked ? 1 : 0;
+  const tar_ht = parseFloat(Number((ht.value).replace(",",".")))
+  const tar_ttc = parseFloat(Number((ttc.value).replace(",",".")))
 
   const data = {
     cat_id,
@@ -221,20 +225,18 @@ btnEnregistrer.addEventListener("click", async function () {
     console.log(media);
   });
 
-  // const dataMedia = {
-  //   med_libelle: imagesArray[0].name.split(".")[0],
-  //   med_ressource: imagesArray[0].name,
-  // };
-  // const media = await axios.post(
-  //   `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-  //   dataMedia,
-  //   {
-  //     headers: {
-  //       "X-Requested-With": "XMLHttpRequest",
-  //     },
-  //   }
-  // );
-  // console.log(media);
+  const tarif = await axios.post(
+    `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
+    {
+      tar_ht,
+      tar_ttc
+    },
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
 
-  console.log(produit);
+  console.log(tarif);
 });

@@ -150,6 +150,26 @@ router.post("/media/:id", async function (req, res) {
   }
 });
 
+router.post("/tarif/:id", async function (req, res) {
+  const { tar_ht, tar_ttc } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const tarif = await Tarif.create({
+      pro_id: produit.pro_id,
+      tar_debut:new Date(new Date().setDate(new Date().getDate())),
+      tar_fin: null,
+      tar_ht,
+      tar_ttc,
+      tar_statut: 1,
+    });
+
+    return res.status(201).json(tarif);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 //render for editting
 router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");

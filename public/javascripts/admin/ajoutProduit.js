@@ -18,6 +18,8 @@ var pro_comment = document.querySelector(".pro-comment");
 var collect = document.querySelector(".pro-new-collect");
 var avant = document.querySelector(".pro-en-avant");
 var statut = document.querySelector(".pro-statut");
+var ht = document.querySelector(".tar-ht");
+var ttc = document.querySelector(".tar-ttc");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
@@ -175,7 +177,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee2, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, data, produit;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif;
   return _regeneratorRuntime().wrap(function _callee4$(_context4) {
     while (1) switch (_context4.prev = _context4.next) {
       case 0:
@@ -184,6 +186,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_new_collect = collect.checked ? 1 : 0;
         pro_en_avant = avant.checked ? 1 : 0;
         pro_statut = statut.checked ? 1 : 0;
+        tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
+        tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref,
@@ -195,13 +199,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context4.next = 8;
+        _context4.next = 10;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 8:
+      case 10:
         produit = _context4.sent;
         imagesArray.map( /*#__PURE__*/function () {
           var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
@@ -232,24 +236,19 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref4.apply(this, arguments);
           };
         }());
-
-        // const dataMedia = {
-        //   med_libelle: imagesArray[0].name.split(".")[0],
-        //   med_ressource: imagesArray[0].name,
-        // };
-        // const media = await axios.post(
-        //   `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-        //   dataMedia,
-        //   {
-        //     headers: {
-        //       "X-Requested-With": "XMLHttpRequest",
-        //     },
-        //   }
-        // );
-        // console.log(media);
-
-        console.log(produit);
-      case 11:
+        _context4.next = 14;
+        return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
+          tar_ht: tar_ht,
+          tar_ttc: tar_ttc
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 14:
+        tarif = _context4.sent;
+        console.log(tarif);
+      case 16:
       case "end":
         return _context4.stop();
     }
