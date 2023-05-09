@@ -255,8 +255,6 @@ btnEnregistrer.addEventListener("click", async function () {
   
   Array.from(selectTailles, async (item) => {
 
-    console.log(item.parentNode.parentNode.parentNode.children[1].children[1].children[0])
-
      const dataselect = {
        tai_id: item.value,
        qua_nbre: parseInt(

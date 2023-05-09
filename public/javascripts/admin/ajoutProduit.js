@@ -268,21 +268,20 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _regeneratorRuntime().wrap(function _callee4$(_context4) {
               while (1) switch (_context4.prev = _context4.next) {
                 case 0:
-                  console.log(item.parentNode.parentNode.parentNode.children[1].children[1].children[0]);
                   dataselect = {
                     tai_id: item.value,
                     qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
                   };
-                  _context4.next = 4;
+                  _context4.next = 3;
                   return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(produit.data.product.pro_id), dataselect, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
-                case 4:
+                case 3:
                   qty = _context4.sent;
                   console.log(qty);
-                case 6:
+                case 5:
                 case "end":
                   return _context4.stop();
               }
