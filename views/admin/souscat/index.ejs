@@ -3,18 +3,20 @@
         <div class="text">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a class="fil-ariane-item" href="#">Catalogue</a>
-                  </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <a class="fil-ariane-item"  href="/admin/type-categories/">type-categories</a>
-                  </li>
+                    <li class="breadcrumb-item">
+                        <a class="fil-ariane-item" href="#">Catalogue</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a class="fil-ariane-item" href="/admin/type-categories/">type-categories</a>
+                    </li>
 
-                  <li class="breadcrumb-item active" aria-current="page">
-                 <span id="cat"><%= categorie.tyc_libelle %></span>
-                  </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span id="cat">
+                            <%= categorie.tyc_libelle %>
+                        </span>
+                    </li>
                 </ol>
-              </nav>
+            </nav>
         </div>
         <div class="button">
             <button class="btn btn-info">
@@ -23,25 +25,30 @@
             </button>
         </div>
     </div>
-    
-    <div class="table-content">     
+
+    <div class="table-content">
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
                 <th>Libellé</th>
                 <th>Actions</th>
             </tr>
-            <% subcategories?.forEach((element) => { %>
+            <% subcategories?.forEach((element)=> { %>
                 <tr>
-                    <td><%= element.cat_id %></td>
-                    <td><%= element.cat_libelle %></td>
+                    <td>
+                        <%= element.cat_id %>
+                    </td>
+                    <td>
+                        <%= element.cat_libelle %>
+                    </td>
                     <td class="td-icones">
-                        <i class="fa-solid fa-eye icons"></i> 
-                        <i class="fas fa-edit icons"></i>
+                        <i class="fa-solid fa-eye icons"></i>
+                        <a href="/admin/type-categories/<%= element.cat_id %>/edit"> <i
+                                class="fas fa-edit icons"></i></a>
                         <i class="fa fa-trash icons" aria-hidden="true"></i>
                     </td>
                 </tr>
-            <% }) %>
-           
+                <% }) %>
+
         </table>
     </div>
