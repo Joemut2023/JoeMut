@@ -111,11 +111,11 @@
           <td><%= element.Produit.pro_libelle%></td>
           <td>
             <div class="d-flex gap-4">
-              <form method="get" action="/admin/promo/update/?prm_id">
+              <form method="get" action="/admin/apply/update/?app_id">
                 <input
                   type="hidden"
-                  name="prm_id"
-                  value="<%= element.prm_id %>"
+                  name="app_id"
+                  value="<%= element.app_id %>"
                 />
                 <button class="dropdown-item" type="submit">
                   <i class="fa-solid fa-pen"></i>
@@ -131,11 +131,11 @@
                 ></i>
                 <ul class="dropdown-menu">
                   <li>
-                    <form method="get" action="/admin/promo/update/?prm_id">
+                    <form method="get" action="/admin/apply/update/?app_id">
                       <input
                         type="hidden"
-                        name="prm_id"
-                        value="<%= element.prm_id %>"
+                        name="app_id"
+                        value="<%= element.app_id %>"
                       />
                       <button class="dropdown-item" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i> Afficher

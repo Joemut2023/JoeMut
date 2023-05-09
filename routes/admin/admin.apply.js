@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
 const { Promo, Apply, Produit, Media } = require("../../models");
-const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
-const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async (req, res) => {
   try {
@@ -84,12 +82,13 @@ router.post("/delete", async (req, res) => {
   }
 });
 router.get("/update", async (req, res) => {
-  const prm_id = req.query.prm_id;
+  const app_id = req.query.app_id;
+  console.log(req.query);
   try {
-    const promos = await Promo.findOne({ where: { prm_id } });
-    res.render("promo/update", { promos });
+    const promos = await Apply.findOne({ where: { app_id } });
+    res.render("apply/update", { promos });
   } catch (error) {
-    res.status(500).render("promo/update", {
+    res.status(500).render("apply/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
