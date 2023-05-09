@@ -14,7 +14,7 @@ const {
   Promo,
   Apply
 } = require("../../models");
-const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
+const { PAGINATION_LIMIT_ADMIN, TYPE_PROMO_POURCENTAGE } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async function (req, res) {
@@ -160,6 +160,46 @@ router.post('/add-panier-detail',async (req,res)=>{
   } catch (error) {
     console.log(error);
   //  res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
+router.post('/add-remise',async (req,res)=>{
+  const {type_promo,prm_valeur,com_id,pad_id,pro_id} = req.body;
+  try {
+    var remise,totalHt;
+    const panierDetail = await Panier_detail.findOne({
+      where:{pad_id:pad_id}
+    });
+    totalHt = (panierDetail.pad_qte * panierDetail.pad_ht);
+    if (parseInt(type_promo) === TYPE_PROMO_POURCENTAGE  ) {
+      remise = parseFloat(totalHt * (prm_valeur/100));
+      
+      var promo = await Promo.create({
+        prm_pourcent:parseInt(prm_valeur),
+        prm_debut:new Date(new Date().setDate(new Date().getDate())),
+        prm_fin:new Date(new Date().setDate(new Date().getDate())),
+        prm_actif:true
+      })
+    }else{
+      remise = prm_valeur;
+      var promo = await Promo.create({
+        prm_valeur:parseFloat(prm_valeur),
+        prm_debut:new Date(new Date().setDate(new Date().getDate())),
+        prm_fin:new Date(new Date().setDate(new Date().getDate())),
+        prm_actif:true
+      })
+    }
+    let applies = Apply.create({
+      prm_id:promo.prm_id,
+      pro_id:parseInt(pro_id)
+    });
+    let panier_detail = await Panier_detail.update({
+      prm_id:promo.prm_id,
+      pad_remise:remise
+    },{where:{pad_id:pad_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    //console.log(error);
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 

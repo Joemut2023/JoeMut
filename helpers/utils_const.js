@@ -9,3 +9,5 @@ exports.FACTURE = 2;
 exports.BON_DE_LIVRAISON = 3;
 exports.BON_DE_FACTURATION = 4;
 exports.BON_ESSAYAGE = 5;
+exports.TYPE_PROMO_POURCENTAGE = 1;
+exports.TYPE_PROMO_VALEUR = 2;
