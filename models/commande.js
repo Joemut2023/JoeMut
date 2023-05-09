@@ -71,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       com_debut_spectacle: DataTypes.DATEONLY,
       com_fin_spectacle: DataTypes.DATEONLY,
-      com_remise: DataTypes.DECIMAL,
+      com_remise: DataTypes.FLOAT,
       com_ht: DataTypes.DECIMAL,
       com_tva: DataTypes.DECIMAL,
       com_port: DataTypes.FLOAT,

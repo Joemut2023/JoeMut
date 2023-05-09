@@ -203,17 +203,43 @@ router.post('/add-remise',async (req,res)=>{
   }
 });
 router.post('/add-commande-remise',async (req,res)=>{
-  const {prm_name,prm_valeur,com_id} = req.body;
+  const {prm_name,prm_valeur,type_promo,com_id} = req.body;
+  var promo;
+  var remise=parseFloat(prm_valeur);
   try {
     let commande = await Commande.findOne({
       where:{com_id}
     });
-    // créer une promo
-    // modifier la commande prm_code
+    if (parseInt(type_promo) === TYPE_PROMO_POURCENTAGE) {
+      remise = parseFloat(parseFloat(commande.com_ht) * (remise/100)).toFixed(2);
+      promo = await Promo.create({
+        prm_code:prm_name,
+        prm_pourcent:parseInt(prm_valeur),
+        prm_debut:new Date(new Date().setDate(new Date().getDate())),
+        prm_fin:new Date(new Date().setDate(new Date().getDate())),
+        prm_actif:true,
+        prm_commande:true
+      })
+    } else {
+      promo = await Promo.create({
+        prm_code:prm_name,
+        prm_valeur:parseFloat(prm_valeur),
+        prm_debut:new Date(new Date().setDate(new Date().getDate())),
+        prm_fin:new Date(new Date().setDate(new Date().getDate())),
+        prm_actif:true,
+        prm_commande:true
+      })
+    }
+    console.log(remise);
+    let updatedCommande = await Commande.update({
+      com_remise:remise,
+      com_code_promo:prm_name
+    },{where:{com_id:com_id}});
+
   } catch (error) {
     
   }
-  res.redirect(`/admin/devis/view/${com_id}`);
+ res.redirect(`/admin/devis/view/${com_id}`);
 })
 
 module.exports = router;
