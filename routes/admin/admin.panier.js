@@ -158,9 +158,16 @@ router.post('/add-panier-detail',async (req,res)=>{
       pad_ttc,
       pad_remise,
     });
-    let somme_commande_ht = await Panier_detail.sum("pad_ht",{
-      where: { pan_id },
+    let panierDetails = await Panier_detail.findAll({
+      where:{pan_id}
     });
+    var somme_commande_ht = 0;
+    panierDetails.forEach(panierDetail => {
+      somme_commande_ht += panierDetail.pad_ht * pad_qte
+    });
+    // let somme_commande_ht = await Panier_detail.sum("pad_ht",{
+    //   where: { pan_id },
+    // });
     let somme_commande_ttc = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
     let updatedCommande = await Commande.update({
       com_ht:somme_commande_ht,
