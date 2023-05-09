@@ -11,7 +11,6 @@ const {
 } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   let quantiteOfEachProduct = [];
@@ -66,22 +65,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get('/allbyJson',async (req,res)=>{
+router.get("/add/tailles", async (req, res) => {
   try {
-    let produits = await Produit.findAll();
-    if (produits && produits.length > 0) {
-      return res.json(produits);
-    }else{
-      return res.json([])
-    }
+    const taille = await Taille.findAll();
+    console.log("trgo");
+    res.status(200).json(taille);
   } catch (error) {
-    return res.json(error);
+    console.log(error.message);
   }
-})
-// post 
-// router.get("/add", (req, res) => {
-//   res.render("produits/ajoutProduit");
-// });
+});
 
 router.get("/categorie/:id", async (req, res) => {
   try {
@@ -165,7 +157,7 @@ router.post("/tarif/:id", async function (req, res) {
 
     const tarif = await Tarif.create({
       pro_id: produit.pro_id,
-      tar_debut:new Date(new Date().setDate(new Date().getDate())),
+      tar_debut: new Date(new Date().setDate(new Date().getDate())),
       tar_fin: null,
       tar_ht,
       tar_ttc,
@@ -195,28 +187,22 @@ router.post("/qty/:id", async function (req, res) {
   }
 });
 
+router.get("/allbyJson", async (req, res) => {
+  try {
+    let produits = await Produit.findAll();
+    if (produits && produits.length > 0) {
+      return res.json(produits);
+    } else {
+      return res.json([]);
+    }
+  } catch (error) {
+    return res.json(error);
+  }
+});
+
 //render for editting
 router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");
 });
-
-router.get('/autocomplete-search/:query',async (req,res)=>{
-  const {query} = req.params;
-  try {
-    let produits = await Produit.findAll({
-      limit: 20,
-      include: [
-        { model: Media, attributes: ["med_id", "med_ressource"] },
-        { model: Tarif, attributes: ["tar_ttc"] },
-      ],
-      where: { pro_libelle: { [Op.substring]: query } },
-      order: [["pro_libelle", "DESC"]],
-    });
-    res.json(produits);
-  } catch (error) {
-    res.json(error);
-  }
-})
-
 
 module.exports = router;
