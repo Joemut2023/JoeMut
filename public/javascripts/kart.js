@@ -202,7 +202,11 @@ var Kart = /*#__PURE__*/function () {
         return _addFraisDivers.apply(this, arguments);
       }
       return addFraisDivers;
-    }()
+    }() // static async addCodePromo(pro_code) {
+    //   try {
+    //     axios.post(`${SITE_URL/}`);
+    //   } catch (error) {}
+    // }
   }, {
     key: "addItem",
     value: function () {

@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
             "prm_valeur",
             "prm_debut",
             "prm_fin",
+            "prm_actif"
           ],
         },
       ],

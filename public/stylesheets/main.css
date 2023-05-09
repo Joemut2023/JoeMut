@@ -3378,6 +3378,12 @@
   transform: translateX(-100px);
   transition: all 0.5s ease;
 }
+#page-panier #promo-notice {
+  font-size: 0.8rem;
+}
+#page-panier #promo-notice-asterics {
+  color: #b30707;
+}
 
 #identite {
   width: 80%;
