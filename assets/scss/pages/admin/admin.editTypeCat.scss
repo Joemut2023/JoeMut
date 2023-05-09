@@ -1,0 +1,40 @@
+#page-admin-edit-typeCat{
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    nav{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+
+        .fil-ariane-item {
+          text-decoration: none;
+          color: $color-blue-admin;
+        }
+    }
+    .content{
+        background-color: #fff;
+        border: 1px solid #efefef;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        margin-top: 30px;
+        height: 100px;
+        width: 100%;
+
+        .formulaire{
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+
+            input{
+                border-radius: none;
+            }
+           
+
+            button{
+                border-radius: none;
+                border: none;
+                font-size: medium;
+                background-color: $color-blue-admin;
+                color : #fff;
+            }
+        }
+    }
+}
