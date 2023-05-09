@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Op } = require("sequelize");
+const { Op, STRING } = require("sequelize");
 const { Promo, Apply, Produit, Media } = require("../../models");
 
 router.get("/", async (req, res) => {
@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
       ],
     });
     res.render("apply/index", { applies });
-    // res.json(applies);
   } catch (error) {
     res.status(500).render("apply/index", {
       error: true,
@@ -49,31 +48,49 @@ router.post("/add", async (req, res) => {
   const { pro_id, prm_id } = req.body;
   try {
     const promos = await Promo.findAll();
-    const produits = await Produit.findAll();
     const oldApply = await Apply.findOne({
       where: { [Op.and]: [{ pro_id, prm_id }] },
     });
     if (oldApply) {
       const errorMsg = "cette promo est déjà appliquée à ce produit";
-      return res.render("apply/add", { promos, produits, errorMsg });
+      return res.render("apply/add", { promos, errorMsg });
     }
     await Apply.create({ pro_id, prm_id });
     const succesMsg = "la promo a été ajoutée au produit";
 
-    return res.render("apply/add", { promos, produits, succesMsg });
+    return res.render("apply/add", { promos, succesMsg });
   } catch (error) {
     res.status(500).render("apply/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
-    console.log(error);
   }
 });
 router.post("/delete", async (req, res) => {
   const app_id = req.body.app_id;
   try {
     await Apply.destroy({ where: { app_id } });
-    res.redirect("/admin/apply");
+    const applies = await Apply.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_libelle"],
+          include: { model: Media, attributes: ["med_ressource"] },
+        },
+        {
+          model: Promo,
+          attributes: [
+            "prm_code",
+            "prm_pourcent",
+            "prm_valeur",
+            "prm_debut",
+            "prm_fin",
+          ],
+        },
+      ],
+    });
+    const succesMsg = "Promo sur le produit supprimé avec succès";
+    res.render("apply/index", { applies, succesMsg });
   } catch (error) {
     res.status(500).render("apply/index", {
       error: true,
@@ -83,10 +100,22 @@ router.post("/delete", async (req, res) => {
 });
 router.get("/update", async (req, res) => {
   const app_id = req.query.app_id;
-  console.log(req.query);
   try {
-    const promos = await Apply.findOne({ where: { app_id } });
-    res.render("apply/update", { promos });
+    const promos = await Apply.findOne({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_libelle"],
+        },
+        {
+          model: Promo,
+          attributes: ["prm_id", "prm_code"],
+        },
+      ],
+      where: { app_id },
+    });
+    const allPromos = await Promo.findAll();
+    res.render("apply/update", { promos, allPromos });
   } catch (error) {
     res.status(500).render("apply/update", {
       error: true,
@@ -95,50 +124,60 @@ router.get("/update", async (req, res) => {
   }
 });
 router.post("/update", async (req, res) => {
-  const {
-    prm_code,
-    prm_pourcent,
-    prm_valeur,
-    prm_debut,
-    prm_fin,
-    prm_actif,
-    prm_id,
-    prm_commande,
-  } = req.body;
-  console.log(prm_commande, "commande");
-  const statusUpdate = typeof prm_actif == "undefined" ? false : true;
-  const prmCommande = typeof prm_commande == "undefined" ? false : true;
+  const { prm_id, app_id, prod_id } = req.body;
   try {
-    if (prm_fin < prm_debut) {
-      const promos = await Promo.findOne({ where: { prm_id } });
-      const nothingMsg =
-        "La création de la promo a échouée : la date du début de la promo doit être inférieure à la date de fin";
-      return res.render("promo/update", { promos, nothingMsg });
+    const allPromos = await Promo.findAll();
+    if (prm_id == "Choisir la promo") {
+      const promos = await Apply.findOne({
+        include: [
+          {
+            model: Produit,
+            attributes: ["pro_libelle"],
+          },
+          {
+            model: Promo,
+            attributes: ["prm_id", "prm_code"],
+          },
+        ],
+        where: { app_id },
+      });
+      const errorMsg = "veillez renseigner la promo";
+
+      return res.render("apply/update", { allPromos, promos, errorMsg });
     }
-    const newPromos = await Promo.update(
+    const newApply = await Apply.update(
       {
-        prm_code,
-        prm_pourcent,
-        prm_valeur,
-        prm_debut,
-        prm_fin,
-        prm_actif: statusUpdate,
-        prm_commande: prmCommande,
+        prm_id,
+        pro_id: prod_id,
       },
-      { where: { prm_id } }
+      { where: { app_id } }
     );
-    const promos = await Promo.findOne({ where: { prm_id } });
-    if (newPromos[0] == 1) {
+    const promos = await Apply.findOne({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_libelle"],
+        },
+        {
+          model: Promo,
+          attributes: ["prm_id", "prm_code"],
+        },
+      ],
+      where: { app_id },
+    });
+
+    if (newApply[0] == 1) {
       const succesMsg = "la promo a été mise à jour avec succès";
-      return res.render("promo/update", { promos, succesMsg });
+      return res.render("apply/update", { allPromos, promos, succesMsg });
     }
     const nothingMsg = "aucune nouvelle information trouvée ";
-    res.render("promo/update", { promos, nothingMsg });
+    res.render("apply/update", { promos, allPromos, nothingMsg });
   } catch (error) {
-    res.status(500).render("promo/update", {
+    res.status(500).render("apply/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
+    console.log(error);
   }
 });
 

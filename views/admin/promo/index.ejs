@@ -50,6 +50,11 @@
     </div>
   </div>
 </div>
+<% if (typeof errorMsg !== 'undefined') { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMsg %></div>
+<% } %> <% if (typeof succesMsg == 'string') { %>
+<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<% } %>
 <div id="admin-page-promo">
   <div class="promo-content mt-3">
     <div class="d-flex justify-content-between p-3 pb-0">

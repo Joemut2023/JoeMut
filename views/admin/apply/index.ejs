@@ -3,12 +3,12 @@
   <div class="produit-menu">
     <h4>Gérer vos les produits en promo</h4>
     <div class="produit-menu-btn">
-      <button type="button" class="btn btn-info">
-        <a href="/admin/apply/add">
+      <a href="/admin/apply/add">
+        <button type="button" class="btn btn-info">
           <i class="fa-solid fa-circle-plus"></i> Appliquer une promo à un
-          produit</a
-        >
-      </button>
+          produit
+        </button>
+      </a>
       <button type="button" class="btn btn-outline-secondary">Aide</button>
     </div>
   </div>
@@ -51,6 +51,9 @@
     </div>
   </div>
 </div>
+<% if (typeof succesMsg == 'string') { %>
+<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<% } %>
 <div id="admin-page-apply">
   <div class="apply-content mt-3 mb-5">
     <div class="d-flex justify-content-between p-3 pb-0">
@@ -122,40 +125,16 @@
                 </button>
               </form>
 
-              <div class="dropdown">
-                <i
-                  class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                ></i>
-                <ul class="dropdown-menu">
-                  <li>
-                    <form method="get" action="/admin/apply/update/?app_id">
-                      <input
-                        type="hidden"
-                        name="app_id"
-                        value="<%= element.app_id %>"
-                      />
-                      <button class="dropdown-item" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i> Afficher
-                      </button>
-                    </form>
-                  </li>
-                  <li>
-                    <form method="post" action="/admin/apply/delete">
-                      <input
-                        type="hidden"
-                        name="app_id"
-                        value="<%= element.app_id %>"
-                      />
-                      <button class="dropdown-item" type="submit">
-                        <i class="fa-solid fa-trash"></i> Supprimer
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-              </div>
+              <form method="post" action="/admin/apply/delete">
+                <input
+                  type="hidden"
+                  name="app_id"
+                  value="<%= element.app_id %>"
+                />
+                <button class="dropdown-item" type="submit">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
             </div>
           </td>
         </tr>

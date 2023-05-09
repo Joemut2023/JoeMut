@@ -61,12 +61,18 @@
     <p>Produits en promo</p>
   </div>
   <hr />
-  <form method="POST" action="/admin/apply/add">
+  <form method="POST" action="/admin/apply/update">
     <div class="d-flex flex-column gap-4">
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
           <label for="InputCode">promo</label>
         </div>
+        <input
+          type="hidden"
+          name="app_id"
+          class="hidden-input-pro-id-add-panier_detail"
+          value="<%= promos.app_id %>"
+        />
         <div class="w-50">
           <select
             required
@@ -75,9 +81,9 @@
             name="prm_id"
           >
             <option selected>Choisir la promo</option>
-            <% for( let index = 0; index < promos.length; index++ ) { %>
-            <option value="<%= promos[index].prm_id %>">
-              <%= promos[index].prm_code %>
+            <% for( let index = 0; index < allPromos.length; index++ ) { %>
+            <option value="<%= allPromos[index].prm_id %>">
+              <%= allPromos[index].prm_code %>
             </option>
             <% } %>
           </select>
@@ -95,9 +101,16 @@
             name="myCountry"
             placeholder="Tapez le nom d'un produit"
             class="form-control add-panier-detail-input-name"
-            value=""
+            value="<%= promos.Produit.pro_libelle %>"
+            readonly="readonly"
           />
         </div>
+        <input
+          type="hidden"
+          name="prod_id"
+          class=".hidden-input-pro-id-add-panier_detail"
+          value="<%= promos.pro_id %>"
+        />
         <input
           type="hidden"
           name="pro_id"

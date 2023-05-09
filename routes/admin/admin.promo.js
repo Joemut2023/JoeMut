@@ -82,9 +82,18 @@ router.post("/add", async (req, res) => {
 });
 router.post("/delete", async (req, res) => {
   const prm_id = req.body.prm_id;
+  console.log(req.body, "body");
   try {
+    
+    const promo = await Promo.findOne({ where: { prm_id } });
+    if (promo.prm_actif == true) {
+      const errorMsg = "Vous ne pouvez pas supprimé une promo qui est active";
+      return res.render("promo/index", { promos, errorMsg });
+    }
     await Promo.destroy({ where: { prm_id } });
-    res.redirect("/admin/promo");
+    const promos = await Promo.findAll();
+    const succesMsg = "Promo supprimée avec succès";
+    return res.render("promo/index", { promos, succesMsg });
   } catch (error) {
     res.status(500).render("promo/index", {
       error: true,
