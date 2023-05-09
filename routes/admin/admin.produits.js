@@ -68,21 +68,23 @@ router.get("/", async (req, res) => {
 router.get("/add/tailles", async (req, res) => {
   try {
     const taille = await Taille.findAll();
-    console.log("trgo")
+    console.log("trgo");
     res.status(200).json(taille);
-  } catch (error) {
-    console.log(error.message)
-  }
-});
-
-router.get("/categorie/:id", async(req, res)=>{
-  try {
-    const categorie = await Categorie.findAll({where:{tyc_id:req.params.id}})
-    res.json(categorie)
   } catch (error) {
     console.log(error.message);
   }
-})
+});
+
+router.get("/categorie/:id", async (req, res) => {
+  try {
+    const categorie = await Categorie.findAll({
+      where: { tyc_id: req.params.id },
+    });
+    res.json(categorie);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 //render for create
 router.get("/add", async (req, res) => {
   try {
@@ -98,14 +100,20 @@ router.get("/add", async (req, res) => {
   } catch (error) {}
 });
 
-router.post('/',async (req,res) =>{
-
-  const {cat_id,pro_ref,pro_libelle,pro_description,pro_details,pro_new_collect,pro_en_avant,pro_comment,pro_statut} = req.body
+router.post("/", async (req, res) => {
+  const {
+    cat_id,
+    pro_ref,
+    pro_libelle,
+    pro_description,
+    pro_details,
+    pro_new_collect,
+    pro_en_avant,
+    pro_comment,
+    pro_statut,
+  } = req.body;
 
   try {
-    const oldProduct = await Produit.findOne({where:{pro_ref}})
-    if(oldProduct) return res.status(409).send("produit existe déjà")
-    //create product
     const product = await Produit.create({
       cat_id,
       pro_ref,
@@ -117,21 +125,30 @@ router.post('/',async (req,res) =>{
       pro_comment,
       pro_statut,
     });
-    
-    return res.status(201).json({product})
+    return res.status(201).json({ product });
   } catch (error) {
     console.log(error.message);
   }
-})
+});
 
+router.post("/media/:id", async function (req, res) {
+  const { med_libelle, med_ressource } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
 
+    const media = await Media.create({
+      pro_id: produit.pro_id,
+      tym_id: 1,
+      med_libelle,
+      med_ressource,
+      mimetype: "image/jpeg",
+    });
 
-
-
-
-
-
-
+    return res.status(201).json(media);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 //render for editting
 router.get("/:id", async function (req, res) {

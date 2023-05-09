@@ -67,6 +67,7 @@ inputImage.addEventListener("change", () => {
   for (let i = 0; i < files.length; i++) {
     imagesArray.push(files[i]);
   }
+  console.log(imagesArray);
   displayImages();
 });
 
@@ -202,5 +203,38 @@ btnEnregistrer.addEventListener("click", async function () {
       "X-Requested-With": "XMLHttpRequest",
     },
   });
-   console.log(produit);
+
+  imagesArray.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name.split(".")[0],
+      med_ressource: image.name,
+    };
+    const media = await axios.post(
+      `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+    console.log(media);
+  });
+
+  // const dataMedia = {
+  //   med_libelle: imagesArray[0].name.split(".")[0],
+  //   med_ressource: imagesArray[0].name,
+  // };
+  // const media = await axios.post(
+  //   `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+  //   dataMedia,
+  //   {
+  //     headers: {
+  //       "X-Requested-With": "XMLHttpRequest",
+  //     },
+  //   }
+  // );
+  // console.log(media);
+
+  console.log(produit);
 });

@@ -65,6 +65,7 @@ inputImage.addEventListener("change", function () {
   for (var i = 0; i < files.length; i++) {
     imagesArray.push(files[i]);
   }
+  console.log(imagesArray);
   displayImages();
 });
 inputImage.addEventListener("drop", function (e) {
@@ -101,10 +102,10 @@ function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
@@ -114,9 +115,9 @@ function _addTaille() {
           lines.appendChild(line);
         case 4:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return _addTaille.apply(this, arguments);
 }
@@ -173,10 +174,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee2, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
   var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, data, produit;
-  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-    while (1) switch (_context3.prev = _context3.next) {
+  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+    while (1) switch (_context4.prev = _context4.next) {
       case 0:
         categorieselect = document.querySelector(".select-type-cat");
         cat_id = categorieselect ? categorieselect.value : 1;
@@ -194,18 +195,63 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context3.next = 8;
+        _context4.next = 8;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        produit = _context3.sent;
+        produit = _context4.sent;
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
+            var dataMedia, media;
+            return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+              while (1) switch (_context3.prev = _context3.next) {
+                case 0:
+                  dataMedia = {
+                    med_libelle: image.name.split(".")[0],
+                    med_ressource: image.name
+                  };
+                  _context3.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(produit.data.product.pro_id), dataMedia, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  media = _context3.sent;
+                  console.log(media);
+                case 5:
+                case "end":
+                  return _context3.stop();
+              }
+            }, _callee3);
+          }));
+          return function (_x2) {
+            return _ref4.apply(this, arguments);
+          };
+        }());
+
+        // const dataMedia = {
+        //   med_libelle: imagesArray[0].name.split(".")[0],
+        //   med_ressource: imagesArray[0].name,
+        // };
+        // const media = await axios.post(
+        //   `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        //   dataMedia,
+        //   {
+        //     headers: {
+        //       "X-Requested-With": "XMLHttpRequest",
+        //     },
+        //   }
+        // );
+        // console.log(media);
+
         console.log(produit);
-      case 10:
+      case 11:
       case "end":
-        return _context3.stop();
+        return _context4.stop();
     }
-  }, _callee3);
+  }, _callee4);
 })));
