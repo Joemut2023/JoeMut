@@ -25,10 +25,6 @@ var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
 var selectCategorie = document.querySelector(".select-categorie");
 var categorieParent = document.querySelector(".accueil");
-var selectTaille = document.querySelector(".select-taille");
-selectTaille.addEventListener("change", function () {
-  console.log("value taille", this.value);
-});
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -104,22 +100,22 @@ function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-      while (1) switch (_context5.prev = _context5.next) {
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
-          line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
+          line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select select-taille\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
             return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
           }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
           lines.appendChild(line);
         case 4:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
-    }, _callee5);
+    }, _callee6);
   }));
   return _addTaille.apply(this, arguments);
 }
@@ -176,10 +172,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee2, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif;
-  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-    while (1) switch (_context4.prev = _context4.next) {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles;
+  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+    while (1) switch (_context5.prev = _context5.next) {
       case 0:
         categorieselect = document.querySelector(".select-type-cat");
         cat_id = categorieselect ? categorieselect.value : 1;
@@ -199,14 +195,14 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context4.next = 10;
+        _context5.next = 10;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 10:
-        produit = _context4.sent;
+        produit = _context5.sent;
         imagesArray.map( /*#__PURE__*/function () {
           var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
             var dataMedia, media;
@@ -236,7 +232,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref4.apply(this, arguments);
           };
         }());
-        _context4.next = 14;
+        _context5.next = 14;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -246,11 +242,59 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 14:
-        tarif = _context4.sent;
+        tarif = _context5.sent;
+        // selectTailles.map(async (item) => {
+        //   const dataselect = {
+        //     tai_id: item.value,
+        //     qua_nbre:qty,
+        //   };
+        //   const media = await axios.post(
+        //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+        //     dataMedia,
+        //     {
+        //       headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //       },
+        //     }
+        //   );
+        //   console.log(media);
+        // });
+
         console.log(tarif);
-      case 16:
+        selectTailles = document.querySelectorAll(".select-taille");
+        Array.from(selectTailles, /*#__PURE__*/function () {
+          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+              while (1) switch (_context4.prev = _context4.next) {
+                case 0:
+                  console.log(item.parentNode.parentNode.parentNode.children[1].children[1].children[0]);
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context4.next = 4;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(produit.data.product.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 4:
+                  qty = _context4.sent;
+                  console.log(qty);
+                case 6:
+                case "end":
+                  return _context4.stop();
+              }
+            }, _callee4);
+          }));
+          return function (_x3) {
+            return _ref5.apply(this, arguments);
+          };
+        }());
+      case 18:
       case "end":
-        return _context4.stop();
+        return _context5.stop();
     }
-  }, _callee4);
+  }, _callee5);
 })));

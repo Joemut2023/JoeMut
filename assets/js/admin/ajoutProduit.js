@@ -24,12 +24,6 @@ const btns_delete = document.querySelectorAll(".delete");
 const selectCategorie = document.querySelector(".select-categorie");
 const categorieParent = document.querySelector(".accueil");
 
-const selectTaille = document.querySelector(".select-taille");
-
-selectTaille.addEventListener("change", function () {
-  console.log("value taille", this.value);
-});
-
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -114,7 +108,7 @@ async function addTaille(taille) {
      <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
-                          class="form-select"
+                          class="form-select select-taille"
                           aria-label="Default select example"
                         >
                       ${taille.data.map(
@@ -187,8 +181,8 @@ btnEnregistrer.addEventListener("click", async function () {
   const pro_new_collect = collect.checked ? 1 : 0;
   const pro_en_avant = avant.checked ? 1 : 0;
   const pro_statut = statut.checked ? 1 : 0;
-  const tar_ht = parseFloat(Number((ht.value).replace(",",".")))
-  const tar_ttc = parseFloat(Number((ttc.value).replace(",",".")))
+  const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
+  const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
 
   const data = {
     cat_id,
@@ -229,7 +223,7 @@ btnEnregistrer.addEventListener("click", async function () {
     `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
     {
       tar_ht,
-      tar_ttc
+      tar_ttc,
     },
     {
       headers: {
@@ -238,5 +232,51 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
+    // selectTailles.map(async (item) => {
+    //   const dataselect = {
+    //     tai_id: item.value,
+    //     qua_nbre:qty,
+    //   };
+    //   const media = await axios.post(
+    //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+    //     dataMedia,
+    //     {
+    //       headers: {
+    //         "X-Requested-With": "XMLHttpRequest",
+    //       },
+    //     }
+    //   );
+    //   console.log(media);
+    // });
+
   console.log(tarif);
+ 
+  const selectTailles = document.querySelectorAll(".select-taille");
+  
+  Array.from(selectTailles, async (item) => {
+
+    console.log(item.parentNode.parentNode.parentNode.children[1].children[1].children[0])
+
+     const dataselect = {
+       tai_id: item.value,
+       qua_nbre: parseInt(
+         item.parentNode.parentNode.parentNode.children[1].children[1]
+           .children[0].value
+       ),
+     };
+      const qty = await axios.post(
+        `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+        dataselect,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+      console.log(qty);
+  }
+    
+  );
+
+
 });

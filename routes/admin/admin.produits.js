@@ -170,6 +170,23 @@ router.post("/tarif/:id", async function (req, res) {
   }
 });
 
+router.post("/qty/:id", async function (req, res) {
+  const { qua_nbre, tai_id } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const qty = await Quantite.create({
+      pro_id: produit.pro_id,
+      tai_id,
+      qua_nbre,
+    });
+
+    return res.status(201).json(qty);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 //render for editting
 router.get("/:id", async function (req, res) {
   res.render("produits/editProduit");
