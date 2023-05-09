@@ -75,6 +75,14 @@ router.get("/add/tailles", async (req, res) => {
   }
 });
 
+router.get("/categorie/:id", async(req, res)=>{
+  try {
+    const categorie = await Categorie.findAll({where:{tyc_id:req.params.id}})
+    res.json(categorie)
+  } catch (error) {
+    console.log(error.message);
+  }
+})
 router.get("/add", async (req, res) => {
   try {
     const typeCategorie = await Type_categorie.findAll();

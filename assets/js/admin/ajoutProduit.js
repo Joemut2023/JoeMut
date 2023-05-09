@@ -10,7 +10,9 @@ const btnAdd = document.querySelector(".btn-add-taille");
 
 const btns_delete = document.querySelectorAll(".delete");
 
-console.log("buttons ", btns_delete);
+const selectCategorie = document.querySelector(".select-categorie");
+// const selectTypeCategorie = document.querySelector(".select-type-cat");
+const categorieParent = document.querySelector(".accueil");
 
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
@@ -91,7 +93,6 @@ async function addTaille(taille) {
   const line = document.createElement("div");
   line.classList.add("quantity", "row");
 
-  console.log(taille);
   line.innerHTML = `
      <div class="col-md-5 qty-left">
                       <div class="form-group">
@@ -129,4 +130,38 @@ btnAdd.addEventListener("click", async function () {
   });
   // console.log(taille);
   addTaille(taille);
+});
+
+function listCategorie(categorie) {
+  const selectCat = document.createElement("select");
+
+  selectCat.classList.add("form-select", "select-type-cat");
+  selectCat.setAttribute("aria-label", "Default select example");
+
+  selectCat.innerHTML = `
+  ${categorie.data.map(
+    (item) => `<option value=${item.cat_id}>${item.cat_libelle}</option>`
+  )}
+  `;
+
+  while (categorieParent.firstChild) {
+    categorieParent.removeChild(categorieParent.lastChild);
+  }
+
+  categorieParent.appendChild(selectCat);
+  
+  
+}
+
+selectCategorie.addEventListener("change", async function () {
+  const categorie = await axios.get(
+    `${SITE_URL}/admin/produits/categorie/${this.value}`,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+
+  listCategorie(categorie);
 });

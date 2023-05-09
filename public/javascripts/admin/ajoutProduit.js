@@ -12,7 +12,9 @@ var input_file = document.querySelector(".inputfile");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
-console.log("buttons ", btns_delete);
+var selectCategorie = document.querySelector(".select-categorie");
+// const selectTypeCategorie = document.querySelector(".select-type-cat");
+var categorieParent = document.querySelector(".accueil");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -84,23 +86,22 @@ function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
-          console.log(taille);
           line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
             return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
           }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
           lines.appendChild(line);
-        case 5:
+        case 4:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _addTaille.apply(this, arguments);
 }
@@ -124,4 +125,36 @@ btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_r
         return _context.stop();
     }
   }, _callee);
+})));
+function listCategorie(categorie) {
+  var selectCat = document.createElement("select");
+  selectCat.classList.add("form-select", "select-type-cat");
+  selectCat.setAttribute("aria-label", "Default select example");
+  selectCat.innerHTML = "\n  ".concat(categorie.data.map(function (item) {
+    return "<option value=".concat(item.cat_id, ">").concat(item.cat_libelle, "</option>");
+  }), "\n  ");
+  while (categorieParent.firstChild) {
+    categorieParent.removeChild(categorieParent.lastChild);
+  }
+  categorieParent.appendChild(selectCat);
+}
+selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  var categorie;
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
+      case 0:
+        _context2.next = 2;
+        return axios.get("".concat(SITE_URL, "/admin/produits/categorie/").concat(this.value), {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 2:
+        categorie = _context2.sent;
+        listCategorie(categorie);
+      case 4:
+      case "end":
+        return _context2.stop();
+    }
+  }, _callee2, this);
 })));
