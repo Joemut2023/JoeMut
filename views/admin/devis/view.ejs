@@ -224,7 +224,7 @@
                                     <form action="/admin/devis/commande/delete-panier-detail" method="post">
                                       <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                                       <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
-                                      <button type="submit" class="btn btn-primary btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
+                                      <button type="submit" class="btn btn-danger btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
                                         <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-trash"></i>
                                       </button>
                                     </form>
@@ -395,9 +395,13 @@
                                   <p><%= moment(chronologie.chr_date).format('D/MM, YYYY') %></p>
                               </div>
                               <div class="etat-action">
-                                  <p><i class="fa-solid fa-trash"></i></p>
+                                  <form action="/admin/devis/commande-delete-statut" method="post">
+                                    <input type="hidden" name="chr_id" value="<%= chronologie.chr_id %>">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                  </form>
                               </div>
-                          </div>
+                            </div>
                           <% }) %>
                         </div>
                         <form action="/admin/devis/commande/update-statut" method="post">
@@ -411,7 +415,7 @@
                                   </select>
                               </div>
                               <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                              <button class="btn btn-light">Mettre à jour</button>
+                              <button class="btn btn-primary">Mettre à jour</button>
                           </div>
                         </form>
                     </div>

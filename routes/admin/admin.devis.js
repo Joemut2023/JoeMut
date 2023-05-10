@@ -372,4 +372,17 @@ router.post('/commande/update-statut',async (req,res)=>{
   }
   res.redirect(`/admin/devis/view/${com_id}`);
 });
+router.post('/commande-delete-statut',async (req,res)=>{
+  const {com_id,chr_id} = req.body;
+  try {
+    await Chronologie.destroy({
+      where:{
+        chr_id
+      }
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    
+  }
+})
 module.exports = router;
