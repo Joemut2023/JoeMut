@@ -71,7 +71,13 @@ router.get("/", async (req, res) => {
     });
 
     if (newPanierDetail[0] == 1) {
-      return res.json({ codePromo, apply, panierDetail, pad_remise, updatePanierDetail });
+      return res.json({
+        codePromo,
+        apply,
+        panierDetail,
+        pad_remise,
+        updatePanierDetail,
+      });
     }
 
     return res.send("Aucune remise appliquée");
