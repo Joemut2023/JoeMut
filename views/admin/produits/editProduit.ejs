@@ -315,34 +315,66 @@
                   <span style="color:rgb(41, 144, 228)"><i class="fa-solid fa-circle-info"></i></span>
                 </div>
                 <div class="form-check">
-                  <input
+                  <% if(produit.pro_new_collect === true){ %>
+                    <input
+                    class="form-check-input pro-new-collect"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                    checked
+                  />
+                  <% } else { %>
+                      <input
                     class="form-check-input pro-new-collect"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
+                   <% } %>
+                 
                   <label class="form-check-label" for="flexCheckDefault">
                     Nouvelle collection
                   </label>
                 </div>
                 <div class="form-check">
-                  <input
+                       <% if(produit.pro_new_collect === true){ %>
+                   <input
+                    class="form-check-input pro-en-avant"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                    checked
+                  />
+                  <% } else { %>
+                      <input
                     class="form-check-input pro-en-avant"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
+                   <% } %>
                   <label class="form-check-label" for="flexCheckDefault">
                     En avant
                   </label>
                 </div>
                 <div class="form-check">
-                  <input
+                      <% if(produit.pro_new_collect === true){ %>
+                    <input
+                    class="form-check-input pro-statut"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                    checked
+                  />
+                  <% } else { %>
+                     <input
                     class="form-check-input pro-statut"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
+                   <% } %>
+
                   <label class="form-check-label" for="flexCheckDefault">
                     Statut
                   </label>
