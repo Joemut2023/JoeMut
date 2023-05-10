@@ -131,6 +131,8 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
 router.post("/media/:id", async function (req, res) {
   const { med_libelle, med_ressource } = req.body;
   try {
@@ -251,6 +253,47 @@ router.get("/:id", async function (req, res) {
     });
   } catch (error) {
     console.log(error);
+  }
+});
+
+router.get('/one/:ref',async function(req,res){
+  try {
+    const produit = await Produit.findOne({where:{pro_ref:req.params.ref}})
+    res.status(200).json(produit)
+    
+  } catch (error) {
+    
+  }
+})
+
+router.put("/:id", async (req, res) => {
+  const {
+    cat_id,
+    pro_ref,
+    pro_libelle,
+    pro_description,
+    pro_details,
+    pro_new_collect,
+    pro_en_avant,
+    pro_comment,
+    pro_statut,
+  } = req.body;
+
+  try {
+    const product = await Produit.update({
+      cat_id,
+      pro_ref,
+      pro_libelle,
+      pro_description,
+      pro_details,
+      pro_new_collect,
+      pro_en_avant,
+      pro_comment,
+      pro_statut,
+    },{where:{pro_id:req.params.id}});
+    return res.status(201).json({ product });
+  } catch (error) {
+    console.log(error.message);
   }
 });
 

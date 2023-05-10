@@ -12,13 +12,19 @@ var button2 = document.querySelector(".btn-tab-2");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
+var pro_libelle = document.querySelector(".pro-libelle");
+var pro_ref = document.querySelector(".pro-ref");
+var pro_description = document.querySelector(".pro-description");
+var pro_details = document.querySelector(".pro-details");
 var collect = document.querySelector(".pro-new-collect");
 var avant = document.querySelector(".pro-en-avant");
 var statut = document.querySelector(".pro-statut");
 var selectCategorie = document.querySelector(".select-categorie");
 var categorieParent = document.querySelector(".accueil");
 var listCat = document.querySelector(".cat-select");
-console.log("buttons ", btns_delete);
+var ht = document.querySelector(".tar-ht");
+var ttc = document.querySelector(".tar-ttc");
+var btnEnregistrer = document.querySelector(".update");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -87,7 +93,6 @@ function listCategorie(categorie) {
     return "<option value=".concat(item.cat_id, ">").concat(item.cat_libelle, "</option>");
   }), "\n  ");
 }
-console.log(selectCategorie);
 selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   var categorie;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -107,4 +112,103 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
         return _context.stop();
     }
   }, _callee, this);
+})));
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit;
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
+      case 0:
+        cat_id = listCat ? listCat.value : 1;
+        pro_new_collect = collect.checked ? 1 : 0;
+        pro_en_avant = avant.checked ? 1 : 0;
+        pro_statut = statut.checked ? 1 : 0;
+        tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
+        tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
+        _context2.next = 8;
+        return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 8:
+        _context2.next = 10;
+        return _context2.sent;
+      case 10:
+        Myproduct = _context2.sent;
+        data = {
+          cat_id: cat_id,
+          pro_ref: pro_ref.value,
+          pro_libelle: pro_libelle.value,
+          pro_description: pro_description.textContent,
+          pro_details: pro_details.textContent,
+          pro_new_collect: pro_new_collect,
+          pro_en_avant: pro_en_avant,
+          pro_statut: pro_statut
+        };
+        _context2.next = 14;
+        return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 14:
+        produit = _context2.sent;
+        console.log(produit);
+
+        // imagesArray.map(async (image) => {
+        //   const dataMedia = {
+        //     med_libelle: image.name.split(".")[0],
+        //     med_ressource: image.name,
+        //   };
+        //   const media = await axios.post(
+        //     `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        //     dataMedia,
+        //     {
+        //       headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //       },
+        //     }
+        //   );
+        //   console.log(media);
+        // });
+
+        // const tarif = await axios.post(
+        //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
+        //   {
+        //     tar_ht,
+        //     tar_ttc,
+        //   },
+        //   {
+        //     headers: {
+        //       "X-Requested-With": "XMLHttpRequest",
+        //     },
+        //   }
+        // );
+
+        // const selectTailles = document.querySelectorAll(".select-taille");
+
+        // Array.from(selectTailles, async (item) => {
+        //   const dataselect = {
+        //     tai_id: item.value,
+        //     qua_nbre: parseInt(
+        //       item.parentNode.parentNode.parentNode.children[1].children[1]
+        //         .children[0].value
+        //     ),
+        //   };
+        //   const qty = await axios.post(
+        //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+        //     dataselect,
+        //     {
+        //       headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //       },
+        //     }
+        //   );
+        //   console.log(qty);
+        // });
+      case 16:
+      case "end":
+        return _context2.stop();
+    }
+  }, _callee2);
 })));
