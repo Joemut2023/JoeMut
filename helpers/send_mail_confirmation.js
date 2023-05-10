@@ -56,6 +56,7 @@ module.exports = async (
       tdo_id: DEVIS,
       com_id: commande.com_id,
       doc_date: new Date(new Date().setDate(new Date().getDate())),
+      doc_libelle:commande.com_num.trimStart()
     });
   } catch (error) {
     console.log(error);
