@@ -124,10 +124,12 @@
                             <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
                             <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>
-                            <td><input type="radio" name="" id=""></td>
+                            <td>
+                              <%= commande.commande.Chronologies[0].Statut_commande.stc_libelle %>
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-between">
-                                  <i class="fa-solid fa-pen"></i>
+                                  <a href="/admin/devis/view/<%= commande.commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
                                   <div class="dropdown">
                                     <i
                                       class="fa-solid dropdown-toggle fa-ellipsis-vertical"

@@ -17,7 +17,9 @@ const {
   Titre,
   Quantite,
   Apply,
-  Promo
+  Promo,
+  Chronologie,
+  Statut_commande
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -64,14 +66,23 @@ router.get("/", async (req, res) => {
             },
           ],
         },
+        {
+          model:Chronologie,
+          include:[
+            {
+              model:Statut_commande
+            }
+          ]
+        }
       ],
       //group: ["Commande.com_id"],
     });
     let commandesNbr = await Commande.findAndCountAll();
+    // datas complementaire de la requete
     for (let commande of commandes) {
       let pad_ttc = 0
       commande.Panier.Panier_details.forEach(pad => {
-        pad_ttc = pad_ttc + pad.pad_ttc;
+        pad_ttc += pad.pad_ttc * pad.pad_qte;
       });
       let paniers = await Panier.findOne({
         where: { pan_id: commande.pan_id },
@@ -91,6 +102,7 @@ router.get("/", async (req, res) => {
       })  
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
+    console.log(commandes_data[0].commande.Chronologies[0].Statut_commande.stc_libelle);
     let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,

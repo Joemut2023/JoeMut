@@ -9,11 +9,13 @@ const {
   Autre_frais,
   Essayage,
   Client,
+  Chronologie
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
 const user_login = require("../helpers/user_login");
 const {Op} = require('sequelize');
+const { STATUT_COMMANDE_FINALISATION_DEVIS, DEFAULT_ADMIN_USER_ID } = require("../helpers/utils_const");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
@@ -102,6 +104,12 @@ router.post("/", async (req, res) => {
       com_num: ` ${user.cli_nom.substring(0,3).toUpperCase()}-${
         panier.pan_id
       }-${new Date().getFullYear()}`,
+    });
+    let chronologie = await Chronologie.create({
+      stc_id:STATUT_COMMANDE_FINALISATION_DEVIS,
+      com_id:commande_item.com_id,
+      usr_id:DEFAULT_ADMIN_USER_ID,
+      chr_date:new Date(new Date().setDate(new Date().getDate()))
     });
     for (let i = 0; i < essayages.length; i++) {
      if (essayages[i] !== '') {
