@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     if (codePromo.prm_commande) {
       return res
         .status(400)
-        .send("Ce code promo  renseigné ne concerne que les commandes");
+        .send("Le code promo  renseigné ne concerne que les commandes");
     }
     const todayDate = new Date().toISOString().substring(0, 10);
     if (todayDate < codePromo.prm_debut) {
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
         .send("le code promo renseigné n'est pas encore actif");
     }
     if (todayDate > codePromo.prm_fin) {
-      return res.status(400).send("le code promo renseigné n'est plus active");
+      return res.status(400).send("le code promo renseigné n'est plus actif");
     }
     if (!codePromo.prm_actif) {
       return res.status(400).send("le code promo renseigné n'est pas actif");
@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
       return res
         .status(400)
         .send(
-          "le code promo renseigné n'est applicable sur aucun produit se trouvant sur votre panier"
+          "le code promo renseigné n'est applicable sur aucun des produits se trouvant sur votre panier"
         );
     let pad_remise = 0;
     if (codePromo.prm_pourcent) {
@@ -66,16 +66,15 @@ router.get("/", async (req, res) => {
       { pad_remise },
       { where: { pad_id: panierDetail.pad_id } }
     );
-
-    console.log(newPanierDetail[0]);
+    const updatePanierDetail = await Panier_detail.findOne({
+      where: { [Op.and]: [{ pro_id: apply.pro_id }, { pan_id }] },
+    });
 
     if (newPanierDetail[0] == 1) {
-      return res.json({ codePromo, apply, panierDetail });
+      return res.json({ codePromo, apply, panierDetail, pad_remise, updatePanierDetail });
     }
 
-    return res.json("data");
-
-    // return res.json({ codePromo, apply, panierDetail });
+    return res.send("Aucune remise appliquée");
   } catch (error) {}
 });
 
