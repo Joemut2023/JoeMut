@@ -1,7 +1,5 @@
-const btnDocFormNote = document.querySelector('.btn-form-doc-note');
-const btnDocFormPaiement = document.querySelector('.btn-form-doc-paiement');
-const trFormNote = document.querySelector('.tr-form-note');
-const trFormPaiement = document.querySelector('.tr-form-paiement');
+const btnDocFormNotes = document.querySelectorAll('.btn-form-doc-note');
+const btnDocFormPaiements = document.querySelectorAll('.btn-form-doc-paiement');
 const btnEditProds = document.querySelectorAll('.btn-edit-prod');
 const btnUpdateExistAdresseFacturation = document.querySelector('.btn-update-exist-adresse-facturation');
 const btnUpdateExistAdresseLivraison = document.querySelector('.btn-update-exist-adresse-livraison');
@@ -32,8 +30,22 @@ const btnDisableAddRemiseForm = document.querySelector('.btn-disable-add-remise-
 /**
  * Affichage du formulaire de note de commande => Tabs (Documents)
  */
-btnDocFormNote.addEventListener('click',(e)=>{
+btnDocFormNotes.forEach(btnDocFormNote=>{
+  btnDocFormNote.addEventListener('click',(e)=>{
+    let documentId = e.target.dataset.document;
+    const trFormNote = document.querySelector(`.tr-form-note-${documentId}`);
     trFormNote.style.display === ''?trFormNote.style.display='table-row':trFormNote.style.display='';
+  })
+})
+/**
+ * Affichage du formulaire de note de paiement => Tabs (Documents)
+ */
+btnDocFormPaiements.forEach(btnDocFormPaiement=>{
+  btnDocFormPaiement.addEventListener('click',(e)=>{
+    let documentId = e.target.dataset.document;
+    const trFormPaiement = document.querySelector(`.tr-form-paiement-${documentId}`);
+    trFormPaiement.style.display === ''?trFormPaiement.style.display='table-row':trFormPaiement.style.display='';
+  })
 })
 btnsAddremises?.forEach(btnRemise=>{
     btnRemise.addEventListener('click',(e)=>{
@@ -42,12 +54,7 @@ btnsAddremises?.forEach(btnRemise=>{
         trFormProduitRemise.style.display === ''?trFormProduitRemise.style.display='table-row':trFormProduitRemise.style.display='';
     })
 })
-/**
- * Affichage du formulaire de note de paiement => Tabs (Documents)
- */
-btnDocFormPaiement.addEventListener('click',(e)=>{
-    trFormPaiement.style.display === ''?trFormPaiement.style.display='table-row':trFormPaiement.style.display='';
-})
+
 btnEditProds.forEach(btnEditProd=>{
     btnEditProd.addEventListener('click',(e)=>{
         let padId = e.target.dataset.pad;

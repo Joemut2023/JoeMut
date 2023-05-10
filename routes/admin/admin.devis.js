@@ -21,7 +21,8 @@ const {
   Chronologie,
   Statut_commande,
   Document,
-  User
+  User,
+  Type_document
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -167,7 +168,8 @@ router.get('/view/:commandeId',async (req,res)=>{
         "com_frais",
         "com_ht",
         "com_tva",
-        "com_ttc"
+        "com_ttc",
+        "com_num"
       ],
       include: [
         {
@@ -220,7 +222,10 @@ router.get('/view/:commandeId',async (req,res)=>{
           model:Essayage
         },
         {
-          model:Document
+          model:Document,
+          include:[{
+            model:Type_document
+          }]
         },
         {
           model:Chronologie,
