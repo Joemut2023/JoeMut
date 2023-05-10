@@ -5,12 +5,12 @@ class Kart {
   static items = [];
 
   /**
-   *
+   *ajouter un code promo
    * @returns Array
    */
-  // static getParsedBasket() {
-  //   return JSON.parse(localStorage.getItem("storedItems"));
-  // }
+  static getParsedBasket() {
+    return JSON.parse(localStorage.getItem("storedItems"));
+  }
   /**
    *
    * @returns Array of all product in panierDetails
@@ -85,11 +85,19 @@ class Kart {
     return fraisDivers;
   }
 
-  // static async addCodePromo(pro_code) {
-  //   try {
-  //     axios.post(`${SITE_URL/}`);
-  //   } catch (error) {}
-  // }
+  static async addCodePromo(codePromo) {
+    try {
+      const addPromo = await axios.post(`${SITE_URL}/codePromo`, {
+        prm_code: codePromo,
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      Kart.RenderPromoModal(addPromo.data);
+    } catch (error) {
+      Kart.RenderPromoModal(error.response.data, codePromo);
+    }
+  }
 
   static async addItem(item, qte = null) {
     const userStatut = await Kart.getUserStatut();
@@ -115,7 +123,6 @@ class Kart {
           },
         })
         .then(async (res) => {
-          //console.log(res.data);
           const myModal = document.querySelector("#myModal");
           myModal.style.display = "flex";
 
@@ -251,7 +258,6 @@ class Kart {
     let panierDetail = await Kart.getAllPanierDetails();
     let storedItemsHtml = ``;
     let kartProductQte = 0;
-    // console.log(fraisDoss.toString(),fraisPrt.toString());
     if (panierDetail.length !== 0) {
       panierDetail?.map((produit) => {
         kartProductQte = produit.pad_qte + kartProductQte;
@@ -440,6 +446,16 @@ class Kart {
       }
     );
     removeModal.show();
+  }
+  static RenderPromoModal(message) {
+    document.querySelector("#modal-promo-content").innerHTML = message;
+    let PromoModal = new bootstrap.Modal(
+      document.querySelector("#modal-promo"),
+      {
+        keyboard: false,
+      }
+    );
+    PromoModal.show();
   }
   static HideDeleteModal() {
     let removeModal = document.querySelector("#removeModel");

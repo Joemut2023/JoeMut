@@ -51,7 +51,6 @@ router.get("/add", async (req, res) => {
 });
 router.post("/add", async (req, res) => {
   const { prm_id, pro_libelle } = req.body;
-  console.log(req.body);
 
   try {
     const promos = await Promo.findAll({
@@ -199,7 +198,6 @@ router.post("/update", async (req, res) => {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
-    console.log(error);
   }
 });
 

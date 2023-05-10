@@ -196,19 +196,19 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
   }, _callee7);
 }))();
 var TotalPricesProducts = /*#__PURE__*/function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
     var storedITems, storedFrais, totalPriceht, totalPoductPrice, totalQuantity, PanierPriceHtml, link_parag, btn_promo, code_promo_block, btn_fermer, btnFinaliser, btnCodePromo, inputCodePromo;
-    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-      while (1) switch (_context8.prev = _context8.next) {
+    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+      while (1) switch (_context9.prev = _context9.next) {
         case 0:
-          _context8.next = 2;
+          _context9.next = 2;
           return Kart.getAllPanierDetails();
         case 2:
-          storedITems = _context8.sent;
-          _context8.next = 5;
+          storedITems = _context9.sent;
+          _context9.next = 5;
           return Kart.addFraisDivers();
         case 5:
-          storedFrais = _context8.sent;
+          storedFrais = _context9.sent;
           totalPriceht = 0;
           totalPoductPrice = 0;
           totalQuantity = 0;
@@ -235,11 +235,20 @@ var TotalPricesProducts = /*#__PURE__*/function () {
             link_parag.classList.add("linkhide");
             code_promo_block.classList.remove("hide-promo");
             code_promo_block.classList.add("code-promo");
-            console.log(inputCodePromo);
-            console.log(btnCodePromo);
-            btnCodePromo.addEventListener("click", function () {
-              console.log(inputCodePromo.value);
-            });
+            btnCodePromo.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+              return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+                while (1) switch (_context8.prev = _context8.next) {
+                  case 0:
+                    _context8.next = 2;
+                    return Kart.addCodePromo(inputCodePromo.value);
+                  case 2:
+                    inputCodePromo.value = "";
+                  case 3:
+                  case "end":
+                    return _context8.stop();
+                }
+              }, _callee8);
+            })));
           });
           btn_fermer === null || btn_fermer === void 0 ? void 0 : btn_fermer.addEventListener("click", function () {
             link_parag.classList.remove("linkhide");
@@ -248,9 +257,9 @@ var TotalPricesProducts = /*#__PURE__*/function () {
           });
         case 23:
         case "end":
-          return _context8.stop();
+          return _context9.stop();
       }
-    }, _callee8);
+    }, _callee9);
   }));
   return function TotalPricesProducts() {
     return _ref8.apply(this, arguments);

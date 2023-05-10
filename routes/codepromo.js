@@ -3,7 +3,7 @@ const router = express.Router();
 const { Promo, Apply, Panier_detail } = require("../models");
 const { Op } = require("sequelize");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { prm_code } = req.body;
   //   const pan_id = req.session.panierId;
   const pan_id = 3;
@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
       return res
         .status(400)
         .send(
-          "le code promo renseigné n'est pas encore applicable sur les produits"
+          "le code promo renseigné n'est pas encore applicable sur un produit"
         );
 
     const panierDetail = await Panier_detail.findOne({
@@ -66,18 +66,11 @@ router.get("/", async (req, res) => {
       { pad_remise },
       { where: { pad_id: panierDetail.pad_id } }
     );
-    const updatePanierDetail = await Panier_detail.findOne({
-      where: { [Op.and]: [{ pro_id: apply.pro_id }, { pan_id }] },
-    });
 
     if (newPanierDetail[0] == 1) {
-      return res.json({
-        codePromo,
-        apply,
-        panierDetail,
-        pad_remise,
-        updatePanierDetail,
-      });
+      return res
+        .status(200)
+        .json(`code promo validé et remise appliquée avec succès `);
     }
 
     return res.send("Aucune remise appliquée");
