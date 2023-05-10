@@ -39,22 +39,29 @@ router.post("/", async (req, res, next) => {
           return res.status(200).send("indisponible");
         }
       }
+      const tarif = await Tarif.findOne({ where: { pro_id } });
+      let tar_id = tarif.tar_id;
+      let pad_ht = tarif.tar_ht;
+      let pad_ttc = tarif.tar_ttc;
       const promo = await Apply.findOne({
         where: { pro_id },
         include: [
           {
             model: Promo,
-            attributes: ["prm_pourcent","prm_valeur"],
+            attributes: ["prm_pourcent", "prm_valeur"],
             where: { prm_actif: true },
           },
         ],
       });
       let prm_id = promo ? promo.prm_id : null;
-      let pad_remise = promo ? promo.Promo.prm_pourcent : null;
-      const tarif = await Tarif.findOne({ where: { pro_id } });
-      let tar_id = tarif.tar_id;
-      let pad_ht = tarif.tar_ht;
-      let pad_ttc = tarif.tar_ttc;
+      // let pad_remise = promo ? promo.Promo.prm_pourcent : null;
+      let pad_remise = 0;
+      if (promo.Promo.prm_pourcent) {
+        pad_remise = pad_ht * (promo.Promo.prm_pourcent / 100);
+      } else if (promo.Promo.prm_valeur) {
+        pad_remise = promo.Promo.prm_valeur;
+      }
+
       const panierDetail = await Panier_detail.create({
         pro_id,
         tar_id,
