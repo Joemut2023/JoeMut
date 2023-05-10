@@ -18,20 +18,22 @@ var Kart = /*#__PURE__*/function () {
     _classCallCheck(this, Kart);
   }
   _createClass(Kart, null, [{
-    key: "getAllPanierDetails",
+    key: "getParsedBasket",
     value:
     /**
-     *
+     *ajouter un code promo
      * @returns Array
      */
-    // static getParsedBasket() {
-    //   return JSON.parse(localStorage.getItem("storedItems"));
-    // }
+    function getParsedBasket() {
+      return JSON.parse(localStorage.getItem("storedItems"));
+    }
     /**
      *
      * @returns Array of all product in panierDetails
      */
-    function () {
+  }, {
+    key: "getAllPanierDetails",
+    value: function () {
       var _getAllPanierDetails = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var panier;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -202,33 +204,65 @@ var Kart = /*#__PURE__*/function () {
         return _addFraisDivers.apply(this, arguments);
       }
       return addFraisDivers;
-    }() // static async addCodePromo(pro_code) {
-    //   try {
-    //     axios.post(`${SITE_URL/}`);
-    //   } catch (error) {}
-    // }
+    }()
+  }, {
+    key: "addCodePromo",
+    value: function () {
+      var _addCodePromo = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(codePromo) {
+        var addPromo;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              _context6.next = 3;
+              return axios.post("".concat(SITE_URL, "/codePromo"), {
+                prm_code: codePromo,
+                headers: {
+                  "X-Requested-With": "XMLHttpRequest"
+                }
+              });
+            case 3:
+              addPromo = _context6.sent;
+              Kart.RenderPromoModal(addPromo.data);
+              _context6.next = 10;
+              break;
+            case 7:
+              _context6.prev = 7;
+              _context6.t0 = _context6["catch"](0);
+              Kart.RenderPromoModal(_context6.t0.response.data, codePromo);
+            case 10:
+            case "end":
+              return _context6.stop();
+          }
+        }, _callee6, null, [[0, 7]]);
+      }));
+      function addCodePromo(_x) {
+        return _addCodePromo.apply(this, arguments);
+      }
+      return addCodePromo;
+    }()
   }, {
     key: "addItem",
     value: function () {
-      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(item) {
+      var _addItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(item) {
         var qte,
           userStatut,
           storedITems,
           itemForPanier,
-          _args7 = arguments;
-        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-          while (1) switch (_context7.prev = _context7.next) {
+          _args8 = arguments;
+        return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+          while (1) switch (_context8.prev = _context8.next) {
             case 0:
-              qte = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : null;
-              _context7.next = 3;
+              qte = _args8.length > 1 && _args8[1] !== undefined ? _args8[1] : null;
+              _context8.next = 3;
               return Kart.getUserStatut();
             case 3:
-              userStatut = _context7.sent;
+              userStatut = _context8.sent;
               if (!(userStatut == false)) {
-                _context7.next = 6;
+                _context8.next = 6;
                 break;
               }
-              return _context7.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context8.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 6:
               storedITems = JSON.parse(localStorage.getItem("storedItems"));
               itemForPanier = {
@@ -240,7 +274,7 @@ var Kart = /*#__PURE__*/function () {
                 media: item.Media[0].med_ressource,
                 pro_ref: item.pro_ref
               };
-              _context7.prev = 8;
+              _context8.prev = 8;
               axios.post("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: item.pro_id,
                 pad_qte: itemForPanier.pad_qte,
@@ -248,26 +282,25 @@ var Kart = /*#__PURE__*/function () {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               }).then( /*#__PURE__*/function () {
-                var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(res) {
+                var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(res) {
                   var myModal, _qte, produitFilter, produit, produitPositionInArray;
-                  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-                    while (1) switch (_context6.prev = _context6.next) {
+                  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+                    while (1) switch (_context7.prev = _context7.next) {
                       case 0:
-                        //console.log(res.data);
                         myModal = document.querySelector("#myModal");
                         myModal.style.display = "flex";
                         if (!(res.data == "indisponible")) {
-                          _context6.next = 6;
+                          _context7.next = 6;
                           break;
                         }
-                        return _context6.abrupt("return", Kart.RenderMaxQteModal());
+                        return _context7.abrupt("return", Kart.RenderMaxQteModal());
                       case 6:
                         _qte = res.data.panierDetail.pad_qte;
-                        _context6.next = 9;
+                        _context7.next = 9;
                         return Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
                       case 9:
                         if (!storedITems) {
-                          _context6.next = 19;
+                          _context7.next = 19;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -284,43 +317,43 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 16;
+                        _context7.next = 16;
                         return Kart.getItemNumber();
                       case 16:
-                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 24;
+                        document.querySelector("#cart-item-count").innerHTML = _context7.sent;
+                        _context7.next = 24;
                         break;
                       case 19:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 23;
+                        _context7.next = 23;
                         return Kart.getItemNumber();
                       case 23:
-                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
+                        document.querySelector("#cart-item-count").innerHTML = _context7.sent;
                       case 24:
                       case "end":
-                        return _context6.stop();
+                        return _context7.stop();
                     }
-                  }, _callee6);
+                  }, _callee7);
                 }));
-                return function (_x2) {
+                return function (_x3) {
                   return _ref.apply(this, arguments);
                 };
               }());
-              _context7.next = 16;
+              _context8.next = 16;
               break;
             case 12:
-              _context7.prev = 12;
-              _context7.t0 = _context7["catch"](8);
-              _context7.next = 16;
+              _context8.prev = 12;
+              _context8.t0 = _context8["catch"](8);
+              _context8.next = 16;
               return Kart.RenderModal(itemForPanier, qte);
             case 16:
             case "end":
-              return _context7.stop();
+              return _context8.stop();
           }
-        }, _callee7, null, [[8, 12]]);
+        }, _callee8, null, [[8, 12]]);
       }));
-      function addItem(_x) {
+      function addItem(_x2) {
         return _addItem.apply(this, arguments);
       }
       return addItem;
@@ -332,20 +365,20 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "removeItem",
     value: function () {
-      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(itemId) {
+      var _removeItem = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(itemId) {
         var userStatut, kartLoader, pro_id;
-        return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-          while (1) switch (_context9.prev = _context9.next) {
+        return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+          while (1) switch (_context10.prev = _context10.next) {
             case 0:
-              _context9.next = 2;
+              _context10.next = 2;
               return Kart.getUserStatut();
             case 2:
-              userStatut = _context9.sent;
+              userStatut = _context10.sent;
               if (!(userStatut == false)) {
-                _context9.next = 5;
+                _context10.next = 5;
                 break;
               }
-              return _context9.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context10.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               kartLoader = document.querySelector(".kart-loader");
               pro_id = parseInt(itemId);
@@ -358,25 +391,25 @@ var Kart = /*#__PURE__*/function () {
                   "X-Requested-With": "XMLHttpRequest"
                 }
               }).then( /*#__PURE__*/function () {
-                var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(res) {
-                  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-                    while (1) switch (_context8.prev = _context8.next) {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(res) {
+                  return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+                    while (1) switch (_context9.prev = _context9.next) {
                       case 0:
-                        _context8.next = 2;
+                        _context9.next = 2;
                         return Kart.getItemNumber();
                       case 2:
-                        document.querySelector("#cart-item-count").innerHTML = _context8.sent;
+                        document.querySelector("#cart-item-count").innerHTML = _context9.sent;
                         Kart.HideDeleteModal();
                         kartLoader.style.display = res.data ? "none" : "block";
-                        _context8.next = 7;
+                        _context9.next = 7;
                         return Kart.kartRenderItems();
                       case 7:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
-                  }, _callee8);
+                  }, _callee9);
                 }));
-                return function (_x4) {
+                return function (_x5) {
                   return _ref2.apply(this, arguments);
                 };
               }());
@@ -390,11 +423,11 @@ var Kart = /*#__PURE__*/function () {
               // }
             case 9:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
           }
-        }, _callee9);
+        }, _callee10);
       }));
-      function removeItem(_x3) {
+      function removeItem(_x4) {
         return _removeItem.apply(this, arguments);
       }
       return removeItem;
@@ -406,12 +439,12 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "updateItemQuantity",
     value: function () {
-      var _updateItemQuantity = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(itemId, action) {
+      var _updateItemQuantity = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(itemId, action) {
         var panierDetail;
-        return _regeneratorRuntime().wrap(function _callee10$(_context10) {
-          while (1) switch (_context10.prev = _context10.next) {
+        return _regeneratorRuntime().wrap(function _callee11$(_context11) {
+          while (1) switch (_context11.prev = _context11.next) {
             case 0:
-              _context10.next = 2;
+              _context11.next = 2;
               return axios.put("".concat(SITE_URL, "/panierDetail"), {
                 pro_id: itemId,
                 action: action,
@@ -420,15 +453,15 @@ var Kart = /*#__PURE__*/function () {
                 }
               });
             case 2:
-              panierDetail = _context10.sent;
-              return _context10.abrupt("return", panierDetail.data.pad_qte);
+              panierDetail = _context11.sent;
+              return _context11.abrupt("return", panierDetail.data.pad_qte);
             case 4:
             case "end":
-              return _context10.stop();
+              return _context11.stop();
           }
-        }, _callee10);
+        }, _callee11);
       }));
-      function updateItemQuantity(_x5, _x6) {
+      function updateItemQuantity(_x6, _x7) {
         return _updateItemQuantity.apply(this, arguments);
       }
       return updateItemQuantity;
@@ -439,19 +472,19 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "calculTotalPrice",
     value: function () {
-      var _calculTotalPrice = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+      var _calculTotalPrice = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
         var fraisDivers, storedITems, fraisDossier, fraisPort, kartProductPrice, totalPrice;
-        return _regeneratorRuntime().wrap(function _callee11$(_context11) {
-          while (1) switch (_context11.prev = _context11.next) {
+        return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+          while (1) switch (_context12.prev = _context12.next) {
             case 0:
-              _context11.next = 2;
+              _context12.next = 2;
               return Kart.addFraisDivers();
             case 2:
-              fraisDivers = _context11.sent;
-              _context11.next = 5;
+              fraisDivers = _context12.sent;
+              _context12.next = 5;
               return Kart.getAllPanierDetails();
             case 5:
-              storedITems = _context11.sent;
+              storedITems = _context12.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
               kartProductPrice = 0;
@@ -460,15 +493,15 @@ var Kart = /*#__PURE__*/function () {
                 kartProductPrice = kartProductPrice + produit.pad_qte * produit.pad_ttc;
                 totalPrice = kartProductPrice + fraisDossier + fraisPort;
               });
-              return _context11.abrupt("return", {
+              return _context12.abrupt("return", {
                 totalPrice: totalPrice,
                 kartProductPrice: kartProductPrice
               });
             case 12:
             case "end":
-              return _context11.stop();
+              return _context12.stop();
           }
-        }, _callee11);
+        }, _callee12);
       }));
       function calculTotalPrice() {
         return _calculTotalPrice.apply(this, arguments);
@@ -481,39 +514,39 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "kartRenderItems",
     value: function () {
-      var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+      var _kartRenderItems = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
         var userStatut, kartItemsElement, kartLoader, fraisDivers, price, fraisDossier, fraisPort, panierDetail, storedItemsHtml, kartProductQte, kartInfosData, btnRemoveProduct;
-        return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-          while (1) switch (_context13.prev = _context13.next) {
+        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+          while (1) switch (_context14.prev = _context14.next) {
             case 0:
-              _context13.next = 2;
+              _context14.next = 2;
               return Kart.getUserStatut();
             case 2:
-              userStatut = _context13.sent;
+              userStatut = _context14.sent;
               if (!(userStatut == false)) {
-                _context13.next = 5;
+                _context14.next = 5;
                 break;
               }
-              return _context13.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
+              return _context14.abrupt("return", window.location.href = "".concat(SITE_URL, "/connexion/#page-connexion"));
             case 5:
               kartItemsElement = document.querySelector(".kart-items");
               kartLoader = document.querySelector(".kart-loader");
-              _context13.next = 9;
+              _context14.next = 9;
               return Kart.addFraisDivers();
             case 9:
-              fraisDivers = _context13.sent;
-              _context13.next = 12;
+              fraisDivers = _context14.sent;
+              _context14.next = 12;
               return Kart.calculTotalPrice();
             case 12:
-              price = _context13.sent;
+              price = _context14.sent;
               fraisDossier = new Decimal(parseFloat(fraisDivers.frais_dossier));
               fraisPort = new Decimal(parseFloat(fraisDivers.frais_port));
-              _context13.next = 17;
+              _context14.next = 17;
               return Kart.getAllPanierDetails();
             case 17:
-              panierDetail = _context13.sent;
+              panierDetail = _context14.sent;
               storedItemsHtml = "";
-              kartProductQte = 0; // console.log(fraisDoss.toString(),fraisPrt.toString());
+              kartProductQte = 0;
               if (panierDetail.length !== 0) {
                 panierDetail === null || panierDetail === void 0 ? void 0 : panierDetail.map(function (produit) {
                   kartProductQte = produit.pad_qte + kartProductQte;
@@ -532,31 +565,31 @@ var Kart = /*#__PURE__*/function () {
               //   : null;
               btnRemoveProduct = document.querySelectorAll("#remove-prod");
               btnRemoveProduct === null || btnRemoveProduct === void 0 ? void 0 : btnRemoveProduct.forEach(function (item) {
-                item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+                item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
                   var itemId;
-                  return _regeneratorRuntime().wrap(function _callee12$(_context12) {
-                    while (1) switch (_context12.prev = _context12.next) {
+                  return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+                    while (1) switch (_context13.prev = _context13.next) {
                       case 0:
                         itemId = item.dataset.id;
-                        _context12.next = 3;
+                        _context13.next = 3;
                         return Kart.removeItem(itemId);
                       case 3:
-                        _context12.next = 5;
+                        _context13.next = 5;
                         return Kart.getItemNumber();
                       case 5:
-                        document.querySelector("#cart-item-count").innerHTML = _context12.sent;
+                        document.querySelector("#cart-item-count").innerHTML = _context13.sent;
                       case 6:
                       case "end":
-                        return _context12.stop();
+                        return _context13.stop();
                     }
-                  }, _callee12);
+                  }, _callee13);
                 })));
               });
             case 25:
             case "end":
-              return _context13.stop();
+              return _context14.stop();
           }
-        }, _callee13);
+        }, _callee14);
       }));
       function kartRenderItems() {
         return _kartRenderItems.apply(this, arguments);
@@ -570,38 +603,38 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "RenderModal",
     value: function () {
-      var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(item, qte) {
+      var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(item, qte) {
         var price, fraisDivers, fraisDossier, fraisPort, html;
-        return _regeneratorRuntime().wrap(function _callee14$(_context14) {
-          while (1) switch (_context14.prev = _context14.next) {
+        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+          while (1) switch (_context15.prev = _context15.next) {
             case 0:
-              _context14.next = 2;
+              _context15.next = 2;
               return Kart.calculTotalPrice();
             case 2:
-              price = _context14.sent;
-              _context14.next = 5;
+              price = _context15.sent;
+              _context15.next = 5;
               return Kart.addFraisDivers();
             case 5:
-              fraisDivers = _context14.sent;
+              fraisDivers = _context15.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toString(), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
-              _context14.next = 11;
+              _context15.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toString(), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context15.next = 11;
               return Kart.getItemNumber();
             case 11:
-              _context14.t1 = _context14.sent;
-              html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(new Decimal(price.kartProductPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisPort).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisDossier).toString(), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(new Decimal(price.totalPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+              _context15.t1 = _context15.sent;
+              html = _context15.t0.concat.call(_context15.t0, _context15.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(new Decimal(price.kartProductPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">transport:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisPort).toString(), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">frais dossier:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisDossier).toString(), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">total:</span>\n                <span class=\"total-montant\">").concat(new Decimal(price.totalPrice).toString(), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
               document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#modal-btn-close").addEventListener("click", function () {
                 document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" />";
               });
             case 15:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
-        }, _callee14);
+        }, _callee15);
       }));
-      function RenderModal(_x7, _x8) {
+      function RenderModal(_x8, _x9) {
         return _RenderModal.apply(this, arguments);
       }
       return RenderModal;
@@ -609,18 +642,18 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "RenderMaxQteModal",
     value: function () {
-      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
+      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
         var html;
-        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
-          while (1) switch (_context15.prev = _context15.next) {
+        return _regeneratorRuntime().wrap(function _callee16$(_context16) {
+          while (1) switch (_context16.prev = _context16.next) {
             case 0:
               html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
               document.querySelector("#myModal .body-modal").innerHTML = html;
             case 2:
             case "end":
-              return _context15.stop();
+              return _context16.stop();
           }
-        }, _callee15);
+        }, _callee16);
       }));
       function RenderMaxQteModal() {
         return _RenderMaxQteModal.apply(this, arguments);
@@ -642,6 +675,15 @@ var Kart = /*#__PURE__*/function () {
         keyboard: false
       });
       removeModal.show();
+    }
+  }, {
+    key: "RenderPromoModal",
+    value: function RenderPromoModal(message) {
+      document.querySelector("#modal-promo-content").innerHTML = message;
+      var PromoModal = new bootstrap.Modal(document.querySelector("#modal-promo"), {
+        keyboard: false
+      });
+      PromoModal.show();
     }
   }, {
     key: "HideDeleteModal",

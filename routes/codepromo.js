@@ -3,7 +3,7 @@ const router = express.Router();
 const { Promo, Apply, Panier_detail } = require("../models");
 const { Op } = require("sequelize");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { prm_code } = req.body;
   //   const pan_id = req.session.panierId;
   const pan_id = 3;
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     if (codePromo.prm_commande) {
       return res
         .status(400)
-        .send("Ce code promo  renseigné ne concerne que les commandes");
+        .send("Le code promo  renseigné ne concerne que les commandes");
     }
     const todayDate = new Date().toISOString().substring(0, 10);
     if (todayDate < codePromo.prm_debut) {
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
         .send("le code promo renseigné n'est pas encore actif");
     }
     if (todayDate > codePromo.prm_fin) {
-      return res.status(400).send("le code promo renseigné n'est plus active");
+      return res.status(400).send("le code promo renseigné n'est plus actif");
     }
     if (!codePromo.prm_actif) {
       return res.status(400).send("le code promo renseigné n'est pas actif");
@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
       return res
         .status(400)
         .send(
-          "le code promo renseigné n'est pas encore applicable sur les produits"
+          "le code promo renseigné n'est pas encore applicable sur un produit"
         );
 
     const panierDetail = await Panier_detail.findOne({
@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
       return res
         .status(400)
         .send(
-          "le code promo renseigné n'est applicable sur aucun produit se trouvant sur votre panier"
+          "le code promo renseigné n'est applicable sur aucun des produits se trouvant sur votre panier"
         );
     let pad_remise = 0;
     if (codePromo.prm_pourcent) {
@@ -67,15 +67,13 @@ router.get("/", async (req, res) => {
       { where: { pad_id: panierDetail.pad_id } }
     );
 
-    console.log(newPanierDetail[0]);
-
     if (newPanierDetail[0] == 1) {
-      return res.json({ codePromo, apply, panierDetail });
+      return res
+        .status(200)
+        .json(`code promo validé et remise appliquée avec succès `);
     }
 
-    return res.json("data");
-
-    // return res.json({ codePromo, apply, panierDetail });
+    return res.send("Aucune remise appliquée");
   } catch (error) {}
 });
 

@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
             "prm_valeur",
             "prm_debut",
             "prm_fin",
-            "prm_actif"
+            "prm_actif",
           ],
         },
       ],
@@ -35,7 +35,11 @@ router.get("/", async (req, res) => {
 });
 router.get("/add", async (req, res) => {
   try {
-    const promos = await Promo.findAll();
+    const promos = await Promo.findAll({
+      where: {
+        [Op.and]: [{ prm_commande: null }, { prm_actif: true }],
+      },
+    });
     const produits = await Produit.findAll();
     res.render("apply/add", { promos, produits });
   } catch (error) {
@@ -46,17 +50,32 @@ router.get("/add", async (req, res) => {
   }
 });
 router.post("/add", async (req, res) => {
-  const { pro_id, prm_id } = req.body;
+  const { prm_id, pro_libelle } = req.body;
+
   try {
-    const promos = await Promo.findAll();
+    const promos = await Promo.findAll({
+      where: {
+        [Op.and]: [{ prm_commande: null }, { prm_actif: true }],
+      },
+    });
+
+    if (prm_id == "Choisir la promo") {
+      const errorMsg = "Veillez selectionner une promo !";
+      return res.render("apply/add", { promos, errorMsg });
+    }
+    const produit = await Produit.findOne({ where: { pro_libelle } });
+    if (!produit) {
+      const errorMsg = "ce produit n'existe pas";
+      return res.render("apply/add", { promos, errorMsg });
+    }
     const oldApply = await Apply.findOne({
-      where: { [Op.and]: [{ pro_id, prm_id }] },
+      where: { [Op.and]: [{ pro_id: produit.pro_id, prm_id }] },
     });
     if (oldApply) {
       const errorMsg = "cette promo est déjà appliquée à ce produit";
       return res.render("apply/add", { promos, errorMsg });
     }
-    await Apply.create({ pro_id, prm_id });
+    await Apply.create({ pro_id: produit.pro_id, prm_id });
     const succesMsg = "la promo a été ajoutée au produit";
 
     return res.render("apply/add", { promos, succesMsg });
@@ -86,6 +105,7 @@ router.post("/delete", async (req, res) => {
             "prm_valeur",
             "prm_debut",
             "prm_fin",
+            "prm_actif",
           ],
         },
       ],
@@ -178,7 +198,6 @@ router.post("/update", async (req, res) => {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
-    console.log(error);
   }
 });
 

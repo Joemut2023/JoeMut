@@ -216,10 +216,10 @@ const TotalPricesProducts = async () => {
 
     code_promo_block.classList.remove("hide-promo");
     code_promo_block.classList.add("code-promo");
-    console.log(inputCodePromo);
-    console.log(btnCodePromo);
-    btnCodePromo.addEventListener("click", () => {
-      console.log(inputCodePromo.value);
+
+    btnCodePromo.addEventListener("click", async () => {
+      await Kart.addCodePromo(inputCodePromo.value);
+      inputCodePromo.value = "";
     });
   });
 
