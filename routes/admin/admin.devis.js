@@ -107,7 +107,6 @@ router.get("/", async (req, res) => {
       })  
       commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
     }
-    console.log(commandes_data[0].commande.Chronologies[0].Statut_commande.stc_libelle);
     let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
       commandes: commandes_data,
