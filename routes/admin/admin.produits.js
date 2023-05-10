@@ -218,6 +218,14 @@ router.get("/:id", async function (req, res) {
             },
           ],
         },
+        {
+          model:Categorie,
+          include:[
+            {
+              model:Type_categorie
+            }
+          ]
+        }
       ],
     });
     //qty initial
@@ -226,9 +234,19 @@ router.get("/:id", async function (req, res) {
         pro_id: req.params.id,
       },
     });
+    const typeCategories = await Type_categorie.findAll();
+    const categories = await Categorie.findAll({where:{tyc_id:produit.Categorie.Type_categorie.tyc_id}})
+    const tailles = await Taille.findAll()
 
-    // res.json(quantiteInitial);
-    res.render("produits/editProduit", { media, produit, quantiteInitial });
+    // res.json(produit);
+    res.render("produits/editProduit", {
+      media,
+      produit,
+      quantiteInitial,
+      typeCategories,
+      categories,
+      tailles,
+    });
   } catch (error) {
     console.log(error);
   }

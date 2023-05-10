@@ -268,10 +268,14 @@
                         class="form-select"
                         aria-label="Default select example"
                       >
-                        <option selected>Choisissez une categorie</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <option value="<%= produit.Categorie.Type_categorie.tyc_id %>" selected><%= produit.Categorie.Type_categorie.tyc_libelle %></option>
+                      <% typeCategories.forEach(element => { %>
+                        <% if (element.tyc_id !== produit.Categorie.Type_categorie.tyc_id) { %>
+                            <option value="<%= element.tyc_id %>"><%= element.tyc_libelle %></option>
+                        <% } %>
+                       
+                      <% }) %>
+                       
                       </select>
                     </div>
                     <p class="tit-cat">Type categorie</p>
@@ -280,10 +284,15 @@
                         class="form-select"
                         aria-label="Default select example"
                       >
-                        <option selected>Type</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <option value="<%= produit.Categorie.cat_id %>" selected><%= produit.Categorie.cat_libelle %></option>
+                      <% categories.forEach(element => { %>
+                        <% if (element.cat_id !== produit.Categorie.cat_id ) { %>
+                                <option value="<%= element.cat_id %>"><%= element.cat_libelle %></option>
+                        <% } %> 
+
+                        
+                      <% }) %>
+                      
                       </select>
                     </div>
                   </div>
@@ -308,7 +317,7 @@
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-new-collect"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -319,7 +328,7 @@
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-en-avant"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -330,7 +339,7 @@
                 </div>
                 <div class="form-check">
                   <input
-                    class="form-check-input"
+                    class="form-check-input pro-statut"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -353,6 +362,7 @@
           >
             <p class="title">Quantités</p>
             <div class="row qty">
+            
               <div class="left col-md-8 col-sm-12">
                 <div class="lines">
                   <div class="row">
@@ -360,30 +370,39 @@
                     <div class="col-md-5"><p>Quantité</p></div>
                     <div class="col-md-2"></div>
                   </div>
-                  <div class="quantity row">
+                    <% produit.Quantites.forEach(element => { %>
+                          <div class="quantity row">
                     <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
                           class="form-select"
                           aria-label="Default select example"
                         >
-                          <option selected>Taille</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          <option value="<%= element.Taille.tai_id %>" selected><%= element.Taille.tai_libelle %></option>
+                          <% tailles.forEach(taille => { %>
+                            
+                              <% if (taille.tai_id !== element.Taille.tai_id) { %>
+                                <option value="<%= taille.tai_id %>">
+                                <%= taille.tai_libelle %></option>
+                               
+                              <% } %>
+                              
+                          <% }) %>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-5 qty-right">
                       <div class="title-qty"></div>
                       <div class="form-group">
-                        <input type="number" value="0" class="form-control" />
+                        <input type="number" value="<%= element.qua_nbre %>" class="form-control" />
                       </div>
                     </div>
                     <div class="col-md-2 delete">
                       <span><i class="fa-solid fa-trash"></i></span>
                     </div>
                   </div>
+              <% }) %>
+                  
                 </div>
                 <div class="add-cat">
                   <div class="title">
@@ -407,7 +426,7 @@
                     <!-- <span><i class="fa-solid fa-circle-info"></i></span> -->
                   </div>
                   <div class="form-group">
-                    <input type="text" value="0" class="form-control" />
+                    <input type="text" value="<%= quantiteInitial %>" class="form-control" />
                   </div>
                 </div>
               </div>
