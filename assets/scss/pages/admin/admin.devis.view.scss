@@ -14,11 +14,23 @@
         flex-direction: row;
         gap: 15px;
         height: 50px;
-        .form-select{
-            width: 15%;
-            background-color: rgba(255, 145, 0, 0.973);
-            color: white;
+        form{
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            .select-etat{
+                width: 60%;
+                .form-select{
+                    width: 100%;
+                    background-color: rgba(255, 145, 0, 0.973);
+                    color: white;
+                }
+            }
+            .btns{
+                width: 30%;
+            }
         }
+        
         .btn{
             padding: 0;
             padding-bottom: 5px;
