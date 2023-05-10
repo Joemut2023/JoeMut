@@ -74,9 +74,11 @@ router.get("/", async (req, res) => {
             {
               model:Statut_commande
             }
-          ]
+          ],
+          
         }
       ],
+      order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
       //group: ["Commande.com_id"],
     });
     let commandesNbr = await Commande.findAndCountAll();
@@ -353,5 +355,21 @@ router.post('/commande/delete-panier-detail',async (req,res)=>{
   } catch (error) {
     res.redirect(`/admin/devis/view/${com_id}`);
   }
-}) 
+})
+router.post('/commande/update-statut',async (req,res)=>{
+  const {com_id,stc_id} = req.body;
+  const usr_id = req.session.adminId;
+
+  try {
+    let chronologie = await Chronologie.create({
+      com_id,
+      stc_id,
+      usr_id,
+      chr_date:new Date(new Date().setDate(new Date().getDate()))
+    });
+  } catch (error) {
+    
+  }
+  res.redirect(`/admin/devis/view/${com_id}`);
+});
 module.exports = router;

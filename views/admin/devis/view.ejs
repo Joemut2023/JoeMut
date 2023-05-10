@@ -400,17 +400,20 @@
                           </div>
                           <% }) %>
                         </div>
-                        <div class="nav-etat-actions">
-                            <div class="select-etat">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Statut commande</option>
-                                    <% statutCommandes.forEach((statutCommande,index) => { %>
-                                      <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
-                                    <% }) %>
-                                </select>
-                            </div>
-                            <button class="btn btn-light">Mettre à jour</button>
-                        </div>
+                        <form action="/admin/devis/commande/update-statut" method="post">
+                          <div class="nav-etat-actions">
+                                <div class="select-etat">
+                                  <select class="form-select" aria-label="Default select" name="stc_id">
+                                      <option selected>Statut commande</option>
+                                      <% statutCommandes.forEach((statutCommande,index) => { %>
+                                        <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
+                                      <% }) %>
+                                  </select>
+                              </div>
+                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                              <button class="btn btn-light">Mettre à jour</button>
+                          </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
                         <table class="table">
