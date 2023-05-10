@@ -144,7 +144,7 @@
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control pro-ref" value="<%= produit.pro_ref %>"  />
                   </div>
                 </div>
 
@@ -174,11 +174,13 @@
                 <div>
                   <p class="title">Récapulatif</p>
                   <div class="content" contenteditable="true" style="background-color: white;width: 100%;height:50vh;padding:5px 8px;outline: none;">
-                    <span style="font-weight: 600;">Quantité initiale : <span> 18</span> </span> <br>
+                    <span style="font-weight: 600;">Quantité initiale : <span> <%= quantiteInitial %></span> </span> <br>
                     <span style="font-weight: 600;">Tailles disponibles :</span>
-                    <p>7 en S(36)</p>
-                    <p>4 en S/M(36/38)</p>
-                    <p>4 en M(38)</p>
+
+                    <% produit.Quantites.forEach(element => { %>
+                     <p><%= element.Taille.tai_libelle %></p>
+                    <% }) %>
+                    
                   </div>
                   <p class="caractere">1 de 800 caractères autorisées</p>
                 </div>
@@ -187,7 +189,8 @@
                   <div>
                     <!-- <textarea class="content"></textarea> -->
                      <div class="content" contenteditable="true" style="background-color: white;width: 100%;height:20vh;padding:5px 8px;outline: none;">
-                   
+                       <p><%= produit.pro_description %></p>
+  
                   </div>
                   </div>
                   <p class="caractere">0 de 21844 caractères autorisées</p>
@@ -207,7 +210,7 @@
                         <input
                           type="text"
                           class="form-control"
-                          value="0,0000"
+                          value="<%= produit.Tarifs[0].tar_ht %>"
                           aria-label="Dollar amount (with dot and two decimal places)"
                         />
                         <span class="input-group-text">€</span>
@@ -219,7 +222,7 @@
                         <input
                           type="text"
                           class="form-control"
-                          value="0"
+                          value="<%= produit.Tarifs[0].tar_ttc %>"
                           aria-label="Dollar amount (with dot and two decimal places)"
                         />
                         <span class="input-group-text">€</span>
