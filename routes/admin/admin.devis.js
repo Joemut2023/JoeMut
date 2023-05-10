@@ -19,7 +19,9 @@ const {
   Apply,
   Promo,
   Chronologie,
-  Statut_commande
+  Statut_commande,
+  Document,
+  User
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -72,9 +74,11 @@ router.get("/", async (req, res) => {
             {
               model:Statut_commande
             }
-          ]
+          ],
+          
         }
       ],
+      order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
       //group: ["Commande.com_id"],
     });
     let commandesNbr = await Commande.findAndCountAll();
@@ -214,24 +218,40 @@ router.get('/view/:commandeId',async (req,res)=>{
         },
         {
           model:Essayage
-        }
+        },
+        {
+          model:Document
+        },
+        {
+          model:Chronologie,
+          include:[
+            {
+              model:Statut_commande
+            },
+            {
+              model:User
+            }
+          ]
+        },
       ]
     });
     let adresses = await Adresse.findAll({
       cli_id:commande.cli_id
-    })
-    
+    }) 
     let adresse_livraion = await Adresse.findOne({
       where:{adr_id:commande.com_adr_liv}
     });
     let adresse_facturation = await Adresse.findOne({
       where:{adr_id:commande.com_adr_fac}
     });
+    let statutCommandes = await Statut_commande.findAll();
     res.render("devis/view",{
       commande,
       adresse_livraion,
       adresse_facturation,
-      adresses
+      adresses,
+      moment,
+      statutCommandes
     });
   } catch (error) {
     res.render("devis/view",{
@@ -335,5 +355,34 @@ router.post('/commande/delete-panier-detail',async (req,res)=>{
   } catch (error) {
     res.redirect(`/admin/devis/view/${com_id}`);
   }
-}) 
+})
+router.post('/commande/update-statut',async (req,res)=>{
+  const {com_id,stc_id} = req.body;
+  const usr_id = req.session.adminId;
+
+  try {
+    let chronologie = await Chronologie.create({
+      com_id,
+      stc_id,
+      usr_id,
+      chr_date:new Date(new Date().setDate(new Date().getDate()))
+    });
+  } catch (error) {
+    
+  }
+  res.redirect(`/admin/devis/view/${com_id}`);
+});
+router.post('/commande-delete-statut',async (req,res)=>{
+  const {com_id,chr_id} = req.body;
+  try {
+    await Chronologie.destroy({
+      where:{
+        chr_id
+      }
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    
+  }
+})
 module.exports = router;
