@@ -9,6 +9,9 @@ const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
 
 const btns_delete = document.querySelectorAll(".delete");
+const collect = document.querySelector(".pro-new-collect");
+const avant = document.querySelector(".pro-en-avant");
+const statut = document.querySelector(".pro-statut");
 
 console.log("buttons ", btns_delete);
 

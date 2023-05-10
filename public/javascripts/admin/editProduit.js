@@ -10,6 +10,9 @@ var button2 = document.querySelector(".btn-tab-2");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
+var collect = document.querySelector(".pro-new-collect");
+var avant = document.querySelector(".pro-en-avant");
+var statut = document.querySelector(".pro-statut");
 console.log("buttons ", btns_delete);
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");

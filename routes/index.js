@@ -42,7 +42,7 @@ router.get("/", async (req, res, next) => {
 //send form contact 
 router.post("/", async function (req, res, next) {
   const { email, file, textarea } = req.body;
-
+   let quantiteOfEachProduct = [];
   const produits = await Produit.findAll({
     limit: 10,
     order: [["pro_id", "DESC"]],
@@ -53,14 +53,24 @@ router.post("/", async function (req, res, next) {
   });
 
   try {
+       for (let index = 0; index < produits.length; index++) {
+         const quantiteInitial = await Quantite.sum("qua_nbre", {
+           where: {
+             pro_id: produits[index].pro_id,
+           },
+         });
+         quantiteOfEachProduct.push({
+           id: produits[index].pro_id,
+           qty: quantiteInitial,
+         });
+       }
     if (email === "" || textarea === "") {
-      return res
-        .status(404)
-        .render("default/index", {
-          error: true,
-          errorMsg: "remplissez les champs necessaires",
-          produits
-        });
+      return res.status(404).render("default/index", {
+        error: true,
+        errorMsg: "remplissez les champs necessaires",
+        produits,
+       
+      });
     }
     else {
 
@@ -86,7 +96,8 @@ router.post("/", async function (req, res, next) {
             messages: "Votre message a été envoyé avec succès!",
             info: true,
             error: false,
-            produits
+            produits,
+            quantiteOfEachProduct,
           });
 
           email = "";
