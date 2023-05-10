@@ -2186,10 +2186,6 @@
     justify-content: space-around;
   }
 }
-#page-promotion .catalogue .cat-body .produit .detail .montant .ancien-prix {
-  text-decoration: line-through;
-  font-weight: 400;
-}
 #page-promotion .catalogue .cat-body .produit .detail .montant div {
   color: #232323;
   font-weight: 700;

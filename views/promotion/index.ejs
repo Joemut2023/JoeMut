@@ -58,14 +58,16 @@
         <div class="detail">
           <a href=""><%= produit.Produit.pro_libelle %></a>
           <div>Ref: <span><%= produit.Produit.pro_ref %></span></div>
+          <% let remise = 0 %> <% if (produit.Promo.prm_pourcent) { %> <% remise
+          = `${produit.Promo.prm_pourcent} %` %> <% } else { %> <% remise =
+          `${produit.Promo.prm_valeur} €` %> <% } %>
+          <div>Remise: <span><%= remise %></span></div>
           <div class="montant">
             <div class="ancien-prix">
               <%=
               produit.Produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",
               ",") %>€
             </div>
-            <% let newPrix = produit.Promo.prm_pourcent  %>
-            <%= newPrix %>
             <button
               class="button-ajouter"
               data-id="<%= produit.Produit.pro_id %>"
