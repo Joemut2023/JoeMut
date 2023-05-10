@@ -331,7 +331,11 @@
                     </div>
                     <div>
                         <h2>Réductions</h2>
-                        <p>-<%= commande?.com_remise %> €</p>
+                        <% if (commande.com_remise ) { %>
+                          <p>-<%= commande?.com_remise %> €</p>
+                        <% } else { %>
+                          <p>0 €</p>
+                        <% } %>
                     </div>
                     <div>
                         <h2>Livraison</h2>
@@ -379,28 +383,30 @@
                 <div class="tab-content card" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-etat" role="tabpanel" aria-labelledby="nav-etat-tab">
                         <div class="nav-etat-items">
+                          <% commande.Chronologies.forEach(chronologie => { %>
                             <div class="nav-etat-item">
-                                <div class="etat-label">
-                                    <p>Générer le bon d'essayage</p>
-                                </div>
-                                <div class="etat-user">
-                                    <p>DELPHINE GUERMAH</p>
-                                </div>
-                                <div class="etat-date">
-                                    <p>26/04/2023</p>
-                                </div>
-                                <div class="etat-action">
-                                    <p><i class="fa-solid fa-trash"></i></p>
-                                </div>
-                            </div>
+                              <div class="etat-label">
+                                  <p><%= chronologie.Statut_commande.stc_libelle %></p>
+                              </div>
+                              <div class="etat-user">
+                                  <p><%= chronologie.User.usr_prenom %> <%= chronologie.User.usr_nom %></p>
+                              </div>
+                              <div class="etat-date">
+                                  <p><%= moment(chronologie.chr_date).format('D/MM, YYYY') %></p>
+                              </div>
+                              <div class="etat-action">
+                                  <p><i class="fa-solid fa-trash"></i></p>
+                              </div>
+                          </div>
+                          <% }) %>
                         </div>
                         <div class="nav-etat-actions">
                             <div class="select-etat">
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>Générer le bon d'essayage</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option selected>Statut commande</option>
+                                    <% statutCommandes.forEach((statutCommande,index) => { %>
+                                      <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
+                                    <% }) %>
                                 </select>
                             </div>
                             <button class="btn btn-light">Mettre à jour</button>

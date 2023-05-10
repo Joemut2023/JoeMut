@@ -19,7 +19,9 @@ const {
   Apply,
   Promo,
   Chronologie,
-  Statut_commande
+  Statut_commande,
+  Document,
+  User
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -214,24 +216,40 @@ router.get('/view/:commandeId',async (req,res)=>{
         },
         {
           model:Essayage
-        }
+        },
+        {
+          model:Document
+        },
+        {
+          model:Chronologie,
+          include:[
+            {
+              model:Statut_commande
+            },
+            {
+              model:User
+            }
+          ]
+        },
       ]
     });
     let adresses = await Adresse.findAll({
       cli_id:commande.cli_id
-    })
-    
+    }) 
     let adresse_livraion = await Adresse.findOne({
       where:{adr_id:commande.com_adr_liv}
     });
     let adresse_facturation = await Adresse.findOne({
       where:{adr_id:commande.com_adr_fac}
     });
+    let statutCommandes = await Statut_commande.findAll();
     res.render("devis/view",{
       commande,
       adresse_livraion,
       adresse_facturation,
-      adresses
+      adresses,
+      moment,
+      statutCommandes
     });
   } catch (error) {
     res.render("devis/view",{
