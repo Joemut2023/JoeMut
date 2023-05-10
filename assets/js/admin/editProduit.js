@@ -3,8 +3,6 @@ const button2 = document.querySelector(".btn-tab-2");
 // const button3 = document.querySelector(".btn-tab-3");
 // const button4 = document.querySelector(".btn-tab-4");
 
-// const input_file = document.querySelector(".inputfile");
-
 const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
 
@@ -12,7 +10,9 @@ const btns_delete = document.querySelectorAll(".delete");
 const collect = document.querySelector(".pro-new-collect");
 const avant = document.querySelector(".pro-en-avant");
 const statut = document.querySelector(".pro-statut");
-
+const selectCategorie = document.querySelector(".select-categorie");
+const categorieParent = document.querySelector(".accueil");
+const listCat = document.querySelector(".cat-select");
 console.log("buttons ", btns_delete);
 
 button1.addEventListener("click", function () {
@@ -73,9 +73,6 @@ function deleteImage(index) {
   imagesArray.splice(index, 1);
   displayImages();
 
-  // if (imagesArray.length === 0) {
-  //   output.style.display = "none";
-  // }
 }
 
 function addTaille() {
@@ -114,4 +111,27 @@ function addTaille() {
 
 btnAdd.addEventListener("click", function () {
   addTaille();
+});
+
+function listCategorie(categorie) {
+
+   console.log(categorie)
+  listCat.innerHTML = `
+  ${categorie.data.map(
+    (item) => `<option value=${item.cat_id}>${item.cat_libelle}</option>`
+  )}
+  `;
+}
+console.log(selectCategorie);
+selectCategorie.addEventListener("change", async function () {
+  const categorie = await axios.get(
+    `${SITE_URL}/admin/produits/categorie/${this.value}`,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+
+  listCategorie(categorie);
 });
