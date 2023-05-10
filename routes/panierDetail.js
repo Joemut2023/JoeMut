@@ -44,7 +44,7 @@ router.post("/", async (req, res, next) => {
         include: [
           {
             model: Promo,
-            attributes: ["prm_pourcent"],
+            attributes: ["prm_pourcent","prm_valeur"],
             where: { prm_actif: true },
           },
         ],
