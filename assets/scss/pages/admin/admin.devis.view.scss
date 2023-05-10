@@ -111,6 +111,9 @@
                         flex-direction: column;
                         gap: 10px;
                         margin-bottom: 10px;
+                        .date-spectacle-debut,.date-spectacle-fin{
+                            cursor: pointer;
+                        }
                     }
                     .bloc-adresse-content-repetition{
                         h2{

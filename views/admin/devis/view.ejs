@@ -127,12 +127,12 @@
                 <div class="bloc-adresse-content">
                     <div class="bloc-adresse-content-spectacle">
                         <h2>Date de spectacle</h2>
-                        <div class="date-spectacle-debut">
+                        <div class="date-spectacle-debut" data-bs-toggle="modal" data-bs-target="#modal-update-date-debut-commande">
                           <div>
                             <p><%= commande.com_debut_spectacle %> (début) <i class="fa-solid fa-pencil"></i></p>
                           </div>
                         </div>
-                        <div class="date-spectacle-fin">
+                        <div class="date-spectacle-fin" data-bs-toggle="modal" data-bs-target="#modal-update-date-fin-commande">
                           <div>
                             <p><%= commande.com_fin_spectacle %> (fin) <i class="fa-solid fa-pencil"></i></p>
                           </div>
@@ -712,5 +712,45 @@
           </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-update-date-debut-commande" tabindex="-1" aria-labelledby="modal-update-date-debut-commande-Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-update-date-debut-commande-Label">Modifier la date de début</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="mb-3">
+                <label for="date_inp" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date_inp" aria-describedby="date de début">
+              </div>
+              <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal-update-date-fin-commande" tabindex="-1" aria-labelledby="modal-update-date-fin-commande-Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-update-date-fin-commande-Label">Modifier date de din</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="mb-3">
+                <label for="date_inp" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date_inp" aria-describedby="date de fin">
+              </div>
+              <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>
