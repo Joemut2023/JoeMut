@@ -202,7 +202,13 @@ router.get("/allbyJson", async (req, res) => {
 
 //render for editting
 router.get("/:id", async function (req, res) {
-  res.render("produits/editProduit");
+  try {
+    const media = await Media.findAll({ where: { pro_id: req.params.id } });
+
+    res.render("produits/editProduit", { media });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
