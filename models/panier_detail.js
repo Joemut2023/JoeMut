@@ -38,11 +38,12 @@ module.exports = (sequelize, DataTypes) => {
       pad_ht: DataTypes.FLOAT,
       pad_ttc: DataTypes.FLOAT,
       pad_remise: DataTypes.FLOAT,
+      pad_code_promo: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "Panier_detail",
-      timestamps: false
+      timestamps: false,
     }
   );
   return Panier_detail;
