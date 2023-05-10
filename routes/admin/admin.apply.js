@@ -37,7 +37,7 @@ router.get("/add", async (req, res) => {
   try {
     const promos = await Promo.findAll({
       where: {
-        [Op.and]: [{ prm_commande: null }, { prm_actif: true }],
+        [Op.and]: [{ prm_commande: !true }, { prm_actif: true }],
       },
     });
     const produits = await Produit.findAll();
@@ -55,7 +55,7 @@ router.post("/add", async (req, res) => {
   try {
     const promos = await Promo.findAll({
       where: {
-        [Op.and]: [{ prm_commande: null }, { prm_actif: true }],
+        [Op.and]: [{ prm_commande: !true }, { prm_actif: true }],
       },
     });
 

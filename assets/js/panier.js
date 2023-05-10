@@ -182,7 +182,7 @@ const TotalPricesProducts = async () => {
 </div>
 <div class="promo">
   <div class="link">
-    <p class="btnpromo"><span>Vous avez un code promo ?</span></p>
+    <p class="btnpromo"><span>Vous avez un code promo pour un produit ?</span></p>
   </div>
   <div class="hide-promo promo_block">
     <div class="btn-promo">
