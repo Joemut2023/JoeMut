@@ -2,9 +2,9 @@ var nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
-const pdf = require('pdfkit');
-const puppeteer = require('puppeteer');
-const {Document} = require("../models");
+const pdf = require("pdfkit");
+const puppeteer = require("puppeteer");
+const { Document } = require("../models");
 const { DEVIS } = require("./utils_const");
 
 module.exports = async (
@@ -41,7 +41,7 @@ module.exports = async (
   const page = await browser.newPage();
   page.isJavaScriptEnabled(false);
   await page.goto(`${process.env.APP_URL}devis/${commande.com_id}`, {
-    timeout: 60000
+    timeout: 60000,
   });
   await page.pdf({
     path: path.join(
@@ -53,10 +53,10 @@ module.exports = async (
 
   try {
     await Document.create({
-      tdo_id:DEVIS,
-      com_id:commande.com_id,
-      doc_date:new Date(new Date().setDate(new Date().getDate()))
-    })
+      tdo_id: DEVIS,
+      com_id: commande.com_id,
+      doc_date: new Date(new Date().setDate(new Date().getDate())),
+    });
   } catch (error) {
     console.log(error);
   }
@@ -70,7 +70,7 @@ module.exports = async (
     });
     const mailOptions = {
       from: "myindavictoire@gmail.com",
-      to: "mavubapathy@gmail.com",
+      to: `${commande.Client.cli_mail}`,
       subject: "[AIGUILLE EN SCENE] Confirmation de commande",
       html: html,
       attachments: [
@@ -80,11 +80,11 @@ module.exports = async (
             __dirname,
             "../public/pdf/devis/" + commande.com_num.trimStart() + ".pdf"
           ),
-        }
+        },
       ],
     };
     transporter.sendMail(mailOptions).then(function (info) {
       console.log("Email sent: " + info.response);
     });
-  } catch (error) { }
+  } catch (error) {}
 };
