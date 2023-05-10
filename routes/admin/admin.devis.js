@@ -389,4 +389,26 @@ router.post('/commande-delete-statut',async (req,res)=>{
     
   }
 })
+router.post('/commande/update-date-debut',async (req,res)=>{
+  const {com_debut_spectacle,com_id} = req.body;
+  try {
+    let updatedCommande = await Commande.update({
+      com_debut_spectacle
+    },{where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
+router.post('/commande/update-date-fin',async (req,res)=>{
+  const {com_fin_spectacle,com_id} = req.body;
+  try {
+    let updatedCommande = await Commande.update({
+      com_fin_spectacle
+    },{where:{com_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
 module.exports = router;

@@ -721,11 +721,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="post">
+            <form method="post" action="/admin/devis/commande/update-date-debut">
               <div class="mb-3">
                 <label for="date_inp" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date_inp" aria-describedby="date de début">
+                <input type="date" class="form-control" id="date_inp" name="com_debut_spectacle" aria-describedby="date de début">
               </div>
+              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
               <button type="submit" class="btn btn-primary">Modifier</button>
             </form>
           </div>
@@ -740,11 +741,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="post">
+            <form method="post" action="/admin/devis/commande/update-date-fin">
               <div class="mb-3">
                 <label for="date_inp" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date_inp" aria-describedby="date de fin">
+                <input type="date" class="form-control" id="date_inp" aria-describedby="date de fin" name="com_fin_spectacle">
               </div>
+              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
               <button type="submit" class="btn btn-primary">Modifier</button>
             </form>
           </div>
