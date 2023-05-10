@@ -110,9 +110,8 @@
             <div class="row img">
               <div class="col-md-8 block-image">
                 <div class="images">
-                  <ul class="file">
-                    <li>
-                      <label for="file"
+                  <div class="item image-add">
+                        <label for="file"
                         ><i class="fa fa-plus added" aria-hidden="true"></i
                       ></label>
                       <input
@@ -121,21 +120,21 @@
                         multiple="multiple"
                         accept="image/*"
                         style="display:none"
+                        class="inputfile"
                       />
-                    </li>
-                    <!-- //cover_image  -->
-                    <li>
-                      <img src="/images/produits/<%= media[0].med_ressource %>" alt="" srcset="" />
-                      <div><p>Image couverture</p></div>
-                    </li>
-                    <!-- image added -->
-                    <li>
-                      <img src="/" alt="" srcset="" />
-                    </li>
-                  </ul>
-                
+                  </div>
+                  <div class="item cover-image">
+                    <img src=/images/produits/<%= media[0].med_ressource %> alt="" srcset="">
+                    <div>
+                      <p>Image couverture</p>
+                    </div>
+                    
+                  </div>
+                  <div class="image-container">
+
+                  </div>
                 </div>
-                <output></output>
+             
               </div>
               <div class="right col-md-4">
                 <div class="ref">

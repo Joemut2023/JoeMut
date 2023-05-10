@@ -5,7 +5,8 @@ var button2 = document.querySelector(".btn-tab-2");
 // const button3 = document.querySelector(".btn-tab-3");
 // const button4 = document.querySelector(".btn-tab-4");
 
-var input_file = document.querySelector(".inputfile");
+// const input_file = document.querySelector(".inputfile");
+
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
@@ -40,8 +41,8 @@ button2.addEventListener("click", function () {
 
 // traitement image
 var inputDiv = document.querySelector(".images");
-var inputImage = document.querySelector(".file");
-var output = document.querySelector("output");
+var inputImage = document.querySelector(".inputfile");
+var output = document.querySelector(".image-container");
 var imagesArray = [];
 inputImage.addEventListener("change", function () {
   var files = inputImage.files;
@@ -50,36 +51,23 @@ inputImage.addEventListener("change", function () {
   }
   displayImages();
 });
-inputImage.addEventListener("drop", function (e) {
-  e.preventDefault();
-  var files = e.dataTransfer.files;
-  var _loop = function _loop(i) {
-    if (!files[i].type.match("image")) return "continue";
-    if (imagesArray.every(function (imge) {
-      return imge.name !== files[i].name;
-    })) imagesArray.push(files[i]);
-  };
-  for (var i = 0; i < files.length; i++) {
-    var _ret = _loop(i);
-    if (_ret === "continue") continue;
-  }
-  displayImages();
-});
 function displayImages() {
   var images = "";
   imagesArray.forEach(function (image, index) {
-    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+    images += "<div class=\"item\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span style=\"cursor:pointer;\" onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
   });
-  output.style.display = "flex";
+  // output.style.display = "flex";
   output.innerHTML = images;
 }
 function deleteImage(index) {
   imagesArray.splice(index, 1);
   displayImages();
-  if (imagesArray.length === 0) {
-    output.style.display = "none";
-  }
+
+  // if (imagesArray.length === 0) {
+  //   output.style.display = "none";
+  // }
 }
+
 function addTaille() {
   console.log("FONCTIONNE");
   var line = document.createElement("div");
