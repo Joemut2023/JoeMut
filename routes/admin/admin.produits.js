@@ -204,8 +204,49 @@ router.get("/allbyJson", async (req, res) => {
 router.get("/:id", async function (req, res) {
   try {
     const media = await Media.findAll({ where: { pro_id: req.params.id } });
+    const produit = await Produit.findOne({
+      where: { pro_id: req.params.id },
+      include: [
+        {
+          model: Tarif,
+        },
+        {
+          model: Quantite,
+          include: [
+            {
+              model: Taille,
+            },
+          ],
+        },
+        {
+          model:Categorie,
+          include:[
+            {
+              model:Type_categorie
+            }
+          ]
+        }
+      ],
+    });
+    //qty initial
+    const quantiteInitial = await Quantite.sum("qua_nbre", {
+      where: {
+        pro_id: req.params.id,
+      },
+    });
+    const typeCategories = await Type_categorie.findAll();
+    const categories = await Categorie.findAll({where:{tyc_id:produit.Categorie.Type_categorie.tyc_id}})
+    const tailles = await Taille.findAll()
 
-    res.render("produits/editProduit", { media });
+    // res.json(produit);
+    res.render("produits/editProduit", {
+      media,
+      produit,
+      quantiteInitial,
+      typeCategories,
+      categories,
+      tailles,
+    });
   } catch (error) {
     console.log(error);
   }
