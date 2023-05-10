@@ -49,11 +49,13 @@
       <% produits.forEach(produit => { %>
       <div class="produit">
         <div class="image-cadre">
-          <img
-            src="/images/produits/<%= produit.Produit.Media[0].med_ressource %>"
-            alt=""
-            srcset=""
-          />
+          <a href="/article/<%= produit.pro_id %>">
+            <img
+              src="/images/produits/<%= produit.Produit.Media[0].med_ressource %>"
+              alt=""
+              srcset=""
+            />
+          </a>
         </div>
         <div class="detail">
           <a href=""><%= produit.Produit.pro_libelle %></a>
@@ -69,8 +71,10 @@
               ",") %>€
             </div>
             <button
-              class="button-ajouter"
-              data-id="<%= produit.Produit.pro_id %>"
+              class="btn-add button-ajouter"
+              data-id="<%= produit.pro_id %>"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
             >
               Ajouter
             </button>
