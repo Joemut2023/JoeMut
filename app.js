@@ -64,6 +64,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/images/produits", express.static("images/produits"));
 app.use(setAuthorizedUser);
 app.use(getPanierDetail);
 app.use("/", [layout], indexRouter);

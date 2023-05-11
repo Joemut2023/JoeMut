@@ -228,8 +228,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context3.sent;
-                  console.log(media);
-                case 5:
+                case 4:
                 case "end":
                   return _context3.stop();
               }
@@ -266,8 +265,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         //   );
         //   console.log(media);
         // });
-
-        console.log(tarif);
+        // console.log(tarif);
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
@@ -287,8 +285,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   qty = _context4.sent;
-                  console.log(qty);
-                case 5:
+                case 4:
                 case "end":
                   return _context4.stop();
               }
@@ -298,7 +295,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref5.apply(this, arguments);
           };
         }());
-      case 18:
+      case 17:
       case "end":
         return _context5.stop();
     }

@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <form action="">
+  <form action="/admin/produits/upload-images" method="POST" enctype="multipart/form-data">
     <div class="tabs-container row">
       <div class="tabs">
         <nav>
@@ -104,6 +104,7 @@
                   <input
                     type="file"
                     id="file"
+                    name="produit-files"
                     class="file"
                     multiple="multiple"
                     accept="image/jpg, image/jpeg, image/gif, image/png"
@@ -221,7 +222,7 @@
               <div class="right col-md-8">
                 <div class="categories">
                   <div class="title">
-                    <p>Catégories</p>
+                    <p>Type categorie</p>
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
 
@@ -240,7 +241,7 @@
                     
                       </select>
                     </div>
-                    <p class="tit-cat">Type categorie</p>
+                    <p class="tit-cat">Catégories</p>
                     <div class="accueil">
                     </div>
                   </div>
@@ -834,18 +835,20 @@
         <!-- <div class="tabs-right col-md-4"></div> -->
       </div>
     </div>
-  </form>
-
-  <div class="navbar">
+    <!-- <button type="submit">okay</button> -->
+    <div class="navbar">
     <div class="buttons">
       <div>
         <button type="button" class="btn btn-secondary">Previsualiser</button>
       </div>
       <div>
-        <button type="button"  class="btn btn-primary enregistrer">Enregistrer</button>
+        <button type="submit"  class="btn btn-primary enregistrer">Enregistrer</button>
       </div>
     </div>
   </div>
+  </form>
+
+  
 </div>
 
 <script src="/javascripts/admin/ajoutProduit.js"></script>
