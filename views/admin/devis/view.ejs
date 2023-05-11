@@ -444,7 +444,7 @@
                                   <td><%= document.Type_document.tdo_libelle %></td>
                                   <td><%= document.doc_ref %></td>
                                   <% if (document.Paiements.length !== 0) { %>
-                                    <td><%= document.Paiements[0] %> €</td>
+                                    <td><%= document.Paiements[0].pai_montant %> €</td>
                                   <% } else { %>
                                     <td></td>
                                   <% } %>
@@ -458,11 +458,13 @@
                                 </tr>
                                 <tr class="tr-form-note tr-form-note-<%= document.doc_id %>">
                                   <td colspan="5">
-                                      <form class="row g-3">
+                                      <form class="row g-3" method="post" action="/admin/devis/commande-add-doc-comment">
                                           <div class="col-auto">
-                                              <textarea class="form-control" id="" cols="30" rows="10"></textarea>
+                                              <textarea name="doc_comment" class="form-control" id="" cols="30" rows="10"></textarea>
                                           </div>
                                           <div class="col-auto">
+                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                            <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
                                             <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                           </div>
                                       </form>
@@ -470,14 +472,24 @@
                                 </tr>
                                 <tr class="tr-form-paiement tr-form-paiement-<%= document.doc_id %>">
                                   <td colspan="5">
-                                      <form class="row g-3">
+                                      <form class="row g-3" method="post" action="/admin/devis/commande-add-paiement-for-document">
                                           <div class="col-auto">
-                                            <input type="text" class="form-control">
+                                            <select name="mop_id" id="" class="form-control">
+                                              <option selected>Moyen paiement</option>
+                                              <% moyen_paiements.forEach(moyen_paiement => { %>
+                                                <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
+                                              <% }) %>
+                                            </select>
                                           </div>
                                           <div class="col-auto">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="pai_ref" class="form-control" placeholder="ref paiement">
                                           </div>
                                           <div class="col-auto">
+                                            <input type="text" name="pai_montant" class="form-control" placeholder="montant">
+                                          </div>
+                                          <div class="col-auto">
+                                            <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
+                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                                             <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                           </div>
                                       </form>
@@ -574,9 +586,9 @@
                         <div class="col-auto">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Moyen de paiement</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <% moyen_paiements.forEach(moyen_paiement => { %>
+                                  <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
+                                <% }) %>
                             </select>
                         </div>
                         <div class="col-auto">
