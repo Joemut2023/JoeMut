@@ -134,6 +134,18 @@
         }
         .right{
             width: 70%;
+            #myInputautocomplete-list,#form-autocomplete-retour-produitautocomplete-list{
+                padding: 5px;
+                div{
+                    cursor: pointer;
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    transition: all 300ms;
+                    &:hover{
+                        background-color: $color-blue-admin;
+                    }
+                }
+            }
             .produit-list{
                 margin-bottom: 40px;
                 .produit-list-title{
@@ -196,18 +208,6 @@
                 .form-add-panier-detail-container{
                     display: none;
                     padding: 10px;
-                    #myInputautocomplete-list{
-                        padding: 5px;
-                        div{
-                            cursor: pointer;
-                            margin-top: 5px;
-                            margin-bottom: 5px;
-                            transition: all 300ms;
-                            &:hover{
-                                background-color: $color-blue-admin;
-                            }
-                        }
-                    }
                 }
                 .form-add-commande-remise-container{
                     display: none;

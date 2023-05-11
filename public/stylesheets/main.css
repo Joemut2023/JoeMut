@@ -7913,6 +7913,18 @@ body {
 #admin-page-viewDevis .content .right {
   width: 70%;
 }
+#admin-page-viewDevis .content .right #myInputautocomplete-list, #admin-page-viewDevis .content .right #form-autocomplete-retour-produitautocomplete-list {
+  padding: 5px;
+}
+#admin-page-viewDevis .content .right #myInputautocomplete-list div, #admin-page-viewDevis .content .right #form-autocomplete-retour-produitautocomplete-list div {
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: all 300ms;
+}
+#admin-page-viewDevis .content .right #myInputautocomplete-list div:hover, #admin-page-viewDevis .content .right #form-autocomplete-retour-produitautocomplete-list div:hover {
+  background-color: #25b9d7;
+}
 #admin-page-viewDevis .content .right .produit-list {
   margin-bottom: 40px;
 }
@@ -7970,18 +7982,6 @@ body {
 #admin-page-viewDevis .content .right .produit-list .form-add-panier-detail-container {
   display: none;
   padding: 10px;
-}
-#admin-page-viewDevis .content .right .produit-list .form-add-panier-detail-container #myInputautocomplete-list {
-  padding: 5px;
-}
-#admin-page-viewDevis .content .right .produit-list .form-add-panier-detail-container #myInputautocomplete-list div {
-  cursor: pointer;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  transition: all 300ms;
-}
-#admin-page-viewDevis .content .right .produit-list .form-add-panier-detail-container #myInputautocomplete-list div:hover {
-  background-color: #25b9d7;
 }
 #admin-page-viewDevis .content .right .produit-list .form-add-commande-remise-container {
   display: none;

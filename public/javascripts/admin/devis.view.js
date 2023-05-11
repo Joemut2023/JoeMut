@@ -234,7 +234,8 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       case 3:
         produits = _context3.sent;
         autocomplete(document.getElementById("myInput"), produits.data);
-      case 5:
+        autocomplete(document.getElementById("form-autocomplete-retour-produit"), produits.data);
+      case 6:
       case "end":
         return _context3.stop();
     }

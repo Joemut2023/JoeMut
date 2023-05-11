@@ -255,4 +255,5 @@ function autocomplete(inp, arr) {
     });
 }
 autocomplete(document.getElementById("myInput"), produits.data);
+autocomplete(document.getElementById("form-autocomplete-retour-produit"), produits.data);
 })();
