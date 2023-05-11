@@ -114,7 +114,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit;
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
     while (1) switch (_context3.prev = _context3.next) {
       case 0:
@@ -171,8 +171,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context2.sent;
-                  console.log(media);
-                case 5:
+                case 4:
                 case "end":
                   return _context2.stop();
               }
@@ -182,19 +181,18 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref3.apply(this, arguments);
           };
         }());
-
-        // const tarif = await axios.post(
-        //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
-        //   {
-        //     tar_ht,
-        //     tar_ttc,
-        //   },
-        //   {
-        //     headers: {
-        //       "X-Requested-With": "XMLHttpRequest",
-        //     },
-        //   }
-        // );
+        _context3.next = 18;
+        return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
+          tar_ht: tar_ht,
+          tar_ttc: tar_ttc
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 18:
+        tarif = _context3.sent;
+        console.log(tarif);
 
         // const selectTailles = document.querySelectorAll(".select-taille");
 
@@ -217,7 +215,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         //   );
         //   console.log(qty);
         // });
-      case 16:
+      case 20:
       case "end":
         return _context3.stop();
     }

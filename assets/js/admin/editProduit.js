@@ -196,21 +196,22 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    console.log(media);
   });
 
-  // const tarif = await axios.post(
-  //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
-  //   {
-  //     tar_ht,
-  //     tar_ttc,
-  //   },
-  //   {
-  //     headers: {
-  //       "X-Requested-With": "XMLHttpRequest",
-  //     },
-  //   }
-  // );
+  const tarif = await axios.put(
+    `${SITE_URL}/admin/produits/tarif/${Myproduct.data.pro_id}`,
+    {
+      tar_ht,
+      tar_ttc,
+    },
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+
+  console.log(tarif)
 
   // const selectTailles = document.querySelectorAll(".select-taille");
 
