@@ -28,7 +28,7 @@ const {
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
+const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
 
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
@@ -261,10 +261,21 @@ router.get('/view/:commandeId',async (req,res)=>{
       include:[
         {
           model:Moyen_paiement
+        },
+        {
+          model:Document,
+          include:[{
+            model:Type_document
+          }]
         }
       ],
       where:{
         com_id:commande.com_id
+      }
+    });
+    let factures = await Document.findAll({
+      where:{
+        tdo_id:TYPE_DOCUMENT_FACTURE
       }
     });
     res.render("devis/view",{
@@ -275,7 +286,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       moment,
       statutCommandes,
       moyen_paiements,
-      paiements
+      paiements,
+      factures
     });
   } catch (error) {
     res.render("devis/view",{

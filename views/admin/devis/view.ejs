@@ -559,7 +559,7 @@
                 </div>
             </div>
             <div class="paiements-bloc card shadow">
-                <h2>Paiement (0)</h2>
+                <h2>Paiement (<%= paiements.length %>)</h2>
                 <table class="table">
                     <thead>
                       <tr>
@@ -578,7 +578,7 @@
                             <td><%= paiement.Moyen_paiement.mop_libelle %></td>
                             <td><%= paiement.pai_ref %></td>
                             <td><%= paiement.pai_montant %></td>
-                            <td>@mdo</td>
+                            <td><%= paiement.Document.doc_libelle%> (<%= paiement.Document.Type_document.tdo_libelle %>)</td>
                           </tr>
                         <% }) %>
                       <% } %>
@@ -598,7 +598,7 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="" id="" placeholder="ID de la transaction">
+                            <input type="text" class="form-control" name="" id="" placeholder="reference de la facture">
                         </div>
                         <div class="col-auto">
                             <input type="text" class="form-control" name="" id="" placeholder="Montant">
@@ -606,9 +606,9 @@
                         <div class="col-auto">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Facture</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <% factures.forEach(facture => { %>
+                                 <option value=""><%= facture.doc_libelle %></option>
+                                <% }) %>
                             </select>
                         </div>
                         <div class="col-auto">
