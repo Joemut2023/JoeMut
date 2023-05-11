@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <form action="">
+  <form action="/admin/produits/upload-images" method="POST" enctype="multipart/form-data">
     <div class="tabs-container row">
       <div class="tabs">
         <nav>
@@ -932,18 +932,19 @@
         <!-- <div class="tabs-right col-md-4"></div> -->
       </div>
     </div>
-  </form>
-
-  <div class="navbar">
+      <div class="navbar">
     <div class="buttons">
       <div>
         <button type="button" class="btn btn-secondary">Previsualiser</button>
       </div>
       <div>
-        <button type="button" class="btn btn-primary update">Modifier</button>
+        <button type="submit" class="btn btn-primary update">Modifier</button>
       </div>
     </div>
   </div>
+  </form>
+
+
 </div>
 
 <script src="/javascripts/admin/editProduit.js"></script>
