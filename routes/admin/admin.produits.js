@@ -291,10 +291,53 @@ router.put("/:id", async (req, res) => {
       pro_comment,
       pro_statut,
     },{where:{pro_id:req.params.id}});
-    return res.status(201).json({ product });
+    return res.status(200).json({ product });
   } catch (error) {
     console.log(error.message);
   }
 });
+
+
+router.put("/tarif/:id", async function (req, res) {
+  const { tar_ht, tar_ttc } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const tarif = await Tarif.create(
+      {
+        tar_debut: new Date(new Date().setDate(new Date().getDate())),
+        tar_fin: null,
+        tar_ht,
+        tar_ttc,
+        tar_statut: 1,
+      },
+      { where: { pro_id: produit.pro_id } }
+    );
+
+    return res.status(200).json(tarif);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.put("/qty/:id", async function (req, res) {
+  const { qua_nbre, tai_id } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const qty = await Quantite.create(
+      {
+        tai_id,
+        qua_nbre,
+      },
+      { where: { pro_id: produit.pro_id } }
+    );
+
+    return res.status(200).json(qty);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;

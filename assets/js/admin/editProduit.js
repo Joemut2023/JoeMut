@@ -161,7 +161,6 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
-
   const data = {
     cat_id,
     pro_ref: pro_ref.value,
@@ -173,62 +172,65 @@ btnEnregistrer.addEventListener("click", async function () {
     pro_statut,
   };
 
-  const produit = await axios.put(`${SITE_URL}/admin/produits/${Myproduct.data.pro_id}`, data, {
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
+  const produit = await axios.put(
+    `${SITE_URL}/admin/produits/${Myproduct.data.pro_id}`,
+    data,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+
+  imagesArray.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name.split(".")[0],
+      med_ressource: image.name,
+    };
+    const media = await axios.post(
+      `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
   });
-  console.log(produit)
 
-  // imagesArray.map(async (image) => {
-  //   const dataMedia = {
-  //     med_libelle: image.name.split(".")[0],
-  //     med_ressource: image.name,
-  //   };
-  //   const media = await axios.post(
-  //     `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-  //     dataMedia,
-  //     {
-  //       headers: {
-  //         "X-Requested-With": "XMLHttpRequest",
-  //       },
-  //     }
-  //   );
-  //   console.log(media);
-  // });
+  const tarif = await axios.put(
+    `${SITE_URL}/admin/produits/tarif/${Myproduct.data.pro_id}`,
+    {
+      tar_ht,
+      tar_ttc,
+    },
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
 
-  // const tarif = await axios.post(
-  //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
-  //   {
-  //     tar_ht,
-  //     tar_ttc,
-  //   },
-  //   {
-  //     headers: {
-  //       "X-Requested-With": "XMLHttpRequest",
-  //     },
-  //   }
-  // );
 
-  // const selectTailles = document.querySelectorAll(".select-taille");
+  const selectTailles = document.querySelectorAll(".select-taille");
 
-  // Array.from(selectTailles, async (item) => {
-  //   const dataselect = {
-  //     tai_id: item.value,
-  //     qua_nbre: parseInt(
-  //       item.parentNode.parentNode.parentNode.children[1].children[1]
-  //         .children[0].value
-  //     ),
-  //   };
-  //   const qty = await axios.post(
-  //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-  //     dataselect,
-  //     {
-  //       headers: {
-  //         "X-Requested-With": "XMLHttpRequest",
-  //       },
-  //     }
-  //   );
-  //   console.log(qty);
-  // });
+  Array.from(selectTailles, async (item) => {
+    const dataselect = {
+      tai_id: item.value,
+      qua_nbre: parseInt(
+        item.parentNode.parentNode.parentNode.children[1].children[1]
+          .children[0].value
+      ),
+    };
+    const qty = await axios.put(
+      `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
+      dataselect,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+    console.log(qty);
+  });
 });
