@@ -224,7 +224,7 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    console.log(media);
+    // console.log(media);
   });
 
   const tarif = await axios.post(
@@ -257,7 +257,7 @@ btnEnregistrer.addEventListener("click", async function () {
     //   console.log(media);
     // });
 
-  console.log(tarif);
+  // console.log(tarif);
  
   const selectTailles = document.querySelectorAll(".select-taille");
   
@@ -279,7 +279,7 @@ btnEnregistrer.addEventListener("click", async function () {
           },
         }
       );
-      console.log(qty);
+      // console.log(qty);
   }
     
   );

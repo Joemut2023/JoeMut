@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+var multer = require("multer");
 const {
   Produit,
   Quantite,
@@ -350,5 +351,19 @@ router.delete('/qty/:pro_id/:id',async function(req,res){
   }
 })
 
+
+var storage = multer.diskStorage({destination:function(req,file,cb){
+  cb(null,'./public/images/produits')
+},filename:function(req,file,cb){
+  cb(null,file.originalname)
+}})
+
+var upload = multer({storage})
+//uplad-image
+router.post('/upload-images',upload.array('produit-files',12),function(req,res,next){
+  return res.redirect("/admin/produits");
+//  console.log(JSON.stringify(req.files))
+
+})
 
 module.exports = router;
