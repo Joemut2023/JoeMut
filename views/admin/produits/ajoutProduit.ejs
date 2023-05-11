@@ -8,12 +8,13 @@
               type="text"
               class="form-control pro-libelle"
               placeholder="Saisissez le nom de votre produit"
+              required
             />
             <span
               class="glyphicon glyphicon-info-sign form-control-feedback"
             ></span>
           </div>
-          <p class="text">This value should be not blank</p>
+          <p class="text">Cette valeur ne doit pas être vide</p>
         </div>
       </div>
     </div>
@@ -124,7 +125,7 @@
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control pro-ref" />
+                    <input type="text" class="form-control pro-ref" required/>
                   </div>
                 </div>
               </div>
@@ -139,6 +140,7 @@
                       class="content-recap pro-details"
                       maxlength="800"
                       placeholder="Le résumé est une phrase qui décrit brièvement votre produit"
+                      required
                     ></textarea>
                   </div>
                 
@@ -171,6 +173,7 @@
                           class="form-control tar-ht"
                           placeholder="0,0000"
                           aria-label="Dollar amount (with dot and two decimal places)"
+                          required
                         />
                         <span class="input-group-text">€</span>
                       </div>
@@ -183,6 +186,7 @@
                           class="form-control tar-ttc"
                           placeholder="0,0000"
                           aria-label="Dollar amount (with dot and two decimal places)"
+                          required
                         />
                         <span class="input-group-text">€</span>
                       </div>
