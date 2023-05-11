@@ -8087,6 +8087,7 @@ body {
   display: none;
 }
 #admin-page-viewDevis .content .right .commande-tabs #nav-transporteur .tab-transporteur-form-container {
+  padding: 5px;
   display: none;
 }
 #admin-page-viewDevis .content .right .paiements-bloc h2 {
