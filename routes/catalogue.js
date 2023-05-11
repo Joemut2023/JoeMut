@@ -63,6 +63,7 @@ router.get("/", async function (req, res, next) {
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
+      where:{pro_statut:true},
       order: orderCondition,
     });
 
@@ -157,6 +158,7 @@ router.get("/:id", async (req, res) => {
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Categorie, where: { cat_id: id } },
       ],
+      where:{pro_statut:true},
       order: orderCondition,
     });
     let nbrPages = Math.ceil(categorie.Produits.length / PAGINATION_LIMIT);
@@ -235,6 +237,7 @@ router.get("/type/:id", async (req, res) => {
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Categorie, where: { tyc_id: id } },
       ],
+      where:{pro_statut:true},
       order: orderCondition,
     });
 

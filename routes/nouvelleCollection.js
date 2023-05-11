@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
       // offset: start,
       // limit: PAGINATION_LIMIT,
       // order: [["pro_id", "DESC"]],
-      where: { pro_new_collect: 1 },
+      where: { pro_new_collect: 1,pro_statut:true },
     });
     const produits = await Produit.findAll({
       offset: start,

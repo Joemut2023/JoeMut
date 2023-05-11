@@ -17,6 +17,7 @@ router.get("/", async (req, res, next) => {
       { model: Media, attributes: ["med_id", "med_ressource"] },
       { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
     ],
+    where:{pro_statut:true}
   });
 
   
