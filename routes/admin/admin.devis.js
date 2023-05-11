@@ -471,5 +471,10 @@ router.post('/commande-add-doc-comment', async (req,res)=>{
   } catch (error) {
     console.log(error);
   }
-})
+});
+router.post('/commande-add-facture-paiement',async (req,res)=>{
+  const {com_id,pai_date,mop_id,pai_ref,pai_montant,doc_id} = req.body
+
+  res.redirect(`/admin/devis/view/${com_id}`);
+});
 module.exports = router;

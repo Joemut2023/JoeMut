@@ -585,12 +585,12 @@
                     </tbody>
                 </table>
                 <div class="form-bloc-paiement">
-                    <form class="row g-3">
+                    <form class="row g-3" method="post" action="/admin/devis/commande-add-facture-paiement">
                         <div class="col-auto">
-                            <input type="date" class="form-control" name="" id="">
+                            <input type="date" class="form-control" name="pai_date" id="">
                         </div>
                         <div class="col-auto">
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="mop_id" aria-label="Default select example">
                                 <option selected>Moyen de paiement</option>
                                 <% moyen_paiements.forEach(moyen_paiement => { %>
                                   <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
@@ -598,13 +598,13 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="" id="" placeholder="reference de la facture">
+                            <input type="text" class="form-control" name="pai_ref" id="" placeholder="reference de la facture">
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="" id="" placeholder="Montant">
+                            <input type="text" class="form-control" name="pai_montant" id="" placeholder="Montant">
                         </div>
                         <div class="col-auto">
-                            <select class="form-select" aria-label="Default select example">
+                            <select8 name="doc_id" class="form-select" aria-label="Default select example">
                                 <option selected>Facture</option>
                                 <% factures.forEach(facture => { %>
                                  <option value=""><%= facture.doc_libelle %></option>
@@ -612,6 +612,7 @@
                             </select>
                         </div>
                         <div class="col-auto">
+                          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                           <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                         </div>
                     </form>
