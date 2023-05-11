@@ -258,7 +258,33 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
 
 //delete taille
 Array.from(btns_delete, function (item) {
-  item.addEventListener("click", function () {
-    lines.removeChild(this.parentNode);
-  });
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+    var Myproduct, qty_id, qty;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
+        case 0:
+          lines.removeChild(this.parentNode);
+          _context6.next = 3;
+          return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
+            headers: {
+              "X-Requested-With": "XMLHttpRequest"
+            }
+          });
+        case 3:
+          Myproduct = _context6.sent;
+          qty_id = item.previousElementSibling.children[1].children[0].name;
+          _context6.next = 7;
+          return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
+            headers: {
+              "X-Requested-With": "XMLHttpRequest"
+            }
+          });
+        case 7:
+          qty = _context6.sent;
+        case 8:
+        case "end":
+          return _context6.stop();
+      }
+    }, _callee6, this);
+  })));
 });

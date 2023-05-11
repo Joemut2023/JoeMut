@@ -251,8 +251,26 @@ btnEnregistrer.addEventListener("click", async function () {
 });
 
 //delete taille
-  Array.from(btns_delete, (item) => {
-    item.addEventListener("click", function () {
+  Array.from(btns_delete,(item) => {
+    item.addEventListener("click",async function () {
       lines.removeChild(this.parentNode);
+        const Myproduct = await axios.get(
+    `${SITE_URL}/admin/produits/one/${pro_ref.value}`,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+let qty_id = item.previousElementSibling.children[1].children[0].name;
+
+ const qty = await axios.delete(
+   `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}/${qty_id}`,
+   {
+     headers: {
+       "X-Requested-With": "XMLHttpRequest",
+     },
+   }
+ );
     });
   });
