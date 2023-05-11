@@ -109,7 +109,7 @@ function _addTaille() {
           line.classList.add("quantity", "row");
           line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select select-taille\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
             return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
-          }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
+          }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete delete-add\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
           lines.appendChild(line);
         case 4:
         case "end":
@@ -120,7 +120,7 @@ function _addTaille() {
   return _addTaille.apply(this, arguments);
 }
 btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var taille;
+  var taille, btns_delete;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -133,8 +133,15 @@ btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_r
       case 2:
         taille = _context.sent;
         // console.log(taille);
+
         addTaille(taille);
-      case 4:
+        btns_delete = document.querySelectorAll(".delete-add");
+        Array.from(btns_delete, function (item) {
+          item.addEventListener("click", function () {
+            lines.removeChild(this.parentNode);
+          });
+        });
+      case 6:
       case "end":
         return _context.stop();
     }
@@ -297,3 +304,10 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
     }
   }, _callee5);
 })));
+
+//delete taille
+Array.from(btns_delete, function (item) {
+  item.addEventListener("click", function () {
+    lines.removeChild(this.parentNode);
+  });
+});
