@@ -434,6 +434,7 @@
                                 <th scope="col">Document</th>
                                 <th scope="col">Numéro</th>
                                 <th scope="col">Montant</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Actions</th>
                               </tr>
                             </thead>
@@ -448,6 +449,7 @@
                                   <% } else { %>
                                     <td></td>
                                   <% } %>
+                                  <td><%= document.doc_comment %></td>
                                   <td>
                                       <div>
                                           <button class="btn btn-primary btn-form-doc-paiement" data-document="<%= document.doc_id %>">Saisir un paiement</button>
