@@ -160,15 +160,14 @@ btnEnregistrer.addEventListener("click", async function () {
       },
     }
   );
-  
 
- 
+
   const data = {
     cat_id,
-    pro_ref:pro_ref.value,
+    pro_ref: pro_ref.value,
     pro_libelle: pro_libelle.value,
-    pro_description: pro_description.textContent,
-    pro_details: pro_details.textContent,
+    pro_description: pro_description.value,
+    // pro_details:pro_details.textContent,
     pro_new_collect,
     pro_en_avant,
     pro_statut,
@@ -210,7 +209,6 @@ btnEnregistrer.addEventListener("click", async function () {
   //     },
   //   }
   // );
-
 
   // const selectTailles = document.querySelectorAll(".select-taille");
 

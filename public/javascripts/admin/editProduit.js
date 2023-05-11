@@ -139,8 +139,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           cat_id: cat_id,
           pro_ref: pro_ref.value,
           pro_libelle: pro_libelle.value,
-          pro_description: pro_description.textContent,
-          pro_details: pro_details.textContent,
+          pro_description: pro_description.value,
+          // pro_details:pro_details.textContent,
           pro_new_collect: pro_new_collect,
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
