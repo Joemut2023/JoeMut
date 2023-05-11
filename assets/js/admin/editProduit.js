@@ -161,7 +161,6 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
-
   const data = {
     cat_id,
     pro_ref: pro_ref.value,
@@ -173,29 +172,32 @@ btnEnregistrer.addEventListener("click", async function () {
     pro_statut,
   };
 
-  const produit = await axios.put(`${SITE_URL}/admin/produits/${Myproduct.data.pro_id}`, data, {
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-  });
-  console.log(produit)
+  const produit = await axios.put(
+    `${SITE_URL}/admin/produits/${Myproduct.data.pro_id}`,
+    data,
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
 
-  // imagesArray.map(async (image) => {
-  //   const dataMedia = {
-  //     med_libelle: image.name.split(".")[0],
-  //     med_ressource: image.name,
-  //   };
-  //   const media = await axios.post(
-  //     `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-  //     dataMedia,
-  //     {
-  //       headers: {
-  //         "X-Requested-With": "XMLHttpRequest",
-  //       },
-  //     }
-  //   );
-  //   console.log(media);
-  // });
+  imagesArray.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name.split(".")[0],
+      med_ressource: image.name,
+    };
+    const media = await axios.post(
+      `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+    console.log(media);
+  });
 
   // const tarif = await axios.post(
   //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,

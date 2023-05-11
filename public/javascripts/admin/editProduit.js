@@ -113,10 +113,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit;
-  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-    while (1) switch (_context2.prev = _context2.next) {
+  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    while (1) switch (_context3.prev = _context3.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? 1 : 0;
@@ -124,17 +124,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? 1 : 0;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context2.next = 8;
+        _context3.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context2.next = 10;
-        return _context2.sent;
+        _context3.next = 10;
+        return _context3.sent;
       case 10:
-        Myproduct = _context2.sent;
+        Myproduct = _context3.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -145,32 +145,43 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context2.next = 14;
+        _context3.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 14:
-        produit = _context2.sent;
-        console.log(produit);
-
-        // imagesArray.map(async (image) => {
-        //   const dataMedia = {
-        //     med_libelle: image.name.split(".")[0],
-        //     med_ressource: image.name,
-        //   };
-        //   const media = await axios.post(
-        //     `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-        //     dataMedia,
-        //     {
-        //       headers: {
-        //         "X-Requested-With": "XMLHttpRequest",
-        //       },
-        //     }
-        //   );
-        //   console.log(media);
-        // });
+        produit = _context3.sent;
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(image) {
+            var dataMedia, media;
+            return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+              while (1) switch (_context2.prev = _context2.next) {
+                case 0:
+                  dataMedia = {
+                    med_libelle: image.name.split(".")[0],
+                    med_ressource: image.name
+                  };
+                  _context2.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  media = _context2.sent;
+                  console.log(media);
+                case 5:
+                case "end":
+                  return _context2.stop();
+              }
+            }, _callee2);
+          }));
+          return function (_x) {
+            return _ref3.apply(this, arguments);
+          };
+        }());
 
         // const tarif = await axios.post(
         //   `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
@@ -208,7 +219,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         // });
       case 16:
       case "end":
-        return _context2.stop();
+        return _context3.stop();
     }
-  }, _callee2);
+  }, _callee3);
 })));
