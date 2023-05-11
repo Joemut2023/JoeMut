@@ -113,10 +113,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif;
-  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-    while (1) switch (_context3.prev = _context3.next) {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif, selectTailles;
+  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+    while (1) switch (_context4.prev = _context4.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? 1 : 0;
@@ -124,17 +124,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? 1 : 0;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context3.next = 8;
+        _context4.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context3.next = 10;
-        return _context3.sent;
+        _context4.next = 10;
+        return _context4.sent;
       case 10:
-        Myproduct = _context3.sent;
+        Myproduct = _context4.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -145,14 +145,14 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context3.next = 14;
+        _context4.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 14:
-        produit = _context3.sent;
+        produit = _context4.sent;
         imagesArray.map( /*#__PURE__*/function () {
           var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(image) {
             var dataMedia, media;
@@ -181,7 +181,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref3.apply(this, arguments);
           };
         }());
-        _context3.next = 18;
+        _context4.next = 18;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -191,33 +191,40 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 18:
-        tarif = _context3.sent;
-        console.log(tarif);
-
-        // const selectTailles = document.querySelectorAll(".select-taille");
-
-        // Array.from(selectTailles, async (item) => {
-        //   const dataselect = {
-        //     tai_id: item.value,
-        //     qua_nbre: parseInt(
-        //       item.parentNode.parentNode.parentNode.children[1].children[1]
-        //         .children[0].value
-        //     ),
-        //   };
-        //   const qty = await axios.post(
-        //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-        //     dataselect,
-        //     {
-        //       headers: {
-        //         "X-Requested-With": "XMLHttpRequest",
-        //       },
-        //     }
-        //   );
-        //   console.log(qty);
-        // });
-      case 20:
+        tarif = _context4.sent;
+        selectTailles = document.querySelectorAll(".select-taille");
+        Array.from(selectTailles, /*#__PURE__*/function () {
+          var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+              while (1) switch (_context3.prev = _context3.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context3.next = 3;
+                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context3.sent;
+                  console.log(qty);
+                case 5:
+                case "end":
+                  return _context3.stop();
+              }
+            }, _callee3);
+          }));
+          return function (_x2) {
+            return _ref4.apply(this, arguments);
+          };
+        }());
+      case 21:
       case "end":
-        return _context3.stop();
+        return _context4.stop();
     }
-  }, _callee3);
+  }, _callee4);
 })));

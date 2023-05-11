@@ -320,5 +320,24 @@ router.put("/tarif/:id", async function (req, res) {
   }
 });
 
+router.put("/qty/:id", async function (req, res) {
+  const { qua_nbre, tai_id } = req.body;
+  try {
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+
+    const qty = await Quantite.create(
+      {
+        tai_id,
+        qua_nbre,
+      },
+      { where: { pro_id: produit.pro_id } }
+    );
+
+    return res.status(200).json(qty);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;
