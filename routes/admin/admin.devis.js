@@ -28,7 +28,7 @@ const {
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
+const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
 
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
@@ -261,12 +261,24 @@ router.get('/view/:commandeId',async (req,res)=>{
       include:[
         {
           model:Moyen_paiement
+        },
+        {
+          model:Document,
+          include:[{
+            model:Type_document
+          }]
         }
       ],
       where:{
         com_id:commande.com_id
       }
     });
+    let factures = await Document.findAll({
+      where:{
+        tdo_id:TYPE_DOCUMENT_FACTURE
+      }
+    });
+    let frais_ports = await Frais_port.findAll();
     res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -275,7 +287,9 @@ router.get('/view/:commandeId',async (req,res)=>{
       moment,
       statutCommandes,
       moyen_paiements,
-      paiements
+      paiements,
+      factures,
+      frais_ports
     });
   } catch (error) {
     res.render("devis/view",{
@@ -459,5 +473,19 @@ router.post('/commande-add-doc-comment', async (req,res)=>{
   } catch (error) {
     console.log(error);
   }
+});
+router.post('/commande-add-facture-paiement',async (req,res)=>{
+  const {com_id,pai_date,mop_id,pai_ref,pai_montant,doc_id} = req.body
+
+  res.redirect(`/admin/devis/view/${com_id}`);
+});
+router.post('/commande-add-transporteur', async (req,res)=>{
+  const {exp_poids,exp_suivi,com_id} = req.body;
+
+  res.redirect(`/admin/devis/view/${com_id}`);
+})
+router.post('/commande-retour', async (req,res)=>{
+  const {com_id} = req.body;
+  res.redirect(`/admin/devis/view/${com_id}`);
 })
 module.exports = router;

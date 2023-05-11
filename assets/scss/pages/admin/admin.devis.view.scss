@@ -302,6 +302,13 @@
                     }
                 }
                 #nav-retour{
+                    .tab-retour-form-container-btn-container{
+                        padding-left: 5px;
+                    }
+                    .tab-retour-form-container{
+                        padding: 5px;
+                        display: none;
+                    }
                     .th-quantite{
                         div{
                             display: flex;
@@ -324,6 +331,12 @@
                 }
                 #nav-document{
                     .tr-form-note,.tr-form-paiement{
+                        display: none;
+                    }
+                }
+                #nav-transporteur{
+                    .tab-transporteur-form-container{
+                        padding: 5px;
                         display: none;
                     }
                 }

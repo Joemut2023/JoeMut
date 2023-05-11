@@ -521,10 +521,35 @@
                                 <td>Otto</td>
                                 <td>@mdo</td>
                                 <td>@mdo</td>
-                                <td>@mdo</td>
+                                <td><button class="btn btn-primary"><i class="fa-solid fa-pencil"></i></button></td>
                               </tr>
                             </tbody>
                         </table>
+                        <div style="padding-left: 5px;" class="mb-4">
+                          <button class="btn btn-primary btn-show-tab-transporteur-form-container">Ajouter</button>
+                        </div>
+                        <div class="tab-transporteur-form-container">
+                          <form class="row g-3" method="post" action="/admin/devis/commande-add-transporteur">
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="exp_suivi" id="" placeholder="Numéro de suivi">
+                            </div>
+                            <div class="col-auto">
+                              <select name="frp_id" class="form-select" aria-label="Default select example">
+                                  <option selected>Transporteur</option>
+                                  <% frais_ports.forEach(frais_port => { %>
+                                   <option value="<%= frais_port.frp_id %>"><%= frais_port.frp_libelle %></option>
+                                  <% }) %>
+                              </select>
+                          </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" name="exp_poids" id="" placeholder="Poids en Kg">
+                            </div>
+                            <div class="col-auto">
+                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                            </div>
+                          </form>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">
                         <table class="table">
@@ -555,11 +580,33 @@
                               </tr>
                             </tbody>
                         </table>
+                        <div class="tab-retour-form-container-btn-container mb-4">
+                          <button class="btn btn-primary btn-show-tab-retour-form">Ajouter</button>
+                        </div>
+                        <div class="tab-retour-form-container">
+                          <form class="row g-3" method="post" action="/admin/devis/commande-retour">
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="exp_suivi" id="" placeholder="Numéro de suivi">
+                            </div>
+                            <div class="col-auto">
+                              <select name="frp_id" class="form-select" aria-label="Default select example">
+                                  <option selected>Transporteur</option>
+                              </select>
+                          </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" name="exp_poids" id="" placeholder="Poids en Kg">
+                            </div>
+                            <div class="col-auto">
+                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                            </div>
+                          </form>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="paiements-bloc card shadow">
-                <h2>Paiement (0)</h2>
+                <h2>Paiement (<%= paiements.length %>)</h2>
                 <table class="table">
                     <thead>
                       <tr>
@@ -578,19 +625,19 @@
                             <td><%= paiement.Moyen_paiement.mop_libelle %></td>
                             <td><%= paiement.pai_ref %></td>
                             <td><%= paiement.pai_montant %></td>
-                            <td>@mdo</td>
+                            <td><%= paiement.Document.doc_libelle%> (<%= paiement.Document.Type_document.tdo_libelle %>)</td>
                           </tr>
                         <% }) %>
                       <% } %>
                     </tbody>
                 </table>
                 <div class="form-bloc-paiement">
-                    <form class="row g-3">
+                    <form class="row g-3" method="post" action="/admin/devis/commande-add-facture-paiement">
                         <div class="col-auto">
-                            <input type="date" class="form-control" name="" id="">
+                            <input type="date" class="form-control" name="pai_date" id="">
                         </div>
                         <div class="col-auto">
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="mop_id" aria-label="Default select example">
                                 <option selected>Moyen de paiement</option>
                                 <% moyen_paiements.forEach(moyen_paiement => { %>
                                   <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
@@ -598,20 +645,21 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="" id="" placeholder="ID de la transaction">
+                            <input type="text" class="form-control" name="pai_ref" id="" placeholder="reference de la facture">
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="" id="" placeholder="Montant">
+                            <input type="text" class="form-control" name="pai_montant" id="" placeholder="Montant">
                         </div>
                         <div class="col-auto">
-                            <select class="form-select" aria-label="Default select example">
+                            <select8 name="doc_id" class="form-select" aria-label="Default select example">
                                 <option selected>Facture</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <% factures.forEach(facture => { %>
+                                 <option value=""><%= facture.doc_libelle %></option>
+                                <% }) %>
                             </select>
                         </div>
                         <div class="col-auto">
+                          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                           <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                         </div>
                     </form>

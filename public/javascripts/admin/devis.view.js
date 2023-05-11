@@ -23,6 +23,10 @@ var btnsAddremises = document.querySelectorAll('.btn-remise-prod');
 var addRemiseForm = document.querySelector('.form-add-commande-remise-container');
 var btnAddReductionOnCommande = document.querySelector('.btn-add-commande-reduction');
 var btnDisableAddRemiseForm = document.querySelector('.btn-disable-add-remise-form');
+var btnShowTabTransporteurForm = document.querySelector('.btn-show-tab-transporteur-form-container');
+var btnShowTabRetourForm = document.querySelector('.btn-show-tab-retour-form');
+var tabTransporteurForm = document.querySelector('.tab-transporteur-form-container');
+var tabRetourForm = document.querySelector('.tab-retour-form-container');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -138,6 +142,12 @@ btnAddReductionOnCommande.addEventListener('click', function (e) {
 btnDisableAddRemiseForm.addEventListener('click', function (e) {
   e.preventDefault();
   addRemiseForm.style.display = 'none';
+});
+btnShowTabTransporteurForm.addEventListener('click', function (e) {
+  tabTransporteurForm.style.display === 'none' ? tabTransporteurForm.style.display = 'block' : tabTransporteurForm.style.display = 'none';
+});
+btnShowTabRetourForm.addEventListener('click', function (e) {
+  tabRetourForm.style.display === 'none' ? tabRetourForm.style.display = 'block' : tabRetourForm.style.display = 'none';
 });
 /**
  * Autocompletion pour ajout produit
