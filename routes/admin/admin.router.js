@@ -16,6 +16,7 @@ const adresseRouter = require("./admin.adresse");
 const clientRouter = require("./admin.client");
 const promoRouter = require("./admin.promo");
 const applyRouter = require("./admin.apply");
+const transporteurRouter = require("./admin.transporteur");
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout,adminIsAuth], devisRouter);
@@ -33,4 +34,5 @@ router.use("/adresse", [adminLayout,adminIsAuth], adresseRouter);
 router.use("/clients", [adminLayout,adminIsAuth], clientRouter);
 router.use("/promo", [adminLayout,adminIsAuth], promoRouter);
 router.use("/apply", [adminLayout,adminIsAuth], applyRouter);
+router.use("/transporteurs", [adminLayout,adminIsAuth], transporteurRouter);
 module.exports = router;
