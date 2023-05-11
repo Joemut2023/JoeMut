@@ -22,7 +22,8 @@ const {
   Statut_commande,
   Document,
   User,
-  Type_document
+  Type_document,
+  Paiement
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -222,9 +223,14 @@ router.get('/view/:commandeId',async (req,res)=>{
         },
         {
           model:Document,
-          include:[{
+          include:[
+            {
             model:Type_document
-          }]
+            },
+            {
+              model:Paiement
+            }
+          ]
         },
         {
           model:Chronologie,

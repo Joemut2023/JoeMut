@@ -442,8 +442,12 @@
                                 <tr>
                                   <th scope="row"><%= moment(document.doc_date).format('D/MM, YYYY') %></th>
                                   <td><%= document.Type_document.tdo_libelle %></td>
-                                  <td><%= document.doc_id %></td>
-                                  <td>10€</td>
+                                  <td><%= document.doc_ref %></td>
+                                  <% if (document.Paiements.length !== 0) { %>
+                                    <td><%= document.Paiements[0] %> €</td>
+                                  <% } else { %>
+                                    <td></td>
+                                  <% } %>
                                   <td>
                                       <div>
                                           <button class="btn btn-primary btn-form-doc-paiement" data-document="<%= document.doc_id %>">Saisir un paiement</button>
