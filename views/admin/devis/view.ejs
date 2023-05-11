@@ -571,13 +571,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+                      <% if (typeof paiements != 'undefined') { %>
+                        <% paiements.forEach(paiement => { %>
+                          <tr>
+                            <th scope="row"><%= moment(paiement.pai_date).format('D/MM, YYYY') %></th>
+                            <td><%= paiement.Moyen_paiement.mop_libelle %></td>
+                            <td><%= paiement.pai_ref %></td>
+                            <td><%= paiement.pai_montant %></td>
+                            <td>@mdo</td>
+                          </tr>
+                        <% }) %>
+                      <% } %>
                     </tbody>
                 </table>
                 <div class="form-bloc-paiement">

@@ -257,6 +257,16 @@ router.get('/view/:commandeId',async (req,res)=>{
     });
     let statutCommandes = await Statut_commande.findAll();
     let moyen_paiements = await Moyen_paiement.findAll();
+    let paiements = await Paiement.findAll({
+      include:[
+        {
+          model:Moyen_paiement
+        }
+      ],
+      where:{
+        com_id:commande.com_id
+      }
+    });
     res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -264,7 +274,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       adresses,
       moment,
       statutCommandes,
-      moyen_paiements
+      moyen_paiements,
+      paiements
     });
   } catch (error) {
     res.render("devis/view",{
