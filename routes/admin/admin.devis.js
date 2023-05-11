@@ -22,7 +22,9 @@ const {
   Statut_commande,
   Document,
   User,
-  Type_document
+  Type_document,
+  Paiement,
+  Moyen_paiement
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -222,9 +224,14 @@ router.get('/view/:commandeId',async (req,res)=>{
         },
         {
           model:Document,
-          include:[{
+          include:[
+            {
             model:Type_document
-          }]
+            },
+            {
+              model:Paiement
+            }
+          ]
         },
         {
           model:Chronologie,
@@ -249,13 +256,15 @@ router.get('/view/:commandeId',async (req,res)=>{
       where:{adr_id:commande.com_adr_fac}
     });
     let statutCommandes = await Statut_commande.findAll();
+    let moyen_paiements = await Moyen_paiement.findAll();
     res.render("devis/view",{
       commande,
       adresse_livraion,
       adresse_facturation,
       adresses,
       moment,
-      statutCommandes
+      statutCommandes,
+      moyen_paiements
     });
   } catch (error) {
     res.render("devis/view",{
@@ -411,4 +420,33 @@ router.post('/commande/update-date-fin',async (req,res)=>{
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
+router.post('/commande-add-paiement-for-document',async (req,res)=>{
+  const {doc_id,com_id,pai_montant,pai_ref,mop_id} = req.body;
+  const usr_id = req.session.adminId;
+  try {
+    let paiement_item = await Paiement.create({
+      doc_id,
+      usr_id,
+      mop_id,
+      com_id,
+      pai_ref,
+      pai_montant,
+      pai_date:new Date(new Date().setDate(new Date().getDate()))
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.post('/commande-add-doc-comment', async (req,res)=>{
+  const {doc_comment,com_id,doc_id} = req.body;
+  try {
+    await Document.update({
+      doc_comment
+    },{where:{doc_id}});
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+  }
+})
 module.exports = router;
