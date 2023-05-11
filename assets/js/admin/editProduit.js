@@ -211,27 +211,26 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
-  console.log(tarif)
 
-  // const selectTailles = document.querySelectorAll(".select-taille");
+  const selectTailles = document.querySelectorAll(".select-taille");
 
-  // Array.from(selectTailles, async (item) => {
-  //   const dataselect = {
-  //     tai_id: item.value,
-  //     qua_nbre: parseInt(
-  //       item.parentNode.parentNode.parentNode.children[1].children[1]
-  //         .children[0].value
-  //     ),
-  //   };
-  //   const qty = await axios.post(
-  //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-  //     dataselect,
-  //     {
-  //       headers: {
-  //         "X-Requested-With": "XMLHttpRequest",
-  //       },
-  //     }
-  //   );
-  //   console.log(qty);
-  // });
+  Array.from(selectTailles, async (item) => {
+    const dataselect = {
+      tai_id: item.value,
+      qua_nbre: parseInt(
+        item.parentNode.parentNode.parentNode.children[1].children[1]
+          .children[0].value
+      ),
+    };
+    const qty = await axios.put(
+      `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
+      dataselect,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+    console.log(qty);
+  });
 });
