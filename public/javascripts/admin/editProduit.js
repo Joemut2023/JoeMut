@@ -25,6 +25,7 @@ var listCat = document.querySelector(".cat-select");
 var ht = document.querySelector(".tar-ht");
 var ttc = document.querySelector(".tar-ttc");
 var btnEnregistrer = document.querySelector(".update");
+var qtyMax = document.querySelector(".qty-max");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -77,46 +78,66 @@ function deleteImage(index) {
   imagesArray.splice(index, 1);
   displayImages();
 }
-function addTaille() {
+function addTaille(taille) {
   console.log("FONCTIONNE");
   var line = document.createElement("div");
   line.classList.add("quantity", "row");
-  line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select\"\n                          aria-label=\"Default select example\"\n                        >\n                          <option selected>Taille</option>\n                          <option value=\"1\">One</option>\n                          <option value=\"2\">Two</option>\n                          <option value=\"3\">Three</option>\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ";
+  line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select select-taille\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
+    return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
+  }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
   lines.appendChild(line);
 }
-btnAdd.addEventListener("click", function () {
-  addTaille();
-});
+btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var taille;
+  return _regeneratorRuntime().wrap(function _callee$(_context) {
+    while (1) switch (_context.prev = _context.next) {
+      case 0:
+        _context.next = 2;
+        return axios.get("".concat(SITE_URL, "/admin/produits/add/tailles"), {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 2:
+        taille = _context.sent;
+        // console.log(taille);
+        addTaille(taille);
+      case 4:
+      case "end":
+        return _context.stop();
+    }
+  }, _callee);
+})));
 function listCategorie(categorie) {
   console.log(categorie);
   listCat.innerHTML = "\n  ".concat(categorie.data.map(function (item) {
     return "<option value=".concat(item.cat_id, ">").concat(item.cat_libelle, "</option>");
   }), "\n  ");
 }
-selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var categorie;
-  return _regeneratorRuntime().wrap(function _callee$(_context) {
-    while (1) switch (_context.prev = _context.next) {
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        _context.next = 2;
+        _context2.next = 2;
         return axios.get("".concat(SITE_URL, "/admin/produits/categorie/").concat(this.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 2:
-        categorie = _context.sent;
+        categorie = _context2.sent;
         listCategorie(categorie);
       case 4:
       case "end":
-        return _context.stop();
+        return _context2.stop();
     }
-  }, _callee, this);
+  }, _callee2, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif, selectTailles;
-  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-    while (1) switch (_context4.prev = _context4.next) {
+  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+    while (1) switch (_context5.prev = _context5.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? 1 : 0;
@@ -124,17 +145,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? 1 : 0;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context4.next = 8;
+        _context5.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context4.next = 10;
-        return _context4.sent;
+        _context5.next = 10;
+        return _context5.sent;
       case 10:
-        Myproduct = _context4.sent;
+        Myproduct = _context5.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -145,43 +166,43 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context4.next = 14;
+        _context5.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 14:
-        produit = _context4.sent;
+        produit = _context5.sent;
         imagesArray.map( /*#__PURE__*/function () {
-          var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(image) {
+          var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
             var dataMedia, media;
-            return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-              while (1) switch (_context2.prev = _context2.next) {
+            return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+              while (1) switch (_context3.prev = _context3.next) {
                 case 0:
                   dataMedia = {
                     med_libelle: image.name.split(".")[0],
                     med_ressource: image.name
                   };
-                  _context2.next = 3;
+                  _context3.next = 3;
                   return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  media = _context2.sent;
+                  media = _context3.sent;
                 case 4:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
-            }, _callee2);
+            }, _callee3);
           }));
           return function (_x) {
-            return _ref3.apply(this, arguments);
+            return _ref4.apply(this, arguments);
           };
         }());
-        _context4.next = 18;
+        _context5.next = 18;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -191,40 +212,40 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 18:
-        tarif = _context4.sent;
+        tarif = _context5.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
-          var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item) {
+          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
             var dataselect, qty;
-            return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-              while (1) switch (_context3.prev = _context3.next) {
+            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+              while (1) switch (_context4.prev = _context4.next) {
                 case 0:
                   dataselect = {
                     tai_id: item.value,
                     qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
                   };
-                  _context3.next = 3;
+                  _context4.next = 3;
                   return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  qty = _context3.sent;
+                  qty = _context4.sent;
                   console.log(qty);
                 case 5:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
-            }, _callee3);
+            }, _callee4);
           }));
           return function (_x2) {
-            return _ref4.apply(this, arguments);
+            return _ref5.apply(this, arguments);
           };
         }());
       case 21:
       case "end":
-        return _context4.stop();
+        return _context5.stop();
     }
-  }, _callee4);
+  }, _callee5);
 })));

@@ -20,6 +20,7 @@ const listCat = document.querySelector(".cat-select");
 const ht = document.querySelector(".tar-ht");
 const ttc = document.querySelector(".tar-ttc");
 const btnEnregistrer = document.querySelector(".update");
+const qtyMax = document.querySelector(".qty-max");
 
 
 button1.addEventListener("click", function () {
@@ -82,22 +83,22 @@ function deleteImage(index) {
 
 }
 
-function addTaille() {
+function addTaille(taille) {
   console.log("FONCTIONNE");
   const line = document.createElement("div");
   line.classList.add("quantity", "row");
 
-  line.innerHTML = `
+   line.innerHTML = `
      <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
-                          class="form-select"
+                          class="form-select select-taille"
                           aria-label="Default select example"
                         >
-                          <option selected>Taille</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                      ${taille.data.map(
+                        (item) =>
+                          `<option value=${item.tai_libelle}>${item.tai_libelle}</option>`
+                      )}
                         </select>
                       </div>
                     </div>
@@ -116,8 +117,14 @@ function addTaille() {
   lines.appendChild(line);
 }
 
-btnAdd.addEventListener("click", function () {
-  addTaille();
+btnAdd.addEventListener("click", async function () {
+  const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  });
+  // console.log(taille);
+  addTaille(taille);
 });
 
 function listCategorie(categorie) {
@@ -141,6 +148,8 @@ selectCategorie.addEventListener("change", async function () {
 
   listCategorie(categorie);
 });
+
+
 
 
 
