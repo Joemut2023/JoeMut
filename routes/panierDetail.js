@@ -53,14 +53,16 @@ router.post("/", async (req, res, next) => {
           },
         ],
       });
+      let pad_remise = 0;
+      if (promo) {
+        if (promo.Promo.prm_pourcent) {
+          pad_remise = pad_ht * (promo.Promo.prm_pourcent / 100);
+        } else if (promo.Promo.prm_valeur) {
+          pad_remise = promo.Promo.prm_valeur;
+        }
+      }
       let prm_id = promo ? promo.prm_id : null;
       // let pad_remise = promo ? promo.Promo.prm_pourcent : null;
-      let pad_remise = 0;
-      if (promo.Promo.prm_pourcent) {
-        pad_remise = pad_ht * (promo.Promo.prm_pourcent / 100);
-      } else if (promo.Promo.prm_valeur) {
-        pad_remise = promo.Promo.prm_valeur;
-      }
 
       const panierDetail = await Panier_detail.create({
         pro_id,
@@ -70,7 +72,7 @@ router.post("/", async (req, res, next) => {
         pad_qte,
         pad_ht,
         pad_ttc,
-        pad_remise,
+        pad_remise: pad_remise ? pad_remise : null,
       });
       return res.status(201).json({ panierDetail });
     }
@@ -101,7 +103,7 @@ router.post("/", async (req, res, next) => {
 
     return res.status(404).send("aucun produit ajouté");
   } catch (error) {
-    //console.log(error);
+   
     res.status(500).json({ error: error });
   }
 });
