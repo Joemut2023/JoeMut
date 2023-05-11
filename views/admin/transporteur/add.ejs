@@ -1,0 +1,28 @@
+<div id="admin-page-transporteur-add">
+    <div id="admin-blocs-produitHeader" class="mb-4">
+        <div class="produit-menu">
+          <h1>Transporteur</h1>
+          <div class="produit-menu-btn">
+            <a class="btn btn-info" href="/admin/transporteurs/add">
+              <i class="fa-solid fa-circle-plus"></i> Ajouter
+            </a>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 card shad">
+                <form method="post" action="/admin/transporteurs/add">
+                    <div class="mb-3">
+                      <label for="transporteur-input" class="form-label">Transporteur</label>
+                      <input type="text" name="trs_libelle" class="form-control" id="transporteur-input" aria-describedby="emailHelp">
+                    </div> 
+                    <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
+                    <div class="mb-4">
+                        <a href="/admin/transporteurs" class="btn btn-secondary">Annuler</a>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
