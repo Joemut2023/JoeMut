@@ -6,7 +6,7 @@ const btnEnregistrer = document.querySelector(".enregistrer");
 
 const input_file = document.querySelector(".inputfile");
 const pro_libelle = document.querySelector(".pro-libelle");
-const pro_ref = document.querySelector(".pro-ref").value;
+const pro_ref = document.querySelector(".pro-ref");
 const pro_description = document.querySelector(".pro-description");
 const pro_details = document.querySelector(".pro-details");
 const pro_comment = document.querySelector(".pro-comment");
@@ -186,15 +186,17 @@ selectCategorie.addEventListener("change", async function () {
 btnEnregistrer.addEventListener("click", async function () {
   const categorieselect = document.querySelector(".select-type-cat");
   const cat_id = categorieselect ? categorieselect.value : 1;
-  const pro_new_collect = collect.checked ? 1 : 0;
-  const pro_en_avant = avant.checked ? 1 : 0;
-  const pro_statut = statut.checked ? 1 : 0;
+  const pro_new_collect = collect.checked ? true : false;
+  const pro_en_avant = avant.checked ? true : false;
+  const pro_statut = statut.checked ? true : false;
   const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
   const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
 
+
+
   const data = {
     cat_id,
-    pro_ref,
+    pro_ref: pro_ref.value,
     pro_libelle: pro_libelle.value,
     pro_description: pro_description.value,
     pro_details: pro_details.value,
@@ -240,22 +242,22 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
-    // selectTailles.map(async (item) => {
-    //   const dataselect = {
-    //     tai_id: item.value,
-    //     qua_nbre:qty,
-    //   };
-    //   const media = await axios.post(
-    //     `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-    //     dataMedia,
-    //     {
-    //       headers: {
-    //         "X-Requested-With": "XMLHttpRequest",
-    //       },
-    //     }
-    //   );
-    //   console.log(media);
-    // });
+    selectTailles.map(async (item) => {
+      const dataselect = {
+        tai_id: item.value,
+        qua_nbre:qty,
+      };
+      const media = await axios.post(
+        `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+        dataMedia,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+      console.log(media);
+    });
 
   // console.log(tarif);
  

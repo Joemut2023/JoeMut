@@ -146,9 +146,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
     while (1) switch (_context5.prev = _context5.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
-        pro_new_collect = collect.checked ? 1 : 0;
-        pro_en_avant = avant.checked ? 1 : 0;
-        pro_statut = statut.checked ? 1 : 0;
+        pro_new_collect = collect.checked ? true : false;
+        pro_en_avant = avant.checked ? true : false;
+        pro_statut = statut.checked ? true : false;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
         _context5.next = 8;

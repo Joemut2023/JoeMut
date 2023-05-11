@@ -161,9 +161,9 @@ selectCategorie.addEventListener("change", async function () {
 
 btnEnregistrer.addEventListener("click", async function () {
   const cat_id = listCat ? listCat.value : 1;
-  const pro_new_collect = collect.checked ? 1 : 0;
-  const pro_en_avant = avant.checked ? 1 : 0;
-  const pro_statut = statut.checked ? 1 : 0;
+  const pro_new_collect = collect.checked ? true : false;
+  const pro_en_avant = avant.checked ? true : false;
+  const pro_statut = statut.checked ? true : false;
   const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
   const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
 
