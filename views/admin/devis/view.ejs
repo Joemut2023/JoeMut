@@ -525,6 +525,28 @@
                               </tr>
                             </tbody>
                         </table>
+                        <div style="padding-left: 5px;" class="mb-4">
+                          <button class="btn btn-primary btn-show-tab-transporteur-form-container">Ajouter</button>
+                        </div>
+                        <div class="tab-transporteur-form-container">
+                          <form class="row g-3" method="post" action="">
+                            <div class="col-auto">
+                                <input type="text" class="form-control" name="pai_ref" id="" placeholder="Numéro de suivi">
+                            </div>
+                            <div class="col-auto">
+                              <select name="doc_id" class="form-select" aria-label="Default select example">
+                                  <option selected>Transporteur</option>
+                              </select>
+                          </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" name="pai_montant" id="" placeholder="Poids en Kg">
+                            </div>
+                            <div class="col-auto">
+                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                            </div>
+                          </form>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">
                         <table class="table">

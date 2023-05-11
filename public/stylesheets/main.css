@@ -8086,6 +8086,9 @@ body {
 #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
   display: none;
 }
+#admin-page-viewDevis .content .right .commande-tabs #nav-transporteur .tab-transporteur-form-container {
+  display: none;
+}
 #admin-page-viewDevis .content .right .paiements-bloc h2 {
   padding: 10px;
   border-bottom: solid 1px gray;
