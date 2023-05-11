@@ -15,10 +15,10 @@
               class="glyphicon glyphicon-info-sign form-control-feedback"
             ></span>
           </div>
-          <p class="text">This value should be not blank</p>
+          <p class="text">Cette valeur ne doit pas être vide</p>
         </div>
 
-        <div class="right col-md-4">
+        <!-- <div class="right col-md-4">
           <select class="form-select" aria-label="Default select example">
             <option selected>produit standard</option>
             <option value="1">One</option>
@@ -26,7 +26,7 @@
             <option value="3">Three</option>
           </select>
           <span><i class="fa-solid fa-circle-info"></i></span>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -428,7 +428,7 @@
                     <div class="col-md-5 qty-right">
                       <div class="title-qty"></div>
                       <div class="form-group">
-                        <input type="number" value="<%= element.qua_nbre %>" class="form-control" />
+                        <input type="number" name="<%= element.qua_id %>" value="<%= element.qua_nbre %>" class="form-control" />
                       </div>
                     </div>
                     <div class="col-md-2 delete">
@@ -440,7 +440,7 @@
                 </div>
                 <div class="add-cat">
                   <div class="title">
-                    <p>Ajouter une taille</p>
+                    <p>Ajouter une quantité</p>
                   </div>
                   <button
                     type="button"
@@ -448,7 +448,7 @@
                   >
                     <span
                       ><i class="fa-solid fa-circle-plus"></i> Ajouter une
-                      taille</span
+                      quantité</span
                     >
                   </button>
                 </div>
@@ -460,7 +460,7 @@
                     <!-- <span><i class="fa-solid fa-circle-info"></i></span> -->
                   </div>
                   <div class="form-group">
-                    <input type="text" value="<%= quantiteInitial %>" class="form-control" />
+                    <input type="text" value="<%= quantiteInitial %>" class="form-control qty-max" />
                   </div>
                 </div>
               </div>

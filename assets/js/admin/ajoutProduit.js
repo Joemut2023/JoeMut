@@ -124,7 +124,7 @@ async function addTaille(taille) {
                         <input type="number" value="0" class="form-control" />
                       </div>
                     </div>
-                    <div class="col-md-2 delete">
+                    <div class="col-md-2 delete delete-add">
                       <span><i class="fa-solid fa-trash"></i></span>
                     </div>
                   </div>
@@ -140,7 +140,15 @@ btnAdd.addEventListener("click", async function () {
     },
   });
   // console.log(taille);
+
   addTaille(taille);
+  const btns_delete = document.querySelectorAll(".delete-add");
+    Array.from(btns_delete, (item) => {
+      item.addEventListener("click", function () {
+        lines.removeChild(this.parentNode);
+      });
+    });
+  
 });
 
 function listCategorie(categorie) {
@@ -278,3 +286,12 @@ btnEnregistrer.addEventListener("click", async function () {
 
 
 });
+
+//delete taille
+  Array.from(btns_delete, (item) => {
+    item.addEventListener("click", function () {
+      lines.removeChild(this.parentNode);
+    });
+  });
+
+

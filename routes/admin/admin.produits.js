@@ -11,6 +11,7 @@ const {
 } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   let quantiteOfEachProduct = [];
@@ -338,6 +339,16 @@ router.put("/qty/:id", async function (req, res) {
     console.log(error.message);
   }
 });
+
+router.delete('/qty/:pro_id/:id',async function(req,res){
+   
+  try {
+   const qty = await Quantite.destroy({where:{[Op.and]:[{qua_id:req.params.id},{pro_id:req.params.pro_id}]}})
+  res.status(200).json(qty)
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 
 module.exports = router;
