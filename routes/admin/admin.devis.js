@@ -484,4 +484,8 @@ router.post('/commande-add-transporteur', async (req,res)=>{
 
   res.redirect(`/admin/devis/view/${com_id}`);
 })
+router.post('/commande-retour', async (req,res)=>{
+  const {com_id} = req.body;
+  res.redirect(`/admin/devis/view/${com_id}`);
+})
 module.exports = router;
