@@ -7788,6 +7788,10 @@ body {
   border-color: rgb(41, 144, 228);
 }
 
+.taille-content {
+  background-color: #fff;
+}
+
 #admin-page-viewDevis {
   padding-bottom: 50px;
   font-size: 14px;

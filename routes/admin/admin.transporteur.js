@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { Op } = require("sequelize");
 const { Transporteur } = require("../../models");
 router.get("/", async (req, res) => {
   try {
@@ -111,7 +112,7 @@ router.get("/search", async (req, res) => {
   const { trs_libelle } = req.query;
   try {
     const transporteurs = await Transporteur.findAll({
-      where: { trs_libelle },
+      where: { trs_libelle: { [Op.substring]: trs_libelle } },
     });
 
     res.render("transporteur/index", {
