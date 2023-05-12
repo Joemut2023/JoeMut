@@ -6257,17 +6257,23 @@
 }
 #admin-page-categories .ajouter-typecat .button button {
   width: 100px;
-  color: white;
+  color: #fff;
 }
 #admin-page-categories .table-content {
   margin-top: 20px;
+  background-color: #fff;
+}
+#admin-page-categories .table-content td,
+#admin-page-categories .table-content th {
+  vertical-align: middle;
+  font-size: 0.8rem;
 }
 #admin-page-categories .table-content a {
-  color: #25b9d7;
+  text-decoration: none !important;
 }
-#admin-page-categories .table-content .td-icones .icons {
-  margin: 8px;
-  color: grey;
+#admin-page-categories .table-content .fa-magnifying-glass,
+#admin-page-categories .table-content .fa-pen {
+  color: #232323;
 }
 
 #page-admin-edit-typeCat {
@@ -6925,7 +6931,7 @@ body {
 #admin-blocs-produitHeader .produit-menu h3,
 #admin-blocs-produitHeader .produit-menu h4 {
   font-weight: 400 !important;
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;
@@ -7797,6 +7803,11 @@ body {
 
 .taille-content {
   background-color: #fff;
+}
+.taille-content td,
+.taille-content th {
+  vertical-align: middle;
+  font-size: 0.8rem;
 }
 
 #admin-page-viewDevis {

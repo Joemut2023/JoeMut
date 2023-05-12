@@ -93,7 +93,8 @@
           </td>
 
           <td>
-            <%=  moment(element.cli_inscription).format('DD/MM/YYYY HH:mm:ss ') %>
+            <%= moment(element.cli_inscription).format('DD/MM/YYYY HH:mm:ss ')
+            %>
           </td>
           <td>
             <div class="d-flex justify-content-between">
@@ -124,8 +125,7 @@
                         value="<%= element.cli_id %>"
                       />
                       <button class="dropdown-item" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i> Afficher</a
-                        >
+                        <i class="fa-solid fa-magnifying-glass"></i> Afficher
                       </button>
                     </form>
                   </li>
