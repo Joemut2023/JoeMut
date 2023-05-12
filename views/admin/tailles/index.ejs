@@ -3,15 +3,17 @@
     <h1>Tailles</h1>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
-        <i class="fa-solid fa-circle-plus"></i> Ajouter une valeur
+        <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle taille
       </button>
-      <button type="button" class="btn btn-secondary">
-        <i class="fa-solid fa-gear"></i> Modules recommandés
-      </button>
-      <button type="button" class="btn btn-outline-secondary">Aide</button>
     </div>
   </div>
-  <table class="table table-striped mt-3 ">
+</div>
+<div class="taille-content mt-4">
+  <div class="p-4 pb-0">
+    <h6>Gérer les tailles</h6>
+  </div>
+  <hr />
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col"></th>
@@ -72,57 +74,57 @@
       <% }) %>
     </tbody>
   </table>
-  <div class="cat-pagination">
-    <% if (nbrPages > 1) { %>
-    <div class="row affichage">
-      <p>
-        Affichage <span><%= start %> - <%= end %></span> de
-        <span><%= taillesNbr%></span>
-      </p>
-    </div>
-    <nav>
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=1">1</a>
-        </li>
-        <% if (pageActive === 1 || pageActive ===2) { %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=2">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=3">3</a>
-        </li>
-        <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=<%= pageActive -1 %>"
-            ><%= pageActive-1 %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=<%= pageActive %>"
-            ><%= pageActive %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=<%= pageActive+1 %>"
-            ><%= pageActive+1 %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=<%= pageActive+2 %>"
-            ><%= pageActive+2 %></a
-          >
-        </li>
-        <li class="page-item">...</li>
-        <% } %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/tailles/?&page=<%= nbrPages %>"
-            ><%= nbrPages %></a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <% } %>
+</div>
+<div class="cat-pagination">
+  <% if (nbrPages > 1) { %>
+  <div class="row affichage">
+    <p>
+      Affichage <span><%= start %> - <%= end %></span> de
+      <span><%= taillesNbr%></span>
+    </p>
   </div>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=1">1</a>
+      </li>
+      <% if (pageActive === 1 || pageActive ===2) { %>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=2">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=3">3</a>
+      </li>
+      <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=<%= pageActive -1 %>"
+          ><%= pageActive-1 %></a
+        >
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=<%= pageActive %>"
+          ><%= pageActive %></a
+        >
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=<%= pageActive+1 %>"
+          ><%= pageActive+1 %></a
+        >
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=<%= pageActive+2 %>"
+          ><%= pageActive+2 %></a
+        >
+      </li>
+      <li class="page-item">...</li>
+      <% } %>
+      <li class="page-item">
+        <a class="page-link" href="/admin/tailles/?&page=<%= nbrPages %>"
+          ><%= nbrPages %></a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <% } %>
 </div>
