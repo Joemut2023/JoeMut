@@ -1,11 +1,13 @@
 #admin-page-produits {
     margin-top: 2%;
+    background-color: $color-white;
 
     .table {
 
         td,
         th {
-            vertical-align: middle
+            vertical-align: middle;
+            font-size: 0.9rem;
         }
 
         .dropdown :hover>.dropdown-menu {

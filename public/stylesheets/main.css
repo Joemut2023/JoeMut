@@ -6132,10 +6132,12 @@
 
 #admin-page-produits {
   margin-top: 2%;
+  background-color: #fff;
 }
 #admin-page-produits .table td,
 #admin-page-produits .table th {
   vertical-align: middle;
+  font-size: 0.9rem;
 }
 #admin-page-produits .table .dropdown :hover > .dropdown-menu {
   display: block;
@@ -6921,7 +6923,8 @@ body {
 #admin-blocs-produitHeader .produit-menu h2,
 #admin-blocs-produitHeader .produit-menu h3,
 #admin-blocs-produitHeader .produit-menu h4 {
-  font-weight: 300 !important;
+  font-weight: 400 !important;
+  font-size: 2rem;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;
