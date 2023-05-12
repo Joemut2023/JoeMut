@@ -516,7 +516,7 @@ router.post('/commande-add-transporteur', async (req,res)=>{
     })
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-   console.log(error); 
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande-retour', async (req,res)=>{
