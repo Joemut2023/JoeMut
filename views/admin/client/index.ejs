@@ -92,7 +92,9 @@
             </div>
           </td>
 
-          <td><%= element.cli_inscription %></td>
+          <td>
+            <%=  moment(element.cli_inscription).format('DD/MM/YYYY') %>
+          </td>
           <td>
             <div class="d-flex justify-content-between">
               <form method="get" action="/admin/clients/update/?cli_id">
@@ -102,9 +104,7 @@
                   value="<%= element.cli_id %>"
                 />
                 <button class="dropdown-item" type="submit">
-                  
-                    <i class="fa-solid fa-pen"></i
-                  >
+                  <i class="fa-solid fa-pen"></i>
                 </button>
               </form>
 

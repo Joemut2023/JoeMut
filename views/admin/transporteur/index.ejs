@@ -1,12 +1,124 @@
 <div id="admin-page-transporteur">
-    <div id="admin-blocs-produitHeader">
-        <div class="produit-menu">
-          <h1>Transporteur</h1>
-          <div class="produit-menu-btn">
-            <a class="btn btn-info" href="/admin/transporteurs/add">
-              <i class="fa-solid fa-circle-plus"></i> Ajouter
-            </a>
-          </div>
-        </div>
+  <div id="admin-blocs-produitHeader">
+    <div class="produit-menu">
+      <h1>Transporteur</h1>
+      <div class="produit-menu-btn mt-3">
+        <a class="btn btn-info" href="/admin/transporteurs/add">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter
+        </a>
+      </div>
     </div>
+  </div>
+  <div id="admin-page-promo">
+    <div class="promo-content mt-3">
+      <div class="d-flex justify-content-between p-3 pb-0">
+        <h6>Gérez les transporteurs</h6>
+        <i class="fa-solid fa-gear"></i>
+      </div>
+      <hr />
+      <table class="table mt-4 table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Libelle</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if ((typeof promos !== 'undefined') && promos.length > 0) { %> <%
+          promos.forEach(element => { %>
+          <tr>
+            <td scope="row">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+            </td>
+            <th scope="row"><%= element.prm_id %></th>
+            <td><%= element.prm_code %></td>
+            <td><%= element.prm_pourcent %></td>
+            <td><%= element.prm_valeur %></td>
+            <td><%= element.prm_debut%></td>
+            <td><%= element.prm_fin%></td>
+            <td>
+              <% if (element.prm_actif) { %>
+
+              <span class="badge text-bg-success">activé</span>
+              <% } else { %>
+
+              <span class="badge text-bg-danger">inactif</span>
+              <% } %>
+            </td>
+            <td width="60">
+              <% if (element.prm_commande) { %>
+
+              <span class="badge text-bg-info">oui</span>
+              <% } else { %>
+
+              <span class="badge text-bg-warning">non</span>
+              <% } %>
+            </td>
+            <td>
+              <div class="d-flex gap-4">
+                <form method="get" action="/admin/promo/update/?prm_id">
+                  <input
+                    type="hidden"
+                    name="prm_id"
+                    value="<%= element.prm_id %>"
+                  />
+                  <button class="dropdown-item" type="submit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                </form>
+
+                <div class="dropdown">
+                  <i
+                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  ></i>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <form method="get" action="/admin/promo/update/?prm_id">
+                        <input
+                          type="hidden"
+                          name="prm_id"
+                          value="<%= element.prm_id %>"
+                        />
+                        <button class="dropdown-item" type="submit">
+                          <i class="fa-solid fa-magnifying-glass"></i> Afficher
+                        </button>
+                      </form>
+                    </li>
+                    <li>
+                      <form method="post" action="/admin/promo/delete">
+                        <input
+                          type="hidden"
+                          name="prm_id"
+                          value="<%= element.prm_id %>"
+                        />
+                        <button class="dropdown-item" type="submit">
+                          <i class="fa-solid fa-trash"></i> Supprimer
+                        </button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% }) %> <% }else { %>
+          <div class="alert alert-primary" role="alert">
+            Il n'y a aucun transporteur dans votre base des données pour
+            l'instant.
+          </div>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

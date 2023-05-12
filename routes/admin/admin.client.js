@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { Client, Titre } = require("../../models");
+const moment = require("moment");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 router.get("/", async (req, res) => {
@@ -20,6 +21,7 @@ router.get("/", async (req, res) => {
       pageActive: page,
       start,
       end,
+      moment,
       produitsNbr: AllClients.length,
     });
   } catch (error) {
