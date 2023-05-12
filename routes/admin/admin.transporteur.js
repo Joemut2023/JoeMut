@@ -50,7 +50,7 @@ router.get("/update", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
-    res.status(500).render("transporteur/add", {
+    res.status(500).render("transporteur/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -82,7 +82,7 @@ router.post("/update", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
-    res.status(500).render("transporteur/add", {
+    res.status(500).render("transporteur/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
@@ -98,6 +98,23 @@ router.post("/delete", async (req, res) => {
     const succesMsg = "Transporteur supprimé avec succès";
     res.render("transporteur/index", {
       succesMsg,
+      transporteurs,
+    });
+  } catch (error) {
+    res.status(500).render("transporteur/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+router.get("/search", async (req, res) => {
+  const { trs_libelle } = req.query;
+  try {
+    const transporteurs = await Transporteur.findAll({
+      where: { trs_libelle },
+    });
+
+    res.render("transporteur/index", {
       transporteurs,
     });
   } catch (error) {

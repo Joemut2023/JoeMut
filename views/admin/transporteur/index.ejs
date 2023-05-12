@@ -16,8 +16,24 @@
   <div id="admin-page-promo">
     <div class="promo-content mt-3">
       <div class="d-flex justify-content-between p-3 pb-0">
-        <h6>Gérer les transporteurs</h6>
-        <i class="fa-solid fa-gear"></i>
+        <h6>Gérer les transporteurs <%= transporteurs.length %></h6>
+        <form
+          class="d-flex justify-content-between gap-2"
+          action="/admin/transporteurs/search/?trs_libelle"
+          method="get"
+        >
+          <div>
+            <input
+              type="text"
+              name="trs_libelle"
+              class="form-control"
+              id="transporteur-input"
+              placeholder="entrer le nom d'un transporteur"
+              aria-describedby="transporteur search nom"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mb-4">Rechercher</button>
+        </form>
       </div>
       <hr />
       <table class="table mt-4 table-striped">
@@ -25,7 +41,7 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">ID</th>
-            <th scope="col">Libelle</th>
+            <th scope="col">Nom</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
