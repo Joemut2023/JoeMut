@@ -44,6 +44,13 @@ router.get("/add", async (req, res) => {
 router.post("/add", async (req, res) => {
   const { tai_libelle } = req.body;
   try {
+    const oldTaille = await Taille.findOne({ where: { tai_libelle } });
+    if (oldTaille) {
+      const nothingMsg = "La taille que vous voulez créer existe déjà";
+      return res.render("tailles/add", {
+        nothingMsg,
+      });
+    }
     const allTailles = await Taille.findAll();
     const tai_ordre = allTailles[Object.keys(allTailles).pop()].tai_ordre;
     await Taille.create({
@@ -51,11 +58,11 @@ router.post("/add", async (req, res) => {
       tai_ordre: tai_ordre + 1,
     });
     const succesMsg = "Nouvelle taille ajouté avec succès";
-    res.render("transporteur/add", {
+    res.render("tailles/add", {
       succesMsg,
     });
   } catch (error) {
-    res.status(500).render("transporteur/add", {
+    res.status(500).render("tailles/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });

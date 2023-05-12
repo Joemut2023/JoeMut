@@ -26,6 +26,15 @@ router.get("/add", async (req, res) => {
 router.post("/add", async (req, res) => {
   const { trs_libelle } = req.body;
   try {
+    const oldTransporteur = await Transporteur.findOne({
+      where: { trs_libelle },
+    });
+    if (oldTransporteur) {
+      const nothingMsg = "Le transporteur que vous voulez créer existe déjà";
+      return res.render("transporteur/add", {
+        nothingMsg,
+      });
+    }
     await Transporteur.create({
       trs_libelle,
     });

@@ -17,6 +17,10 @@
         <div class="alert alert-success mt-3" role="alert">
           <%= succesMsg %>
         </div>
+        <% } %><% if (typeof nothingMsg == 'string') { %>
+        <div class="alert alert-secondary mt-3" role="alert">
+          <%= nothingMsg %>
+        </div>
         <% } %>
         <form method="post" action="/admin/transporteurs/add">
           <div class="mb-3 pt-3">
@@ -29,6 +33,7 @@
               class="form-control"
               id="transporteur-input"
               aria-describedby="transporteur nom"
+              required
             />
           </div>
           <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
