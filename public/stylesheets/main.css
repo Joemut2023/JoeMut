@@ -1179,6 +1179,10 @@
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.5rem;
 }
+#pages-home .element-slider-suggestion .carousel__view .swiper-button-next,
+#pages-home .element-slider-suggestion .carousel__view .swiper-button-prev {
+  display: none;
+}
 
 #page-creation {
   padding: 3% 4%;
