@@ -2,9 +2,11 @@
   <div class="produit-menu pt-3">
     <h1>Tailles</h1>
     <div class="produit-menu-btn">
-      <button type="button" class="btn btn-info">
-        <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle taille
-      </button>
+      <a href="/admin/tailles/add">
+        <button type="button" class="btn btn-info">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle taille
+        </button>
+      </a>
     </div>
   </div>
 </div>
@@ -18,7 +20,7 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">ID</th>
-        <th scope="col">Valeur</th>
+        <th scope="col">Description</th>
         <th scope="col">Ordre</th>
         <th scope="col">Actions</th>
       </tr>
@@ -41,33 +43,9 @@
         <td>
           <div class="d-flex gap-4">
             <i class="fa-solid fa-pen"></i>
-            <div class="dropdown">
-              <i
-                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              ></i>
-
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
-                  >
-                </li>
-
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-trash"></i> Supprimer</a
-                  >
-                </li>
-              </ul>
-            </div>
+            <a class="dropdown-item" href="#"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
           </div>
         </td>
       </tr>
