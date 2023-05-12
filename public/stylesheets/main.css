@@ -6394,12 +6394,13 @@
   width: 100px;
   color: white;
 }
-#admin-page-souscat .table-content {
-  margin-top: 20px;
+#admin-page-souscat .table {
+  background-color: #fff;
+  margin-top: 5%;
+  padding: 2%;
 }
-#admin-page-souscat .table-content .td-icones .icons {
-  margin: 8px;
-  color: grey;
+#admin-page-souscat .table .fa-pen {
+  color: #232323;
 }
 
 #admin-page-frais-port {
