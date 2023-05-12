@@ -1,4 +1,9 @@
 <div id="admin-page-viewDevis">
+  <% if (typeof  error !== 'undefined') { %>
+     <div class="alert">
+      <h1>Erreur interne du serveur</h1>
+     </div>
+  <% } else{ %>
     <div id="admin-blocs-panierHeader" class="border-bottom">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -497,8 +502,7 @@
                                       </form>
                                   </td>
                                 </tr>
-                              <% }) %>
-                              
+                              <% }) %>     
                             </tbody>
                         </table>
                     </div>
@@ -515,16 +519,20 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>
-                                  <button class="btn btn-primary"><i class="fa-solid fa-pencil"></i></button>
-                                </td>
-                              </tr>
+                              <% if (Array.isArray(expeditions)) { %>
+                                <% expeditions.forEach(expedition => { %>
+                                  <tr>
+                                    <th scope="row"><%= moment(expedition.exp_depart).format('D/MM, YYYY') %></th>
+                                    <td><%= expedition.Transporteur.trs_libelle %></td>
+                                    <td><%= expedition.exp_poids %></td>
+                                    <td>@mdo</td>
+                                    <td><%= expedition.exp_suivi %></td>
+                                    <td>
+                                      <button class="btn btn-primary"><i class="fa-solid fa-pencil"></i></button>
+                                    </td>
+                                  </tr>
+                                  <% }) %>
+                              <% } %>
                             </tbody>
                         </table>
                         <div style="padding-left: 5px;" class="mb-4">
@@ -829,6 +837,6 @@
         </div>
       </div>
     </div>
-
+  <% }%>
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>

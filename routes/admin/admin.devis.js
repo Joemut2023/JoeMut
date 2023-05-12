@@ -281,8 +281,15 @@ router.get('/view/:commandeId',async (req,res)=>{
         tdo_id:TYPE_DOCUMENT_FACTURE
       }
     });
-   // let frais_ports = await Frais_port.findAll();
     let transporteurs = await Transporteur.findAll();
+    let expeditions = await Expedition.findAll({
+      include:[
+        {
+          model:Transporteur
+        }
+      ],
+      where:{com_id:commandeId}
+    });
     res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -293,8 +300,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       moyen_paiements,
       paiements,
       factures,
-      transporteurs
-    //  frais_ports
+      transporteurs,
+      expeditions
     });
   } catch (error) {
     res.render("devis/view",{
