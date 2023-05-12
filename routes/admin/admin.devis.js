@@ -24,7 +24,10 @@ const {
   User,
   Type_document,
   Paiement,
-  Moyen_paiement
+  Moyen_paiement,
+  Transporteur,
+  Expedition,
+  Detail_expedition
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -278,7 +281,8 @@ router.get('/view/:commandeId',async (req,res)=>{
         tdo_id:TYPE_DOCUMENT_FACTURE
       }
     });
-    let frais_ports = await Frais_port.findAll();
+   // let frais_ports = await Frais_port.findAll();
+    let transporteurs = await Transporteur.findAll();
     res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -289,7 +293,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       moyen_paiements,
       paiements,
       factures,
-      frais_ports
+      transporteurs
+    //  frais_ports
     });
   } catch (error) {
     res.render("devis/view",{
@@ -480,9 +485,39 @@ router.post('/commande-add-facture-paiement',async (req,res)=>{
   res.redirect(`/admin/devis/view/${com_id}`);
 });
 router.post('/commande-add-transporteur', async (req,res)=>{
-  const {exp_poids,exp_suivi,com_id} = req.body;
-
-  res.redirect(`/admin/devis/view/${com_id}`);
+  const {exp_poids,exp_suivi,com_id,trs_id,doc_id} = req.body;
+  try {
+    let commande = await Commande.findOne({
+      attributes:['pan_id','cli_id'],
+      where:{com_id}
+    });
+    let panier_details = await Panier_detail.findAll({
+      where:{pan_id:commande.pan_id}
+    });
+    let docId = doc_id ? doc_id:null;
+    let expSuivi = exp_suivi ? exp_suivi : null
+    let expedition = await Expedition.create(
+      {
+      ste_id:1,
+      trs_id,
+      cli_id:commande.cli_id,
+      doc_id:docId,
+      exp_poids,
+      exp_depart:new Date(new Date().setDate(new Date().getDate())),
+      exp_suivi:expSuivi,
+      com_id:com_id
+    });
+    panier_details.forEach(async (panier_detail) =>{
+      await Detail_expedition.create({
+        pro_id:panier_detail.pro_id,
+        exp_id:expedition.exp_id,
+        dex_nbr:panier_detail.pad_qte
+      });
+    })
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+   console.log(error); 
+  }
 })
 router.post('/commande-retour', async (req,res)=>{
   const {com_id} = req.body;

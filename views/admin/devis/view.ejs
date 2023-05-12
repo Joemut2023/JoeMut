@@ -536,10 +536,10 @@
                                 <input type="text" class="form-control" name="exp_suivi" id="" placeholder="Numéro de suivi">
                             </div>
                             <div class="col-auto">
-                              <select name="frp_id" class="form-select" aria-label="Default select example">
+                              <select name="trs_id" class="form-select" aria-label="Default select example">
                                   <option selected>Transporteur</option>
-                                  <% frais_ports.forEach(frais_port => { %>
-                                   <option value="<%= frais_port.frp_id %>"><%= frais_port.frp_libelle %></option>
+                                  <% transporteurs.forEach(transporteur => { %>
+                                   <option value="<%= transporteur.trs_id %>"><%= transporteur.trs_libelle %></option>
                                   <% }) %>
                               </select>
                           </div>
