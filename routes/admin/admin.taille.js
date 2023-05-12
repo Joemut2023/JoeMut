@@ -62,6 +62,57 @@ router.post("/add", async (req, res) => {
   }
 });
 
+router.get("/update", async (req, res) => {
+  const { tai_id } = req.query;
+  try {
+    const tailles = await Taille.findOne({
+      where: { tai_id },
+    });
+
+    res.render("tailles/update", {
+      tailles,
+    });
+  } catch (error) {
+    res.status(500).render("tailles/update", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+
+router.post("/update", async (req, res) => {
+  const { tai_libelle, tai_id } = req.body;
+  try {
+    const newTaille = await Taille.update(
+      {
+        tai_libelle,
+      },
+      { where: { tai_id } }
+    );
+    const tailles = await Taille.findOne({
+      where: { tai_id },
+    });
+    console.log(tailles, "tailles");
+    if (newTaille[0] == 1) {
+      const succesMsg = "les informations sur la taille mises à jour succès";
+      return res.render("tailles/update", {
+        succesMsg,
+        tailles,
+      });
+    }
+    const nothingMsg = "Aucune nouvelle information trouvée";
+    return res.render("tailles/update", {
+      nothingMsg,
+      tailles,
+    });
+  } catch (error) {
+    res.status(500).render("tailles/update", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+
 // router.post("/delete", async (req, res) => {
 //   const { trs_id } = req.body;
 //   try {

@@ -42,7 +42,16 @@
         <td><%= element.tai_ordre %></td>
         <td>
           <div class="d-flex gap-4">
-            <i class="fa-solid fa-pen"></i>
+            <form method="get" action="/admin/tailles/update/?tai_id">
+              <input
+                type="hidden"
+                name="tai_id"
+                value="<%= element.tai_id %>"
+              />
+              <button class="dropdown-item" type="submit">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </form>
             <a class="dropdown-item" href="#"
               ><i class="fa-solid fa-trash"></i
             ></a>
