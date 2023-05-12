@@ -39,8 +39,14 @@
         <td><%= element.pro_libelle %></td>
         <td><%= element.pro_ref %></td>
         <td><%= element.Categorie.cat_libelle %></td>
-        <td><%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%> €</td>
-        <td><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",")%> €</td>
+        <td>
+          <%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%>
+          €
+        </td>
+        <td>
+          <%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",
+          ",")%> €
+        </td>
         <td>
           <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty
           ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty :
@@ -49,7 +55,8 @@
         <td>
           <div class="d-flex justify-content-between">
             <a href="/admin/produits/<%= element.pro_id %>">
-              <i class="fa-solid fa-pen"></i></a>
+              <i class="fa-solid fa-pen"></i
+            ></a>
             <div class="dropdown">
               <i
                 class="fa-solid dropdown-toggle fa-ellipsis-vertical"
@@ -60,16 +67,12 @@
 
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href='#'
+                  <a
+                    class="dropdown-item"
+                    href="/admin/produits/<%= element.pro_id %>"
                     ><i class="fa-solid fa-eye"></i> Prévisualiser</a
                   >
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
-                  >
-                </li>
-
                 <li>
                   <a class="dropdown-item" href="#"
                     ><i class="fa-solid fa-trash"></i> Supprimer</a
@@ -82,7 +85,8 @@
       </tr>
       <% }) %> <% }else { %>
       <div class="alert alert-primary" role="alert">
-        Il n'y a aucun coproduitmande dans votre base des données pour l'instant.
+        Il n'y a aucun coproduitmande dans votre base des données pour
+        l'instant.
       </div>
       <% } %>
     </tbody>
