@@ -43,7 +43,7 @@
   <% } %>
   <div class="client-content mt-3">
     <div class="d-flex justify-content-between p-3 pb-0">
-      <h6>Gérez vos clients (<%= produitsNbr%>)</h6>
+      <h6>Gérer vos clients (<%= produitsNbr%>)</h6>
       <i class="fa-solid fa-gear"></i>
     </div>
     <hr />
@@ -117,9 +117,17 @@
                 ></i>
                 <ul class="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#"
-                      ><i class="fa-solid fa-magnifying-glass"></i> Afficher</a
-                    >
+                    <form method="get" action="/admin/clients/update/?cli_id">
+                      <input
+                        type="hidden"
+                        name="cli_id"
+                        value="<%= element.cli_id %>"
+                      />
+                      <button class="dropdown-item" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i> Afficher</a
+                        >
+                      </button>
+                    </form>
                   </li>
                   <li>
                     <form method="post" action="/admin/clients/delete">
