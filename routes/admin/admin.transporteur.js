@@ -28,8 +28,9 @@ router.post("/add", async (req, res) => {
     await Transporteur.create({
       trs_libelle,
     });
+    const succesMsg = "Nouveau transporteur ajouté avec succès";
     res.render("transporteur/add", {
-      notify: "Transporteur ajouté",
+      succesMsg,
     });
   } catch (error) {
     res.status(500).render("transporteur/add", {

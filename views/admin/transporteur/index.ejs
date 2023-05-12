@@ -4,7 +4,7 @@
       <h1>Transporteur</h1>
       <div class="produit-menu-btn mt-3">
         <a class="btn btn-info" href="/admin/transporteurs/add">
-          <i class="fa-solid fa-circle-plus"></i> Ajouter
+          <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau transporteur
         </a>
       </div>
     </div>
@@ -45,54 +45,26 @@
 
             <td>
               <div class="d-flex gap-4">
-                <form method="get" action="/admin/promo/transporteurs/?prm_id">
+                <form method="get" action="/admin/promo/transporteurs/?trs_id">
                   <input
                     type="hidden"
-                    name="prm_id"
-                    value="<%= element.prm_id %>"
+                    name="trs_id"
+                    value="<%= element.trs_id %>"
                   />
                   <button class="dropdown-item" type="submit">
                     <i class="fa-solid fa-pen"></i>
                   </button>
                 </form>
-
-                <div class="dropdown">
-                  <i
-                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  ></i>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <form
-                        method="get"
-                        action="/admin/transporteurs/update/?prm_id"
-                      >
-                        <input
-                          type="hidden"
-                          name="prm_id"
-                          value="<%= element.prm_id %>"
-                        />
-                        <button class="dropdown-item" type="submit">
-                          <i class="fa-solid fa-magnifying-glass"></i> Afficher
-                        </button>
-                      </form>
-                    </li>
-                    <li>
-                      <form method="post" action="/admin/transporteurs/delete">
-                        <input
-                          type="hidden"
-                          name="trs_id"
-                          value="<%= element.trs_id %>"
-                        />
-                        <button class="dropdown-item" type="submit">
-                          <i class="fa-solid fa-trash"></i> Supprimer
-                        </button>
-                      </form>
-                    </li>
-                  </ul>
-                </div>
+                <form method="post" action="/admin/transporteurs/delete">
+                  <input
+                    type="hidden"
+                    name="trs_id"
+                    value="<%= element.trs_id %>"
+                  />
+                  <button class="dropdown-item" type="submit">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
               </div>
             </td>
           </tr>
