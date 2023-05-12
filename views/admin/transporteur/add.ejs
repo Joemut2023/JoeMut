@@ -14,8 +14,10 @@
     <div class="row">
       <div class="col-md-12 card shadow">
         <% if (typeof succesMsg == 'string') { %>
-          <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
-          <% } %>
+        <div class="alert alert-success mt-3" role="alert">
+          <%= succesMsg %>
+        </div>
+        <% } %>
         <form method="post" action="/admin/transporteurs/add">
           <div class="mb-3 pt-3">
             <label for="transporteur-input" class="form-label"

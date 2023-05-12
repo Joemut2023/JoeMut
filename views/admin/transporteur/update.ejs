@@ -1,0 +1,52 @@
+<div id="admin-page-transporteur-add">
+  <div id="admin-blocs-produitHeader" class="mb-4">
+    <div class="produit-menu">
+      <h1>Modification du transporteur</h1>
+      <div class="produit-menu-btn">
+        <a class="btn btn-info" href="/admin/transporteurs/add">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau
+          transporteur
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 card shadow">
+        <% if (typeof succesMsg == 'string') { %>
+        <div class="alert alert-success mt-3" role="alert">
+          <%= succesMsg %>
+        </div>
+        <% } %> <% if (typeof nothingMsg == 'string') { %>
+        <div class="alert alert-secondary mt-3" role="alert">
+          <%= nothingMsg %>
+        </div>
+        <% } %>
+        <form method="post" action="/admin/transporteurs/update">
+          <div class="mb-3 pt-3">
+            <label for="transporteur-input" class="form-label"
+              >Nom du transporteur</label
+            >
+            <input
+              type="hidden"
+              name="trs_id"
+              value="<%= transporteurs.trs_id %>"
+            />
+            <input
+              type="text"
+              name="trs_libelle"
+              class="form-control"
+              id="transporteur-input"
+              aria-describedby="transporteur nom"
+              value="<%= transporteurs.trs_libelle %>"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mb-4">Modifier</button>
+          <div class="mb-4">
+            <a href="/admin/transporteurs" class="btn btn-secondary">Annuler</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
