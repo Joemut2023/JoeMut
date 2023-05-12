@@ -11,8 +11,25 @@
   </div>
 </div>
 <div class="taille-content mt-4">
-  <div class="p-4 pb-0">
+  <div class="d-flex justify-content-between p-4 pb-0">
     <h6>Gérer les tailles</h6>
+    <form
+      class="d-flex justify-content-between gap-2"
+      action="/admin/tailles/search/?tai_libelle"
+      method="get"
+    >
+      <div>
+        <input
+          type="text"
+          name="tai_libelle"
+          class="form-control"
+          id="taille-input"
+          placeholder="entrer la description de la taille"
+          aria-describedby="taille search nom"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary mb-4">Rechercher</button>
+    </form>
   </div>
   <hr />
   <table class="table table-striped">
@@ -26,7 +43,8 @@
       </tr>
     </thead>
     <tbody>
-      <% tailles.forEach(element => { %>
+      <% if ((typeof tailles !== 'undefined') && tailles.length > 0) { %> <%
+      tailles.forEach(element => { %>
       <tr>
         <td scope="row">
           <input
@@ -58,7 +76,12 @@
           </div>
         </td>
       </tr>
-      <% }) %>
+      <% }) %><%} else { %>
+      <div class="alert alert-primary" role="alert">
+        Il n'y a aucune taille correspondante dans votre base des données pour
+        l'instant.
+      </div>
+      <% } %>
     </tbody>
   </table>
 </div>

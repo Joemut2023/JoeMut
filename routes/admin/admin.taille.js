@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Taille } = require("../../models");
+const { Op } = require("sequelize");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
@@ -54,7 +55,6 @@ router.post("/add", async (req, res) => {
       succesMsg,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).render("transporteur/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -92,7 +92,6 @@ router.post("/update", async (req, res) => {
     const tailles = await Taille.findOne({
       where: { tai_id },
     });
-    console.log(tailles, "tailles");
     if (newTaille[0] == 1) {
       const succesMsg = "les informations sur la taille mises à jour succès";
       return res.render("tailles/update", {
@@ -113,6 +112,33 @@ router.post("/update", async (req, res) => {
   }
 });
 
+router.get("/search", async (req, res) => {
+  const { tai_libelle } = req.query;
+  let { page, start, end } = check_admin_paginate_value(req);
+  try {
+    const Alltailles = await Taille.findAll({
+      where: { tai_libelle },
+    });
+    const tailles = await Taille.findAll({
+      where: { tai_libelle: { [Op.substring]: tai_libelle } },
+    });
+
+    let nbrPages = Math.ceil(Alltailles.length / PAGINATION_LIMIT_ADMIN);
+    res.render("tailles/index", {
+      tailles,
+      nbrPages,
+      pageActive: page,
+      start,
+      end,
+      taillesNbr: Alltailles.length,
+    });
+  } catch (error) {
+    res.status(500).render("tailles/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
 // router.post("/delete", async (req, res) => {
 //   const { trs_id } = req.body;
 //   try {
