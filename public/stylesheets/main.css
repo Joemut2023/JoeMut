@@ -6279,37 +6279,10 @@
 #page-admin-edit-typeCat {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-#page-admin-edit-typeCat nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-}
-#page-admin-edit-typeCat nav .fil-ariane-item {
-  text-decoration: none;
-  color: #25b9d7;
-}
-#page-admin-edit-typeCat .content {
+#page-admin-edit-typeCat form {
   background-color: #fff;
-  border: 1px solid #efefef;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 30px;
-  height: 100px;
-  width: 100%;
-}
-#page-admin-edit-typeCat .content .formulaire {
-  width: 80%;
-  margin: auto;
-  margin-top: 20px;
-}
-#page-admin-edit-typeCat .content .formulaire input {
-  border-radius: none;
-}
-#page-admin-edit-typeCat .content .formulaire button {
-  border-radius: none;
-  border: none;
-  font-size: medium;
-  background-color: #25b9d7;
-  color: #fff;
+  margin-top: 5%;
+  padding: 2%;
 }
 
 #page-admin-ajout-typeCat {
@@ -6324,28 +6297,10 @@
   text-decoration: none;
   color: #25b9d7;
 }
-#page-admin-ajout-typeCat .content {
+#page-admin-ajout-typeCat form {
   background-color: #fff;
-  border: 1px solid #efefef;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 30px;
-  height: 100px;
-  width: 100%;
-}
-#page-admin-ajout-typeCat .content .formulaire {
-  width: 80%;
-  margin: auto;
-  margin-top: 20px;
-}
-#page-admin-ajout-typeCat .content .formulaire input {
-  border-radius: none;
-}
-#page-admin-ajout-typeCat .content .formulaire button {
-  border-radius: none;
-  border: none;
-  font-size: medium;
-  background-color: #25b9d7;
-  color: #fff;
+  margin-top: 5%;
+  padding: 2%;
 }
 
 #page-admin-ajout-cat {

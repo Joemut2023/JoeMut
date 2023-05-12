@@ -12,8 +12,7 @@
     <div class="produit-menu-btn">
       <a href="/admin/type-categories/ajout">
         <button type="button" class="btn btn-info">
-          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle
-          catégories
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle catégorie
         </button>
       </a>
     </div>
@@ -66,13 +65,17 @@
         </td>
         <td><%= element.tyc_id %></td>
         <td><%= element.tyc_libelle %></td>
-        <td class="d-flex justify-content-between">
-          <a href="/admin/type-categories/<%= element.tyc_id %>">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </a>
-          <a href="/admin/type-categories/edit/<%= element.tyc_id %>"
-            ><i class="fa-solid fa-pen"></i
-          ></a>
+        <td class="d-flex gap-3">
+          <div>
+            <a href="/admin/type-categories/<%= element.tyc_id %>">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+          </div>
+          <div>
+            <a href="/admin/type-categories/edit/<%= element.tyc_id %>"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+          </div>
           <i class="fa fa-trash icons" aria-hidden="true"></i>
         </td>
       </tr>
