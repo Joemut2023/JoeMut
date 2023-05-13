@@ -518,7 +518,7 @@ router.post('/commande-add-transporteur', async (req,res)=>{
       await Detail_expedition.create({
         pro_id:panier_detail.pro_id,
         exp_id:expedition.exp_id,
-        dex_nbr:panier_detail.pad_qte
+        dex_nbre:panier_detail.pad_qte
       });
     })
     res.redirect(`/admin/devis/view/${com_id}`);
