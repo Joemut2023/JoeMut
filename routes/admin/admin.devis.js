@@ -527,7 +527,7 @@ router.post('/commande-add-transporteur', async (req,res)=>{
   }
 })
 router.post('/commande-retour', async (req,res)=>{
-  const {com_id} = req.body;
+  const {com_id,pro_id,ret_nbr,ret_date} = req.body;
   res.redirect(`/admin/devis/view/${com_id}`);
 })
 module.exports = router;
