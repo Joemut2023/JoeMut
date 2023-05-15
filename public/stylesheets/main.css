@@ -7119,7 +7119,7 @@ body {
 }
 #page-admin-ajoutProduit .parent-message {
   position: relative;
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   font-size: 1rem;
@@ -8266,7 +8266,7 @@ body {
 }
 #page-admin-editProduit .parent-message {
   position: relative;
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   font-size: 1rem;

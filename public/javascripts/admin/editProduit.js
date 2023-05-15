@@ -87,32 +87,58 @@ function addTaille(taille) {
   }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete delete-add\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
   lines.appendChild(line);
 }
-btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var taille, btns_delete;
-  return _regeneratorRuntime().wrap(function _callee$(_context) {
-    while (1) switch (_context.prev = _context.next) {
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        _context.next = 2;
+        _context2.next = 2;
         return axios.get("".concat(SITE_URL, "/admin/produits/add/tailles"), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 2:
-        taille = _context.sent;
+        taille = _context2.sent;
         // console.log(taille);
         addTaille(taille);
         btns_delete = document.querySelectorAll(".delete-add");
         Array.from(btns_delete, function (item) {
-          item.addEventListener("click", function () {
-            lines.removeChild(this.parentNode);
-          });
+          item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+            var Myproduct, qty_id, qty;
+            return _regeneratorRuntime().wrap(function _callee$(_context) {
+              while (1) switch (_context.prev = _context.next) {
+                case 0:
+                  lines.removeChild(this.parentNode);
+                  _context.next = 3;
+                  return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  Myproduct = _context.sent;
+                  qty_id = item.previousElementSibling.children[1].children[0].name;
+                  _context.next = 7;
+                  return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 7:
+                  qty = _context.sent;
+                case 8:
+                case "end":
+                  return _context.stop();
+              }
+            }, _callee, this);
+          })));
         });
       case 6:
       case "end":
-        return _context.stop();
+        return _context2.stop();
     }
-  }, _callee);
+  }, _callee2);
 })));
 function listCategorie(categorie) {
   console.log(categorie);
@@ -120,30 +146,30 @@ function listCategorie(categorie) {
     return "<option value=".concat(item.cat_id, ">").concat(item.cat_libelle, "</option>");
   }), "\n  ");
 }
-selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var categorie;
-  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-    while (1) switch (_context2.prev = _context2.next) {
+  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    while (1) switch (_context3.prev = _context3.next) {
       case 0:
-        _context2.next = 2;
+        _context3.next = 2;
         return axios.get("".concat(SITE_URL, "/admin/produits/categorie/").concat(this.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 2:
-        categorie = _context2.sent;
+        categorie = _context3.sent;
         listCategorie(categorie);
       case 4:
       case "end":
-        return _context2.stop();
+        return _context3.stop();
     }
-  }, _callee2, this);
+  }, _callee3, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit;
-  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-    while (1) switch (_context3.prev = _context3.next) {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
+  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+    while (1) switch (_context7.prev = _context7.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? true : false;
@@ -151,17 +177,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? true : false;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context3.next = 8;
+        _context7.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context3.next = 10;
-        return _context3.sent;
+        _context7.next = 10;
+        return _context7.sent;
       case 10:
-        Myproduct = _context3.sent;
+        Myproduct = _context7.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -172,103 +198,162 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        console.log(data);
-        _context3.next = 15;
+        _context7.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 15:
-        produit = _context3.sent;
-        console.log(produit);
-
-        // imagesArray.map(async (image) => {
-        //   const dataMedia = {
-        //     med_libelle: image.name.split(".")[0],
-        //     med_ressource: image.name,
-        //   };
-        //   const media = await axios.post(
-        //     `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
-        //     dataMedia,
-        //     {
-        //       headers: {
-        //         "X-Requested-With": "XMLHttpRequest",
-        //       },
-        //     }
-        //   );
-        // });
-
-        // const tarif = await axios.put(
-        //   `${SITE_URL}/admin/produits/tarif/${Myproduct.data.pro_id}`,
-        //   {
-        //     tar_ht,
-        //     tar_ttc,
-        //   },
-        //   {
-        //     headers: {
-        //       "X-Requested-With": "XMLHttpRequest",
-        //     },
-        //   }
-        // );
-
-        // const selectTailles = document.querySelectorAll(".select-taille");
-
-        // Array.from(selectTailles, async (item) => {
-        //   const dataselect = {
-        //     tai_id: item.value,
-        //     qua_nbre: parseInt(
-        //       item.parentNode.parentNode.parentNode.children[1].children[1]
-        //         .children[0].value
-        //     ),
-        //   };
-        //   const qty = await axios.put(
-        //     `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
-        //     dataselect,
-        //     {
-        //       headers: {
-        //         "X-Requested-With": "XMLHttpRequest",
-        //       },
-        //     }
-        //   );
-        //   console.log(qty);
-        // });
-      case 17:
+      case 14:
+        produit = _context7.sent;
+        // console.log(produit.data.product[0])
+        resultMedia = [];
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
+            var dataMedia, media;
+            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+              while (1) switch (_context4.prev = _context4.next) {
+                case 0:
+                  dataMedia = {
+                    med_libelle: image.name.split(".")[0],
+                    med_ressource: image.name
+                  };
+                  _context4.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  media = _context4.sent;
+                  if (!media.data.med_ressource) {
+                    _context4.next = 6;
+                    break;
+                  }
+                  return _context4.abrupt("return", resultMedia.push(media.data.msgMedia));
+                case 6:
+                case "end":
+                  return _context4.stop();
+              }
+            }, _callee4);
+          }));
+          return function (_x) {
+            return _ref5.apply(this, arguments);
+          };
+        }());
+        _context7.next = 19;
+        return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
+          tar_ht: tar_ht,
+          tar_ttc: tar_ttc
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 19:
+        tarif = _context7.sent;
+        selectTailles = document.querySelectorAll(".select-taille");
+        selectTailleExist = document.querySelectorAll(".select-taille-exist");
+        Array.from(selectTailles, /*#__PURE__*/function () {
+          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
+            var dataselect;
+            return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+              while (1) switch (_context5.prev = _context5.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context5.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context5.sent;
+                case 4:
+                case "end":
+                  return _context5.stop();
+              }
+            }, _callee5);
+          }));
+          return function (_x2) {
+            return _ref6.apply(this, arguments);
+          };
+        }());
+        Array.from(selectTailleExist, /*#__PURE__*/function () {
+          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+              while (1) switch (_context6.prev = _context6.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context6.next = 3;
+                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context6.sent;
+                case 4:
+                case "end":
+                  return _context6.stop();
+              }
+            }, _callee6);
+          }));
+          return function (_x3) {
+            return _ref7.apply(this, arguments);
+          };
+        }());
+        message = document.querySelector(".parent-message");
+        if (produit.data.product[0] === 1 || tarif.data.msgTarif === true || resultMedia[0] === true) {
+          message.style.display = "flex";
+          btn_close = document.querySelector(".close");
+          btn_close.addEventListener("click", function () {
+            window.location.href = "".concat(SITE_URL, "/admin/produits");
+          });
+        }
+      case 26:
       case "end":
-        return _context3.stop();
+        return _context7.stop();
     }
-  }, _callee3);
+  }, _callee7);
 })));
 
 //delete taille
 Array.from(btns_delete, function (item) {
-  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
     var Myproduct, qty_id, qty;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
         case 0:
           lines.removeChild(this.parentNode);
-          _context4.next = 3;
-          return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.value), {
+          _context8.next = 3;
+          return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 3:
-          Myproduct = _context4.sent;
+          Myproduct = _context8.sent;
           qty_id = item.previousElementSibling.children[1].children[0].name;
-          _context4.next = 7;
+          _context8.next = 7;
           return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 7:
-          qty = _context4.sent;
+          qty = _context8.sent;
         case 8:
         case "end":
-          return _context4.stop();
+          return _context8.stop();
       }
-    }, _callee4, this);
+    }, _callee8, this);
   })));
 });

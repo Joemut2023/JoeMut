@@ -2,7 +2,7 @@
   <div class="alert alert-success parent-message" role="alert">
     <span style="font-size:1.4rem;color: #61ce70;"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
    <span>Produit modifié avec succès</span> 
-   <span style="font-size:1.4rem;color: #61ce70;" class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+   <span style="font-size:1.4rem;color: #61ce70;cursor: pointer;" class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
 </div>
   <div class="product-container row">
     <div class="bloc-left col-md-8">
@@ -266,7 +266,7 @@
               <div class="right col-md-8">
                 <div class="categories">
                   <div class="title">
-                    <h2>Type categorie</h2>
+                    <h2>Type catégorie</h2>
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
 
@@ -415,7 +415,7 @@
                     <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
-                          class="form-select select-taille"
+                          class="form-select select-taille-exist"
                           aria-label="Default select example"
                         >
                           <option value="<%= element.Taille.tai_id %>" selected><%= element.Taille.tai_libelle %></option>

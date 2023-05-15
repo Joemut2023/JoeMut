@@ -127,7 +127,7 @@ router.post("/", async (req, res) => {
       pro_comment,
       pro_statut,
     });
-    return res.status(201).json({ product });
+    return res.status(201).json({ product,msg:true });
   } catch (error) {
     console.log(error.message);
   }
@@ -148,7 +148,7 @@ router.post("/media/:id", async function (req, res) {
       mimetype: "image/jpeg",
     });
 
-    return res.status(201).json(media);
+    return res.status(201).json({media,msgMedia:true});
   } catch (error) {
     console.log(error.message);
   }
@@ -168,7 +168,7 @@ router.post("/tarif/:id", async function (req, res) {
       tar_statut: 1,
     });
 
-    return res.status(201).json(tarif);
+    return res.status(201).json({ tarif, msgTarif: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -185,7 +185,7 @@ router.post("/qty/:id", async function (req, res) {
       qua_nbre,
     });
 
-    return res.status(201).json(qty);
+    return res.status(201).json({qty,msgQty:true});
   } catch (error) {
     console.log(error.message);
   }
@@ -316,7 +316,7 @@ router.put("/tarif/:id", async function (req, res) {
       { where: { pro_id: produit.pro_id } }
     );
 
-    return res.status(200).json(tarif);
+    return res.status(200).json({tarif,msgTarif:true});
   } catch (error) {
     console.log(error.message);
   }
@@ -326,13 +326,13 @@ router.put("/qty/:id", async function (req, res) {
   const { qua_nbre, tai_id } = req.body;
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+    const taille = await Taille.findOne({where:{tai_id}})
 
-    const qty = await Quantite.create(
+    const qty = await Quantite.update(
       {
-        tai_id,
         qua_nbre,
       },
-      { where: { pro_id: produit.pro_id } }
+      { where:{[Op.and]:[{pro_id: produit.pro_id},{tai_id:taille.tai_id}]} }
     );
 
     return res.status(200).json(qty);
