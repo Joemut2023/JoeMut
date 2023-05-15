@@ -327,7 +327,7 @@ router.put("/qty/:id", async function (req, res) {
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
 
-    const qty = await Quantite.create(
+    const qty = await Quantite.update(
       {
         tai_id,
         qua_nbre,

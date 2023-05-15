@@ -187,7 +187,6 @@ btnEnregistrer.addEventListener("click", async function () {
     pro_statut,
   };
 
-  console.log(data)
 
   const produit = await axios.put(
     `${SITE_URL}/admin/produits/${Myproduct.data.pro_id}`,
@@ -198,39 +197,41 @@ btnEnregistrer.addEventListener("click", async function () {
       },
     }
   );
-  console.log(produit)
+  // console.log(produit)
 
-  // imagesArray.map(async (image) => {
-  //   const dataMedia = {
-  //     med_libelle: image.name.split(".")[0],
-  //     med_ressource: image.name,
-  //   };
-  //   const media = await axios.post(
-  //     `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
-  //     dataMedia,
-  //     {
-  //       headers: {
-  //         "X-Requested-With": "XMLHttpRequest",
-  //       },
-  //     }
-  //   );
-  // });
+  imagesArray.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name.split(".")[0],
+      med_ressource: image.name,
+    };
+    const media = await axios.post(
+      `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+  });
 
-  // const tarif = await axios.put(
-  //   `${SITE_URL}/admin/produits/tarif/${Myproduct.data.pro_id}`,
-  //   {
-  //     tar_ht,
-  //     tar_ttc,
-  //   },
-  //   {
-  //     headers: {
-  //       "X-Requested-With": "XMLHttpRequest",
-  //     },
-  //   }
-  // );
+  const tarif = await axios.put(
+    `${SITE_URL}/admin/produits/tarif/${Myproduct.data.pro_id}`,
+    {
+      tar_ht,
+      tar_ttc,
+    },
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
 
 
-  // const selectTailles = document.querySelectorAll(".select-taille");
+  
+  const selectTailles = document.querySelectorAll(".select-taille");
+  const selectTailleExist = document.querySelectorAll(".select-taille-exist");
 
   // Array.from(selectTailles, async (item) => {
   //   const dataselect = {
@@ -240,7 +241,7 @@ btnEnregistrer.addEventListener("click", async function () {
   //         .children[0].value
   //     ),
   //   };
-  //   const qty = await axios.put(
+  //   const qty = await axios.post(
   //     `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
   //     dataselect,
   //     {
@@ -249,8 +250,27 @@ btnEnregistrer.addEventListener("click", async function () {
   //       },
   //     }
   //   );
-  //   console.log(qty);
+  //   // console.log(qty);
   // });
+ Array.from(selectTailleExist, async (item) => {
+   const dataselect = {
+     tai_id: item.value,
+     qua_nbre: parseInt(
+       item.parentNode.parentNode.parentNode.children[1].children[1].children[0]
+         .value
+     ),
+   };
+   const qty = await axios.put(
+     `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
+     dataselect,
+     {
+       headers: {
+         "X-Requested-With": "XMLHttpRequest",
+       },
+     }
+   );
+   console.log(qty);
+ });
 });
 
 //delete taille
