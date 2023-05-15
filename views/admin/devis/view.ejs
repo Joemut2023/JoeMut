@@ -532,12 +532,13 @@
                                   <tr class="tr-form-expedition tr-form-expedition-<%= expedition.exp_id %>">
                                     <td colspan="6">
                                       <div>
-                                        <form method="post" action="" class="row g-3">
+                                        <form method="post" action="/admin/devis/commande-update-transporteur" class="row g-3">
                                           <div class="col-auto">
-                                            <input type="text" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
+                                            <input required type="text" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
                                           </div>
                                           <div class="col-auto">
                                             <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                            <input type="hidden" name="exp_id" value="<%= expedition.exp_id %>">
                                             <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                           </div>
                                         </form>

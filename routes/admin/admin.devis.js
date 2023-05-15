@@ -33,7 +33,7 @@ const {
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
@@ -539,7 +539,7 @@ router.post('/commande-add-transporteur', async (req,res)=>{
   } catch (error) {
    res.redirect(`/admin/devis/view/${com_id}`);
   }
-})
+});
 router.post('/commande-retour', async (req,res)=>{
   const {com_id,pro_id,ret_nbre,ret_date} = req.body;
   const usr_id = req.session.adminId;
@@ -566,6 +566,17 @@ router.post('/commande-retour', async (req,res)=>{
     }
   } catch (error) {
     //console.log(error);
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
+router.post('/commande-update-transporteur',async (req,res)=>{
+  const {exp_cout,com_id,exp_id} = req.body;
+  try {
+    await Expedition.update({
+      exp_cout
+    },{where:{exp_id}});
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
