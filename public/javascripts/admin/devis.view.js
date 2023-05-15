@@ -158,6 +158,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     while (1) switch (_context3.prev = _context3.next) {
       case 0:
         autocomplete = function _autocomplete(inp, arr) {
+          var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
           var currentFocus;
           inp.addEventListener("input", function (e) {
             var a,
@@ -183,6 +184,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                   inp.value = this.getElementsByTagName("input")[0].value;
                   inp.dataset.produit = produit.pro_id;
                   document.querySelector('.hidden-input-pro-id-add-panier_detail').value = produit.pro_id;
+                  document.querySelector('.hidden-input-pro-id-retour').value = produit.pro_id;
                   closeAllLists();
                 });
                 a.appendChild(b);
@@ -228,6 +230,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           document.addEventListener("click", function (e) {
             closeAllLists(e.target);
           });
+          if (callback != null) {
+            callback();
+          }
         };
         _context3.next = 3;
         return axios.get("".concat(SITE_URL, "/admin/produits/allbyJson"));

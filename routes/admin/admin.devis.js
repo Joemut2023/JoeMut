@@ -27,12 +27,13 @@ const {
   Moyen_paiement,
   Transporteur,
   Expedition,
-  Detail_expedition
+  Detail_expedition,
+  Retour
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
-
+const { Op } = require("sequelize");
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
@@ -153,6 +154,7 @@ router.get('/:panier',async (req,res)=>{
 
 router.get('/view/:commandeId',async (req,res)=>{
   const {commandeId} = req.params;
+  const retours = [];
   try {
     let commande = await Commande.findOne({
       where:{
@@ -286,11 +288,23 @@ router.get('/view/:commandeId',async (req,res)=>{
       include:[
         {
           model:Transporteur
+        },
+        {
+          model:Detail_expedition,
+          include:[{
+            model:Retour
+          },
+          {
+            model:Produit,
+            attributes:['pro_libelle']
+          }
+        ]
         }
       ],
       where:{com_id:commandeId}
     });
-    res.render("devis/view",{
+    console.log(expeditions[0].Detail_expeditions[0].Retours);
+    return res.render("devis/view",{
       commande,
       adresse_livraion,
       adresse_facturation,
@@ -527,7 +541,32 @@ router.post('/commande-add-transporteur', async (req,res)=>{
   }
 })
 router.post('/commande-retour', async (req,res)=>{
-  const {com_id} = req.body;
-  res.redirect(`/admin/devis/view/${com_id}`);
+  const {com_id,pro_id,ret_nbre,ret_date} = req.body;
+  const usr_id = req.session.adminId;
+  // get dex_id
+  try {
+    let expedition = await Expedition.findOne({
+      attributes:['exp_id'],
+      where:{com_id:com_id}
+    });
+    let detail_exp = await Detail_expedition.findOne({
+      where:{[Op.and]:[{pro_id},{exp_id:expedition.exp_id}]}
+    });
+    if (parseInt(ret_nbre) <= parseInt(detail_exp.dex_nbre)) {
+      await Retour.create({
+        usr_id,
+        ret_nbre,
+        ret_date,
+        dex_id:detail_exp.dex_id
+      });
+      return res.redirect(`/admin/devis/view/${com_id}`);
+    }else{
+      // rendre l'erreur => session Error Flash
+      return res.redirect(`/admin/devis/view/${com_id}`);
+    }
+  } catch (error) {
+    //console.log(error);
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  }
 })
 module.exports = router;
