@@ -21,6 +21,8 @@ const btnShowTabTransporteurForm = document.querySelector('.btn-show-tab-transpo
 const btnShowTabRetourForm = document.querySelector('.btn-show-tab-retour-form');
 const tabTransporteurForm = document.querySelector('.tab-transporteur-form-container');
 const tabRetourForm = document.querySelector('.tab-retour-form-container');
+const btnsEditTransporteurs = document.querySelectorAll('.btn-edit-expedition');
+
 //simple MDE
 (()=>{
     var simplemde = new SimpleMDE({
@@ -161,6 +163,13 @@ btnShowTabTransporteurForm.addEventListener('click',(e)=>{
 btnShowTabRetourForm.addEventListener('click',(e)=>{
   tabRetourForm.style.display === 'none'?tabRetourForm.style.display='block':tabRetourForm.style.display='none';
 });
+btnsEditTransporteurs.forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    let id = e.target.dataset.id;
+    const trForm = document.querySelector(`.tr-form-expedition-${id}`);
+    trForm.style.display === ''?trForm.style.display='table-row':trForm.style.display='';
+  })
+})
 /**
  * Autocompletion pour ajout produit
  */

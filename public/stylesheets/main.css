@@ -8129,6 +8129,9 @@ body {
 #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-note, #admin-page-viewDevis .content .right .commande-tabs #nav-document .tr-form-paiement {
   display: none;
 }
+#admin-page-viewDevis .content .right .commande-tabs #nav-transporteur table .tr-form-expedition {
+  display: none;
+}
 #admin-page-viewDevis .content .right .commande-tabs #nav-transporteur .tab-transporteur-form-container {
   padding: 5px;
   display: none;

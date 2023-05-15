@@ -530,7 +530,22 @@
                                     <td><%= expedition.exp_cout %></td>
                                     <td><%= expedition.exp_suivi %></td>
                                     <td>
-                                      <button class="btn btn-primary"><i class="fa-solid fa-pencil"></i></button>
+                                      <button class="btn btn-primary btn-edit-expedition" data-id="<%= expedition.exp_id %>"><i class="fa-solid fa-pencil"></i></button>
+                                    </td>
+                                  </tr>
+                                  <tr class="tr-form-expedition tr-form-expedition-<%= expedition.exp_id %>">
+                                    <td colspan="6">
+                                      <div>
+                                        <form method="post" action="" class="row g-3">
+                                          <div class="col-auto">
+                                            <input type="text" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
+                                          </div>
+                                          <div class="col-auto">
+                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                            <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                          </div>
+                                        </form>
+                                      </div>
                                     </td>
                                   </tr>
                                   <% }) %>

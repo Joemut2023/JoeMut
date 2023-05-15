@@ -335,6 +335,11 @@
                     }
                 }
                 #nav-transporteur{
+                    table{
+                        .tr-form-expedition{
+                            display: none;
+                        }
+                    }
                     .tab-transporteur-form-container{
                         padding: 5px;
                         display: none;

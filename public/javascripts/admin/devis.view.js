@@ -27,6 +27,8 @@ var btnShowTabTransporteurForm = document.querySelector('.btn-show-tab-transport
 var btnShowTabRetourForm = document.querySelector('.btn-show-tab-retour-form');
 var tabTransporteurForm = document.querySelector('.tab-transporteur-form-container');
 var tabRetourForm = document.querySelector('.tab-retour-form-container');
+var btnsEditTransporteurs = document.querySelectorAll('.btn-edit-expedition');
+
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -149,10 +151,16 @@ btnShowTabTransporteurForm.addEventListener('click', function (e) {
 btnShowTabRetourForm.addEventListener('click', function (e) {
   tabRetourForm.style.display === 'none' ? tabRetourForm.style.display = 'block' : tabRetourForm.style.display = 'none';
 });
+btnsEditTransporteurs.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-expedition-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
+})
 /**
  * Autocompletion pour ajout produit
- */
-_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+ */( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var produits, autocomplete;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
     while (1) switch (_context3.prev = _context3.next) {
@@ -245,4 +253,4 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         return _context3.stop();
     }
   }, _callee3);
-}))();
+})))();
