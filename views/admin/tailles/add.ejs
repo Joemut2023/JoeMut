@@ -1,0 +1,44 @@
+<div id="admin-blocs-produitHeader">
+  <div class="produit-menu pt-3">
+    <h1>Tailles</h1>
+    <div class="produit-menu-btn">
+      <a href="/admin/transporteurs/add">
+        <button type="button" class="btn btn-info">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle taille
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-12 card shadow">
+      <% if (typeof succesMsg == 'string') { %>
+      <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+      <% } %><% if (typeof nothingMsg == 'string') { %>
+      <div class="alert alert-secondary mt-3" role="alert">
+        <%= nothingMsg %>
+      </div>
+      <% } %>
+      <form method="post" action="/admin/tailles/add">
+        <div class="mb-3 pt-3">
+          <label for="transporteur-input" class="form-label"
+            >Description de la taille</label
+          >
+          <input
+            type="text"
+            name="tai_libelle"
+            class="form-control"
+            id="transporteur-input"
+            aria-describedby="transporteur nom"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
+        <div class="mb-4">
+          <a href="/admin/tailles" class="btn btn-secondary">Annuler</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

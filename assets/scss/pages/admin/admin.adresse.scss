@@ -1,5 +1,6 @@
 #admin-page-adresse {
     margin-top: 2%;
+    background-color: $color-white;
 
     .table {
 
@@ -7,6 +8,7 @@
         th {
             vertical-align: middle
         }
+
         .dropdown :hover>.dropdown-menu {
             display: block;
         }

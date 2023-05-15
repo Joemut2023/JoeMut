@@ -94,7 +94,7 @@
                     </p>
                     <div class="quantite"><span>
                         <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty ?
-                          quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %>
+                          quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "1" %>
                       </span>
                       <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty > 1 ? "articles" :
                         "article" %>

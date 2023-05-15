@@ -1,32 +1,46 @@
 <div id="page-admin-edit-typeCat">
+  <div id="admin-blocs-produitHeader">
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a class="fil-ariane-item" href="/Catalogue">Catalogue</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a class="fil-ariane-item" href="/admin/type-categories">type-categories</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-                <span>editer</span>
-            </li>
-
-        </ol>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a class="fil-ariane-item" href="/Catalogue">Catalogue</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="fil-ariane-item" href="/admin/type-categories"
+            >type-categories</a
+          >
+        </li>
+      </ol>
     </nav>
+    <div class="produit-menu">
+      <h4>Modifier la catégorie</h4>
+    </div>
+  </div>
 
+  <form
+    action="/admin/type-categories/edit/<%= findTyc.tyc_id %>"
+    method="POST"
+  >
+    <div class="content">
+      <div class="mb-3 pt-3">
+        <label for="transporteur-input" class="form-label"
+          >Nom de la catégorie</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="categorie-input"
+          aria-describedby="categorie nom"
+          name="tyc_libelle"
+          value="<%= findTyc.tyc_libelle %>"
+          required
+        />
+      </div>
 
-    <form action="/admin/type-categories/edit/<%= findTyc.tyc_id %>" method="POST">
-        <div class="content">
-            <div class="row formulaire">
-                <div class="col-8">
-                    <input type="texte" id="libelle" class="form-control" aria-labelledby="passwordHelpInline"
-                        name="tyc_libelle" value="<%= findTyc.tyc_libelle %>" />
-                </div>
-
-                <div class="button col-4">
-                    <button type="submit" class="btn">Mettre à jour</button>
-                </div>
-            </div>
-        </div>
-    </form>
+      <button type="submit" class="btn btn-primary mb-4">Mettre à jour</button>
+      <div class="mb-4">
+        <a href="/admin/type-categories" class="btn btn-secondary">Annuler</a>
+      </div>
+    </div>
+  </form>
 </div>
