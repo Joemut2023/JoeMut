@@ -92,12 +92,14 @@ router.get("/add", async (req, res) => {
   try {
     const typeCategorie = await Type_categorie.findAll();
     const taille = await Taille.findAll();
+    const categories = await Categorie.findAll({where:{tyc_id:1}})
 
     // return res.json({ taille });
 
     res.render("produits/ajoutProduit", {
       typeCategorie,
       taille,
+      categories
     });
   } catch (error) {}
 });

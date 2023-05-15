@@ -248,6 +248,19 @@
                     </div>
                     <p class="tit-cat">Catégories</p>
                     <div class="accueil">
+                      <select
+                        class="form-select cat-select select-type-cat"
+                        aria-label="Default select example"
+                      >
+                      <% categories.forEach(element => { %>
+                     
+                   <option value="<%= element.cat_id %>"><%= element.cat_libelle %></option>
+                  
+
+                        
+                      <% }) %>
+                      
+                      </select>
                     </div>
                   </div>
 
