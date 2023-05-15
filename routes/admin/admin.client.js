@@ -129,9 +129,9 @@ router.post("/update", async (req, res) => {
     cli_activation,
     tit_id,
     cli_newsletter,
+    cli_id,
     cli_partenaire,
     cli_fonction,
-    cli_id,
   } = req.body;
   const activate = cli_activation == undefined ? false : cli_activation;
   const partenaire = cli_partenaire == undefined ? false : cli_partenaire;
@@ -139,6 +139,11 @@ router.post("/update", async (req, res) => {
   const pwdhashed = cli_pwd ? await bcrypt.hash(cli_pwd, 10) : null;
   try {
     const titres = await Titre.findAll();
+    let clients = await Client.findOne({ where: { cli_id } });
+    if (tit_id == "Sélectionner le titre") {
+      const nothingMsg = "Veillez sélectionner le titre!";
+      return res.render("client/updateClient", { titres, clients, nothingMsg });
+    }
     const update = await Client.update(
       {
         cli_prenom,
@@ -155,7 +160,7 @@ router.post("/update", async (req, res) => {
 
       { where: { cli_id } }
     );
-    const clients = await Client.findOne({ where: { cli_id } });
+    clients = await Client.findOne({ where: { cli_id } });
     if (update[0] == 1) {
       const succesMsg = "les informations ont été mises à jour avec succès";
       return res.render("client/updateClient", { titres, clients, succesMsg });
