@@ -34,15 +34,18 @@ categorieAddButton.addEventListener("click", function () {
 });
 catBtnAnnuler.addEventListener("click", function () {
   categrieParentCreated.style.display = "none";
+  //  document.querySelector(".parent-message-cat").style.display = "none";
 });
+
 catBtnCreer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var selectTypecat, categorieChamp, categorie;
+  var selectTypecat, categorieChamp, parent_message, categorie, btn_close;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         selectTypecat = document.querySelector(".select-add-cat");
         categorieChamp = document.querySelector(".cat-add-input");
-        _context.next = 4;
+        parent_message = document.querySelector(".parent-message-cat");
+        _context.next = 5;
         return axios.post("".concat(SITE_URL, "/admin/produits/categorie"), {
           tyc_id: selectTypecat.value,
           cat_libelle: categorieChamp.value
@@ -51,10 +54,18 @@ catBtnCreer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE_
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 4:
+      case 5:
         categorie = _context.sent;
-        console.log(categorie);
-      case 6:
+        if (categorie.data.msg === true) {
+          parent_message.style.display = "flex";
+          categorieChamp.value = "";
+        }
+        btn_close = document.querySelector(".btn-hide-message");
+        btn_close.addEventListener("click", function () {
+          parent_message.style.display = "none";
+          categrieParentCreated.style.display = "none";
+        });
+      case 9:
       case "end":
         return _context.stop();
     }
