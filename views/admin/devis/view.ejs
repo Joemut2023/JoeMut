@@ -388,7 +388,9 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-etat-tab" data-bs-toggle="tab" data-bs-target="#nav-etat" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa-solid fa-clock-rotate-left"></i>Etat</button>
                         <button class="nav-link" id="nav-document-tab" data-bs-toggle="tab" data-bs-target="#nav-document" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-file"></i> Documents (<%= commande.Documents.length %>)</button>
-                        <button class="nav-link" id="nav-transporteur-tab" data-bs-toggle="tab" data-bs-target="#nav-transporteur" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-truck"></i> Transporteurs (1)</button>
+                        <button class="nav-link" id="nav-transporteur-tab" data-bs-toggle="tab" data-bs-target="#nav-transporteur" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-truck"></i> Transporteurs (<% if (Array.isArray(expeditions)) { %>
+                         <%= expeditions.length %>
+                        <% } %>)</button>
                         <button class="nav-link" id="nav-retour-tab" data-bs-toggle="tab" data-bs-target="#nav-retour" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-arrow-rotate-left"></i> Retour produits</button>
                     </div>
                 </nav>
