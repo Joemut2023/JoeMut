@@ -6,12 +6,40 @@ const moment = require("moment");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 router.get("/", async (req, res) => {
+  let orderby = req.query.orderby;
   let { page, start, end } = check_admin_paginate_value(req);
+  let orderCondition;
+  let choix;
+  if (orderby === "NAàZ") {
+    orderCondition = [["cli_nom", "ASC"]];
+    choix = "Nom, A à Z";
+  } else if (orderby === "NZàA") {
+    orderCondition = [["cli_nom", "DESC"]];
+    choix = "Nom, Z à A";
+  } else if (orderby === "PAàZ") {
+    orderCondition = [["cli_prenom", "ASC"]];
+    choix = "Prénom, A à Z";
+  } else if (orderby === "PZàN") {
+    orderCondition = [["cli_prenom", "DESC"]];
+    choix = "Prénom, Z à A";
+  } else if (orderby === "DC") {
+    orderCondition = [["cli_inscription", "ASC"]];
+    choix = "Date d'inscription, croissante";
+  } else if (orderby === "DD") {
+    orderCondition = [["cli_inscription", "DESC"]];
+    choix = "Date d'inscription, décroissante";
+    orderCondition = [["cli_activation", "DESC"]];
+    choix = "Client inactif";
+  } else {
+    orderCondition = [["cli_id", "ASC"]];
+    choix = "Choisir";
+  }
   try {
     const clients = await Client.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
       include: [{ model: Titre, attributes: ["tit_libelle"] }],
+      order: orderCondition,
     });
     const AllClients = await Client.findAll();
     let nbrPages = Math.ceil(AllClients.length / PAGINATION_LIMIT_ADMIN);
@@ -22,7 +50,9 @@ router.get("/", async (req, res) => {
       start,
       end,
       moment,
-      produitsNbr: AllClients.length,
+      orderby,
+      choix: choix,
+      clientsNbr: AllClients.length,
     });
   } catch (error) {
     res.status(500).render("client/index", {

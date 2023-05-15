@@ -41,10 +41,56 @@
   <% if (typeof succesMsg == 'string') { %>
   <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
   <% } %>
-  <div class="client-content mt-3">
+  <div class="client-content mt-4">
     <div class="d-flex justify-content-between p-3 pb-0">
-      <h6>Gérer vos clients (<%= produitsNbr%>)</h6>
-      <i class="fa-solid fa-gear"></i>
+      <h6>Gérer vos clients (<%= clientsNbr%>)</h6>
+      <div class="d-flex justify-content-end gap-4 w-50">
+        <h6 class="pt-2">Trier par :</h6>
+        <div class="dropdown">
+          <a
+            class="btn btn-outline-secondary dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <%= typeof choix !== 'undefined' ? choix : "choisir" %>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=NAàZ"
+                >Nom, A à Z</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=NZàA"
+                >Nom, Z à A</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=PAàZ"
+                >Prenom, A à Z</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=PZàN"
+                >Prenom, Z à A</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=DC"
+                >Date inscription, plus récente</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admin/clients?orderby=DD"
+                >Date inscription, plus ancienne</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <hr />
     <table class="table mt-4 table-striped">
@@ -181,46 +227,68 @@
     <div class="row affichage">
       <p>
         Affichage <span><%= start %> - <%= end %></span> de
-        <span><%= produitsNbr%></span>
+        <span><%= clientsNbr%></span>
       </p>
     </div>
     <nav>
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=1">1</a>
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=1&orderby=<%= orderby %>"
+            >1</a
+          >
         </li>
         <% if (pageActive === 1 || pageActive ===2) { %>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=2">2</a>
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=2&orderby=<%= orderby %>"
+            >2</a
+          >
         </li>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=3">3</a>
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=3&orderby=<%= orderby %>"
+            >3</a
+          >
         </li>
         <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=<%= pageActive -1 %>"
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=<%= pageActive -1 %>&orderby=<%= orderby %>"
             ><%= pageActive-1 %></a
           >
         </li>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=<%= pageActive %>"
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=<%= pageActive %>&orderby=<%= orderby %>"
             ><%= pageActive %></a
           >
         </li>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=<%= pageActive+1 %>"
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=<%= pageActive+1 %>&orderby=<%= orderby %>"
             ><%= pageActive+1 %></a
           >
         </li>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=<%= pageActive+2 %>"
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=<%= pageActive+2 %>&orderby=<%= orderby %>"
             ><%= pageActive+2 %></a
           >
         </li>
         <li class="page-item">...</li>
         <% } %>
         <li class="page-item">
-          <a class="page-link" href="/admin/clients/?&page=<%= nbrPages %>"
+          <a
+            class="page-link"
+            href="/admin/clients/?&page=<%= nbrPages %>&orderby=<%= orderby %>"
             ><%= nbrPages %></a
           >
         </li>
