@@ -84,8 +84,15 @@
                     </div>
                   </div>
                 </th>
-                <th scope="col">Début</th>
-                <th scope="col">Fin</th>
+                <th scope="col" class="col-spectacle">
+                  <div>
+                    <h5>Spectacle</h5>
+                    <div>
+                      <p>Début</p>
+                      <p>Fin</p>
+                    </div>
+                  </div>
+                </th>
                 <th scope="col">Répetition</th>
                 <th scope="col">Etat</th>
                 <th scope="col">Actions</th>
@@ -117,8 +124,12 @@
                                 <p><%= commande.commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
                               </div>
                             </td>
-                            <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM/YYYY') %></td>
-                            <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM/YYYY') %></td>
+                            <td class="data-spectacle">
+                              <div>
+                                <p><%= moment(commande.commande.com_debut_spectacle).format('D/MM/YYYY') %></p>
+                                <p><%= moment(commande.commande.com_fin_spectacle).format('D/MM/YYYY') %></p>
+                              </div>
+                            </td>
                             <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM/YYYY') %></td>
                             <td>
                               <%= commande.commande.Chronologies[0].Statut_commande.stc_libelle %>

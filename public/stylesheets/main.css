@@ -6776,21 +6776,25 @@ body {
 #admin-page-devis .table-container table .td-modal {
   left: 40%;
 }
-#admin-page-devis .table-container table tr .col-livraison div {
+#admin-page-devis .table-container table tr .col-livraison div, #admin-page-devis .table-container table tr .col-spectacle div {
   width: 100%;
 }
-#admin-page-devis .table-container table tr .col-livraison div h5 {
+#admin-page-devis .table-container table tr .col-livraison div h5, #admin-page-devis .table-container table tr .col-spectacle div h5 {
   font-size: 14px;
   margin: 0;
+  text-align: center;
 }
-#admin-page-devis .table-container table tr .col-livraison div div {
+#admin-page-devis .table-container table tr .col-livraison div div, #admin-page-devis .table-container table tr .col-spectacle div div {
   display: flex;
   flex-direction: row;
   gap: 5%;
   align-items: center;
   align-content: center;
 }
-#admin-page-devis .table-container table tr .data-livraison div {
+#admin-page-devis .table-container table tr .col-spectacle div div {
+  justify-content: space-between;
+}
+#admin-page-devis .table-container table tr .data-livraison div, #admin-page-devis .table-container table tr .data-spectacle div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
