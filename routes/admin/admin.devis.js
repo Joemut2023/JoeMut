@@ -590,4 +590,21 @@ router.post('/commande-update-retour-comment',async (req,res)=>{
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
+router.post('/commande-update-retour-nbr',async (req,res)=>{
+  const {ret_id,com_id,dex_nbre,ret_nbre} = req.body;
+  try {
+    let retour = await Retour.findOne({
+      where:{ret_id}
+    });
+    await Retour.update({
+      ret_nbre
+    },{where:{ret_id}});
+    await Detail_expedition.update({
+      dex_nbre
+    },{where:{dex_id:retour.dex_id}});
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  }
+})
 module.exports = router;

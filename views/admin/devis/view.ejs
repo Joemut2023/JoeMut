@@ -622,7 +622,7 @@
                                         <tr class="tr-form-retour tr-form-retour-<%= retour.ret_id %>">
                                           <td colspan="6">
                                             <div>
-                                              <form method="post" action="" class="row g-3">
+                                              <form method="post" action="/admin/devis/commande-update-retour-nbr" class="row g-3">
                                                 <div class="col-auto">
                                                   <input type="text" class="form-control" name="dex_nbre" placeholder="En location">
                                                 </div>
@@ -631,6 +631,7 @@
                                                 </div>
                                                 <div class="col-auto">
                                                   <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                                  <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
                                                   <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                                 </div>
                                               </form>
