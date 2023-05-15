@@ -6803,6 +6803,13 @@ body {
   justify-items: center;
   padding-top: 10%;
 }
+#admin-page-devis .table-container table tr .produit-detail {
+  padding: 0;
+}
+#admin-page-devis .table-container table tr .produit-detail p {
+  padding: 0;
+  margin: 0;
+}
 #admin-page-devis #modal-devis .modal-body {
   display: flex;
   flex-direction: column;

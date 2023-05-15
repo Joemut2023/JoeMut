@@ -89,7 +89,6 @@ router.get("/", async (req, res) => {
       //group: ["Commande.com_id"],
     });
     let statut_commandes = await Statut_commande.findAll();
-
     let commandesNbr = await Commande.findAndCountAll();
     // datas complementaire de la requete
     for (let commande of commandes) {
@@ -142,7 +141,10 @@ router.get('/:panier',async (req,res)=>{
         {
           model: Produit,
           attributes: ["pro_ref", "pro_libelle"],
-          include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
+          include: [
+            { model: Media, attributes: ["med_id", "med_ressource"] },
+            {model:Quantite}
+          ],
         },
       ],
       where: { pan_id:panier },

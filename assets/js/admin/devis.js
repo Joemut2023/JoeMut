@@ -11,17 +11,23 @@ accordionsTriggers.forEach(accordionTrigger=>{
         let accordionElt = document.querySelector(`#tr-accordion-${id}`);
         let tdBody = document.querySelector(`#tr-accordion-${id} .td-body div`);
         let tdBodyHtml =`` 
-        produits.data.forEach(pad=>{
+        
+        produits.data.forEach((pad)=>{
+            var stockInit = 0;
+            pad.Produit.Quantites.forEach(qte=>{
+                stockInit += qte.qua_nbre 
+            });
             tdBodyHtml += `
                 <div class="produit-detail">
                     <p>${pad.Produit.pro_libelle}</p>
                     <p>Quantité : ${pad.pad_qte}</p>
+                    <p>Stock initial: ${stockInit} </p>
+                    <p>Stock Disponible: </p>
                 </div>
             `
         })
         tdBody.innerHTML = tdBodyHtml;
         accordionElt.style.display === ''? accordionElt.style.display = 'table-row':accordionElt.style.display = ''; 
-       // console.log(accordionElt.style.display);
     })
 });
 

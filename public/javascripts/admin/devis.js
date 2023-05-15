@@ -25,11 +25,14 @@ accordionsTriggers.forEach(function (accordionTrigger) {
             tdBody = document.querySelector("#tr-accordion-".concat(id, " .td-body div"));
             tdBodyHtml = "";
             produits.data.forEach(function (pad) {
-              tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                </div>\n            ");
+              var stockInit = 0;
+              pad.Produit.Quantites.forEach(function (qte) {
+                stockInit += qte.qua_nbre;
+              });
+              tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    <p>Stock initial: ").concat(stockInit, " </p>\n                    <p>Stock Disponible: </p>\n                </div>\n            ");
             });
             tdBody.innerHTML = tdBodyHtml;
             accordionElt.style.display === '' ? accordionElt.style.display = 'table-row' : accordionElt.style.display = '';
-            // console.log(accordionElt.style.display);
           case 11:
           case "end":
             return _context.stop();
