@@ -32,13 +32,13 @@ router.post("/", async function (req, res, next) {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "myindavictoire@gmail.com",
+          user: "aes@wcg-rdc.com",
           pass: process.env.PASSWORD_NODEMAILER,
         },
       });
       const mailOptions = {
         from: cont_email,
-        to: "myindavictoire@gmail.com",
+        to: "aes@wcg-rdc.com",
         subject: "Message du client depuis le site",
         html: `<div> <p>Service: ${cont_service}</p> <p>Email: ${cont_email}</p> <p>File :${cont_file}</p> <p>Message:${cont_msg}</p></div>`,
       };
