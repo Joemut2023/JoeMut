@@ -242,24 +242,24 @@ btnEnregistrer.addEventListener("click", async function () {
     }
   );
 
-    selectTailles.map(async (item) => {
-      const dataselect = {
-        tai_id: item.value,
-        qua_nbre:qty,
-      };
-      const media = await axios.post(
-        `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-        dataMedia,
-        {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        }
-      );
-      console.log(media);
-    });
+  //   selectTailles.map(async (item) => {
+  //     const dataselect = {
+  //       tai_id: item.value,
+  //       qua_nbre:qty,
+  //     };
+  //     const qty = await axios.post(
+  //       `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+  //       dataselect,
+  //       {
+  //         headers: {
+  //           "X-Requested-With": "XMLHttpRequest",
+  //         },
+  //       }
+  //     );
+  //     // console.log(media);
+  //   });
 
-  // console.log(tarif);
+  // // console.log(tarif);
  
   const selectTailles = document.querySelectorAll(".select-taille");
   
