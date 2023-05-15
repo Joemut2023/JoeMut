@@ -7487,6 +7487,32 @@ body {
   gap: 1.5rem;
   padding: 15px 0px;
 }
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container input {
+  padding: 5px 10px;
+  border: none;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .buttons-cat button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 30%;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .buttons-cat .btn-cat-annuler {
+  background: white;
+  color: black;
+  border: 1px solid gray;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .buttons-cat .btn-cat-annuler:hover {
+  background: transparent !important;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .buttons-cat .btn-cat-creer {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
+  color: white;
+  border: none;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .buttons-cat .btn-cat-creer:hover {
+  background: transparent !important;
+}
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container .parent-message-cat {
   position: relative;
   display: none;
