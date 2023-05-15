@@ -180,7 +180,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee2, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee5$(_context5) {
     while (1) switch (_context5.prev = _context5.next) {
       case 0:
@@ -278,7 +278,15 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref5.apply(this, arguments);
           };
         }());
-      case 17:
+        message = document.querySelector(".parent-message");
+        if (produit.data.msg === true) {
+          message.style.display = "flex";
+          btn_close = document.querySelector(".close");
+          btn_close.addEventListener("click", function () {
+            window.location.href = "".concat(SITE_URL, "/admin/produits");
+          });
+        }
+      case 19:
       case "end":
         return _context5.stop();
     }

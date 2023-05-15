@@ -212,6 +212,8 @@ btnEnregistrer.addEventListener("click", async function () {
     },
   });
 
+ 
+
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
@@ -265,6 +267,14 @@ btnEnregistrer.addEventListener("click", async function () {
   }
     
   );
+  const message = document.querySelector(".parent-message");
+  if (produit.data.msg === true) {
+    message.style.display = "flex";
+    const btn_close = document.querySelector(".close");
+    btn_close.addEventListener("click", function () {
+      window.location.href = `${SITE_URL}/admin/produits`;
+    });
+  }
 
 
 });

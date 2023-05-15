@@ -127,7 +127,7 @@ router.post("/", async (req, res) => {
       pro_comment,
       pro_statut,
     });
-    return res.status(201).json({ product });
+    return res.status(201).json({ product,msg:true });
   } catch (error) {
     console.log(error.message);
   }
