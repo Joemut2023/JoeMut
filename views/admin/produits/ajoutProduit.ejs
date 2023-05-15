@@ -237,7 +237,7 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
-                        <!-- <option selected>Choisissez une categorie</option> -->
+                       
                         <% typeCategorie.forEach(element => { %>
                         <option value=" <%= element.tyc_id %> ">
                           <%= element.tyc_libelle %>
@@ -256,7 +256,6 @@
                      
                    <option value="<%= element.cat_id %>"><%= element.cat_libelle %></option>
                   
-
                         
                       <% }) %>
                       
@@ -268,12 +267,35 @@
                     <div class="title">
                       <p>Créer une catégorie</p>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary">
+                    <button type="button" class="btn btn-outline-secondary btn-add-cat">
                       <span
                         ><i class="fa-solid fa-circle-plus"></i> Créer une
                         catégorie</span
                       >
                     </button>
+                  </div>
+
+                  <div class="hide-container">
+                    
+                      <input type="text" placeholder="nom de la catégorie" name="cat_libelle" class="cat-add-input">
+                       <select
+                        class="form-select select-categorie select-add-cat"
+                        aria-label="Default select example"
+                        name="tyc_id"
+                      >
+                       
+                        <% typeCategorie.forEach(element => { %>
+                        <option value=" <%= element.tyc_id %> ">
+                          <%= element.tyc_libelle %>
+                        </option>
+                        <% }) %>
+                    
+                      </select>
+                      <div class="buttons-cat">
+                        <button type="button" class="btn-cat-annuler">Annuler</button>
+                        <button type="button" class="btn-cat-creer">Créer</button>
+                      </div>
+               
                   </div>
 
                   <div class="comment">

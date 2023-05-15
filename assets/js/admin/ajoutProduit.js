@@ -23,6 +23,39 @@ const btns_delete = document.querySelectorAll(".delete");
 
 const selectCategorie = document.querySelector(".select-categorie");
 const categorieParent = document.querySelector(".accueil");
+const categrieParentCreated = document.querySelector(".hide-container");
+const categorieAddButton = document.querySelector(".btn-add-cat");
+const catBtnAnnuler = document.querySelector(".btn-cat-annuler");
+const catBtnCreer = document.querySelector(".btn-cat-creer");
+
+categorieAddButton.addEventListener("click",function(){
+  categrieParentCreated.style.display = "flex"
+})
+
+catBtnAnnuler.addEventListener("click",function(){
+  categrieParentCreated.style.display = "none";
+})
+catBtnCreer.addEventListener("click", async function(){
+  const selectTypecat = document.querySelector(".select-add-cat");
+  const categorieChamp = document.querySelector(".cat-add-input");
+
+  const categorie = await axios.post(
+      `${SITE_URL}/admin/produits/categorie`,
+        {
+          tyc_id:selectTypecat.value,
+          cat_libelle:categorieChamp.value
+        },
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+
+    console.log(categorie)
+
+
+})
 
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");

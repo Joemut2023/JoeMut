@@ -7480,6 +7480,13 @@ body {
   font-size: 14px;
   font-weight: 600;
 }
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .hide-container {
+  display: none;
+  flex-direction: column;
+  width: 40%;
+  gap: 1.5rem;
+  padding: 15px 0px;
+}
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .right .comment .title {
   margin: 20px 0px 10px 0px;
   font-weight: 600;

@@ -25,6 +25,41 @@ var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
 var selectCategorie = document.querySelector(".select-categorie");
 var categorieParent = document.querySelector(".accueil");
+var categrieParentCreated = document.querySelector(".hide-container");
+var categorieAddButton = document.querySelector(".btn-add-cat");
+var catBtnAnnuler = document.querySelector(".btn-cat-annuler");
+var catBtnCreer = document.querySelector(".btn-cat-creer");
+categorieAddButton.addEventListener("click", function () {
+  categrieParentCreated.style.display = "flex";
+});
+catBtnAnnuler.addEventListener("click", function () {
+  categrieParentCreated.style.display = "none";
+});
+catBtnCreer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var selectTypecat, categorieChamp, categorie;
+  return _regeneratorRuntime().wrap(function _callee$(_context) {
+    while (1) switch (_context.prev = _context.next) {
+      case 0:
+        selectTypecat = document.querySelector(".select-add-cat");
+        categorieChamp = document.querySelector(".cat-add-input");
+        _context.next = 4;
+        return axios.post("".concat(SITE_URL, "/admin/produits/categorie"), {
+          tyc_id: selectTypecat.value,
+          cat_libelle: categorieChamp.value
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 4:
+        categorie = _context.sent;
+        console.log(categorie);
+      case 6:
+      case "end":
+        return _context.stop();
+    }
+  }, _callee);
+})));
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -100,10 +135,10 @@ function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-      while (1) switch (_context6.prev = _context6.next) {
+    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
@@ -113,25 +148,25 @@ function _addTaille() {
           lines.appendChild(line);
         case 4:
         case "end":
-          return _context6.stop();
+          return _context7.stop();
       }
-    }, _callee6);
+    }, _callee7);
   }));
   return _addTaille.apply(this, arguments);
 }
-btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var taille, btns_delete;
-  return _regeneratorRuntime().wrap(function _callee$(_context) {
-    while (1) switch (_context.prev = _context.next) {
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        _context.next = 2;
+        _context2.next = 2;
         return axios.get("".concat(SITE_URL, "/admin/produits/add/tailles"), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 2:
-        taille = _context.sent;
+        taille = _context2.sent;
         // console.log(taille);
 
         addTaille(taille);
@@ -143,9 +178,9 @@ btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_r
         });
       case 6:
       case "end":
-        return _context.stop();
+        return _context2.stop();
     }
-  }, _callee);
+  }, _callee2);
 })));
 function listCategorie(categorie) {
   var selectCat = document.createElement("select");
@@ -159,30 +194,30 @@ function listCategorie(categorie) {
   }
   categorieParent.appendChild(selectCat);
 }
-selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var categorie;
-  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-    while (1) switch (_context2.prev = _context2.next) {
+  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+    while (1) switch (_context3.prev = _context3.next) {
       case 0:
-        _context2.next = 2;
+        _context3.next = 2;
         return axios.get("".concat(SITE_URL, "/admin/produits/categorie/").concat(this.value), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 2:
-        categorie = _context2.sent;
+        categorie = _context3.sent;
         listCategorie(categorie);
       case 4:
       case "end":
-        return _context2.stop();
+        return _context3.stop();
     }
-  }, _callee2, this);
+  }, _callee3, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
   var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, resultMedia, tarif, selectTailles, message, btn_close;
-  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-    while (1) switch (_context5.prev = _context5.next) {
+  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+    while (1) switch (_context6.prev = _context6.next) {
       case 0:
         categorieselect = document.querySelector(".select-type-cat");
         cat_id = categorieselect ? categorieselect.value : 1;
@@ -202,44 +237,44 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context5.next = 10;
+        _context6.next = 10;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 10:
-        produit = _context5.sent;
+        produit = _context6.sent;
         resultMedia = [];
         imagesArray.map( /*#__PURE__*/function () {
-          var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
+          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
             var dataMedia, media;
-            return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-              while (1) switch (_context3.prev = _context3.next) {
+            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+              while (1) switch (_context4.prev = _context4.next) {
                 case 0:
                   dataMedia = {
                     med_libelle: image.name.split(".")[0],
                     med_ressource: image.name
                   };
-                  _context3.next = 3;
+                  _context4.next = 3;
                   return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(produit.data.product.pro_id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  media = _context3.sent;
+                  media = _context4.sent;
                 case 4:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
-            }, _callee3);
+            }, _callee4);
           }));
           return function (_x2) {
-            return _ref4.apply(this, arguments);
+            return _ref5.apply(this, arguments);
           };
         }());
-        _context5.next = 15;
+        _context6.next = 15;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -249,34 +284,34 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 15:
-        tarif = _context5.sent;
+        tarif = _context6.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
-          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
+          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
             var dataselect, qty;
-            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-              while (1) switch (_context4.prev = _context4.next) {
+            return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+              while (1) switch (_context5.prev = _context5.next) {
                 case 0:
                   dataselect = {
                     tai_id: item.value,
                     qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
                   };
-                  _context4.next = 3;
+                  _context5.next = 3;
                   return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(produit.data.product.pro_id), dataselect, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  qty = _context4.sent;
+                  qty = _context5.sent;
                 case 4:
                 case "end":
-                  return _context4.stop();
+                  return _context5.stop();
               }
-            }, _callee4);
+            }, _callee5);
           }));
           return function (_x3) {
-            return _ref5.apply(this, arguments);
+            return _ref6.apply(this, arguments);
           };
         }());
         message = document.querySelector(".parent-message");
@@ -289,9 +324,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         }
       case 20:
       case "end":
-        return _context5.stop();
+        return _context6.stop();
     }
-  }, _callee5);
+  }, _callee6);
 })));
 
 //delete taille
