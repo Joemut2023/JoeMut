@@ -185,7 +185,7 @@ router.post("/qty/:id", async function (req, res) {
       qua_nbre,
     });
 
-    return res.status(201).json(qty);
+    return res.status(201).json({qty,msgQty:true});
   } catch (error) {
     console.log(error.message);
   }
