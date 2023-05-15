@@ -168,7 +168,7 @@ btnShowTabRetourForm.addEventListener('click',(e)=>{
    
 let produits = await axios.get(`${SITE_URL}/admin/produits/allbyJson`);
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr,callback=null) {
     var currentFocus;
   
     inp.addEventListener("input", function (e) {
@@ -202,6 +202,7 @@ function autocomplete(inp, arr) {
               inp.value = this.getElementsByTagName("input")[0].value;
               inp.dataset.produit = produit.pro_id;
               document.querySelector('.hidden-input-pro-id-add-panier_detail').value = produit.pro_id;
+              document.querySelector('.hidden-input-pro-id-retour').value = produit.pro_id;
               closeAllLists();
             });
             a.appendChild(b);
@@ -253,6 +254,9 @@ function autocomplete(inp, arr) {
     document.addEventListener("click", function (e) {
       closeAllLists(e.target);
     });
+    if (callback != null) {
+      callback();
+    }
 }
 autocomplete(document.getElementById("myInput"), produits.data);
 autocomplete(document.getElementById("form-autocomplete-retour-produit"), produits.data);

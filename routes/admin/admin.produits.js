@@ -258,9 +258,9 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-router.get('/one/:ref',async function(req,res){
+router.get('/one/:id',async function(req,res){
   try {
-    const produit = await Produit.findOne({where:{pro_ref:req.params.ref}})
+    const produit = await Produit.findOne({where:{pro_id:req.params.id}});
     res.status(200).json(produit)
     
   } catch (error) {

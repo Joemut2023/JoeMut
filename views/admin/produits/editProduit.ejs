@@ -1,4 +1,9 @@
 <div id="page-admin-editProduit">
+  <div class="alert alert-success parent-message" role="alert">
+    <span style="font-size:1.4rem;color: #61ce70;"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+   <span>Produit modifié avec succès</span> 
+   <span style="font-size:1.4rem;color: #61ce70;" class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+</div>
   <div class="product-container row">
     <div class="bloc-left col-md-8">
       <div class="row">
@@ -146,7 +151,7 @@
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control pro-ref" required value="<%= produit.pro_ref %>"  />
+                    <input type="text" name="<%= produit.pro_id %>" class="form-control pro-ref" required value="<%= produit.pro_ref %>"  />
                   </div>
                 </div>
 
@@ -939,7 +944,7 @@
         <button type="button" class="btn btn-secondary">Previsualiser</button>
       </div>
       <div>
-        <button type="submit" class="btn btn-primary update">Modifier</button>
+        <button type="button" class="btn btn-primary update">Modifier</button>
       </div>
     </div>
   </div>
