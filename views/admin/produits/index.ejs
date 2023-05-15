@@ -4,15 +4,15 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">ID</th>
-        <th scope="col">Image</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Référence</th>
-        <th scope="col">Categorie</th>
-        <th scope="col">Montant HT</th>
-        <th scope="col">Montant TTC</th>
-        <th scope="col">Quantité</th>
-        <th scope="col">Actions</th>
+        <th scope="col" class="text-center">ID</th>
+        <th scope="col" class="text-center">Image</th>
+        <th scope="col" class="text-center w-50">Nom</th>
+        <th scope="col" class="text-center">Référence</th>
+        <th scope="col" class="text-center">Catégorie</th>
+        <th scope="col" class="text-center w-25">Prix HT</th>
+        <th scope="col" class="text-center w-25">Prix TTC</th>
+        <th scope="col" class="text-center">Quantité</th>
+        <th scope="col" class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -36,23 +36,23 @@
             class="img-fluid w-100 h-25 img-content"
           />
         </td>
-        <td><%= element.pro_libelle %></td>
-        <td><%= element.pro_ref %></td>
-        <td><%= element.Categorie.cat_libelle %></td>
-        <td>
+        <td class="w-50"><%= element.pro_libelle %></td>
+        <td class="text-center"><%= element.pro_ref %></td>
+        <td class="text-center"><%= element.Categorie.cat_libelle %></td>
+        <td class="text-center w-25">
           <%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%>
           €
         </td>
-        <td>
+        <td class="text-center w-25">
           <%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",
           ",")%> €
         </td>
-        <td>
+        <td class="text-center">
           <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty
           ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty :
           "non renseignée" %>
         </td>
-        <td>
+        <td class="text-center">
           <div class="d-flex justify-content-between">
             <a href="/admin/produits/<%= element.pro_id %>">
               <i class="fa-solid fa-pen"></i
