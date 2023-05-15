@@ -41,7 +41,7 @@ accordionsTriggers.forEach(function (accordionTrigger) {
                         stockInit += qte.qua_nbre;
                       });
                       stockDispo = stockInit - stockSortie.data;
-                      tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    <p>Stock initial: ").concat(stockInit, " </p>\n                    <p>Stock Disponible: ").concat(stockDispo, "</p>\n                </div>\n            ");
+                      tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p class=\"title\">".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    <p>Stock initial: ").concat(stockInit, " </p>\n                    <p>Stock Disponible: ").concat(stockDispo, "</p>\n                </div>\n            ");
                       tdBody.insertAdjacentHTML("afterend", tdBodyHtml);
                     case 9:
                     case "end":

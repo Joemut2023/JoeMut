@@ -22,7 +22,7 @@ accordionsTriggers.forEach(accordionTrigger=>{
             stockDispo = stockInit - stockSortie.data;
             tdBodyHtml += `
                 <div class="produit-detail">
-                    <p>${pad.Produit.pro_libelle}</p>
+                    <p class="title">${pad.Produit.pro_libelle}</p>
                     <p>Quantité : ${pad.pad_qte}</p>
                     <p>Stock initial: ${stockInit} </p>
                     <p>Stock Disponible: ${stockDispo}</p>
