@@ -7076,6 +7076,19 @@ body {
   padding-top: 20px;
   font-family: "Manrope", sans-serif;
 }
+#page-admin-ajoutProduit .parent-message {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  gap: 10px;
+}
+#page-admin-ajoutProduit .parent-message .close {
+  position: absolute;
+  top: 0;
+  right: 8px;
+}
 #page-admin-ajoutProduit .product-container .bloc-left .left div input {
   font-size: 20px;
 }
@@ -8203,6 +8216,19 @@ body {
   width: 100%;
   padding-top: 20px;
   font-family: "Manrope", sans-serif;
+}
+#page-admin-editProduit .parent-message {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  gap: 10px;
+}
+#page-admin-editProduit .parent-message .close {
+  position: absolute;
+  top: 0;
+  right: 8px;
 }
 #page-admin-editProduit .product-container .bloc-left .left div input {
   font-size: 20px;
