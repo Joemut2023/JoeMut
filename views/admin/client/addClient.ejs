@@ -1,12 +1,11 @@
-<div id="admin-blocs-produitHeader" class="border-bottom">
-  <h6 class="pt-3">Clients</h6>
+<div id="admin-blocs-ClientHeader" class="border-bottom">
+  <h6 class="pt-3"><a href="/admin/clients">Clients</a></h6>
   <div class="produit-menu">
     <h4>Créer un nouveau client</h4>
     <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
         <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau client
       </button>
-      <button type="button" class="btn btn-outline-secondary">Aide</button>
     </div>
   </div>
 </div>
@@ -29,24 +28,21 @@
         <div class="d-flex justify-content-end label-div">
           <label for="">Titre</label>
         </div>
-        <div class="w-50" aria-label="Basic radio toggle  group">
-          <% titres.forEach(element => { %>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="tit_id"
-              id="<%= `flexRadioDefault/${element.tit_id}` %>"
-              value="<%= element.tit_id %>"
-              required
-            />
-            <label
-              class="form-check-label"
-              for="flexRadioDefault<%= element.tit_id %>"
-              ><%= element.tit_libelle %>
-            </label>
-          </div>
-          <% }) %>
+        <div class="w-50">
+          <select
+            required
+            class="form-select"
+            aria-label="Default select example"
+            name="tit_id"
+          >
+            <option selected>Sélectionner le titre</option>
+            <% titres.forEach(element => { %>
+            <option value="<%= element.tit_id %>">
+              <%=element.tit_libelle %>
+            </option>
+
+            <% } )%>
+          </select>
         </div>
       </div>
       <div class="form-group d-flex gap-4">
@@ -103,6 +99,20 @@
       </div>
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
+          <label for="InputFunction">Fonction</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="text"
+            class="form-control"
+            id="InputFunction"
+            name="cli_fonction"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
           <label for="InputEmail">E-mail</label>
         </div>
         <div class="w-50">
@@ -129,41 +139,6 @@
           />
         </div>
       </div>
-      <!-- <div class="form-group d-flex gap-4">
-        <div class="d-flex justify-content-end label-div">
-          <label for="InputPassword">Date de naissance</label>
-        </div>
-        <div class="d-flex gap-4 w-50">
-          <select
-            id="selectYear"
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm"
-          >
-            <% for( let index = 1903; index <= 2023; index++ ) { %>
-            <option value="<%= index %>" class=""><%= index %></option>
-  
-            <% } %></select
-          ><select
-            id="selectMonth"
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm"
-          >
-            <% for( let index = 1; index <= 12; index++ ) { %>
-            <option value="<%= index %>" class=""><%= index %></option>
-  
-            <% } %></select
-          ><select
-            id="selectDay"
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm"
-          >
-            <% for( let index = 1; index <= 31; index++ ) { %>
-            <option value="<%= index %>" class=""><%= index %></option>
-  
-            <% } %>
-          </select>
-        </div>
-      </div> -->
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
           <label for="InputNom">Activé</label>
@@ -181,12 +156,45 @@
           </div>
         </div>
       </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputNewsletter">Newsletter</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="InputNewsletter"
+              name="cli_newsletter"
+              value="true"
+              type="checkbox"
+              checked
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPartenaires">Partenaires</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="InputPartenaires"
+              name="cli_partenaire"
+              value="true"
+              type="checkbox"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <hr />
     <div class="d-flex justify-content-between p-2">
-      <button type="button" class="btn btn-outline-secondary">
-        <a href="/admin/clients">Annuler</a>
-      </button>
+      <a href="/admin/clients">
+        <button type="button" class="btn btn-outline-secondary">Annuler</button>
+      </a>
       <button type="submit" class="btn btn-info">Enregistrer</button>
     </div>
   </form>

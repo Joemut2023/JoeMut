@@ -28,20 +28,21 @@
         <div class="d-flex justify-content-end label-div">
           <label for="">Titre</label>
         </div>
-        <div class="w-50" aria-label="Basic radio toggle  group">
-          <% titres.forEach(element => { %>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="tit_id" id="<%=
-            `flexRadioDefault/${element.tit_id}` %>" value="<%= element.tit_id
-            %>" required <%= clients.tit_id == element.tit_id ? "checked" :"" %>
-            />
-            <label
-              class="form-check-label"
-              for="flexRadioDefault<%= element.tit_id %>"
-              ><%= element.tit_libelle %>
-            </label>
-          </div>
-          <% }) %>
+        <div class="w-50">
+          <select
+            required
+            class="form-select"
+            aria-label="Default select example"
+            name="tit_id"
+          >
+            <option selected>Sélectionner le titre</option>
+            <% titres.forEach(element => { %>
+            <option value="<%= element.tit_id %>">
+              <%=element.tit_libelle %>
+            </option>
+
+            <% } )%>
+          </select>
         </div>
       </div>
       <div class="form-group d-flex gap-4">
@@ -101,19 +102,6 @@
       </div>
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
-          <label for="InputPassword">Mot de passe</label>
-        </div>
-        <div class="w-50">
-          <input
-            type="password"
-            class="form-control"
-            id="InputPassword"
-            name="cli_pwd"
-          />
-        </div>
-      </div>
-      <div class="form-group d-flex gap-4">
-        <div class="d-flex justify-content-end label-div">
           <label for="InputNumber">Téléphone</label>
         </div>
         <div class="w-50">
@@ -129,6 +117,36 @@
       </div>
       <div class="form-group d-flex gap-4">
         <div class="d-flex justify-content-end label-div">
+          <label for="InputFonction">Fonction</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="text"
+            class="form-control"
+            id="InputFonction"
+            aria-describedby="nomHelp"
+            name="cli_fonction"
+            value="<%= clients.cli_fonction %>"
+          />
+        </div>
+      </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="InputPassword">Mot de passe</label>
+        </div>
+        <div class="w-50">
+          <input
+            type="password"
+            class="form-control"
+            id="InputPassword"
+            name="cli_pwd"
+            placeholder="entrer le nouveau mot de passe"
+          />
+        </div>
+      </div>
+
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
           <label for="InputNom">Activé</label>
         </div>
         <div class="w-50">
@@ -136,18 +154,6 @@
             <input class="form-check-input" id="activateClient"
             name="cli_activation" value="true" type="checkbox" <%=
             clients.cli_activation ? "checked" :"" %> />
-          </div>
-        </div>
-      </div>
-      <div class="form-group d-flex gap-4">
-        <div class="d-flex justify-content-end label-div">
-          <label for="partenaireClient">Partenaire</label>
-        </div>
-        <div class="w-50">
-          <div class="form-check form-switch">
-            <input class="form-check-input" id="partenaireClient"
-            name="cli_partenaire" value="true" type="checkbox" <%=
-            clients.cli_partenaire ? "checked" :"" %> />
           </div>
         </div>
       </div>
@@ -163,12 +169,24 @@
           </div>
         </div>
       </div>
+      <div class="form-group d-flex gap-4">
+        <div class="d-flex justify-content-end label-div">
+          <label for="partenaireClient">Partenaire</label>
+        </div>
+        <div class="w-50">
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="partenaireClient"
+            name="cli_partenaire" value="true" type="checkbox" <%=
+            clients.cli_partenaire ? "checked" :"" %> />
+          </div>
+        </div>
+      </div>
     </div>
     <hr />
     <div class="d-flex justify-content-between p-2">
-      <button type="button" class="btn btn-outline-secondary">
-        <a href="/admin/clients">Annuler</a>
-      </button>
+      <a href="/admin/clients">
+        <button type="button" class="btn btn-outline-secondary">Annuler</button>
+      </a>
       <button type="submit" class="btn btn-info">Enregistrer</button>
     </div>
   </form>
