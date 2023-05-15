@@ -245,7 +245,7 @@ btnEnregistrer.addEventListener("click", async function () {
 
   const selectTailles = document.querySelectorAll(".select-taille");
   const selectTailleExist = document.querySelectorAll(".select-taille-exist");
-
+  let qty;
   Array.from(selectTailles, async (item) => {
     const dataselect = {
       tai_id: item.value,
@@ -254,7 +254,7 @@ btnEnregistrer.addEventListener("click", async function () {
           .children[0].value
       ),
     };
-    const qty = await axios.post(
+     qty = await axios.post(
       `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
       dataselect,
       {

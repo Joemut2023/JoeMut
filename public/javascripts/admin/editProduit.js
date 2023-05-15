@@ -167,7 +167,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee3, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, message, btn_close;
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee7$(_context7) {
     while (1) switch (_context7.prev = _context7.next) {
       case 0:
@@ -256,7 +256,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
         Array.from(selectTailles, /*#__PURE__*/function () {
           var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
-            var dataselect, qty;
+            var dataselect;
             return _regeneratorRuntime().wrap(function _callee5$(_context5) {
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
