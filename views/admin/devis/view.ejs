@@ -47,18 +47,14 @@
             <div class="card shadow bloc-client">
                 <h3 class="bloc-client-title">Client</h3>
                 <div class="bloc-client-name">
-                    <p><i class="fa-solid fa-id-card"></i> <span>M Eric Guermah</span></p>
+                    <p><i class="fa-solid fa-id-card"></i> <span><%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></span></p>
                     <a href="">Plus de details</a>
                 </div>
                 <div class="row bloc-client-info">
                     <div class="col-md-12">
                         <div>
                             <h2>E-mail :</h2>
-                            <p>eric.guermah@gmail.com</p>
-                        </div>
-                        <div>
-                            <h2>Compte créé :</h2>
-                            <p>eric.guermah@gmail.com</p>
+                            <p><%= commande.Client.cli_mail %></p>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -406,7 +402,7 @@
                                   <p><%= chronologie.User.usr_prenom %> <%= chronologie.User.usr_nom %></p>
                               </div>
                               <div class="etat-date">
-                                  <p><%= moment(chronologie.chr_date).format('D/MM, YYYY') %></p>
+                                  <p><%= moment(chronologie.chr_date).format('D/MM/YYYY') %></p>
                               </div>
                               <div class="etat-action">
                                   <form action="/admin/devis/commande-delete-statut" method="post">
@@ -708,7 +704,7 @@
                       <% if (typeof paiements != 'undefined') { %>
                         <% paiements.forEach(paiement => { %>
                           <tr>
-                            <th scope="row"><%= moment(paiement.pai_date).format('D/MM, YYYY') %></th>
+                            <th scope="row"><%= moment(paiement.pai_date).format('D/MM/YYYY') %></th>
                             <td><%= paiement.Moyen_paiement.mop_libelle %></td>
                             <td><%= paiement.pai_ref %></td>
                             <td><%= paiement.pai_montant %></td>
