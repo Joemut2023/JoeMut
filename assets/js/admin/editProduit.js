@@ -157,6 +157,7 @@ function listCategorie(categorie) {
   )}
   `;
 }
+
 selectCategorie.addEventListener("change", async function () {
   const categorie = await axios.get(
     `${SITE_URL}/admin/produits/categorie/${this.value}`,
@@ -241,8 +242,9 @@ btnEnregistrer.addEventListener("click", async function () {
   const selectTailles = document.querySelectorAll(".select-taille");
   const selectTailleExist = document.querySelectorAll(".select-taille-exist");
 
-  let qtyAll = [];
+  
   Array.from(selectTailles, async (item) => {
+    
     const dataselect = {
       tai_id: item.value,
       qua_nbre: parseInt(
@@ -259,31 +261,29 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    console.log(qty.data);
-    qtyAll.push(qty.data.msgQty);
+    // console.log(qty)
   });
 
-  console.log(qtyAll);
 
-  //  Array.from(selectTailleExist, async (item) => {
-  //    const dataselect = {
-  //      tai_id: item.value,
-  //      qua_nbre: parseInt(
-  //        item.parentNode.parentNode.parentNode.children[1].children[1].children[0]
-  //          .value
-  //      ),
-  //    };
-  //    const qty = await axios.put(
-  //      `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
-  //      dataselect,
-  //      {
-  //        headers: {
-  //          "X-Requested-With": "XMLHttpRequest",
-  //        },
-  //      }
-  //    );
-  //    console.log(qty);
-  //  });
+   Array.from(selectTailleExist, async (item) => {
+     const dataselect = {
+       tai_id: item.value,
+       qua_nbre: parseInt(
+         item.parentNode.parentNode.parentNode.children[1].children[1].children[0]
+           .value
+       ),
+     };
+  
+     const qty = await axios.put(
+       `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
+       dataselect,
+       {
+         headers: {
+           "X-Requested-With": "XMLHttpRequest",
+         },
+       }
+     );
+   });
 
   const message = document.querySelector(".parent-message");
   if (produit.data.product[0] === 1) {

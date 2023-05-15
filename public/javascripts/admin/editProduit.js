@@ -166,10 +166,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif, selectTailles, selectTailleExist, qtyAll, message, btn_close;
-  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-    while (1) switch (_context6.prev = _context6.next) {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, tarif, selectTailles, selectTailleExist, message, btn_close;
+  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+    while (1) switch (_context7.prev = _context7.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? true : false;
@@ -177,17 +177,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? true : false;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context6.next = 8;
+        _context7.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context6.next = 10;
-        return _context6.sent;
+        _context7.next = 10;
+        return _context7.sent;
       case 10:
-        Myproduct = _context6.sent;
+        Myproduct = _context7.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -198,14 +198,14 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context6.next = 14;
+        _context7.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 14:
-        produit = _context6.sent;
+        produit = _context7.sent;
         // console.log(produit.data.product[0])
 
         imagesArray.map( /*#__PURE__*/function () {
@@ -236,7 +236,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref5.apply(this, arguments);
           };
         }());
-        _context6.next = 18;
+        _context7.next = 18;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -246,10 +246,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 18:
-        tarif = _context6.sent;
+        tarif = _context7.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
-        qtyAll = [];
         Array.from(selectTailles, /*#__PURE__*/function () {
           var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
             var dataselect, qty;
@@ -268,9 +267,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   qty = _context5.sent;
-                  console.log(qty.data);
-                  qtyAll.push(qty.data.msgQty);
-                case 6:
+                case 4:
                 case "end":
                   return _context5.stop();
               }
@@ -280,27 +277,34 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        console.log(qtyAll);
-
-        //  Array.from(selectTailleExist, async (item) => {
-        //    const dataselect = {
-        //      tai_id: item.value,
-        //      qua_nbre: parseInt(
-        //        item.parentNode.parentNode.parentNode.children[1].children[1].children[0]
-        //          .value
-        //      ),
-        //    };
-        //    const qty = await axios.put(
-        //      `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
-        //      dataselect,
-        //      {
-        //        headers: {
-        //          "X-Requested-With": "XMLHttpRequest",
-        //        },
-        //      }
-        //    );
-        //    console.log(qty);
-        //  });
+        Array.from(selectTailleExist, /*#__PURE__*/function () {
+          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+              while (1) switch (_context6.prev = _context6.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context6.next = 3;
+                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context6.sent;
+                case 4:
+                case "end":
+                  return _context6.stop();
+              }
+            }, _callee6);
+          }));
+          return function (_x3) {
+            return _ref7.apply(this, arguments);
+          };
+        }());
         message = document.querySelector(".parent-message");
         if (produit.data.product[0] === 1) {
           message.style.display = "flex";
@@ -309,42 +313,42 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             window.location.href = "".concat(SITE_URL, "/admin/produits");
           });
         }
-      case 26:
+      case 25:
       case "end":
-        return _context6.stop();
+        return _context7.stop();
     }
-  }, _callee6);
+  }, _callee7);
 })));
 
 //delete taille
 Array.from(btns_delete, function (item) {
-  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
     var Myproduct, qty_id, qty;
-    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-      while (1) switch (_context7.prev = _context7.next) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
         case 0:
           lines.removeChild(this.parentNode);
-          _context7.next = 3;
+          _context8.next = 3;
           return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 3:
-          Myproduct = _context7.sent;
+          Myproduct = _context8.sent;
           qty_id = item.previousElementSibling.children[1].children[0].name;
-          _context7.next = 7;
+          _context8.next = 7;
           return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 7:
-          qty = _context7.sent;
+          qty = _context8.sent;
         case 8:
         case "end":
-          return _context7.stop();
+          return _context8.stop();
       }
-    }, _callee7, this);
+    }, _callee8, this);
   })));
 });

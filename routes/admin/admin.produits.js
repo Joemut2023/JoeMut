@@ -326,13 +326,13 @@ router.put("/qty/:id", async function (req, res) {
   const { qua_nbre, tai_id } = req.body;
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+    const taille = await Taille.findOne({where:{tai_id}})
 
     const qty = await Quantite.update(
       {
-        tai_id,
         qua_nbre,
       },
-      { where: { pro_id: produit.pro_id } }
+      { where:{[Op.and]:[{pro_id: produit.pro_id},{tai_id:taille.tai_id}]} }
     );
 
     return res.status(200).json(qty);
