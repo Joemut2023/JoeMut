@@ -154,6 +154,7 @@ router.get('/:panier',async (req,res)=>{
 
 router.get('/view/:commandeId',async (req,res)=>{
   const {commandeId} = req.params;
+  const retours = [];
   try {
     let commande = await Commande.findOne({
       where:{
@@ -287,11 +288,23 @@ router.get('/view/:commandeId',async (req,res)=>{
       include:[
         {
           model:Transporteur
+        },
+        {
+          model:Detail_expedition,
+          include:[{
+            model:Retour
+          },
+          {
+            model:Produit,
+            attributes:['pro_libelle']
+          }
+        ]
         }
       ],
       where:{com_id:commandeId}
     });
-    res.render("devis/view",{
+    console.log(expeditions[0].Detail_expeditions[0].Retours);
+    return res.render("devis/view",{
       commande,
       adresse_livraion,
       adresse_facturation,
