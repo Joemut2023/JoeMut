@@ -27,6 +27,9 @@ var btnShowTabTransporteurForm = document.querySelector('.btn-show-tab-transport
 var btnShowTabRetourForm = document.querySelector('.btn-show-tab-retour-form');
 var tabTransporteurForm = document.querySelector('.tab-transporteur-form-container');
 var tabRetourForm = document.querySelector('.tab-retour-form-container');
+var btnsEditTransporteurs = document.querySelectorAll('.btn-edit-expedition');
+var btnsEditRetours = document.querySelectorAll('.btn-edit-retour');
+var btnsAddNoteRetours = document.querySelectorAll('.btn-add-note-retour');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -148,6 +151,27 @@ btnShowTabTransporteurForm.addEventListener('click', function (e) {
 });
 btnShowTabRetourForm.addEventListener('click', function (e) {
   tabRetourForm.style.display === 'none' ? tabRetourForm.style.display = 'block' : tabRetourForm.style.display = 'none';
+});
+btnsEditTransporteurs.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-expedition-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
+});
+btnsEditRetours.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-retour-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
+});
+btnsAddNoteRetours.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-retour-note-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
 });
 /**
  * Autocompletion pour ajout produit
