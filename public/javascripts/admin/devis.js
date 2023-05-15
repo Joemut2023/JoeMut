@@ -10,34 +10,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var accordionsTriggers = document.querySelectorAll('.tr-id');
 accordionsTriggers.forEach(function (accordionTrigger) {
   accordionTrigger.addEventListener('click', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
       var id, panierId, produits, accordionElt, tdBody, tdBodyHtml;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
             id = parseInt(e.target.dataset.id);
             panierId = parseInt(e.target.dataset.panier);
-            _context.next = 4;
+            _context2.next = 4;
             return axios("".concat(SITE_URL, "/admin/devis/").concat(panierId));
           case 4:
-            produits = _context.sent;
+            produits = _context2.sent;
             accordionElt = document.querySelector("#tr-accordion-".concat(id));
             tdBody = document.querySelector("#tr-accordion-".concat(id, " .td-body div"));
             tdBodyHtml = "";
-            produits.data.forEach(function (pad) {
-              var stockInit = 0;
-              pad.Produit.Quantites.forEach(function (qte) {
-                stockInit += qte.qua_nbre;
-              });
-              tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    <p>Stock initial: ").concat(stockInit, " </p>\n                    <p>Stock Disponible: </p>\n                </div>\n            ");
-            });
-            tdBody.innerHTML = tdBodyHtml;
+            _context2.next = 10;
+            return produits.data.forEach( /*#__PURE__*/function () {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pad) {
+                var stockInit, stockDispo, stockSortie;
+                return _regeneratorRuntime().wrap(function _callee$(_context) {
+                  while (1) switch (_context.prev = _context.next) {
+                    case 0:
+                      stockInit = 0;
+                      stockDispo = 0;
+                      _context.next = 4;
+                      return axios.get("".concat(SITE_URL, "/admin/devis/total-produit-en-sortie/").concat(pad.Produit.pro_id));
+                    case 4:
+                      stockSortie = _context.sent;
+                      pad.Produit.Quantites.forEach(function (qte) {
+                        stockInit += qte.qua_nbre;
+                      });
+                      stockDispo = stockInit - stockSortie.data;
+                      tdBodyHtml += "\n                <div class=\"produit-detail\">\n                    <p>".concat(pad.Produit.pro_libelle, "</p>\n                    <p>Quantit\xE9 : ").concat(pad.pad_qte, "</p>\n                    <p>Stock initial: ").concat(stockInit, " </p>\n                    <p>Stock Disponible: ").concat(stockDispo, "</p>\n                </div>\n            ");
+                      tdBody.insertAdjacentHTML("afterend", tdBodyHtml);
+                    case 9:
+                    case "end":
+                      return _context.stop();
+                  }
+                }, _callee);
+              }));
+              return function (_x2) {
+                return _ref2.apply(this, arguments);
+              };
+            }());
+          case 10:
             accordionElt.style.display === '' ? accordionElt.style.display = 'table-row' : accordionElt.style.display = '';
           case 11:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }));
     return function (_x) {
       return _ref.apply(this, arguments);
