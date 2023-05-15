@@ -23,6 +23,47 @@ const btns_delete = document.querySelectorAll(".delete");
 
 const selectCategorie = document.querySelector(".select-categorie");
 const categorieParent = document.querySelector(".accueil");
+const categrieParentCreated = document.querySelector(".hide-container");
+const categorieAddButton = document.querySelector(".btn-add-cat");
+const catBtnAnnuler = document.querySelector(".btn-cat-annuler");
+const catBtnCreer = document.querySelector(".btn-cat-creer");
+
+categorieAddButton.addEventListener("click", function () {
+  categrieParentCreated.style.display = "flex";
+});
+
+catBtnAnnuler.addEventListener("click", function () {
+  categrieParentCreated.style.display = "none";
+  //  document.querySelector(".parent-message-cat").style.display = "none";
+});
+catBtnCreer.addEventListener("click", async function () {
+  const selectTypecat = document.querySelector(".select-add-cat");
+  const categorieChamp = document.querySelector(".cat-add-input");
+  const parent_message = document.querySelector(".parent-message-cat");
+
+  const categorie = await axios.post(
+    `${SITE_URL}/admin/produits/categorie`,
+    {
+      tyc_id: selectTypecat.value,
+      cat_libelle: categorieChamp.value,
+    },
+    {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    }
+  );
+
+  if (categorie.data.msg === true) {
+    parent_message.style.display = "flex";
+    categorieChamp.value = "";
+  }
+  const btn_close = document.querySelector(".btn-hide-message");
+  btn_close.addEventListener("click", function () {
+    parent_message.style.display = "none";
+    categrieParentCreated.style.display = "none";
+  });
+});
 
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
@@ -143,12 +184,11 @@ btnAdd.addEventListener("click", async function () {
 
   addTaille(taille);
   const btns_delete = document.querySelectorAll(".delete-add");
-    Array.from(btns_delete, (item) => {
-      item.addEventListener("click", function () {
-        lines.removeChild(this.parentNode);
-      });
+  Array.from(btns_delete, (item) => {
+    item.addEventListener("click", function () {
+      lines.removeChild(this.parentNode);
     });
-  
+  });
 });
 
 function listCategorie(categorie) {
@@ -192,8 +232,6 @@ btnEnregistrer.addEventListener("click", async function () {
   const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
   const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
 
-
-
   const data = {
     cat_id,
     pro_ref: pro_ref.value,
@@ -212,7 +250,6 @@ btnEnregistrer.addEventListener("click", async function () {
     },
   });
 
- 
   let resultMedia = [];
   imagesArray.map(async (image) => {
     const dataMedia = {
@@ -245,28 +282,25 @@ btnEnregistrer.addEventListener("click", async function () {
   );
 
   const selectTailles = document.querySelectorAll(".select-taille");
-  
-  Array.from(selectTailles, async (item) => {
 
-     const dataselect = {
-       tai_id: item.value,
-       qua_nbre: parseInt(
-         item.parentNode.parentNode.parentNode.children[1].children[1]
-           .children[0].value
-       ),
-     };
-      const qty = await axios.post(
-        `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-        dataselect,
-        {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        }
-      );
-  }
-    
-  );
+  Array.from(selectTailles, async (item) => {
+    const dataselect = {
+      tai_id: item.value,
+      qua_nbre: parseInt(
+        item.parentNode.parentNode.parentNode.children[1].children[1]
+          .children[0].value
+      ),
+    };
+    const qty = await axios.post(
+      `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+      dataselect,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+  });
   const message = document.querySelector(".parent-message");
   if (produit.data.msg === true || tarif.data.msgTarif === true) {
     message.style.display = "flex";
@@ -275,15 +309,11 @@ btnEnregistrer.addEventListener("click", async function () {
       window.location.href = `${SITE_URL}/admin/produits`;
     });
   }
-
-
 });
 
 //delete taille
-  Array.from(btns_delete, (item) => {
-    item.addEventListener("click", function () {
-      lines.removeChild(this.parentNode);
-    });
+Array.from(btns_delete, (item) => {
+  item.addEventListener("click", function () {
+    lines.removeChild(this.parentNode);
   });
-
-
+});

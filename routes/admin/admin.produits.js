@@ -87,17 +87,40 @@ router.get("/categorie/:id", async (req, res) => {
     console.log(error.message);
   }
 });
+
+// create categorie
+router.post("/categorie", async function (req, res) {
+  const {cat_libelle,tyc_id} = req.body
+  try {
+   let msg 
+   const oldCat = await Categorie.findOne({where:{cat_libelle : cat_libelle}})
+   if(oldCat){
+    return res.json({msg:false});
+   } 
+   const categorie = await Categorie.create({
+    tyc_id:tyc_id,
+    cat_libelle:cat_libelle
+   }) 
+   res.status(201).json({ msg: true,categorie });
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 //render for create
 router.get("/add", async (req, res) => {
   try {
     const typeCategorie = await Type_categorie.findAll();
     const taille = await Taille.findAll();
+    const categories = await Categorie.findAll({where:{tyc_id:1}})
 
     // return res.json({ taille });
 
     res.render("produits/ajoutProduit", {
       typeCategorie,
       taille,
+      categories
     });
   } catch (error) {}
 });
