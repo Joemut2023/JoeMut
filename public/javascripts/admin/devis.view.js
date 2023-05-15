@@ -28,7 +28,8 @@ var btnShowTabRetourForm = document.querySelector('.btn-show-tab-retour-form');
 var tabTransporteurForm = document.querySelector('.tab-transporteur-form-container');
 var tabRetourForm = document.querySelector('.tab-retour-form-container');
 var btnsEditTransporteurs = document.querySelectorAll('.btn-edit-expedition');
-
+var btnsEditRetours = document.querySelectorAll('.btn-edit-retour');
+var btnsAddNoteRetours = document.querySelectorAll('.btn-add-note-retour');
 //simple MDE
 (function () {
   var simplemde = new SimpleMDE({
@@ -157,10 +158,25 @@ btnsEditTransporteurs.forEach(function (btn) {
     var trForm = document.querySelector(".tr-form-expedition-".concat(id));
     trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
   });
-})
+});
+btnsEditRetours.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-retour-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
+});
+btnsAddNoteRetours.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var id = e.target.dataset.id;
+    var trForm = document.querySelector(".tr-form-retour-note-".concat(id));
+    trForm.style.display === '' ? trForm.style.display = 'table-row' : trForm.style.display = '';
+  });
+});
 /**
  * Autocompletion pour ajout produit
- */( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+ */
+_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   var produits, autocomplete;
   return _regeneratorRuntime().wrap(function _callee3$(_context3) {
     while (1) switch (_context3.prev = _context3.next) {
@@ -253,4 +269,4 @@ btnsEditTransporteurs.forEach(function (btn) {
         return _context3.stop();
     }
   }, _callee3);
-})))();
+}))();

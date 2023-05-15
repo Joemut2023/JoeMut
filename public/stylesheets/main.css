@@ -8102,6 +8102,9 @@ body {
 #admin-page-viewDevis .content .right .commande-tabs #nav-etat .nav-etat-actions .btn {
   width: 30%;
 }
+#admin-page-viewDevis .content .right .commande-tabs #nav-retour table .tr-form-retour, #admin-page-viewDevis .content .right .commande-tabs #nav-retour table .tr-form-retour-note {
+  display: none;
+}
 #admin-page-viewDevis .content .right .commande-tabs #nav-retour .tab-retour-form-container-btn-container {
   padding-left: 5px;
 }
