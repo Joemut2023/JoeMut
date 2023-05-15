@@ -88,6 +88,8 @@ router.get("/", async (req, res) => {
       order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
       //group: ["Commande.com_id"],
     });
+    let statut_commandes = await Statut_commande.findAll();
+
     let commandesNbr = await Commande.findAndCountAll();
     // datas complementaire de la requete
     for (let commande of commandes) {
@@ -120,7 +122,8 @@ router.get("/", async (req, res) => {
       pageActive: page,
       start,
       end,
-      nbrPages
+      nbrPages,
+      statut_commandes
     });
   } catch (error) {
     console.log(error);
