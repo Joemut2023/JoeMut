@@ -76,15 +76,18 @@ router.post("/", async function (req, res, next) {
     else {
 
       const transporter = nodemailer.createTransport({
-        service: "gmail",
+        name:"wcg-rdc.com",
+        host: "SSL0.OVH.NET",
+        port: 465,
+        secure : true,
         auth: {
-          user: "myindavictoire@gmail.com",
-          pass: process.env.PASSWORD_NODEMAILER,
+          user: "aes@wcg-rdc.com",
+          pass: process.env.PASSWORD_OVH
         },
       });
       const mailOptions = {
         from: email,
-        to: "myindavictoire@gmail.com",
+        to: "aes@wcg-rdc.com",
         subject: "Message du client depuis le site",
         html: `<div>  <p>Email: ${email}</p> <p>File :${file}</p> <p>Message:${textarea}</p></div>`,
       };
