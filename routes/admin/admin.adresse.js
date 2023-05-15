@@ -1,25 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const { Adresse, Client } = require("../../models");
-const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
-const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 
 router.get("/", async (req, res) => {
-  let { page, start, end } = check_admin_paginate_value(req);
+  const { cli_id } = req.query;
   try {
-    const adresses = await Adresse.findAll({
-      offset: start,
-      limit: PAGINATION_LIMIT_ADMIN,
-    });
-    const allAdresses = await Adresse.findAll();
-    let nbrPages = Math.ceil(allAdresses.length / PAGINATION_LIMIT_ADMIN);
+    const adresses = await Adresse.findAll({ where: { cli_id } });
     res.render("adresses/index", {
       adresses,
-      nbrPages,
-      pageActive: page,
-      start,
-      end,
-      produitsNbr: allAdresses.length,
     });
   } catch (error) {
     res.status(500).render("factures/index", {
@@ -31,16 +19,16 @@ router.get("/", async (req, res) => {
 
 router.get("/add", async (req, res) => {
   let error, success;
-  error = ""
-  success = ""
+  error = "";
+  success = "";
   res.render("adresses/ajoutAdresse", {
     error,
-    success
+    success,
   });
 });
 router.post("/add", async (req, res) => {
   res.locals.titre = "nouvelle adresse";
-  let error, success
+  let error, success;
 
   const {
     cli_mail,
@@ -110,22 +98,22 @@ router.post("/add", async (req, res) => {
     });
   }
 });
-router.get('/byAjax/:id',async (req,res)=>{
-  const {id} = req.params;
+router.get("/byAjax/:id", async (req, res) => {
+  const { id } = req.params;
   try {
     let adresse = await Adresse.findOne({
-      where:{adr_id:id}
-    })
+      where: { adr_id: id },
+    });
     if (!adresse) {
-      res.status(501).json('aucune adresse');
-    }else{
+      res.status(501).json("aucune adresse");
+    } else {
       res.status(200).json(adresse);
     }
   } catch (error) {
     res.json(error);
   }
-})
-router.post('/update-from-commande',async(req,res)=>{
+});
+router.post("/update-from-commande", async (req, res) => {
   const {
     adr_structure,
     adr_nom,
@@ -139,7 +127,7 @@ router.post('/update-from-commande',async(req,res)=>{
     adr_phone,
     adr_pays,
     adr_id,
-    com_id
+    com_id,
   } = req.body;
 
   try {
