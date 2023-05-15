@@ -6177,6 +6177,9 @@
   text-decoration: none !important;
   color: #232323;
 }
+#admin-page-clients .dropdown-menu {
+  inset: 38px 0px auto auto;
+}
 #admin-page-clients .table {
   background-color: #fff;
 }
