@@ -55,10 +55,25 @@ router.get("/add", async (req, res) => {
   }
 });
 router.post("/add", async (req, res) => {
-  const { cli_prenom, cli_nom, cli_pwd, cli_mail, cli_activation, tit_id } =
-    req.body;
+  const {
+    cli_prenom,
+    cli_nom,
+    cli_pwd,
+    cli_mail,
+    cli_activation,
+    tit_id,
+    cli_newsletter,
+    cli_partenaire,
+    cli_fonction,
+    cli_num,
+  } = req.body;
+  const cli_inscription = new Date(new Date().setDate(new Date().getDate()));
   try {
     const titres = await Titre.findAll();
+    if (tit_id == "Sélectionner le titre") {
+      const errorMsg = "Veillez sélectionner le titre!";
+      return res.render("client/addClient", { errorMsg, titres });
+    }
     const oldClient = await Client.findOne({ where: { cli_mail } });
     if (oldClient !== null) {
       const errorMsg = "cet utilisateur existe déjà";
@@ -72,6 +87,12 @@ router.post("/add", async (req, res) => {
       cli_mail,
       cli_activation,
       tit_id,
+      cli_num,
+      cli_fonction,
+      cli_activation,
+      cli_newsletter,
+      cli_inscription,
+      cli_partenaire,
     });
     if (newClient) {
       const succesMsg = "nouveau utilisateur créé et enregistré avec succès";
@@ -109,8 +130,13 @@ router.post("/update", async (req, res) => {
     tit_id,
     cli_newsletter,
     cli_partenaire,
+    cli_fonction,
     cli_id,
   } = req.body;
+  const activate = cli_activation == undefined ? false : cli_activation;
+  const partenaire = cli_partenaire == undefined ? false : cli_partenaire;
+  const newslletter = cli_newsletter == undefined ? false : cli_newsletter;
+  const pwdhashed = cli_pwd ? await bcrypt.hash(cli_pwd, 10) : null;
   try {
     const titres = await Titre.findAll();
     const update = await Client.update(
@@ -118,13 +144,15 @@ router.post("/update", async (req, res) => {
         cli_prenom,
         cli_nom,
         cli_num,
-        cli_pwd,
+        cli_pwd: pwdhashed,
         cli_mail,
-        cli_activation,
+        cli_activation: activate,
         tit_id,
-        cli_newsletter,
-        cli_partenaire,
+        cli_newsletter: newslletter,
+        cli_partenaire: partenaire,
+        cli_fonction,
       },
+
       { where: { cli_id } }
     );
     const clients = await Client.findOne({ where: { cli_id } });
