@@ -249,23 +249,6 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
       case 14:
         tarif = _context5.sent;
-        //   selectTailles.map(async (item) => {
-        //     const dataselect = {
-        //       tai_id: item.value,
-        //       qua_nbre:qty,
-        //     };
-        //     const qty = await axios.post(
-        //       `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-        //       dataselect,
-        //       {
-        //         headers: {
-        //           "X-Requested-With": "XMLHttpRequest",
-        //         },
-        //       }
-        //     );
-        //     // console.log(media);
-        //   });
-        // // console.log(tarif);
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(item) {
