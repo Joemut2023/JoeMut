@@ -303,7 +303,6 @@ router.get('/view/:commandeId',async (req,res)=>{
       ],
       where:{com_id:commandeId}
     });
-    console.log(expeditions[0].Detail_expeditions[0].Retours);
     return res.render("devis/view",{
       commande,
       adresse_livraion,
