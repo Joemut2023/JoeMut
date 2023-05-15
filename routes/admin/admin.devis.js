@@ -505,7 +505,7 @@ router.post('/commande-add-facture-paiement',async (req,res)=>{
   res.redirect(`/admin/devis/view/${com_id}`);
 });
 router.post('/commande-add-transporteur', async (req,res)=>{
-  const {exp_poids,exp_suivi,com_id,trs_id,doc_id} = req.body;
+  const {exp_poids,exp_suivi,com_id,trs_id,doc_id,exp_cout} = req.body;
   try {
     let commande = await Commande.findOne({
       attributes:['pan_id','cli_id'],
@@ -523,6 +523,7 @@ router.post('/commande-add-transporteur', async (req,res)=>{
       cli_id:commande.cli_id,
       doc_id:docId,
       exp_poids,
+      exp_cout,
       exp_depart:new Date(new Date().setDate(new Date().getDate())),
       exp_suivi:expSuivi,
       com_id:com_id
@@ -534,9 +535,9 @@ router.post('/commande-add-transporteur', async (req,res)=>{
         dex_nbre:panier_detail.pad_qte
       });
     })
-    res.redirect(`/admin/devis/view/${com_id}`);
+   return res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    res.redirect(`/admin/devis/view/${com_id}`);
+   res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande-retour', async (req,res)=>{

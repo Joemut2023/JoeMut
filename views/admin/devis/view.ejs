@@ -527,7 +527,7 @@
                                     <th scope="row"><%= moment(expedition.exp_depart).format('D/MM, YYYY') %></th>
                                     <td><%= expedition.Transporteur.trs_libelle %></td>
                                     <td><%= expedition.exp_poids %></td>
-                                    <td>@mdo</td>
+                                    <td><%= expedition.exp_cout %></td>
                                     <td><%= expedition.exp_suivi %></td>
                                     <td>
                                       <button class="btn btn-primary"><i class="fa-solid fa-pencil"></i></button>
@@ -555,6 +555,9 @@
                           </div>
                             <div class="col-auto">
                                 <input type="number" class="form-control" name="exp_poids" id="" placeholder="Poids en Kg">
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
                             </div>
                             <div class="col-auto">
                               <input type="hidden" name="com_id" value="<%= commande.com_id %>">
