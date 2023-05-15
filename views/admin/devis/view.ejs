@@ -612,7 +612,7 @@
                                               <span style="text-align: center;"><%= retour.ret_nbre %></span>
                                             </div>
                                           </td>
-                                          <td>RAS</td>
+                                          <td><%= retour.ret_comment %></td>
                                           <td>
                                             <button class="btn btn-primary btn-edit-retour" data-id="<%= retour.ret_id %>"><i class="fa-solid fa-pencil"></i></button>
                                             <button class="btn btn-secondary btn-add-note-retour" data-id="<%= retour.ret_id %>">Ajouter une note</button>
@@ -640,12 +640,13 @@
                                         <tr class="tr-form-retour-note tr-form-retour-note-<%= retour.ret_id %>">
                                           <td colspan="6">
                                             <div>
-                                              <form method="post" action="" class="row g-3">
+                                              <form method="post" action="/admin/devis/commande-update-retour-comment" class="row g-3">
                                                 <div class="col-auto">
                                                   <textarea class="form-control" name="ret_comment" id="" cols="30" rows="10"></textarea>
                                                 </div>
                                                 <div class="col-auto">
                                                   <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                                  <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
                                                   <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                                 </div>
                                               </form>

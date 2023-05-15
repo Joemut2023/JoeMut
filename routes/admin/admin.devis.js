@@ -127,7 +127,6 @@ router.get("/", async (req, res) => {
     return res.send("erreur");
   }
 });
-
 /**
  * @param panier Numeric
  * @returns [Array] liste des panier détails pour une commande
@@ -579,5 +578,16 @@ router.post('/commande-update-transporteur',async (req,res)=>{
   } catch (error) {
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
-})
+});
+router.post('/commande-update-retour-comment',async (req,res)=>{
+  const {ret_comment,ret_id,com_id} = req.body;
+  try {
+    await Retour.update({
+      ret_comment
+    },{where:{ret_id}});
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    return res.redirect(`/admin/devis/view/${com_id}`);
+  }
+});
 module.exports = router;
