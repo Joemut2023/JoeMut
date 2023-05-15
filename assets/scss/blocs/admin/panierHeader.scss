@@ -1,20 +1,26 @@
 #admin-blocs-panierHeader {
+    background-color: $color-white;
+
     .breadcrumb {
-        margin-top: 2.5%;
+        //     margin-top: 2.5%;
+        padding: 1%;
+        padding-bottom: 0;
     }
 
     a {
         text-decoration: none !important;
     }
-     .link-panier{
-            color: black;
-        }
+
+    .link-panier {
+        color: black;
+    }
 
     .fil-ariane-item {
         color: $color-secondary !important;
     }
 
     .produit-menu {
+        padding: 1%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -37,5 +43,7 @@
         }
     }
 
-   
+
+
+
 }

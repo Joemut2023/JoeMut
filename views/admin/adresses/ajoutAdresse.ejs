@@ -1,155 +1,150 @@
+<%- include('../blocs/adresseHeader') %>
 <div id="page-admin-ajoutAdresse">
-  <div class="top">
-    <p>Clients > <strong>Adresses</strong></p>
-    <div class="title">
-      <h3>Adresses</h3>
-      <button type="button" class="btn btn-outline-secondary">Aide</button>
-    </div>
-  </div>
-  <form action="/admin/adresse/add" method="post" class="form">
-    <div class="form">
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> E-mail du client</p>
+  <div class="rounded">
+    <form action="/admin/adresse/add" method="post" class="form">
+      <div class="form">
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> E-mail du client</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control req"
+              required
+              name="cli_mail"
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <input
-            type="email"
-            class="form-control req"
-            required
-            name="cli_mail"
-          />
-        </div>
-      </div>
-      <!-- <div class="item">
+        <!-- <div class="item">
         <div class="parag"><p>Numéro d'identification fiscale</p></div>
         <div class="mb-3">
           <input type="text" class="form-control" />
           <label>Le numero de carte nationale d'identité de cette personne, ou un numero d'identification fiscale</label>
         </div>
       </div> -->
-      <!-- <div class="item">
+        <!-- <div class="item">
         <div class="parag"><p><span>*</span> Alias de l'adresse</p></div>
         <div class="mb-3">
           <input type="text" class="form-control" required/>
           <label>Caractères intedits : <>=()</label>
         </div>
       </div> -->
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Prénom</p>
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Prénom</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control req"
+              name="adr_prenom"
+              required
+            />
+            <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+          </div>
         </div>
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control req"
-            name="adr_prenom"
-            required
-          />
-          <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Nom</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control req"
+              name="adr_nom"
+              required
+            />
+            <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Nom</p>
+        <div class="item">
+          <div class="parag"><p>Nom de la structure</p></div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="adr_structure" />
+            <label>Caractères intedits : <>=()</label>
+          </div>
         </div>
-        <div class="mb-3">
-          <input type="text" class="form-control req" name="adr_nom" required />
-          <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+        <div class="item">
+          <div class="parag"><p>Socièté</p></div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="adr_societe" />
+            <label>Caractères intedits : <>=()</label>
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag"><p>Nom de la structure</p></div>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="adr_structure" />
-          <label>Caractères intedits : <>=()</label>
+        <div class="item">
+          <div class="parag"><p>Numero de TVA</p></div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="adr_num_tva" />
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag"><p>Socièté</p></div>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="adr_societe" />
-          <label>Caractères intedits : <>=()</label>
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Adresse</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control req"
+              name="adr_adresse"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag"><p>Numero de TVA</p></div>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="adr_num_tva" />
+        <div class="item">
+          <div class="parag"><p>Adresse 2</p></div>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="adr_comp" />
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Adresse</p>
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Code postal</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="number"
+              class="form-control req"
+              name="adr_cp"
+              required
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control req"
-            name="adr_adresse"
-            required
-          />
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Ville</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control req"
+              name="adr_ville"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag"><p>Adresse 2</p></div>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="adr_comp" />
+        <div class="item">
+          <div class="parag">
+            <p><span>*</span> Pays</p>
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control req"
+              name="adr_pays"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Code postal</p>
+        <div class="item">
+          <div class="parag">
+            <p>Téléphone</p>
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" name="adr_phone" />
+          </div>
         </div>
-        <div class="mb-3">
-          <input
-            type="number"
-            class="form-control req"
-            name="adr_cp"
-            required
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Ville</p>
-        </div>
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control req"
-            name="adr_ville"
-            required
-          />
-        </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p><span>*</span> Pays</p>
-        </div>
-        <div class="mb-3">
-          <select
-            class="form-select"
-            aria-label="Default select example"
-            name="adr_pays"
-            required
-          >
-            <option selected>France</option>
-            <option value="RDC">RDC</option>
-            <option value="ANGOLA">ANGOLA</option>
-            <option value="BRAZIL">BRAZIL</option>
-          </select>
-        </div>
-      </div>
-      <div class="item">
-        <div class="parag">
-          <p>Téléphone</p>
-        </div>
-        <div class="mb-3">
-          <input type="number" class="form-control" name="adr_phone" />
-        </div>
-      </div>
-      <!-- <div class="item">
+        <!-- <div class="item">
         <div class="parag">
           <p>Téléphone mobile</p>
         </div>
@@ -157,7 +152,7 @@
           <input type="email" class="form-control" />
         </div>
       </div> -->
-      <!-- <div class="item">
+        <!-- <div class="item">
         <div class="parag">
           <p>Autre</p>
         </div>
@@ -170,45 +165,19 @@
           <label>Caractères interdits : <> {}</label>
         </div>
       </div> -->
-    </div>
-
-    <div class="buttons">
-      <button type="button" class="btn btn-outline-secondary">Annuler</button>
-      <button type="submit" class="btn btn-primary btn-envoyer">
-        <a href="" data-bs-toggle="modal" data-bs-target="#sendModalLabel"
-          >Enregistrer</a
-        >
-      </button>
-    </div>
-
-    <div
-      class="modal fade sendModal"
-      id="sendModalLabel"
-      tabindex="-1"
-      aria-labelledby="sendModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="title">
-              <span><i class="fa-solid fa-circle-check"></i></span>
-              <h3>Adresse ajoutée avec succes</h3>
-            </div>
-            <div class="button">
-              <a href="/admin/adresse"
-                ><button
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  class="close-avis"
-                >
-                  OK
-                </button></a
-              >
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </form>
+
+      <div class="buttons">
+        <a href="/admin/adresse">
+          <button type="button" class="btn btn-outline-secondary">
+            Annuler
+          </button></a
+        >
+
+        <button type="submit" class="btn btn-primary btn-envoyer">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

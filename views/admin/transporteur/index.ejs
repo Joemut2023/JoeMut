@@ -1,12 +1,98 @@
 <div id="admin-page-transporteur">
-    <div id="admin-blocs-produitHeader">
-        <div class="produit-menu">
-          <h1>Transporteur</h1>
-          <div class="produit-menu-btn">
-            <a class="btn btn-info" href="/admin/transporteurs/add">
-              <i class="fa-solid fa-circle-plus"></i> Ajouter
-            </a>
-          </div>
-        </div>
+  <div id="admin-blocs-produitHeader">
+    <div class="produit-menu">
+      <h1>Transporteur</h1>
+      <div class="produit-menu-btn mt-3">
+        <a class="btn btn-info" href="/admin/transporteurs/add">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau
+          transporteur
+        </a>
+      </div>
     </div>
+  </div>
+  <% if (typeof succesMsg == 'string') { %>
+  <div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+  <% } %>
+  <div id="admin-page-promo">
+    <div class="promo-content mt-3">
+      <div class="d-flex justify-content-between p-3 pb-0">
+        <h6>Gérer les transporteurs <%= transporteurs.length %></h6>
+        <form
+          class="d-flex justify-content-between gap-2"
+          action="/admin/transporteurs/search/?trs_libelle"
+          method="get"
+        >
+          <div>
+            <input
+              type="text"
+              name="trs_libelle"
+              class="form-control"
+              id="transporteur-input"
+              placeholder="entrer le nom d'un transporteur"
+              aria-describedby="transporteur search nom"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mb-4">Rechercher</button>
+        </form>
+      </div>
+      <hr />
+      <table class="table mt-4 table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if ((typeof transporteurs !== 'undefined') && transporteurs.length
+          > 0) { %> <% transporteurs.forEach(element => { %>
+          <tr>
+            <td scope="row">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+            </td>
+            <th scope="row"><%= element.trs_id %></th>
+            <td><%= element.trs_libelle %></td>
+
+            <td>
+              <div class="d-flex gap-4">
+                <form method="get" action="/admin/transporteurs/update/?trs_id">
+                  <input
+                    type="hidden"
+                    name="trs_id"
+                    value="<%= element.trs_id %>"
+                  />
+                  <button class="dropdown-item" type="submit">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                </form>
+                <form method="post" action="/admin/transporteurs/delete">
+                  <input
+                    type="hidden"
+                    name="trs_id"
+                    value="<%= element.trs_id %>"
+                  />
+                  <button class="dropdown-item" type="submit">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <% }) %> <% }else { %>
+          <div class="alert alert-primary" role="alert">
+            Il n'y a aucun transporteur correspondant dans votre base des données pour
+            l'instant.
+          </div>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

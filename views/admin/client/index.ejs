@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center pt-3 gap-2 w-25">
-      <i class="fa-solid fa-envelope fa-xl"></i>
+      <i class="fa-solid fa-envelope fa-2xl"></i>
       <div>
         <p>
           Inscriptions à la newsletter <br />
@@ -43,7 +43,7 @@
   <% } %>
   <div class="client-content mt-3">
     <div class="d-flex justify-content-between p-3 pb-0">
-      <h6>Gérez vos clients (<%= produitsNbr%>)</h6>
+      <h6>Gérer vos clients (<%= produitsNbr%>)</h6>
       <i class="fa-solid fa-gear"></i>
     </div>
     <hr />
@@ -55,6 +55,7 @@
           <th scope="col">Titre</th>
           <th scope="col">Prénom</th>
           <th scope="col">Nom</th>
+          <th scope="col">Téléphone</th>
           <th scope="col">Adresse e-mail</th>
           <th scope="col">Active</th>
           <th scope="col">Clients partenaires</th>
@@ -78,6 +79,7 @@
           <td><%= element.Titre.tit_libelle %></td>
           <td><%= element.cli_prenom %></td>
           <td><%= element.cli_nom %></td>
+          <td><%= element.cli_num %></td>
           <td><%= element.cli_mail %></td>
           <td>
             <div class="form-check form-switch">
@@ -92,7 +94,10 @@
             </div>
           </td>
 
-          <td><%= element.cli_inscription %></td>
+          <td>
+            <%= moment(element.cli_inscription).format('DD/MM/YYYY HH:mm:ss ')
+            %>
+          </td>
           <td>
             <div class="d-flex justify-content-between">
               <form method="get" action="/admin/clients/update/?cli_id">
@@ -102,9 +107,7 @@
                   value="<%= element.cli_id %>"
                 />
                 <button class="dropdown-item" type="submit">
-                  
-                    <i class="fa-solid fa-pen"></i
-                  >
+                  <i class="fa-solid fa-pen"></i>
                 </button>
               </form>
 
@@ -117,9 +120,16 @@
                 ></i>
                 <ul class="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#"
-                      ><i class="fa-solid fa-magnifying-glass"></i> Afficher</a
-                    >
+                    <form method="get" action="/admin/clients/update/?cli_id">
+                      <input
+                        type="hidden"
+                        name="cli_id"
+                        value="<%= element.cli_id %>"
+                      />
+                      <button class="dropdown-item" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i> Afficher
+                      </button>
+                    </form>
                   </li>
                   <li>
                     <form method="post" action="/admin/clients/delete">

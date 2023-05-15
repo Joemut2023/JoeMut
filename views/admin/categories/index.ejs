@@ -1,51 +1,85 @@
+<div id="admin-blocs-produitHeader">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <a class="fil-ariane-item" href="#">Categories</a>
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="#">Produit</a>
+      </li>
+    </ol>
+  </nav>
+  <div class="produit-menu">
+    <h4>Gérer les catégories des produits</h4>
+    <div class="produit-menu-btn">
+      <a href="/admin/type-categories/ajout">
+        <button type="button" class="btn btn-info">
+          <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle catégorie
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
 <div id="admin-page-categories">
-    <div class="ajouter-typecat">
-        <div class="text">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a class="fil-ariane-item" href="/admin/type-categories/">Catalogue</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span>type-categories</span>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-        <div class="button">
-            <a href="/admin/type-categories/ajout">
-                <button class="btn btn-info">
-                    <span>+</span>
-                    <span>Ajouter</span>
-                </button>
+  <!-- <div class="ajouter-typecat">
+    <div class="text">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a class="fil-ariane-item" href="/admin/type-categories/"
+              >Catalogue</a
+            >
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span>type-categories</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="button">
+      <a href="/admin/type-categories/ajout">
+        <button class="btn btn-info">
+          <span>+</span>
+          <span>Ajouter</span>
+        </button>
+      </a>
+    </div>
+  </div> -->
+
+  <div class="table-content">
+    <table class="table table-striped">
+      <tr>
+        <th scope="col"></th>
+        <th>Id</th>
+        <th>Libellé</th>
+        <th>Actions</th>
+      </tr>
+      <% listeType?.forEach((element)=> { %>
+      <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
+        <td><%= element.tyc_id %></td>
+        <td><%= element.tyc_libelle %></td>
+        <td class="d-flex gap-3">
+          <div>
+            <a href="/admin/type-categories/<%= element.tyc_id %>">
+              <i class="fa-solid fa-magnifying-glass"></i>
             </a>
-        </div>
-    </div>
-
-    <div class="table-content">
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Libellé</th>
-                <th>Actions</th>
-            </tr>
-            <% listeType?.forEach((element)=> { %>
-                <tr>
-                    <td>
-                        <%= element.tyc_id %>
-                    </td>
-                    <td><a href="/admin/type-categories/<%= element.tyc_id %>">
-                            <%= element.tyc_libelle %>
-                        </a></td>
-                    <td class="td-icones">
-                        <i class="fa-solid fa-eye icons"></i>
-                        <a href="/admin/type-categories/edit/<%= element.tyc_id %>"><i
-                                class="fas fa-edit icons"></i></a>
-                        <i class="fa fa-trash icons" aria-hidden="true"></i>
-                    </td>
-                </tr>
-                <% }) %>
-
-        </table>
-    </div>
+          </div>
+          <div>
+            <a href="/admin/type-categories/edit/<%= element.tyc_id %>"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+          </div>
+          <i class="fa fa-trash icons" aria-hidden="true"></i>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
 </div>

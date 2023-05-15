@@ -1,5 +1,6 @@
 #admin-page-categories {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
   .ajouter-typecat {
     display: flex;
     justify-content: space-between;
@@ -13,22 +14,29 @@
     .button {
       button {
         width: 100px;
-        color: white;
+        color: $color-white;
       }
     }
   }
+
   .table-content {
     margin-top: 20px;
+    background-color: $color-white;
+
+    td,
+    th {
+      vertical-align: middle;
+      font-size: 0.8rem;
+    }
 
     a {
-      color: $color-blue-admin;
+      text-decoration: none !important;
     }
 
-    .td-icones {
-      .icons {
-        margin: 8px;
-        color: grey;
-      }
+    .fa-magnifying-glass,
+    .fa-pen {
+      color: $color-black;
     }
+
   }
 }

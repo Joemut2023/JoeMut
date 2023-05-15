@@ -13,10 +13,12 @@
 
   .element-slider-suggestion {
     margin: 0px;
+
     .font-weight-light {
       margin-bottom: 20px;
       font-family: "Byciclette";
     }
+
     h2 {
       padding-bottom: 20px;
     }
@@ -512,9 +514,11 @@
               font-weight: 500;
               color: $color-primary;
             }
+
             .btn-add {
               cursor: pointer;
             }
+
             p {
               margin-bottom: 0px;
             }
@@ -532,6 +536,7 @@
 
       .swiper-pagination {
         bottom: 15px !important;
+
         .swiper-pagination-bullet {
           background: black !important;
         }
@@ -542,6 +547,12 @@
         color: rgba(0, 0, 0, 0.6);
         font-size: 1.5rem;
       }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none;
+      }
+
     }
   }
 }
