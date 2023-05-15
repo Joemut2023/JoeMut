@@ -10,10 +10,13 @@
         <th scope="col">Prénom</th>
         <th scope="col">Nom</th>
         <th scope="col">Adresse</th>
+        <th scope="col">Société</th>
+        <th scope="col">Structure</th>
+        <th scope="col">Téléphone</th>
         <th scope="col">Code postal</th>
         <th scope="col">Ville</th>
         <th scope="col">Pays</th>
-        <th scope="col">Adresse</th>
+      
       </tr>
     </thead>
     <tbody>
@@ -32,6 +35,9 @@
           <td><%= element.adr_nom %></td>
           <td><%= element.adr_prenom %></td>
           <td><%= element.adr_adresse %></td>
+          <td><%= element.adr_societe %></td>
+          <td><%= element.adr_comp %></td>
+          <td><%= element.adr_phone %></td>
           <td><%= element.adr_cp %></td>
           <td><%= element.adr_ville %></td>
           <td><%= element.adr_pays %></td>
@@ -70,7 +76,7 @@
         </tr>
         <% }) %>
         <% }else { %>
-          <div class="alert alert-primary" role="alert">
+          <div class="alert alert-primary error-adresse" role="alert">
             Il n'y a aucune adresse dans votre base des données pour l'instant.
           </div>
           <% } %>
