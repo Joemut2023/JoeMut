@@ -210,6 +210,7 @@ btnEnregistrer.addEventListener("click", async function () {
   );
   // console.log(produit.data.product[0])
 
+  let resultMedia = [];
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
@@ -224,6 +225,9 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
+    if (media.data.med_ressource) {
+      return resultMedia.push(media.data.msgMedia);
+    }
   });
 
   const tarif = await axios.put(
@@ -242,9 +246,7 @@ btnEnregistrer.addEventListener("click", async function () {
   const selectTailles = document.querySelectorAll(".select-taille");
   const selectTailleExist = document.querySelectorAll(".select-taille-exist");
 
-  
   Array.from(selectTailles, async (item) => {
-    
     const dataselect = {
       tai_id: item.value,
       qua_nbre: parseInt(
@@ -264,29 +266,32 @@ btnEnregistrer.addEventListener("click", async function () {
     // console.log(qty)
   });
 
+  Array.from(selectTailleExist, async (item) => {
+    const dataselect = {
+      tai_id: item.value,
+      qua_nbre: parseInt(
+        item.parentNode.parentNode.parentNode.children[1].children[1]
+          .children[0].value
+      ),
+    };
 
-   Array.from(selectTailleExist, async (item) => {
-     const dataselect = {
-       tai_id: item.value,
-       qua_nbre: parseInt(
-         item.parentNode.parentNode.parentNode.children[1].children[1].children[0]
-           .value
-       ),
-     };
-  
-     const qty = await axios.put(
-       `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
-       dataselect,
-       {
-         headers: {
-           "X-Requested-With": "XMLHttpRequest",
-         },
-       }
-     );
-   });
+    const qty = await axios.put(
+      `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
+      dataselect,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+  });
 
   const message = document.querySelector(".parent-message");
-  if (produit.data.product[0] === 1) {
+  if (
+    produit.data.product[0] === 1 ||
+    tarif.data.msgTarif === true ||
+    resultMedia[0] === true
+  ) {
     message.style.display = "flex";
     const btn_close = document.querySelector(".close");
     btn_close.addEventListener("click", function () {

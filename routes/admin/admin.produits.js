@@ -148,7 +148,7 @@ router.post("/media/:id", async function (req, res) {
       mimetype: "image/jpeg",
     });
 
-    return res.status(201).json(media);
+    return res.status(201).json({media,msgMedia:true});
   } catch (error) {
     console.log(error.message);
   }
@@ -168,7 +168,7 @@ router.post("/tarif/:id", async function (req, res) {
       tar_statut: 1,
     });
 
-    return res.status(201).json(tarif);
+    return res.status(201).json({ tarif, msgTarif: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -316,7 +316,7 @@ router.put("/tarif/:id", async function (req, res) {
       { where: { pro_id: produit.pro_id } }
     );
 
-    return res.status(200).json(tarif);
+    return res.status(200).json({tarif,msgTarif:true});
   } catch (error) {
     console.log(error.message);
   }

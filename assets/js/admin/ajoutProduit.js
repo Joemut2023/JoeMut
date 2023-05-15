@@ -213,7 +213,7 @@ btnEnregistrer.addEventListener("click", async function () {
   });
 
  
-
+  let resultMedia = [];
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
@@ -268,7 +268,7 @@ btnEnregistrer.addEventListener("click", async function () {
     
   );
   const message = document.querySelector(".parent-message");
-  if (produit.data.msg === true) {
+  if (produit.data.msg === true || tarif.data.msgTarif === true) {
     message.style.display = "flex";
     const btn_close = document.querySelector(".close");
     btn_close.addEventListener("click", function () {

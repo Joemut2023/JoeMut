@@ -180,7 +180,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee2, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles, message, btn_close;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, resultMedia, tarif, selectTailles, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee5$(_context5) {
     while (1) switch (_context5.prev = _context5.next) {
       case 0:
@@ -210,6 +210,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
       case 10:
         produit = _context5.sent;
+        resultMedia = [];
         imagesArray.map( /*#__PURE__*/function () {
           var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(image) {
             var dataMedia, media;
@@ -238,7 +239,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref4.apply(this, arguments);
           };
         }());
-        _context5.next = 14;
+        _context5.next = 15;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -247,7 +248,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 14:
+      case 15:
         tarif = _context5.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -279,14 +280,14 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           };
         }());
         message = document.querySelector(".parent-message");
-        if (produit.data.msg === true) {
+        if (produit.data.msg === true || tarif.data.msgTarif === true) {
           message.style.display = "flex";
           btn_close = document.querySelector(".close");
           btn_close.addEventListener("click", function () {
             window.location.href = "".concat(SITE_URL, "/admin/produits");
           });
         }
-      case 19:
+      case 20:
       case "end":
         return _context5.stop();
     }
