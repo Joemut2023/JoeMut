@@ -120,7 +120,7 @@ router.get("/update", async (req, res) => {
   }
 });
 router.post("/update", async (req, res) => {
-  const {
+  let {
     cli_prenom,
     cli_nom,
     cli_num,
@@ -141,8 +141,7 @@ router.post("/update", async (req, res) => {
     const titres = await Titre.findAll();
     let clients = await Client.findOne({ where: { cli_id } });
     if (tit_id == "Sélectionner le titre") {
-      const nothingMsg = "Veillez sélectionner le titre!";
-      return res.render("client/updateClient", { titres, clients, nothingMsg });
+      tit_id = clients.tit_id;
     }
     const update = await Client.update(
       {
@@ -157,7 +156,6 @@ router.post("/update", async (req, res) => {
         cli_partenaire: partenaire,
         cli_fonction,
       },
-
       { where: { cli_id } }
     );
     clients = await Client.findOne({ where: { cli_id } });
