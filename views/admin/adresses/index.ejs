@@ -1,6 +1,8 @@
 <%- include('../blocs/adresseHeader') %>
 <div id="admin-page-adresse" class="mt-4 border rounded-top">
-  <h6 class="p-3 pb-0">Adresses (<%= produitsNbr%>)</h6>
+  <h6 class="p-3 pb-0">
+    <%= adresses.length > 1 ? "Adresses" : "Adresse" %> (<%= adresses.length%>)
+  </h6>
   <hr />
   <table class="p-3 table table-striped">
     <thead>
@@ -16,123 +18,69 @@
         <th scope="col">Code postal</th>
         <th scope="col">Ville</th>
         <th scope="col">Pays</th>
-      
       </tr>
     </thead>
     <tbody>
-      <% if ((typeof adresses !== 'undefined') && adresses.length > 0) { %>
-        <% adresses.forEach(element => { %>
-        <tr>
-          <td scope="row">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-          </td>
-          <th scope="row"><%= element.adr_id %></th>
-          <td><%= element.adr_nom %></td>
-          <td><%= element.adr_prenom %></td>
-          <td><%= element.adr_adresse %></td>
-          <td><%= element.adr_societe %></td>
-          <td><%= element.adr_comp %></td>
-          <td><%= element.adr_phone %></td>
-          <td><%= element.adr_cp %></td>
-          <td><%= element.adr_ville %></td>
-          <td><%= element.adr_pays %></td>
-          <td>
-            <div class="d-flex gap-4">
-              <i class="fa-solid fa-pen"></i>
-              <div class="dropdown">
-                <i
-                  class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                ></i>
-  
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#"
-                      ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#"
-                      ><i class="fa-solid fa-copy"></i> Dupliquer</a
-                    >
-                  </li>
-  
-                  <li>
-                    <a class="dropdown-item" href="#"
-                      ><i class="fa-solid fa-trash"></i> Supprimer</a
-                    >
-                  </li>
-                </ul>
-              </div>
+      <% if ((typeof adresses !== 'undefined') && adresses.length > 0) { %> <%
+      adresses.forEach(element => { %>
+      <tr>
+        <td scope="row">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+        </td>
+        <th scope="row"><%= element.adr_id %></th>
+        <td><%= element.adr_nom %></td>
+        <td><%= element.adr_prenom %></td>
+        <td><%= element.adr_adresse %></td>
+        <td><%= element.adr_societe %></td>
+        <td><%= element.adr_comp %></td>
+        <td><%= element.adr_phone %></td>
+        <td><%= element.adr_cp %></td>
+        <td><%= element.adr_ville %></td>
+        <td><%= element.adr_pays %></td>
+        <td>
+          <div class="d-flex gap-4">
+            <i class="fa-solid fa-pen"></i>
+            <div class="dropdown">
+              <i
+                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-copy"></i> Dupliquer</a
+                  >
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-trash"></i> Supprimer</a
+                  >
+                </li>
+              </ul>
             </div>
-          </td>
-        </tr>
-        <% }) %>
-        <% }else { %>
-          <div class="alert alert-primary error-adresse" role="alert">
-            Il n'y a aucune adresse dans votre base des données pour l'instant.
           </div>
-          <% } %>
+        </td>
+      </tr>
+      <% }) %> <% }else { %>
+      <div class="alert alert-primary error-adresse" role="alert">
+        Il n'y a aucune adresse enregistrée pour ce client dans votre base des
+        données pour l'instant.
+      </div>
+      <% } %>
     </tbody>
   </table>
-  <div class="cat-pagination">
-    <% if (nbrPages > 1) { %>
-    <div class="row affichage">
-      <p>
-        Affichage <span><%= start %> - <%= end %></span> de
-        <span><%= produitsNbr%></span>
-      </p>
-    </div>
-    <nav>
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=1">1</a>
-        </li>
-        <% if (pageActive === 1 || pageActive ===2) { %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=2">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=3">3</a>
-        </li>
-        <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=<%= pageActive -1 %>"
-            ><%= pageActive-1 %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=<%= pageActive %>"
-            ><%= pageActive %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= pageActive+1 %>"
-            ><%= pageActive+1 %></a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=<%= pageActive+2 %>"
-            ><%= pageActive+2 %></a
-          >
-        </li>
-        <li class="page-item">...</li>
-        <% } %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/adresse/?&page=<%= nbrPages %>"
-            ><%= nbrPages %></a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <% } %>
-  </div>
 </div>
