@@ -6,13 +6,14 @@
         <th scope="col"></th>
         <th scope="col" class="text-center">ID</th>
         <th scope="col" class="text-center">Image</th>
-        <th scope="col" class="text-center w-50">Nom</th>
         <th scope="col" class="text-center">Référence</th>
+        <th scope="col" class="text-center w-50">Nom</th>
         <th scope="col" class="text-center">Catégorie</th>
         <th scope="col" class="text-center w-25">Prix HT</th>
         <th scope="col" class="text-center w-25">Prix TTC</th>
         <th scope="col" class="text-center">Quantité</th>
         <th scope="col" class="text-center">Actions</th>
+         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -36,8 +37,8 @@
             class="img-fluid w-100 h-25 img-content"
           />
         </td>
+          <td class="text-center"><%= element.pro_ref %></td>
         <td class="w-50"><%= element.pro_libelle %></td>
-        <td class="text-center"><%= element.pro_ref %></td>
         <td class="text-center"><%= element.Categorie.cat_libelle %></td>
         <td class="text-center w-25">
           <%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%>
@@ -57,31 +58,13 @@
             <a href="/admin/produits/<%= element.pro_id %>">
               <i class="fa-solid fa-pen"></i
             ></a>
-            <div class="dropdown">
-              <i
-                class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              ></i>
-
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="/admin/produits/<%= element.pro_id %>"
-                    ><i class="fa-solid fa-eye"></i> Prévisualiser</a
+             <a style="color: red;" class="dropdown-item" href="#"
+                    ><i class="fa-solid fa-trash"></i></a
                   >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-trash"></i> Supprimer</a
-                  >
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </td>
+        <td></td>
       </tr>
       <% }) %> <% }else { %>
       <div class="alert alert-primary" role="alert">
