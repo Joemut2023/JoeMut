@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
 const { Client, Titre } = require("../../models");
 const moment = require("moment");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
@@ -10,6 +11,7 @@ router.get("/", async (req, res) => {
   let { page, start, end } = check_admin_paginate_value(req);
   let orderCondition;
   let choix;
+  let searchType = true;
   if (orderby === "NAàZ") {
     orderCondition = [["cli_nom", "ASC"]];
     choix = "Nom, A à Z";
@@ -34,15 +36,17 @@ router.get("/", async (req, res) => {
     orderCondition = [["cli_id", "ASC"]];
     choix = "Choisir";
   }
+
   try {
+    const AllClients = await Client.findAll();
+    let nbrPages = Math.ceil(AllClients.length / PAGINATION_LIMIT_ADMIN);
     const clients = await Client.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
       include: [{ model: Titre, attributes: ["tit_libelle"] }],
       order: orderCondition,
     });
-    const AllClients = await Client.findAll();
-    let nbrPages = Math.ceil(AllClients.length / PAGINATION_LIMIT_ADMIN);
+
     res.render("client/index", {
       clients,
       nbrPages,
@@ -52,6 +56,7 @@ router.get("/", async (req, res) => {
       moment,
       orderby,
       choix: choix,
+      searchType,
       clientsNbr: AllClients.length,
     });
   } catch (error) {
@@ -66,6 +71,62 @@ router.post("/delete", async (req, res) => {
   try {
     await Client.destroy({ where: { cli_id } });
     res.redirect("/admin/clients");
+  } catch (error) {
+    res.status(500).render("client/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+router.get("/search", async (req, res) => {
+  let choix;
+  let clients;
+  try {
+    if (req.query.cli_prenom) {
+      clients = await Client.findAll({
+        include: [{ model: Titre, attributes: ["tit_libelle"] }],
+        where: { cli_prenom: { [Op.substring]: req.query.cli_prenom } },
+      });
+      return res.render("client/index", {
+        clients,
+        moment,
+        choix: choix,
+        clientsNbr: clients.length,
+      });
+    } else if (req.query.cli_nom) {
+      clients = await Client.findAll({
+        include: [{ model: Titre, attributes: ["tit_libelle"] }],
+        where: { cli_nom: { [Op.substring]: req.query.cli_nom } },
+      });
+      return res.render("client/index", {
+        clients,
+        moment,
+        choix: choix,
+        clientsNbr: clients.length,
+      });
+    } else if (req.query.cli_num) {
+      clients = await Client.findAll({
+        include: [{ model: Titre, attributes: ["tit_libelle"] }],
+        where: { cli_num: { [Op.substring]: req.query.cli_num } },
+      });
+      return res.render("client/index", {
+        clients,
+        moment,
+        choix: choix,
+        clientsNbr: clients.length,
+      });
+    } else if (req.query.cli_mail) {
+      clients = await Client.findAll({
+        include: [{ model: Titre, attributes: ["tit_libelle"] }],
+        where: { cli_mail: { [Op.substring]: req.query.cli_mail } },
+      });
+      return res.render("client/index", {
+        clients,
+        moment,
+        choix: choix,
+        clientsNbr: clients.length,
+      });
+    }
   } catch (error) {
     res.status(500).render("client/index", {
       error: true,

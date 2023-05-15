@@ -112,6 +112,79 @@
         </tr>
       </thead>
       <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <form
+            action="/admin/clients/search"
+            method="get"
+            class="form-inline my-2 my-lg-0"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="InputNom"
+              aria-describedby="nomHelp"
+              name="cli_prenom"
+              required
+            />
+          </form>
+        </td>
+        <td>
+          <form
+            action="/admin/clients/search"
+            method="get"
+            class="form-inline my-2 my-lg-0"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="InputNom"
+              aria-describedby="nomHelp"
+              name="cli_nom"
+              required
+            />
+          </form>
+        </td>
+        <td>
+          <form
+            action="/admin/clients/search"
+            method="get"
+            class="form-inline my-2 my-lg-0"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="InputNom"
+              aria-describedby="nomHelp"
+              name="cli_num"
+              required
+            />
+          </form>
+        </td>
+        <td>
+          <form
+            action="/admin/clients/search"
+            method="get"
+            class="form-inline my-2 my-lg-0"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="InputNom"
+              aria-describedby="nomHelp"
+              name="cli_mail"
+              required
+            />
+          </form>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <% if ((typeof clients !== 'undefined') && clients.length > 0) { %> <%
         clients.forEach(element => { %>
         <tr>
@@ -222,6 +295,7 @@
       </tbody>
     </table>
   </div>
+  <% if (typeof searchType !== "undefined") { %>
   <div class="cat-pagination">
     <% if (nbrPages > 1) { %>
     <div class="row affichage">
@@ -297,4 +371,6 @@
 
     <% } %>
   </div>
+  <% } %>
+   
 </div>
