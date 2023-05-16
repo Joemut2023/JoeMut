@@ -23,7 +23,7 @@ router.get('/',async (req,res)=>{
                     include:[
                         {
                             model:Commande,
-                            attributes:['com_num'],
+                            attributes:['com_num','com_fin_spectacle'],
                             include:[
                                 {
                                     model:Client,

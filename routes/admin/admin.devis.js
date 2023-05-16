@@ -128,14 +128,14 @@ router.post('/search',async (req,res)=>{
     cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
     com_fin_spectacle,adr_structure,stc_id} = req.body
     
-    check_value_date_start = (data)=>{
+    const check_value_date_start = (data)=>{
       if (data == '') {
         return moment(new Date(2004, 0, 1)).format('YYYY-MM-DD')
       }else{
        return data
       }
     }
-    check_value_date_last = (data)=>{
+    const check_value_date_last = (data)=>{
       if (data=='') {
         return moment(new Date(2030, 0, 1)).format('YYYY-MM-DD');
       }else{
@@ -227,25 +227,20 @@ router.post('/search',async (req,res)=>{
             as:'com_adr_livraison',
             required:true,
             where:{
-              [Op.or]:{
                 adr_structure:{
                   [Op.like]:check_value(adr_structure)
-                },
-                
-              }
+              },
             }
           },
           {
             model:Adresse,
             as:'com_adr_facturation',
             required:true,
-            where:{
-              [Op.or]:{
-                adr_structure:{
+            where:
+            {
+              adr_structure:{
                   [Op.like]:check_value(adr_structure)
-                },
-                
-              }
+              },
             }
           },
           {
@@ -285,10 +280,10 @@ router.post('/search',async (req,res)=>{
               [Op.like]:check_value(com_num)
             },
             com_debut_spectacle:{
-              [Op.between]:[check_value_date_start(com_debut_spectacle),check_value_date_last('')]
+              [Op.eq]:check_value_date_start(com_debut_spectacle)
             },
             com_fin_spectacle:{
-              [Op.between]:[check_value_date_start(com_fin_spectacle),check_value_date_last('')]
+              [Op.gte]:check_value_date_start(com_fin_spectacle)
             }
           }
         },

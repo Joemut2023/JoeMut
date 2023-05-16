@@ -125,7 +125,7 @@
                             <td><%= commande.com_num %></td>
                             <td><%= commande.Client.cli_prenom %></td>
                             <td><%= commande.Client.cli_nom %></td>
-                            <td><%= commande.com_adr_livraison.adr_societe %></td>
+                            <td><%= commande.com_adr_livraison.adr_structure %></td>
                             <td><%= moment(commande.com_date).format('D/MM, YYYY')%> </td>
                             <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.com_id %>" data-panier="<%= commande.pan_id %>"><%= commande.Panier.Panier_details.length %></span></td>
                             <% let sum = 0 %>
