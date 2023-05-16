@@ -125,6 +125,21 @@ router.post('/search',async (req,res)=>{
   var {com_ref,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
     cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
     com_fin_spectacle,adr_structure,stc_id} = req.body
+    
+    check_value_date_start = (data)=>{
+      if (data == '') {
+        return moment(new Date(2004, 0, 1)).format('YYYY-MM-DD')
+      }else{
+       return data
+      }
+    }
+    check_value_date_last = (data)=>{
+      if (data=='') {
+        return moment(new Date(2030, 0, 1)).format('YYYY-MM-DD');
+      }else{
+        return data
+      }
+    }
     const check_value = (column)=>{
       if(column == ''){
         return "%%"
@@ -235,7 +250,7 @@ router.post('/search',async (req,res)=>{
             model:Essayage,
             where:{
               ess_repetition:{
-                [Op.between]:[ess_repetition,ess_repetition_2]
+                [Op.between]:[check_value_date_start(ess_repetition),check_value_date_last(ess_repetition_2)]
               }
             }
           },
@@ -245,7 +260,7 @@ router.post('/search',async (req,res)=>{
               [Op.and]:[
                 {
                   doc_date:{
-                    [Op.between]:[doc_date,doc_date_2]
+                    [Op.between]:[check_value_date_start(doc_date),check_value_date_last(doc_date_2)]
                   }
                 },
                 {tdo_id:TYPE_DOCUMENT_DEVIS}
@@ -263,6 +278,8 @@ router.post('/search',async (req,res)=>{
       let statut_commandes = await Statut_commande.findAll();
       let commandesNbr = await Commande.findAndCountAll();
       let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
+      console.log("log================>",check_value_date_start(ess_repetition),check_value_date_last(ess_repetition_2));
+      console.log(ess_repetition=='');
       res.render("devis/index", {
         commandes,
         moment,
