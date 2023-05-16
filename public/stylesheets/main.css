@@ -6172,6 +6172,12 @@
 }
 #admin-page-clients .client-content {
   background-color: #fff;
+  width: 100%;
+  overflow: scroll;
+}
+#admin-page-clients .btn-search-client {
+  font-size: 0.8rem;
+  height: 10%;
 }
 #admin-page-clients a {
   text-decoration: none !important;
@@ -6184,7 +6190,9 @@
   background-color: #fff;
 }
 #admin-page-clients .table td,
-#admin-page-clients .table th {
+#admin-page-clients .table th,
+#admin-page-clients .table tr {
+  text-align: center;
   vertical-align: middle;
   font-size: 0.8rem;
 }

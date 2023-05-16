@@ -27,29 +27,42 @@
 
     .client-content {
         background-color: $color-white;
+        width: 100%;
+        overflow: scroll;
     }
+    .btn-search-client{
+        font-size: 0.8rem;
+        height: 10%;
+    }
+
     a {
         text-decoration: none !important;
         color: $color-black;
     }
+
+
+
     .dropdown-menu {
         inset: 38px 0px auto auto;
     }
 
     .table {
         background-color: $color-white;
+      
 
         td,
-        th {
+        th,
+        tr {
+            text-align: center;
             vertical-align: middle;
             font-size: 0.8rem;
         }
 
         .dropdown :hover>.dropdown-menu {
             display: block;
-            
+
         }
-        
+
         .dropdown-menu {
             inset: 5px 0px auto auto;
         }
