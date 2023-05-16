@@ -88,6 +88,7 @@ router.get("/", async (req, res) => {
       order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
       //group: ["Commande.com_id"],
     });
+    let statut_commandes = await Statut_commande.findAll();
     let commandesNbr = await Commande.findAndCountAll();
     // datas complementaire de la requete
     for (let commande of commandes) {
@@ -120,7 +121,8 @@ router.get("/", async (req, res) => {
       pageActive: page,
       start,
       end,
-      nbrPages
+      nbrPages,
+      statut_commandes
     });
   } catch (error) {
     console.log(error);
@@ -138,8 +140,11 @@ router.get('/:panier',async (req,res)=>{
       include: [
         {
           model: Produit,
-          attributes: ["pro_ref", "pro_libelle"],
-          include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
+          attributes: ["pro_id","pro_ref", "pro_libelle"],
+          include: [
+            { model: Media, attributes: ["med_id", "med_ressource"] },
+            {model:Quantite}
+          ],
         },
       ],
       where: { pan_id:panier },
@@ -150,6 +155,32 @@ router.get('/:panier',async (req,res)=>{
     return res.json({ error: error });
   }
 });
+
+/**
+ * @returns [NUMBER]
+ */
+router.get('/total-produit-en-sortie/:pro_id',async (req,res)=>{
+  const {pro_id} = req.params;
+  var total_retour = 0;
+  try {
+    const details_expeditions_total = await Detail_expedition.sum('dex_nbre',{
+      where:{pro_id}
+    });
+    const details_expeditions = await Detail_expedition.findAll({
+      where:{pro_id}
+    });
+    details_expeditions.forEach(async(dex)=>{
+      let tot_retour = await Retour.sum('ret_nbre',{
+        where:{dex_id:dex.dex_id}
+      });
+      total_retour += tot_retour;
+    });
+    let total = details_expeditions_total - total_retour;
+    return res.json(total);
+  } catch (error) {
+    res.json(error);
+  }
+})
 
 router.get('/view/:commandeId',async (req,res)=>{
   const {commandeId} = req.params;

@@ -48,16 +48,12 @@
                             <input class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="total">Total</label>
-                            <input class="form-control" id="total" type="text" placeholder="Total" data-sb-validations="" />
-                        </div>
-                        <div class="mb-2">
                           <label class="form-label" for="total"></label>
                           <select class="form-select" aria-label="Default select example">
                             <option selected>Etat</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <% statut_commandes.forEach(stc => { %>
+                              <option value="<%= stc.stc_id %>"><%= stc.stc_libelle %></option>
+                            <% }) %>
                           </select>
                         </div>
                     </div>
@@ -88,8 +84,15 @@
                     </div>
                   </div>
                 </th>
-                <th scope="col">Début</th>
-                <th scope="col">Fin</th>
+                <th scope="col" class="col-spectacle">
+                  <div>
+                    <h5>Spectacle</h5>
+                    <div>
+                      <p>Début</p>
+                      <p>Fin</p>
+                    </div>
+                  </div>
+                </th>
                 <th scope="col">Répetition</th>
                 <th scope="col">Etat</th>
                 <th scope="col">Actions</th>
@@ -113,7 +116,7 @@
                             <td><%= commande.commande.Client.cli_nom %></td>
                             <td><%= commande.adresseLivraison.adr_societe %></td>
                             <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
-                            <td class="td-modal-container"><span class="td-modal" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
+                            <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
                             <td><%= commande.total_pad_ttc  %>€</td>
                             <td class="data-livraison">
                               <div>
@@ -121,47 +124,22 @@
                                 <p><%= commande.commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
                               </div>
                             </td>
-                            <td><%= moment(commande.commande.com_debut_spectacle).format('D/MM, YYYY') %></td>
-                            <td><%= moment(commande.commande.com_fin_spectacle).format('D/MM, YYYY') %></td>
-                            <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM, YYYY') %></td>
+                            <td class="data-spectacle">
+                              <div>
+                                <p><%= moment(commande.commande.com_debut_spectacle).format('D/MM/YYYY') %></p>
+                                <p><%= moment(commande.commande.com_fin_spectacle).format('D/MM/YYYY') %></p>
+                              </div>
+                            </td>
+                            <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM/YYYY') %></td>
                             <td>
                               <%= commande.commande.Chronologies[0].Statut_commande.stc_libelle %>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-between">
-                                  <a href="/admin/devis/view/<%= commande.commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
-                                  <div class="dropdown">
-                                    <i
-                                      class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                                      type="button"
-                                      data-bs-toggle="dropdown"
-                                      aria-expanded="false"
-                                    ></i>
-                      
-                                    <ul class="dropdown-menu">
-                                      <li>
-                                        <a class="dropdown-item" href="/admin/devis/view/<%= commande.commande.com_id %>"
-                                          ><i class="fa-solid fa-eye"></i> Prévisualiser</a
-                                        >
-                                      </li>
-                                      <li>
-                                        <a class="dropdown-item" href="#"
-                                          ><i class="fa-solid fa-truck-moving"></i>Bon de livraison</a
-                                        >
-                                      </li>
-                      
-                                      <li>
-                                        <a class="dropdown-item" href="#"
-                                          ><i class="fa-solid fa-shirt"></i>Bon d'essayage</a
-                                        >
-                                      </li>
-                                      <li>
-                                        <a class="dropdown-item" href="#"
-                                          ><i class="fa-solid fa-money-bill"></i>Facture</a
-                                        >
-                                      </li>
-                                    </ul>
-                                  </div>
+                                  <a class="btn btn-primary me-1" title="Prévisualiser" href="/admin/devis/view/<%= commande.commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
+                                  <a class="btn btn-primary me-1" href="#" title="Bon de livraison"><i class="fa-solid fa-truck-moving"></i></a>
+                                  <a class="btn btn-primary me-1" href="#" title="Bon d'essayage"><i class="fa-solid fa-shirt"></i></a>
+                                  <a class="btn btn-primary" href="#" title="Facture"><i class="fa-solid fa-money-bill"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -180,70 +158,55 @@
                 <% } %>
                 
             </tbody>
-          </table>
-
-          <div class="cat-pagination">
-            <% if (nbrPages > 1) { %>
-            <nav>
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=1">1</a>
-                </li>
-                <% if (pageActive === 1 || pageActive ===2) { %>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=2">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=3">3</a>
-                </li>
-                <% } else if (pageActive !== 73)  { %>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=<%= pageActive -1 %>"
-                    ><%= pageActive-1 %></a
-                  >
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=<%= pageActive %>"
-                    ><%= pageActive %></a
-                  >
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=<%= pageActive+1 %>"
-                    ><%= pageActive+1 %></a
-                  >
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=<%= pageActive+2 %>"
-                    ><%= pageActive+2 %></a
-                  >
-                </li>
-                <li class="page-item">...</li>
-                <% } %>
-                <li class="page-item">
-                  <a class="page-link" href="/admin/devis?&page=<%= nbrPages %>"
-                    ><%= nbrPages %></a
-                  >
-                </li>
-              </ul>
-            </nav>
-        
-            <% } %>
-          </div>
-    </div>
-
-
-    <div class="modal fade" id="modal-devis" tabindex="-1" aria-labelledby="modal-devisLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-devisLabel">Produit de la commande</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h1>hello</h1>
-            </div>
-          </div>
+        </table>
+        <div class="cat-pagination">
+          <% if (nbrPages > 1) { %>
+          <nav>
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=1">1</a>
+              </li>
+              <% if (pageActive === 1 || pageActive ===2) { %>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=2">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=3">3</a>
+              </li>
+              <% } else if (pageActive !== 73)  { %>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=<%= pageActive -1 %>"
+                  ><%= pageActive-1 %></a
+                >
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=<%= pageActive %>"
+                  ><%= pageActive %></a
+                >
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=<%= pageActive+1 %>"
+                  ><%= pageActive+1 %></a
+                >
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=<%= pageActive+2 %>"
+                  ><%= pageActive+2 %></a
+                >
+              </li>
+              <li class="page-item">...</li>
+              <% } %>
+              <li class="page-item">
+                <a class="page-link" href="/admin/devis?&page=<%= nbrPages %>"
+                  ><%= nbrPages %></a
+                >
+              </li>
+            </ul>
+          </nav>
+      
+          <% } %>
         </div>
     </div>
+
 </div>
 <script src="/javascripts/admin/devis.js"></script>

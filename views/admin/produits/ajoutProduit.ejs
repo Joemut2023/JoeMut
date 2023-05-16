@@ -1,9 +1,15 @@
 <div id="page-admin-ajoutProduit">
-    <div class="alert alert-success parent-message" role="alert">
-    <span style="font-size:1.4rem;color: #61ce70;"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
-   <span>Produit modifié avec succès</span> 
-   <span style="font-size:1.4rem;color: #61ce70;" class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-</div>
+  <div class="alert alert-success parent-message" role="alert">
+    <span style="font-size: 1.4rem; color: #61ce70"
+      ><i class="fa fa-check-circle" aria-hidden="true"></i
+    ></span>
+    <span>Produit ajouté avec succès</span>
+    <span
+      style="font-size: 1.4rem; color: #61ce70; cursor: pointer"
+      class="close"
+      ><i class="fa fa-times" aria-hidden="true"></i
+    ></span>
+  </div>
   <div class="product-container row">
     <div class="bloc-left col-md-8">
       <div class="row">
@@ -40,7 +46,11 @@
     </div>
   </div>
 
-  <form action="/admin/produits/upload-images" method="POST" enctype="multipart/form-data">
+  <form
+    action="/admin/produits/upload-images"
+    method="POST"
+    enctype="multipart/form-data"
+  >
     <div class="tabs-container row">
       <div class="tabs">
         <nav>
@@ -131,7 +141,7 @@
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" class="form-control pro-ref" required/>
+                    <input type="text" class="form-control pro-ref" required />
                   </div>
                 </div>
               </div>
@@ -149,7 +159,7 @@
                       required
                     ></textarea>
                   </div>
-                
+
                   <p class="caractere">1 de 800 caractères autorisées</p>
                 </div>
                 <div class="description">
@@ -227,7 +237,7 @@
               <div class="right col-md-8">
                 <div class="categories">
                   <div class="title">
-                    <p>Type categorie</p>
+                    <p>Type catégorie</p>
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div>
 
@@ -237,17 +247,27 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
-                        <!-- <option selected>Choisissez une categorie</option> -->
                         <% typeCategorie.forEach(element => { %>
                         <option value=" <%= element.tyc_id %> ">
                           <%= element.tyc_libelle %>
                         </option>
                         <% }) %>
-                    
                       </select>
                     </div>
                     <p class="tit-cat">Catégories</p>
                     <div class="accueil">
+                      <select
+                        class="form-select cat-select select-type-cat"
+                        aria-label="Default select example"
+                      >
+                        <% categories.forEach(element => { %>
+
+                        <option value="<%= element.cat_id %>">
+                          <%= element.cat_libelle %>
+                        </option>
+
+                        <% }) %>
+                      </select>
                     </div>
                   </div>
 
@@ -255,12 +275,58 @@
                     <div class="title">
                       <p>Créer une catégorie</p>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-add-cat"
+                    >
                       <span
                         ><i class="fa-solid fa-circle-plus"></i> Créer une
                         catégorie</span
                       >
                     </button>
+                  </div>
+
+                  <div class="hide-container">
+                    <div class="alert alert-success parent-message-cat" role="alert">
+                      <span style="font-size: 1.4rem; color: #61ce70"
+                        ><i class="fa fa-check-circle" aria-hidden="true"></i
+                      ></span>
+                      <span>Produit ajouté avec succès</span>
+                      <span
+                        style="
+                          font-size: 1.4rem;
+                          color: #61ce70;
+                          cursor: pointer;
+                        "
+                        class="close btn-hide-message"
+                        ><i class="fa fa-times" aria-hidden="true"></i
+                      ></span>
+                    </div>
+
+                    <input
+                      type="text"
+                      placeholder="nom de la catégorie"
+                      name="cat_libelle"
+                      class="cat-add-input"
+                    />
+                    <select
+                    style="font-size: 0.8rem;"
+                      class="form-select select-categorie select-add-cat"
+                      aria-label="Default select example"
+                      name="tyc_id"
+                    >
+                      <% typeCategorie.forEach(element => { %>
+                      <option value=" <%= element.tyc_id %> ">
+                        <%= element.tyc_libelle %>
+                      </option>
+                      <% }) %>
+                    </select>
+                    <div class="buttons-cat">
+                      <button type="button" class="btn-cat-annuler">
+                        Annuler
+                      </button>
+                      <button type="button" class="btn-cat-creer">Créer</button>
+                    </div>
                   </div>
 
                   <div class="comment">
@@ -842,18 +908,18 @@
     </div>
     <!-- <button type="submit">okay</button> -->
     <div class="navbar">
-    <div class="buttons">
-      <div>
-        <button type="button" class="btn btn-secondary">Previsualiser</button>
-      </div>
-      <div>
-        <button type="submit"  class="btn btn-primary enregistrer">Enregistrer</button>
+      <div class="buttons">
+        <div>
+          <button type="button" class="btn btn-secondary">Previsualiser</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary enregistrer">
+            Enregistrer
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
-
-  
 </div>
 
 <script src="/javascripts/admin/ajoutProduit.js"></script>
