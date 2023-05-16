@@ -1,0 +1,45 @@
+#page-admin-produit-location{
+    .card {
+        padding-top: 20px;
+        .table{
+            thead tr th{
+                font-size: 14px;
+                font-weight: 400;
+                margin: 0;
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0;
+                    padding: 0;
+                        h4{
+                            font-size: 14px;
+                            text-align: center;
+                            margin: 0;
+                        }
+                        div{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            margin: 0;
+                            padding: 0;
+                            align-content: center;
+                            p{
+                                margin: 0;
+                            }
+                        }
+                }
+            }
+            tbody tr td{
+                div{
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    p{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
