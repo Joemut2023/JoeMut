@@ -116,13 +116,15 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     //console.log(error);
-    return res.send("erreur");
+    return res.render('devis/index',{
+      error
+    });
   }
 });
 
 router.post('/search',async (req,res)=>{
   let {page, start, end} = check_admin_paginate_value(req);
-  var {com_ref,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
+  var {com_num,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
     cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
     com_fin_spectacle,adr_structure,stc_id} = req.body
     
@@ -273,21 +275,28 @@ router.post('/search',async (req,res)=>{
               exp_depart:{
                 [Op.between]:[check_value_date_start(exp_depart),check_value_date_last(exp_depart_2)]
               }
-            }
+            },
+            required:false
           }
         ],
-        order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
         where:{
-          com_num:{
-            [Op.like]:check_value(com_ref)
+          [Op.or]:{
+            com_num:{
+              [Op.like]:check_value(com_num)
+            },
+            com_debut_spectacle:{
+              [Op.between]:[check_value_date_start(com_debut_spectacle),check_value_date_last('')]
+            },
+            com_fin_spectacle:{
+              [Op.between]:[check_value_date_start(com_fin_spectacle),check_value_date_last('')]
+            }
           }
         },
+        order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
       });
       let statut_commandes = await Statut_commande.findAll();
       let commandesNbr = await Commande.findAndCountAll();
       let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
-      console.log("log================>",check_value_date_start(ess_repetition),check_value_date_last(ess_repetition_2));
-      console.log(ess_repetition=='');
       res.render("devis/index", {
         commandes,
         moment,
@@ -298,7 +307,9 @@ router.post('/search',async (req,res)=>{
         statut_commandes
       });
     } catch (error) {
-      console.log(error);
+      res.render('devis/index',{
+        error
+      })
     }
 });
 
