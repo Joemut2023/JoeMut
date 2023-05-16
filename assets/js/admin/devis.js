@@ -11,25 +11,31 @@ accordionsTriggers.forEach(accordionTrigger=>{
         let accordionElt = document.querySelector(`#tr-accordion-${id}`);
         let tdBody = document.querySelector(`#tr-accordion-${id} .td-body div`);
         let tdBodyHtml =`` 
-        
-        await produits.data.forEach(async pad=>{
-            var stockInit = 0;
-            var stockDispo = 0;
-            let stockSortie = await axios.get(`${SITE_URL}/admin/devis/total-produit-en-sortie/${pad.Produit.pro_id}`);
-            pad.Produit.Quantites.forEach(qte=>{
-                stockInit += qte.qua_nbre 
-            });
-            stockDispo = stockInit - stockSortie.data;
-            tdBodyHtml += `
-                <div class="produit-detail">
-                    <p class="title">${pad.Produit.pro_libelle}</p>
-                    <p>Quantité : ${pad.pad_qte}</p>
-                    <p>Stock initial: ${stockInit} </p>
-                    <p>Stock Disponible: ${stockDispo}</p>
-                </div>
-            `
-            tdBody.insertAdjacentHTML("afterend",tdBodyHtml);
+        const loop = (async callback=>{
+            await produits.data.forEach(async pad=>{
+                var stockInit = 0;
+                var stockDispo = 0;
+                let stockSortie = await axios.get(`${SITE_URL}/admin/devis/total-produit-en-sortie/${pad.Produit.pro_id}`);
+                
+                pad.Produit.Quantites.forEach(qte=>{
+                    stockInit += qte.qua_nbre 
+                });
+                stockDispo = stockInit - stockSortie.data;
+                tdBodyHtml += `
+                    <div class="produit-detail">
+                        <p class="title">${pad.Produit.pro_libelle}</p>
+                        <p>Quantité : ${pad.pad_qte}</p>
+                        <p>Stock initial: ${stockInit} </p>
+                        <p>Stock Disponible: ${stockDispo}</p>
+                    </div>
+                `
+                //tdBody.insertAdjacentHTML("afterend",tdBodyHtml);
+                callback(tdBodyHtml);
+            })
         })
+        loop((html)=>{
+        tdBody.innerHTML = html;
+       })
         accordionElt.style.display === ''? accordionElt.style.display = 'table-row':accordionElt.style.display = ''; 
     })
 });
