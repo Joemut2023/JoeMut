@@ -266,7 +266,15 @@ router.post('/search',async (req,res)=>{
                 {tdo_id:TYPE_DOCUMENT_DEVIS}
               ]
             }
-          } 
+          },
+          {
+            model:Expedition,
+            where:{
+              exp_depart:{
+                [Op.between]:[check_value_date_start(exp_depart),check_value_date_last(exp_depart_2)]
+              }
+            }
+          }
         ],
         order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
         where:{
