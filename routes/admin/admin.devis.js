@@ -146,7 +146,7 @@ router.post('/search',async (req,res)=>{
           "frp_id",
           "com_adr_liv",
           "com_adr_fac",
-          "com_num"
+          "com_num",
         ],
         include: [
           {
@@ -178,6 +178,17 @@ router.post('/search',async (req,res)=>{
             include: [
               {
                 model: Panier_detail,
+                include:[
+                  {
+                    model:Produit,
+                    attributes:['pro_ref'],
+                    where:{
+                      pro_ref:{
+                        [Op.like]:check_value(pro_ref)
+                      }
+                    }
+                  }
+                ]
               },
             ],
           },
@@ -211,12 +222,25 @@ router.post('/search',async (req,res)=>{
             model:Adresse,
             as:'com_adr_facturation',
             required:true,
+            where:{
+              [Op.or]:{
+                adr_structure:{
+                  [Op.like]:check_value(adr_structure)
+                },
+                
+              }
+            }
           },
           {
             model:Essayage
           }
         ],
-        order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
+        order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
+        where:{
+          com_num:{
+            [Op.like]:check_value(com_ref)
+          }
+        },
       });
       let statut_commandes = await Statut_commande.findAll();
       let commandesNbr = await Commande.findAndCountAll();
