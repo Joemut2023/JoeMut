@@ -122,8 +122,8 @@ router.get("/", async (req, res) => {
 
 router.post('/search',async (req,res)=>{
   let {page, start, end} = check_admin_paginate_value(req);
-  var {com_ref,com_adr_liv,ess_repetition,cli_nom,
-    cli_prenom,pro_ref,com_debut_spectacle,
+  var {com_ref,com_date,com_date_2,ess_repetition,ess_repetition_2,cli_nom,
+    cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
     com_fin_spectacle,adr_structure,stc_id} = req.body
     const check_value = (column)=>{
       if(column == ''){
@@ -198,6 +198,14 @@ router.post('/search',async (req,res)=>{
             model:Adresse,
             as:'com_adr_livraison',
             required:true,
+            where:{
+              [Op.or]:{
+                adr_structure:{
+                  [Op.like]:check_value(adr_structure)
+                },
+                
+              }
+            }
           },
           {
             model:Adresse,

@@ -1,7 +1,7 @@
 <div class="container" id="admin-page-devis">
     <div class="row bloc-recherche">
         <div class="container px-5 my-5">
-            <h3>Rechercher un dévis</h3>
+            <h3>Rechercher un devis</h3>
             <form id="devis-search-Form" method="post" action="/admin/devis/search" data-sb-form-api-token="API_TOKEN">
                 <div class="row">
                     <div class="form-group col-md-3">
@@ -10,12 +10,14 @@
                             <input name="com_ref" class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="livraison">Livraison</label>
-                            <input name="com_adr_liv" class="form-control" id="livraison" type="text" placeholder="Livraison" data-sb-validations="" />
+                            <label class="form-label" for="livraison">Date devis</label>
+                            <input name="com_date" class="form-control" id="livraison" type="date" placeholder="Livraison" data-sb-validations="" />
+                            <input name="com_date_2" class="form-control mt-1" id="livraison" type="date" placeholder="Livraison" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="repetition">Répétition</label>
+                            <label class="form-label" for="repetition">Date Répétition</label>
                             <input name="ess_repetition" class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
+                            <input name="ess_repetition_2" class="form-control mt-1" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
@@ -27,6 +29,11 @@
                             <label class="form-label" for="prenom">Prénom</label>
                             <input name="cli_prenom" class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
                         </div>
+                        <div class="mb-2">
+                          <label class="form-label" for="debut">Date livraison</label>
+                          <input name="exp_depart" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                          <input name="exp_depart_2" class="form-control mt-1" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                      </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
@@ -34,11 +41,11 @@
                             <input name="pro_ref" class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="debut">Début</label>
+                            <label class="form-label" for="debut">Début Spectacle</label>
                             <input name="com_debut_spectacle" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="fin">Fin</label>
+                            <label class="form-label" for="fin">Fin Spectacle</label>
                             <input name="com_fin_spectacle" class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
                         </div>
                     </div>
