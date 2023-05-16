@@ -67,6 +67,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+//delete product
+router.delete("/:id",async function(req,res){
+  const pro_id = req.params.id;
+  try {
+    const produit = await Produit.destroy({where:{pro_id}})
+    res.status(200).json({produit,msg:true})
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+})
+
 router.get("/add/tailles", async (req, res) => {
   try {
     const taille = await Taille.findAll();
