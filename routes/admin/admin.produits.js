@@ -71,9 +71,11 @@ router.get("/", async (req, res) => {
 
 //RESEARCH
 router.get("/search", async (req, res) => {
-  const { libelle, ref } = req.query;
+  const { libelle, ref, cat } = req.query;
+  let catWhere;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
+  
   const check_value = (column) => {
     if (column !== "") {
     //   return "%%";
@@ -81,13 +83,34 @@ router.get("/search", async (req, res) => {
       return `%${column}%`;
     }
   };
+
+  const check_value_cat = (column) => {
+    if (column === "") {
+        return "%%";
+      } else {
+      return `%${column}%`;
+    }
+  };
+
+  // if(cat !== ""){
+  //   catWhere = { cat_libelle: { [Op.like]: check_value_cat(cat) } };
+  // }else{
+  //   catWhere=null
+  // }
+
+
   try {
     const allProduits = await Produit.findAll({
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Media, attributes: ["med_ressource"] },
-        { model: Categorie, attributes: ["cat_libelle"] },
+        {
+          model: Categorie,
+          attributes: ["cat_libelle"],
+          required: false,
+          where: catWhere,
+        },
       ],
       where: {
         [Op.or]: [
@@ -105,7 +128,11 @@ router.get("/search", async (req, res) => {
         { model: Quantite, attributes: ["qua_nbre"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
         { model: Media, attributes: ["med_ressource"] },
-        { model: Categorie, attributes: ["cat_libelle"] },
+        {
+          model: Categorie,
+          attributes: ["cat_libelle"],
+          where: catWhere,
+        },
       ],
       where: {
         [Op.or]: [
@@ -114,7 +141,7 @@ router.get("/search", async (req, res) => {
         ],
       },
     });
-    //  res.json(produits);
+   
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
