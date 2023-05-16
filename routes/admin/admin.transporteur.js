@@ -121,7 +121,7 @@ router.get("/search", async (req, res) => {
   const { trs_libelle } = req.query;
   try {
     const transporteurs = await Transporteur.findAll({
-      where: { trs_libelle: { [Op.substring]: trs_libelle } },
+      where: { trs_libelle: { [Op.like]: `%${trs_libelle}` } },
     });
 
     res.render("transporteur/index", {
