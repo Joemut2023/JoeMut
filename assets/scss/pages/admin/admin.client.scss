@@ -1,4 +1,7 @@
 #admin-page-clients {
+    .client-content-header{
+        
+    }
     .menu-bar {
         background-color: $color-white;
 
@@ -33,6 +36,7 @@
     .btn-search-client{
         font-size: 0.8rem;
         height: 10%;
+        color: $color-white;
     }
 
     a {
@@ -48,7 +52,6 @@
 
     .table {
         background-color: $color-white;
-      
 
         td,
         th,

@@ -6178,6 +6178,7 @@
 #admin-page-clients .btn-search-client {
   font-size: 0.8rem;
   height: 10%;
+  color: #fff;
 }
 #admin-page-clients a {
   text-decoration: none !important;

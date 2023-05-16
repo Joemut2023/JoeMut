@@ -40,7 +40,9 @@ router.get("/", async (req, res) => {
   try {
     const AllClients = await Client.findAll();
     const titres = await Titre.findAll();
-    let nbrPages = Math.ceil(AllClients.length / PAGINATION_LIMIT_ADMIN);
+    let nbrPages = Math.ceil(
+      AllClients.length / PAGINATION_LIMIT_ADMIN
+    );
     const clients = await Client.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
