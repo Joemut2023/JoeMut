@@ -6910,6 +6910,24 @@ body {
   font-weight: 400 !important;
   font-size: 1.2rem;
 }
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent {
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent span {
+  color: #a0b21f;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent input {
+  border: none;
+  outline: none;
+}
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;
 }
