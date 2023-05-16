@@ -127,7 +127,7 @@ router.get("/search", async (req, res) => {
       where: { tai_libelle },
     });
     const tailles = await Taille.findAll({
-      where: { tai_libelle: { [Op.substring]: tai_libelle } },
+      where: { tai_libelle: { [Op.like]: `%${tai_libelle}%`} },
     });
 
     let nbrPages = Math.ceil(Alltailles.length / PAGINATION_LIMIT_ADMIN);

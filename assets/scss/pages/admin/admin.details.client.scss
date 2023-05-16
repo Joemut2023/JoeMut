@@ -1,0 +1,73 @@
+#admin-header-page-details-clients {
+
+    background-color: $color-white;
+    padding: 1%;
+    z-index: 10;
+    width: 100%;
+    position: sticky;
+    top: 6.4%;
+
+    .breadcrumb {
+        margin-top: 1%;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: $color-black !important;
+    }
+
+    .fil-ariane-item {
+        color: $color-secondary !important;
+    }
+
+    .produit-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 2%;
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 400 !important;
+            font-size: 1.2rem;
+        }
+
+        .produit-menu-btn {
+
+            button {
+                margin-left: 10px;
+            }
+
+            .btn-info {
+                color: $color-white !important;
+            }
+        }
+    }
+
+}
+
+#admin-page-details-clients {
+    p,label{
+        font-size: 0.8rem;
+    }
+    .bg-info{
+        height: 20px;
+    }
+    .info-titre {
+        width: 40%;
+        text-align: end;
+        font-size: 0.8rem;
+    }
+    .inscription{
+        .badge{
+            font-size: 0.6rem !important;
+            font-weight: 400;
+            height: 30px;
+            padding-top: 7px;
+        }
+    }
+
+}
+

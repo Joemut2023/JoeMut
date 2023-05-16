@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
-const { Client, Titre } = require("../../models");
+const { Client, Titre, Commande, Panier, Adresse } = require("../../models");
 const moment = require("moment");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -40,9 +40,7 @@ router.get("/", async (req, res) => {
   try {
     const AllClients = await Client.findAll();
     const titres = await Titre.findAll();
-    let nbrPages = Math.ceil(
-      AllClients.length / PAGINATION_LIMIT_ADMIN
-    );
+    let nbrPages = Math.ceil(AllClients.length / PAGINATION_LIMIT_ADMIN);
     const clients = await Client.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
@@ -150,7 +148,9 @@ router.get("/update", async (req, res) => {
   const cli_id = req.query.cli_id;
   try {
     const titres = await Titre.findAll();
-    const clients = await Client.findOne({ where: { cli_id } });
+    const clients = await Client.findOne({
+      where: { cli_id },
+    });
     res.render("client/updateClient", { titres, clients });
   } catch (error) {
     res.status(500).render("client/updateClient", {
@@ -215,7 +215,6 @@ router.post("/update", async (req, res) => {
 router.get("/search", async (req, res) => {
   let choix;
   let clients;
-  console.log(req.query);
   try {
     const titres = await Titre.findAll();
     if (req.query.cli_prenom) {
@@ -348,6 +347,37 @@ router.get("/search", async (req, res) => {
     }
   } catch (error) {
     res.status(500).render("client/index", {
+      error: true,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+});
+
+router.get("/infos", async (req, res) => {
+  const cli_id = req.query.cli_id;
+  let totalCommandes = 0;
+  try {
+    const clients = await Client.findOne({
+      include: [{ model: Titre, attributes: ["tit_libelle"] }],
+      where: { cli_id },
+    });
+    const commandes = await Commande.findAll({ where: { cli_id } });
+    const paniers = await Panier.findAll({ where: { cli_id } });
+    const adresses = await Adresse.findAll({ where: { cli_id } });
+    commandes.map((element) => {
+      totalCommandes = element.com_ttc;
+    });
+
+    res.render("client/details", {
+      clients,
+      commandes,
+      paniers,
+      adresses,
+      moment,
+      totalCommandes
+    });
+  } catch (error) {
+    res.status(500).render("client/details", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
