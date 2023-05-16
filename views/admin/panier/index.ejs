@@ -52,7 +52,12 @@
                 <% } %>
           </td>
             <td scope="row" class="text-center w-25"><%= element.pan_date.toLocaleDateString('fr-fr')%>  <%= element.pan_date.getHours()%>:<%=element.pan_date.getMinutes()%>:<%= element.pan_date.getSeconds() %> </td>
-            <td scope="row"><a href="/admin/paniers/<%= element.pan_id %>"><i class="fa fa-search-plus"></i></a></td>
+            
+            <% if (element.Commande) { %>
+              <td scope="row"><a href="/admin/paniers/<%= element.pan_id %>"><i class="fa fa-search-plus"></i></a></td>
+            <% } else { %>
+              <td scope="row">-</td>
+            <% } %>
         </tr>
       <% }) %>
    
