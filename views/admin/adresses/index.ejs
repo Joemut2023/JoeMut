@@ -1,4 +1,27 @@
-<%- include('../blocs/adresseHeader') %>
+<div id="admin-blocs-produitHeader">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <a class="fil-ariane-item" href="#">Adresse</a>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="#">Gérer les adresses</a>
+      </li>
+    </ol>
+  </nav>
+  <div class="produit-menu">
+    <h1>Gérer les adresses</h1>
+    <div class="produit-menu-btn">
+      <button type="button" class="btn btn-info">
+        <a href="/admin/adresse/add/<%= cli_id %>"
+          ><i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle
+          adresse</a
+        >
+      </button>
+      <!-- <button type="button" class="btn btn-outline-secondary">Aide</button> -->
+    </div>
+  </div>
+</div>
+
 <div id="admin-page-adresse" class="mt-4 border rounded-top">
   <h6 class="p-3 pb-0">
     <%= adresses.length > 1 ? "Adresses" : "Adresse" %> (<%= adresses.length%>)

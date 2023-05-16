@@ -8,28 +8,38 @@ router.get("/", async (req, res) => {
     const adresses = await Adresse.findAll({ where: { cli_id } });
     res.render("adresses/index", {
       adresses,
+      cli_id
     });
   } catch (error) {
-    res.status(500).render("factures/index", {
+    res.status(500).render("addresses/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
     });
   }
 });
 
-router.get("/add", async (req, res) => {
-  let error, success;
-  error = "";
-  success = "";
-  res.render("adresses/ajoutAdresse", {
-    error,
-    success,
-  });
+router.get("/add/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const clients = await Client.findOne({
+      where: { cli_id: id }
+    });
+   res.render("adresses/ajoutAdresse", {
+      clients
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).render("adresses/ajoutAdresse", {
+      error,
+      errorMsg: "une erreur est survenue ",
+    });
+  }
+
 });
-router.post("/add", async (req, res) => {
+
+router.post("/add/:id", async (req, res) => {
   res.locals.titre = "nouvelle adresse";
   let error, success;
-
   const {
     cli_mail,
     adr_structure,
@@ -59,11 +69,16 @@ router.post("/add", async (req, res) => {
     chekInput(adr_pays)
   ) {
     try {
+
       const { cli_id } = await Client.findOne({
         where: {
           cli_mail: cli_mail,
         },
       });
+
+      // const clients = await Client.findOne({
+      //   where: { cli_id: req.params.id }
+      // });
 
       let adresse = await Adresse.create({
         adr_structure: adr_structure,
@@ -82,7 +97,7 @@ router.post("/add", async (req, res) => {
 
       if (adresse) {
         success = "Adresse ajouté!";
-        res.redirect("/admin/adresse");
+        res.redirect("/admin/adresse/");
         // return res.render("adresses/ajoutAdresse", { success });
       }
     } catch (err) {
@@ -98,6 +113,8 @@ router.post("/add", async (req, res) => {
     });
   }
 });
+
+
 router.get("/byAjax/:id", async (req, res) => {
   const { id } = req.params;
   try {

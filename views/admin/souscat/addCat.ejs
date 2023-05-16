@@ -16,13 +16,14 @@
     </nav>
 
 
-    <form action="/admin/type-categories/id/ajouter" method="POST">
+    <form action="/admin/categories/ajout" method="POST">
         <div class="content">
             <div class="row formulaire">
                 <div class="col-8">
                     <input type="texte" id="libelle" class="form-control" aria-labelledby="passwordHelpInline"
                         name="cat_libelle" />
                 </div>
+                <input type="hidden" name="tyc_id" value="<%= tyc_id %>">
 
                 <div class="button col-4">
                     <button type="submit" class="btn">Ajouter</button>

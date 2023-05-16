@@ -18,7 +18,7 @@
     <div class="produit-menu">
       <h4>Gérer les catégories des produits</h4>
       <div class="produit-menu-btn">
-        <a href="/admin/type-categories/1/ajout">
+        <a href="/admin/categories/ajout/<%= categorie.tyc_id %>">
           <button type="button" class="btn btn-info">
             <i class="fa-solid fa-circle-plus"></i> Ajouter
           </button>
@@ -49,7 +49,7 @@
         <td><%= element.cat_libelle %></td>
         <td class="d-flex gap-4">
           
-          <a href="/admin/type-categories/<%= element.cat_id %>/edit">
+          <a href="/admin/categories/edit/<%= element.cat_id %>">
             <i class="fa-solid fa-pen"></i></i
           ></a>
           <i class="fa fa-trash icons" aria-hidden="true"></i>
