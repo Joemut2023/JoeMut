@@ -1,0 +1,61 @@
+<div id="page-admin-produit-location">
+    <% if (typeof error != 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+            Erreur interne du serveur
+        </div>
+    <% } else { %>
+     <div class="container-fluid">
+        <div id="admin-blocs-ClientHeader" class="border-bottom mb-5">
+            <a href="#">
+              <h6>Tableau de bord</h6>
+            </a>
+            <div class="produit-menu">
+              <h4>Produits en location</h4>
+            </div>
+          </div>
+          
+        <div class="card">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Réf. commande</th>
+                    <th scope="col">Réf. produit</th>
+                    <th scope="col">
+                        <div>
+                            <h4>Client</h4>
+                            <div>
+                                <p>Prénom</p>
+                                <p>Nom</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div>
+                            <h4>En location</h4>
+                            <div>
+                                <p>Prénom</p>
+                                <p>Nom</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th>Quantité</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+    <% } %>
+</div>
