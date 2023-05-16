@@ -34,6 +34,7 @@ const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
 const { Op, where } = require("sequelize");
+
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
@@ -118,6 +119,114 @@ router.get("/", async (req, res) => {
     return res.send("erreur");
   }
 });
+
+router.post('/search',async (req,res)=>{
+  let {page, start, end} = check_admin_paginate_value(req);
+  var {com_ref,com_adr_liv,ess_repetition,cli_nom,
+    cli_prenom,pro_ref,com_debut_spectacle,
+    com_fin_spectacle,adr_structure,stc_id} = req.body
+    const check_value = (column)=>{
+      if(column == ''){
+        return "%%"
+      }else{
+        return `%${column}%`
+      }
+    }
+
+    try {
+      let commandes = await Commande.findAll({
+        offset: start,
+        limit: PAGINATION_LIMIT_ADMIN,
+        attributes: [
+          "com_id",
+          "com_date",
+          "com_debut_spectacle",
+          "com_fin_spectacle",
+          "pan_id",
+          "frp_id",
+          "com_adr_liv",
+          "com_adr_fac",
+          "com_num"
+        ],
+        include: [
+          {
+            model: Client,
+            where:{
+              [Op.or]:{
+                  cli_nom:{
+                    [Op.like]:check_value(cli_nom)
+                  },
+                  cli_prenom:{
+                    [Op.like]:check_value(cli_prenom)
+                  }
+              }
+            }
+          },
+          {
+            model: Frais_port,
+            include :[
+              {
+                model:Mode_liv_essayage
+              },
+              {
+                model:Mode_liv_spectacle
+              }
+            ]
+          },
+          {
+            model: Panier,
+            include: [
+              {
+                model: Panier_detail,
+              },
+            ],
+          },
+          {
+            model:Chronologie,
+            include:[
+              {
+                model:Statut_commande
+              }
+            ],
+            where:{
+              stc_id:{
+                [Op.eq]:stc_id
+              }
+            }
+          },
+          {
+            model:Adresse,
+            as:'com_adr_livraison',
+            required:true,
+          },
+          {
+            model:Adresse,
+            as:'com_adr_facturation',
+            required:true,
+          },
+          {
+            model:Essayage
+          }
+        ],
+        order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
+      });
+      let statut_commandes = await Statut_commande.findAll();
+      let commandesNbr = await Commande.findAndCountAll();
+      let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
+      res.render("devis/index", {
+        commandes,
+        moment,
+        pageActive: page,
+        start,
+        end,
+        nbrPages,
+        statut_commandes
+      });
+    } catch (error) {
+      console.log(error);
+    }
+});
+
 /**
  * @param panier Numeric
  * @returns [Array] liste des panier détails pour une commande

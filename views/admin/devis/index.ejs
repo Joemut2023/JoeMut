@@ -2,55 +2,54 @@
     <div class="row bloc-recherche">
         <div class="container px-5 my-5">
             <h3>Rechercher un dévis</h3>
-            <form id="devis-search-Form" data-sb-form-api-token="API_TOKEN">
+            <form id="devis-search-Form" method="post" action="/admin/devis/search" data-sb-form-api-token="API_TOKEN">
                 <div class="row">
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="reference">Référence</label>
-                            <input class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
+                            <input name="com_ref" class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="livraison">Livraison</label>
-                            <input class="form-control" id="livraison" type="text" placeholder="Livraison" data-sb-validations="" />
+                            <input name="com_adr_liv" class="form-control" id="livraison" type="text" placeholder="Livraison" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="repetition">Répétition</label>
-                            <input class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
+                            <input name="ess_repetition" class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="client">Nom</label>
-                            <input class="form-control" id="client" type="text" placeholder="client" data-sb-validations="" />
+                            <input name="cli_nom" class="form-control" id="client" type="text" placeholder="client" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="prenom">Prénom</label>
-                            <input class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
+                            <input name="cli_prenom" class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="refProduits">Réf produits</label>
-                            <input class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
+                            <input name="pro_ref" class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="debut">Début</label>
-                            <input class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                            <input name="com_debut_spectacle" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="fin">Fin</label>
-                            <input class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
+                            <input name="com_fin_spectacle" class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="structure">Structure</label>
-                            <input class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
+                            <input name="adr_structure" class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                           <label class="form-label" for="total"></label>
-                          <select class="form-select" aria-label="Default select example">
-                            <option selected>Etat</option>
+                          <select name="stc_id" class="form-select" aria-label="Default select example">
                             <% statut_commandes.forEach(stc => { %>
                               <option value="<%= stc.stc_id %>"><%= stc.stc_libelle %></option>
                             <% }) %>
