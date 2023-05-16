@@ -32,7 +32,7 @@ const {
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE } = require("../../helpers/utils_const");
+const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_DEVIS } = require("../../helpers/utils_const");
 const { Op, where } = require("sequelize");
 
 router.get("/", async (req, res) => {
@@ -122,7 +122,7 @@ router.get("/", async (req, res) => {
 
 router.post('/search',async (req,res)=>{
   let {page, start, end} = check_admin_paginate_value(req);
-  var {com_ref,com_date,com_date_2,ess_repetition,ess_repetition_2,cli_nom,
+  var {com_ref,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
     cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
     com_fin_spectacle,adr_structure,stc_id} = req.body
     const check_value = (column)=>{
@@ -232,8 +232,26 @@ router.post('/search',async (req,res)=>{
             }
           },
           {
-            model:Essayage
-          }
+            model:Essayage,
+            where:{
+              ess_repetition:{
+                [Op.between]:[ess_repetition,ess_repetition_2]
+              }
+            }
+          },
+          {
+            model:Document,
+            where:{
+              [Op.and]:[
+                {
+                  doc_date:{
+                    [Op.between]:[doc_date,doc_date_2]
+                  }
+                },
+                {tdo_id:TYPE_DOCUMENT_DEVIS}
+              ]
+            }
+          } 
         ],
         order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
         where:{
