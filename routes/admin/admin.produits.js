@@ -15,7 +15,7 @@ const check_admin_paginate_value = require("../../helpers/check_admin_paginate_v
 const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
-  const {search} = req.query
+  const { search } = req.query;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   try {
@@ -38,7 +38,6 @@ router.get("/", async (req, res) => {
       ],
     });
 
-  
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -60,7 +59,6 @@ router.get("/", async (req, res) => {
       start,
       end,
       produitsNbr: allProduits.length,
-    
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
@@ -73,21 +71,17 @@ router.get("/", async (req, res) => {
 
 //RESEARCH
 router.get("/search", async (req, res) => {
-  const { search } = req.query;
+  const { libelle, ref } = req.query;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
-
+  const check_value = (column) => {
+    if (column !== "") {
+    //   return "%%";
+    // } else {
+      return `%${column}%`;
+    }
+  };
   try {
-    // const produits = await Produit.findAll({
-    //   offset: start,
-    //   limit: PAGINATION_LIMIT_ADMIN,
-    //   include: [
-    //     { model: Quantite, attributes: ["qua_nbre"] },
-    //     { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
-    //     { model: Media, attributes: ["med_ressource"] },
-    //     { model: Categorie, attributes: ["cat_libelle"] },
-    //   ],
-    // });
     const allProduits = await Produit.findAll({
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
@@ -95,9 +89,18 @@ router.get("/search", async (req, res) => {
         { model: Media, attributes: ["med_ressource"] },
         { model: Categorie, attributes: ["cat_libelle"] },
       ],
+      where: {
+        [Op.or]: [
+          { pro_ref: { [Op.like]: check_value(ref) } },
+          { pro_libelle: { [Op.like]: check_value(libelle) } },
+        ],
+      },
     });
+ 
 
     const produits = await Produit.findAll({
+      offset: start,
+      limit: PAGINATION_LIMIT_ADMIN,
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
@@ -105,13 +108,13 @@ router.get("/search", async (req, res) => {
         { model: Categorie, attributes: ["cat_libelle"] },
       ],
       where: {
-     
-          // { pro_libelle: { [Op.substring]: search } },
-           pro_ref: { [Op.substring]: search } ,
-          //  { cat_libelle: { [Op.substring]: search } },
-  
+        [Op.or]: [
+          { pro_ref: { [Op.like]: check_value(ref) } },
+          { pro_libelle: { [Op.like]: check_value(libelle) } },
+        ],
       },
     });
+    //  res.json(produits);
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -125,6 +128,7 @@ router.get("/search", async (req, res) => {
     }
 
     let nbrPages = Math.ceil(allProduits.length / PAGINATION_LIMIT_ADMIN);
+    console.log(nbrPages);
     res.render("produits/index", {
       // produits: produits,
       quantiteOfEachProduct,
@@ -134,10 +138,13 @@ router.get("/search", async (req, res) => {
       end,
       produitsNbr: allProduits.length,
       produits,
-      search,
+      libelle,
+      ref,
+      // categorie,
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
+    console.log(error);
     res.status(500).render("produits/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -146,16 +153,15 @@ router.get("/search", async (req, res) => {
 });
 
 //delete product
-router.delete("/:id",async function(req,res){
+router.delete("/:id", async function (req, res) {
   const pro_id = req.params.id;
   try {
-    const produit = await Produit.destroy({where:{pro_id}})
-    res.status(200).json({produit,msg:true})
-    
+    const produit = await Produit.destroy({ where: { pro_id } });
+    res.status(200).json({ produit, msg: true });
   } catch (error) {
     console.log(error.message);
   }
-})
+});
 
 router.get("/add/tailles", async (req, res) => {
   try {
@@ -180,19 +186,20 @@ router.get("/categorie/:id", async (req, res) => {
 
 // create categorie
 router.post("/categorie", async function (req, res) {
-  const {cat_libelle,tyc_id} = req.body
+  const { cat_libelle, tyc_id } = req.body;
   try {
-   let msg 
-   const oldCat = await Categorie.findOne({where:{cat_libelle : cat_libelle}})
-   if(oldCat){
-    return res.json({msg:false});
-   } 
-   const categorie = await Categorie.create({
-    tyc_id:tyc_id,
-    cat_libelle:cat_libelle
-   }) 
-   res.status(201).json({ msg: true,categorie });
-    
+    let msg;
+    const oldCat = await Categorie.findOne({
+      where: { cat_libelle: cat_libelle },
+    });
+    if (oldCat) {
+      return res.json({ msg: false });
+    }
+    const categorie = await Categorie.create({
+      tyc_id: tyc_id,
+      cat_libelle: cat_libelle,
+    });
+    res.status(201).json({ msg: true, categorie });
   } catch (error) {
     console.log(error.message);
   }
@@ -203,14 +210,14 @@ router.get("/add", async (req, res) => {
   try {
     const typeCategorie = await Type_categorie.findAll();
     const taille = await Taille.findAll();
-    const categories = await Categorie.findAll({where:{tyc_id:1}})
+    const categories = await Categorie.findAll({ where: { tyc_id: 1 } });
 
     // return res.json({ taille });
 
     res.render("produits/ajoutProduit", {
       typeCategorie,
       taille,
-      categories
+      categories,
     });
   } catch (error) {}
 });
@@ -240,13 +247,11 @@ router.post("/", async (req, res) => {
       pro_comment,
       pro_statut,
     });
-    return res.status(201).json({ product,msg:true });
+    return res.status(201).json({ product, msg: true });
   } catch (error) {
     console.log(error.message);
   }
 });
-
-
 
 router.post("/media/:id", async function (req, res) {
   const { med_libelle, med_ressource } = req.body;
@@ -261,7 +266,7 @@ router.post("/media/:id", async function (req, res) {
       mimetype: "image/jpeg",
     });
 
-    return res.status(201).json({media,msgMedia:true});
+    return res.status(201).json({ media, msgMedia: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -298,7 +303,7 @@ router.post("/qty/:id", async function (req, res) {
       qua_nbre,
     });
 
-    return res.status(201).json({qty,msgQty:true});
+    return res.status(201).json({ qty, msgQty: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -371,15 +376,12 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-router.get('/one/:id',async function(req,res){
+router.get("/one/:id", async function (req, res) {
   try {
-    const produit = await Produit.findOne({where:{pro_id:req.params.id}});
-    res.status(200).json(produit)
-    
-  } catch (error) {
-    
-  }
-})
+    const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
+    res.status(200).json(produit);
+  } catch (error) {}
+});
 
 router.put("/:id", async (req, res) => {
   const {
@@ -395,23 +397,25 @@ router.put("/:id", async (req, res) => {
   } = req.body;
 
   try {
-    const product = await Produit.update({
-      cat_id,
-      pro_ref,
-      pro_libelle,
-      pro_description,
-      pro_details,
-      pro_new_collect,
-      pro_en_avant,
-      pro_comment,
-      pro_statut,
-    },{where:{pro_id:req.params.id}});
+    const product = await Produit.update(
+      {
+        cat_id,
+        pro_ref,
+        pro_libelle,
+        pro_description,
+        pro_details,
+        pro_new_collect,
+        pro_en_avant,
+        pro_comment,
+        pro_statut,
+      },
+      { where: { pro_id: req.params.id } }
+    );
     return res.status(200).json({ product });
   } catch (error) {
     console.log(error.message);
   }
 });
-
 
 router.put("/tarif/:id", async function (req, res) {
   const { tar_ht, tar_ttc } = req.body;
@@ -429,7 +433,7 @@ router.put("/tarif/:id", async function (req, res) {
       { where: { pro_id: produit.pro_id } }
     );
 
-    return res.status(200).json({tarif,msgTarif:true});
+    return res.status(200).json({ tarif, msgTarif: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -439,13 +443,17 @@ router.put("/qty/:id", async function (req, res) {
   const { qua_nbre, tai_id } = req.body;
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
-    const taille = await Taille.findOne({where:{tai_id}})
+    const taille = await Taille.findOne({ where: { tai_id } });
 
     const qty = await Quantite.update(
       {
         qua_nbre,
       },
-      { where:{[Op.and]:[{pro_id: produit.pro_id},{tai_id:taille.tai_id}]} }
+      {
+        where: {
+          [Op.and]: [{ pro_id: produit.pro_id }, { tai_id: taille.tai_id }],
+        },
+      }
     );
 
     return res.status(200).json(qty);
@@ -454,29 +462,37 @@ router.put("/qty/:id", async function (req, res) {
   }
 });
 
-router.delete('/qty/:pro_id/:id',async function(req,res){
-   
+router.delete("/qty/:pro_id/:id", async function (req, res) {
   try {
-   const qty = await Quantite.destroy({where:{[Op.and]:[{qua_id:req.params.id},{pro_id:req.params.pro_id}]}})
-  res.status(200).json(qty)
+    const qty = await Quantite.destroy({
+      where: {
+        [Op.and]: [{ qua_id: req.params.id }, { pro_id: req.params.pro_id }],
+      },
+    });
+    res.status(200).json(qty);
   } catch (error) {
     console.log(error);
   }
-})
+});
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/images/produits");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
-var storage = multer.diskStorage({destination:function(req,file,cb){
-  cb(null,'./public/images/produits')
-},filename:function(req,file,cb){
-  cb(null,file.originalname)
-}})
-
-var upload = multer({storage})
+var upload = multer({ storage });
 //uplad-image
-router.post('/upload-images',upload.array('produit-files',12),function(req,res,next){
-  return res.redirect("/admin/produits");
-//  console.log(JSON.stringify(req.files))
-
-})
+router.post(
+  "/upload-images",
+  upload.array("produit-files", 12),
+  function (req, res, next) {
+    return res.redirect("/admin/produits");
+    //  console.log(JSON.stringify(req.files))
+  }
+);
 
 module.exports = router;

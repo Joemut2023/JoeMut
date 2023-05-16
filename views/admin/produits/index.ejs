@@ -23,17 +23,17 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><input class="research" name="search"   type="text" placeholder="chercher" ></td>
-        <td><input class="research" name="search"  type="text" placeholder="chercher" ></td>
-        <td><input class="research"  name="search"   type="text" placeholder="chercher" ></td>
+        <td><input class="research" name="ref"   type="text" placeholder="chercher" ></td>
+        <td><input class="research" name="libelle"  type="text" placeholder="chercher" ></td>
+        <td><input class="research"   type="text" placeholder="chercher" ></td>
         <td class="plage">
-          <input class="research" name="search"  type="text">
-          <input class="research" name="search"  type="text">
+          <input class="research"  type="text">
+          <input class="research" type="text">
         </td>
         <td> </td>
           <td class="plage">
-          <input  class="research" name="search" type="text">
-          <input class="research" name="search" type="text">
+          <input  class="research" type="text">
+          <input class="research" type="text">
         </td>
         <td> <button type="submit" class="btn btn-info">
           <i class="fa fa-search" aria-hidden="true"></i> <span>Rechercher</span>
@@ -73,8 +73,8 @@
           ",")%> €
         </td>
         <td class="text-center">
-          <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty
-          ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty :
+          <%= quantiteOfEachProduct.find(item => item.id === element.pro_id)?.qty
+          ? quantiteOfEachProduct.find(item => item.id === element.pro_id)?.qty :
           "non renseignée" %>
         </td>
         <td class="text-center">
