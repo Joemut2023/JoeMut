@@ -1,56 +1,62 @@
 <div class="container" id="admin-page-devis">
     <div class="row bloc-recherche">
         <div class="container px-5 my-5">
-            <h3>Rechercher un dévis</h3>
-            <form id="devis-search-Form" data-sb-form-api-token="API_TOKEN">
+            <h3>Rechercher un devis</h3>
+            <form id="devis-search-Form" method="post" action="/admin/devis/search" data-sb-form-api-token="API_TOKEN">
                 <div class="row">
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="reference">Référence</label>
-                            <input class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
+                            <input name="com_ref" class="form-control" id="reference" type="text" placeholder="Référence" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="livraison">Livraison</label>
-                            <input class="form-control" id="livraison" type="text" placeholder="Livraison" data-sb-validations="" />
+                            <label class="form-label" for="livraison">Date devis</label>
+                            <input name="com_date" class="form-control" id="livraison" type="date" placeholder="Livraison" data-sb-validations="" />
+                            <input name="com_date_2" class="form-control mt-1" id="livraison" type="date" placeholder="Livraison" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="repetition">Répétition</label>
-                            <input class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
+                            <label class="form-label" for="repetition">Date Répétition</label>
+                            <input name="ess_repetition" class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
+                            <input name="ess_repetition_2" class="form-control mt-1" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="client">Nom</label>
-                            <input class="form-control" id="client" type="text" placeholder="client" data-sb-validations="" />
+                            <input name="cli_nom" class="form-control" id="client" type="text" placeholder="client" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                             <label class="form-label" for="prenom">Prénom</label>
-                            <input class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
+                            <input name="cli_prenom" class="form-control" id="prenom" type="text" placeholder="Prénom" data-sb-validations="" />
                         </div>
+                        <div class="mb-2">
+                          <label class="form-label" for="debut">Date livraison</label>
+                          <input name="exp_depart" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                          <input name="exp_depart_2" class="form-control mt-1" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                      </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="refProduits">Réf produits</label>
-                            <input class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
+                            <input name="pro_ref" class="form-control" id="refProduits" type="text" placeholder="Réf produits" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="debut">Début</label>
-                            <input class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                            <label class="form-label" for="debut">Début Spectacle</label>
+                            <input name="com_debut_spectacle" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="fin">Fin</label>
-                            <input class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
+                            <label class="form-label" for="fin">Fin Spectacle</label>
+                            <input name="com_fin_spectacle" class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div class="mb-2">
                             <label class="form-label" for="structure">Structure</label>
-                            <input class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
+                            <input name="adr_structure" class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
                         </div>
                         <div class="mb-2">
                           <label class="form-label" for="total"></label>
-                          <select class="form-select" aria-label="Default select example">
-                            <option selected>Etat</option>
+                          <select name="stc_id" class="form-select" aria-label="Default select example">
                             <% statut_commandes.forEach(stc => { %>
                               <option value="<%= stc.stc_id %>"><%= stc.stc_libelle %></option>
                             <% }) %>
@@ -110,40 +116,44 @@
                                   id="flexCheckDefault"
                                 />
                             </td>
-                            <th><span class="tr-id" data-id="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.commande.com_id %></span></th>
-                            <td><%= commande.commande.com_num %></td>
-                            <td><%= commande.commande.Client.cli_prenom %></td>
-                            <td><%= commande.commande.Client.cli_nom %></td>
-                            <td><%= commande.adresseLivraison.adr_societe %></td>
-                            <td><%= moment(commande.commande.com_date).format('D/MM, YYYY')%> </td>
-                            <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.commande.com_id %>" data-panier="<%= commande.commande.pan_id %>"><%= commande.Panier_details.length %></span></td>
-                            <td><%= commande.total_pad_ttc  %>€</td>
+                            <th><span class="tr-id" data-id="<%= commande.com_id %>" data-panier="<%= commande.pan_id %>"><%= commande.com_id %></span></th>
+                            <td><%= commande.com_num %></td>
+                            <td><%= commande.Client.cli_prenom %></td>
+                            <td><%= commande.Client.cli_nom %></td>
+                            <td><%= commande.com_adr_livraison.adr_societe %></td>
+                            <td><%= moment(commande.com_date).format('D/MM, YYYY')%> </td>
+                            <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.com_id %>" data-panier="<%= commande.pan_id %>"><%= commande.Panier.Panier_details.length %></span></td>
+                            <% let sum = 0 %>
+                            <% commande.Panier.Panier_details.forEach(pad => { %>
+                              <% sum += pad.pad_ttc %>
+                            <% }) %>
+                            <td><%= sum %>€</td>
                             <td class="data-livraison">
                               <div>
-                                <p><%= commande.commande.Frais_port.Mode_liv_essayage.mle_libelle %></p>
-                                <p><%= commande.commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
+                                <p><%= commande.Frais_port.Mode_liv_essayage.mle_libelle %></p>
+                                <p><%= commande.Frais_port.Mode_liv_spectacle.mls_libelle %></p>
                               </div>
                             </td>
                             <td class="data-spectacle">
                               <div>
-                                <p><%= moment(commande.commande.com_debut_spectacle).format('D/MM/YYYY') %></p>
-                                <p><%= moment(commande.commande.com_fin_spectacle).format('D/MM/YYYY') %></p>
+                                <p><%= moment(commande.com_debut_spectacle).format('D/MM/YYYY') %></p>
+                                <p><%= moment(commande.com_fin_spectacle).format('D/MM/YYYY') %></p>
                               </div>
                             </td>
-                            <td><%= moment(commande.essayage[0].ess_repetition).format('D/MM/YYYY') %></td>
+                            <td><%= moment(commande.Essayages[0].ess_repetition).format('D/MM/YYYY') %></td>
                             <td>
-                              <%= commande.commande.Chronologies[0].Statut_commande.stc_libelle %>
+                              <%= commande.Chronologies[0].Statut_commande.stc_libelle %>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-between">
-                                  <a class="btn btn-primary me-1" title="Prévisualiser" href="/admin/devis/view/<%= commande.commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
+                                  <a class="btn btn-primary me-1" title="Prévisualiser" href="/admin/devis/view/<%= commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
                                   <a class="btn btn-primary me-1" href="#" title="Bon de livraison"><i class="fa-solid fa-truck-moving"></i></a>
                                   <a class="btn btn-primary me-1" href="#" title="Bon d'essayage"><i class="fa-solid fa-shirt"></i></a>
                                   <a class="btn btn-primary" href="#" title="Facture"><i class="fa-solid fa-money-bill"></i></a>
                                 </div>
                             </td>
                         </tr>
-                        <tr class="tr-accordion" id="tr-accordion-<%= commande.commande.com_id %>">
+                        <tr class="tr-accordion" id="tr-accordion-<%= commande.com_id %>">
                           <td colspan="14" class="td-body">
                             <div>
                               
