@@ -35,9 +35,11 @@ module.exports = (sequelize, DataTypes) => {
       });
       Commande.belongsTo(models.Adresse, {
         foreignKey: "com_adr_liv",
+        as:"com_adr_livraison"
       });
       Commande.belongsTo(models.Adresse, {
         foreignKey: "com_adr_fac",
+        as:"com_adr_facturation"
       });
       Commande.hasMany(models.Expedition, {
         foreignKey: "com_id",

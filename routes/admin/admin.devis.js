@@ -37,7 +37,6 @@ const { Op, where } = require("sequelize");
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {
-    let commandes_data = [];
     let commandes = await Commande.findAll({
       offset: start,
       limit: PAGINATION_LIMIT_ADMIN,
@@ -83,6 +82,19 @@ router.get("/", async (req, res) => {
             }
           ],
           
+        },
+        {
+          model:Adresse,
+          as:'com_adr_livraison',
+          required:true,
+        },
+        {
+          model:Adresse,
+          as:'com_adr_facturation',
+          required:true,
+        },
+        {
+          model:Essayage
         }
       ],
       order: [[{ model: Chronologie }, 'chr_date', 'DESC']]
@@ -91,32 +103,9 @@ router.get("/", async (req, res) => {
     let statut_commandes = await Statut_commande.findAll();
     let commandesNbr = await Commande.findAndCountAll();
     // datas complementaire de la requete
-    for (let commande of commandes) {
-      let pad_ttc = 0
-      commande.Panier.Panier_details.forEach(pad => {
-        pad_ttc += pad.pad_ttc * pad.pad_qte;
-      });
-      let paniers = await Panier.findOne({
-        where: { pan_id: commande.pan_id },
-        include: {
-          model: Panier_detail,
-        },
-      });
-      let essayages = await Essayage.findAll({
-        where: {
-          com_id: commande.com_id,
-        },
-      });
-      let adress_liv = await Adresse.findOne({
-        where:{
-          adr_id:commande.com_adr_liv
-        }
-      })  
-      commandes_data.push({ commande, ...paniers, essayage: essayages,adresseLivraison:adress_liv,total_pad_ttc:pad_ttc });
-    }
     let nbrPages = Math.ceil(commandesNbr.count / PAGINATION_LIMIT_ADMIN);
     res.render("devis/index", {
-      commandes: commandes_data,
+      commandes,
       moment,
       pageActive: page,
       start,
@@ -125,7 +114,7 @@ router.get("/", async (req, res) => {
       statut_commandes
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return res.send("erreur");
   }
 });
