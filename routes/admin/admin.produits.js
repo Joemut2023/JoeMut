@@ -15,6 +15,7 @@ const check_admin_paginate_value = require("../../helpers/check_admin_paginate_v
 const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
+  const {search} = req.query
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   try {
@@ -36,6 +37,16 @@ router.get("/", async (req, res) => {
         { model: Categorie, attributes: ["cat_libelle"] },
       ],
     });
+
+      //  const produitResearched = await Produit.findAll({
+      //    include: [
+      //      { model: Quantite, attributes: ["qua_nbre"] },
+      //      { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+      //      { model: Media, attributes: ["med_ressource"] },
+      //      { model: Categorie, attributes: ["cat_libelle"] },
+      //    ],
+      //    where:{[Op.or]:[{pro_libelle:{[Op.substring]:search}},{pro_ref:{[Op.substring]:search}}]}
+      //  });
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -66,6 +77,18 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+//delete product
+router.delete("/:id",async function(req,res){
+  const pro_id = req.params.id;
+  try {
+    const produit = await Produit.destroy({where:{pro_id}})
+    res.status(200).json({produit,msg:true})
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+})
 
 router.get("/add/tailles", async (req, res) => {
   try {

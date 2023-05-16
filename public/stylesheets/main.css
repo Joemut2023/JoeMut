@@ -6149,6 +6149,34 @@
 #admin-page-produits .table .dropdown-menu {
   inset: 5px 0px auto auto;
 }
+#admin-page-produits .table .research-line {
+  text-align: center;
+}
+#admin-page-produits .table .research-line .plage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+#admin-page-produits .table .research-line .research {
+  width: 80px;
+  padding: 5px 10px;
+  font-size: 13px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+#admin-page-produits .table .research-line button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 13px;
+  color: white;
+  padding: 5px 10px;
+}
 
 #admin-page-clients .menu-bar {
   background-color: #fff;
@@ -6909,6 +6937,24 @@ body {
 #admin-blocs-produitHeader .produit-menu h4 {
   font-weight: 400 !important;
   font-size: 1.2rem;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent {
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent span {
+  color: #a0b21f;
+}
+#admin-blocs-produitHeader .produit-menu .produit-menu-btn .search-parent input {
+  border: none;
+  outline: none;
 }
 #admin-blocs-produitHeader .produit-menu .produit-menu-btn button {
   margin-left: 10px;

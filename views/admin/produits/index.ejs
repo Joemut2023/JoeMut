@@ -1,4 +1,5 @@
 <%- include('../blocs/produitHeader') %>
+
 <div id="admin-page-produits">
   <table class="table table-striped">
     <thead>
@@ -7,7 +8,7 @@
         <th scope="col" class="text-center">ID</th>
         <th scope="col" class="text-center">Image</th>
         <th scope="col" class="text-center">Référence</th>
-        <th scope="col" class="text-center w-50">Nom</th>
+        <th scope="col" class="text-center w-25">Nom</th>
         <th scope="col" class="text-center">Catégorie</th>
         <th scope="col" class="text-center w-25">Prix HT</th>
         <th scope="col" class="text-center w-25">Prix TTC</th>
@@ -17,6 +18,27 @@
       </tr>
     </thead>
     <tbody>
+      <tr class="research-line">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input class="research"  type="text" placeholder="chercher" ></td>
+        <td><input class="research"  type="text" placeholder="chercher" ></td>
+        <td><input class="research"  type="text" placeholder="chercher" ></td>
+        <td class="plage">
+          <input class="research"  type="text">
+          <input class="research"  type="text">
+        </td>
+        <td> </td>
+          <td class="plage">
+          <input  class="research" type="text">
+          <input class="research" type="text">
+        </td>
+        <td> <button type="button" class="btn btn-info">
+          <i class="fa fa-search" aria-hidden="true"></i> <span>Rechercher</span>
+        </button></td>
+        <td></td>
+      </tr>
       <% if ((typeof produits !== 'undefined') && produits.length > 0) { %> <%
       produits.forEach(element => { %>
       <tr>
@@ -37,8 +59,8 @@
             class="img-fluid w-100 h-25 img-content"
           />
         </td>
-          <td class="text-center"><%= element.pro_ref %></td>
-        <td class="w-50"><%= element.pro_libelle %></td>
+          <td class="text-center w-25"><%= element.pro_ref %></td>
+        <td class="text-center w-25"><%= element.pro_libelle %></td>
         <td class="text-center"><%= element.Categorie.cat_libelle %></td>
         <td class="text-center w-25">
           <%= element.Tarifs[0].tar_ht.toFixed(2).toString().replace(".", ",")%>
@@ -58,9 +80,8 @@
             <a href="/admin/produits/<%= element.pro_id %>">
               <i class="fa-solid fa-pen"></i
             ></a>
-             <a style="color: rgb(209, 88, 88);" class="dropdown-item" href="#"
-                    ><i class="fa-solid fa-trash"></i></a
-                  >
+             <span style="color: rgb(209, 88, 88);cursor: pointer;" id="<%= element.pro_id %>" class="dropdown-item btn-delete"
+                    ><i class="fa-solid fa-trash "></i></span>
             
           </div>
         </td>
@@ -130,3 +151,5 @@
     <% } %>
   </div>
 </div>
+
+<script src="/javascripts/admin/produit.js"></script>
