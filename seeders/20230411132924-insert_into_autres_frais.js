@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
      */
 
-    const dateStr = "2023-01-01";
+    const dateStr = "2024-01-01";
     const dateArr = dateStr.split("-");
     const dateObj = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
 
