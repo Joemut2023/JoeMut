@@ -6149,6 +6149,34 @@
 #admin-page-produits .table .dropdown-menu {
   inset: 5px 0px auto auto;
 }
+#admin-page-produits .table .research-line {
+  text-align: center;
+}
+#admin-page-produits .table .research-line .plage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+#admin-page-produits .table .research-line .research {
+  width: 80px;
+  padding: 5px 10px;
+  font-size: 13px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+#admin-page-produits .table .research-line button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 13px;
+  color: white;
+  padding: 5px 10px;
+}
 
 #admin-page-clients .menu-bar {
   background-color: #fff;
