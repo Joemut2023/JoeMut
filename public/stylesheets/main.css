@@ -9118,5 +9118,14 @@ body {
 #page-admin-produit-location .card .table thead tr th div div p {
   margin: 0;
 }
+#page-admin-produit-location .card .table tbody tr td div {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#page-admin-produit-location .card .table tbody tr td div p {
+  margin: 0;
+}
 
 /*# sourceMappingURL=main.css.map */

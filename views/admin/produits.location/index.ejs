@@ -34,8 +34,8 @@
                         <div>
                             <h4>En location</h4>
                             <div>
-                                <p>Prénom</p>
-                                <p>Nom</p>
+                                <p>Du</p>
+                                <p>Au</p>
                             </div>
                         </div>
                     </th>
@@ -44,15 +44,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                  </tr>
+                    <% if (detail_expeditions.length > 0) { %>
+                       <% detail_expeditions.forEach(dex => { %>
+                        <tr>
+                            <th scope="row"><%= dex.dex_id %></th>
+                            <td><%= dex.Expedition.Commande.com_num %></td>
+                            <td><%= dex.Produit.pro_ref %></td>
+                            <td>
+                                <div>
+                                    <p><%= dex.Expedition.Commande.Client.cli_nom %></p>
+                                    <p><%= dex.Expedition.Commande.Client.cli_prenom %></p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><%= moment(dex.Expedition.exp_depart).format('DD/MM/YYYY') %></p>
+                                    <p></p>
+                                </div>
+                            </td>
+                            <td><%= dex.dex_nbre %></td>
+                            <td><button class="btn btn-primary"><i class="fa fa-search"></i></button></td>
+                          </tr>
+                       <% }) %>
+                    <% } %>
+                  <tr></tr>
                 </tbody>
             </table>
         </div>
