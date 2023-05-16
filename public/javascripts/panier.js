@@ -266,13 +266,3 @@ var TotalPricesProducts = /*#__PURE__*/function () {
   };
 }();
 TotalPricesProducts();
-// const link_parag = document.querySelector(".btnpromo");
-// const btn_promo = document.querySelector(".btn-promo");
-// const code_promo_block = document.querySelector(".promo_block");
-// const btn_fermer = document.querySelector(".fermer");
-// const btnFinaliser = document.querySelector(".enable");
-// if (storedITems.length == 0) {
-//   emptyKartText.style.display = "block";
-//   btnFinaliser.disabled = true;
-//   btnFinaliser.classList.add("btn-enabled");
-// }
