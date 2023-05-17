@@ -275,19 +275,19 @@ router.post('/search',async (req,res)=>{
           }
         ],
         where:{
-          [Op.or]:{
+          [Op.and]:{
             com_num:{
               [Op.like]:check_value(com_num)
             },
             com_debut_spectacle:{
-              [Op.eq]:check_value_date_start(com_debut_spectacle)
+              [Op.between]:[check_value_date_start(com_debut_spectacle),check_value_date_last('')]
             },
             com_fin_spectacle:{
-              [Op.gte]:check_value_date_start(com_fin_spectacle)
+              [Op.between]:[check_value_date_start(com_fin_spectacle),check_value_date_last('')]
             }
           }
         },
-        order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
+       // order: [[{ model: Chronologie }, 'chr_date', 'DESC']],
       });
       let statut_commandes = await Statut_commande.findAll();
       let commandesNbr = await Commande.findAndCountAll();
