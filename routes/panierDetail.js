@@ -64,7 +64,7 @@ router.post("/", async (req, res, next) => {
       let prm_id = promo ? promo.prm_id : null;
       // let pad_remise = promo ? promo.Promo.prm_pourcent : null;
 
-      const panierDetail = await Panier_detail.create({
+      let panierDetail = await Panier_detail.create({
         pro_id,
         tar_id,
         prm_id,
@@ -73,6 +73,15 @@ router.post("/", async (req, res, next) => {
         pad_ht,
         pad_ttc,
         pad_remise: pad_remise ? pad_remise : null,
+      });
+      pad_ttc =
+        panierDetail.pad_ht + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
+      await Panier_detail.update(
+        { pad_ttc },
+        { where: { pad_id: panierDetail.pad_id } }
+      );
+      panierDetail = await Panier_detail.findOne({
+        where: { pad_id: panierDetail.pad_id },
       });
       return res.status(201).json({ panierDetail });
     }
@@ -103,7 +112,6 @@ router.post("/", async (req, res, next) => {
 
     return res.status(404).send("aucun produit ajouté");
   } catch (error) {
-   
     res.status(500).json({ error: error });
   }
 });
