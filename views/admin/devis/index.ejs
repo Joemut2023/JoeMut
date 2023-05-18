@@ -152,9 +152,15 @@
                             <td>
                                 <div class="d-flex justify-content-between">
                                   <a class="btn btn-primary me-1" title="Prévisualiser" href="/admin/devis/view/<%= commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
-                                  <a class="btn btn-primary me-1" href="#" title="Bon de livraison"><i class="fa-solid fa-truck-moving"></i></a>
-                                  <a class="btn btn-primary me-1" href="#" title="Bon d'essayage"><i class="fa-solid fa-shirt"></i></a>
-                                  <form action="/admin/documents/facture" method="post">
+                                  <form action="/admin/documents/bon-livraison" method="post" class="me-1">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <button class="btn btn-primary" title="Bon de livraison"><i class="fa-solid fa-truck-moving"></i></button>
+                                  </form>
+                                  <form action="/admin/documents/bon-essayage" method="post" class="me-1">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <button class="btn btn-primary" title="Bon d'essayage"><i class="fa-solid fa-shirt"></i></button>
+                                  </form>
+                                  <form action="/admin/documents/facture" method="post" class="me-1">
                                     <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                                     <button class="btn btn-primary" title="Facture"><i class="fa-solid fa-money-bill"></i></button>
                                   </form>
