@@ -197,11 +197,11 @@
           </div>
           <div class="dates" style="width: 60%;">
               <div class="devis-number">
-                  <span>Devis N°</span> <span><%= commande.com_id %></span>
+                  <span>Devis N°</span> <span><%= commande.com_num %></span>
               </div>
               <div class="bordure"></div>
               <div class="devis-date">
-                  <span>Date :</span> <span><%= commande.com_date %></span>
+                  <span>Date :</span> <span><%= moment(commande.com_date).format('DD/MM/YYYY') %></span>
               </div>
           </div>
         </div>

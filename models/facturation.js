@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Facturation",
-      timestamps: true,
+      timestamps: false,
     }
   );
   return Facturation;

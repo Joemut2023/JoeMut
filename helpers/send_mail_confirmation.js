@@ -2,10 +2,11 @@ var nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
-const pdf = require("pdfkit");
 const puppeteer = require("puppeteer");
 const { Document } = require("../models");
 const { DEVIS } = require("./utils_const");
+const generate_pdf_func = require("./generate_pdf_func");
+const send_mail_func = require("./send_mail_func");
 
 module.exports = async (
   res,
@@ -51,48 +52,8 @@ module.exports = async (
     },{where:{doc_id:document.doc_id}});
 
     // CREATION DU PDF
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    page.isJavaScriptEnabled(false);
-    await page.goto(`${process.env.APP_URL}devis/${commande.com_id}`, {
-      timeout: 60000,
-    });
-    await page.pdf({
-      path: path.join(
-        __dirname,
-        `../public/pdf/devis/${DOCUMENT_NAME}.pdf`
-      ),
-    });
-    await page.close();
-
-    // ENVOIS DU EMAIL
-    try {
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "myindavictoire@gmail.com",
-          pass: process.env.PASSWORD_NODEMAILER,
-        },
-      });
-      const mailOptions = {
-        from: "myindavictoire@gmail.com",
-        to: `${commande.Client.cli_mail}`,
-        subject: "[AIGUILLE EN SCENE] Confirmation de commande",
-        html: html,
-        attachments: [
-          {
-            filename: `${DOCUMENT_NAME}.pdf`,
-            path: path.join(
-              __dirname,
-              `../public/pdf/devis/${DOCUMENT_NAME}.pdf`
-            ),
-          },
-        ],
-      };
-      transporter.sendMail(mailOptions).then(function (info) {
-        console.log("Email sent: " + info.response);
-      });
-    } catch (error) {}
+    await generate_pdf_func(`${process.env.APP_URL}devis/${commande.com_id}`, `../public/pdf/devis/${DOCUMENT_NAME}.pdf`);
+    await send_mail_func(DOCUMENT_NAME,commande.Client.cli_mail,"[AIGUILLE EN SCENE] Confirmation de commande",html);
 
   } catch (error) {
     console.log(error);
