@@ -294,8 +294,11 @@ btnEnregistrer.addEventListener("click", async function () {
   ) {
     message.style.display = "flex";
     const btn_close = document.querySelector(".close");
+    
     btn_close.addEventListener("click", function () {
-      window.location.href = `${SITE_URL}/admin/produits`;
+      // window.location.href = `${SITE_URL}/admin/produits`;
+      message.style.display = "none";
+      window.location.reload()
     });
   }
 });

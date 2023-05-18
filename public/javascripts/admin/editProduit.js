@@ -315,7 +315,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           message.style.display = "flex";
           btn_close = document.querySelector(".close");
           btn_close.addEventListener("click", function () {
-            window.location.href = "".concat(SITE_URL, "/admin/produits");
+            // window.location.href = `${SITE_URL}/admin/produits`;
+            message.style.display = "none";
+            window.location.reload();
           });
         }
       case 26:
