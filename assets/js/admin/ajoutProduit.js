@@ -297,11 +297,31 @@ btnEnregistrer.addEventListener("click", async function () {
     },
   });
 
-  let resultMedia = [];
+    imagesArrayCover.map(async (image) => {
+      const dataMedia = {
+        med_libelle: image.name.split(".")[0],
+        med_ressource: image.name,
+        med_cover:true,
+      };
+      const media = await axios.post(
+        `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        dataMedia,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+
+      console.log("cover",media)
+    });
+
+
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
       med_ressource: image.name,
+      med_cover:false
     };
     const media = await axios.post(
       `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
@@ -312,7 +332,7 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    // console.log(media);
+    console.log("others",media)
   });
 
   const tarif = await axios.post(

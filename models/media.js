@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       med_libelle: DataTypes.STRING,
       med_ressource: DataTypes.STRING,
       mimetype: DataTypes.STRING,
-      med_cover:DataTypes.BOOLEAN
+      med_cover: DataTypes.BOOLEAN,
     },
     {
       sequelize,

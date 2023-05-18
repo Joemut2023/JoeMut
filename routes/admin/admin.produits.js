@@ -281,7 +281,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/media/:id", async function (req, res) {
-  const { med_libelle, med_ressource } = req.body;
+  const { med_libelle, med_ressource,med_cover } = req.body;
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
 
@@ -290,6 +290,7 @@ router.post("/media/:id", async function (req, res) {
       tym_id: 1,
       med_libelle,
       med_ressource,
+      med_cover,
       mimetype: "image/jpeg",
     });
 
