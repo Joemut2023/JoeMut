@@ -123,13 +123,17 @@
                         class="inputfile"
                       />
                   </div>
-                  <div class="item cover-image">
-                    <img src=/images/produits/<%= media[0].med_ressource %> alt="" srcset="">
-                    <div>
+                  
+                    <% media.forEach(element => { %>
+                      <div class="item cover-image">
+                     <img src=/images/produits/<%= element.med_ressource %> alt="" srcset="">
+                     </div>
+                    <% }) %>
+                    <!-- <div>
                       <p>Image couverture</p>
-                    </div>
+                    </div> -->
                     
-                  </div>
+                  
                   <div class="image-container">
 
                   </div>
