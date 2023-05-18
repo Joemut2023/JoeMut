@@ -260,32 +260,58 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value=""
+              value="<%= element.cli_id %>"
               id="flexCheckDefault"
             />
           </td>
           <th scope="row"><%= element.cli_id %></th>
           <td><%= element.Titre.tit_libelle %></td>
-          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_prenom %></a></td>
-          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_nom %></a></td>
-          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_num %></a></td>
-          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%=  element.cli_mail%></a></td>
+          <td>
+            <a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"
+              ><%= element.cli_prenom %></a
+            >
+          </td>
+          <td>
+            <a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"
+              ><%= element.cli_nom %></a
+            >
+          </td>
+          <td>
+            <a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"
+              ><%= element.cli_num %></a
+            >
+          </td>
+          <td>
+            <a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"
+              ><%= element.cli_mail%></a
+            >
+          </td>
+          <td>
+            <a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"
+              ><%= element.cli_fonction%></a
+            >
+          </td>
           <td>
             <div class="d-flex justify-content-center form-check form-switch">
-              <input class="form-check-input" type="checkbox" value="" <%=
+              <input class="form-check-input inputActivation" data-id="<%=
+              element.cli_id %>" type="checkbox" value="" <%=
               element.cli_activation ? "checked" :"" %> />
             </div>
           </td>
           <td>
             <div class="d-flex justify-content-center form-check form-switch">
-              <input class="form-check-input" type="checkbox" value="" <%=
+              <input class="form-check-input inputNewsletter" data-id="<%=
+              element.cli_id %>" type="checkbox" value="" <%=
               element.cli_newsletter ? "checked" :"" %> />
             </div>
           </td>
           <td>
             <div class="d-flex justify-content-center form-check form-switch">
-              <input class="form-check-input" type="checkbox" value="" <%=
-              element.cli_partenaire ? "checked" :"" %> />
+              <form action="/admin/clients/update" method="post">
+                <input class="form-check-input inputPartenaire" data-id="<%=
+                element.cli_id %>" type="checkbox" value="" <%=
+                element.cli_partenaire ? "checked" :"" %> />
+              </form>
             </div>
           </td>
 
@@ -440,3 +466,4 @@
   </div>
   <% } %>
 </div>
+<script src="/javascripts/admin/client.js"></script>

@@ -219,6 +219,31 @@ router.post("/update", async (req, res) => {
     });
   }
 });
+router.post("/updateByCheckbox", async (req, res) => {
+  let { cli_activation, cli_newsletter, cli_partenaire, cli_id } =
+    req.body.data;
+  console.log(cli_id, "body", typeof cli_activation);
+  try {
+    const update = await Client.update(
+      {
+        cli_activation,
+        cli_newsletter,
+        cli_partenaire,
+      },
+      { where: { cli_id } }
+    );
+    console.log(update, "update");
+    if (update[0] == 1) {
+      return res
+        .status(200)
+        .send("les informations ont été mises à jour avec succès");
+    }
+    return res.status(200).send("requette echouée");
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
 router.get("/search", async (req, res) => {
   let choix;
   let clients;
@@ -335,7 +360,7 @@ router.get("/search", async (req, res) => {
         choix: choix,
         clientsNbr: clients.length,
       });
-    } else if (req.query.cli_debut < req.query.cli_fin) {
+    } else if (req.query.cli_debut <= req.query.cli_fin) {
       clients = await Client.findAll({
         include: [{ model: Titre, attributes: ["tit_libelle"] }],
         where: {
