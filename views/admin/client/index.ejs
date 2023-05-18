@@ -266,11 +266,10 @@
           </td>
           <th scope="row"><%= element.cli_id %></th>
           <td><%= element.Titre.tit_libelle %></td>
-          <td><%= element.cli_prenom %></td>
-          <td><%= element.cli_nom %></td>
-          <td><%= element.cli_num %></td>
-          <td><%= element.cli_mail %></td>
-          <td><%= element.cli_fonction %></td>
+          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_prenom %></a></td>
+          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_nom %></a></td>
+          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%= element.cli_num %></a></td>
+          <td><a href="/admin/clients/infos/?cli_id=<%= element.cli_id %>"><%=  element.cli_mail%></a></td>
           <td>
             <div class="d-flex justify-content-center form-check form-switch">
               <input class="form-check-input" type="checkbox" value="" <%=
