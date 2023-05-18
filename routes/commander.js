@@ -101,7 +101,7 @@ router.post("/", async (req, res) => {
       com_ttc: somme_ttc,
       com_port: frais.frais_port,
       com_frais: sum,
-      com_num: ` ${user.cli_nom.substring(0,3).toUpperCase()}-${
+      com_num: `${user.cli_nom.substring(0,3).toUpperCase()}-${
         panier.pan_id
       }-${new Date().getFullYear()}`,
     });

@@ -14,9 +14,12 @@ router.post('/facture',async (req,res)=>{
             tdo_id:TYPE_DOCUMENT_FACTURE,
             usr_id,
             doc_date:new Date(new Date().setDate(new Date().getDate())),
-            doc_libelle:commande.com_num,
             com_id:commande.com_id
         });
+        let document_updated = await Document.update({
+            doc_ref:`FAC-${document.doc_id}-${commande.com_num.trim()}`,
+            doc_libelle:`FAC-${document.doc_id}-${commande.com_num.trim()}`
+        },{where:{doc_id:document.doc_id}});
         res.redirect(`/admin/devis/view/${com_id}`);
     } catch (error) {
         res.redirect(`/admin/devis/view/${com_id}`);
