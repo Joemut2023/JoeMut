@@ -17,6 +17,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/media.csv"))
           tym_id: parseInt(media.titre.split(";")[2]),
           med_libelle: media.titre.split(";")[3],
           med_ressource: media.titre.split(";")[4],
+          med_cover:true,
           mimetype:'image/jpeg'
         });
      })
