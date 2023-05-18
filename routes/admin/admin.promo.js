@@ -64,14 +64,6 @@ router.post("/add", async (req, res) => {
         "veillez renseigner le pourcentage ou la valeur de la promo";
       return res.render("promo/add", { errorMsg });
     }
-    // const oldPromo = await Promo.findOne({ where: { prm_code } });
-    // if (oldPromo) {
-    //   const errorMsg = "Cette promo existe déjà";
-    //   return res.render("promo/add", {
-    //     errorMsg,
-    //   });
-    // }
-    console.log(prm_commande, "pour une commande");
     await Promo.create({
       prm_code,
       prm_pourcent: prm_pourcent ? prm_pourcent : null,
@@ -79,7 +71,7 @@ router.post("/add", async (req, res) => {
       prm_debut,
       prm_fin,
       prm_actif,
-      prm_commande,
+      prm_commande: prm_commande ? prm_commande : false,
     });
     const succesMsg = "la promo a été créée et enregistrée avec succès";
     res.render("promo/add", { succesMsg });
