@@ -741,7 +741,7 @@
                             <select name="doc_id" class="form-select" aria-label="Default select example">
                                 <option selected>Facture</option>
                                 <% factures.forEach(facture => { %>
-                                 <option value=""><%= facture.doc_libelle %></option>
+                                 <option value="<%= facture.doc_id %>"><%= facture.doc_libelle %></option>
                                 <% }) %>
                             </select>
                         </div>
