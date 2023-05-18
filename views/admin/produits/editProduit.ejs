@@ -162,10 +162,22 @@
                     
                   </div>
                   <% }) %>
-                
+                  
 
                   <div class="image-container"></div>
                 </div>
+                <div>
+                  <% media.forEach(element => { %>
+                    <% if (element.med_cover===true) { %>
+                       <label style="font-size: 0.95rem; cursor: pointer;" for="update_image">Modfier l'image de couverture</label>
+                      <input style="display: none;" name="<%=element.med_id %>" id="update_image" class="file-cover"
+                    accept="image/jpg, image/jpeg, image/gif, image/png" type="file"
+                    <% } %>
+                    
+                  <% }) %>
+                 >
+                </div>
+                <div class="output"></div>
               </div>
               <div class="right col-md-4">
                 <!-- <div class="quantity">

@@ -54,7 +54,40 @@ button2.addEventListener("click", function () {
 const inputDiv = document.querySelector(".images");
 const inputImage = document.querySelector(".inputfile");
 const output = document.querySelector(".image-container");
+const updateInput = document.querySelector(".update_image")
+const inputImageCover = document.querySelector(".file-cover");
+const outputCover = document.querySelector(".output");
 let imagesArray = [];
+let imagesArrayCover = [];
+
+inputImageCover.addEventListener("change", () => {
+  const files = inputImageCover.files;
+  imagesArrayCover[0] = files[0];
+
+  displayCoverImage();
+  displayCoverImage();
+});
+
+function displayCoverImage() {
+  let images = "";
+  imagesArrayCover.forEach((image, index) => {
+    images += `<div class="image">
+                  <img src="${URL.createObjectURL(image)}" alt="image">
+                  <span onclick="deleteCoverImage(${index})"><i class="fa-solid fa-xmark"></i></span>
+                </div>`;
+  });
+  outputCover.style.display = "flex";
+  outputCover.innerHTML = images;
+}
+
+function deleteCoverImage(index) {
+  imagesArrayCover.splice(index, 1);
+  displayCoverImage();
+
+  if (imagesArray.length === 0) {
+    outputCover.style.display = "none";
+  }
+}
 
 inputImage.addEventListener("change", () => {
   const files = inputImage.files;

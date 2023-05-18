@@ -8686,6 +8686,47 @@ body {
   height: 100%;
   object-fit: contain;
 }
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output {
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: none;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output .image {
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output .image img {
+  height: 100%;
+  width: 100%;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output .image span {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  background: rgb(226, 84, 84);
+  color: white;
+  padding: 0px 5px;
+  border-radius: 50%;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output .image span:hover {
+  opacity: 0.8;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .output .span--hiden {
+  visibility: hidden;
+}
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .right {
   padding: 0px 20px;
   margin-top: 20px;
