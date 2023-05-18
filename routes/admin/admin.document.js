@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {Document,Commande,Facturation,Paiement} = require('../../models');
-const {TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_BON_ESSAYAGE, TYPE_DOCUMENT_BON_LIVRAISON,ECHEANCE_A_RECEPTION} = require('../../helpers/utils_const');
+const {TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_BON_ESSAYAGE, TYPE_DOCUMENT_BON_LIVRAISON,ECHEANCE_A_RECEPTION,STATUT_FACTURE_BROUILLON} = require('../../helpers/utils_const');
 const { Op } = require('sequelize');
 const today = new Date(new Date().setDate(new Date().getDate()));
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
@@ -45,7 +45,7 @@ router.post('/facture',async (req,res)=>{
                 doc_ref:`FAC-${document.doc_id}-${commande.com_num.trim()}`,
                 doc_libelle:`FAC-${document.doc_id}-${commande.com_num.trim()}`
             },{where:{doc_id:document.doc_id}}); 
-            let totalPaiment = Paiement.sum('pai_montant',{
+            let totalPaiment = await Paiement.sum('pai_montant',{
                 where:{doc_id:document.doc_id}
             });
             let facturation = await Facturation.create({
@@ -55,12 +55,13 @@ router.post('/facture',async (req,res)=>{
                 doc_id:document.doc_id,
                 fac_date:today,
                 ech_id:ECHEANCE_A_RECEPTION,
-                //stf_id:
+                stf_id:STATUT_FACTURE_BROUILLON
             })
         }
         res.redirect(`/admin/devis/view/${com_id}`);
     } catch (error) {
-        res.redirect(`/admin/devis/view/${com_id}`);
+        console.log(error);
+        //res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
 router.post('/bon-essayage',async (req,res)=>{
