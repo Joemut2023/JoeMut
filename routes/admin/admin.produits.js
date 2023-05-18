@@ -299,6 +299,38 @@ router.post("/media/:id", async function (req, res) {
     console.log(error.message);
   }
 });
+//udpate cover image
+router.put("/media/:pro_id/:med_id", async function (req, res) {
+  const { med_libelle, med_ressource, med_cover } = req.body;
+  try {
+    const produit = await Produit.findOne({
+      where: { pro_id: req.params.pro_id },
+    });
+
+    const media = await Media.update(
+      {
+        pro_id: produit.pro_id,
+        tym_id: 1,
+        med_libelle,
+        med_ressource,
+        mimetype: "image/jpeg",
+      },
+      {
+        where: {
+          [Op.and]: [
+            { pro_id: produit.pro_id },
+            { med_id: req.params.med_id },
+            { med_cover: med_cover },
+          ],
+        },
+      }
+    );
+
+    return res.status(201).json({ media, msgMedia: true });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 router.post("/tarif/:id", async function (req, res) {
   const { tar_ht, tar_ttc } = req.body;
