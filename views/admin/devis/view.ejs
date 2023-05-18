@@ -456,7 +456,9 @@
                                   <td><%= document.doc_comment %></td>
                                   <td>
                                       <div>
+                                        <% if (document.Type_document.tdo_id === 2) { %>
                                           <button class="btn btn-primary btn-form-doc-paiement" data-document="<%= document.doc_id %>">Saisir un paiement</button>
+                                        <% } %>
                                           <button class="btn btn-primary btn-form-doc-note" data-document="<%= document.doc_id %>">Saisir une note</button>
                                           <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                       </div>
@@ -718,7 +720,6 @@
                       <% }else{ %>
                         <tr>
                           <td colspan="5">
-                            <h1>jsjd</h1>
                           </td>
                         </tr>
                         <% } %>
