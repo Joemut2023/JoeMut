@@ -103,14 +103,22 @@ button2.addEventListener("click", function () {
 var inputDiv = document.querySelector(".images");
 var inputImage = document.querySelector(".file");
 var output = document.querySelector("output");
+var inputImageCover = document.querySelector(".file-cover");
+var outputCover = document.querySelector(".output");
 var imagesArray = [];
+var imagesArrayCover = [];
 inputImage.addEventListener("change", function () {
   var files = inputImage.files;
   for (var i = 0; i < files.length; i++) {
     imagesArray.push(files[i]);
   }
-  console.log(imagesArray);
-  displayImages();
+  displayOtherImages();
+});
+inputImageCover.addEventListener("change", function () {
+  var files = inputImageCover.files;
+  imagesArrayCover[0] = files[0];
+  displayCoverImage();
+  displayCoverImage();
 });
 inputImage.addEventListener("drop", function (e) {
   e.preventDefault();
@@ -125,21 +133,51 @@ inputImage.addEventListener("drop", function (e) {
     var _ret = _loop(i);
     if (_ret === "continue") continue;
   }
-  displayImages();
+  displayOtherImages();
 });
-function displayImages() {
+inputImageCover.addEventListener("drop", function (e) {
+  e.preventDefault();
+  var files = e.dataTransfer.files;
+  var _loop2 = function _loop2(i) {
+    if (!files[i].type.match("image")) return "continue";
+    if (imagesArrayCover.every(function (imge) {
+      return imge.name !== files[i].name;
+    })) imagesArrayCover.push(files[i]);
+  };
+  for (var i = 0; i < files.length; i++) {
+    var _ret2 = _loop2(i);
+    if (_ret2 === "continue") continue;
+  }
+  displayCoverImage();
+});
+function displayOtherImages() {
   var images = "";
   imagesArray.forEach(function (image, index) {
-    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteOtherImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
   });
   output.style.display = "flex";
   output.innerHTML = images;
 }
-function deleteImage(index) {
+function displayCoverImage() {
+  var images = "";
+  imagesArrayCover.forEach(function (image, index) {
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteCoverImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+  });
+  outputCover.style.display = "flex";
+  outputCover.innerHTML = images;
+}
+function deleteOtherImage(index) {
   imagesArray.splice(index, 1);
-  displayImages();
+  displayOtherImages();
   if (imagesArray.length === 0) {
     output.style.display = "none";
+  }
+}
+function deleteCoverImage(index) {
+  imagesArrayCover.splice(index, 1);
+  displayCoverImage();
+  if (imagesArray.length === 0) {
+    outputCover.style.display = "none";
   }
 }
 function addTaille(_x) {
