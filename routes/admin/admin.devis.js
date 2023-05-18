@@ -541,6 +541,11 @@ router.get('/view/:commandeId',async (req,res)=>{
       attributes:['com_id'],
       where:{cli_id:commande.Client.cli_id}
     })
+    let last_document_devis = await Document.findOne({
+      attributes:['doc_ref'],
+      where:{tdo_id:TYPE_DOCUMENT_DEVIS},
+      order:[['doc_date','DESC']]
+    });
     return res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -554,10 +559,10 @@ router.get('/view/:commandeId',async (req,res)=>{
       transporteurs,
       expeditions,
       commande_client,
-      total_commande
+      total_commande,
+      last_document_devis
     });
   } catch (error) {
-    console.log(error);
     res.render("devis/view",{
       error:true
     });
