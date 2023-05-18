@@ -51,6 +51,7 @@ router.post("/", async (req, res) => {
     if (panierDetail.pad_code_promo) {
       return res.status(400).send("vous avez déjà utilisé ce code promo !");
     }
+    //calcul de la remise et du nouveau pad_ttc
     let pad_remise = 0;
     if (codePromo.prm_pourcent) {
       pad_remise =
@@ -64,9 +65,11 @@ router.post("/", async (req, res) => {
     pad_remise = panierDetail.pad_remise
       ? panierDetail.pad_remise + pad_remise
       : pad_remise;
+    let pad_ttc =
+      panierDetail.pad_ht + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
 
     const newPanierDetail = await Panier_detail.update(
-      { pad_remise, pad_code_promo: prm_code },
+      { pad_remise, pad_code_promo: prm_code, pad_ttc },
       { where: { pad_id: panierDetail.pad_id } }
     );
 
