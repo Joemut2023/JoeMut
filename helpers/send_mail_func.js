@@ -7,7 +7,7 @@ const ejs = require("ejs");
  * @param {*} document_name 
  * @param {*} cli_mail 
  */
-module.exports = async (document_name,cli_mail,subject,html)=>{
+module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
     try {
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -26,7 +26,7 @@ module.exports = async (document_name,cli_mail,subject,html)=>{
                 filename: `${document_name}.pdf`,
                 path: path.join(
                   __dirname,
-                  `../public/pdf/devis/${document_name}.pdf`
+                  document_path
                 ),
               },
             ],

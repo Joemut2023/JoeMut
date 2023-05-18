@@ -6,6 +6,11 @@ const { Op, where } = require('sequelize');
 const today = new Date(new Date().setDate(new Date().getDate()));
 const send_mail_confirmation = require("../../helpers/send_mail_confirmation");
 const get_commande_data = require("../../helpers/get_commande_data");
+const ejs = require("ejs");
+const generate_pdf_func = require('../../helpers/generate_pdf_func');
+const send_mail_func = require('../../helpers/send_mail_func');
+const fs = require('fs');
+const path = require('path');
 
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
@@ -146,6 +151,36 @@ router.post('/devis-mail',async (req,res)=>{
         });
     } catch (error) {
         
+    }
+});
+router.post('/bon-essayage-pdf',async (req,res)=>{
+    const {com_id} = req.body;
+    try {
+        let commande = await Commande.findOne({
+            attributes:['com_id','com_num'],
+            include:[{model:Client,attributes:['cli_mail']}]
+        },{where:{com_id},order:[['doc_date','DESC']]});
+        let ejsFile = fs.readFileSync(
+            path.join(__dirname, "../../mailTemplate/essayage.ejs"),
+            "utf8"
+        );
+        let html = ejs.render(ejsFile);
+        let bon_essayage = await Document.findOne({
+            attributes:['doc_id','doc_ref'],
+            where:{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE}
+        });
+        const DOCUMENT_NAME = bon_essayage.doc_ref;
+        if (bon_essayage) { 
+            generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`).then(data=>{
+                send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon d'essayage AES`,html).then(()=>{
+                     res.redirect(`/admin/devis/view/${commande.com_id}`);
+                })
+            })  
+        }else{
+            res.redirect(`/admin/devis/view/${commande.com_id}`);   
+        }
+    } catch (error) {
+       res.redirect(`/admin/devis/view/${com_id}`);
     }
 })
 module.exports = router;

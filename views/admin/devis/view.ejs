@@ -40,7 +40,10 @@
           <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i> Envoyer le dévis</button>
         </form>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le bon d'essayage</button>
-        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
+       <form action="/admin/documents/bon-essayage-pdf" method="post">
+        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+        <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
+       </form>
         <form action="/admin/documents/facture" method="post">
           <input type="hidden" name="com_id" value="<%= commande.com_id %>">
           <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Générer une facture</button>

@@ -20,6 +20,8 @@ const transporteurRouter = require("./admin.transporteur");
 const categoriesRouter = require("./admin.categories")
 const produitLocationRouter = require("./admin.produits.location")
 const documentRouter = require("./admin.document")
+const ejs = require('ejs');
+const path = require('path');
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout, adminIsAuth], devisRouter);
@@ -40,4 +42,13 @@ router.use("/apply", [adminLayout, adminIsAuth], applyRouter);
 router.use("/transporteurs", [adminLayout, adminIsAuth], transporteurRouter);
 router.use("/produits-en-location", [adminLayout, adminIsAuth],produitLocationRouter);
 router.use("/documents", [adminLayout, adminIsAuth],documentRouter);
+router.get('/bon-essayage',async (req,res)=>{
+    try {
+        let view = await ejs.renderFile(path.join(__dirname, "../../mailTemplate/essayage.ejs"));
+        return res.send(view);
+    } catch (error) {
+       // console.log(error);
+        console.log("erreur rendue bon essayage");
+    }
+})
 module.exports = router;
