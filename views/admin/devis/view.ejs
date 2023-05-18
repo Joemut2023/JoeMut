@@ -715,7 +715,13 @@
                             <td><%= paiement.Document.doc_libelle%> (<%= paiement.Document.Type_document.tdo_libelle %>)</td>
                           </tr>
                         <% }) %>
-                      <% } %>
+                      <% }else{ %>
+                        <tr>
+                          <td colspan="5">
+                            <h1>jsjd</h1>
+                          </td>
+                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
                 <div class="form-bloc-paiement">

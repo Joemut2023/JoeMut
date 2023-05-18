@@ -489,7 +489,10 @@ router.get('/view/:commandeId',async (req,res)=>{
     });
     let factures = await Document.findAll({
       where:{
-        tdo_id:TYPE_DOCUMENT_FACTURE
+        [Op.and]:{
+          tdo_id:TYPE_DOCUMENT_FACTURE,
+          com_id:commandeId
+        }
       }
     });
     let transporteurs = await Transporteur.findAll();
@@ -719,7 +722,8 @@ router.post('/commande-add-facture-paiement',async (req,res)=>{
       mop_id,
       pai_ref,
       pai_montant,
-      pai_date
+      pai_date,
+      com_id
     });
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
