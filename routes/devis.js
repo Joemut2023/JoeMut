@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const get_commande_data = require("../helpers/get_commande_data");
 const { log } = require("console");
-
+const moment = require('moment');
 router.get("/:id", async (req, res, next) => {
   let { id } = req.params;
   get_commande_data(parseInt(id), async (commande, adresseLiv, adresseFac, panierDetails,
@@ -28,7 +28,8 @@ router.get("/:id", async (req, res, next) => {
       taxe,
       totalHT,
       totalTTC,
-      essayage
+      essayage,
+      moment
     });
     res.send(view)
   });
