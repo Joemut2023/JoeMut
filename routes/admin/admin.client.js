@@ -2,7 +2,14 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
-const { Client, Titre, Commande, Panier, Adresse } = require("../../models");
+const {
+  Client,
+  Titre,
+  Commande,
+  Panier,
+  Adresse,
+  Frais_port,
+} = require("../../models");
 const moment = require("moment");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -361,20 +368,22 @@ router.get("/infos", async (req, res) => {
       include: [{ model: Titre, attributes: ["tit_libelle"] }],
       where: { cli_id },
     });
-    const commandes = await Commande.findAll({ where: { cli_id } });
+    const commandes = await Commande.findAll({
+      include: [{ model: Frais_port, attributes: ["frp_libelle"] }],
+      where: { cli_id },
+    });
     const paniers = await Panier.findAll({ where: { cli_id } });
     const adresses = await Adresse.findAll({ where: { cli_id } });
     commandes.map((element) => {
       totalCommandes = element.com_ttc;
     });
-
     res.render("client/details", {
       clients,
       commandes,
       paniers,
       adresses,
       moment,
-      totalCommandes
+      totalCommandes,
     });
   } catch (error) {
     res.status(500).render("client/details", {

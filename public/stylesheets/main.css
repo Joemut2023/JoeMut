@@ -6807,7 +6807,8 @@ body {
   color: #fff !important;
 }
 
-#admin-page-details-clients p, #admin-page-details-clients label {
+#admin-page-details-clients p,
+#admin-page-details-clients label {
   font-size: 0.8rem;
 }
 #admin-page-details-clients .bg-info {
@@ -6823,6 +6824,17 @@ body {
   font-weight: 400;
   height: 30px;
   padding-top: 7px;
+}
+#admin-page-details-clients td,
+#admin-page-details-clients th,
+#admin-page-details-clients tr {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+#admin-page-details-clients a {
+  text-decoration: none !important;
+  color: #232323;
 }
 
 #admin-page-devis {
