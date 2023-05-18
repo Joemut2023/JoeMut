@@ -489,7 +489,10 @@ router.get('/view/:commandeId',async (req,res)=>{
     });
     let factures = await Document.findAll({
       where:{
-        tdo_id:TYPE_DOCUMENT_FACTURE
+        [Op.and]:{
+          tdo_id:TYPE_DOCUMENT_FACTURE,
+          com_id:commandeId
+        }
       }
     });
     let transporteurs = await Transporteur.findAll();
@@ -709,9 +712,25 @@ router.post('/commande-add-doc-comment', async (req,res)=>{
   }
 });
 router.post('/commande-add-facture-paiement',async (req,res)=>{
-  const {com_id,pai_date,mop_id,pai_ref,pai_montant,doc_id} = req.body
+  const {com_id,pai_date,mop_id,pai_ref,pai_montant,doc_id} = req.body;
+  const usr_id = req.session.adminId;
 
-  res.redirect(`/admin/devis/view/${com_id}`);
+  try {
+    let paiement = await Paiement.create({
+      doc_id,
+      usr_id,
+      mop_id,
+      pai_ref,
+      pai_montant,
+      pai_date,
+      com_id
+    });
+    res.redirect(`/admin/devis/view/${com_id}`);
+  } catch (error) {
+    console.log(error);
+   // res.redirect(`/admin/devis/view/${com_id}`);
+  }
+  
 });
 router.post('/commande-add-transporteur', async (req,res)=>{
   const {exp_poids,exp_suivi,com_id,trs_id,doc_id,exp_cout} = req.body;
