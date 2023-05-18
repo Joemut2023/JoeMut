@@ -14,9 +14,8 @@
 </div>
 <div id="admin-page-details-clients">
   <div class="d-flex gap-4 mt-5">
-    <div class="w-50 d-flex flex-column gap-4">
-      <div class="card shadow">
-        <div>
+    
+      <div class="card shadow w-50 mb-4">
           <div class="d-flex justify-content-between">
             <div class="d-flex gap-2 p-3">
               <i class="fa-solid fa-user"></i>
@@ -97,20 +96,90 @@
               </p>
             </div>
           </div>
-        </div>
       </div>
-      <div class="card shadow">
-        <div class="d-flex gap-4">
-          <div class="d-flex gap-2 p-3">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <h6>Commandes</h6>
-            <span class="badge bg-info"><%= commandes.length %></span>
+      
+ 
+    <div class="w-50 d-flex flex-column gap-4">
+      <div class="card shadow ">
+      <div class="d-flex gap-4">
+        <div class="d-flex gap-2 p-3">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h6>Commandes</h6>
+          <span class="badge bg-info"><%= commandes.length %></span>
+        </div>
+        <p class="p-3">total :<%= totalCommandes %> €</p>
+      </div>
+      <hr />
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Mode de livraison</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if ((typeof commandes !== 'undefined') && commandes.length > 0) {
+          %> <% commandes.forEach(commande => { %>
+          <tr>
+            <th scope="row"><%= commande.com_id %></th>
+            <td><%=  moment(commande.com_date).format('DD/MM/YYYY HH:mm:ss') %></td>
+            <td><%= commande.Frais_port.frp_libelle %></td>
+            <td><%= totalCommandes %> €</td>
+            <td><a href="/admin/devis/view/<%= commande.com_id %>"><i class="fa-solid fa-magnifying-glass"></i></a></td>
+          </tr>
+          <% }) %> <% }else { %>
+          <div class="alert alert-primary" role="alert">
+            Ce client n'a pas encore passé de commande
           </div>
-          <p class="p-3">total :<%= totalCommandes %> € </p>
-        </div>
-        <hr />
+          <% } %>
+        </tbody>
+      </table>
+      </div> 
+      <div class="card shadow client-adresse-content mb-4">
+      <div class="d-flex justify-content-between p-3">
+        <div class="d-flex justify-content-between gap-2">
+            <i class="fa-solid fa-location-dot"></i>
+            <h6>Addresse</h6>
+            <span class="badge bg-info"><%= adresses.length %></span>
+          </div>
+          <a href="/admin/adresse/add/<%= adresses[0]?.cli_id %>"><i class="fa-solid fa-circle-plus"></i></a>
       </div>
+      <hr />
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Société</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th> 
+            <th scope="col">Pays</th>
+             <th scope="col">Téléphone</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if ((typeof adresses !== 'undefined') && adresses.length > 0) {
+          %> <% adresses.forEach(adresse => { %>
+          <tr>
+            <th scope="row"><%= adresse.adr_id %></th>
+            <th scope="row"><%= adresse.adr_societe %></th>
+            <th scope="row"><%= adresse.adr_nom %></th>
+             <th scope="row"><%= adresse.adr_adresse %></th>
+            <th scope="row"><%= adresse.adr_pays %></th>
+            <th scope="row"><%= adresse.adr_phone %></th>
+            <td><a href=""><i class="fa-solid fa-pen"></i></a></td>
+          </tr>
+          <% }) %> <% }else { %>
+          <div class="alert alert-primary" role="alert">
+           Aucune adresse correspondante 
+          </div>
+          <% } %>
+        </tbody>
+      </table>
+      </div> 
     </div>
-    <div></div>
   </div>
 </div>

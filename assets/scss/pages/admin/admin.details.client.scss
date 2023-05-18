@@ -49,19 +49,24 @@
 }
 
 #admin-page-details-clients {
-    p,label{
+
+    p,
+    label {
         font-size: 0.8rem;
     }
-    .bg-info{
+
+    .bg-info {
         height: 20px;
     }
+
     .info-titre {
         width: 40%;
         text-align: end;
         font-size: 0.8rem;
     }
-    .inscription{
-        .badge{
+
+    .inscription {
+        .badge {
             font-size: 0.6rem !important;
             font-weight: 400;
             height: 30px;
@@ -69,5 +74,18 @@
         }
     }
 
-}
+    td,
+    th,
+    tr {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 0.8rem;
+    }
 
+    a {
+        text-decoration: none !important;
+        color: $color-black;
+    }
+
+
+}
