@@ -536,6 +536,10 @@ router.get('/view/:commandeId',async (req,res)=>{
       ],
       where:{cli_id:commande.Client.cli_id}
     });
+    let total_commande = await Commande.findAll({
+      attributes:['com_id'],
+      where:{cli_id:commande.Client.cli_id}
+    })
     return res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -548,7 +552,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       factures,
       transporteurs,
       expeditions,
-      commande_client
+      commande_client,
+      total_commande
     });
   } catch (error) {
     console.log(error);
