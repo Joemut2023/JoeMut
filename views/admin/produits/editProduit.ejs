@@ -134,7 +134,7 @@
             aria-labelledby="nav-home-tab"
           >
             <div class="row img">
-              <div class="col-md-8 block-image">
+              <div class="col-md-12 block-image">
                 <div class="images">
                   <div class="item image-add">
                     <label for="file"
@@ -154,11 +154,15 @@
                   <div class="item cover-image">
                     <img src=/images/produits/<%= element.med_ressource %>
                     alt="" srcset="">
+                    <% if (element.med_cover===true) { %>
+                        <div>
+                          <p>Image couverture</p>
+                        </div>
+                    <% } %>
+                    
                   </div>
                   <% }) %>
-                  <!-- <div>
-                      <p>Image couverture</p>
-                    </div> -->
+                
 
                   <div class="image-container"></div>
                 </div>
