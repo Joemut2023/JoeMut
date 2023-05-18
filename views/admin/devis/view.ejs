@@ -41,7 +41,10 @@
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i> Envoyer le dévis</button>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-print"></i> Imprimer le bon d'essayage</button>
         <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
-        <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Générer une facture</button>
+        <form action="/admin/documents/facture" method="post">
+          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+          <button type="button" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Générer une facture</button>
+        </form>
     </div>
     <div class="content">
         <div class="left">
@@ -49,7 +52,7 @@
                 <h3 class="bloc-client-title">Client</h3>
                 <div class="bloc-client-name">
                     <p><i class="fa-solid fa-id-card"></i> <span><%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></span></p>
-                    <a href="">Plus de details</a>
+                    <a href="/admin/clients/infos/?cli_id=<%= commande.Client.cli_id %>">Plus de details</a>
                 </div>
                 <div class="row bloc-client-info">
                     <div class="col-md-12">
