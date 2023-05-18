@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {Document,Commande,Facturation,Paiement} = require('../../models');
-const {TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_BON_ESSAYAGE, TYPE_DOCUMENT_BON_LIVRAISON,ECHEANCE_A_RECEPTION,STATUT_FACTURE_BROUILLON} = require('../../helpers/utils_const');
-const { Op } = require('sequelize');
+const {Document,Commande,Facturation,Paiement,Client,Chronologie} = require('../../models');
+const {TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_BON_ESSAYAGE, TYPE_DOCUMENT_BON_LIVRAISON,ECHEANCE_A_RECEPTION,STATUT_FACTURE_BROUILLON, STATUT_COMMANDE_COM_VALIDEE} = require('../../helpers/utils_const');
+const { Op, where } = require('sequelize');
 const today = new Date(new Date().setDate(new Date().getDate()));
+const send_mail_confirmation = require("../../helpers/send_mail_confirmation");
+const get_commande_data = require("../../helpers/get_commande_data");
+
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
         attributes:['com_num','com_id'],
@@ -96,8 +99,51 @@ router.post('/bon-livraison',async (req,res)=>{
 });
 router.post('/devis-mail',async (req,res)=>{
     const  {com_id} = req.body;
+    const usr_id = req.session.adminId;
     try {
-        
+        let commande = await Commande.findOne({
+            attributes:['com_id','cli_id'],
+        },{where:{com_id}});
+        get_commande_data(com_id,async (
+        commande,
+        adresseLiv,
+        adresseFac,
+        panierDetails,
+        essayage,
+        modeLivraison,
+        sous_total,
+        taxe,
+        totalTTC,
+        totalHT,
+        sous_totalCmd,
+        produitsPopulaires,
+        totalCmd,
+        quantiteOfEachProduct,
+        refCommande
+        )=>{
+
+            await send_mail_confirmation(
+                res,
+                req,
+                commande,
+                adresseLiv,
+                adresseFac,
+                panierDetails,
+                essayage,
+                modeLivraison,
+                sous_total,
+                taxe,
+                totalTTC,
+                totalHT
+            );
+            let chronologie = await Chronologie.create({
+                com_id:commande.com_id,
+                stc_id:STATUT_COMMANDE_COM_VALIDEE,
+                usr_id,
+                chr_date:new Date(new Date().setDate(new Date().getDate()))
+            });
+            res.redirect(`/admin/devis/view/${commande.com_id}`);
+        });
     } catch (error) {
         
     }
