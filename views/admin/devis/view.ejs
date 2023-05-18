@@ -61,11 +61,22 @@
                     <div class="col-md-12">
                         <div>
                             <h2>Commande validées :</h2>
-                            <p>0</p>
+                            <p><%= commande_client.Commandes.length %></p>
                         </div>
+                        
                         <div>
                             <h2>Total dépensé depuis inscription :</h2>
-                            <p></p>
+                            <% let total_depense_client = 0 %>
+                            <% commande_client.Commandes.forEach(commande => { %>
+                                <% commande.Documents.forEach(document => { %>
+                                  <% if (Array.isArray(document.Paiements)) { %>
+                                    <% document.Paiements.forEach(paiement => { %>
+                                      <% total_depense_client += paiement.pai_montant %>
+                                    <% }) %>
+                                  <% } %>
+                                <% }) %>
+                            <% }) %>
+                            <p><%= total_depense_client %> €</p>
                         </div>
                     </div>
                 </div>
