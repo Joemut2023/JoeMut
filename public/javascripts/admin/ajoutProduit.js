@@ -103,14 +103,22 @@ button2.addEventListener("click", function () {
 var inputDiv = document.querySelector(".images");
 var inputImage = document.querySelector(".file");
 var output = document.querySelector("output");
+var inputImageCover = document.querySelector(".file-cover");
+var outputCover = document.querySelector(".output");
 var imagesArray = [];
+var imagesArrayCover = [];
 inputImage.addEventListener("change", function () {
   var files = inputImage.files;
   for (var i = 0; i < files.length; i++) {
     imagesArray.push(files[i]);
   }
-  console.log(imagesArray);
-  displayImages();
+  displayOtherImages();
+});
+inputImageCover.addEventListener("change", function () {
+  var files = inputImageCover.files;
+  imagesArrayCover[0] = files[0];
+  displayCoverImage();
+  displayCoverImage();
 });
 inputImage.addEventListener("drop", function (e) {
   e.preventDefault();
@@ -125,31 +133,61 @@ inputImage.addEventListener("drop", function (e) {
     var _ret = _loop(i);
     if (_ret === "continue") continue;
   }
-  displayImages();
+  displayOtherImages();
 });
-function displayImages() {
+inputImageCover.addEventListener("drop", function (e) {
+  e.preventDefault();
+  var files = e.dataTransfer.files;
+  var _loop2 = function _loop2(i) {
+    if (!files[i].type.match("image")) return "continue";
+    if (imagesArrayCover.every(function (imge) {
+      return imge.name !== files[i].name;
+    })) imagesArrayCover.push(files[i]);
+  };
+  for (var i = 0; i < files.length; i++) {
+    var _ret2 = _loop2(i);
+    if (_ret2 === "continue") continue;
+  }
+  displayCoverImage();
+});
+function displayOtherImages() {
   var images = "";
   imagesArray.forEach(function (image, index) {
-    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteOtherImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
   });
   output.style.display = "flex";
   output.innerHTML = images;
 }
-function deleteImage(index) {
+function displayCoverImage() {
+  var images = "";
+  imagesArrayCover.forEach(function (image, index) {
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteCoverImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+  });
+  outputCover.style.display = "flex";
+  outputCover.innerHTML = images;
+}
+function deleteOtherImage(index) {
   imagesArray.splice(index, 1);
-  displayImages();
+  displayOtherImages();
   if (imagesArray.length === 0) {
     output.style.display = "none";
+  }
+}
+function deleteCoverImage(index) {
+  imagesArrayCover.splice(index, 1);
+  displayCoverImage();
+  if (imagesArray.length === 0) {
+    outputCover.style.display = "none";
   }
 }
 function addTaille(_x) {
   return _addTaille.apply(this, arguments);
 }
 function _addTaille() {
-  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(taille) {
+  _addTaille = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(taille) {
     var line;
-    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-      while (1) switch (_context7.prev = _context7.next) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
         case 0:
           line = document.createElement("div");
           line.classList.add("quantity", "row");
@@ -159,9 +197,9 @@ function _addTaille() {
           lines.appendChild(line);
         case 4:
         case "end":
-          return _context7.stop();
+          return _context8.stop();
       }
-    }, _callee7);
+    }, _callee8);
   }));
   return _addTaille.apply(this, arguments);
 }
@@ -225,10 +263,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, resultMedia, tarif, selectTailles, message, btn_close;
-  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-    while (1) switch (_context6.prev = _context6.next) {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles, message, btn_close;
+  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+    while (1) switch (_context7.prev = _context7.next) {
       case 0:
         categorieselect = document.querySelector(".select-type-cat");
         cat_id = categorieselect ? categorieselect.value : 1;
@@ -248,16 +286,15 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context6.next = 10;
+        _context7.next = 10;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 10:
-        produit = _context6.sent;
-        resultMedia = [];
-        imagesArray.map( /*#__PURE__*/function () {
+        produit = _context7.sent;
+        imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
             var dataMedia, media;
             return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -265,7 +302,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                 case 0:
                   dataMedia = {
                     med_libelle: image.name.split(".")[0],
-                    med_ressource: image.name
+                    med_ressource: image.name,
+                    med_cover: true
                   };
                   _context4.next = 3;
                   return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(produit.data.product.pro_id), dataMedia, {
@@ -285,36 +323,25 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref5.apply(this, arguments);
           };
         }());
-        _context6.next = 15;
-        return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
-          tar_ht: tar_ht,
-          tar_ttc: tar_ttc
-        }, {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest"
-          }
-        });
-      case 15:
-        tarif = _context6.sent;
-        selectTailles = document.querySelectorAll(".select-taille");
-        Array.from(selectTailles, /*#__PURE__*/function () {
-          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
-            var dataselect, qty;
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(image) {
+            var dataMedia, media;
             return _regeneratorRuntime().wrap(function _callee5$(_context5) {
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
-                  dataselect = {
-                    tai_id: item.value,
-                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  dataMedia = {
+                    med_libelle: image.name.split(".")[0],
+                    med_ressource: image.name,
+                    med_cover: false
                   };
                   _context5.next = 3;
-                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(produit.data.product.pro_id), dataselect, {
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(produit.data.product.pro_id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  qty = _context5.sent;
+                  media = _context5.sent;
                 case 4:
                 case "end":
                   return _context5.stop();
@@ -325,19 +352,61 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
+        _context7.next = 15;
+        return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
+          tar_ht: tar_ht,
+          tar_ttc: tar_ttc
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 15:
+        tarif = _context7.sent;
+        selectTailles = document.querySelectorAll(".select-taille");
+        Array.from(selectTailles, /*#__PURE__*/function () {
+          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+              while (1) switch (_context6.prev = _context6.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context6.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(produit.data.product.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context6.sent;
+                case 4:
+                case "end":
+                  return _context6.stop();
+              }
+            }, _callee6);
+          }));
+          return function (_x4) {
+            return _ref7.apply(this, arguments);
+          };
+        }());
         message = document.querySelector(".parent-message");
         if (produit.data.msg === true || tarif.data.msgTarif === true) {
           message.style.display = "flex";
           btn_close = document.querySelector(".close");
           btn_close.addEventListener("click", function () {
-            window.location.href = "".concat(SITE_URL, "/admin/produits");
+            // window.location.href = `${SITE_URL}/admin/produits`;
+            message.style.display = "none";
+            window.location.reload();
           });
         }
       case 20:
       case "end":
-        return _context6.stop();
+        return _context7.stop();
     }
-  }, _callee6);
+  }, _callee7);
 })));
 
 //delete taille

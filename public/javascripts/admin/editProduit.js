@@ -58,7 +58,32 @@ button2.addEventListener("click", function () {
 var inputDiv = document.querySelector(".images");
 var inputImage = document.querySelector(".inputfile");
 var output = document.querySelector(".image-container");
+var updateInput = document.querySelector(".update_image");
+var inputImageCover = document.querySelector(".file-cover");
+var outputCover = document.querySelector(".output");
 var imagesArray = [];
+var imagesArrayCover = [];
+inputImageCover.addEventListener("change", function () {
+  var files = inputImageCover.files;
+  imagesArrayCover[0] = files[0];
+  displayCoverImage();
+  displayCoverImage();
+});
+function displayCoverImage() {
+  var images = "";
+  imagesArrayCover.forEach(function (image, index) {
+    images += "<div class=\"image\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span onclick=\"deleteCoverImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+  });
+  outputCover.style.display = "flex";
+  outputCover.innerHTML = images;
+}
+function deleteCoverImage(index) {
+  imagesArrayCover.splice(index, 1);
+  displayCoverImage();
+  if (imagesArray.length === 0) {
+    outputCover.style.display = "none";
+  }
+}
 inputImage.addEventListener("change", function () {
   var files = inputImage.files;
   for (var i = 0; i < files.length; i++) {
@@ -166,10 +191,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
-  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-    while (1) switch (_context7.prev = _context7.next) {
+  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+    while (1) switch (_context8.prev = _context8.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? true : false;
@@ -177,17 +202,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? true : false;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-        _context7.next = 8;
+        _context8.next = 8;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 8:
-        _context7.next = 10;
-        return _context7.sent;
+        _context8.next = 10;
+        return _context8.sent;
       case 10:
-        Myproduct = _context7.sent;
+        Myproduct = _context8.sent;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -198,17 +223,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context7.next = 14;
+        _context8.next = 14;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 14:
-        produit = _context7.sent;
+        produit = _context8.sent;
         // console.log(produit.data.product[0])
-        resultMedia = [];
-        imagesArray.map( /*#__PURE__*/function () {
+
+        imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
             var dataMedia, media;
             return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -219,19 +244,15 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                     med_ressource: image.name
                   };
                   _context4.next = 3;
-                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
+                  return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.name), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
                   media = _context4.sent;
-                  if (!media.data.med_ressource) {
-                    _context4.next = 6;
-                    break;
-                  }
-                  return _context4.abrupt("return", resultMedia.push(media.data.msgMedia));
-                case 6:
+                  console.log("cover", media);
+                case 5:
                 case "end":
                   return _context4.stop();
               }
@@ -241,38 +262,32 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref5.apply(this, arguments);
           };
         }());
-        _context7.next = 19;
-        return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
-          tar_ht: tar_ht,
-          tar_ttc: tar_ttc
-        }, {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest"
-          }
-        });
-      case 19:
-        tarif = _context7.sent;
-        selectTailles = document.querySelectorAll(".select-taille");
-        selectTailleExist = document.querySelectorAll(".select-taille-exist");
-        Array.from(selectTailles, /*#__PURE__*/function () {
-          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(item) {
-            var dataselect;
+        resultMedia = [];
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(image) {
+            var dataMedia, media;
             return _regeneratorRuntime().wrap(function _callee5$(_context5) {
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
-                  dataselect = {
-                    tai_id: item.value,
-                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  dataMedia = {
+                    med_libelle: image.name.split(".")[0],
+                    med_ressource: image.name,
+                    med_cover: false
                   };
                   _context5.next = 3;
-                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
-                  qty = _context5.sent;
-                case 4:
+                  media = _context5.sent;
+                  if (!media.data.med_ressource) {
+                    _context5.next = 6;
+                    break;
+                  }
+                  return _context5.abrupt("return", resultMedia.push(media.data.msgMedia));
+                case 6:
                 case "end":
                   return _context5.stop();
               }
@@ -282,9 +297,22 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        Array.from(selectTailleExist, /*#__PURE__*/function () {
+        _context8.next = 20;
+        return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
+          tar_ht: tar_ht,
+          tar_ttc: tar_ttc
+        }, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest"
+          }
+        });
+      case 20:
+        tarif = _context8.sent;
+        selectTailles = document.querySelectorAll(".select-taille");
+        selectTailleExist = document.querySelectorAll(".select-taille-exist");
+        Array.from(selectTailles, /*#__PURE__*/function () {
           var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(item) {
-            var dataselect, qty;
+            var dataselect;
             return _regeneratorRuntime().wrap(function _callee6$(_context6) {
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
@@ -293,7 +321,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                     qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
                   };
                   _context6.next = 3;
-                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
@@ -310,50 +338,80 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref7.apply(this, arguments);
           };
         }());
+        Array.from(selectTailleExist, /*#__PURE__*/function () {
+          var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+              while (1) switch (_context7.prev = _context7.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context7.next = 3;
+                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context7.sent;
+                case 4:
+                case "end":
+                  return _context7.stop();
+              }
+            }, _callee7);
+          }));
+          return function (_x4) {
+            return _ref8.apply(this, arguments);
+          };
+        }());
         message = document.querySelector(".parent-message");
         if (produit.data.product[0] === 1 || tarif.data.msgTarif === true || resultMedia[0] === true) {
           message.style.display = "flex";
           btn_close = document.querySelector(".close");
           btn_close.addEventListener("click", function () {
-            window.location.href = "".concat(SITE_URL, "/admin/produits");
+            // window.location.href = `${SITE_URL}/admin/produits`;
+            message.style.display = "none";
+            window.location.reload();
           });
         }
-      case 26:
+      case 27:
       case "end":
-        return _context7.stop();
+        return _context8.stop();
     }
-  }, _callee7);
+  }, _callee8);
 })));
 
 //delete taille
 Array.from(btns_delete, function (item) {
-  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
     var Myproduct, qty_id, qty;
-    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-      while (1) switch (_context8.prev = _context8.next) {
+    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+      while (1) switch (_context9.prev = _context9.next) {
         case 0:
           lines.removeChild(this.parentNode);
-          _context8.next = 3;
+          _context9.next = 3;
           return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 3:
-          Myproduct = _context8.sent;
+          Myproduct = _context9.sent;
           qty_id = item.previousElementSibling.children[1].children[0].name;
-          _context8.next = 7;
+          _context9.next = 7;
           return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 7:
-          qty = _context8.sent;
+          qty = _context9.sent;
         case 8:
         case "end":
-          return _context8.stop();
+          return _context9.stop();
       }
-    }, _callee8, this);
+    }, _callee9, this);
   })));
 });

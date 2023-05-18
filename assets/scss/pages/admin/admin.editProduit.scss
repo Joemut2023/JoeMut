@@ -114,6 +114,7 @@
                 flex-direction: row;
                 justify-content:flex-start;
                 align-items: center;
+                flex-wrap: wrap;
                 gap: 10px;
                 padding: 40px 20px;
                 border: 1px solid rgba(0, 0, 0, 0.2);
@@ -179,6 +180,53 @@
                       height: 100%;
                       object-fit: contain;
                   }
+                }
+              }
+
+              .output{
+                width: 100%;
+                min-height: 150px;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 15px;
+                position: relative;
+                border-radius: 5px;
+                margin-top: 20px;
+                display: none;
+
+                .image {
+                  height: 150px;
+                  border-radius: 5px;
+                  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+                  overflow: hidden;
+                  position: relative;
+
+                  img {
+                    height: 100%;
+                    width: 100%;
+                  }
+
+                  span {
+                    position: absolute;
+                    top: 2px;
+                    right: 4px;
+                    cursor: pointer;
+                    display: inline-block;
+                    font-size: 16px;
+                    background: rgb(226, 84, 84);
+                    color: white;
+                    padding: 0px 5px;
+                    border-radius: 50%;
+
+                    &:hover {
+                      opacity: 0.8;
+                    }
+                  }
+                }
+
+                .span--hiden {
+                  visibility: hidden;
                 }
               }
              

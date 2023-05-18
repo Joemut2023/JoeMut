@@ -1,3 +1,5 @@
+
+
 const button1 = document.querySelector(".btn-tab-1");
 const button2 = document.querySelector(".btn-tab-2");
 const button3 = document.querySelector(".btn-tab-3");
@@ -97,15 +99,26 @@ button2.addEventListener("click", function () {
 const inputDiv = document.querySelector(".images");
 const inputImage = document.querySelector(".file");
 const output = document.querySelector("output");
+const inputImageCover = document.querySelector(".file-cover");
+const outputCover = document.querySelector(".output");
+
 let imagesArray = [];
+let imagesArrayCover = [];
 
 inputImage.addEventListener("change", () => {
   const files = inputImage.files;
   for (let i = 0; i < files.length; i++) {
     imagesArray.push(files[i]);
   }
-  console.log(imagesArray);
-  displayImages();
+  displayOtherImages();
+});
+
+inputImageCover.addEventListener("change", () => {
+  const files = inputImageCover.files;
+    imagesArrayCover[0] = files[0];
+
+   displayCoverImage()
+  displayCoverImage();
 });
 
 inputImage.addEventListener("drop", (e) => {
@@ -117,29 +130,63 @@ inputImage.addEventListener("drop", (e) => {
     if (imagesArray.every((imge) => imge.name !== files[i].name))
       imagesArray.push(files[i]);
   }
-  displayImages();
+  displayOtherImages();
 });
 
-function displayImages() {
+inputImageCover.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const files = e.dataTransfer.files;
+  for (let i = 0; i < files.length; i++) {
+    if (!files[i].type.match("image")) continue;
+
+    if (imagesArrayCover.every((imge) => imge.name !== files[i].name))
+      imagesArrayCover.push(files[i]);
+  }
+  displayCoverImage();
+});
+
+
+function displayOtherImages() {
   let images = "";
   imagesArray.forEach((image, index) => {
     images += `<div class="image">
                   <img src="${URL.createObjectURL(image)}" alt="image">
-                  <span onclick="deleteImage(${index})"><i class="fa-solid fa-xmark"></i></span>
+                  <span onclick="deleteOtherImage(${index})"><i class="fa-solid fa-xmark"></i></span>
                 </div>`;
   });
   output.style.display = "flex";
   output.innerHTML = images;
 }
+function displayCoverImage() {
+  let images = "";
+  imagesArrayCover.forEach((image, index) => {
+    images += `<div class="image">
+                  <img src="${URL.createObjectURL(image)}" alt="image">
+                  <span onclick="deleteCoverImage(${index})"><i class="fa-solid fa-xmark"></i></span>
+                </div>`;
+  });
+  outputCover.style.display = "flex";
+  outputCover.innerHTML = images;
+}
 
-function deleteImage(index) {
+function deleteOtherImage(index) {
   imagesArray.splice(index, 1);
-  displayImages();
+  displayOtherImages();
 
   if (imagesArray.length === 0) {
     output.style.display = "none";
   }
 }
+function deleteCoverImage(index) {
+  imagesArrayCover.splice(index, 1);
+  displayCoverImage();
+
+  if (imagesArray.length === 0) {
+    outputCover.style.display = "none";
+  }
+}
+
+
 
 async function addTaille(taille) {
   const line = document.createElement("div");
@@ -250,11 +297,31 @@ btnEnregistrer.addEventListener("click", async function () {
     },
   });
 
-  let resultMedia = [];
+    imagesArrayCover.map(async (image) => {
+      const dataMedia = {
+        med_libelle: image.name.split(".")[0],
+        med_ressource: image.name,
+        med_cover:true,
+      };
+      const media = await axios.post(
+        `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        dataMedia,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+
+      // console.log("cover",media)
+    });
+
+
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
       med_ressource: image.name,
+      med_cover:false
     };
     const media = await axios.post(
       `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
@@ -265,7 +332,7 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    // console.log(media);
+    // console.log("others",media)
   });
 
   const tarif = await axios.post(
@@ -306,7 +373,9 @@ btnEnregistrer.addEventListener("click", async function () {
     message.style.display = "flex";
     const btn_close = document.querySelector(".close");
     btn_close.addEventListener("click", function () {
-      window.location.href = `${SITE_URL}/admin/produits`;
+      // window.location.href = `${SITE_URL}/admin/produits`;
+       message.style.display = "none";
+       window.location.reload();
     });
   }
 });
