@@ -6287,36 +6287,36 @@
   inset: 5px 0px auto auto;
 }
 
-#admin-page-categories {
+#admin-page-typeCategories {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-#admin-page-categories .ajouter-typecat {
+#admin-page-typeCategories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
-#admin-page-categories .ajouter-typecat .fil-ariane-item {
+#admin-page-typeCategories .ajouter-typecat .fil-ariane-item {
   text-decoration: none;
   color: #25b9d7;
 }
-#admin-page-categories .ajouter-typecat .button button {
+#admin-page-typeCategories .ajouter-typecat .button button {
   width: 100px;
   color: #fff;
 }
-#admin-page-categories .table-content {
+#admin-page-typeCategories .table-content {
   margin-top: 20px;
   background-color: #fff;
 }
-#admin-page-categories .table-content td,
-#admin-page-categories .table-content th {
+#admin-page-typeCategories .table-content td,
+#admin-page-typeCategories .table-content th {
   vertical-align: middle;
   font-size: 0.8rem;
 }
-#admin-page-categories .table-content a {
+#admin-page-typeCategories .table-content a {
   text-decoration: none !important;
 }
-#admin-page-categories .table-content .fa-magnifying-glass,
-#admin-page-categories .table-content .fa-pen {
+#admin-page-typeCategories .table-content .fa-magnifying-glass,
+#admin-page-typeCategories .table-content .fa-pen {
   color: #232323;
 }
 
@@ -6419,31 +6419,31 @@
   color: #fff;
 }
 
-#admin-page-souscat {
+#admin-page-categories {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-#admin-page-souscat .ajouter-typecat {
+#admin-page-categories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
-#admin-page-souscat .ajouter-typecat .fil-ariane-item {
+#admin-page-categories .ajouter-typecat .fil-ariane-item {
   text-decoration: none;
   color: #25b9d7;
 }
-#admin-page-souscat .ajouter-typecat #cat {
+#admin-page-categories .ajouter-typecat #cat {
   font-size: 15px;
 }
-#admin-page-souscat .ajouter-typecat .button button {
+#admin-page-categories .ajouter-typecat .button button {
   width: 100px;
   color: white;
 }
-#admin-page-souscat .table {
+#admin-page-categories .table {
   background-color: #fff;
   margin-top: 5%;
   padding: 2%;
 }
-#admin-page-souscat .table .fa-pen {
+#admin-page-categories .table .fa-pen {
   color: #232323;
 }
 

@@ -1,4 +1,4 @@
-#admin-page-souscat {
+#admin-page-typeCategories {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
   .ajouter-typecat {
@@ -11,25 +11,32 @@
       color: $color-blue-admin;
     }
 
-    #cat {
-      font-size: 15px;
-    }
-
     .button {
       button {
         width: 100px;
-        color: white;
+        color: $color-white;
       }
     }
   }
 
-  .table {
+  .table-content {
+    margin-top: 20px;
     background-color: $color-white;
-    margin-top: 5%;
-    padding: 2%;
 
+    td,
+    th {
+      vertical-align: middle;
+      font-size: 0.8rem;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    .fa-magnifying-glass,
     .fa-pen {
       color: $color-black;
     }
+
   }
 }

@@ -11,32 +11,25 @@
       color: $color-blue-admin;
     }
 
+    #cat {
+      font-size: 15px;
+    }
+
     .button {
       button {
         width: 100px;
-        color: $color-white;
+        color: white;
       }
     }
   }
 
-  .table-content {
-    margin-top: 20px;
+  .table {
     background-color: $color-white;
+    margin-top: 5%;
+    padding: 2%;
 
-    td,
-    th {
-      vertical-align: middle;
-      font-size: 0.8rem;
-    }
-
-    a {
-      text-decoration: none !important;
-    }
-
-    .fa-magnifying-glass,
     .fa-pen {
       color: $color-black;
     }
-
   }
 }
