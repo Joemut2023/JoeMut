@@ -28,7 +28,8 @@ const {
   Transporteur,
   Expedition,
   Detail_expedition,
-  Retour
+  Retour,
+  Facturation
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
@@ -723,6 +724,13 @@ router.post('/commande-add-paiement-for-document',async (req,res)=>{
       pai_montant,
       pai_date:new Date(new Date().setDate(new Date().getDate()))
     });
+    let fac_montant = await Paiement.sum('pai_montant',{
+      where:{doc_id}
+    });
+    let facturation = await Facturation.update({
+      fac_montant
+    },{where:{com_id}});
+
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     console.log(error);
@@ -753,6 +761,12 @@ router.post('/commande-add-facture-paiement',async (req,res)=>{
       pai_date,
       com_id
     });
+    let fac_montant = await Paiement.sum('pai_montant',{
+      where:{doc_id}
+    });
+    let facturation = await Facturation.update({
+      fac_montant
+    },{where:{com_id}});
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     console.log(error);
