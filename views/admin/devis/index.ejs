@@ -154,7 +154,10 @@
                                   <a class="btn btn-primary me-1" title="Prévisualiser" href="/admin/devis/view/<%= commande.com_id %>"><i class="fa-solid fa-pen"></i></a>
                                   <a class="btn btn-primary me-1" href="#" title="Bon de livraison"><i class="fa-solid fa-truck-moving"></i></a>
                                   <a class="btn btn-primary me-1" href="#" title="Bon d'essayage"><i class="fa-solid fa-shirt"></i></a>
-                                  <a class="btn btn-primary" href="#" title="Facture"><i class="fa-solid fa-money-bill"></i></a>
+                                  <form action="/admin/documents/facture" method="post">
+                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                    <button class="btn btn-primary" title="Facture"><i class="fa-solid fa-money-bill"></i></button>
+                                  </form>
                                 </div>
                             </td>
                         </tr>

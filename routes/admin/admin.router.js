@@ -19,6 +19,7 @@ const applyRouter = require("./admin.apply");
 const transporteurRouter = require("./admin.transporteur");
 const sousCategoriesRouter = require("./admin.sousCat")
 const produitLocationRouter = require("./admin.produits.location")
+const documentRouter = require("./admin.document")
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout, adminIsAuth], devisRouter);
@@ -38,4 +39,5 @@ router.use("/promo", [adminLayout, adminIsAuth], promoRouter);
 router.use("/apply", [adminLayout, adminIsAuth], applyRouter);
 router.use("/transporteurs", [adminLayout, adminIsAuth], transporteurRouter);
 router.use("/produits-en-location", [adminLayout, adminIsAuth],produitLocationRouter);
+router.use("/documents", [adminLayout, adminIsAuth],documentRouter);
 module.exports = router;
