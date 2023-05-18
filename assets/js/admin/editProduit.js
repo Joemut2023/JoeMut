@@ -243,11 +243,30 @@ btnEnregistrer.addEventListener("click", async function () {
   );
   // console.log(produit.data.product[0])
 
+   imagesArrayCover.map(async(image) => {
+     const dataMedia = {
+       med_libelle: image.name.split(".")[0],
+       med_ressource: image.name,
+     };
+     const media = await axios.put(
+       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.name}`,
+       dataMedia,
+       {
+         headers: {
+           "X-Requested-With": "XMLHttpRequest",
+         },
+       }
+     );
+
+     console.log("cover", media);
+   });
+
   let resultMedia = [];
   imagesArray.map(async (image) => {
     const dataMedia = {
       med_libelle: image.name.split(".")[0],
       med_ressource: image.name,
+      med_cover:false,
     };
     const media = await axios.post(
       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,

@@ -301,7 +301,7 @@ router.post("/media/:id", async function (req, res) {
 });
 //udpate cover image
 router.put("/media/:pro_id/:med_id", async function (req, res) {
-  const { med_libelle, med_ressource, med_cover } = req.body;
+  const { med_libelle, med_ressource} = req.body;
   try {
     const produit = await Produit.findOne({
       where: { pro_id: req.params.pro_id },
@@ -313,14 +313,14 @@ router.put("/media/:pro_id/:med_id", async function (req, res) {
         tym_id: 1,
         med_libelle,
         med_ressource,
+        med_cover:true,
         mimetype: "image/jpeg",
       },
       {
         where: {
           [Op.and]: [
             { pro_id: produit.pro_id },
-            { med_id: req.params.med_id },
-            { med_cover: med_cover },
+            { med_id: req.params.med_id }
           ],
         },
       }

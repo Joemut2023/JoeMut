@@ -313,8 +313,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context4.sent;
-                  console.log("cover", media);
-                case 5:
+                case 4:
                 case "end":
                   return _context4.stop();
               }
@@ -343,8 +342,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context5.sent;
-                  console.log("others", media);
-                case 5:
+                case 4:
                 case "end":
                   return _context5.stop();
               }

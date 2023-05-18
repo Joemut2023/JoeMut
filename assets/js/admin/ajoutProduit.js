@@ -313,7 +313,7 @@ btnEnregistrer.addEventListener("click", async function () {
         }
       );
 
-      console.log("cover",media)
+      // console.log("cover",media)
     });
 
 
@@ -332,7 +332,7 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    console.log("others",media)
+    // console.log("others",media)
   });
 
   const tarif = await axios.post(
