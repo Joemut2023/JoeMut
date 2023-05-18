@@ -18,6 +18,26 @@
 
   .product-container {
     .bloc-left {
+      .ref {
+                margin-bottom: 15px;
+                .title {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-bottom: 20px;
+
+                  h2 {
+                    margin-bottom: 0px;
+                    font-weight: 600;
+                    font-size: 22px;
+                  }
+
+                  span {
+                    margin-top: 3px;
+                    color: rgb(41, 144, 228);
+                  }
+                }
+              }
       .left {
         div input {
           font-size: 20px;
@@ -201,26 +221,26 @@
               padding: 0px 20px;
               margin-top: 20px;
 
-              .ref {
-                margin-bottom: 15px;
-                .title {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  margin-bottom: 20px;
+              // .ref {
+              //   margin-bottom: 15px;
+              //   .title {
+              //     display: flex;
+              //     align-items: center;
+              //     gap: 10px;
+              //     margin-bottom: 20px;
 
-                  h2 {
-                    margin-bottom: 0px;
-                    font-weight: 600;
-                    font-size: 22px;
-                  }
+              //     h2 {
+              //       margin-bottom: 0px;
+              //       font-weight: 600;
+              //       font-size: 22px;
+              //     }
 
-                  span {
-                    margin-top: 3px;
-                    color: rgb(41, 144, 228);
-                  }
-                }
-              }
+              //     span {
+              //       margin-top: 3px;
+              //       color: rgb(41, 144, 228);
+              //     }
+              //   }
+              // }
 
               .quantity {
                 margin-bottom: 20px;

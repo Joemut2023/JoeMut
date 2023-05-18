@@ -1,21 +1,27 @@
 <div id="page-admin-editProduit">
   <div class="alert alert-success parent-message" role="alert">
-    <span style="font-size:1.4rem;color: #61ce70;"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
-   <span>Produit modifié avec succès</span> 
-   <span style="font-size:1.4rem;color: #61ce70;cursor: pointer;" class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-</div>
+    <span style="font-size: 1.4rem; color: #61ce70"
+      ><i class="fa fa-check-circle" aria-hidden="true"></i
+    ></span>
+    <span>Produit modifié avec succès</span>
+    <span
+      style="font-size: 1.4rem; color: #61ce70; cursor: pointer"
+      class="close"
+      ><i class="fa fa-times" aria-hidden="true"></i
+    ></span>
+  </div>
   <div class="product-container row">
-    <div class="bloc-left col-md-8">
+    <div class="bloc-left">
       <div class="row">
-        <div class="left col-md-8">
+        <div class="left col-md-6">
           <div class="form-group has-feedback has-feedback-left">
+            <label for="">Nom du produit</label>
             <input
               type="text"
               class="form-control pro-libelle"
               placeholder="Saisissez le nom de votre produit"
               value="<%= produit.pro_libelle %>"
               required
-
             />
             <span
               class="glyphicon glyphicon-info-sign form-control-feedback"
@@ -23,28 +29,48 @@
           </div>
           <p class="text">Cette valeur ne doit pas être vide</p>
         </div>
-
-        <!-- <div class="right col-md-4">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>produit standard</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-          <span><i class="fa-solid fa-circle-info"></i></span>
-        </div> -->
-      </div>
-    </div>
-
+        <div class="col-md-2"></div>
         <div class="bloc-right col-md-4">
-      <div>
-        <span><i class="fa-solid fa-rectangle-list"></i></span>
-        <p><a href="/admin/produits" style="color:gray;text-decoration: none;">Liste des produits</a></p>
+          <div>
+            <span><i class="fa-solid fa-rectangle-list"></i></span>
+            <p>
+              <a
+                href="/admin/produits"
+                style="color: gray; text-decoration: none"
+                >Liste des produits</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="ref">
+            <!-- <div class="title">
+                    <h2>Réference</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div> -->
+            <div class="form-group has-feedback has-feedback-left">
+              <label for="">Référence du produit</label>
+              <input
+                type="text"
+                name="<%= produit.pro_id %>"
+                class="form-control pro-ref"
+                required
+                value="<%= produit.pro_ref %>"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <form action="/admin/produits/upload-images" method="POST" enctype="multipart/form-data">
+  <form
+    action="/admin/produits/upload-images"
+    method="POST"
+    enctype="multipart/form-data"
+  >
     <div class="tabs-container row">
       <div class="tabs">
         <nav>
@@ -111,46 +137,33 @@
               <div class="col-md-8 block-image">
                 <div class="images">
                   <div class="item image-add">
-                        <label for="file"
-                        ><i class="fa fa-plus added" aria-hidden="true"></i
-                      ></label>
-                      <input
-                        type="file"
-                        id="file"
-                        multiple="multiple"
-                        accept="image/*"
-                        style="display:none"
-                        class="inputfile"
-                      />
+                    <label for="file"
+                      ><i class="fa fa-plus added" aria-hidden="true"></i
+                    ></label>
+                    <input
+                      type="file"
+                      id="file"
+                      multiple="multiple"
+                      accept="image/*"
+                      style="display: none"
+                      class="inputfile"
+                    />
                   </div>
-                  
-                    <% media.forEach(element => { %>
-                      <div class="item cover-image">
-                     <img src=/images/produits/<%= element.med_ressource %> alt="" srcset="">
-                     </div>
-                    <% }) %>
-                    <!-- <div>
+
+                  <% media.forEach(element => { %>
+                  <div class="item cover-image">
+                    <img src=/images/produits/<%= element.med_ressource %>
+                    alt="" srcset="">
+                  </div>
+                  <% }) %>
+                  <!-- <div>
                       <p>Image couverture</p>
                     </div> -->
-                    
-                  
-                  <div class="image-container">
 
-                  </div>
+                  <div class="image-container"></div>
                 </div>
-             
               </div>
               <div class="right col-md-4">
-                <div class="ref">
-                  <div class="title">
-                    <h2>Réference</h2>
-                    <span><i class="fa-solid fa-circle-info"></i></span>
-                  </div>
-                  <div class="form-group has-feedback has-feedback-left">
-                    <input type="text" name="<%= produit.pro_id %>" class="form-control pro-ref" required value="<%= produit.pro_ref %>"  />
-                  </div>
-                </div>
-
                 <!-- <div class="quantity">
                   <div class="title">
                     <h2>Quantité</h2>
@@ -176,14 +189,26 @@
               <div class="col-md-8 left">
                 <div>
                   <p class="title">Récapulatif</p>
-                  <div class="content pro-details" contenteditable="true" style="background-color: white;width: 100%;height:50vh;padding:5px 8px;outline: none;">
-                    <span style="font-weight: 600;">Quantité initiale : <span> <%= quantiteInitial %></span> </span> <br>
-                    <span style="font-weight: 600;">Tailles disponibles :</span>
+                  <div
+                    class="content pro-details"
+                    contenteditable="true"
+                    style="
+                      background-color: white;
+                      width: 100%;
+                      height: 50vh;
+                      padding: 5px 8px;
+                      outline: none;
+                    "
+                  >
+                    <span style="font-weight: 600"
+                      >Quantité initiale : <span> <%= quantiteInitial %></span>
+                    </span>
+                    <br />
+                    <span style="font-weight: 600">Tailles disponibles :</span>
 
                     <% produit.Quantites.forEach(element => { %>
-                     <p><%= element.Taille.tai_libelle %></p>
+                    <p><%= element.Taille.tai_libelle %></p>
                     <% }) %>
-                    
                   </div>
                   <p class="caractere">1 de 800 caractères autorisées</p>
                 </div>
@@ -191,10 +216,21 @@
                   <p class="title title-desc">Description</p>
                   <div>
                     <!-- <textarea class="content"></textarea> -->
-                    
-                       <textarea class="pro-description" required style="background-color: white;width: 100%;height:20vh;padding:5px 8px;outline: none;border:none;"><%= produit.pro_description %></textarea>
-  
-                  
+
+                    <textarea
+                      class="pro-description"
+                      required
+                      style="
+                        background-color: white;
+                        width: 100%;
+                        height: 20vh;
+                        padding: 5px 8px;
+                        outline: none;
+                        border: none;
+                      "
+                    >
+<%= produit.pro_description %></textarea
+                    >
                   </div>
                   <p class="caractere">0 de 21844 caractères autorisées</p>
                 </div>
@@ -215,7 +251,6 @@
                           class="form-control tar-ht"
                           value="<%= produit.Tarifs[0].tar_ht %>"
                           aria-label="Dollar amount (with dot and two decimal places)"
-                          
                         />
                         <span class="input-group-text">€</span>
                       </div>
@@ -272,14 +307,19 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
-                      <option value="<%= produit.Categorie.Type_categorie.tyc_id %>" selected><%= produit.Categorie.Type_categorie.tyc_libelle %></option>
-                      <% typeCategories.forEach(element => { %>
-                        <% if (element.tyc_id !== produit.Categorie.Type_categorie.tyc_id) { %>
-                            <option value="<%= element.tyc_id %>"><%= element.tyc_libelle %></option>
-                        <% } %>
-                       
-                      <% }) %>
-                       
+                        <option
+                          value="<%= produit.Categorie.Type_categorie.tyc_id %>"
+                          selected
+                        >
+                          <%= produit.Categorie.Type_categorie.tyc_libelle %>
+                        </option>
+                        <% typeCategories.forEach(element => { %> <% if
+                        (element.tyc_id !==
+                        produit.Categorie.Type_categorie.tyc_id) { %>
+                        <option value="<%= element.tyc_id %>">
+                          <%= element.tyc_libelle %>
+                        </option>
+                        <% } %> <% }) %>
                       </select>
                     </div>
                     <p class="tit-cat">Catégories</p>
@@ -288,15 +328,18 @@
                         class="form-select cat-select"
                         aria-label="Default select example"
                       >
-                      <option value="<%= produit.Categorie.cat_id %>" selected><%= produit.Categorie.cat_libelle %></option>
-                      <% categories.forEach(element => { %>
-                        <% if (element.cat_id !== produit.Categorie.cat_id ) { %>
-                                <option value="<%= element.cat_id %>"><%= element.cat_libelle %></option>
-                        <% } %> 
-
-                        
-                      <% }) %>
-                      
+                        <option
+                          value="<%= produit.Categorie.cat_id %>"
+                          selected
+                        >
+                          <%= produit.Categorie.cat_libelle %>
+                        </option>
+                        <% categories.forEach(element => { %> <% if
+                        (element.cat_id !== produit.Categorie.cat_id ) { %>
+                        <option value="<%= element.cat_id %>">
+                          <%= element.cat_libelle %>
+                        </option>
+                        <% } %> <% }) %>
                       </select>
                     </div>
                   </div>
@@ -314,14 +357,16 @@
                   </div> -->
                 </div>
               </div>
-                <div class="left col-md-4 inputsChecks">
+              <div class="left col-md-4 inputsChecks">
                 <div class="title">
                   <p>Autres</p>
-                  <span style="color:rgb(41, 144, 228)"><i class="fa-solid fa-circle-info"></i></span>
+                  <span style="color: rgb(41, 144, 228)"
+                    ><i class="fa-solid fa-circle-info"></i
+                  ></span>
                 </div>
                 <div class="form-check">
                   <% if(produit.pro_new_collect === true){ %>
-                    <input
+                  <input
                     class="form-check-input pro-new-collect"
                     type="checkbox"
                     value=""
@@ -329,21 +374,21 @@
                     checked
                   />
                   <% } else { %>
-                      <input
+                  <input
                     class="form-check-input pro-new-collect"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
-                   <% } %>
-                 
+                  <% } %>
+
                   <label class="form-check-label" for="flexCheckDefault">
                     Nouvelle collection
                   </label>
                 </div>
                 <div class="form-check">
-                       <% if(produit.pro_en_avant === true){ %>
-                   <input
+                  <% if(produit.pro_en_avant === true){ %>
+                  <input
                     class="form-check-input pro-en-avant"
                     type="checkbox"
                     value=""
@@ -351,20 +396,20 @@
                     checked
                   />
                   <% } else { %>
-                      <input
+                  <input
                     class="form-check-input pro-en-avant"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
-                   <% } %>
+                  <% } %>
                   <label class="form-check-label" for="flexCheckDefault">
                     En avant
                   </label>
                 </div>
                 <div class="form-check">
-                      <% if(produit.pro_statut === true){ %>
-                    <input
+                  <% if(produit.pro_statut === true){ %>
+                  <input
                     class="form-check-input pro-statut"
                     type="checkbox"
                     value=""
@@ -372,13 +417,13 @@
                     checked
                   />
                   <% } else { %>
-                     <input
+                  <input
                     class="form-check-input pro-statut"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
                   />
-                   <% } %>
+                  <% } %>
 
                   <label class="form-check-label" for="flexCheckDefault">
                     Statut
@@ -390,7 +435,7 @@
             </div>
           </div>
 
-         <div
+          <div
             class="tab-pane fade content-quantite"
             id="nav-quantite"
             role="tabpanel"
@@ -398,7 +443,6 @@
           >
             <p class="title">Quantités</p>
             <div class="row qty">
-            
               <div class="left col-md-8 col-sm-12">
                 <div class="lines">
                   <div class="row">
@@ -406,39 +450,43 @@
                     <div class="col-md-5"><p>Quantité</p></div>
                     <div class="col-md-2"></div>
                   </div>
-                    <% produit.Quantites.forEach(element => { %>
-                          <div class="quantity row">
+                  <% produit.Quantites.forEach(element => { %>
+                  <div class="quantity row">
                     <div class="col-md-5 qty-left">
                       <div class="form-group">
                         <select
                           class="form-select select-taille-exist"
                           aria-label="Default select example"
                         >
-                          <option value="<%= element.Taille.tai_id %>" selected><%= element.Taille.tai_libelle %></option>
-                          <% tailles.forEach(taille => { %>
-                            
-                              <% if (taille.tai_id !== element.Taille.tai_id) { %>
-                                <option value="<%= taille.tai_id %>">
-                                <%= taille.tai_libelle %></option>
-                               
-                              <% } %>
-                              
-                          <% }) %>
+                          <option value="<%= element.Taille.tai_id %>" selected>
+                            <%= element.Taille.tai_libelle %>
+                          </option>
+                          <% tailles.forEach(taille => { %> <% if (taille.tai_id
+                          !== element.Taille.tai_id) { %>
+                          <option value="<%= taille.tai_id %>">
+                            <%= taille.tai_libelle %>
+                          </option>
+
+                          <% } %> <% }) %>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-5 qty-right">
                       <div class="title-qty"></div>
                       <div class="form-group">
-                        <input type="number" name="<%= element.qua_id %>" value="<%= element.qua_nbre %>" class="form-control" />
+                        <input
+                          type="number"
+                          name="<%= element.qua_id %>"
+                          value="<%= element.qua_nbre %>"
+                          class="form-control"
+                        />
                       </div>
                     </div>
                     <div class="col-md-2 delete">
                       <span><i class="fa-solid fa-trash"></i></span>
                     </div>
                   </div>
-              <% }) %>
-                  
+                  <% }) %>
                 </div>
                 <div class="add-cat">
                   <div class="title">
@@ -462,7 +510,11 @@
                     <!-- <span><i class="fa-solid fa-circle-info"></i></span> -->
                   </div>
                   <div class="form-group">
-                    <input type="text" value="<%= quantiteInitial %>" class="form-control qty-max" />
+                    <input
+                      type="text"
+                      value="<%= quantiteInitial %>"
+                      class="form-control qty-max"
+                    />
                   </div>
                 </div>
               </div>
@@ -934,19 +986,17 @@
         <!-- <div class="tabs-right col-md-4"></div> -->
       </div>
     </div>
-      <div class="navbar">
-    <div class="buttons">
-      <div>
-        <button type="button" class="btn btn-secondary">Previsualiser</button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-primary update">Modifier</button>
+    <div class="navbar">
+      <div class="buttons">
+        <div>
+          <button type="button" class="btn btn-secondary">Previsualiser</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary update">Modifier</button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
-
-
 </div>
 
 <script src="/javascripts/admin/editProduit.js"></script>

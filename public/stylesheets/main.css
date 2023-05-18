@@ -7267,6 +7267,24 @@ body {
   top: 0;
   right: 8px;
 }
+#page-admin-ajoutProduit .product-container .bloc-left .ref {
+  margin-bottom: 15px;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .ref .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .ref .title h2 {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 22px;
+}
+#page-admin-ajoutProduit .product-container .bloc-left .ref .title span {
+  margin-top: 3px;
+  color: rgb(41, 144, 228);
+}
 #page-admin-ajoutProduit .product-container .bloc-left .left div input {
   font-size: 20px;
 }
@@ -7424,24 +7442,6 @@ body {
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right {
   padding: 0px 20px;
   margin-top: 20px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref {
-  margin-bottom: 15px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title h2 {
-  margin-bottom: 0px;
-  font-weight: 600;
-  font-size: 22px;
-}
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .ref .title span {
-  margin-top: 3px;
-  color: rgb(41, 144, 228);
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .img .right .quantity {
   margin-bottom: 20px;

@@ -11,10 +11,11 @@
     ></span>
   </div>
   <div class="product-container row">
-    <div class="bloc-left col-md-8">
+    <div class="bloc-left">
       <div class="row">
-        <div class="left col-md-8">
+        <div class="left col-md-6">
           <div class="form-group has-feedback has-feedback-left">
+            <label for="">Nom du produit</label>
             <input
               type="text"
               class="form-control pro-libelle"
@@ -27,15 +28,31 @@
           </div>
           <p class="text">Cette valeur ne doit pas être vide</p>
         </div>
-      </div>
-    </div>
-
-    <div class="bloc-right col-md-4">
+        <div class="col-md-2"></div>
+        <div class="bloc-right col-md-4">
       <div>
         <span><i class="fa-solid fa-rectangle-list"></i></span>
         <p><a href="/admin/produits" style="color:gray;text-decoration: none;">Liste des produits</a></p>
       </div>
     </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="ref">
+                  <!-- <div class="title">
+                    <h2>Réference</h2>
+                    <span><i class="fa-solid fa-circle-info"></i></span>
+                  </div> -->
+                  <div class="form-group has-feedback has-feedback-left">
+                    <label for="">Référence du produit</label>
+                    <input type="text" class="form-control pro-ref" placeholder="Référence du produit" required />
+                  </div>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    
   </div>
 
   <form
@@ -127,7 +144,7 @@
                 <output></output>
               </div>
               <div class="right col-md-4">
-                <div class="ref">
+                <!-- <div class="ref">
                   <div class="title">
                     <h2>Réference</h2>
                     <span><i class="fa-solid fa-circle-info"></i></span>
@@ -135,7 +152,7 @@
                   <div class="form-group has-feedback has-feedback-left">
                     <input type="text" class="form-control pro-ref" required />
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 
