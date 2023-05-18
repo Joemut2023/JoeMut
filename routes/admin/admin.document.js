@@ -78,7 +78,7 @@ router.post('/bon-essayage',async (req,res)=>{
     } catch (error) {
         res.redirect(`/admin/devis`);
     }
-})
+});
 router.post('/bon-livraison',async (req,res)=>{
     const {com_id} = req.body;
     const usr_id = req.session.adminId
@@ -92,6 +92,14 @@ router.post('/bon-livraison',async (req,res)=>{
         res.redirect(`/admin/devis`);
     } catch (error) {
         res.redirect(`/admin/devis`);
+    }
+});
+router.post('/devis-mail',async (req,res)=>{
+    const  {com_id} = req.body;
+    try {
+        
+    } catch (error) {
+        
     }
 })
 module.exports = router;
