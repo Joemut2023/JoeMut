@@ -65,8 +65,13 @@ router.post("/", async (req, res) => {
     pad_remise = panierDetail.pad_remise
       ? panierDetail.pad_remise + pad_remise
       : pad_remise;
+<<<<<<< HEAD
     let pad_ttc =
       panierDetail.pad_ht + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
+=======
+    // let pad_ttc =
+    //   panierDetail.pad_ht + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
+>>>>>>> feature/essayage
 
     const newPanierDetail = await Panier_detail.update(
       { pad_remise, pad_code_promo: prm_code, pad_ttc },
