@@ -6252,6 +6252,94 @@
   font-size: 0.9rem;
 }
 
+#page-admin-editAdresse {
+  font-family: "Manrope", sans-serif;
+}
+#page-admin-editAdresse .top {
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+#page-admin-editAdresse .top p {
+  font-size: 14px;
+}
+#page-admin-editAdresse .top p strong {
+  color: rgb(41, 144, 228);
+}
+#page-admin-editAdresse .top .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#page-admin-editAdresse .form {
+  background-color: #fff;
+  padding: 2%;
+  margin: 3% 0;
+}
+#page-admin-editAdresse .form .item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+#page-admin-editAdresse .form .item .parag {
+  flex: 2;
+  text-align: right;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.7);
+}
+#page-admin-editAdresse .form .item .parag span {
+  color: red;
+}
+#page-admin-editAdresse .form .item .mb-3 {
+  flex: 4;
+}
+#page-admin-editAdresse .form .item .mb-3 label {
+  font-size: 12px;
+  margin-top: 5px;
+}
+#page-admin-editAdresse .form .item .mb-3 input,
+#page-admin-editAdresse .form .item .mb-3 select,
+#page-admin-editAdresse .form .item .mb-3 textarea {
+  border-color: #bbb;
+  font-size: 15px;
+}
+#page-admin-editAdresse .form .item .mb-3 input:focus,
+#page-admin-editAdresse .form .item .mb-3 select:focus,
+#page-admin-editAdresse .form .item .mb-3 textarea:focus {
+  box-shadow: inset 0 -1px 0 transparent;
+  border-color: rgb(41, 144, 228);
+  outline: 1px solid rgb(41, 144, 228);
+}
+#page-admin-editAdresse .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+#page-admin-editAdresse .buttons .btn-primary {
+  background: rgb(41, 144, 228) !important;
+  border-color: rgb(41, 144, 228);
+}
+#page-admin-editAdresse .buttons .btn-primary a {
+  text-decoration: none;
+  color: white;
+}
+
+#admin-page-adresse {
+  margin-top: 2%;
+  background-color: #fff;
+}
+#admin-page-adresse .table td,
+#admin-page-adresse .table th {
+  vertical-align: middle;
+}
+#admin-page-adresse .table .dropdown :hover > .dropdown-menu {
+  display: block;
+}
+#admin-page-adresse .table .dropdown-menu {
+  inset: 5px 0px auto auto;
+}
+
 #admin-page-add-apply {
   background-color: #fff;
 }
@@ -6270,21 +6358,6 @@
 }
 #admin-page-add-apply label {
   font-size: 0.9rem;
-}
-
-#admin-page-adresse {
-  margin-top: 2%;
-  background-color: #fff;
-}
-#admin-page-adresse .table td,
-#admin-page-adresse .table th {
-  vertical-align: middle;
-}
-#admin-page-adresse .table .dropdown :hover > .dropdown-menu {
-  display: block;
-}
-#admin-page-adresse .table .dropdown-menu {
-  inset: 5px 0px auto auto;
 }
 
 #admin-page-typeCategories {
