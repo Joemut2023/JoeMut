@@ -183,7 +183,7 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
         });
         const DOCUMENT_NAME = bon_essayage.doc_ref;
         if (bon_essayage) { 
-            generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`).then(data=>{
+            generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage/${bon_essayage.doc_id}`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`).then(data=>{
                 send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon d'essayage AES`,html).then(()=>{
                     req.session.flash = {message:"Le bon d'essayage vient d'être envoyé au client.",type:"success"} 
                     res.redirect(`/admin/devis/view/${commande.com_id}`);

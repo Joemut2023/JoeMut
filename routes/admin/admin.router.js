@@ -43,7 +43,8 @@ router.use("/apply", [adminLayout, adminIsAuth], applyRouter);
 router.use("/transporteurs", [adminLayout, adminIsAuth], transporteurRouter);
 router.use("/produits-en-location", [adminLayout, adminIsAuth],produitLocationRouter);
 router.use("/documents", [adminLayout, adminIsAuth,FlashMidleware],documentRouter);
-router.get('/bon-essayage',async (req,res)=>{
+router.get('/bon-essayage/:doc_id',async (req,res)=>{
+    const {doc_id} = req.params;
     try {
         let view = await ejs.renderFile(path.join(__dirname, "../../mailTemplate/essayage.ejs"));
         return res.send(view);
