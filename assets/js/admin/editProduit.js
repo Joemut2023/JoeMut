@@ -243,13 +243,14 @@ btnEnregistrer.addEventListener("click", async function () {
   );
   // console.log(produit.data.product[0])
 
+ 
    imagesArrayCover.map(async(image) => {
      const dataMedia = {
        med_libelle: image.name.split(".")[0],
        med_ressource: image.name,
      };
      const media = await axios.put(
-       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.name}`,
+       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.id}`,
        dataMedia,
        {
          headers: {
@@ -346,7 +347,7 @@ btnEnregistrer.addEventListener("click", async function () {
   ) {
     message.style.display = "flex";
     const btn_close = document.querySelector(".close");
-    
+
     btn_close.addEventListener("click", function () {
       // window.location.href = `${SITE_URL}/admin/produits`;
       message.style.display = "none";

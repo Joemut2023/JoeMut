@@ -147,6 +147,7 @@
                       accept="image/*"
                       style="display: none"
                       class="inputfile"
+                      name="produit-files"
                     />
                   </div>
 
@@ -169,8 +170,8 @@
                 <div>
                   <% media.forEach(element => { %>
                     <% if (element.med_cover===true) { %>
-                       <label style="font-size: 0.95rem; cursor: pointer;" for="update_image">Modfier l'image de couverture</label>
-                      <input style="display: none;" name="<%=element.med_id %>" id="update_image" class="file-cover"
+                       <label style="font-size: 0.95rem; cursor: pointer;" for="<%=element.med_id %>">Modfier l'image de couverture</label>
+                      <input style="display: none;" name="produit-files" id="<%=element.med_id %>" class="file-cover"
                     accept="image/jpg, image/jpeg, image/gif, image/png" type="file"
                     <% } %>
                     

@@ -244,7 +244,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                     med_ressource: image.name
                   };
                   _context4.next = 3;
-                  return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.name), dataMedia, {
+                  return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
