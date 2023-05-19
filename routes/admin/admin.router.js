@@ -8,6 +8,7 @@ const fraisPortRouter = require("./admin.fraisport");
 const dashboardRouter = require("./admin.dashboard");
 const adminIsAuth = require("../../middleware/admin/admin.auth");
 const adminLayout = require("../../middleware/admin/admin.layout");
+const FlashMidleware= require("../../middleware/admin/admin.flash");
 const panierRouter = require("./admin.panier");
 const taillesRouter = require("./admin.taille");
 const couleurRouter = require("./admin.couleurs");
@@ -24,8 +25,8 @@ const ejs = require('ejs');
 const path = require('path');
 
 router.use("/login", loginRouter);
-router.use("/devis", [adminLayout, adminIsAuth], devisRouter);
-router.use("/produits", [adminLayout, adminIsAuth], produitsRouter);
+router.use("/devis", [adminLayout, adminIsAuth,FlashMidleware], devisRouter);
+router.use("/produits", [adminLayout, adminIsAuth,FlashMidleware], produitsRouter);
 router.use("/dashboard", [adminLayout, adminIsAuth], dashboardRouter);
 router.use("/paniers", [adminLayout, adminIsAuth], panierRouter);
 router.use("/adresse", [adminLayout, adminIsAuth], adresseRouter);
@@ -41,7 +42,7 @@ router.use("/promo", [adminLayout, adminIsAuth], promoRouter);
 router.use("/apply", [adminLayout, adminIsAuth], applyRouter);
 router.use("/transporteurs", [adminLayout, adminIsAuth], transporteurRouter);
 router.use("/produits-en-location", [adminLayout, adminIsAuth],produitLocationRouter);
-router.use("/documents", [adminLayout, adminIsAuth],documentRouter);
+router.use("/documents", [adminLayout, adminIsAuth,FlashMidleware],documentRouter);
 router.get('/bon-essayage',async (req,res)=>{
     try {
         let view = await ejs.renderFile(path.join(__dirname, "../../mailTemplate/essayage.ejs"));

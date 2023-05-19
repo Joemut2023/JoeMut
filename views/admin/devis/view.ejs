@@ -4,7 +4,7 @@
       <h1>Erreur interne du serveur</h1>
      </div>
   <% } else{ %>
-    <div id="admin-blocs-panierHeader" class="border-bottom">
+    <div id="admin-blocs-panierHeader" class="border-bottom p-2">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -18,6 +18,14 @@
         <div class="produit-menu">
           <h1>Devis N° <%= commande.com_num %> de <%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></h1>
         </div>
+        <h1></h1>
+        <% if (typeof flash.message != 'undefined') { %>
+          <div class="alert alert-<%= flash.type %> alert-dismissible fade show" role="alert">
+            <%= flash.message %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% } %>
+        
     </div>
     <div class="actions">
         <form action="/admin/devis/commande/update-statut" method="post" class="row g-3">

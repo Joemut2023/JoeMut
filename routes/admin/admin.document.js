@@ -11,6 +11,7 @@ const generate_pdf_func = require('../../helpers/generate_pdf_func');
 const send_mail_func = require('../../helpers/send_mail_func');
 const fs = require('fs');
 const path = require('path');
+const flash_message = require('../../helpers/flash_message');
 
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
@@ -64,7 +65,10 @@ router.post('/facture',async (req,res)=>{
                 fac_date:today,
                 ech_id:ECHEANCE_A_RECEPTION,
                 stf_id:STATUT_FACTURE_BROUILLON
-            })
+            });
+            req.session.flash = {message:"Votre facture vient d'être généré ",type:"success"}
+        }else{
+            req.session.flash = {message:"Une facture exite déjà pour cette commande ",type:"danger"}
         }
         res.redirect(`/admin/devis/view/${com_id}`);
     } catch (error) {

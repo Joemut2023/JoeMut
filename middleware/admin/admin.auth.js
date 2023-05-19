@@ -9,4 +9,4 @@ const adminAuth = (req, res, next) => {
     return next();
   };
   
-  module.exports = adminAuth
+module.exports = adminAuth
