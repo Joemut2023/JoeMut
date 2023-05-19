@@ -71,6 +71,12 @@
                     <button class="btn text-white btn-info mt-2">Rechercher</button>
                 </div>
             </form>
+            <% if (typeof flash != 'undefined') { %>
+              <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
+                <%= flash.message %>
+                <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% } %>
         </div>
     </div>
     <div id="admin-page-produits" class="row mb-3 table-container">

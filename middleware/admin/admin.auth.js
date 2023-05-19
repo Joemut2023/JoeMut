@@ -4,9 +4,9 @@ const adminAuth = (req, res, next) => {
       if (req.xhr) {
         return res.json('connexion')
       }
-      res.redirect("/admin/login");
+     return res.redirect("/admin/login");
     }
     return next();
   };
   
-  module.exports = adminAuth
+module.exports = adminAuth

@@ -35,6 +35,10 @@ const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_DEVIS } = require("../../helpers/utils_const");
 const { Op, where } = require("sequelize");
+const erroMsg = "Quelque chose s'est mal passé";
+const updateMsg = "modifié avec succés"
+const createMsg = "Créé avec succés";
+const deleteMsg = "Supprimé avec succés";
 
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
@@ -579,9 +583,11 @@ router.post('/commande/add-essayage',async (req,res)=>{
       com_id,
       ess_repetition
     });
+    req.session.flash = {message:"Date d'essayage créé",type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     //gestion erreur
+    req.session.flash = {message:erroMsg,type:"danger"};
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
@@ -593,9 +599,11 @@ router.post('/commande/delete/essayage',async (req,res)=>{
         ess_id
       }
     });
+    req.session.flash = {message:"Date d'essayage supprimé",type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    
+    req.session.flash = {message:erroMsg,type:"danger"};
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande/update-adresse-facturation',async(req,res)=>{
@@ -606,10 +614,11 @@ router.post('/commande/update-adresse-facturation',async(req,res)=>{
       com_adr_fac:adresse
     },
     {where:{com_id}});
+    req.session.flash = {message:updateMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
-    //res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:erroMsg,type:"danger"};
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande/update-adresse-livraison',async(req,res)=>{
@@ -620,8 +629,10 @@ router.post('/commande/update-adresse-livraison',async(req,res)=>{
       com_adr_liv:adresse
     },
     {where:{com_id}});
+    req.session.flash = {message:updateMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+    req.session.flash = {message:erroMsg,type:"danger"};
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
@@ -646,10 +657,11 @@ router.post('/commande/update-panier-detail',async (req,res)=>{
       com_ht:somme_commande_ht,
       com_ttc:somme_commande_ttc
     },{where:{com_id}});
+    req.session.flash = {message:updateMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
-   // res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:erroMsg,type:"danger"};
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande/delete-panier-detail',async (req,res)=>{
@@ -660,15 +672,16 @@ router.post('/commande/delete-panier-detail',async (req,res)=>{
         pad_id
       }
     });
+    req.session.flash = {message:deleteMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+    req.session.flash = {message:erroMsg,type:"danger"};
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
 router.post('/commande/update-statut',async (req,res)=>{
   const {com_id,stc_id} = req.body;
   const usr_id = req.session.adminId;
-
   try {
     let chronologie = await Chronologie.create({
       com_id,
@@ -676,8 +689,9 @@ router.post('/commande/update-statut',async (req,res)=>{
       usr_id,
       chr_date:new Date(new Date().setDate(new Date().getDate()))
     });
+    req.session.flash = {message:updateMsg,type:"success"};
   } catch (error) {
-    
+    req.session.flash = {message:erroMsg,type:"danger"};
   }
   res.redirect(`/admin/devis/view/${com_id}`);
 });
@@ -689,10 +703,11 @@ router.post('/commande-delete-statut',async (req,res)=>{
         chr_id
       }
     });
-    res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:deleteMsg,type:"success"};
   } catch (error) {
-    
+    req.session.flash = {message:erroMsg,type:"danger"};
   }
+  res.redirect(`/admin/devis/view/${com_id}`);
 })
 router.post('/commande/update-date-debut',async (req,res)=>{
   const {com_debut_spectacle,com_id} = req.body;
@@ -700,10 +715,11 @@ router.post('/commande/update-date-debut',async (req,res)=>{
     let updatedCommande = await Commande.update({
       com_debut_spectacle
     },{where:{com_id}});
-    res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:updateMsg,type:"success"};
   } catch (error) {
-    res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:erroMsg,type:"success"};
   }
+  res.redirect(`/admin/devis/view/${com_id}`);
 });
 router.post('/commande/update-date-fin',async (req,res)=>{
   const {com_fin_spectacle,com_id} = req.body;
@@ -711,8 +727,9 @@ router.post('/commande/update-date-fin',async (req,res)=>{
     let updatedCommande = await Commande.update({
       com_fin_spectacle
     },{where:{com_id}});
-    res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:updateMsg,type:"success"};
   } catch (error) {
+    req.session.flash = {message:erroMsg,type:"danger"};
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
@@ -735,10 +752,11 @@ router.post('/commande-add-paiement-for-document',async (req,res)=>{
     let facturation = await Facturation.update({
       fac_montant
     },{where:{com_id}});
-
+    req.session.flash = {message:createMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
+    req.session.flash = {message:erroMsg,type:"danger"};
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
 router.post('/commande-add-doc-comment', async (req,res)=>{
@@ -747,15 +765,16 @@ router.post('/commande-add-doc-comment', async (req,res)=>{
     await Document.update({
       doc_comment
     },{where:{doc_id}});
+    req.session.flash = {message:createMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
+    req.session.flash = {message:erroMsg,type:"danger"};
   }
+  res.redirect(`/admin/devis/view/${com_id}`);
 });
 router.post('/commande-add-facture-paiement',async (req,res)=>{
   const {com_id,pai_date,mop_id,pai_ref,pai_montant,doc_id} = req.body;
   const usr_id = req.session.adminId;
-
   try {
     let paiement = await Paiement.create({
       doc_id,
@@ -772,12 +791,12 @@ router.post('/commande-add-facture-paiement',async (req,res)=>{
     let facturation = await Facturation.update({
       fac_montant
     },{where:{com_id}});
+    req.session.flash = {message:createMsg,type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
-   // res.redirect(`/admin/devis/view/${com_id}`);
+   req.session.flash = {message:erroMsg,type:"danger"};
+   res.redirect(`/admin/devis/view/${com_id}`);
   }
-  
 });
 router.post('/commande-add-transporteur', async (req,res)=>{
   const {exp_poids,exp_suivi,com_id,trs_id,doc_id,exp_cout} = req.body;
@@ -810,8 +829,10 @@ router.post('/commande-add-transporteur', async (req,res)=>{
         dex_nbre:panier_detail.pad_qte
       });
     })
+    req.session.flash = {message:createMsg,type:"success"};
    return res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+   req.session.flash = {message:erroMsg,type:"danger"};
    res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
@@ -834,13 +855,14 @@ router.post('/commande-retour', async (req,res)=>{
         ret_date,
         dex_id:detail_exp.dex_id
       });
+      req.session.flash = {message:erroMsg,type:"success"};
       return res.redirect(`/admin/devis/view/${com_id}`);
     }else{
-      // rendre l'erreur => session Error Flash
+      req.session.flash = {message:"Valeur saisi est supérieur au nombre des produits expediés.",type:"danger"};// rendre l'erreur => session Error Flash
       return res.redirect(`/admin/devis/view/${com_id}`);
     }
   } catch (error) {
-    //console.log(error);
+    req.session.flash = {message:erroMsg,type:"danger"};
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
@@ -878,8 +900,10 @@ router.post('/commande-update-retour-nbr',async (req,res)=>{
     await Detail_expedition.update({
       dex_nbre
     },{where:{dex_id:retour.dex_id}});
+    req.session.flash = {message:updateMsg,type:"success"};
     return res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+    req.session.flash = {message:erroMsg,type:"danger"};
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
 })
