@@ -52,7 +52,7 @@
   </div>
 </div>
 <% if (typeof succesMsg == 'string') { %>
-<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<div class="alert alert-success mt-3 d-flex justify-content-between" role="alert"><%= succesMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button></div>
 <% } %>
 <div id="admin-page-apply">
   <div class="apply-content mt-3 mb-5">

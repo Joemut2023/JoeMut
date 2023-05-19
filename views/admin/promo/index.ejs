@@ -51,9 +51,9 @@
   </div>
 </div>
 <% if (typeof errorMsg !== 'undefined') { %>
-<div class="alert alert-danger mt-3" role="alert"><%= errorMsg %></div>
+<div class="alert alert-danger mt-3 d-flex justify-content-between" role="alert"><%= errorMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button></div>
 <% } %> <% if (typeof succesMsg == 'string') { %>
-<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<div class="alert alert-success mt-3 d-flex justify-content-between" role="alert"><%= succesMsg %>  <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button></div>
 <% } %>
 <div id="admin-page-promo">
   <div class="promo-content mt-3">

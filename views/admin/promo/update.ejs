@@ -14,9 +14,9 @@
 </div>
 
 <% if (typeof succesMsg == 'string') { %>
-<div class="alert alert-success mt-3" role="alert"><%= succesMsg %></div>
+<div class="alert alert-success mt-3 d-flex justify-content-between" role="alert"><%= succesMsg %>  <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button></div>
 <% } %> <% if (typeof nothingMsg == 'string') { %>
-<div class="alert alert-dark mt-3" role="alert"><%= nothingMsg %></div>
+<div class="alert alert-dark mt-3 d-flex justify-content-between" role="alert"><%= nothingMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button></div>
 <% } %>
 
 <div id="admin-page-add-clients" class="mt-3 rounded mb-5">
