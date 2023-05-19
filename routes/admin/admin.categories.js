@@ -89,7 +89,7 @@ router.get("/ajout/:id", async (req, res) => {
 
 router.post("/ajout", async (req, res) => {
     const { cat_libelle, tyc_id } = req.body
-    console.log(req.body, "body");
+   // console.log(req.body, "body");
 
     try {
         if (cat_libelle == "") {
