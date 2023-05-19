@@ -12,7 +12,7 @@ const send_mail_func = require('../../helpers/send_mail_func');
 const fs = require('fs');
 const path = require('path');
 const flash_message = require('../../helpers/flash_message');
-
+const erroMsg = "Quelque chose s'est mal passé."
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
         attributes:['com_num','com_id'],
@@ -72,7 +72,8 @@ router.post('/facture',async (req,res)=>{
         }
         res.redirect(`/admin/devis/view/${com_id}`);
     } catch (error) {
-        console.log(error);
+        req.session.flash = {message:erroMsg,type:"danger"}
+        res.redirect(`/admin/devis/view/${com_id}`);
         //res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
@@ -86,8 +87,10 @@ router.post('/bon-essayage',async (req,res)=>{
                 doc_libelle:`ESS-${document.doc_id}-${commande.com_num.trim()}`
             },{where:{doc_id:document.doc_id}});
         });
+        req.session.flash = {message:"Bon d'essayage crée avec succée",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
+        req.session.flash = {message:erroMsg,type:"danger"}
         res.redirect(`/admin/devis`);
     }
 });
@@ -101,8 +104,10 @@ router.post('/bon-livraison',async (req,res)=>{
                 doc_libelle:`LIV-${document.doc_id}-${commande.com_num.trim()}`
             },{where:{doc_id:document.doc_id}});
         });
+        req.session.flash = {message:"Bon de livraison créé",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
+        req.session.flash = {message:erroMsg,type:"danger"}
         res.redirect(`/admin/devis`);
     }
 });
@@ -151,10 +156,12 @@ router.post('/devis-mail',async (req,res)=>{
                 usr_id,
                 chr_date:new Date(new Date().setDate(new Date().getDate()))
             });
+            req.session.flash = {message:"Un nouveau dévis vient d'être généré et envoyer au client par email.",type:"success"}
             res.redirect(`/admin/devis/view/${commande.com_id}`);
         });
     } catch (error) {
-        
+        req.session.flash = {message:erroMsg,type:"danger"}
+        res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
 router.post('/bon-essayage-pdf',async (req,res)=>{
@@ -177,13 +184,16 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
         if (bon_essayage) { 
             generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`).then(data=>{
                 send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon d'essayage AES`,html).then(()=>{
-                     res.redirect(`/admin/devis/view/${commande.com_id}`);
+                    req.session.flash = {message:"Le bon d'essayage vient d'être envoyé au client.",type:"success"} 
+                    res.redirect(`/admin/devis/view/${commande.com_id}`);
                 })
             })  
         }else{
+            req.session.flash = {message:"Cette commande n'a pas encore de bon d'essayage.",type:"danger"}
             res.redirect(`/admin/devis/view/${commande.com_id}`);   
         }
     } catch (error) {
+       req.session.flash = {message:erroMsg,type:"danger"}
        res.redirect(`/admin/devis/view/${com_id}`);
     }
 })
