@@ -178,7 +178,8 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
         let html = ejs.render(ejsFile);
         let bon_essayage = await Document.findOne({
             attributes:['doc_id','doc_ref'],
-            where:{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE}
+            where:{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE},
+            order:[['doc_date','DESC']]
         });
         const DOCUMENT_NAME = bon_essayage.doc_ref;
         if (bon_essayage) { 

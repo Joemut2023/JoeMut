@@ -136,7 +136,7 @@
                             <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.com_id %>" data-panier="<%= commande.pan_id %>"><%= commande.Panier.Panier_details.length %></span></td>
                             <% let sum = 0 %>
                             <% commande.Panier.Panier_details.forEach(pad => { %>
-                              <% sum += pad.pad_ttc %>
+                              <% sum += (pad.pad_ttc * pad.pad_qte) %>
                             <% }) %>
                             <td><%= sum %>€</td>
                             <td class="data-livraison">
