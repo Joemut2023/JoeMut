@@ -51,5 +51,9 @@ router.get('/bon-essayage',async (req,res)=>{
        // console.log(error);
         console.log("erreur rendue bon essayage");
     }
-})
+});
+router.post('/delete-flash',async (req,res)=>{
+    delete req.session.flash;
+    res.send('message flash supprimé');
+});
 module.exports = router;
