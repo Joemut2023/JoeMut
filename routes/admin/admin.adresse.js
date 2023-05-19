@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Adresse, Client } = require("../../models");
+const { where } = require("sequelize");
 
 router.get("/", async (req, res) => {
   const { cli_id } = req.query;
@@ -33,6 +34,7 @@ router.post("/add/:id", async (req, res) => {
     adr_prenom,
     adr_societe,
     adr_adresse,
+    adr_comp,
     adr_cp,
     adr_ville,
     adr_num_tva,
@@ -50,6 +52,7 @@ router.post("/add/:id", async (req, res) => {
       adr_prenom: adr_prenom,
       adr_societe: adr_societe,
       adr_adresse: adr_adresse,
+      adr_comp : adr_comp,
       adr_cp: adr_cp,
       adr_ville: adr_ville,
       adr_num_tva: adr_num_tva,
@@ -62,6 +65,69 @@ router.post("/add/:id", async (req, res) => {
       res.redirect(`/admin/adresse/?cli_id=${clients.cli_id}`);
   } catch (error) {
     return res.render("adresses/ajoutAdresse",{message :"Erreur interne du serveur"});
+  }
+});
+
+
+router.get("/edit/:id", async (req, res) => {
+ 
+  const adresses = await Adresse.findOne({
+    where: { adr_id: req.params.id},
+  })
+  const clients = await Client.findOne({
+    where: { cli_id: adresses.cli_id },
+  });
+   res.render("adresses/editAdresse", { clients: clients, adresses : adresses });
+});
+
+
+
+router.post("/edit/:id", async (req, res) => {
+ 
+  const {
+    adr_structure,
+    adr_nom,
+    adr_prenom,
+    adr_societe,
+    adr_adresse,
+    adr_comp,
+    adr_cp,
+    adr_ville,
+    adr_num_tva,
+    adr_phone,
+    adr_pays,
+  } = req.body;
+  try {
+
+
+    const adresses = await Adresse.findOne({
+      where: { adr_id: req.params.id},
+    })
+    const clients = await Client.findOne({
+      where: { cli_id: adresses.cli_id },
+    });
+
+  
+    await Adresse.update({
+      adr_structure: adr_structure,
+      adr_nom: adr_nom,
+      adr_prenom: adr_prenom,
+      adr_societe: adr_societe,
+      adr_adresse: adr_adresse,
+      adr_comp :  adr_comp,
+      adr_cp: adr_cp,
+      adr_ville: adr_ville,
+      adr_num_tva: adr_num_tva,
+      adr_phone: adr_phone,
+      adr_pays: adr_pays,
+      // adr_id : req.params.id,
+    },{ where:{
+      adr_id : req.params.id
+    }});
+    return res.redirect(`/admin/adresse/?cli_id=${ clients.cli_id}`)
+      
+  } catch (error) {
+    return res.render("adresses/editAdresse",{message :"Erreur interne du serveur"});
   }
 });
 
