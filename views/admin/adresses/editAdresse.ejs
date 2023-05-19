@@ -1,0 +1,182 @@
+<div id="admin-blocs-produitHeader">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <a class="fil-ariane-item" href="#">Adresse</a>
+  
+        <li class="breadcrumb-item active" aria-current="page">
+          <a href="#">Gérer les adresses</a>
+        </li>
+      </ol>
+    </nav>
+    <div class="produit-menu">
+      <h1>Gérer les adresses</h1>
+      <div class="produit-menu-btn">
+        <button type="button" class="btn btn-info">
+            <a href="/admin/adresse/add/<%= clients.cli_id %>"
+              ><i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle
+              adresse</a
+            >
+          </button>
+        <!-- <button type="button" class="btn btn-outline-secondary">Aide</button> -->
+      </div>
+    </div>
+  </div>
+  <div id="page-admin-ajoutAdresse">
+    <div class="rounded">
+      <form action="/admin/adresse/edit/<%= adresses.adr_id%>" method="post" class="form">
+        <input type="hidden" name="adr_id" value="<%= adresses.adr_id%>">
+        <div class="form">
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> E-mail du clients</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control req"
+                required
+                name="cli_mail"
+                value="<%= clients.cli_mail %>"
+              
+              />
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Prénom </p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control req"
+                name="adr_prenom"
+                value="<%= clients.cli_prenom %>"
+               
+              />
+              <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Nom</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control req"
+                name="adr_nom"
+                value="<%= clients.cli_nom %>"
+         
+              />
+              <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag"><p>Nom de la structure</p></div>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="adr_structure" value="<%= adresses.adr_structure %>"/>
+              <label>Caractères intedits : <>=()</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag"><p>Socièté</p></div>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="adr_societe" value="<%= adresses.adr_societe %>"/>
+              <label>Caractères intedits : <>=()</label>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag"><p>Numero de TVA</p></div>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="adr_num_tva" value="<%= adresses.adr_num_tva %>"/>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Adresse</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control req"
+                name="adr_adresse"
+                value="<%= adresses.adr_adresse %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag"><p>Adresse 2</p></div>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="adr_comp" value="<%= adresses.adr_comp %>"/>
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Code postal</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="number"
+                class="form-control req"
+                name="adr_cp"
+                value="<%= adresses.adr_cp %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Ville</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control req"
+                name="adr_ville"
+                value="<%= adresses.adr_ville %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p><span>*</span> Pays</p>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control req"
+                name="adr_pays"
+                value="<%= adresses.adr_pays %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="item">
+            <div class="parag">
+              <p>Téléphone</p>
+            </div>
+            <div class="mb-3">
+              <input type="phone" class="form-control" name="adr_phone" value="<%= adresses.adr_phone %>" />
+            </div>
+          </div>
+      
+        </div>
+  
+        <div class="buttons">
+            <a href="/admin/adresse/?cli_id=<%= clients.cli_id %>">
+            <button type="button" class="btn btn-outline-secondary">
+              Annuler
+            </button></a
+          >
+  
+          <button type="submit" class="btn btn-primary btn-envoyer">
+           Mettre à jour
+          </button>
+        
+        </div>
+      </form>
+    </div>
+  </div>
+  
