@@ -18,18 +18,21 @@
   </head>
   <body class="p-3">
     <div class="text-center pt-3">
-      <img src="logo.png" class="logo-img img-fluid" alt="" srcset="" />
+      <img src="/images/logo.png" class="img-fluid" alt="" srcset="" />
       <h3>Etat descriptif des costumes et accessoires</h3>
       <h3>au contrat de prêt pour essayage</h3>
-      <h4 class="fw-light pt-2">N° 151215 (Numéro du devis)</h4>
+      <h4 class="fw-light pt-2">N° <%= document.doc_ref %></h4>
     </div>
     <div class="p-5">
-      <p><span class="fw-bold">Date du spectacle : </span>15 Novembre 2022</p>
       <p>
-        <span class="fw-bold">Nom et Prénom du professeur :</span> Eric Guermah
+        <span class="fw-bold">Date du spectacle : </span> <%=
+        moment(commande.com_debut_spectacle).format('DD/MM/YYYY') %>
       </p>
-      <p><span class="fw-bold">Structure :</span> Conservatoire de Rennes</p>
-      <p><span class="fw-bold">Tél : </span> 06 11 51 84 16</p>
+      <!-- <p>
+        <span class="fw-bold">Nom et Prénom du professeur :</span> Eric Guermah
+      </p> -->
+      <p><span class="fw-bold">Structure :</span> <%= adresse.adr_adresse %></p>
+      <p><span class="fw-bold">Tél : </span> <%= adresse.adr_phone %></p>
       <p class="text-justify pt-3 fw-normal lh-base">
         L’état des costumes et accessoires qui vous sont livrés dans le cadre du
         contrat de prêt pour essayage a été méticuleusement vérifié. Nous vous
@@ -62,44 +65,36 @@
           </tr>
         </thead>
         <tbody>
+          <% panierDetails.forEach(panierDetail => { %>
           <tr>
-            <td>GRL10B</td>
-            <td>RObe longue lycra 4 pans rouge</td>
+            <td><%= panierDetail.Produit.pro_ref %></td>
+            <td><%= panierDetail.Produit.pro_libelle %></td>
             <td>
               <div class="d-flex flex-column pt-4">
-                <p>4 en XS (34)</p>
-                <p>7 en S (36)</p>
-                <p>10 en M (38)</p>
-                <p>5 en L (40)</p>
-                <p>1 en XLPLUS (42 PLUS)</p>
-                <p>2 en XXL (44)</p>
+                <% panierDetails[0].Produit.Quantites.forEach(quantite => { %>
+
+                <p>
+                  <%= quantite.qua_nbre %> en <%= quantite.Taille.tai_libelle %>
+                </p>
+                <% }) %>
               </div>
             </td>
             <td></td>
           </tr>
-          <tr>
-            <td>GRL10B</td>
-            <td>RObe longue lycra 4 pans rouge</td>
-            <td>
-              <div class="d-flex flex-column pt-4">
-                <p>4 en XS (34)</p>
-                <p>7 en S (36)</p>
-                <p>10 en M (38)</p>
-                <p>5 en L (40)</p>
-                <p>1 en XLPLUS (42 PLUS)</p>
-                <p>2 en XXL (44)</p>
-              </div>
-            </td>
-            <td></td>
-          </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>
     <div class="p-5 pt-0 d-flex justify-content-between">
       <h5 class="fw-light">AES : 06 14 28 99 81</h5>
       <div class="text-end">
-        <h5 class="fw-light">CLIENT : Vanessa Rio</h5>
-        <h5 class="fw-light">DATE : 15/11/2022</h5>
+        <h5 class="fw-light">
+          CLIENT : <%= client.cli_nom %> <%= client.cli_prenom %>
+        </h5>
+        <h5 class="fw-light">
+          DATE : <%= moment(new Date(new Date().setDate(new Date().getDate()))
+          ).format('DD/MM/YYYY') %>
+        </h5>
       </div>
     </div>
     <div class="p-5 pt-0">
@@ -120,44 +115,25 @@
           </tr>
         </thead>
         <tbody>
+          <% panierDetails.forEach(panierDetail => { %>
           <tr>
-            <td>GRL10B</td>
-            <td>RObe longue lycra 4 pans rouge</td>
+            <td><%= panierDetail.Produit.pro_ref %></td>
+            <td><%= panierDetail.Produit.pro_libelle %></td>
             <td></td>
             <td>
               <div class="d-flex flex-column pt-4">
-                <p>4 en XS (34)</p>
-                <p>7 en S (36)</p>
-                <p>10 en M (38)</p>
-                <p>5 en L (40)</p>
-                <p>1 en XLPLUS (42 PLUS)</p>
-                <p>2 en XXL (44)</p>
+                <% panierDetails[0].Produit.Quantites.forEach(quantite => { %>
+
+                <p><%= quantite.Taille.tai_libelle %> :</p>
+                <% }) %>
               </div>
             </td>
           </tr>
           <tr>
             <td colspan="3"></td>
-            <td class="text-end">Nombre total :</td>
+            <td class="text-center p-2">Nombre total :</td>
           </tr>
-          <tr>
-            <td>GRL10B</td>
-            <td>RObe longue lycra 4 pans rouge</td>
-            <td></td>
-            <td>
-              <div class="d-flex flex-column pt-4">
-                <p>4 en XS (34)</p>
-                <p>7 en S (36)</p>
-                <p>10 en M (38)</p>
-                <p>5 en L (40)</p>
-                <p>1 en XLPLUS (42 PLUS)</p>
-                <p>2 en XXL (44)</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3"></td>
-            <td class="text-end">Nombre total :</td>
-          </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>
