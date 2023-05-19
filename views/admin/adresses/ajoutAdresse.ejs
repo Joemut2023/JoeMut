@@ -1,4 +1,26 @@
-<%- include('../blocs/adresseHeader') %>
+<div id="admin-blocs-produitHeader">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <a class="fil-ariane-item" href="#">Adresse</a>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="#">Gérer les adresses</a>
+      </li>
+    </ol>
+  </nav>
+  <div class="produit-menu">
+    <h1>Gérer les adresses</h1>
+    <div class="produit-menu-btn">
+      <button type="button" class="btn btn-info">
+        <a href="/"
+          ><i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle
+          adresse</a
+        >
+      </button>
+      <!-- <button type="button" class="btn btn-outline-secondary">Aide</button> -->
+    </div>
+  </div>
+</div>
 <div id="page-admin-ajoutAdresse">
   <div class="rounded">
     <form action="/admin/adresse/add/<%= clients.cli_id%>" method="post" class="form">
@@ -6,7 +28,7 @@
       <div class="form">
         <div class="item">
           <div class="parag">
-            <p><span>*</span> E-mail du client</p>
+            <p><span>*</span> E-mail du clients</p>
           </div>
           <div class="mb-3">
             <input
@@ -15,7 +37,7 @@
               required
               name="cli_mail"
               value="<%= clients.cli_mail %>"
-              disabled
+            
             />
           </div>
         </div>
@@ -29,7 +51,7 @@
               class="form-control req"
               name="adr_prenom"
               value="<%= clients.cli_prenom %>"
-             disabled
+             
             />
             <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
           </div>
@@ -44,7 +66,7 @@
               class="form-control req"
               name="adr_nom"
               value="<%= clients.cli_nom %>"
-             disabled
+       
             />
             <label>Caractères intedits : 0-9!<>,;?=+{}@#"{}_$%</label>
           </div>
@@ -145,9 +167,11 @@
           </button></a
         >
 
+       <a href="">
         <button type="submit" class="btn btn-primary btn-envoyer">
           Enregistrer
         </button>
+       </a>
       </div>
     </form>
   </div>

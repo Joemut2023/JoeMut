@@ -44,14 +44,13 @@
       </tr>
     </thead>
     <tbody>
-      <% if ((typeof adresses !== 'undefined') && adresses.length > 0) { %> <%
-      adresses.forEach(element => { %>
+      <% if ((typeof adresses !== 'undefined') && adresses.length > 0) { %> 
+        <% adresses.forEach(element => { %>
       <tr>
         <td scope="row">
           <input
             class="form-check-input"
             type="checkbox"
-            value=""
             id="flexCheckDefault"
           />
         </td>
@@ -60,7 +59,7 @@
         <td><%= element.adr_prenom %></td>
         <td><%= element.adr_adresse %></td>
         <td><%= element.adr_societe %></td>
-        <td><%= element.adr_comp %></td>
+        <td><%= element.adr_structure %></td>
         <td><%= element.adr_phone %></td>
         <td><%= element.adr_cp %></td>
         <td><%= element.adr_ville %></td>
