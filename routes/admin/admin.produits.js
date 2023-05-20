@@ -553,10 +553,10 @@ router.post("/upload-images",function (req, res, next) {
     var msg;
     if (err) {
       req.session.flash = {message:"Une erreur s'est produite.",type:"danger"};
-      return res.redirect('/admin/produits/add');
+      // return res.redirect('/admin/produits/add');
     }
     req.session.flash = {message:"Produit ajouté avec succès",type:"success"};
-    return res.redirect('/admin/produits/add');
+    // return res.redirect('/admin/produits/add');
   });
   //return res.json(req.body);
     //  console.log(JSON.stringify(req.files))

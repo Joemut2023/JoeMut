@@ -211,6 +211,7 @@ btnEnregistrer.addEventListener("click", async function () {
   const pro_statut = statut.checked ? true : false;
   const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
   const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
+  const formWithImage = document.querySelector(".form-submit-image-edit");
 
   const Myproduct = await await axios.get(
     `${SITE_URL}/admin/produits/one/${pro_ref.name}`,
@@ -354,6 +355,7 @@ btnEnregistrer.addEventListener("click", async function () {
       window.location.reload()
     });
   }
+   formWithImage.submit();
 });
 
 //delete taille
