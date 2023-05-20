@@ -540,7 +540,13 @@ var storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../../public/images/produits"));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(
+      null,
+      file.originalname
+        .replaceAll(/\s/g, "")
+        .replaceAll(/\d/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+    );
   },
 });
 

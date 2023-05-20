@@ -277,7 +277,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
         formData = new FormData();
         files = document.querySelectorAll('[type="file"]');
-        formWithImage = document.querySelector('.form-submit-image');
+        formWithImage = document.querySelector(".form-submit-image");
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -304,8 +304,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context4.prev = _context4.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.split(".")[0],
-                    med_ressource: image.name,
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
                     med_cover: true
                   };
                   _context4.next = 3;
@@ -316,7 +316,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context4.sent;
-                case 4:
+                  console.log(dataMedia);
+                case 5:
                 case "end":
                   return _context4.stop();
               }
@@ -333,8 +334,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.split(".")[0],
-                    med_ressource: image.name,
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
                     med_cover: false
                   };
                   _context5.next = 3;
