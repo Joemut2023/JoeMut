@@ -10,6 +10,12 @@
       ><i class="fa fa-times" aria-hidden="true"></i
     ></span>
   </div>
+  <% if (typeof flash != 'undefined') { %>
+    <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
+      <%= flash.message %>
+      <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
   <div class="product-container row">
     <div class="bloc-left">
       <div class="row">
@@ -59,6 +65,7 @@
     action="/admin/produits/upload-images"
     method="POST"
     enctype="multipart/form-data"
+    class="form-submit-image"
   >
     <div class="tabs-container row">
       <div class="tabs">

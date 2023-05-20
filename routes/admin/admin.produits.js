@@ -13,7 +13,7 @@ const {
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { Op } = require("sequelize");
-
+const path = require('path');
 router.get("/", async (req, res) => {
   const { search } = req.query;
   let quantiteOfEachProduct = [];
@@ -537,7 +537,7 @@ router.delete("/qty/:pro_id/:id", async function (req, res) {
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/images/produits");
+    cb(null, path.join(__dirname, "../../public/images/produits"));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -545,12 +545,20 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage });
+const upload_function = upload.array("produit-files",12)
 //uplad-image
-router.post(
-  "/upload-images",
-  upload.array("produit-files", 12),
-  function (req, res, next) {
-    return res.redirect("/admin/produits");
+router.post("/upload-images",function (req, res, next) {
+  
+  upload_function(req,res,(err)=>{
+    var msg;
+    if (err) {
+      req.session.flash = {message:"Une erreur s'est produite.",type:"danger"};
+      return res.redirect('/admin/produits/add');
+    }
+    req.session.flash = {message:"Produit ajouté avec succès",type:"success"};
+    return res.redirect('/admin/produits/add');
+  });
+  //return res.json(req.body);
     //  console.log(JSON.stringify(req.files))
   }
 );

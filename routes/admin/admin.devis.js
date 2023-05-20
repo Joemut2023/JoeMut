@@ -39,7 +39,7 @@ const erroMsg = "Quelque chose s'est mal passé";
 const updateMsg = "modifié avec succés"
 const createMsg = "Créé avec succés";
 const deleteMsg = "Supprimé avec succés";
-
+const path = require('path');
 router.get("/", async (req, res) => {
   let {page, start, end} = check_admin_paginate_value(req);
   try {

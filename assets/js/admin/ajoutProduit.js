@@ -278,7 +278,9 @@ btnEnregistrer.addEventListener("click", async function () {
   const pro_statut = statut.checked ? true : false;
   const tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
   const tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
-
+  var formData = new FormData();
+  const files = document.querySelectorAll('[type="file"]');
+  const formWithImage = document.querySelector('.form-submit-image');
   const data = {
     cat_id,
     pro_ref: pro_ref.value,
@@ -297,25 +299,22 @@ btnEnregistrer.addEventListener("click", async function () {
     },
   });
 
-    imagesArrayCover.map(async (image) => {
-      const dataMedia = {
-        med_libelle: image.name.split(".")[0],
-        med_ressource: image.name,
-        med_cover:true,
-      };
-      const media = await axios.post(
-        `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-        dataMedia,
-        {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-          },
-        }
-      );
-
-      // console.log("cover",media)
-    });
-
+  imagesArrayCover.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name.split(".")[0],
+      med_ressource: image.name,
+      med_cover:true,
+    };
+    const media = await axios.post(
+      `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+  });
 
   imagesArray.map(async (image) => {
     const dataMedia = {
@@ -378,6 +377,7 @@ btnEnregistrer.addEventListener("click", async function () {
        window.location.reload();
     });
   }
+  formWithImage.submit();
 });
 
 //delete taille

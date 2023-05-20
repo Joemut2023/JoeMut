@@ -264,7 +264,7 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
   }, _callee3, this);
 })));
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, data, produit, tarif, selectTailles, message, btn_close;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, data, produit, tarif, selectTailles, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee7$(_context7) {
     while (1) switch (_context7.prev = _context7.next) {
       case 0:
@@ -275,6 +275,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         pro_statut = statut.checked ? true : false;
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
+        formData = new FormData();
+        files = document.querySelectorAll('[type="file"]');
+        formWithImage = document.querySelector('.form-submit-image');
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -286,13 +289,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context7.next = 10;
+        _context7.next = 13;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 10:
+      case 13:
         produit = _context7.sent;
         imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
@@ -352,7 +355,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        _context7.next = 15;
+        _context7.next = 18;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -361,7 +364,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 15:
+      case 18:
         tarif = _context7.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -402,7 +405,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             window.location.reload();
           });
         }
-      case 20:
+        formWithImage.submit();
+      case 24:
       case "end":
         return _context7.stop();
     }
