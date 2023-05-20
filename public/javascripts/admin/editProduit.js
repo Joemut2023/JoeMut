@@ -241,8 +241,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context4.prev = _context4.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.split(".")[0],
-                    med_ressource: image.name
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
                   };
                   _context4.next = 3;
                   return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
@@ -252,8 +252,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context4.sent;
-                  console.log("cover", media);
-                case 5:
+                case 4:
                 case "end":
                   return _context4.stop();
               }
@@ -271,8 +270,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.split(".")[0],
-                    med_ressource: image.name,
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
                     med_cover: false
                   };
                   _context5.next = 3;

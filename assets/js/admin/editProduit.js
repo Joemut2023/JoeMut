@@ -54,7 +54,7 @@ button2.addEventListener("click", function () {
 const inputDiv = document.querySelector(".images");
 const inputImage = document.querySelector(".inputfile");
 const output = document.querySelector(".image-container");
-const updateInput = document.querySelector(".update_image")
+const updateInput = document.querySelector(".update_image");
 const inputImageCover = document.querySelector(".file-cover");
 const outputCover = document.querySelector(".output");
 let imagesArray = [];
@@ -244,31 +244,44 @@ btnEnregistrer.addEventListener("click", async function () {
   );
   // console.log(produit.data.product[0])
 
- 
-   imagesArrayCover.map(async(image) => {
-     const dataMedia = {
-       med_libelle: image.name.split(".")[0],
-       med_ressource: image.name,
-     };
-     const media = await axios.put(
-       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.id}`,
-       dataMedia,
-       {
-         headers: {
-           "X-Requested-With": "XMLHttpRequest",
-         },
-       }
-     );
+  imagesArrayCover.map(async (image) => {
+    const dataMedia = {
+      med_libelle: image.name
+        .replaceAll(/\s/g, "")
+        .replaceAll(/\d/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+        .split(".")[0],
+      med_ressource: image.name
+        .replaceAll(/\s/g, "")
+        .replaceAll(/\d/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+    };
+    const media = await axios.put(
+      `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.id}`,
+      dataMedia,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
 
-     console.log("cover", media);
-   });
+    //  console.log("cover", media);
+  });
 
   let resultMedia = [];
   imagesArray.map(async (image) => {
     const dataMedia = {
-      med_libelle: image.name.split(".")[0],
-      med_ressource: image.name,
-      med_cover:false,
+      med_libelle: image.name
+        .replaceAll(/\s/g, "")
+        .replaceAll(/\d/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+        .split(".")[0],
+      med_ressource: image.name
+        .replaceAll(/\s/g, "")
+        .replaceAll(/\d/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+      med_cover: false,
     };
     const media = await axios.post(
       `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}`,
@@ -308,7 +321,7 @@ btnEnregistrer.addEventListener("click", async function () {
           .children[0].value
       ),
     };
-     qty = await axios.post(
+    qty = await axios.post(
       `${SITE_URL}/admin/produits/qty/${Myproduct.data.pro_id}`,
       dataselect,
       {
@@ -352,10 +365,10 @@ btnEnregistrer.addEventListener("click", async function () {
     btn_close.addEventListener("click", function () {
       // window.location.href = `${SITE_URL}/admin/produits`;
       message.style.display = "none";
-      window.location.reload()
+      window.location.reload();
     });
   }
-   formWithImage.submit();
+  formWithImage.submit();
 });
 
 //delete taille
