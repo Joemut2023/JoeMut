@@ -138,7 +138,7 @@
                             <% commande.Panier.Panier_details.forEach(pad => { %>
                               <% sum += (pad.pad_ttc * pad.pad_qte) %>
                             <% }) %>
-                            <td><%= sum %>€</td>
+                            <td><%= sum.toFixed(2).toString().replace('.',',') %>€</td>
                             <td class="data-livraison">
                               <div>
                                 <p><%= commande.Frais_port.Mode_liv_essayage.mle_libelle %></p>
