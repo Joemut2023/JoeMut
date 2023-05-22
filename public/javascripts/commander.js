@@ -171,20 +171,20 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         _yield$Kart$calculTot = _context.sent;
         kartProductPrice = _yield$Kart$calculTot.kartProductPrice;
         totalPrice = _yield$Kart$calculTot.totalPrice;
-        document.querySelector("#sous-total").innerHTML = "".concat(kartProductPrice.toFixed(2), " \u20AC");
+        document.querySelector("#sous-total").innerHTML = "".concat(kartProductPrice.toFixed(2).toString().replace(".", ","), " \u20AC");
         _context.next = 15;
         return Kart.addFraisDivers();
       case 15:
         fraisDivers = _context.sent;
-        document.querySelector("#dossier-price").innerHTML = "".concat(fraisDivers.frais_dossier.toFixed(2), " \u20AC");
-        document.querySelector("#livraison-price").innerHTML = "".concat(fraisDivers.frais_port.toFixed(2), " \u20AC");
-        document.querySelector("#total-price").innerHTML = "".concat(totalPrice.toFixed(2), " \u20AC");
+        document.querySelector("#dossier-price").innerHTML = "".concat(fraisDivers.frais_dossier.toFixed(2).toString().replace(".", ","), " \u20AC");
+        document.querySelector("#livraison-price").innerHTML = "".concat(fraisDivers.frais_port.toFixed(2).toString().replace(".", ","), " \u20AC");
+        document.querySelector("#total-price").innerHTML = "".concat(totalPrice.toFixed(2).toString().replace(".", ","), " \u20AC");
         radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
           radio.addEventListener("click", function (e) {
             var frp_ttc = e.target.dataset.ttc;
             var total = parseFloat(frp_ttc) + kartProductPrice + fraisDivers.frais_dossier;
-            document.querySelector("#total-price").innerHTML = "".concat(total.toFixed(2), " \u20AC");
-            document.querySelector("#livraison-price").innerHTML = "".concat(parseFloat(frp_ttc).toFixed(2), " \u20AC");
+            document.querySelector("#total-price").innerHTML = "".concat(total.toFixed(2).toString().replace(".", ","), " \u20AC");
+            document.querySelector("#livraison-price").innerHTML = "".concat(parseFloat(frp_ttc).toFixed(2).toString().replace(".", ","), " \u20AC");
           });
         });
       case 20:

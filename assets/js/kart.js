@@ -278,7 +278,7 @@ class Kart {
                                 produit.pad_qte
                               } x ${new Decimal(
           produit.pad_ttc
-        ).toString()} €</span>
+        ).toFixed(2).toString().replace(".",",")} €</span>
                               <button id="remove-prod" data-id="${
                                 produit.pro_id
                               }" class="btn-close"></button>
@@ -304,7 +304,7 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${new Decimal(price.kartProductPrice).toString()} €</span>
+          <span>${new Decimal(price.kartProductPrice).toFixed(2).toString().replace(".",",")} €</span>
         </div>
       </div>
 
@@ -313,7 +313,7 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total">
-        <span>${new Decimal(fraisPort).toString()} €</span> 
+        <span>${new Decimal(fraisPort).toFixed(2).toString().replace(".",",")} €</span> 
         </div>
       </div>
       <div class="kart-livraison">
@@ -321,7 +321,7 @@ class Kart {
         <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${new Decimal(fraisDossier).toString()} €</span>
+        <span>${new Decimal(fraisDossier).toFixed(2).toString().replace(".",",")} €</span>
       </div>
     </div>
 
@@ -330,7 +330,7 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${new Decimal(price.totalPrice).toString()} €</span>
+          <span>${new Decimal(price.totalPrice).toFixed(2).toString().replace(".",",")} €</span>
         </div>
       </div>
       <hr>
@@ -377,7 +377,7 @@ class Kart {
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${new Decimal(
               item.pad_ttc
-            ).toString()}€</div>
+            ).toFixed(2).toString().replace(".",",")}€</div>
             <div class="product-quantity">Quantité : <span> ${qte} </span></div>
             </div>
         </div>
@@ -387,25 +387,25 @@ class Kart {
                 <span class="sous-total-titre">Sous-total :</span>
                 <span class="sous-total-montant">${new Decimal(
                   price.kartProductPrice
-                ).toString()} €</span>
+                ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">transport:</span>
                 <span class="transport-montant">${new Decimal(
                   fraisPort
-                ).toString()} €</span>
+                ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">frais dossier:</span>
                 <span class="transport-montant">${new Decimal(
                   fraisDossier
-                ).toString()} €</span>
+                ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">total:</span>
                 <span class="total-montant">${new Decimal(
                   price.totalPrice
-                ).toString()} €</span>
+                ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer"  data-bs-dismiss="modal"

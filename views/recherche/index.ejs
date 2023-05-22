@@ -52,7 +52,7 @@
         <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.dataValues.pro_id).qty > 1 ? "articles" : "article" %></div>
         <div>
           <p class="price">
-            <%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2) %> €
+            <%= produit.dataValues.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %> €
           </p>
           <p class="bar">|</p>
           <p
