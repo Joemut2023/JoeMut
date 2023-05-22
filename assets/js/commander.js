@@ -224,18 +224,18 @@ function toggle_visibility(id) {
   const { kartProductPrice, totalPrice } = await Kart.calculTotalPrice();
   document.querySelector("#sous-total").innerHTML = `${kartProductPrice.toFixed(
     2
-  )} €`;
+  ).toString().replace(".",",")} €`;
 
   let fraisDivers = await Kart.addFraisDivers();
   document.querySelector(
     "#dossier-price"
-  ).innerHTML = `${fraisDivers.frais_dossier.toFixed(2)} €`;
+  ).innerHTML = `${fraisDivers.frais_dossier.toFixed(2).toString().replace(".",",")} €`;
   document.querySelector(
     "#livraison-price"
-  ).innerHTML = `${fraisDivers.frais_port.toFixed(2)} €`;
+  ).innerHTML = `${fraisDivers.frais_port.toFixed(2).toString().replace(".",",")} €`;
   document.querySelector("#total-price").innerHTML = `${totalPrice.toFixed(
     2
-  )} €`;
+  ).toString().replace(".",",")} €`;
   radios?.forEach((radio) => {
     radio.addEventListener("click", (e) => {
       let frp_ttc = e.target.dataset.ttc;
@@ -243,10 +243,10 @@ function toggle_visibility(id) {
         parseFloat(frp_ttc) + kartProductPrice + fraisDivers.frais_dossier;
       document.querySelector("#total-price").innerHTML = `${total.toFixed(
         2
-      )} €`;
+      ).toString().replace(".",",")} €`;
       document.querySelector("#livraison-price").innerHTML = `${parseFloat(
         frp_ttc
-      ).toFixed(2)} €`;
+      ).toFixed(2).toString().replace(".",",")} €`;
     });
   });
 })();
