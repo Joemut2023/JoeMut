@@ -197,5 +197,40 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
        req.session.flash = {message:erroMsg,type:"danger"}
        res.redirect(`/admin/devis/view/${com_id}`);
     }
+});
+router.post('/bon-livraison-pdf',async (req,res)=>{
+    const {com_id,doc_id} = req.body; 
+    try {
+        let bon_livraison = await Document.findOne({
+            attributes:['doc_ref','com_id'],
+            where:{doc_id}
+        });
+        let commande = await Commande.findOne({
+            attributes:['com_id','com_num'],
+            include:[{model:Client,attributes:['cli_mail']}],
+            where:{com_id}
+        });
+        // 12/05/2022 => rendre le bon template pour le bon de livraison
+        let ejsFile = fs.readFileSync(
+            path.join(__dirname, "../../mailTemplate/essayage_mail_content.ejs"),
+            "utf8"
+        );
+        let html = ejs.render(ejsFile);     
+        const DOCUMENT_NAME = bon_livraison.doc_ref;
+        if (bon_livraison) { 
+            generate_pdf_func(`${process.env.APP_URL}admin/bon-livraison/${bon_livraison.doc_id}`,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`).then(data=>{
+                send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon de livraison AES`,html).then(()=>{
+                    req.session.flash = {message:"Le bon de livraison vient d'être envoyé au client.",type:"success"} 
+                    res.redirect(`/admin/devis/view/${com_id}`);
+                })
+            })  
+        }else{
+            req.session.flash = {message:"Cette commande n'a pas encore de bon de livraison.",type:"danger"}
+            res.redirect(`/admin/devis/view/${com_id}`);   
+        }
+    } catch (error) {
+        req.session.flash = {message:erroMsg,type:"danger"}
+        res.redirect(`/admin/devis/view/${com_id}`);
+    }
 })
 module.exports = router;

@@ -104,6 +104,13 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
     console.log("erreur rendue bon essayage");
   }
 });
+router.get('/bon-livraison/:doc_id',async (req,res)=>{
+  const { doc_id } = req.params;
+  let view = await ejs.renderFile(
+    path.join(__dirname, "../../mailTemplate/essayage_mail_content.ejs")
+  );
+  return res.send(view);
+})
 router.post("/delete-flash", async (req, res) => {
   delete req.session.flash;
   res.send("message flash supprimé");

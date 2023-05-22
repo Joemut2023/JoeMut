@@ -33,8 +33,8 @@ const {
 } = require("../../models/");
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_DEVIS, TYPE_DOCUMENT_BON_ESSAYAGE } = require("../../helpers/utils_const");
-const { Op } = require("sequelize");
+const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_DEVIS, TYPE_DOCUMENT_BON_ESSAYAGE,TYPE_DOCUMENT_BON_LIVRAISON } = require("../../helpers/utils_const");
+const { Op, where } = require("sequelize");
 const erroMsg = "Quelque chose s'est mal passé";
 const updateMsg = "modifié avec succés"
 const createMsg = "Créé avec succés";
@@ -555,6 +555,11 @@ router.get('/view/:commandeId',async (req,res)=>{
       where:{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE},
       order:[['doc_date','DESC']]
     });
+    let last_document_livraison = await Document.findOne({
+      attributes:['doc_ref','doc_id'],
+      where:{tdo_id:TYPE_DOCUMENT_BON_LIVRAISON},
+      order:[['doc_date','DESC']]
+    });
     return res.render("devis/view",{
       commande,
       adresse_livraion,
@@ -570,7 +575,8 @@ router.get('/view/:commandeId',async (req,res)=>{
       commande_client,
       total_commande,
       last_document_devis,
-      last_document_essayage
+      last_document_essayage,
+      last_document_livraison
     });
   } catch (error) {
     res.render("devis/view",{
