@@ -390,19 +390,19 @@ class Kart {
                 ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="transport">
-                <span class="transport-titre">transport:</span>
+                <span class="transport-titre">Frais de port:</span>
                 <span class="transport-montant">${new Decimal(
                   fraisPort
                 ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="transport">
-                <span class="transport-titre">frais dossier:</span>
+                <span class="transport-titre">Frais de dossier:</span>
                 <span class="transport-montant">${new Decimal(
                   fraisDossier
                 ).toFixed(2).toString().replace(".",",")} €</span>
             </div>
             <div class="total">
-                <span class="total-titre">total:</span>
+                <span class="total-titre">Total:</span>
                 <span class="total-montant">${new Decimal(
                   price.totalPrice
                 ).toFixed(2).toString().replace(".",",")} €</span>
