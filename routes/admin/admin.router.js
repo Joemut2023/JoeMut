@@ -34,7 +34,6 @@ const produitLocationRouter = require("./admin.produits.location");
 const documentRouter = require("./admin.document");
 const ejs = require("ejs");
 const path = require("path");
-const { log } = require("console");
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout, adminIsAuth, FlashMidleware], devisRouter);

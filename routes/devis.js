@@ -4,7 +4,6 @@ const ejs = require("ejs");
 const fs = require("fs");
 const path = require("path");
 const get_commande_data = require("../helpers/get_commande_data");
-const { log } = require("console");
 const moment = require("moment");
 router.get("/:id", async (req, res, next) => {
   let { id } = req.params;
