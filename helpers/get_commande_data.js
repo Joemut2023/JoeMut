@@ -97,8 +97,7 @@ module.exports = async (commandeId, callback) => {
     // res.json({ panierDetails });
 
     let livraison = commande.Frais_port.frp_ht ? commande.Frais_port.frp_ht : 0;
-    totalTTC =
-      sous_total + commande.com_remise + commande.com_frais + taxe + livraison;
+    totalTTC = sous_total + commande.com_remise + commande.com_frais + taxe + livraison;
     totalHT = sous_total + livraison + commande.com_frais;
     return callback(
       commande,
