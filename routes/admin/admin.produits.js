@@ -70,8 +70,8 @@ router.get("/", async (req, res) => {
 });
 
 //RESEARCH
-router.get("/search", async (req, res) => {
-  const { libelle, ref, cat } = req.query;
+router.post("/search", async (req, res) => {
+  const { libelle, ref, cat } = req.body;
   let catWhere;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
@@ -107,19 +107,29 @@ router.get("/search", async (req, res) => {
         { model: Media, attributes: ["med_ressource"] },
         {
           model: Categorie,
-          attributes: ["cat_libelle"],
-          required: false,
-          where: catWhere,
+          required: true,
+          where: {
+            cat_libelle: { [Op.like]: `%${cat}` },
+          },
+          // attributes: ["cat_libelle"],
+          // where: {[Op.eq]:{ cat_id :1} },
         },
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: check_value(ref) } },
-          { pro_libelle: { [Op.like]: check_value(libelle) } },
+          { pro_ref: { [Op.like]: `%${ref}%` } },
+          { pro_libelle: { [Op.like]: `%${libelle}` } },
         ],
       },
+      // where: {
+      //   [Op.or]: [
+      //     { pro_ref: "PC18" },
+      //     { pro_libelle: "PC18 - Ensemble côte lion" },
+      //   ],
+      // },
     });
- 
+    
+    // res.json(allProduits)
 
     const produits = await Produit.findAll({
       offset: start,
@@ -131,15 +141,24 @@ router.get("/search", async (req, res) => {
         {
           model: Categorie,
           attributes: ["cat_libelle"],
-          where: catWhere,
+          // where: catWhere,
+          where: {
+            cat_libelle: { [Op.like]: `%${cat}` },
+          },
         },
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: check_value(ref) } },
-          { pro_libelle: { [Op.like]: check_value(libelle) } },
+          { pro_ref: { [Op.like]: `%${ref}%` } },
+          { pro_libelle: { [Op.like]: `%${libelle}` } },
         ],
       },
+      // where: {
+      //   [Op.or]: [
+      //     { pro_ref: { [Op.like]: check_value(ref) } },
+      //     { pro_libelle: { [Op.like]: check_value(libelle) } },
+      //   ],
+      // },
     });
    
     for (let index = 0; index < allProduits.length; index++) {
@@ -165,8 +184,8 @@ router.get("/search", async (req, res) => {
       end,
       produitsNbr: allProduits.length,
       produits,
-      libelle,
-      ref,
+      // libelle,
+      // ref,
       // categorie,
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
