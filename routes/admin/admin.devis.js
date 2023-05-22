@@ -34,7 +34,7 @@ const {
 const moment = require("moment");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { PAGINATION_LIMIT_ADMIN, TYPE_DOCUMENT_FACTURE, TYPE_DOCUMENT_DEVIS, TYPE_DOCUMENT_BON_ESSAYAGE } = require("../../helpers/utils_const");
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 const erroMsg = "Quelque chose s'est mal passé";
 const updateMsg = "modifié avec succés"
 const createMsg = "Créé avec succés";

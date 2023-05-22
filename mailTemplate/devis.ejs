@@ -206,7 +206,7 @@
           </div>
         </div>
       
-        <div class="adresses" style="width: 100%; display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
+        <div class="adresses" style="width: 100%; display: flex; flex-direction: row; gap: 10%; padding: 5px 35px 0 35px;">
           <div class="livraison">
              <h3>Adresse de livraison</h3>
              <hr style="opacity: 0.4;">
@@ -236,7 +236,7 @@
           <table class="table  table-bordered" style="border-collapse: collapse;">
               <thead>
                 <tr>
-                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Reference</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Référence</th>
                   <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Produit</th>
                   <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Prix unitaire (HT)</th>
                   <th style="border: 1px solid gray; padding: 10px; font-size: 16px;" scope="col">Quantité</th>
@@ -248,9 +248,9 @@
                  <tr>
                     <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_ref %></td>
                     <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.Produit.pro_libelle %> </td>
-                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2).toString().replace(".",",")%> €</td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_ht.toFixed(2).toString().replace(".",",")%> </td>
                     <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= element.pad_qte%></td>
-                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2).toString().replace(".",",") %> €</td>
+                    <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (element.pad_ht  * element.pad_qte ).toFixed(2).toString().replace(".",",") %> </td>
                 </tr>
               <% }) %>
               </tbody>
@@ -271,9 +271,9 @@
               <tbody>
                 <tr>
                   <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">Produits</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">20.000 %</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2).toString().replace(".",",") %> €</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2).toString().replace(".",",") %> €</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;">20,000 %</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2).toString().replace(".",",") %> </td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2).toString().replace(".",",") %> </td>
                 </tr>
               </tbody>
             </table>
@@ -281,28 +281,20 @@
             <table class="table table-borderless" style="border-collapse: collapse;width: 30%;margin-top:10px;">
               <tbody>
                 <tr>
-                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total produits</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= sous_total.toFixed(2).toString().replace(".",",") %> €</td>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total produits TTC</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (sous_total + taxe).toFixed(2).toString().replace(".",",") %></td>
                 </tr>
                 <tr>
-                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais de livraison</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2).replace(".",","):0.00%> €</td>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais de livraison TTC</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ht?commande.Frais_port.frp_ht.toFixed(2).replace(".",","):0.00%> </td>
                 </tr>
                 <tr>
-                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Autres frais</td>
-                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2).toString().replace(".",","):0.00 %> €</td>
-                </tr>
-                <tr>
-                  <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total (HT)</th>
-                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= totalHT.toFixed(2).toString().replace(".",",") %> €</th>
-                </tr>
-                <tr>
-                  <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Taxe totale</th>
-                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= taxe.toFixed(2).toString().replace(".",",") %> € </th>
+                  <td id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais de dossier TTC</td>
+                  <td style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2).toString().replace(".",","):0.00 %> </td>
                 </tr>
                 <tr>
                   <th id="title" style="border: 1px solid gray; padding: 10px; font-size: 16px;">Total</th>
-                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (totalHT + taxe).toFixed(2).toString().replace(".",",")%> €</th>
+                  <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= (totalHT + taxe).toFixed(2).toString().replace(".",",")%> </th>
                 </tr>
               </tbody>
             </table>
@@ -314,10 +306,9 @@
             <i class="fa-solid fa-truck icone_livraison"></i>
             <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Livraison</h6>
           </div>
-          <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;">Mode de livraison :<span><%= modeLivraison.frp_libelle %></span></h5>
-          </div>
-          <div class="text-detail" style="width:80%;padding: 30px 35px 10px 35px;">
-            <p style="text-align: center;" >Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
+          <h5 style="font-weight: 700; font-size: 17px;">Mode de livraison :<span style="font-weight: 200;"><span> <%= modeLivraison.frp_libelle %></span></h5>
+         
+            <p style="padding-top: 25px; text-align: justify;" >Les frais de port estimatifs pouvant etre réévalués en foction du poids réel.
               Vos costumes seront pre-réservés pendant 10 jours(sous réserve de disponibilité)
               Passé de délai, sans confirmation de votre part, Aiguilles en scène se réserve le droit de les remettre en location.
             </p>
@@ -331,24 +322,24 @@
         <div class="repetition_spectable">
           <div class="spectacle">
             <div class="titre">
-              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date spectacle</h6>
+              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Dates de spectacles</h6>
             </div>
             <hr style="opacity: 0.4;">
             <div class="body">
-              <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span><%= commande.com_debut_spectacle %></span></h6>
-              <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span><%= commande.com_fin_spectacle %></span></h6>
+              <h6 style="font-weight: 600; font-size: 15px;">Date de début : <span><%= moment(commande.com_debut_spectacle).format('DD/MM/YYYY')  %></span></h6>
+              <h6 style="font-weight: 600; font-size: 15px;">Date de fin : <span><%= moment(commande.com_fin_spectacle).format('DD/MM/YYYY')  %></span></h6>
             </div>
             <hr style="opacity: 0.4;">
           </div>
           <div class="repetition" style="width: 45%">
             <div class="titre" style="width: 100%">
-              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date repétition</h6>
+              <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Date (s) repétition</h6>
             </div>
             <hr style="opacity: 0.4;">
             <div class="body">
               <% essayage.forEach(element => { %>
                
-                <h6 style="font-weight: 600; font-size: 15px;">Date de repétition : <span><%= element.ess_repetition %></span></h6>
+                <h6 style="font-weight: 600; font-size: 15px;">Date de répétition : <span><%= element.ess_repetition %></span></h6>
               <% }) %>
              
             </div>
