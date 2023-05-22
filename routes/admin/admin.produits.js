@@ -117,8 +117,8 @@ router.post("/search", async (req, res) => {
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: `%${ref}%` } },
-          { pro_libelle: { [Op.like]: `%${libelle}` } },
+          { pro_ref: { [Op.like]: `%${ref ? ref : libelle}%` } },
+          { pro_libelle: { [Op.like]: `%${libelle ? libelle : ref}%` } },
         ],
       },
       // where: {
@@ -149,8 +149,9 @@ router.post("/search", async (req, res) => {
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: `%${ref}%` } },
-          { pro_libelle: { [Op.like]: `%${libelle}` } },
+          { pro_ref: { [Op.like]: `%${ref?ref:libelle}%` } },
+          { pro_libelle: { [Op.like]: `%${libelle?libelle:ref}%` } },
+
         ],
       },
       // where: {
