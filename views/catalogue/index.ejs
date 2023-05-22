@@ -8,6 +8,13 @@
       <div class="border"></div>
       <div class="list-body">
         <p>Catalogue</p>
+        <!-- boucle -->
+        <% typee_categories.forEach(typCat => { %>
+          
+          <% }) %>
+         
+      
+
         <div class="accordion-item">
           <div class="type-categorie">
             <a href="/catalogue/type/<%= typee_categories[0].tyc_id %>"
@@ -42,153 +49,16 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <% categories.forEach(categorie => { %> <% if
-              (categorie.tyc_id===1) { %>
-              <a href="/catalogue/<%=categorie.cat_id %>"
-                ><%= categorie.cat_libelle %></a
-              >
-              <% } %> <% }) %>
+              <% categories.forEach(categorie => { %>
+                <% if(categorie.tyc_id===1) { %>
+                    <a href="<%= `/catalogue/${categorie.cat_id}`%>"> <%= categorie.cat_libelle %></a>
+                <% } %> 
+              <% }) %>
             </div>
           </div>
         </div>
+        <!-- boucle -->
 
-        <!-- Moyen -->
-        <div class="accordion-item">
-          <div class="type-categorie">
-            <a href="/catalogue/type/<%= typee_categories[1].tyc_id %>"
-              >Costumes des danses <br />
-              Moyens</a
-            >
-            <div
-              id="plus-moyen"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsetwo"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-plus"></i>
-            </div>
-            <div
-              id="minus-moyen"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsetwo"
-              aria-expanded="false"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-minus"></i>
-            </div>
-          </div>
-          <div
-            id="collapsetwo"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <% categories.forEach(categorie => { %> <% if
-              (categorie.tyc_id===2) { %>
-              <a href="/catalogue/<%=categorie.cat_id %>">
-                <%= categorie.cat_libelle%></a
-              >
-              <% } %> <% }) %>
-            </div>
-          </div>
-        </div>
-
-        <!-- accessoirs -->
-        <div class="accordion-item">
-          <div class="type-categorie">
-            <a href="/catalogue/type/<%= typee_categories[3].tyc_id %>"
-              >Accessoirs</a
-            >
-            <div
-              id="plus-acc"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsethree"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-plus"></i>
-            </div>
-            <div
-              id="minus-acc"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsethree"
-              aria-expanded="false"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-minus"></i>
-            </div>
-          </div>
-          <div
-            id="collapsethree"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <div class="accordion-body">
-                <% categories.forEach(categorie => { %> <% if
-                (categorie.tyc_id===4) { %>
-                <a href="/catalogue/<%=categorie.cat_id %>">
-                  <%= categorie.cat_libelle%></a
-                >
-                <% } %> <% }) %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Grands -->
-        <div class="accordion-item">
-          <div class="type-categorie">
-            <a href="/catalogue/type/<%= typee_categories[2].tyc_id %>"
-              >Costumes des danses <br />
-              Grands</a
-            >
-            <div
-              id="plus-grand"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsefour"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-plus"></i>
-            </div>
-            <div
-              id="minus-grand"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsefour"
-              aria-expanded="false"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-minus"></i>
-            </div>
-          </div>
-          <div
-            id="collapsefour"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <div class="accordion-body">
-                <% categories.forEach(categorie => { %> <% if
-                (categorie.tyc_id===3) { %>
-                <a href="/catalogue/<%=categorie.cat_id %>">
-                  <%= categorie.cat_libelle%></a
-                >
-                <% } %> <% }) %>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="border"></div>
     </div>
