@@ -42,12 +42,13 @@ router.post("/ajouter", async (req, res) => {
 
         if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
             {
-                return res.json({
+                return res.render("fraisPort/ajouter", {
                     error: true,
                     errorMsg: "Veillez remplir tout les champs",
-                });
+                })
             }
         }
+
 
         const newFrais = await Frais_port.create({
             frp_debut: frp_debut,
@@ -60,10 +61,7 @@ router.post("/ajouter", async (req, res) => {
             frp_description: frp_description
         })
 
-        return res.render("fraisPort/ajouter", {
-            success: true,
-            newFrais
-        })
+        return res.redirect("/admin/frais-port")
 
 
     } catch (error) {
@@ -103,7 +101,7 @@ router.post("/edit/:id", async (req, res) => {
 
         if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
             {
-                return res.json({
+                return res.render({
                     error: true,
                     errorMsg: "Veillez remplir tout les champs",
                 });

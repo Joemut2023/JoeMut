@@ -42,8 +42,28 @@
         <td><%= element.frp_libelle %></td>
         <td><%= element.frp_debut %></td>
         <td><%= element.frp_fin %></td>
-        <td><%= element.frp_actif %></td>
-        <td><%= element.frp_default %></td>
+        <td><div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="activateClient"
+              name="frp_actif"
+              value="<%= element.frp_actif %>"
+              type="checkbox"
+              checked
+            />
+          </div></td>
+        <td><div class="w-50">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              id="activateClient"
+              name="frp_default"
+              value="<%= element.frp_default %>"
+              type="checkbox"
+              checked
+            />
+          </div></td>
         <td><%= element.frp_description %></td>
         <!-- <td> <%= element.frp_img %></td> -->
         <td>
