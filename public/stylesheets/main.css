@@ -6924,6 +6924,12 @@ body {
   text-decoration: none !important;
   color: #232323;
 }
+#admin-page-details-clients .left-side-div {
+  width: 55%;
+}
+#admin-page-details-clients .right-side-div {
+  width: 45%;
+}
 
 #admin-page-devis {
   font-size: 13px;

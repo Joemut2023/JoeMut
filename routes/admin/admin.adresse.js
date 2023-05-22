@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { Adresse, Client } = require("../../models");
-const { where } = require("sequelize");
 
 router.get("/", async (req, res) => {
   const { cli_id } = req.query;
