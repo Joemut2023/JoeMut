@@ -14,6 +14,7 @@ const {
   Quantite,
 } = require("../models");
 const { TVA } = require("../helpers/utils_const");
+const CommandeCalcul = require("./commandeData");
 module.exports = async (commandeId, callback) => {
   let quantiteOfEachProduct = [];
   try {
@@ -82,23 +83,14 @@ module.exports = async (commandeId, callback) => {
     let sous_total = 0;
     let totalTTC = 0;
     let totalHT = 0;
-
-    for (let index = 0; index < panierDetails.length; index++) {
-      sous_totalCmd +=
-        panierDetails[index].pad_ttc * panierDetails[index].pad_qte;
-      sous_total += panierDetails[index].pad_ht * panierDetails[index].pad_qte;
-    }
-
-    let taxe = sous_total * TVA;
-
-    let totalCmd =
-      sous_total + commande.Frais_port.frp_ttc + commande.com_frais;
-    // let total = sous_total + commande.Frais_port.frp_ht + commande.com_frais;
-    // res.json({ panierDetails });
-
-    let livraison = commande.Frais_port.frp_ht ? commande.Frais_port.frp_ht : 0;
-    totalTTC = sous_total + commande.com_remise + commande.com_frais + taxe + livraison;
-    totalHT = sous_total + livraison + commande.com_frais;
+    let CalculCommande = new CommandeCalcul(commande,panierDetails);
+    sous_totalCmd = CalculCommande.calculPanierTTC();
+    sous_total = CalculCommande.calculPanierHT();
+    let taxe = CalculCommande.calculPanierTotalWithTVA();
+    let totalCmd = CalculCommande.calculTotalCommande();
+    let livraison = CalculCommande.calculCommandeLivraison();
+    totalTTC = CalculCommande.calculTotalCommandeTTC();
+    totalHT = CalculCommande.calculCommandeHT();
     return callback(
       commande,
       adresseLiv,
