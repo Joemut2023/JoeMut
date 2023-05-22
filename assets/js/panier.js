@@ -192,7 +192,7 @@ const TotalPricesProducts = async () => {
     <p class="fermer">Fermer</p>
   </div>
 </div>
-<p id="promo-notice"><span id="promo-notice-asterics">*</span> entrer uniquement le code promo pour un produit</p>
+<p id="promo-notice"><span id="promo-notice-asterics">*</span> Entrer uniquement le code promo pour un produit</p>
 <a href="/commander/#page-commander" class="button">
   <button class="enable">Finaliser le Devis</button>
 </a>

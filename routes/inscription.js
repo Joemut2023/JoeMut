@@ -36,7 +36,7 @@ router.post("/", async (req, res, next) => {
     pwdhashed = await bcrypt.hash(credentials.cli_pwd, 10);
     let client = await Client.create({
       tit_id: credentials.tit_id,
-      cli_nom: credentials.cli_nom,
+      cli_nom: credentials.cli_nom.toUpperCase(),
       cli_prenom: credentials.cli_prenom,
       cli_mail: credentials.cli_mail,
       cli_pwd: pwdhashed,
