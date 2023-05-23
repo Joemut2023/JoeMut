@@ -135,12 +135,15 @@
       }
     }
   }
-
-  .button {
+  .hide-alert{
+    display: none;
+  }
+  .btn-submit {
     display: flex;
     // justify-content: flex-end;
     button {
       width: 40%;
+      padding: 12px 0;
       align-self: center;
       border: none;
       background: $color-primary;

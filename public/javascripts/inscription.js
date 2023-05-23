@@ -7,6 +7,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var password = document.getElementById("password");
 var btn = document.getElementById("btn-action");
 var btn_enregistrer = document.getElementById("enregister");
+var showErrorMsg = function showErrorMsg(error) {
+  document.querySelector("#error-mesage").innerHTML = error;
+  document.querySelector("#alert-show").classList.remove("hide-alert");
+  window.scrollTo(0, 0);
+};
 btn.addEventListener("click", function (e) {
   e.preventDefault();
   var type = password.getAttribute("type") === "password" ? "text" : "password";
@@ -15,12 +20,20 @@ btn.addEventListener("click", function (e) {
 });
 btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-    var homme, femme, cli_nom, cli_prenom, cli_mail, cli_pwd, data;
+    var checkCndt, checkCnfd, newsLetter, homme, femme, cli_nom, cli_prenom, cli_mail, cli_pwd, data;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           e.preventDefault();
-
+          checkCndt = document.querySelector("#check_box_cndt");
+          checkCnfd = document.querySelector("#check_box_cnfd");
+          newsLetter = document.querySelector("#check_box_newsletter");
+          if (!(checkCndt.checked == false || checkCnfd.checked == false)) {
+            _context.next = 6;
+            break;
+          }
+          return _context.abrupt("return", showErrorMsg("Veiller cocher tous les champs requis"));
+        case 6:
           //let panier_items = JSON.parse(localStorage.getItem("storedItems"));
           homme = document.getElementById("homme");
           femme = document.getElementById("femme");
@@ -34,23 +47,31 @@ btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
               cli_nom: cli_nom,
               cli_prenom: cli_prenom,
               cli_mail: cli_mail,
-              cli_pwd: cli_pwd
+              cli_pwd: cli_pwd,
+              cli_newsletter: newsLetter.checked ? true : false
             }
             // panier_items: panier_items,
           };
-          _context.next = 10;
+          _context.prev = 13;
+          _context.next = 16;
           return axios.post("".concat(SITE_URL, "/inscription"), data, {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
-        case 10:
+        case 16:
           window.location.href = "".concat(SITE_URL, "/mon-compte");
-        case 11:
+          _context.next = 22;
+          break;
+        case 19:
+          _context.prev = 19;
+          _context.t0 = _context["catch"](13);
+          showErrorMsg(_context.t0.response.data.errorMsg);
+        case 22:
         case "end":
           return _context.stop();
       }
-    }, _callee);
+    }, _callee, null, [[13, 19]]);
   }));
   return function (_x) {
     return _ref.apply(this, arguments);

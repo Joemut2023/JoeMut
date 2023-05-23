@@ -4827,11 +4827,15 @@
 #page-inscription .content .register-form form .radios div input[type=radio]:checked {
   background-color: #a0b21f;
 }
-#page-inscription .button {
+#page-inscription .hide-alert {
+  display: none;
+}
+#page-inscription .btn-submit {
   display: flex;
 }
-#page-inscription .button button {
+#page-inscription .btn-submit button {
   width: 40%;
+  padding: 12px 0;
   align-self: center;
   border: none;
   background: #a0b21f;
