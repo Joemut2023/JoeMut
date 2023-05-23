@@ -1,7 +1,7 @@
 <div id="admin-blocs-produitHeader">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <a class="fil-ariane-item" href="#">Categories</a>
+      <a class="fil-ariane-item" href="/admin/type-categories">Categories</a>
       <li class="breadcrumb-item active" aria-current="page">
         <a href="#">Produit</a>
       </li>
@@ -51,6 +51,7 @@
         <th scope="col"></th>
         <th>Id</th>
         <th>Libellé</th>
+        <th>Ordre</th>
         <th>Actions</th>
       </tr>
       <% listeType?.forEach((element)=> { %>
@@ -65,6 +66,7 @@
         </td>
         <td><%= element.tyc_id %></td>
         <td><%= element.tyc_libelle %></td>
+        <td><%= element.tyc_ordre %></td>
         <td class="d-flex gap-3">
           <div>
             <a href="/admin/categories/<%= element.tyc_id %>">

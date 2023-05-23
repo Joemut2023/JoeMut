@@ -3,11 +3,10 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a class="fil-ariane-item" href="/Catalogue">Catalogue</a>
+          <a class="fil-ariane-item" href="/admin/type-categories">Catalogue</a>
         </li>
         <li class="breadcrumb-item">
-          <a class="fil-ariane-item" href="/admin/type-categories"
-            >type-categories</a
+          <a class="fil-ariane-item" href="/admin/type-categories">type-categories</a
           >
         </li>
       </ol>
@@ -22,25 +21,43 @@
     method="POST"
   >
     <div class="content">
-      <div class="mb-3 pt-3">
-        <label for="transporteur-input" class="form-label"
-          >Nom de la catégorie</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="categorie-input"
-          aria-describedby="categorie nom"
-          name="tyc_libelle"
-          value="<%= findTyc.tyc_libelle %>"
-          required
-        />
+      <div class="row">
+        <div class="mb-3 pt-3 col-6">
+          <label for="transporteur-input" class="form-label"
+            >Nom de la catégorie</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="categorie-input"
+            aria-describedby="categorie nom"
+            name="tyc_libelle"
+            value="<%= findTyc.tyc_libelle %>"
+            required
+          />
+        </div>
+  
+        <div class="mb-3 pt-3 col-6">
+          <label for="transporteur-input" class="form-label"
+            >Ordre</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="categorie-input"
+            aria-describedby="categorie nom"
+            name="tyc_order"
+            value="<%= findTyc.tyc_ordre %>"
+            required
+          />
+        </div>
       </div>
 
+    <div style="display: flex; gap: 20px;">
+      <button class="btn btn-secondary mb-4" ><a href="/admin/type-categories"  style="color: #fff; text-decoration: none;">Annuler</a></button>
       <button type="submit" class="btn btn-primary mb-4">Mettre à jour</button>
-      <div class="mb-4">
-        <a href="/admin/type-categories" class="btn btn-secondary">Annuler</a>
-      </div>
+    </div>
+     
     </div>
   </form>
 </div>

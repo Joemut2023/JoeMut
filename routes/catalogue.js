@@ -40,7 +40,11 @@ router.get("/", async function (req, res, next) {
 
   try {
     res.locals.titre = "catalogue";
-    const typee_categories = await Type_categorie.findAll();
+    const typee_categories = await Type_categorie.findAll({
+      order: [
+        ['tyc_ordre', 'ASC']
+      ]
+    });
     const categories = await Categorie.findAll();
     const allproducts = await Produit.findAll();
     
