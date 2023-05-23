@@ -6150,8 +6150,20 @@
 }
 
 #admin-page-produits {
-  margin-top: 2%;
   background-color: #fff;
+}
+#admin-page-produits .table {
+  border-bottom: 1 solid white;
+}
+#admin-page-produits .table-fixed thead {
+  position: sticky;
+  top: 176px;
+  z-index: 10;
+  background-color: white;
+}
+#admin-page-produits .table-fixed tbody {
+  max-height: 1024px;
+  overflow-y: hidden !important;
 }
 #admin-page-produits .table td,
 #admin-page-produits .table th {
@@ -6191,6 +6203,12 @@
   font-size: 13px;
   color: white;
   padding: 5px 10px;
+}
+#admin-page-produits .page-item .page-link {
+  font-size: 1rem;
+}
+#admin-page-produits .page-item .page-link:marker {
+  background-color: blue;
 }
 
 #admin-page-clients .menu-bar {
@@ -7100,6 +7118,7 @@ body {
   width: 100%;
   position: sticky;
   top: 6.4%;
+  padding-bottom: 2rem;
 }
 #admin-blocs-produitHeader .breadcrumb {
   margin-top: 1%;

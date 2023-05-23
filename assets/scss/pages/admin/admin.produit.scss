@@ -1,9 +1,35 @@
 #admin-page-produits {
-    margin-top: 2%;
+    // margin-top: 2%;
     background-color: $color-white;
+       .table{
+        border-bottom:1 solid  white;
+       }
+     .table-fixed  thead {
+        position: sticky;
+        top:176px;
+       z-index:10;
+       background-color: white;
+        }
+         .table-fixed  tbody{
+            max-height: 1024px;
+            overflow-y:hidden !important;
+        
+         }
 
     .table {
-
+        // overflow: auto,;
+       
+        // thead tr th,tr td{
+        //     background-color: red;
+        //     position: sticky;
+        //     top: 0;
+        //     z-index: 1;
+        //     overflow-y: hidden;
+        // }
+    //    tbody{
+    //     max-height: 1024px;
+    //     overflow-y: scroll;
+    //    }
         td,
         th {
             vertical-align: middle;
@@ -47,5 +73,14 @@
          }
         }
     }
+    .page-item{
+         .page-link{
+          font-size: 1rem;
+          &:marker{
+            background-color:blue;
+          }
+    }
+    }
+   
     
 }

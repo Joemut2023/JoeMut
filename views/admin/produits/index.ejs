@@ -1,9 +1,9 @@
 <%- include('../blocs/produitHeader') %>
 
 <div id="admin-page-produits">
-  <table class="table table-striped">
-    <thead>
-      <tr>
+  <table class="table table-striped  table-fixed">
+    <thead >
+      <tr style="margin-bottom: 0; border-bottom:white;">
         <th scope="col"></th>
         <th scope="col" class="text-center">ID</th>
         <th scope="col" class="text-center">Image</th>
@@ -16,9 +16,7 @@
         <th scope="col" class="text-center">Actions</th>
          <th scope="col"></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr class="research-line">
+      <tr class="research-line" style="margin-top: 0;background-color: white;border-bottom:white">
           <form action="/admin/produits/search" method="post">
         <td></td>
         <td></td>
@@ -41,6 +39,9 @@
         <td></td>
         </form>
       </tr>
+    </thead>
+    <tbody>
+      
       <% if ((typeof produits !== 'undefined') && produits.length > 0) { %> <%
       produits.forEach(element => { %>
       <tr>
@@ -105,43 +106,43 @@
     </div>
     <nav>
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=1">1</a>
+        <li class="page-item nav-item">
+          <a class="page-link nav-link " href="/admin/produits/?&page=1&active=true" id="1">1</a>
         </li>
         <% if (pageActive === 1 || pageActive ===2) { %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=2">2</a>
+        <li class="page-item nav-item">
+          <a class="page-link nav-link" href="/admin/produits/?&page=2" id="2">2</a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=3">3</a>
+        <li class="page-item nav-item">
+          <a class="page-link nav-link" href="/admin/produits/?&page=3" id="3">3</a>
         </li>
         <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
-        <li class="page-item">
+        <li class="page-item nav-item">
           <a
-            class="page-link"
-            href="/admin/produits/?&page=<%= pageActive -1 %>"
+            class="page-link nav-link"
+            href="/admin/produits/?&page=<%= pageActive -1 %>" id="<%= pageActive -1 %>"
             ><%= pageActive-1 %></a
           >
         </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= pageActive %>"
+        <li class="page-item nav-item">
+          <a class="page-link nav-link navbar-brand" href="/admin/produits/?&page=<%= pageActive %>" id="<%= pageActive %>"
             ><%= pageActive %></a
           >
         </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= pageActive+1 %>"
+        <li class="page-item nav-item">
+          <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+1 %>" id="<%= pageActive+1 %>"
             ><%= pageActive+1 %></a
           >
         </li>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= pageActive+2 %>"
+        <li class="page-item nav-item">
+          <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+2 %>" id="<%= pageActive+1 %>"
             ><%= pageActive+2 %></a
           >
         </li>
-        <li class="page-item">...</li>
+        <li class="page-item nav-item">...</li>
         <% } %>
-        <li class="page-item">
-          <a class="page-link" href="/admin/produits/?&page=<%= nbrPages %>"
+        <li class="page-item nav-item">
+          <a class="page-link nav-link"  href="/admin/produits/?&page=<%= nbrPages %>" id="<%= pageActive+1 %>"
             ><%= nbrPages %></a
           >
         </li>
