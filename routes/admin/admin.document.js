@@ -13,6 +13,8 @@ const fs = require('fs');
 const path = require('path');
 const flash_message = require('../../helpers/flash_message');
 const erroMsg = "Quelque chose s'est mal passé."
+const moment = require('moment');
+
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
         attributes:['com_num','com_id'],
@@ -210,9 +212,8 @@ router.post('/bon-livraison-pdf',async (req,res)=>{
             include:[{model:Client,attributes:['cli_mail']}],
             where:{com_id}
         });
-        // 12/05/2022 => rendre le bon template pour le bon de livraison
         let ejsFile = fs.readFileSync(
-            path.join(__dirname, "../../mailTemplate/essayage_mail_content.ejs"),
+            path.join(__dirname, "../../mailTemplate/livraison_mail_content.ejs"),
             "utf8"
         );
         let html = ejs.render(ejsFile);     

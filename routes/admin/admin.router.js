@@ -106,10 +106,39 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
 });
 router.get('/bon-livraison/:doc_id',async (req,res)=>{
   const { doc_id } = req.params;
-  let view = await ejs.renderFile(
-    path.join(__dirname, "../../mailTemplate/essayage_mail_content.ejs")
-  );
-  return res.send(view);
+  try {
+    let document = await Document.findOne({ where: { doc_id } });
+    let commande = await Commande.findOne({
+      where: { com_id: document.com_id },
+    });
+    let adresse = await Adresse.findOne({
+      where: { adr_id: commande.com_adr_liv },
+    });
+    let panierDetails = await Panier_detail.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_ref", "pro_libelle"],
+          include: {
+            model: Quantite,
+            attributes: ["qua_nbre"],
+            include: { model: Taille, attributes: ["tai_libelle"] },
+          },
+        },
+      ],
+      where: { pan_id: commande.pan_id },
+    });
+    let client = await Client.findOne({ where: { cli_id: commande.cli_id } });
+    let view = await ejs.renderFile(
+      path.join(__dirname, "../../mailTemplate/bon_livraison.ejs"),
+      { document, commande, moment, adresse, panierDetails,client }
+    );
+    return res.send(view);
+  } catch (error) {
+    console.log(error);
+  }
+ 
+ 
 })
 router.post("/delete-flash", async (req, res) => {
   delete req.session.flash;
