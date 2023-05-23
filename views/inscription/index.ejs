@@ -1,5 +1,4 @@
 <div id="page-inscription">
-  
   <div class="title-recherche">
     <span><a href="/">Acceuil</a></span>
     <span>/ Résultats de la recherche</span>
@@ -12,14 +11,15 @@
   <div class="content">
     <div class="register-form">
       <p class="title">
-        Vous avez déjà un compte ? <a href="/connexion/#page-connexion">Connectez - vous !</a>
+        Vous avez déjà un compte ?
+        <a href="/connexion/#page-connexion">Connectez - vous !</a>
       </p>
-      <%if (typeof error !== 'undefined' && error == true) { %>
-        <div class="alert alert-danger" role="alert">
-          <%= (errorMsg) ? errorMsg : '' %>
-        </div>
-      <% } %>
-      <form id="form" >
+
+      <div class="alert alert-danger hide-alert" id="alert-show" role="alert">
+        <p id="error-mesage"></p>
+      </div>
+
+      <form id="form">
         <div>
           <div class="form-group row">
             <div class="col-md-3 item">
@@ -66,18 +66,29 @@
             </div>
             <div></div>
           </div>
-
-
           <div class="form-group row">
             <div class="col-md-3 item">
-              <label class="required label" for="email"><span>*</span>E-mail</label>
+              <label class="required label" for="num"
+                ><span></span>Téléphone</label
+              >
             </div>
             <div class="col-md-6 input">
-              <input type="email" name="cli_mail" id="email" required />
-            
+              <input type="text" name="cli_num" id="num" required />
             </div>
             <div></div>
           </div>
+          <div class="form-group row">
+            <div class="col-md-3 item">
+              <label class="required label" for="email"
+                ><span>*</span>E-mail</label
+              >
+            </div>
+            <div class="col-md-6 input">
+              <input type="email" name="cli_mail" id="email" required />
+            </div>
+            <div></div>
+          </div>
+          
 
           <div class="form-group row">
             <div class="col-md-3 item">
@@ -103,7 +114,12 @@
               <label class="required" for="nom"><span>*</span></label>
             </div>
             <div class="col-md-6 input check">
-              <input type="checkbox" id="check-box" name="check-box" />
+              <input
+                type="checkbox"
+                id="check_box_cnfd"
+                name="check_box_cnfd"
+                required
+              />
               <label for="check-box" class="text"
                 >Message concernant la confidentialité des données clients
                 <br />
@@ -123,7 +139,11 @@
               <label class="required" for="nom"><span></span></label>
             </div>
             <div class="col-md-6 input check">
-              <input type="checkbox" id="check-box" name="check-box" />
+              <input
+                type="checkbox"
+                id="check_box_newsletter"
+                name="cli_newsletter"
+              />
               <label for="check-box" class="text">
                 Recevoir notre newsletter
                 <br />
@@ -143,7 +163,12 @@
             </div>
             <div class="col-md-6 input check input-check">
               <div class="check-item checkbox-example">
-                <input type="checkbox" id="check-box" name="check-box"/>
+                <input
+                  type="checkbox"
+                  id="check_box_cndt"
+                  name="check_box_cndt"
+                  required
+                />
                 <label for="scales" class="text checkmark"
                   >J'accepte les conditions générales et la politique de
                   confidentialité
@@ -153,7 +178,7 @@
             <div class="col-md-3"></div>
           </div>
         </div>
-        <div class="button">
+        <div class="btn-submit">
           <button id="enregister">Enregistrer</button>
         </div>
       </form>

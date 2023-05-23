@@ -11,19 +11,22 @@ router.get("/", (req, res, next) => {
 });
 router.post("/", async (req, res, next) => {
   var { credentials, panier_items } = req.body;
+  console.log(req.body, "body");
   credentials.tit_id = credentials.tit_id === "M" ? M : MME;
   try {
     if (
       credentials.cli_nom === "" ||
       credentials.cli_prenom === "" ||
       credentials.cli_mail === "" ||
-      credentials.cli_pwd === ""
+      credentials.cli_pwd === "" ||
+      credentials.tit_id === ""
     ) {
-      return res.json({
+      return res.status(404).json({
         error: true,
         errorMsg: "Veillez remplir tout les champs",
       });
     }
+
     const oldClient = await Client.findOne({
       where: { cli_mail: credentials.cli_mail },
     });
@@ -40,15 +43,13 @@ router.post("/", async (req, res, next) => {
       cli_prenom: credentials.cli_prenom,
       cli_mail: credentials.cli_mail,
       cli_pwd: pwdhashed,
+      cli_newsletter: credentials.cli_newsletter,
       cli_inscription: new Date(new Date().setDate(new Date().getDate())),
       cli_activation: true,
+      cli_num: credentials.cli_num,
     });
 
     //create for client panier
-    let oldPanier = await Panier.findOne({ where: { cli_id: client.cli_id } });
-    if (oldPanier) {
-      return res.status(409).json({ msg: "vous avez un panier" });
-    }
     let panier = await Panier.create({
       cli_id: client.cli_id,
     });

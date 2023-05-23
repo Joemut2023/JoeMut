@@ -5,7 +5,9 @@
         <a href="/" class="breadcrumb-link">Accueil</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Votre compte</a>
+        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
+          >Votre compte</a
+        >
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         Vos information personnelles
@@ -14,29 +16,44 @@
   </nav>
   <h4>Vos informations personnelles</h4>
   <form action="/mon-compte/identite" class="fom" method="POST">
-    <% if (typeof error  !== 'undefined') { %>
-      <div class="alert alert-danger" role="alert">
-        <%= error %>
-      </div>
-    <% } %>
-    <% if (typeof success  !== 'undefined') { %>
-      <div class="alert alert alert-success" role="alert">
-        <%= success %>
-      </div>
+    <% if (typeof error !== 'undefined') { %>
+    <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %> <% if (typeof success !== 'undefined') { %>
+    <div class="alert alert alert-success" role="alert"><%= success %></div>
     <% } %>
     <div class="row-form">
       <label class="col-label label" for="civilite">Civilité</label>
       <div class="">
-        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="<%= clientSession.tit_id  %>"/>
+        <input
+          type="radio"
+          name="titre"
+          id="flexRadioDefault2"
+          value="<%= clientSession.tit_id  %>"
+          <%= clientSession.tit_id == 1 ? "checked" :""%>
+        />
         <label class="form-check-label" for="">M</label>
-        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="<%= clientSession.tit_id  %>"/>
+        <input
+          type="radio"
+          name="titre"
+          id="flexRadioDefault2"
+          value="<%= clientSession.tit_id  %>"
+          <%= clientSession.tit_id == 2 ? "checked" :""%>
+        />
         <label class="form-check-label" for="">Mme</label>
       </div>
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Prenom</label>
       <div class="col-input">
-        <input class="col" placeholder="Romain" type="text" name="prenom" id="" value="<%= clientSession.cli_prenom %>" required/>
+        <input
+          class="col"
+          placeholder="Romain"
+          type="text"
+          name="prenom"
+          id=""
+          value="<%= clientSession.cli_prenom %>"
+          required
+        />
         <label for=""
           >Seules les lettres et le point (.), suivi d'un espace, sont
           autorisés.</label
@@ -46,11 +63,32 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span>Nom</label>
       <div class="col-input">
-        <input class="col" placeholder="Kabasi" type="text" name="nom" id="" value="<%= clientSession.cli_nom %>" required/>
+        <input
+          class="col"
+          placeholder="Kabasi"
+          type="text"
+          name="nom"
+          id=""
+          value="<%= clientSession.cli_nom %>"
+          required
+        />
         <label for=""
           >Seules les lettres et le point (.), suivi d'un espace, sont
           autorisés.</label
         >
+      </div>
+    </div>
+    <div class="row-form">
+      <label class="col-label" for=""> <span></span>Téléphone</label>
+      <div class="col-input">
+        <input
+          class="col"
+          placeholder="Kabasiromain@gmail.com"
+          type="text"
+          name="num"
+          id=""
+          value="<%= clientSession.cli_num %>"
+        />
       </div>
     </div>
     <div class="row-form">
@@ -68,24 +106,9 @@
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span>* </span>Mot de passe</label>
-      <div class="d-flex flex-row col-input">
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <span class="input-group-text">
-          <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
-        </span>
-      </div>
-    </div>
-    <div class="row-form">
       <label class="col-label" for=""> Nouveau mot de passe</label>
       <div class="d-flex flex-row col-input">
-        <input id="password" type="password" name="newPassword" />
+        <input id="password" type="password" name="cli_pwd" />
         <span class="input-group-text">
           <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
         </span>
@@ -93,8 +116,9 @@
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span></label>
-      <div class="checkbox-label">
-        <input type="checkbox" name="radioNewLetter" id="flexRadioDefault2" required/>
+      <div class="checkbox-label form-check">
+        <input class="form-check-input" type="checkbox" name="radioNewLetter"
+        id="flexRadioDefault2" checked required />
         <label class="form-check-label" for=""
           >Message concernant la confidentialité des données clients
           Conformément aux dispositions de la loi du n°78-17 du 6 janvier 1978,
@@ -105,8 +129,15 @@
     </div>
     <div class="row-form">
       <label class="col-label" for=""> <span> </span></label>
-      <div class="checkbox-label">
-        <input type="checkbox" name="radioActivation" id="flexRadioDefault2" value="<%= clientSession.cli_activation%>"/>
+      <div class="checkbox-label ">
+        <input
+        class="form-check-input"
+          type="checkbox"
+          name="newsletter"
+          id="flexRadioDefault2"
+          <%= clientSession.cli_newsletter ? "checked" :""
+        %>
+        />
         <label class="form-check-label" for="">
           Recevoir notre newsletter Vous pouvez vous désinscrire à tout moment.
           Vous trouverez pour cela nos informations de contact dans les
@@ -117,7 +148,14 @@
     <div class="row-form">
       <label class="col-label" for=""> <span>* </span></label>
       <div class="checkbox-label">
-        <input type="checkbox" name="radioPartenaire" id="flexRadioDefault2" required/>
+        <input
+        class="form-check-input"
+          type="checkbox"
+          name="radioPartenaire"
+          id="flexRadioDefault2"
+          required
+          checked
+        />
         <label class="form-check-label" for=""
           >J'accepte les conditions générales et la politique de
           confidentialité</label

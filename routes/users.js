@@ -1,8 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { Adresse, Client, Commande } = require("../models");
-var moment = require('moment');
-
+var moment = require("moment");
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -37,39 +36,38 @@ router.get("/identite/", async function (req, res, next) {
   // res.render("users/identite");
 });
 
-
 router.post("/identite/", async function (req, res, next) {
-
-  const { prenom, nom, email, newPassword } = req.body;
-  const id = req.session.userId
-
+  const { prenom, nom, email, newPassword, num, newsletter, titreM, titreF } =
+    req.body;
+  const id = req.session.userId;
   try {
-    const clientSession = await Client.findByPk(id)
+    const clientSession = await Client.findByPk(id);
     if (!clientSession) {
       return res.render("users/identite", {
         error: "Erreur interne du serveur",
       });
-    }
-    else {
-      clientSession.cli_prenom = prenom
-      clientSession.cli_nom = nom
-      clientSession.cli_email = email
-      clientSession.cli_password = newPassword
+    } else {
+      clientSession.cli_prenom = prenom;
+      clientSession.cli_nom = nom;
+      clientSession.cli_email = email;
+      clientSession.cli_password = newPassword;
+      clientSession.cli_num = num;
+      clientSession.tit_id = titreM ? 1 : 2;
+      clientSession.cli_newsletter = newsletter ? true : false;
 
-      await clientSession.save()
+      await clientSession.save();
       return res.render("users/identite", {
         success: "Modification effectuée",
-        clientSession
+        clientSession,
       });
     }
   } catch (error) {
     return res.render("users/identite", {
       error: "Erreur interne du serveur",
-      error
+      error,
     });
   }
 });
-
 
 router.get("/nouvelleAdresse", function (req, res, next) {
   res.locals.titre = "nouvelle adresse";
@@ -241,7 +239,6 @@ router.get("/donnee", function (req, res, next) {
   res.render("users/donnee");
 });
 
-
 router.get("/historique", async function (req, res, next) {
   res.locals.titre = "historique";
 
@@ -250,9 +247,9 @@ router.get("/historique", async function (req, res, next) {
   try {
     const commandeByUser = await Commande.findAll({
       where: {
-        cli_id: clientId
-      }
-    })
+        cli_id: clientId,
+      },
+    });
 
     if (commandeByUser.length === 0) {
       return res.render("users/historique", {
@@ -262,20 +259,16 @@ router.get("/historique", async function (req, res, next) {
       return res.render("users/historique", {
         error: false,
         commandeByUser,
-        moment: moment
+        moment: moment,
       });
     }
-
   } catch (error) {
     const errorMessage = "Erreur interne du serveur";
     return res.render("users/historique", {
       error: errorMessage,
     });
-
   }
 });
-
-
 
 router.get("/reduction", function (req, res, next) {
   res.locals.titre = "reduction";
