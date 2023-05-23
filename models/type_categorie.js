@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       tyc_libelle: DataTypes.TEXT,
+      tyc_ordre:{
+        type:DataTypes.INTEGER,
+        allowNull:true
+      }
     },
     {
       sequelize,
