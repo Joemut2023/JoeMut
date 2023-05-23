@@ -6157,7 +6157,7 @@
 }
 #admin-page-produits .table-fixed thead {
   position: sticky;
-  top: 150px;
+  top: 176px;
   z-index: 10;
   background-color: white;
 }
@@ -7118,6 +7118,7 @@ body {
   width: 100%;
   position: sticky;
   top: 6.4%;
+  padding-bottom: 2rem;
 }
 #admin-blocs-produitHeader .breadcrumb {
   margin-top: 1%;
