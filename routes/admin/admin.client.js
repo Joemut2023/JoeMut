@@ -127,7 +127,7 @@ router.post("/add", async (req, res) => {
     const pwd = await bcrypt.hash(cli_pwd, 10);
     const newClient = await Client.create({
       cli_prenom,
-      cli_nom,
+      cli_nom : cli_nom.toUpperCase(),
       cli_pwd: pwd,
       cli_mail,
       cli_activation,
@@ -171,7 +171,6 @@ router.post("/update", async (req, res) => {
     cli_prenom,
     cli_nom,
     cli_num,
-    cli_pwd,
     cli_mail,
     cli_activation,
     tit_id,
@@ -183,7 +182,6 @@ router.post("/update", async (req, res) => {
   const activate = cli_activation == undefined ? false : cli_activation;
   const partenaire = cli_partenaire == undefined ? false : cli_partenaire;
   const newslletter = cli_newsletter == undefined ? false : cli_newsletter;
-  const pwdhashed = cli_pwd ? await bcrypt.hash(cli_pwd, 10) : null;
   try {
     const titres = await Titre.findAll();
     let clients = await Client.findOne({ where: { cli_id } });
@@ -193,9 +191,8 @@ router.post("/update", async (req, res) => {
     const update = await Client.update(
       {
         cli_prenom,
-        cli_nom,
+        cli_nom : cli_nom.toUpperCase(),
         cli_num,
-        cli_pwd: pwdhashed,
         cli_mail,
         cli_activation: activate,
         tit_id,

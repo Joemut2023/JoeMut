@@ -15,7 +15,7 @@ fs.createReadStream(path.resolve(__dirname, "../datas/customers.csv"))
       await Client.create({
         tit_id: parseInt(element.titre.split(";")[0]),
         cli_prenom: element.titre.split(";")[1],
-        cli_nom: element.titre.split(";")[2],
+        cli_nom: element.titre.split(";")[2].toUpperCase(),
         cli_mail: element.titre.split(";")[3],
         cli_inscription: new Date(new Date().setDate(new Date().getDate())),
         cli_activation: true,
