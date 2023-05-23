@@ -57,7 +57,7 @@
             <%= produit.pro_libelle%></a
           >
           <div>Ref: <span><%= produit.pro_ref %></span></div>
-          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "0" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
+          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
           <div class="montant">
             <div><%= produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",")  %> €</div>
             <span>|</span>
