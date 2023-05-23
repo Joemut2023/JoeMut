@@ -4,7 +4,8 @@
     let form_finalisation = document.querySelector('.finalisation-content form');
     let livraison_form_el = document.querySelector('#livraison-form form');
     let formLogin = document.querySelector('#form-commande-login');    
-
+    localStorage.setItem('fraisDivers',JSON.stringify({frais_port:parseFloat("13.10"),frais_dossier:parseFloat("15.5"),frp_id:"1"}));
+    
     formLogin?.addEventListener('submit',async (e)=>{
         e.preventDefault(); 
         await login_process('commander/#page-commander');
@@ -35,7 +36,6 @@
         let adresse = document.querySelector('[name=radio_adresse]').value;
         let dates_essayages = [com_date_essayage,com_date_essayage_autre]
         let params = {
-            //items : panier_details,
             frais:frais,
             commande:{
                 commande_debut,
@@ -47,6 +47,7 @@
             adresse:adresse,
             essayages:dates_essayages
         }
+        console.log(params);
         let panier = await axios.post('/commander',params,{
             headers: {
                 "X-Requested-With": "XMLHttpRequest",

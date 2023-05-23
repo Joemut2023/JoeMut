@@ -10,6 +10,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var form_finalisation = document.querySelector('.finalisation-content form');
   var livraison_form_el = document.querySelector('#livraison-form form');
   var formLogin = document.querySelector('#form-commande-login');
+  localStorage.setItem('fraisDivers', JSON.stringify({
+    frais_port: parseFloat("13.10"),
+    frais_dossier: parseFloat("15.5"),
+    frp_id: "1"
+  }));
   formLogin === null || formLogin === void 0 ? void 0 : formLogin.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -61,7 +66,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             adresse = document.querySelector('[name=radio_adresse]').value;
             dates_essayages = [com_date_essayage, com_date_essayage_autre];
             params = {
-              //items : panier_details,
               frais: frais,
               commande: {
                 commande_debut: commande_debut,
@@ -73,17 +77,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               adresse: adresse,
               essayages: dates_essayages
             };
-            _context2.next = 12;
+            console.log(params);
+            _context2.next = 13;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 12:
+          case 13:
             panier = _context2.sent;
             localStorage.setItem('storedItems', JSON.stringify([]));
             window.location.replace('/confirmation-commande');
-          case 15:
+          case 16:
           case "end":
             return _context2.stop();
         }

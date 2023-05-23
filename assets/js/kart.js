@@ -41,7 +41,7 @@ class Kart {
    *
    * @returns Object
    */
-  static async getParsedFrais() {
+  static getParsedFrais() {
     return JSON.parse(localStorage.getItem("fraisDivers"));
   }
 
@@ -80,7 +80,9 @@ class Kart {
     let fraisDivers = {
       frais_port: fraisPort.data.frp_ttc,
       frais_dossier: fraisDossier.data.auf_ttc,
+      frp_id:fraisPort.data.frp_id
     };
+    //console.log(fraisPort);
     localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
     return fraisDivers;
   }
