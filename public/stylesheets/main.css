@@ -6146,8 +6146,20 @@
 }
 
 #admin-page-produits {
-  margin-top: 2%;
   background-color: #fff;
+}
+#admin-page-produits .table {
+  border-bottom: 1 solid white;
+}
+#admin-page-produits .table-fixed thead {
+  position: sticky;
+  top: 150px;
+  z-index: 10;
+  background-color: white;
+}
+#admin-page-produits .table-fixed tbody {
+  max-height: 1024px;
+  overflow-y: hidden !important;
 }
 #admin-page-produits .table td,
 #admin-page-produits .table th {

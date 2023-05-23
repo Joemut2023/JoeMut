@@ -1,9 +1,9 @@
 <%- include('../blocs/produitHeader') %>
 
 <div id="admin-page-produits">
-  <table class="table table-striped">
-    <thead>
-      <tr>
+  <table class="table table-striped  table-fixed">
+    <thead >
+      <tr style="margin-bottom: 0; border-bottom:white;">
         <th scope="col"></th>
         <th scope="col" class="text-center">ID</th>
         <th scope="col" class="text-center">Image</th>
@@ -16,9 +16,7 @@
         <th scope="col" class="text-center">Actions</th>
          <th scope="col"></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr class="research-line">
+      <tr class="research-line" style="margin-top: 0;background-color: white;border-bottom:white">
           <form action="/admin/produits/search" method="post">
         <td></td>
         <td></td>
@@ -41,6 +39,9 @@
         <td></td>
         </form>
       </tr>
+    </thead>
+    <tbody>
+      
       <% if ((typeof produits !== 'undefined') && produits.length > 0) { %> <%
       produits.forEach(element => { %>
       <tr>
