@@ -231,14 +231,14 @@
                                   </div>
                                 </td>
                                 <td><%= panier_detail.pad_ht?.toString().replace('.', ',') %>€</td>
-                                <% var sum = 0 %>
-                                <% panier_detail.Produit.Quantites?.forEach(qte => sum = sum + qte['qua_nbre'])%>
+                                <% var total_qte_disponible = 0 %>
+                                <% panier_detail.Produit.Quantites?.forEach(qte => total_qte_disponible = total_qte_disponible + qte['qua_nbre'])%>
                                 <td class="td-produit-qte">
                                   <div>
-                                    <span class="<%= panier_detail.pad_qte > sum ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
+                                    <span class="<%= panier_detail.pad_qte > total_qte_disponible ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
                                   </div>
                                 </td>
-                                <td><%= sum %></td>
+                                <td><%= total_qte_disponible %></td>
                                 <td>
                                     <% if (panier_detail.Produit.Applies.length === 0) { %>
                                         <span class="btn btn-remise-prod" data-pad="<%= panier_detail.pad_id %>">
@@ -387,14 +387,15 @@
                     </div>
                     <div>
                         <h2>Taxes</h2>
-                        <p><%= commande.com_tva %></p>
+                        <% tva = (totalCommande * 20) / 100  %>
+                        <p><%= tva.toFixed(2).toString().replace('.',',') %> €</p>
                     </div>
                     <div>
                         <h2>Total</h2>
                         <% if (commande.com_remise) { %>
-                          <p><%= (totalCommande - commande.com_remise ).toFixed(2).toString().replace('.',',')%> €</p>
+                          <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais - commande.com_remise).toFixed(2).toString().replace('.',',')%> €</p>
                         <% } else { %>
-                          <p><%= totalCommande.toFixed(2).toString().replace('.',',') %> €</p>
+                          <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais).toFixed(2).toString().replace('.',',') %> €</p>
                         <% } %>
                     </div>
                 </div>
