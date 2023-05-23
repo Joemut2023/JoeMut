@@ -4698,6 +4698,10 @@
   color: #a0b21f;
   cursor: pointer;
 }
+#page-commander .detail-produit-img {
+  width: 20%;
+  height: 30%;
+}
 
 #page-inscription {
   padding: 8% 9%;

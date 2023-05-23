@@ -4,31 +4,48 @@ const {
   Adresse,
   Frais_port,
   Panier,
+  Produit,
+  Media,
   Commande,
   Panier_detail,
   Autre_frais,
   Essayage,
   Client,
-  Chronologie
+  Chronologie,
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
 const user_login = require("../helpers/user_login");
-const {Op} = require('sequelize');
-const { STATUT_COMMANDE_FINALISATION_DEVIS, DEFAULT_ADMIN_USER_ID } = require("../helpers/utils_const");
+const { Op } = require("sequelize");
+const {
+  STATUT_COMMANDE_FINALISATION_DEVIS,
+  DEFAULT_ADMIN_USER_ID,
+} = require("../helpers/utils_const");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
   let userId = req.session.userId;
   let { newadress } = req.query;
-  
+  const pan_id = req.session.panierId;
+
   try {
+    const produits = await Panier_detail.findAll({
+      include: [
+        {
+          model: Produit,
+          attributes: ["pro_ref", "pro_libelle"],
+          include: [{ model: Media, attributes: ["med_id", "med_ressource"] }],
+        },
+      ],
+      where: { pan_id },
+    });
+
     const mode_livraisons = await Frais_port.findAll({
       where: { frp_actif: true },
     });
     if (newadress) {
-      return res.render("commander/index",{
-        mode_livraisons: mode_livraisons,
+      return res.render("commander/index", {
+        mode_livraisons: mode_livraisons,produits
       });
     }
     if (userId) {
@@ -39,12 +56,12 @@ router.get("/", async (req, res) => {
       });
       if (adresses.length === 0) {
         return res.render("commander/index", {
-          mode_livraisons: mode_livraisons,
+          mode_livraisons: mode_livraisons,produits
         });
       } else {
         return res.render("commander/index", {
           adresses,
-          mode_livraisons: mode_livraisons,
+          mode_livraisons: mode_livraisons,produits
         });
       }
     } else {
@@ -64,29 +81,28 @@ router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
 
-  
-  let { frais, adresse, commande,essayages } = req.body;
+  let { frais, adresse, commande, essayages } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande
-    
+
     let panier = await Panier.findByPk(pan_id);
     let adress_item = await Adresse.findByPk(parseInt(adresse));
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
     let today = new Date();
-    const sum = await Autre_frais.sum('auf_ttc', {
+    const sum = await Autre_frais.sum("auf_ttc", {
       where: {
         auf_actif: true,
         auf_debut: {
-          [Op.lte]: today
+          [Op.lte]: today,
         },
         auf_fin: {
-          [Op.gte]: today
-        }
+          [Op.gte]: today,
+        },
       },
-      attributes: []
+      attributes: [],
     });
     let commande_item = await Commande.create({
       frp_id: frais.frp_id,
@@ -101,23 +117,23 @@ router.post("/", async (req, res) => {
       com_ttc: somme_ttc,
       com_port: frais.frais_port,
       com_frais: sum,
-      com_num: `${user.cli_nom.substring(0,3).toUpperCase()}-${
+      com_num: `${user.cli_nom.substring(0, 3).toUpperCase()}-${
         panier.pan_id
       }-${new Date().getFullYear()}`,
     });
     let chronologie = await Chronologie.create({
-      stc_id:STATUT_COMMANDE_FINALISATION_DEVIS,
-      com_id:commande_item.com_id,
-      usr_id:DEFAULT_ADMIN_USER_ID,
-      chr_date:new Date(new Date().setDate(new Date().getDate()))
+      stc_id: STATUT_COMMANDE_FINALISATION_DEVIS,
+      com_id: commande_item.com_id,
+      usr_id: DEFAULT_ADMIN_USER_ID,
+      chr_date: new Date(new Date().setDate(new Date().getDate())),
     });
     for (let i = 0; i < essayages.length; i++) {
-     if (essayages[i] !== '') {
-      let essayage = await Essayage.create({
-        com_id:commande_item.com_id,
-        ess_repetition:essayages[i]
-      });
-     }
+      if (essayages[i] !== "") {
+        let essayage = await Essayage.create({
+          com_id: commande_item.com_id,
+          ess_repetition: essayages[i],
+        });
+      }
     }
     // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
     let new_panier = await Panier.create({
