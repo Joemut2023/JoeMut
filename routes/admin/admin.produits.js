@@ -99,14 +99,14 @@ router.post("/search", async (req, res) => {
           // required: true,
           required: true,
           where: {
-            cat_libelle: { [Op.like]: `%${cat}` },
+            cat_libelle: { [Op.like]: `${cat}%` },
           },
         },
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: `%${ref!=="" ? ref : libelle}%` } },
-          { pro_libelle: { [Op.like]: `%${libelle!=="" ? libelle : ref}%` } },
+          { pro_ref: { [Op.like]: `${ref!=="" ? ref : libelle}%` } },
+          { pro_libelle: { [Op.like]: `${libelle!=="" ? libelle : ref}%` } },
         ],
       },
     });
@@ -138,14 +138,14 @@ router.post("/search", async (req, res) => {
           attributes: ["cat_libelle"],
           required: true,
           where: {
-            cat_libelle: { [Op.like]: `%${cat}` },
+            cat_libelle: { [Op.like]: `${cat}%` },
           },
         },
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: `%${ref !== "" ? ref : libelle}%` } },
-          { pro_libelle: { [Op.like]: `%${libelle !== "" ? libelle : ref}%` } },
+          { pro_ref: { [Op.like]: `${ref !== "" ? ref : libelle}%` } },
+          { pro_libelle: { [Op.like]: `${libelle !== "" ? libelle : ref}%` } },
         ],
       },
     });
