@@ -18,9 +18,9 @@ const { ACTIF } = require("../helpers/utils_const");
 router.get("/", async (req, res, next) => {
   res.locals.titre = "panier";
   let quantiteOfEachProduct = [];
-  const allproducts = await Produit.findAll();
-
+  
   try {
+    const allproducts = await Produit.findAll();
     const produitsPopulaires = await Produit.findAll({
       limit: 16,
       include: [
