@@ -6188,6 +6188,12 @@
   color: white;
   padding: 5px 10px;
 }
+#admin-page-produits .page-item .page-link {
+  font-size: 1rem;
+}
+#admin-page-produits .page-item .page-link:marker {
+  background-color: blue;
+}
 
 #admin-page-clients .menu-bar {
   background-color: #fff;

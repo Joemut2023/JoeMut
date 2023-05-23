@@ -1,5 +1,6 @@
 
 const statut = document.querySelectorAll(".pro-statut");
+const links = document.querySelectorAll(".page-link");
 
 statut.forEach((element) => {
   element.addEventListener("change", async function(){
@@ -22,6 +23,13 @@ statut.forEach((element) => {
        }
      );
      window.location.reload();
+  })
+});
+
+links.forEach(element => {
+  element.addEventListener("click",function(){
+  
+    element.classList.add("active");
   })
 });
 

@@ -47,5 +47,14 @@
          }
         }
     }
+    .page-item{
+         .page-link{
+          font-size: 1rem;
+          &:marker{
+            background-color:blue;
+          }
+    }
+    }
+   
     
 }
