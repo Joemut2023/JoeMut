@@ -84,7 +84,7 @@ router.post("/search", async (req, res) => {
         {
           model: Tarif,
           attributes: ["tar_ht", "tar_ttc"],
-          required: false,
+          required: true,
           where: {
             tar_ht: {
               [Op.between]: [
@@ -144,7 +144,7 @@ router.post("/search", async (req, res) => {
         {
           model: Tarif,
           attributes: ["tar_ht", "tar_ttc"],
-          required: false,
+          required: true,
           where: {
             tar_ht: {
               [Op.between]: [
