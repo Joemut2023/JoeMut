@@ -193,3 +193,12 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     }
   }, _callee);
 }))();
+var hiddenDetailsBtn = document.querySelector("#hidden-detail");
+var detailItem = document.querySelector(".detail-items");
+hiddenDetailsBtn.addEventListener("click", function () {
+  if (detailItem.classList.contains("detail-items")) {
+    detailItem.classList.remove("detail-items");
+  } else {
+    detailItem.classList.add("detail-items");
+  }
+});

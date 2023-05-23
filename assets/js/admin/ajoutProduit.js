@@ -15,6 +15,7 @@ const avant = document.querySelector(".pro-en-avant");
 const statut = document.querySelector(".pro-statut");
 const ht = document.querySelector(".tar-ht");
 const ttc = document.querySelector(".tar-ttc");
+const messageError = document.querySelector(".parent-message-danger");
 
 const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
@@ -215,6 +216,10 @@ async function addTaille(taille) {
 
   lines.appendChild(line);
 }
+function validateInput(input) {
+  if (input !== "") return true;
+  else return false;
+}
 
 btnAdd.addEventListener("click", async function () {
   const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
@@ -264,6 +269,10 @@ selectCategorie.addEventListener("change", async function () {
 
   listCategorie(categorie);
 });
+const btn_close_error = document.querySelector(".close-error");
+btn_close_error.addEventListener("click", function () {
+  messageError.style.display = "none";
+});
 
 btnEnregistrer.addEventListener("click", async function () {
   const categorieselect = document.querySelector(".select-type-cat");
@@ -276,118 +285,130 @@ btnEnregistrer.addEventListener("click", async function () {
   var formData = new FormData();
   const files = document.querySelectorAll('[type="file"]');
   const formWithImage = document.querySelector(".form-submit-image");
-  const data = {
-    cat_id,
-    pro_ref: pro_ref.value,
-    pro_libelle: pro_libelle.value,
-    pro_description: pro_description.value,
-    pro_details: pro_details.value,
-    pro_new_collect,
-    pro_en_avant,
-    pro_comment: pro_comment.value,
-    pro_statut,
-  };
 
-  const produit = await axios.post(`${SITE_URL}/admin/produits/`, data, {
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-  });
-
-  imagesArrayCover.map(async (image) => {
-    const dataMedia = {
-      med_libelle: image.name
-        .replaceAll(/\s/g, "")
-        .replaceAll(/\d/g, "")
-        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-        .split(".")[0],
-      med_ressource: image.name
-        .replaceAll(/\s/g, "")
-        .replaceAll(/\d/g, "")
-        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
-      med_cover: true,
+  if (
+    validateInput(pro_ref.value) &&
+    validateInput(pro_libelle.value) &&
+    validateInput(pro_details.value) &&
+    validateInput(ht.value) &&
+    validateInput(ttc.value) &&
+    validateInput(selectCategorie.value) &&
+    validateInput(categorieselect.value)
+  ) {
+    messageError.style.display = "none";
+    const data = {
+      cat_id,
+      pro_ref: pro_ref.value,
+      pro_libelle: pro_libelle.value,
+      pro_description: pro_description.value,
+      pro_details: pro_details.value,
+      pro_new_collect,
+      pro_en_avant,
+      pro_comment: pro_comment.value,
+      pro_statut,
     };
-    const media = await axios.post(
-      `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-      dataMedia,
-      {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      }
-    );
-    console.log(dataMedia);
-  });
 
-  imagesArray.map(async (image) => {
-    const dataMedia = {
-      med_libelle: image.name
-        .replaceAll(/\s/g, "")
-        .replaceAll(/\d/g, "")
-        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-        .split(".")[0],
-      med_ressource: image.name
-        .replaceAll(/\s/g, "")
-        .replaceAll(/\d/g, "")
-        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
-      med_cover: false,
-    };
-    const media = await axios.post(
-      `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
-      dataMedia,
-      {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      }
-    );
-    // console.log("others",media)
-  });
-
-  const tarif = await axios.post(
-    `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
-    {
-      tar_ht,
-      tar_ttc,
-    },
-    {
+    const produit = await axios.post(`${SITE_URL}/admin/produits/`, data, {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
       },
-    }
-  );
+    });
 
-  const selectTailles = document.querySelectorAll(".select-taille");
+    imagesArrayCover.map(async (image) => {
+      const dataMedia = {
+        med_libelle: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/\d/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+          .split(".")[0],
+        med_ressource: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/\d/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_cover: true,
+      };
+      const media = await axios.post(
+        `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        dataMedia,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+      console.log(dataMedia);
+    });
 
-  Array.from(selectTailles, async (item) => {
-    const dataselect = {
-      tai_id: item.value,
-      qua_nbre: parseInt(
-        item.parentNode.parentNode.parentNode.children[1].children[1]
-          .children[0].value
-      ),
-    };
-    const qty = await axios.post(
-      `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
-      dataselect,
+    imagesArray.map(async (image) => {
+      const dataMedia = {
+        med_libelle: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/\d/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+          .split(".")[0],
+        med_ressource: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/\d/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_cover: false,
+      };
+      const media = await axios.post(
+        `${SITE_URL}/admin/produits/media/${produit.data.product.pro_id}`,
+        dataMedia,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+      // console.log("others",media)
+    });
+
+    const tarif = await axios.post(
+      `${SITE_URL}/admin/produits/tarif/${produit.data.product.pro_id}`,
+      {
+        tar_ht,
+        tar_ttc,
+      },
       {
         headers: {
           "X-Requested-With": "XMLHttpRequest",
         },
       }
     );
-  });
-  const message = document.querySelector(".parent-message");
-  if (produit.data.msg === true || tarif.data.msgTarif === true) {
-    message.style.display = "flex";
-    const btn_close = document.querySelector(".close");
-    btn_close.addEventListener("click", function () {
-      // window.location.href = `${SITE_URL}/admin/produits`;
-      message.style.display = "none";
-      window.location.reload();
+
+    const selectTailles = document.querySelectorAll(".select-taille");
+
+    Array.from(selectTailles, async (item) => {
+      const dataselect = {
+        tai_id: item.value,
+        qua_nbre: parseInt(
+          item.parentNode.parentNode.parentNode.children[1].children[1]
+            .children[0].value
+        ),
+      };
+      const qty = await axios.post(
+        `${SITE_URL}/admin/produits/qty/${produit.data.product.pro_id}`,
+        dataselect,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
     });
-  }
-  formWithImage.submit();
+    const message = document.querySelector(".parent-message");
+    if (produit.data.msg === true || tarif.data.msgTarif === true) {
+      message.style.display = "flex";
+      const btn_close = document.querySelector(".close");
+      btn_close.addEventListener("click", function () {
+        // window.location.href = `${SITE_URL}/admin/produits`;
+        message.style.display = "none";
+        window.location.reload();
+      });
+    }
+    formWithImage.submit();
+  } else messageError.style.display = "flex";
 });
 
 //delete taille

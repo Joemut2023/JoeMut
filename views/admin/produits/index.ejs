@@ -23,17 +23,17 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><input class="research" name="ref"   type="text" placeholder="chercher" ></td>
-        <td><input class="research" name="libelle"  type="text" placeholder="chercher" ></td>
-        <td><input class="research"  name="cat" type="text" placeholder="chercher" ></td>
+        <td><input class="research" name="ref" value="<%= (typeof ref !== "undefined") ? ref:'' %>"   type="text" placeholder="chercher" ></td>
+        <td><input class="research" name="libelle" value="<%= (typeof libelle !== "undefined") ? libelle:'' %>"    type="text" placeholder="chercher" ></td>
+        <td><input class="research"  name="cat" value="<%= (typeof cat !== "undefined") ? cat:'' %>"  type="text" placeholder="chercher" ></td>
         <td class="plage">
-          <input class="research" name="tarHtUp"  type="number">
-          <input class="research" name="tarHtDown" type="number">
+          <input class="research" name="tarHtUp" value="<%= (typeof tarHtUp !== "undefined") ? tarHtUp:'' %>"  type="number">
+          <input class="research" name="tarHtDown" value="<%= (typeof tarHtDown !== "undefined") ? tarHtDown:'' %>" type="number">
         </td>
         <td> </td>
           <td class="plage">
-          <input  class="research" name="qtyUp" type="text">
-          <input class="research" name="qtydDown" type="text">
+          <input  class="research" name="qtyUp" value="<%= (typeof qtyUp !== "undefined") ? qtyUp:'' %>" type="text">
+          <input class="research" name="qtydDown" value="<%= (typeof qtydDown !== "undefined") ? qtydDown:'' %>" type="text">
         </td>
         <td> <button type="submit" class="btn btn-info">
           <i class="fa fa-search" aria-hidden="true"></i> <span>Rechercher</span>

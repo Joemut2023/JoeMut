@@ -26,6 +26,7 @@ var ht = document.querySelector(".tar-ht");
 var ttc = document.querySelector(".tar-ttc");
 var btnEnregistrer = document.querySelector(".update");
 var qtyMax = document.querySelector(".qty-max");
+var messageError = document.querySelector(".parent-message-danger");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -76,6 +77,9 @@ function displayCoverImage() {
   });
   outputCover.style.display = "flex";
   outputCover.innerHTML = images;
+}
+function validateInput(input) {
+  if (input !== "") return true;else return false;
 }
 function deleteCoverImage(index) {
   imagesArrayCover.splice(index, 1);
@@ -191,6 +195,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
+var btn_close_error = document.querySelector(".close-error");
+btn_close_error.addEventListener("click", function () {
+  messageError.style.display = "none";
+});
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -214,6 +222,11 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         return _context8.sent;
       case 11:
         Myproduct = _context8.sent;
+        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
+          _context8.next = 33;
+          break;
+        }
+        messageError.style.display = "none";
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -224,13 +237,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context8.next = 15;
+        _context8.next = 17;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 15:
+      case 17:
         produit = _context8.sent;
         // console.log(produit.data.product[0])
 
@@ -297,7 +310,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        _context8.next = 21;
+        _context8.next = 23;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -306,7 +319,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 21:
+      case 23:
         tarif = _context8.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
@@ -377,7 +390,11 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           });
         }
         formWithImage.submit();
-      case 29:
+        _context8.next = 34;
+        break;
+      case 33:
+        messageError.style.display = "flex";
+      case 34:
       case "end":
         return _context8.stop();
     }

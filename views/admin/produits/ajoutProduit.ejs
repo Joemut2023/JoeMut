@@ -10,6 +10,15 @@
       ><i class="fa fa-times" aria-hidden="true"></i
     ></span>
   </div>
+   <div class="alert alert-danger parent-message-danger" role="alert">
+ 
+    <span>Remplissez tous les champs requis</span>
+    <span
+      style="font-size: 1.4rem; color: #ce6861; cursor: pointer"
+      class="close-error"
+      ><i class="fa fa-times" aria-hidden="true"></i
+    ></span>
+  </div>
   <% if (typeof flash != 'undefined') { %>
     <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
       <%= flash.message %>
@@ -273,6 +282,7 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
+                       <option value="" selected>Choisir le type de catégorie</option>
                         <% typeCategorie.forEach(element => { %>
                         <option value=" <%= element.tyc_id %> ">
                           <%= element.tyc_libelle %>
@@ -285,14 +295,9 @@
                       <select
                         class="form-select cat-select select-type-cat"
                         aria-label="Default select example"
-                      >
-                        <% categories.forEach(element => { %>
-
-                        <option value="<%= element.cat_id %>">
-                          <%= element.cat_libelle %>
-                        </option>
-
-                        <% }) %>
+                      > 
+                      <option value="" selected>Choisir une catégorie</option>
+                       
                       </select>
                     </div>
                   </div>
