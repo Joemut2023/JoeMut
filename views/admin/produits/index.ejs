@@ -44,14 +44,7 @@
       <% if ((typeof produits !== 'undefined') && produits.length > 0) { %> <%
       produits.forEach(element => { %>
       <tr>
-        <td scope="row">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </td>
+        <td></td>
         <th scope="row"><%= element.pro_id %></th>
 
         <td width="60">
@@ -78,12 +71,17 @@
           "non renseignée" %>
         </td>
         <td class="text-center">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-center gap-4">
             <a href="/admin/produits/<%= element.pro_id %>">
               <i class="fa-solid fa-pen"></i
             ></a>
-             <span style="color: rgb(209, 88, 88);cursor: pointer;" id="<%= element.pro_id %>" class="dropdown-item btn-delete"
-                    ><i class="fa-solid fa-trash "></i></span>
+              <div class="form-check form-switch">
+              <input class="form-check-input inputActivation pro-statut" data-id="<%=
+              element.pro_id %>" type="checkbox" name="<%=
+              element.pro_id %>" value="" <%=
+              element.pro_statut ? "checked" :"" %> />
+                </div>
+            
             
           </div>
         </td>
