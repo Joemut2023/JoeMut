@@ -75,7 +75,7 @@ router.use(
 router.get("/bon-essayage/:doc_id", async (req, res) => {
   const { doc_id } = req.params;
   try {
-    let document = await Document.findOne({ where: { doc_id } });
+    let document = await Document.findOne({ where: { doc_id },order:[['doc_date','DESC']] });
     let commande = await Commande.findOne({
       where: { com_id: document.com_id },
     });
@@ -108,8 +108,9 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
 });
 router.get('/bon-livraison/:doc_id',async (req,res)=>{
   const { doc_id } = req.params;
+  console.log("===========",doc_id);
   try {
-    let document = await Document.findOne({ where: { doc_id } });
+    let document = await Document.findOne({ where: { doc_id },order:[['doc_date','DESC']] });
     let commande = await Commande.findOne({
       where: { com_id: document.com_id },
     });

@@ -545,19 +545,27 @@ router.get('/view/:commandeId',async (req,res)=>{
       attributes:['com_id'],
       where:{cli_id:commande.Client.cli_id}
     })
-    let last_document_devis = await Document.findOne({
+    
+    let last_document_devis = await Document.findAll({
       attributes:['doc_ref'],
-      where:{tdo_id:TYPE_DOCUMENT_DEVIS},
+      where:{
+        [Op.and]:[{tdo_id:TYPE_DOCUMENT_DEVIS},{com_id:commande.com_id}]
+      },
       order:[['doc_date','DESC']]
     });
-    let last_document_essayage = await Document.findOne({
+
+    let last_document_essayage = await Document.findAll({
       attributes:['doc_ref'],
-      where:{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE},
+      where:{
+        [Op.and]:[{tdo_id:TYPE_DOCUMENT_BON_ESSAYAGE},{com_id:commande.com_id}]
+      },
       order:[['doc_date','DESC']]
     });
-    let last_document_livraison = await Document.findOne({
+    let last_document_livraison = await Document.findAll({
       attributes:['doc_ref','doc_id'],
-      where:{tdo_id:TYPE_DOCUMENT_BON_LIVRAISON},
+      where:{
+        [Op.and]:[{tdo_id:TYPE_DOCUMENT_BON_LIVRAISON},{com_id:commande.com_id}]
+      },
       order:[['doc_date','DESC']]
     });
     return res.render("devis/view",{
