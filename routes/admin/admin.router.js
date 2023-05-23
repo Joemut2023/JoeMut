@@ -8,6 +8,8 @@ const {
   Taille,
   Quantite,
   Client,
+  Transporteur,
+  Expedition
 } = require("../../models");
 const moment = require("moment");
 const router = express.Router();
@@ -73,7 +75,7 @@ router.use(
 router.get("/bon-essayage/:doc_id", async (req, res) => {
   const { doc_id } = req.params;
   try {
-    let document = await Document.findOne({ where: { doc_id } });
+    let document = await Document.findOne({ where: { doc_id },order:[['doc_date','DESC']] });
     let commande = await Commande.findOne({
       where: { com_id: document.com_id },
     });
@@ -106,8 +108,9 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
 });
 router.get('/bon-livraison/:doc_id',async (req,res)=>{
   const { doc_id } = req.params;
+  console.log("===========",doc_id);
   try {
-    let document = await Document.findOne({ where: { doc_id } });
+    let document = await Document.findOne({ where: { doc_id },order:[['doc_date','DESC']] });
     let commande = await Commande.findOne({
       where: { com_id: document.com_id },
     });
@@ -129,9 +132,14 @@ router.get('/bon-livraison/:doc_id',async (req,res)=>{
       where: { pan_id: commande.pan_id },
     });
     let client = await Client.findOne({ where: { cli_id: commande.cli_id } });
+    let expedition = await Expedition.findOne({
+      attributes:['trs_id','exp_id'],
+      include:[{model:Transporteur}],
+      where:{com_id:commande.com_id}
+    });
     let view = await ejs.renderFile(
       path.join(__dirname, "../../mailTemplate/bon_livraison.ejs"),
-      { document, commande, moment, adresse, panierDetails,client }
+      { document, commande, moment, adresse, panierDetails,client,expedition }
     );
     return res.send(view);
   } catch (error) {
