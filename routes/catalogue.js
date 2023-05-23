@@ -42,21 +42,11 @@ router.get("/", async function (req, res, next) {
     res.locals.titre = "catalogue";
     const typee_categories = await Type_categorie.findAll({
       order: [
-        ['tyc_libelle', 'ASC']
-    ]
+        ['tyc_ordre', 'ASC']
+      ]
     });
-    const categories = await Categorie.findAll(
-      {
-        order: [
-          ['cat_libelle', 'ASC']
-      ]}
-    );
-    const allproducts = await Produit.findAll(
-      {
-        order: [
-          ['pro_libelle', 'ASC']
-      ]}
-    );
+    const categories = await Categorie.findAll();
+    const allproducts = await Produit.findAll();
     
     for (let index = 0; index < allproducts.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
