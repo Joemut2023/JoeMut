@@ -247,15 +247,16 @@
                                         <span><%= panier_detail.pad_remise %> €</span>
                                     <% } %>
                                 </td>
-
+                                <% totalCommande = 0 %>
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
+                                    <% totalCommande +=  panier_detail.pad_ttc * panier_detail.pad_qte %>
                                     <%= panier_detail.pad_ttc * panier_detail.pad_qte %>€
                                 <% } else { %>
+                                  <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
                                   <%= (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>€
                                 <% } %>
                                   
-                                
                                 </td>
                                 <td class="td-produit-actions">
                                     <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
@@ -367,7 +368,7 @@
                 <div class="table-resume">
                     <div>
                         <h2>Produits</h2>
-                        <p><%= commande.com_ht %> €</p>
+                        <p><%= totalCommande %> €</p>
                     </div>
                     <div>
                         <h2>Réductions</h2>
@@ -392,9 +393,9 @@
                     <div>
                         <h2>Total</h2>
                         <% if (commande.com_remise) { %>
-                          <p><%= commande.com_ttc - commande.com_remise %> €</p>
+                          <p><%= totalCommande - commande.com_remise %> €</p>
                         <% } else { %>
-                          <p><%= commande.com_ttc %> €</p>
+                          <p><%= totalCommande %> €</p>
                         <% } %>
                     </div>
                 </div>
