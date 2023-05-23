@@ -35,7 +35,7 @@ module.exports = async (
     essayage: essayage,
     sous_total: sous_total,
     taxe: taxe,
-    totalTTC: totalTTC,
+    totalTTC: sous_total,
     totalHT: totalHT,
   });
   try {
