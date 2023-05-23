@@ -92,17 +92,14 @@ router.post("/", async (req, res) => {
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
     let today = new Date();
-    const sum = await Autre_frais.sum("auf_ttc", {
+    const autres_frais = await Autre_frais.findAll({
       where: {
-        auf_actif: true,
-        auf_debut: {
-          [Op.lte]: today,
-        },
-        auf_fin: {
-          [Op.gte]: today,
-        },
-      },
-      attributes: [],
+        [Op.and]:[{auf_actif: true},{auf_debut: {[Op.lte]:today}},{auf_fin: {[Op.gte]:today}}]
+      }
+    });
+    var total_autres_frais = 0;
+    autres_frais.forEach(auf => {
+      total_autres_frais += auf.auf_ttc
     });
     let commande_item = await Commande.create({
       frp_id: frais.frp_id,
@@ -116,7 +113,7 @@ router.post("/", async (req, res) => {
       com_ht: somme_ht,
       com_ttc: somme_ttc,
       com_port: frais.frais_port,
-      com_frais: sum,
+      com_frais: total_autres_frais,
       com_num: `${user.cli_nom.substring(0, 3).toUpperCase()}-${
         panier.pan_id
       }-${new Date().getFullYear()}`,

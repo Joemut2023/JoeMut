@@ -13,17 +13,20 @@ module.exports = {
      * }], {});
      */
 
-    const dateStr = "2024-01-01";
+    const dateStr = "2022-01-01";
+    const dateStrFin = "2024-01-01";
     const dateArr = dateStr.split("-");
-    const dateObj = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
+    const dateArr2 = dateStrFin.split("-");
+    const date_debut = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
+    const date_fin = new Date(dateArr2[0], dateArr2[1] - 1, dateArr2[2]);
 
     await queryInterface.bulkInsert("Autre_frais", [
       {
         auf_libelle: "Frais de dossier",
         auf_ht: 12.92,
         auf_ttc: 15.5,
-        auf_debut: dateObj,
-        auf_fin: dateObj,
+        auf_debut: date_debut,
+        auf_fin: date_fin,
         auf_actif: 1,
       },
     ]);
