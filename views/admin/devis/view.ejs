@@ -42,25 +42,25 @@
             <button class="btn btn-primary">Mettre à jour l'état</button>
           </div>
         </form> 
-        <a target="_blank" href="/pdf/devis/<%= last_document_devis.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i> Imprimer le dévis</a>
+        <a target="_blank" href="/pdf/devis/<%= last_document_devis.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
         <form action="/admin/documents/devis-mail" method="post">
           <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i> Envoyer le dévis</button>
+          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Dévis</button>
         </form>
-        <a target="_blank" href="/pdf/bon_livraison/<%= last_document_livraison?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Imprimer le bon de livraison</a>
+        <a target="_blank" href="/pdf/bon_livraison/<%= last_document_livraison?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Bon de livraison</a>
         <form action="/admin/documents/bon-livraison-pdf" method="post">
           <input type="hidden" name="com_id" value="<%= commande.com_id %>">
           <input type="hidden" name="doc_id" value="<%= last_document_livraison?.doc_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-truck"></i> Envoyer le bon de livraison</button>
+          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>bon de livraison</button>
         </form>
-       <a target="_blank" class="btn btn-light shadow" href="/pdf/bon_essayage/<%= last_document_essayage?.doc_ref %>.pdf"><i class="fa-solid fa-print"></i> Imprimer le bon d'essayage</a>
+       <a target="_blank" class="btn btn-light shadow" href="/pdf/bon_essayage/<%= last_document_essayage?.doc_ref %>.pdf"><i class="fa-solid fa-print"></i>Bon d'essayage</a>
        <form action="/admin/documents/bon-essayage-pdf" method="post">
         <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-        <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Envoyer le bon d'essayage</button>
+        <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Bon d'essayage</button>
        </form>
         <form action="/admin/documents/facture" method="post">
           <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Générer une facture</button>
+          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Facture</button>
         </form>
     </div>
     <div class="content">
@@ -247,15 +247,16 @@
                                         <span><%= panier_detail.pad_remise %> €</span>
                                     <% } %>
                                 </td>
-
+                                <% totalCommande = 0 %>
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
+                                    <% totalCommande +=  panier_detail.pad_ttc * panier_detail.pad_qte %>
                                     <%= panier_detail.pad_ttc * panier_detail.pad_qte %>€
                                 <% } else { %>
+                                  <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
                                   <%= (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>€
                                 <% } %>
                                   
-                                
                                 </td>
                                 <td class="td-produit-actions">
                                     <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
@@ -367,7 +368,7 @@
                 <div class="table-resume">
                     <div>
                         <h2>Produits</h2>
-                        <p><%= commande.com_ht %> €</p>
+                        <p><%= totalCommande %> €</p>
                     </div>
                     <div>
                         <h2>Réductions</h2>
@@ -392,9 +393,9 @@
                     <div>
                         <h2>Total</h2>
                         <% if (commande.com_remise) { %>
-                          <p><%= commande.com_ttc - commande.com_remise %> €</p>
+                          <p><%= totalCommande - commande.com_remise %> €</p>
                         <% } else { %>
-                          <p><%= commande.com_ttc %> €</p>
+                          <p><%= totalCommande %> €</p>
                         <% } %>
                     </div>
                 </div>
