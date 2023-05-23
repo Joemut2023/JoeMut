@@ -46,6 +46,7 @@ router.post("/", async (req, res, next) => {
       cli_newsletter: credentials.cli_newsletter,
       cli_inscription: new Date(new Date().setDate(new Date().getDate())),
       cli_activation: true,
+      cli_num: credentials.cli_num,
     });
 
     //create for client panier

@@ -31,6 +31,7 @@ btn_enregistrer.addEventListener("click", async function (e) {
   let femme = document.getElementById("femme");
   let cli_nom = document.getElementById("nom").value;
   let cli_prenom = document.getElementById("prenom").value;
+  let cli_num = document.getElementById("num").value;
   let cli_mail = document.getElementById("email").value;
   let cli_pwd = document.getElementById("password").value;
   let data = {
@@ -40,6 +41,7 @@ btn_enregistrer.addEventListener("click", async function (e) {
       cli_prenom: cli_prenom,
       cli_mail: cli_mail,
       cli_pwd: cli_pwd,
+      cli_num: cli_num,
       cli_newsletter: newsLetter.checked ? true : false,
     },
     // panier_items: panier_items,
