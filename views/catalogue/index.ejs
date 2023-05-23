@@ -8,57 +8,33 @@
       <div class="border"></div>
       <div class="list-body">
         <p>Catalogue</p>
-        <!-- boucle -->
-        <% typee_categories.forEach(typCat => { %>
-          
+        <% typee_categories.forEach(element => { %>
+          <div class="accordion-item">
+            <div class="type-categorie">
+              <a href="/catalogue/type/<%= element.tyc_id %>"> <%= element.tyc_libelle %></a>
+              <div id="plus-petit" class="icon_showing" data-bs-toggle="collapse" data-bs-target="#collapse-<%= element.tyc_id %>""
+                aria-expanded="true" aria-controls="collapse-<%= element.tyc_id %>">
+                <i class="fa fa-plus"></i>
+              </div>
+              <div id="minus-petit" class="icon_showing" data-bs-toggle="collapse" data-bs-target="#collapse-<%= element.tyc_id %>"
+                aria-expanded="false" aria-controls="collapse-<%= element.tyc_id %>"">
+                <i class="fa fa-minus"></i>
+              </div>
+            </div>
+
+            <div id="collapse-<%= element.tyc_id %>" class="accordion-collapse collapse" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <% categories.forEach(categorie=> { %> <% if (categorie.tyc_id === element.tyc_id) { %>
+                    <a href="/catalogue/<%= categorie.cat_id %>">
+                      <%= categorie.cat_libelle %>
+                    </a>
+                    <% } %>
+                      <% }) %>
+              </div>
+            </div>
+          </div>
           <% }) %>
-         
-      
-
-        <div class="accordion-item">
-          <div class="type-categorie">
-            <a href="/catalogue/type/<%= typee_categories[0].tyc_id %>"
-              >Costumes des danses <br />
-              Petits</a
-            >
-            <div
-              id="plus-petit"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-plus"></i>
-            </div>
-            <div
-              id="minus-petit"
-              class="icon_showing"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="false"
-              aria-controls="collapseOne"
-            >
-              <i class="fa fa-minus"></i>
-            </div>
-          </div>
-          <div
-            id="collapseOne"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <% categories.forEach(categorie => { %>
-                <% if(categorie.tyc_id===1) { %>
-                    <a href="<%= `/catalogue/${categorie.cat_id}`%>"> <%= categorie.cat_libelle %></a>
-                <% } %> 
-              <% }) %>
-            </div>
-          </div>
-        </div>
-        <!-- boucle -->
-
       </div>
       <div class="border"></div>
     </div>
@@ -68,65 +44,85 @@
       <h2>CATÉGORIE : <span>CATALOGUE</span></h2>
     </div>
     <div class="cat-filter">
-      <p>Il y a <span><%= allproducts.length%></span> produits</p>
+      <p>Il y a <span>
+          <%= allproducts.length%>
+        </span> produits</p>
 
       <div class="filter">
         <label for="">Trier par : </label>
         <div class="input" id="input">
-          <span id="choix"><%= choix ? choix : "Choisir" %></span>
+          <span id="choix">
+            <%= choix ? choix : "Choisir" %>
+          </span>
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
           <div class="content content-hide" id="content">
             <ul>
-              <a href="/catalogue"> <li class="item-choice">Pertinente</li></a>
-              <a href="/catalogue/?orderby=AàZ"><li class="item-choice">Nom, A à Z</li></a>
-              <a href="/catalogue/?orderby=ZàA"><li class="item-choice">Nom, Z à A</li></a>
-              <a href="/catalogue/?orderby=PC"> <li class="item-choice">Prix, croissant</li></a>
-              <a href="/catalogue/?orderby=PD"><li class="item-choice">Prix, décroissant</li></a>
+              <a href="/catalogue">
+                <li class="item-choice">Pertinente</li>
+              </a>
+              <a href="/catalogue/?orderby=AàZ">
+                <li class="item-choice">Nom, A à Z</li>
+              </a>
+              <a href="/catalogue/?orderby=ZàA">
+                <li class="item-choice">Nom, Z à A</li>
+              </a>
+              <a href="/catalogue/?orderby=PC">
+                <li class="item-choice">Prix, croissant</li>
+              </a>
+              <a href="/catalogue/?orderby=PD">
+                <li class="item-choice">Prix, décroissant</li>
+              </a>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="cat-body">
-      <% produits.forEach(produit => { %>
-      <div class="produit">
-        <div class="image-cadre">
-          <a href="/article/<%= produit.pro_id %>">
-            <img
-              src="/images/produits/<%= produit.Media[0].med_ressource %>"
-              alt=""
-              srcset=""
-            />
-          </a>
-        </div>
-        <div class="bar"></div>
-        <div class="detail">
-          <a href="/article/<%= produit.pro_id %>">
-            <%= produit.pro_libelle%></a
-          >
-          <div>Ref: <span><%= produit.pro_ref %></span></div>
-          <div class="quantite"><span>  <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty ? quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty > 1 ? "articles" : "article" %></div>
-          <div class="montant">
-            <div><%= produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", ",")  %> €</div>
-            <span>|</span>
-            <button
-              class="button-ajouter"
-              data-id="<%= produit.pro_id %>"
-              data-bs-toggle="modal"
-              data-bs-target="#parent_modal"
-            >
-              Ajouter
-            </button>
+      <% produits.forEach(produit=> { %>
+        <div class="produit">
+          <div class="image-cadre">
+            <a href="/article/<%= produit.pro_id %>">
+              <img src="/images/produits/<%= produit.Media[0].med_ressource %>" alt="" srcset="" />
+            </a>
+          </div>
+          <div class="bar"></div>
+          <div class="detail">
+            <a href="/article/<%= produit.pro_id %>">
+              <%= produit.pro_libelle%>
+            </a>
+            <div>Ref: <span>
+                <%= produit.pro_ref %>
+              </span></div>
+            <div class="quantite"><span>
+                <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty ?
+                  quantiteOfEachProduct.find(element => element.id === produit.pro_id).qty : "1" %>
+              </span>
+              <%= quantiteOfEachProduct.find(element=> element.id === produit.pro_id).qty > 1 ? "articles" : "article"
+                %>
+            </div>
+            <div class="montant">
+              <div>
+                <%= produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".", "," ) %> €
+              </div>
+              <span>|</span>
+              <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal"
+                data-bs-target="#parent_modal">
+                Ajouter
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <% }) %>
+        <% }) %>
     </div>
     <div class="cat-pagination">
       <div>
         <p>
-          Affichage <span><%= start %> - <%= end %></span> de
-          <span><%= allproducts.length%></span>
+          Affichage <span>
+            <%= start %> - <%= end %>
+          </span> de
+          <span>
+            <%= allproducts.length%>
+          </span>
         </p>
       </div>
       <nav>
@@ -134,51 +130,41 @@
           <li class="page-item">
             <a class="page-link" href="/catalogue?page=1&orderby=<%= orderby %>#pages-catalogue">1</a>
           </li>
-          <% if (pageActive === 1 || pageActive ===2) { %>
-          <li class="page-item">
-            <a class="page-link" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
-          </li>
-          <% } else { %>
-          <li class="page-item">
-            <a
-              class="page-link"
-              href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue"
-              ><%= pageActive-1 %></a
-            >
-          </li>
-          <li class="page-item">
-            <a
-              class="page-link"
-              href="/catalogue?page=<%= pageActive %>#pages-catalogue"
-              ><%= pageActive %></a
-            >
-          </li>
-          <li class="page-item">
-            <a
-              class="page-link"
-              href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue"
-              ><%= pageActive+1 %></a
-            >
-          </li>
-          <li class="page-item">
-            <a
-              class="page-link"
-              href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue"
-              ><%= pageActive+2 %></a
-            >
-          </li>
-          <li class="page-item">...</li>
-          <% } %>
-          <li class="page-item">
-            <a
-              class="page-link"
-              href="/catalogue?page=<%= nbrPages %>#pages-catalogue"
-              ><%= nbrPages %></a
-            >
-          </li>
+          <% if (pageActive===1 || pageActive===2) { %>
+            <li class="page-item">
+              <a class="page-link" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
+            </li>
+            <% } else { %>
+              <li class="page-item">
+                <a class="page-link" href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue">
+                  <%= pageActive-1 %>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/catalogue?page=<%= pageActive %>#pages-catalogue">
+                  <%= pageActive %>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue">
+                  <%= pageActive+1 %>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue">
+                  <%= pageActive+2 %>
+                </a>
+              </li>
+              <li class="page-item">...</li>
+              <% } %>
+                <li class="page-item">
+                  <a class="page-link" href="/catalogue?page=<%= nbrPages %>#pages-catalogue">
+                    <%= nbrPages %>
+                  </a>
+                </li>
         </ul>
       </nav>
     </div>
