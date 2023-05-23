@@ -8199,17 +8199,17 @@ body {
   padding-top: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: start;
   gap: 10px;
   height: max-content;
+  justify-content: space-between;
 }
 #admin-page-viewDevis .actions form {
-  width: 30%;
+  width: 20%;
   display: flex;
   flex-direction: row;
 }
 #admin-page-viewDevis .actions form .select-etat {
-  width: 60%;
+  width: 40%;
 }
 #admin-page-viewDevis .actions form .select-etat .form-select {
   width: 100%;
@@ -8217,15 +8217,33 @@ body {
   color: white;
 }
 #admin-page-viewDevis .actions form .btns {
-  width: 30%;
+  width: 60%;
+}
+#admin-page-viewDevis .actions form .btns .btn {
+  width: 100%;
+}
+#admin-page-viewDevis .actions form .btn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
 }
 #admin-page-viewDevis .actions .btn {
+  width: 10%;
   padding: 0;
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   font-size: 13px;
   height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 #admin-page-viewDevis .content {
   margin-top: 40px;
