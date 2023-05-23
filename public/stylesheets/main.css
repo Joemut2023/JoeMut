@@ -7348,7 +7348,8 @@ body {
   padding-top: 20px;
   font-family: "Manrope", sans-serif;
 }
-#page-admin-ajoutProduit .parent-message, #page-admin-ajoutProduit .parent-message-danger {
+#page-admin-ajoutProduit .parent-message,
+#page-admin-ajoutProduit .parent-message-danger {
   position: relative;
   display: none;
   flex-direction: row;
@@ -7356,7 +7357,10 @@ body {
   font-size: 1rem;
   gap: 10px;
 }
-#page-admin-ajoutProduit .parent-message .close, #page-admin-ajoutProduit .parent-message .close-error, #page-admin-ajoutProduit .parent-message-danger .close, #page-admin-ajoutProduit .parent-message-danger .close-error {
+#page-admin-ajoutProduit .parent-message .close,
+#page-admin-ajoutProduit .parent-message .close-error,
+#page-admin-ajoutProduit .parent-message-danger .close,
+#page-admin-ajoutProduit .parent-message-danger .close-error {
   position: absolute;
   top: 0;
   right: 8px;
@@ -7882,8 +7886,22 @@ body {
   margin-top: 2px;
   color: rgb(41, 144, 228);
 }
-#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .form-check {
-  margin-bottom: 10px;
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .item-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .item-check span {
+  display: inline-block;
+  text-align: center;
+  vertical-align: center;
+  width: 2rem;
+  height: 2rem;
+  background: #a0b21f;
+  padding-top: 0.3rem;
+  font-size: 1rem;
+  border-radius: 50%;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
   margin: 10px 0px;
@@ -9071,6 +9089,38 @@ body {
   margin-bottom: 0px;
   font-weight: 600;
   font-size: 25px;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title p {
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 22px;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .title span {
+  margin-top: 2px;
+  color: rgb(41, 144, 228);
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .item-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .caracteristique .left .item-check span {
+  display: inline-block;
+  text-align: center;
+  vertical-align: center;
+  width: 2rem;
+  height: 2rem;
+  background: #a0b21f;
+  padding-top: 0.3rem;
+  font-size: 1rem;
+  border-radius: 50%;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
   margin: 10px 0px;
