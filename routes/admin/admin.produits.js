@@ -12,8 +12,9 @@ const {
 } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const path = require('path');
+
 router.get("/", async (req, res) => {
   const { search } = req.query;
   let quantiteOfEachProduct = [];
@@ -71,7 +72,7 @@ router.get("/", async (req, res) => {
 
 //RESEARCH
 router.post("/search", async (req, res) => {
-  const { libelle, ref, cat, tarHtUp, tarHtDown } = req.body;
+  const { libelle, ref, cat, tarHtUp, tarHtDown, qtyUp, qtydDown } = req.body;
   let catWhere;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
@@ -96,7 +97,6 @@ router.post("/search", async (req, res) => {
         { model: Media, attributes: ["med_ressource"] },
         {
           model: Categorie,
-          // required: true,
           required: true,
           where: {
             cat_libelle: { [Op.like]: `${cat}%` },
@@ -105,9 +105,31 @@ router.post("/search", async (req, res) => {
       ],
       where: {
         [Op.or]: [
-          { pro_ref: { [Op.like]: `${ref!=="" ? ref : libelle}%` } },
-          { pro_libelle: { [Op.like]: `${libelle!=="" ? libelle : ref}%` } },
+          { pro_ref: { [Op.like]: `${ref !== "" ? ref : libelle}%` } },
+          { pro_libelle: { [Op.like]: `${libelle !== "" ? libelle : ref}%` } },
         ],
+      },
+      attributes: {
+        required: false,
+        include: [
+          [
+            Sequelize.literal(`(
+              SELECT SUM(qua_nbre)
+              FROM Quantites as quantite
+              WHERE 
+                Produit.pro_id = quantite.pro_id
+            )`),
+            "total_qté",
+          ],
+        ],
+      },
+      having: {
+        ["total_qté"]: {
+          [Op.between]: [
+            ` ${qtyUp ? parseInt(qtyUp) : 1}`,
+            `${qtydDown ? parseInt(qtydDown) : 1000}`,
+          ],
+        },
       },
     });
 
@@ -147,6 +169,28 @@ router.post("/search", async (req, res) => {
           { pro_ref: { [Op.like]: `${ref !== "" ? ref : libelle}%` } },
           { pro_libelle: { [Op.like]: `${libelle !== "" ? libelle : ref}%` } },
         ],
+      },
+      attributes: {
+        required: false,
+        include: [
+          [
+            Sequelize.literal(`(
+              SELECT SUM(qua_nbre)
+              FROM Quantites as quantite
+              WHERE 
+                Produit.pro_id = quantite.pro_id
+            )`),
+            "total_qté",
+          ],
+        ],
+      },
+      having: {
+        ["total_qté"]: {
+          [Op.between]: [
+            ` ${qtyUp ? parseInt(qtyUp) : 1}`,
+            `${qtydDown ? parseInt(qtydDown) : 1000}`,
+          ],
+        },
       },
     });
 
