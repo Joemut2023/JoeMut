@@ -251,9 +251,9 @@
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
                                     <% totalCommande +=  panier_detail.pad_ht * panier_detail.pad_qte %>
-                                    <%= (panier_detail.pad_ttc * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
+                                    <%= (panier_detail.pad_ht * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
                                 <% } else { %>
-                                  <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
+                                  <% totalCommande += (panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise %>
                                   <%= ((panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
                                 <% } %>
                                 </td>
