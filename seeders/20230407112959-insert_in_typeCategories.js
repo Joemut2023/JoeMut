@@ -15,15 +15,19 @@ module.exports = {
    await queryInterface.bulkInsert("Type_categories", [
      {
        tyc_libelle: "COSTUMES POUR PETITS",
+       tyc_ordre : 1
      },
      {
        tyc_libelle: "COSTUMES POUR MOYENS",
+       tyc_ordre : 2
      },
      {
        tyc_libelle: "COSTUMES POUR GRANDS",
+       tyc_ordre : 3
      },
      {
        tyc_libelle: "ACCESSOIRS",
+       tyc_ordre : 4
      },
    ]);
   },

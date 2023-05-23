@@ -10,8 +10,7 @@
       ><i class="fa fa-times" aria-hidden="true"></i
     ></span>
   </div>
-   <div class="alert alert-danger parent-message-danger" role="alert">
- 
+  <div class="alert alert-danger parent-message-danger" role="alert">
     <span>Remplissez tous les champs requis</span>
     <span
       style="font-size: 1.4rem; color: #ce6861; cursor: pointer"
@@ -20,10 +19,18 @@
     ></span>
   </div>
   <% if (typeof flash != 'undefined') { %>
-    <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
-      <%= flash.message %>
-      <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+  <div
+    class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2"
+    role="alert"
+  >
+    <%= flash.message %>
+    <button
+      type="button"
+      class="btn-close btn-close-flash"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
   <% } %>
   <div class="product-container row">
     <div class="bloc-left">
@@ -45,29 +52,38 @@
         </div>
         <div class="col-md-2"></div>
         <div class="bloc-right col-md-4">
-      <div>
-        <span><i class="fa-solid fa-rectangle-list"></i></span>
-        <p><a href="/admin/produits" style="color:gray;text-decoration: none;">Liste des produits</a></p>
-      </div>
-    </div>
+          <div>
+            <span><i class="fa-solid fa-rectangle-list"></i></span>
+            <p>
+              <a
+                href="/admin/produits"
+                style="color: gray; text-decoration: none"
+                >Liste des produits</a
+              >
+            </p>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="ref">
-                  <!-- <div class="title">
+            <!-- <div class="title">
                     <h2>Réference</h2>
                     <span><i class="fa-solid fa-circle-info"></i></span>
                   </div> -->
-                  <div class="form-group has-feedback has-feedback-left">
-                    <label for="">Référence du produit</label>
-                    <input type="text" class="form-control pro-ref" placeholder="Référence du produit" required />
-                  </div>
-                </div>
+            <div class="form-group has-feedback has-feedback-left">
+              <label for="">Référence du produit</label>
+              <input
+                type="text"
+                class="form-control pro-ref"
+                placeholder="Référence du produit"
+                required
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    
   </div>
 
   <form
@@ -243,7 +259,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="regle">
+                  <!-- <div class="regle">
                     <p>Règle de taxe</p>
                     <select
                       class="form-select"
@@ -254,8 +270,8 @@
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
-                  </div>
-                  <div class="param">
+                  </div> -->
+                  <!-- <div class="param">
                     <span>Paramètres avancés dans </span>
                     <span
                       ><strong
@@ -263,7 +279,7 @@
                         Quantites</strong
                       ></span
                     >
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -282,7 +298,9 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
-                       <option value="" selected>Choisir le type de catégorie</option>
+                        <option value="" selected>
+                          Choisir le type de catégorie
+                        </option>
                         <% typeCategorie.forEach(element => { %>
                         <option value=" <%= element.tyc_id %> ">
                           <%= element.tyc_libelle %>
@@ -295,9 +313,8 @@
                       <select
                         class="form-select cat-select select-type-cat"
                         aria-label="Default select example"
-                      > 
-                      <option value="" selected>Choisir une catégorie</option>
-                       
+                      >
+                        <option value="" selected>Choisir une catégorie</option>
                       </select>
                     </div>
                   </div>
@@ -318,7 +335,10 @@
                   </div>
 
                   <div class="hide-container">
-                    <div class="alert alert-success parent-message-cat" role="alert">
+                    <div
+                      class="alert alert-success parent-message-cat"
+                      role="alert"
+                    >
                       <span style="font-size: 1.4rem; color: #61ce70"
                         ><i class="fa fa-check-circle" aria-hidden="true"></i
                       ></span>
@@ -341,7 +361,7 @@
                       class="cat-add-input"
                     />
                     <select
-                    style="font-size: 0.8rem;"
+                      style="font-size: 0.8rem"
                       class="form-select select-categorie select-add-cat"
                       aria-label="Default select example"
                       name="tyc_id"
@@ -378,38 +398,47 @@
                   <p>Autres</p>
                   <span><i class="fa-solid fa-circle-info"></i></span>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input pro-new-collect"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Nouvelle collection
-                  </label>
+                <div class="item-check">
+                  <span><i class="fa-solid fa-shirt"></i></span>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input pro-new-collect"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Nouvelle collection
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input pro-en-avant"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label class="form-check-label" for="flexCheckDefault">
-                    En avant
-                  </label>
+                <div class="item-check">
+                  <span><i class="fa-solid fa-bag-shopping"></i></span>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input pro-en-avant"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      En avant
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input pro-statut"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Statut
-                  </label>
+                <div class="item-check">
+                 <span> <i class="fa-solid fa-toggle-on"></i></span>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input pro-statut"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Statut
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>

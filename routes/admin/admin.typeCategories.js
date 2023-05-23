@@ -30,7 +30,7 @@ router.get("/ajout", async (req, res) => {
 })
 
 router.post("/ajout", async (req, res) => {
-    const { tyc_libelle } = req.body;
+    const { tyc_libelle, tyc_ordre } = req.body;
 
     try {
         if (tyc_libelle == "") {
@@ -42,7 +42,8 @@ router.post("/ajout", async (req, res) => {
             return res.render({ message: 'ce type categories existe deja. Veuillez changer le nom' });
         } else {
             await Type_categorie.create({
-                tyc_libelle: tyc_libelle
+                tyc_libelle: tyc_libelle,
+                tyc_ordre :  tyc_ordre
             });
             res.redirect("/admin/type-categories");
         }
@@ -76,11 +77,12 @@ router.get("/edit/:id", async (req, res) => {
 })
 
 router.post("/edit/:id", async (req, res) => {
-    const { tyc_libelle } = req.body
+    const { tyc_libelle, tyc_ordre  } = req.body
 
     try {
         const updateTyc = await Type_categorie.update({
             tyc_libelle: tyc_libelle,
+            tyc_order :  tyc_ordre
 
         }, { where: { tyc_id: req.params.id } })
 

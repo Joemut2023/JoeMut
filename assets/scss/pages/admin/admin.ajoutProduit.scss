@@ -2,43 +2,44 @@
   width: 100%;
   padding-top: 20px;
   font-family: $typograohie;
-  .parent-message,.parent-message-danger {
+  .parent-message,
+  .parent-message-danger {
     position: relative;
     display: none;
     flex-direction: row;
     align-items: center;
     font-size: 1rem;
     gap: 10px;
-    .close,.close-error {
+    .close,
+    .close-error {
       position: absolute;
       top: 0;
       right: 8px;
     }
   }
- 
 
   .product-container {
     .bloc-left {
       .ref {
-                margin-bottom: 15px;
-                .title {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  margin-bottom: 20px;
+        margin-bottom: 15px;
+        .title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
 
-                  h2 {
-                    margin-bottom: 0px;
-                    font-weight: 600;
-                    font-size: 22px;
-                  }
+          h2 {
+            margin-bottom: 0px;
+            font-weight: 600;
+            font-size: 22px;
+          }
 
-                  span {
-                    margin-top: 3px;
-                    color: rgb(41, 144, 228);
-                  }
-                }
-              }
+          span {
+            margin-top: 3px;
+            color: rgb(41, 144, 228);
+          }
+        }
+      }
       .left {
         div input {
           font-size: 20px;
@@ -126,7 +127,6 @@
           .img {
             display: flex;
             align-items: center;
-
 
             margin-bottom: 20px;
             .block-image {
@@ -222,8 +222,8 @@
               }
             }
 
-            .block-image-cover{
-               margin-bottom: 10px;
+            .block-image-cover {
+              margin-bottom: 10px;
               .images {
                 display: flex;
                 gap: 5px;
@@ -604,7 +604,7 @@
                   button {
                     padding: 5px 10px;
                     border-radius: 5px;
-                    width:30%;
+                    width: 30%;
                   }
 
                   .btn-cat-annuler {
@@ -695,8 +695,26 @@
                 }
               }
 
-              .form-check {
-                margin-bottom: 10px;
+              .item-check {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+                span{
+                  display: inline-block;
+                  // padding: 0.3rem 0.3rem;
+                  text-align: center;
+                  vertical-align: center;
+                  width: 2rem;
+                  height: 2rem;
+                  background: $color-primary;
+                  padding-top: 0.3rem;
+                  font-size: 1rem;
+                  border-radius: 50%;
+                }
+                .form-check {
+                  
+                }
               }
             }
           }
