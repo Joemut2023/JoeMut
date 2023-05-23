@@ -47,7 +47,6 @@
             adresse:adresse,
             essayages:dates_essayages
         }
-        stop;
         let panier = await axios.post('/commander',params,{
             headers: {
                 "X-Requested-With": "XMLHttpRequest",

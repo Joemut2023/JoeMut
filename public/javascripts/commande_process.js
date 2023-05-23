@@ -73,18 +73,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               adresse: adresse,
               essayages: dates_essayages
             };
-            stop;
-            _context2.next = 13;
+            _context2.next = 12;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 13:
+          case 12:
             panier = _context2.sent;
             localStorage.setItem('storedItems', JSON.stringify([]));
             window.location.replace('/confirmation-commande');
-          case 16:
+          case 15:
           case "end":
             return _context2.stop();
         }
