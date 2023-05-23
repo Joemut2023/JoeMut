@@ -19,222 +19,339 @@
 
         <div class="content" id="info-content">
           <% if (locals.user) { %>
-            <div class="user-are-loged-in">
-              <p>
-                Vous êtes déjà connecté étant que : <%= locals.user.cli_nom %>
-              </p>
-              <p>
-                Ce n'est pas vous? <a href="/mon-compte/logout">déconnexion</a>
-              </p>
-              <p>Si vous vous déconnectez maintenant, votre panier sera vidé.</p>
-            </div>
-            <div class="button">
-              <button class="btn_info_client_connected">Continuer</button>
-            </div>
-            <% } else { %>
-              <div class="tabs-container">
-                <ul class="nav nav-tabs" id="myTab" role="tablist row">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link btn-tab-one active button-add" id="home-tab" data-bs-toggle="tab"
-                      data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                      aria-selected="true">
-                      <span id="creer-compte">Creez votre compte</span>
-                      <span> | </span>
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link btn-tab-two" id="profile-tab" data-bs-toggle="tab"
-                      data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
-                      aria-selected="false">
-                      <span>Connexion</span>
-                    </button>
-                  </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                  <div class="tab-pane fade show active content-one" id="home-tab-pane" role="tabpanel"
-                    aria-labelledby="home-tab" tabindex="0">
-                    <div class="register-form">
-                      <form method="post" action="/commander/user-subscribe">
-                        <div>
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label for="" class="label">Civilité</label>
-                            </div>
-                            <div class="col-md-6 radios">
-                              <div class="radio">
-                                <input type="radio" name="tit_id" id="homme" value="M" />
-                                <label class="" for="homme ">M</label>
-                              </div>
-                              <div class="radio">
-                                <input type="radio" name="tit_id" id="femme" value="Mme" />
-                                <label class="" for="femme ">Mme</label>
-                              </div>
-                            </div>
-                            <div class="col-md-3"></div>
+          <div class="user-are-loged-in">
+            <p>
+              Vous êtes déjà connecté étant que : <%= locals.user.cli_prenom %>
+              <%= locals.user.cli_nom %>
+            </p>
+            <p>
+              Ce n'est pas vous? <a href="/mon-compte/logout">déconnexion</a>
+            </p>
+            <p>Si vous vous déconnectez maintenant, votre panier sera vidé.</p>
+          </div>
+          <div class="button">
+            <button class="btn_info_client_connected">Continuer</button>
+          </div>
+          <% } else { %>
+          <div class="tabs-container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist row">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link btn-tab-one active button-add"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="home-tab-pane"
+                  aria-selected="true"
+                >
+                  <span id="creer-compte">Creez votre compte</span>
+                  <span> | </span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link btn-tab-two"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile-tab-pane"
+                  aria-selected="false"
+                >
+                  <span>Connexion</span>
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active content-one"
+                id="home-tab-pane"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+                tabindex="0"
+              >
+                <div class="register-form">
+                  <form method="post" action="/commander/user-subscribe">
+                    <div>
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label for="" class="label">Civilité</label>
+                        </div>
+                        <div class="col-md-6 radios">
+                          <div class="radio">
+                            <input
+                              type="radio"
+                              name="tit_id"
+                              id="homme"
+                              value="M"
+                            />
+                            <label class="" for="homme ">M</label>
                           </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="prenom"><span>*</span>Prenom</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_prenom" id="prenom" required />
-                              <label for=" " id="label-text">Seules les lettres et le point (.), suivi d'un
-                                espace, sont autorisés.</label>
-                            </div>
-                            <div class="col-md-3"></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="nom"><span>*</span>Nom</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_nom" id="nom" required />
-                              <label for="" id="label-text">Seules les lettres et le point (.), suivi d'un
-                                espace, sont autorisés.</label>
-                            </div>
-                            <div></div>
-                          </div>
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="email"><span>*</span>E-mail</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_mail" id="email" required />
-                              <label for="" id="label-text"></label>
-                            </div>
-                            <div></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="password"><span>*</span>Mot de passe</label>
-                            </div>
-                            <div class="col-md-6 btn-hide">
-                              <input type="password" name="cli_pwd" id="password" class="input-password" required />
-                              <button id="btn-action" type="button" class="btn-action">
-                                Montrer
-                              </button>
-                            </div>
-                            <div></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" id="check_msg" />
-                              </div>
-                              <div class="">
-                                <label id="check_msg">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>Conformément aux dispositions de la loi du
-                                    n°78-17 du 6 janvier 1978, vous disposez d'un
-                                    droit d'accès, de rectification et d'opposition
-                                    sur les données nominatives vous concernant.</em>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                              </div>
-                              <div class="">
-                                <label id="label-text">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>Recevoir notre newsletter Vous pouvez vous
-                                    désinscrire à tout moment. Vous trouverez pour
-                                    cela nos informations de contact dans les
-                                    conditions d'utilisation du site.
-                                  </em>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" />
-                              </div>
-                              <div class="">
-                                <label id="label-text">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>J'accepte les conditions générales et la
-                                    politique de confidentialité
-                                  </em>
-                                </label>
-                              </div>
-                            </div>
+                          <div class="radio">
+                            <input
+                              type="radio"
+                              name="tit_id"
+                              id="femme"
+                              value="Mme"
+                            />
+                            <label class="" for="femme ">Mme</label>
                           </div>
                         </div>
-                        <div class="button">
-                          <button type="submit">Continuer</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade content-two" id="profile-tab-pane" role="tabpanel"
-                    aria-labelledby="profile-tab" tabindex="0">
-                    <div class="register-form">
-                      <form method="post" action="/commander/user-login" id="form-commande-login">
-                        <%if (typeof error !=='undefined' && error==true) { %>
-                          <div class="alert alert-danger" role="alert">
-                            <%= (errorMsg) ? errorMsg : '' %>
-                          </div>
-                          <% } %>
-                            <div>
-                              <div class="form-group row">
-                                <div class="col-md-3 item">
-                                  <label class="required label" for="email"><span>*</span>E-mail</label>
-                                </div>
-                                <div class="col-md-6 input">
-                                  <input type="email" name="cli_mail" id="prenom" required />
-                                </div>
-                                <div class="col-md-3"></div>
-                              </div>
+                        <div class="col-md-3"></div>
+                      </div>
 
-                              <div class="form-group row">
-                                <div class="col-md-3 item">
-                                  <label class="required label" for="password"><span>*</span>Mot de passe</label>
-                                </div>
-                                <div class="col-md-6 btn-hide">
-                                  <input type="password" name="cli_pwd" id="password" class="input-password" required />
-                                  <button id="btn-action" type="button" class="btn-action">
-                                    Montrer
-                                  </button>
-                                </div>
-                                <div></div>
-                              </div>
-                            </div>
-                            <div class="forgot-password">
-                              <p>Mot de passe oublié ?</p>
-                            </div>
-                            <div class="btn-login">
-                              <button type="submit">Continuer</button>
-                            </div>
-                            <hr />
-                      </form>
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="prenom"
+                            ><span>*</span>Prenom</label
+                          >
+                        </div>
+                        <div class="col-md-6 input">
+                          <input
+                            type="text"
+                            name="cli_prenom"
+                            id="prenom"
+                            required
+                          />
+                          <label for=" " id="label-text"
+                            >Seules les lettres et le point (.), suivi d'un
+                            espace, sont autorisés.</label
+                          >
+                        </div>
+                        <div class="col-md-3"></div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="nom"
+                            ><span>*</span>Nom</label
+                          >
+                        </div>
+                        <div class="col-md-6 input">
+                          <input type="text" name="cli_nom" id="nom" required />
+                          <label for="" id="label-text"
+                            >Seules les lettres et le point (.), suivi d'un
+                            espace, sont autorisés.</label
+                          >
+                        </div>
+                        <div></div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="email"
+                            ><span>*</span>E-mail</label
+                          >
+                        </div>
+                        <div class="col-md-6 input">
+                          <input
+                            type="text"
+                            name="cli_mail"
+                            id="email"
+                            required
+                          />
+                          <label for="" id="label-text"></label>
+                        </div>
+                        <div></div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="password"
+                            ><span>*</span>Mot de passe</label
+                          >
+                        </div>
+                        <div class="col-md-6 btn-hide">
+                          <input
+                            type="password"
+                            name="cli_pwd"
+                            id="password"
+                            class="input-password"
+                            required
+                          />
+                          <button
+                            id="btn-action"
+                            type="button"
+                            class="btn-action"
+                          >
+                            Montrer
+                          </button>
+                        </div>
+                        <div></div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required" for="nom"
+                            ><span>*</span></label
+                          >
+                        </div>
+                        <div class="col-md-6 checkWithText">
+                          <div class="">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="check_msg"
+                            />
+                          </div>
+                          <div class="">
+                            <label id="check_msg"
+                              >Message concernant la confidentialité des données
+                              clients
+                              <br />
+                              <em
+                                >Conformément aux dispositions de la loi du
+                                n°78-17 du 6 janvier 1978, vous disposez d'un
+                                droit d'accès, de rectification et d'opposition
+                                sur les données nominatives vous concernant.</em
+                              >
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required" for="nom"
+                            ><span>*</span></label
+                          >
+                        </div>
+                        <div class="col-md-6 checkWithText">
+                          <div class="">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                          </div>
+                          <div class="">
+                            <label id="label-text"
+                              >Message concernant la confidentialité des données
+                              clients
+                              <br />
+                              <em
+                                >Recevoir notre newsletter Vous pouvez vous
+                                désinscrire à tout moment. Vous trouverez pour
+                                cela nos informations de contact dans les
+                                conditions d'utilisation du site.
+                              </em>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required" for="nom"
+                            ><span>*</span></label
+                          >
+                        </div>
+                        <div class="col-md-6 checkWithText">
+                          <div class="">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                            />
+                          </div>
+                          <div class="">
+                            <label id="label-text"
+                              >Message concernant la confidentialité des données
+                              clients
+                              <br />
+                              <em
+                                >J'accepte les conditions générales et la
+                                politique de confidentialité
+                              </em>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div class="button">
+                      <button type="submit">Continuer</button>
+                    </div>
+                  </form>
                 </div>
               </div>
-              <% } %>
+              <div
+                class="tab-pane fade content-two"
+                id="profile-tab-pane"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+                tabindex="0"
+              >
+                <div class="register-form">
+                  <form
+                    method="post"
+                    action="/commander/user-login"
+                    id="form-commande-login"
+                  >
+                    <%if (typeof error !=='undefined' && error==true) { %>
+                    <div class="alert alert-danger" role="alert">
+                      <%= (errorMsg) ? errorMsg : '' %>
+                    </div>
+                    <% } %>
+                    <div>
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="email"
+                            ><span>*</span>E-mail</label
+                          >
+                        </div>
+                        <div class="col-md-6 input">
+                          <input
+                            type="email"
+                            name="cli_mail"
+                            id="prenom"
+                            required
+                          />
+                        </div>
+                        <div class="col-md-3"></div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-3 item">
+                          <label class="required label" for="password"
+                            ><span>*</span>Mot de passe</label
+                          >
+                        </div>
+                        <div class="col-md-6 btn-hide">
+                          <input
+                            type="password"
+                            name="cli_pwd"
+                            id="password"
+                            class="input-password"
+                            required
+                          />
+                          <button
+                            id="btn-action"
+                            type="button"
+                            class="btn-action"
+                          >
+                            Montrer
+                          </button>
+                        </div>
+                        <div></div>
+                      </div>
+                    </div>
+                    <div class="forgot-password">
+                      <p>Mot de passe oublié ?</p>
+                    </div>
+                    <div class="btn-login">
+                      <button type="submit">Continuer</button>
+                    </div>
+                    <hr />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
         </div>
       </div>
 
@@ -269,194 +386,212 @@
             </div>
           </div>
           <% if (typeof adresses !="undefined" ) { %>
-            <div class="register-form">
-              <form action="" id="adresse-form">
-                <div class="row">
-                  <% adresses.forEach((adresse,index)=> { %>
-                    <div class="adresse-elmt">
-                      <div class="adresse-elmt-head">
-                        <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse" value="<%= adresse.adr_id %>"
-                            id="radio_adresse<%= index %>" />
-                          <label for="radio_adresse<%= index %>">
-                            <h3>
-                              <%= adresse.adr_nom %>
-                            </h3>
-                            <div class="adresse-elmnt-body">
-                              <p>
-                                <%= adresse.adr_nom %> - <%= adresse.adr_prenom %>
-                              </p>
-                              <p>
-                                <%= adresse.adr_societe %>
-                              </p>
-                              <p>
-                                <%= adresse.adr_adresse %>
-                              </p>
-                              <p>
-                                <%= adresse.adr_cp %>
-                                  <%= adresse.adr_ville %>
-                              </p>
-                              <p>
-                                <%= adresse.adr_ville %>
-                              </p>
-                              <p>
-                                <%= adresse.adr_phone %>
-                              </p>
-                            </div>
-                          </label>
+          <div class="register-form">
+            <form action="" id="adresse-form">
+              <div class="row">
+                <% adresses.forEach((adresse,index)=> { %>
+                <div class="adresse-elmt">
+                  <div class="adresse-elmt-head">
+                    <div class="adresse-elmnt-head-radio">
+                      <input
+                        type="radio"
+                        name="radio_adresse"
+                        value="<%= adresse.adr_id %>"
+                        id="radio_adresse<%= index %>"
+                      />
+                      <label for="radio_adresse<%= index %>">
+                        <h3><%= adresse.adr_nom %></h3>
+                        <div class="adresse-elmnt-body">
+                          <p>
+                            <%= adresse.adr_nom %> - <%= adresse.adr_prenom %>
+                          </p>
+                          <p><%= adresse.adr_societe %></p>
+                          <p><%= adresse.adr_adresse %></p>
+                          <p><%= adresse.adr_cp %> <%= adresse.adr_ville %></p>
+                          <p><%= adresse.adr_ville %></p>
+                          <p><%= adresse.adr_phone %></p>
                         </div>
-                      </div>
+                      </label>
                     </div>
-                    <% }) %>
+                  </div>
                 </div>
-                <div class="adresse-actions">
-                  <p>
-                    <a href="/commander/?newadress=true#page-commander">ajouter une nouvelle adresse</a>
-                  </p>
-                  <p>
-                    Sélectionner votre adresse de livraison si différente de
-                    l’adresse de facturation
-                  </p>
-                </div>
-                <div class="button btn col-md-6">
-                  <button>Continuer</button>
-                </div>
-              </form>
-            </div>
-            <% } else { %>
-              <div class="register-form">
-                <form method="post" action="/commander/add-adresse">
-                  <% if (typeof error !=='undefined' ) { %>
-                    <div class="alert alert-danger" role="alert">
-                      <%= error %>
-                    </div>
-                    <% } %>
-                      <% if (typeof success !=='undefined' ) { %>
-                        <div class="alert alert alert-success" role="alert">
-                          <%= success %>
-                        </div>
-                        <% } %>
-                          <div class="form-parent">
-                            <div class="form-group row">
-                              <div class="col-md-3"></div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label"><span>*</span>Nom de la structure</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_structure" required />
-                              </div>
-                              <div class="col-md-3"></div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="prenom"><span>*</span>Prenom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text " name="adr_prenom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Nom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_nom" id="nom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Société</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_societe" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Numero de TVA</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name=" adr_num_tva" id="nom" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_adresse" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Complement d'adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_comp" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Code postal</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name="adr_cp" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Ville</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_ville" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Pays</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_pays" id="nom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Téléphone</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_phone " required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3">
-                                <input class="form-check-input" type="checkbox" value="" id="check_facture" />
-                              </div>
-                              <div class="col-md-6 text-label">
-                                <label class="required label labelWithCheck" for="check_facture">Utiliser aussi cette
-                                  adresse pour la facturation</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="button btn col-md-6">
-                            <button>Continuer</button>
-                          </div>
-                </form>
+                <% }) %>
+              </div>
+              <div class="adresse-actions">
+                <p>
+                  <a href="/commander/?newadress=true#page-commander"
+                    >ajouter une nouvelle adresse</a
+                  >
+                </p>
+                <p>
+                  Sélectionner votre adresse de livraison si différente de
+                  l’adresse de facturation
+                </p>
+              </div>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } else { %>
+          <div class="register-form">
+            <form method="post" action="/commander/add-adresse">
+              <% if (typeof error !=='undefined' ) { %>
+              <div class="alert alert-danger" role="alert"><%= error %></div>
+              <% } %> <% if (typeof success !=='undefined' ) { %>
+              <div class="alert alert alert-success" role="alert">
+                <%= success %>
               </div>
               <% } %>
+              <div class="form-parent">
+                <div class="form-group row">
+                  <div class="col-md-3"></div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label"
+                      ><span>*</span>Nom de la structure</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_structure" required />
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="prenom"
+                      ><span>*</span>Prenom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text " name="adr_prenom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Nom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_nom" id="nom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom">Société</label>
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_societe" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Numero de TVA</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name=" adr_num_tva" id="nom" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_adresse" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Complement d'adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_comp" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Code postal</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name="adr_cp" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Ville</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_ville" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Pays</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_pays" id="nom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Téléphone</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_phone " required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="check_facture"
+                    />
+                  </div>
+                  <div class="col-md-6 text-label">
+                    <label
+                      class="required label labelWithCheck"
+                      for="check_facture"
+                      >Utiliser aussi cette adresse pour la facturation</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } %>
         </div>
       </div>
       <div class="adresses livraisons" id="livraison">
@@ -488,106 +623,151 @@
           </div>
           <div class="devis">
             <% mode_livraisons.forEach((mode_livraison,index)=> { %>
-              <div class="devis-1 row">
-                <div class="btn-checkbox col-md-1">
-                  <input class="form-check-input" type="radio" name="radio_mode_livraison"
-                    value="<%= mode_livraison.frp_id%>" data-ttc="<%= mode_livraison.frp_ttc %>"
-                    id="radio_mode_livraison<%= mode_livraison.frp_id%>" 
-                    <%if(mode_livraison.frp_libelle==="Tout en livraison" ) { %>checked<% } %>
-                    />
-                </div>
-                <div class="desc-img col-md-2" id="parentDiv">
-                  <% if(mode_livraison.frp_img) { %>
-                    <img src="<%= mode_livraison.frp_img %>" alt="" width="50px" height="50px">
-                    <% } else { %>
-                      <script>
-                        document.getElementById("parentDiv").style.display = "none";
-                      </script>
-                      <% } %>
-                </div>
-                <div class="desc-retrait col-md-2">
-                  <p>
-                    <%= mode_livraison.frp_libelle %>
-                  </p>
-                </div>
-                <div class="desc-essaie col-md-5">
-                  <p style="width: 100%;">
-                    <%= mode_livraison.frp_description %>
-                  </p>
-                </div>
-                <div class="descprice col-md-2">
-                  <%= mode_livraison.frp_ttc.toFixed(2) %> € TTC
-                </div>
+            <div class="devis-1 row">
+              <div class="btn-checkbox col-md-1">
+                <input class="form-check-input" type="radio"
+                name="radio_mode_livraison" value="<%= mode_livraison.frp_id%>"
+                data-ttc="<%= mode_livraison.frp_ttc %>"
+                id="radio_mode_livraison<%= mode_livraison.frp_id%>"
+                <%if(mode_livraison.frp_libelle==="Tout en livraison" ) {
+                %>checked<% } %> />
               </div>
-              <% }) %>
-                <div class="commande-msg">
-                  <div class="mb-3 msg">
-                    <label for="com_comment" class="form-label">Si vous voulez nous laisser un message à propos de votre
-                      commande, merci de de bien vouloir le renseigner dans le
-                      champs ci-contre</label>
-                    <textarea name="com_comment" class="form-control" id="com_comment" rows="3"></textarea>
-                  </div>
-                </div>
+              <div class="desc-img col-md-2" id="parentDiv">
+                <% if(mode_livraison.frp_img) { %>
+                <img
+                  src="<%= mode_livraison.frp_img %>"
+                  alt=""
+                  width="50px"
+                  height="50px"
+                />
+                <% } else { %>
+                <script>
+                  document.getElementById("parentDiv").style.display = "none";
+                </script>
+                <% } %>
+              </div>
+              <div class="desc-retrait col-md-2">
+                <p><%= mode_livraison.frp_libelle %></p>
+              </div>
+              <div class="desc-essaie col-md-5">
+                <p style="width: 100%"><%= mode_livraison.frp_description %></p>
+              </div>
+              <div class="descprice col-md-2">
+                <%= mode_livraison.frp_ttc.toFixed(2) %> € TTC
+              </div>
+            </div>
+            <% }) %>
+            <div class="commande-msg">
+              <div class="mb-3 msg">
+                <label for="com_comment" class="form-label"
+                  >Si vous voulez nous laisser un message à propos de votre
+                  commande, merci de de bien vouloir le renseigner dans le
+                  champs ci-contre</label
+                >
+                <textarea
+                  name="com_comment"
+                  class="form-control"
+                  id="com_comment"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
 
-                <div class="date-spectacle">
-                  <div class="title">
-                    <h3>DATE SPECTACLE</h3>
-                    <hr />
-                  </div>
-                  <div class="form" id="livraison-form">
-                    <form action="">
-                      <div class="row">
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-debut" class="col-form-label">Date du debut de spectacle</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input name="com_debut_spectacle" type="date" id="date-debut" class="form-control"
-                              placeholder="Date du debut de spectacle" required />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-fin" class="col-form-label">Date de fin de spectacle</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input name="com_fin_spectacle" type="date" id="date-fin" class="form-control"
-                              placeholder="Date de fin de spectacle" />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-rep" class="col-form-label">Date de répétition</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input type="date" id="date-rep" name="com_date_essayage" class="form-control"
-                              placeholder="Date de repetition" />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="autre_date" class="col-form-label">Site d'autres dates</label>
-                          </div>
-                          <div class="col-md-4">
-                            <textarea class="form-control" name="com_autre_date" id="autre_date" rows="3"></textarea>
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="comp_info" class="col-form-label">Complement d'infos ?</label>
-                          </div>
-                          <div class="col-md-4">
-                            <textarea class="form-control" name="com_compl" id="comp_info" rows="3"></textarea>
-                          </div>
-                        </div>
+            <div class="date-spectacle">
+              <div class="title">
+                <h3>DATE SPECTACLE</h3>
+                <hr />
+              </div>
+              <div class="form" id="livraison-form">
+                <form action="">
+                  <div class="row">
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-debut" class="col-form-label"
+                          >Date du debut de spectacle</label
+                        >
                       </div>
+                      <div class="col-md-4">
+                        <input
+                          name="com_debut_spectacle"
+                          type="date"
+                          id="date-debut"
+                          class="form-control"
+                          placeholder="Date du debut de spectacle"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-fin" class="col-form-label"
+                          >Date de fin de spectacle</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          name="com_fin_spectacle"
+                          type="date"
+                          id="date-fin"
+                          class="form-control"
+                          placeholder="Date de fin de spectacle"
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-rep" class="col-form-label"
+                          >Date de répétition</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          type="date"
+                          id="date-rep"
+                          name="com_date_essayage"
+                          class="form-control"
+                          placeholder="Date de repetition"
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="autre_date" class="col-form-label"
+                          >Site d'autres dates</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <textarea
+                          class="form-control"
+                          name="com_autre_date"
+                          id="autre_date"
+                          rows="3"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="comp_info" class="col-form-label"
+                          >Complement d'infos ?</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <textarea
+                          class="form-control"
+                          name="com_compl"
+                          id="comp_info"
+                          rows="3"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
 
-                      <div class="button btn col-md-6 btn-livraison">
-                        <button type="submit">Continuer</button>
-                      </div>
-                    </form>
+                  <div class="button btn col-md-6 btn-livraison">
+                    <button type="submit">Continuer</button>
                   </div>
-                </div>
+                </form>
+              </div>
+            </div>
           </div>
           <hr />
         </div>
@@ -610,13 +790,24 @@
           <div class="finalisation-content">
             <form action="">
               <div class="form-check">
-                <input class="form-check-input" type="radio" value="" id="confirm_devis" />
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value=""
+                  id="confirm_devis"
+                />
                 <label class="form-check-label" for="confirm_devis">
                   Confirmez votre devis
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required />
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                  required
+                />
                 <label class="form-check-label" for="flexCheckDefault">
                   J'ai lu les conditions générales de vente et j'y adheres sans
                   reserve.
@@ -638,29 +829,30 @@
         <span id="article">article</span>
       </div>
 
-      <div onclick="toggle_visibility( 'divItems') " class="hidden-detail">
-        <span> afficher les details</span><span><i class="fa-solid fa-chevron-down"></i></span>
-        <!-- <div class="details" id="divItems">
-          <div class="details-items">
-            <div class="detail-item">
-              <div class="detail-img">
-                <img src=" " alt=" " />
-              </div>
-              <div class="detail-content">
-                <span>MH19C - Top croisé dos nu bleu royal</span>
-              </div>
-            </div>
+      <div  class="hidden-detail">
+        <div id="hidden-detail">
+          <span> afficher les details</span
+          ><span><i class="fa-solid fa-chevron-down"></i></span>
+        </div>
+        <div class="details d-flex flex-column gap-4 pt-3 detail-items">
+          <% produits.forEach(produit => { %>
 
-            <div class="detail-item">
-              <div class="detail-img">
-                <span>X</span>
-              </div>
-              <div class="detail-content">
-                <span>20,00$</span>
-              </div>
+          <div class="d-flex gap-4">
+            <img
+              src="/images/produits/<%=  produit.Produit.Media[0].med_ressource %> "
+              alt=" "
+              class="img-fluid detail-produit-img"
+            />
+
+            <div class="w-80 d-flex flex-column">
+              <p><%= produit.Produit.pro_libelle %></p>
+              <p> <%=  produit.pad_qte %> x
+                <%= produit.pad_ttc.toFixed(2).toString().replace(".",",") %> €
+              </p>
             </div>
           </div>
-        </div> -->
+          <% }) %>
+        </div>
       </div>
 
       <hr />
@@ -691,10 +883,17 @@
         </div>
         <div class="form-promo">
           <div class="input-group mb-3 form-codepromo">
-            <input type="text" class="form-control" placeholder="Code promo" aria-label="Recipient's username"
-              aria-describedby="basic-addon2" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Code promo"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
             <div class="input-group-append btn-add">
-              <span class="input-group-text btn" id="basic-addon2">Ajouter</span>
+              <span class="input-group-text btn" id="basic-addon2"
+                >Ajouter</span
+              >
             </div>
           </div>
           <div class="text">

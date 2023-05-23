@@ -4698,6 +4698,17 @@
   color: #a0b21f;
   cursor: pointer;
 }
+#page-commander .detail-produit-img {
+  width: 20%;
+  height: 100%;
+}
+#page-commander .detail-items {
+  display: none !important;
+}
+#page-commander .details {
+  height: 250px;
+  overflow: scroll;
+}
 
 #page-inscription {
   padding: 8% 9%;
