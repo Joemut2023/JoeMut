@@ -251,10 +251,10 @@
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
                                     <% totalCommande +=  panier_detail.pad_ttc * panier_detail.pad_qte %>
-                                    <%= panier_detail.pad_ttc * panier_detail.pad_qte %>€
+                                    <%= (panier_detail.pad_ttc * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
                                 <% } else { %>
                                   <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
-                                  <%= (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>€
+                                  <%= ((panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
                                 <% } %>
                                 </td>
                                 <td class="td-produit-actions">
@@ -367,7 +367,7 @@
                 <div class="table-resume">
                     <div>
                         <h2>Produits</h2>
-                        <p><%= totalCommande %> €</p>
+                        <p><%= totalCommande.toFixed(2).toString().replace('.',',') %> €</p>
                     </div>
                     <div>
                         <h2>Réductions</h2>
@@ -392,9 +392,9 @@
                     <div>
                         <h2>Total</h2>
                         <% if (commande.com_remise) { %>
-                          <p><%= totalCommande - commande.com_remise %> €</p>
+                          <p><%= (totalCommande - commande.com_remise ).toFixed(2).toString().replace('.',',')%> €</p>
                         <% } else { %>
-                          <p><%= totalCommande %> €</p>
+                          <p><%= totalCommande.toFixed(2).toString().replace('.',',') %> €</p>
                         <% } %>
                     </div>
                 </div>

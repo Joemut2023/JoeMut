@@ -8,6 +8,8 @@ const {
   Taille,
   Quantite,
   Client,
+  Transporteur,
+  Expedition
 } = require("../../models");
 const moment = require("moment");
 const router = express.Router();
@@ -129,9 +131,14 @@ router.get('/bon-livraison/:doc_id',async (req,res)=>{
       where: { pan_id: commande.pan_id },
     });
     let client = await Client.findOne({ where: { cli_id: commande.cli_id } });
+    let expedition = await Expedition.findOne({
+      attributes:['trs_id','exp_id'],
+      include:[{model:Transporteur}],
+      where:{com_id:commande.com_id}
+    });
     let view = await ejs.renderFile(
       path.join(__dirname, "../../mailTemplate/bon_livraison.ejs"),
-      { document, commande, moment, adresse, panierDetails,client }
+      { document, commande, moment, adresse, panierDetails,client,expedition }
     );
     return res.send(view);
   } catch (error) {

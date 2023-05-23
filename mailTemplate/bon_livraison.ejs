@@ -26,19 +26,14 @@
       </div>
     </div>
     <div class="pt-5 mt-3">
-      <h4 class="text-center">Adresses de livraison et facturation</h4>
-      <div class="d-flex justify-content-between w-50 pt-4">
-        <div>
-          <p class="lh-1">AIGUILLES EN SCENE</p>
-          <p class="lh-1">5 Rue des Agaces</p>
-          <p class="lh-1">35650 Le Rheu</p>
-          <p class="lh-1">France</p>
-        </div>
-        <div>
-          <p class="lh-1">Joe Noxx</p>
-          <p class="lh-1">cristalid</p>
-          <p class="lh-1">59493 villeneuve d'ascq</p>
-          <p class="lh-1">France</p>
+      <h4 class="text-left mb-4">Adresses de livraison</h4>
+      <div class="row">
+        <div class="col-md-4">
+          <p class="lh-1"><%= adresse.adr_structure %></p>
+          <p class="lh-1"><%= adresse.adr_adresse %></p>
+          <p class="lh-1"><%= adresse.adr_cp %></p>
+          <p class="lh-1"><%= adresse.adr_ville %></p>
+          <p class="lh-1"><%= adresse.adr_phone %></p>
         </div>
       </div>
       <div
@@ -54,44 +49,45 @@
         </div>
         <div class="text-center">
           <h5>Transporteur</h5>
-          <p>DSFHDQLFKSD</p>
+          <p><%= expedition?.Transporteur.trs_libelle %></p>
         </div>
       </div>
       <div class="mt-5">
         <h5 class="text-center fw-light p-3 w-75 m-auto">
-          MERCI DE REMPLIR CE BON DE COMMANDE À L'AIDE DES TABLEAUX DE STOCKS
+          MERCI DE REMPLIR CE BON DE LIVRAISON À L'AIDE DES TABLEAUX DE STOCKS
           QUE VOUS TROUVEREZ DANS LES SAC DE COSTUMES
         </h5>
         <table class="table table-bordered mt-5">
           <thead>
             <tr>
               <th scope="col" class="bg-secondary text-white">Réference</th>
-              <th scope="col" class="bg-secondary text-white">Pour essayage</th>
-              <th scope="col" class="bg-secondary text-white">Produit</th>
+              <th scope="col" class="bg-secondary text-white">Désignation</th>
+              <th scope="col" class="bg-secondary text-white">POUR ESSAYAGE</th>
               <th scope="col" class="bg-secondary text-white">
-                Votre commande
+                VOTRE COMMANDE - PRÉCISIONS ET REMARQUES
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>GRL10B</td>
-              <td>
-                Robe blanche bretelles 4 pans 1 manche
-                <div class="d-flex flex-column pt-4">
-                  <p class="fw-bold">Quantité initiale : 29</p>
-                  <p class="fw-bold">Tailles disponible :</p>
-                  <p>4 en XS (34)</p>
-                  <p>7 en S (36)</p>
-                  <p>10 en M (38)</p>
-                  <p>5 en L (40)</p>
-                  <p>1 en XLPLUS (42 PLUS)</p>
-                  <p>2 en XXL (44)</p>
-                </div>
-              </td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            <% panierDetails.forEach(panierDetail => { %>
+              <tr>
+                <td><%= panierDetail.Produit.pro_ref %></td>
+                <td><%= panierDetail.Produit.pro_libelle %></td>
+                <td></td>
+                <td>
+                  <div class="d-flex flex-column pt-4">
+                    <% panierDetails[0].Produit.Quantites.forEach(quantite => { %>
+    
+                    <p><%= quantite.Taille.tai_libelle %> :</p>
+                    <% }) %>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3"></td>
+                <td class="text-center p-2">Nombre total :</td>
+              </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
