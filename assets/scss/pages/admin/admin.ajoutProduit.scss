@@ -2,19 +2,20 @@
   width: 100%;
   padding-top: 20px;
   font-family: $typograohie;
-  .parent-message {
+  .parent-message,.parent-message-danger {
     position: relative;
     display: none;
     flex-direction: row;
     align-items: center;
     font-size: 1rem;
     gap: 10px;
-    .close {
+    .close,.close-error {
       position: absolute;
       top: 0;
       right: 8px;
     }
   }
+ 
 
   .product-container {
     .bloc-left {

@@ -20,6 +20,7 @@ var avant = document.querySelector(".pro-en-avant");
 var statut = document.querySelector(".pro-statut");
 var ht = document.querySelector(".tar-ht");
 var ttc = document.querySelector(".tar-ttc");
+var messageError = document.querySelector(".parent-message-danger");
 var lines = document.querySelector(".lines");
 var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
@@ -203,6 +204,9 @@ function _addTaille() {
   }));
   return _addTaille.apply(this, arguments);
 }
+function validateInput(input) {
+  if (input !== "") return true;else return false;
+}
 btnAdd.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var taille, btns_delete;
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -263,6 +267,10 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
+var btn_close_error = document.querySelector(".close-error");
+btn_close_error.addEventListener("click", function () {
+  messageError.style.display = "none";
+});
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
   var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, data, produit, tarif, selectTailles, message, btn_close;
   return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -278,6 +286,11 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         formData = new FormData();
         files = document.querySelectorAll('[type="file"]');
         formWithImage = document.querySelector(".form-submit-image");
+        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
+          _context7.next = 28;
+          break;
+        }
+        messageError.style.display = "none";
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
@@ -289,13 +302,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context7.next = 13;
+        _context7.next = 15;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 13:
+      case 15:
         produit = _context7.sent;
         imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
@@ -356,7 +369,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        _context7.next = 18;
+        _context7.next = 20;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -365,7 +378,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 18:
+      case 20:
         tarif = _context7.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -407,7 +420,11 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           });
         }
         formWithImage.submit();
-      case 24:
+        _context7.next = 29;
+        break;
+      case 28:
+        messageError.style.display = "flex";
+      case 29:
       case "end":
         return _context7.stop();
     }

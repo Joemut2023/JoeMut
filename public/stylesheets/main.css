@@ -7348,7 +7348,7 @@ body {
   padding-top: 20px;
   font-family: "Manrope", sans-serif;
 }
-#page-admin-ajoutProduit .parent-message {
+#page-admin-ajoutProduit .parent-message, #page-admin-ajoutProduit .parent-message-danger {
   position: relative;
   display: none;
   flex-direction: row;
@@ -7356,7 +7356,7 @@ body {
   font-size: 1rem;
   gap: 10px;
 }
-#page-admin-ajoutProduit .parent-message .close {
+#page-admin-ajoutProduit .parent-message .close, #page-admin-ajoutProduit .parent-message .close-error, #page-admin-ajoutProduit .parent-message-danger .close, #page-admin-ajoutProduit .parent-message-danger .close-error {
   position: absolute;
   top: 0;
   right: 8px;
