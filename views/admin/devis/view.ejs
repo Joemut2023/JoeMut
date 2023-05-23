@@ -230,7 +230,7 @@
                                     
                                   </div>
                                 </td>
-                                <td><%= panier_detail.pad_ttc?.toString().replace('.', ',') %>€</td>
+                                <td><%= panier_detail.pad_ht?.toString().replace('.', ',') %>€</td>
                                 <% var sum = 0 %>
                                 <% panier_detail.Produit.Quantites?.forEach(qte => sum = sum + qte['qua_nbre'])%>
                                 <td class="td-produit-qte">
@@ -250,11 +250,11 @@
                                 </td>
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
-                                    <% totalCommande +=  panier_detail.pad_ttc * panier_detail.pad_qte %>
+                                    <% totalCommande +=  panier_detail.pad_ht * panier_detail.pad_qte %>
                                     <%= (panier_detail.pad_ttc * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
                                 <% } else { %>
                                   <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
-                                  <%= ((panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
+                                  <%= ((panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
                                 <% } %>
                                 </td>
                                 <td class="td-produit-actions">
