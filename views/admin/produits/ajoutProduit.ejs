@@ -282,6 +282,7 @@
                         class="form-select select-categorie"
                         aria-label="Default select example"
                       >
+                       <option value="" selected>Choisir le type de catégorie</option>
                         <% typeCategorie.forEach(element => { %>
                         <option value=" <%= element.tyc_id %> ">
                           <%= element.tyc_libelle %>
@@ -294,14 +295,9 @@
                       <select
                         class="form-select cat-select select-type-cat"
                         aria-label="Default select example"
-                      >
-                        <% categories.forEach(element => { %>
-
-                        <option value="<%= element.cat_id %>">
-                          <%= element.cat_libelle %>
-                        </option>
-
-                        <% }) %>
+                      > 
+                      <option value="" selected>Choisir une catégorie</option>
+                       
                       </select>
                     </div>
                   </div>

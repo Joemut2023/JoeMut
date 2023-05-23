@@ -291,7 +291,9 @@ btnEnregistrer.addEventListener("click", async function () {
     validateInput(pro_libelle.value) &&
     validateInput(pro_details.value) &&
     validateInput(ht.value) &&
-    validateInput(ttc.value)
+    validateInput(ttc.value) &&
+    validateInput(selectCategorie.value) &&
+    validateInput(categorieselect.value)
   ) {
     messageError.style.display = "none";
     const data = {
