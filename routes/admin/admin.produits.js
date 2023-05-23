@@ -218,6 +218,14 @@ router.post("/search", async (req, res) => {
       end,
       produitsNbr: allProduits.length,
       produits,
+      libelle,
+      ref,
+      cat,
+      tarHtUp,
+      tarHtDown,
+      qtyUp,
+      qtydDown,
+
       // categorie,
     });
   } catch (error) {
