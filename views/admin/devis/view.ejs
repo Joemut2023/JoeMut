@@ -207,6 +207,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <% totalCommande = 0 %>
                         <% commande.Panier.Panier_details.forEach(panier_detail => { %>
                             <tr>
                                 <th scope="row" class="tr-th-produit">
@@ -247,7 +248,6 @@
                                         <span><%= panier_detail.pad_remise %> €</span>
                                     <% } %>
                                 </td>
-                                <% totalCommande = 0 %>
                                 <td>
                                   <% if (panier_detail.Produit.Applies.length === 0) { %>
                                     <% totalCommande +=  panier_detail.pad_ttc * panier_detail.pad_qte %>
@@ -256,7 +256,6 @@
                                   <% totalCommande += (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>
                                   <%= (panier_detail.pad_ttc * panier_detail.pad_qte) - panier_detail.pad_remise %>€
                                 <% } %>
-                                  
                                 </td>
                                 <td class="td-produit-actions">
                                     <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
