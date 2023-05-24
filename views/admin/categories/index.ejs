@@ -1,4 +1,4 @@
-<div id="admin-page-categories">
+<div id="admin-page-categories" style="margin-top:20px;">
   <div id="admin-blocs-produitHeader">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -52,7 +52,8 @@
           <a href="/admin/categories/edit/<%= element.cat_id %>">
             <i class="fa-solid fa-pen"></i></i
           ></a>
-          <i class="fa fa-trash icons" aria-hidden="true"></i>
+          <a href="/admin/categories/delete/<%= element.cat_id %>" style="text-decoration: none; color: black;">
+            <i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <% }) %>

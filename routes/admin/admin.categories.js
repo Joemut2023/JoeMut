@@ -30,6 +30,39 @@ router.get('/:id', async (req, res) => {
 
 });
 
+//
+router.get("/ajout/:id", async (req, res) => {
+    res.render("categories/addCat", { tyc_id: req.params.id })
+})
+
+router.post("/ajout", async (req, res) => {
+    const { cat_libelle, tyc_id } = req.body
+   // console.log(req.body, "body");
+
+    try {
+        if (cat_libelle == "") {
+            return res.render({ error: true, message: "Champs obligatoire" });
+        }
+        // const CatExists = await Categorie.findOne({ where: { cat_libelle } });
+        // if (CatExists) {
+        //     return res.render({ message: 'Cette categorie existe deja. Veuillez changer le nom' });
+        // } else {
+            await Categorie.create({
+                cat_libelle,
+                tyc_id
+            });
+            return res.redirect(`/admin/categories/${tyc_id}`)
+        // }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).render("categories/addCat",
+            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
+        );
+    }
+
+})
+
 
 router.get("/edit/:id", async (req, res) => {
 
@@ -80,38 +113,33 @@ router.post("/edit/:id", async (req, res) => {
     }
 })
 
-
-//
-router.get("/ajout/:id", async (req, res) => {
-    res.render("categories/addCat", { tyc_id: req.params.id })
-})
-
-
-router.post("/ajout", async (req, res) => {
-    const { cat_libelle, tyc_id } = req.body
-   // console.log(req.body, "body");
-
+router.get("/delete/:id", async (req, res, next) => {
     try {
-        if (cat_libelle == "") {
-            return res.render({ error: true, message: "Champs obligatoire" });
-        }
-        // const CatExists = await Categorie.findOne({ where: { cat_libelle } });
-        // if (CatExists) {
-        //     return res.render({ message: 'Cette categorie existe deja. Veuillez changer le nom' });
-        // } else {
-            await Categorie.create({
-                cat_libelle,
-                tyc_id
-            });
-            return res.redirect(`/admin/categories/${tyc_id}`)
-        // }
 
+        const findCat = await Categorie.findOne({
+            where: {
+                cat_id: req.params.id,
+            },
+        });
+        const typeCat = await Type_categorie.findOne({
+            where: { tyc_id: findCat.tyc_id }
+        })
+        await Categorie.destroy({
+            where: {
+                cat_id: req.params.id,
+            },
+        });
+        return res.redirect(`/admin/categories/${typeCat.tyc_id}`);
     } catch (error) {
-        console.error(error);
-        res.status(500).render("categories/addCat",
-            { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
-        );
+        return res.render("typeCategories/index", {
+            error: "une erreur est survenue",
+        });
     }
+});
 
-})
+
+
+
+
+
 module.exports = router;
