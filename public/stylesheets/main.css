@@ -2950,7 +2950,7 @@
 }
 
 #page-connexion {
-  padding: 8% 9%;
+  padding: 5% 9%;
   font-family: "Manrope", sans-serif;
 }
 #page-connexion .title-recherche {
@@ -3067,6 +3067,129 @@
 }
 @media (max-width: 680px) {
   #page-connexion .button button {
+    text-align: center;
+    width: 50%;
+  }
+}
+
+#page-changer-mot-de-pass {
+  padding: 5% 9%;
+  font-family: "Manrope", sans-serif;
+}
+#page-changer-mot-de-pass .title-recherche {
+  margin-bottom: 5px;
+}
+#page-changer-mot-de-pass .title-recherche a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 16px;
+}
+#page-changer-mot-de-pass .title-recherche span {
+  color: #7a7a7a;
+  font-size: 16px;
+}
+#page-changer-mot-de-pass .resultat {
+  margin-bottom: 20px;
+}
+#page-changer-mot-de-pass .resultat p {
+  font-weight: 600;
+  font-size: 24px;
+}
+#page-changer-mot-de-pass .content {
+  max-width: 670px;
+  margin: 0 auto;
+  border: 1px solid #a0b21f;
+  padding: 20px;
+}
+#page-changer-mot-de-pass .content .register-form .title {
+  color: #7a7a7a;
+  margin-bottom: 20px;
+}
+#page-changer-mot-de-pass .content .register-form a {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-changer-mot-de-pass .content .register-form form {
+  margin-top: 20px;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group {
+  margin-bottom: 20px;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .label {
+  font-weight: 600;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .item {
+  text-align: right;
+}
+@media (max-width: 1000px) {
+  #page-changer-mot-de-pass .content .register-form form .form-group .item {
+    text-align: left;
+  }
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .item label span {
+  color: red;
+  margin: 5px;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .input input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 5px 15px;
+  outline: none;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .input input:focus {
+  border: 2px solid #a0b21f;
+}
+@media (max-width: 680px) {
+  #page-changer-mot-de-pass .content .register-form form .form-group .input input {
+    margin-top: 4%;
+  }
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .input label {
+  color: #7a7a7a;
+  font-size: 14px;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .btn-hide {
+  display: flex;
+}
+@media (max-width: 680px) {
+  #page-changer-mot-de-pass .content .register-form form .form-group .btn-hide {
+    margin-top: 4%;
+  }
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .btn-hide input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #a0b21f;
+  padding: 3px 15px;
+  outline: none;
+}
+#page-changer-mot-de-pass .content .register-form form .form-group .btn-hide .show-password {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  color: white;
+  background-color: gray;
+  cursor: pointer;
+}
+#page-changer-mot-de-pass .create-account,
+#page-changer-mot-de-pass .forgot-password {
+  text-align: center;
+  color: #a0b21f;
+  font-size: large;
+}
+#page-changer-mot-de-pass .button {
+  display: flex;
+  justify-content: center;
+}
+#page-changer-mot-de-pass .button button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  background: #a0b21f;
+  color: white;
+}
+@media (max-width: 680px) {
+  #page-changer-mot-de-pass .button button {
     text-align: center;
     width: 50%;
   }
