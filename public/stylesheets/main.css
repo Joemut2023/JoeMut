@@ -6976,8 +6976,18 @@ body {
 #admin-page-devis .bloc-recherche #devis-search-Form {
   padding: 0;
 }
-#admin-page-devis .bloc-recherche #devis-search-Form .mb-2 .form-control {
-  height: 30px;
+#admin-page-devis .bloc-recherche #devis-search-Form .ref_bloc {
+  border-bottom: solid 2px #25b9d7;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+#admin-page-devis .bloc-recherche #devis-search-Form .bloc_date_form .date_bloc {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+#admin-page-devis .bloc-recherche #devis-search-Form .bloc_date_form .date_bloc div {
+  width: 35%;
 }
 #admin-page-devis .table-container {
   width: 100%;
