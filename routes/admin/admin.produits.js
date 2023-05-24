@@ -19,6 +19,8 @@ router.get("/", async (req, res) => {
   const { search } = req.query;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
+  let checkSearch = false
+
   try {
     const produits = await Produit.findAll({
       offset: start,
@@ -60,6 +62,7 @@ router.get("/", async (req, res) => {
       start,
       end,
       produitsNbr: allProduits.length,
+      checkSearch,
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
@@ -71,11 +74,12 @@ router.get("/", async (req, res) => {
 });
 
 //RESEARCH
-router.post("/search", async (req, res) => {
-  const { libelle, ref, cat, tarHtUp, tarHtDown, qtyUp, qtydDown } = req.body;
+router.get("/search", async (req, res) => {
+  const { libelle, ref, cat, tarHtUp, tarHtDown, qtyUp, qtydDown } = req.query;
   let catWhere;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
+  let checkSearch = true;
  
   try {
     const allProduits = await Produit.findAll({
@@ -225,7 +229,7 @@ router.post("/search", async (req, res) => {
       tarHtDown,
       qtyUp,
       qtydDown,
-
+      checkSearch,
       // categorie,
     });
   } catch (error) {
@@ -474,6 +478,7 @@ router.get("/:id", async function (req, res) {
         pro_id: req.params.id,
       },
     });
+
     const typeCategories = await Type_categorie.findAll();
     const categories = await Categorie.findAll({
       where: { tyc_id: produit.Categorie.Type_categorie.tyc_id },

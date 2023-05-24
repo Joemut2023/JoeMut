@@ -17,7 +17,7 @@
          <th scope="col"></th>
       </tr>
       <tr class="research-line" style="margin-top: 0;background-color: white;border-bottom:white">
-          <form action="/admin/produits/search" method="post">
+          <form action="/admin/produits/search" method="get">
         <td></td>
         <td></td>
         <td></td>
@@ -107,42 +107,51 @@
     <nav>
       <ul class="pagination">
         <li class="page-item nav-item">
-          <a class="page-link nav-link <%= pageActive === 1 ? 'active' : '' %>" href="/admin/produits/?&page=1&active=true" id="1">1</a>
+          <a class="page-link nav-link <%= pageActive === 1 ? 'active' : '' %>" href="<%= checkSearch === false ? '/admin/produits/?&page=1' : `/admin/produits/search/?&page=1&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>" id="1">1</a>
         </li>
         <% if (pageActive === 1 || pageActive ===2) { %>
         <li class="page-item nav-item">
-          <a class="page-link nav-link <%= pageActive === 2 ? 'active' : '' %>" href="/admin/produits/?&page=2" id="2">2</a>
+          <a class="page-link nav-link <%= pageActive === 2 ? 'active' : '' %>" href="<%= checkSearch === false ? '/admin/produits/?&page=2' : `/admin/produits/search/?&page=2&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>" id="2">2</a>
         </li>
         <li class="page-item nav-item">
-          <a class="page-link nav-link <%= pageActive === 3 ? 'active' : '' %>" href="/admin/produits/?&page=3" id="3">3</a>
+          <a class="page-link nav-link <%= pageActive === 3 ? 'active' : '' %>" href="<%= checkSearch === false ? '/admin/produits/?&page=3' : `/admin/produits/search/?&page=3&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>" id="3">3</a>
         </li>
         <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
         <li class="page-item nav-item">
           <a
             class="page-link nav-link <%= pageActive === (pageActive - 1) ? 'active' : '' %>"
-            href="/admin/produits/?&page=<%= pageActive -1 %>" id="<%= pageActive -1 %>"
+            href="<%= checkSearch === false ? `/admin/produits/?&page=${pageActive -1}` : `/admin/produits/search/?&page=${pageActive -1}&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>"
+            id="<%= pageActive -1 %>"
             ><%= pageActive-1 %></a
           >
         </li>
         <li class="page-item nav-item <%= pageActive === pageActive ? 'active' : '' %>">
-          <a class="page-link nav-link navbar-brand" href="/admin/produits/?&page=<%= pageActive %>" id="<%= pageActive %>"
+          <a class="page-link nav-link navbar-brand" 
+          href="<%= checkSearch === false ? `/admin/produits/?&page=${pageActive}` : `/admin/produits/search/?&page=${pageActive}&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>"
+          id="<%= pageActive+1 %>"
             ><%= pageActive %></a
           >
         </li>
         <li class="page-item nav-item <%= pageActive === (pageActive + 1) ? 'active' : '' %>">
-          <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+1 %>" id="<%= pageActive+1 %>"
+          <a class="page-link nav-link" 
+          href="<%= checkSearch === false ? `/admin/produits/?&page=${pageActive + 1}` : `/admin/produits/search/?&page=${pageActive + 1}&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>"
+          id="<%= pageActive+1 %>"
             ><%= pageActive+1 %></a
           >
         </li>
         <li class="page-item nav-item <%= pageActive === (pageActive + 2) ? 'active' : '' %>">
-          <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+2 %>" id="<%= pageActive+1 %>"
+          <a class="page-link nav-link" 
+          href="<%= checkSearch === false ? `/admin/produits/?&page=${pageActive + 2}` : `/admin/produits/search/?&page=${pageActive + 2}&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>"
+          id="<%= pageActive+1 %>"
             ><%= pageActive+2 %></a
           >
         </li>
         <li class="page-item nav-item">...</li>
         <% } %>
         <li class="page-item nav-item <%= pageActive === nbrPages ? 'active' : '' %>">
-          <a class="page-link nav-link"  href="/admin/produits/?&page=<%= nbrPages %>" id="<%= pageActive+1 %>"
+          <a class="page-link nav-link"  
+            href="<%= checkSearch === false ? `/admin/produits/?&page=${nbrPages}` : `/admin/produits/search/?&page=${nbrPages}&ref=${ref}&libelle=${libelle}&cat=${cat}&tarHtUp=${tarHtUp}&tarHtDown=${tarHtDown}&qtyUp=${qtyUp}&qtydDown=${qtydDown}` %>"
+            id="<%= pageActive+1 %>"
             ><%= nbrPages %></a
           >
         </li>
