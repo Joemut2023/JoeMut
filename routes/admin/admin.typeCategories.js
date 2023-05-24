@@ -43,7 +43,7 @@ router.post("/ajout", async (req, res) => {
         } else {
             await Type_categorie.create({
                 tyc_libelle: tyc_libelle,
-                tyc_ordre :  tyc_ordre
+                tyc_ordre: tyc_ordre
             });
             res.redirect("/admin/type-categories");
         }
@@ -77,12 +77,12 @@ router.get("/edit/:id", async (req, res) => {
 })
 
 router.post("/edit/:id", async (req, res) => {
-    const { tyc_libelle, tyc_ordre  } = req.body
+    const { tyc_libelle, tyc_ordre } = req.body
 
     try {
         const updateTyc = await Type_categorie.update({
             tyc_libelle: tyc_libelle,
-            tyc_order :  tyc_ordre
+            tyc_order: tyc_ordre
 
         }, { where: { tyc_id: req.params.id } })
 
@@ -92,6 +92,26 @@ router.post("/edit/:id", async (req, res) => {
 
     }
 })
+
+
+router.get("/delete/:id", async (req, res, next) => {
+    try {
+        await Type_categorie.destroy({
+            where: {
+                tyc_id: req.params.id,
+            },
+        });
+        const listeType = await Type_categorie.findAll();
+        return res.redirect("/admin/type-categories");
+    } catch (error) {
+        return res.render("typeCategories/index", {
+            error: "une erreur est survenue",
+        });
+    }
+});
+
+
+
 
 
 

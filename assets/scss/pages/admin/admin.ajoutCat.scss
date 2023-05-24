@@ -3,7 +3,9 @@
     nav{
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 20px;
+        background-color: white;
+        padding: 20px;
 
         .fil-ariane-item {
           text-decoration: none;
@@ -12,11 +14,10 @@
     }
     .content{
         background-color: #fff;
-        border: 1px solid #efefef;
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-        margin-top: 30px;
+        margin-top: 20px;
         height: 100px;
         width: 100%;
+        padding: 10px;
 
         .formulaire{
             width: 80%;
