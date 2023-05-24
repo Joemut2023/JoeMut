@@ -6210,6 +6210,9 @@
 #admin-page-produits .page-item .page-link:marker {
   background-color: blue;
 }
+#admin-page-produits .page-item .page-link.active {
+  background: rgb(41, 144, 228);
+}
 
 #admin-page-clients .menu-bar {
   background-color: #fff;
@@ -6431,7 +6434,7 @@
 }
 #page-admin-edit-typeCat form {
   background-color: #fff;
-  margin-top: 5%;
+  margin-top: 20px;
   padding: 2%;
 }
 
@@ -6441,7 +6444,6 @@
 #page-admin-ajout-typeCat nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
 }
 #page-admin-ajout-typeCat nav .fil-ariane-item {
   text-decoration: none;
@@ -6449,7 +6451,7 @@
 }
 #page-admin-ajout-typeCat form {
   background-color: #fff;
-  margin-top: 5%;
+  margin-top: 20px;
   padding: 2%;
 }
 
@@ -6459,7 +6461,9 @@
 #page-admin-ajout-cat nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
 }
 #page-admin-ajout-cat nav .fil-ariane-item {
   text-decoration: none;
@@ -6467,11 +6471,10 @@
 }
 #page-admin-ajout-cat .content {
   background-color: #fff;
-  border: 1px solid #efefef;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 30px;
+  margin-top: 20px;
   height: 100px;
   width: 100%;
+  padding: 10px;
 }
 #page-admin-ajout-cat .content .formulaire {
   width: 80%;
@@ -6495,7 +6498,9 @@
 #page-admin-edit-Cat nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
 }
 #page-admin-edit-Cat nav .fil-ariane-item {
   text-decoration: none;
@@ -6503,9 +6508,8 @@
 }
 #page-admin-edit-Cat .content {
   background-color: #fff;
-  border: 1px solid #efefef;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 30px;
+  padding: 10px;
+  margin-top: 20px;
   height: 100px;
   width: 100%;
 }
@@ -6531,7 +6535,6 @@
 #admin-page-categories .ajouter-typecat {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
 }
 #admin-page-categories .ajouter-typecat .fil-ariane-item {
   text-decoration: none;
@@ -6546,7 +6549,7 @@
 }
 #admin-page-categories .table {
   background-color: #fff;
-  margin-top: 5%;
+  margin-top: 20px;
   padding: 2%;
 }
 #admin-page-categories .table .fa-pen {
