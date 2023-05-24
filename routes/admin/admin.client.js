@@ -219,7 +219,6 @@ router.post("/update", async (req, res) => {
 router.post("/updateByCheckbox", async (req, res) => {
   let { cli_activation, cli_newsletter, cli_partenaire, cli_id } =
     req.body.data;
-  console.log(cli_id, "body", typeof cli_activation);
   try {
     const update = await Client.update(
       {
