@@ -7,12 +7,23 @@
         }
         #devis-search-Form{
             padding: 0;
-            .mb-2{
-                .form-control{
-                    height: 30px;
+            .ref_bloc{
+                border-bottom: solid 2px $color-blue-admin;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+            .bloc_date_form{
+                .date_bloc{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                    div{
+                        width: 35%;
+                    }
                 }
             }
         }
+
     }
     .table-container{
         width: 100%;
