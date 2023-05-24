@@ -66,16 +66,9 @@ router.post("/", async (req, res) => {
     req.session.userId = client.cli_id;
     return res.redirect("/mon-compte");
   } catch (error) {
-<<<<<<< HEAD
-    console.log(error);
-    return res.render("connexion/index",{
-      error:true,
-      errorMsg:"Erreur serveur"
-=======
     return res.render("connexion/index", {
       error: true,
       errorMsg: "Erreur serveur",
->>>>>>> hot/fix
     });
     // return res.status(500).json(error);
   }
