@@ -46,7 +46,11 @@ router.get("/", async function (req, res, next) {
       ]
     });
     const categories = await Categorie.findAll();
-    const allproducts = await Produit.findAll();
+    const allproducts = await Produit.findAll({
+      where:{
+        pro_statut:true
+      }
+    });
     
     for (let index = 0; index < allproducts.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
@@ -127,7 +131,11 @@ router.get("/:id", async (req, res) => {
   }
 
   try {
-    const allproducts = await Produit.findAll();
+    const allproducts = await Produit.findAll({
+      where:{
+        pro_statut:true
+      }
+    });
     const categorie = await Categorie.findByPk(id, {
       offset: start,
       limit: PAGINATION_LIMIT,
@@ -219,7 +227,11 @@ router.get("/type/:id", async (req, res) => {
     choix = "Choisir";
   }
   try {
-    const allproducts = await Produit.findAll();
+    const allproducts = await Produit.findAll({
+      where:{
+        pro_statut:true,
+      }
+    });
     const type_categorie = await Type_categorie.findByPk(id, {
       include: {
         model: Categorie,
