@@ -6,12 +6,13 @@ const {
   Panier_detail,
   Commande,
   Produit,
-  Tarif,
   Media,
 } = require("../models");
-let bcrypt = require("bcryptjs");
+var nodemailer = require("nodemailer");
 let { Op } = require("sequelize");
-
+let jwt = require("jsonwebtoken");
+let bcrypt = require("bcryptjs");
+let moment = require("moment");
 const { connexion } = require("../helpers/url");
 const { ACTIF } = require("../helpers/utils_const");
 
@@ -28,21 +29,21 @@ router.post("/", async (req, res) => {
       where: { cli_mail: cli_mail },
     });
     if (!client) {
-      return res.render("connexion/index",{
-        error:true,
-        errorMsg:"Utilisateur ou mot de passe incorect"
+      return res.render("connexion/index", {
+        error: true,
+        errorMsg: "Utilisateur ou mot de passe incorect",
       });
     }
     const valid = await bcrypt.compare(cli_pwd, client.cli_pwd);
     if (!valid) {
-      return res.render("connexion/index",{
-        error:true,
-        errorMsg:"Utilisateur ou mot de passe incorect"
+      return res.render("connexion/index", {
+        error: true,
+        errorMsg: "Utilisateur ou mot de passe incorect",
       });
     }
     var panier = await Panier.findOne({
       where: { cli_id: client.cli_id },
-      order: [['pan_id', 'DESC']],
+      order: [["pan_id", "DESC"]],
     });
 
     if (panier) {
@@ -53,9 +54,8 @@ router.post("/", async (req, res) => {
         panier = await Panier.create({
           cli_id: client.cli_id,
         });
-        //console.log(panier);
       }
-    }else{
+    } else {
       panier = await Panier.create({
         cli_id: client.cli_id,
       });
@@ -64,15 +64,13 @@ router.post("/", async (req, res) => {
     req.session.userId = client.cli_id;
     res.locals.user = client;
     req.session.userId = client.cli_id;
-    //console.log('ooooooooooooo');
-    return res.redirect("/mon-compte");;
+    return res.redirect("/mon-compte");
   } catch (error) {
-    //console.log(error);
-    return res.render("connexion/index",{
-      error:true,
-      errorMsg:"Erreur serveur"
+    return res.render("connexion/index", {
+      error: true,
+      errorMsg: "Erreur serveur",
     });
-   // return res.status(500).json(error);
+    // return res.status(500).json(error);
   }
 });
 router.get("/panier-details/:pan_id", async (req, res) => {
@@ -101,5 +99,122 @@ router.get("/userStatut", async (req, res) => {
   const usersSession = req.session.userId;
   const userStatut = usersSession ? usersSession : false;
   return res.status(200).json(userStatut);
+});
+router.get("/password", async (req, res) => {
+  res.locals.titre = "mot de pass oublié";
+  res.render("connexion/forgetPassWord");
+});
+
+router.post("/password", async (req, res) => {
+  res.locals.titre = "mot de pass oublié";
+  const { cli_mail } = req.body;
+  try {
+    const client = await Client.findOne({ where: { cli_mail } });
+    if (!client) {
+      const typeMsg = "danger";
+      const errorMsg = "Aucun utilisateur correspondant trouvé";
+      return res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
+    }
+    const payload = {
+      cli_nom: client.cli_nom,
+      cli_mail: client.cli_mail,
+      cli_login: client.cli_login,
+      cli_id: client.cli_id,
+    };
+    const cli_id = client.cli_id;
+    const resetToken = jwt.sign(payload, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    const link = `${process.env.APP_URL}connexion/passwordReset/${resetToken}/${cli_id}`;
+    const typeMsg = "success";
+    // return res.redirect(`/connexion/passwordReset/${resetToken}/${cli_id}`);
+    const transporter = nodemailer.createTransport({
+      name: "wcg-rdc.com",
+      host: "SSL0.OVH.NET",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "aes@wcg-rdc.com",
+        pass: process.env.PASSWORD_OVH,
+      },
+    });
+    const mailOptions = {
+      to: client.cli_mail,
+      from: "aes@wcg-rdc.com",
+      subject: "Réinitialisation du mot de passe",
+      html: `<div> <p>Veillez cliquer sur ce  <a href="${link}">lien</a> pour réinitialiser votre mot de passe </p></div>`,
+    };
+
+    transporter
+      .sendMail(mailOptions)
+      .then(function (info) {
+        
+        const successMsg =
+          "Un message de réinitialisation vous a été envoyé par mail";
+        res.render("connexion/forgetPassWord", { successMsg, typeMsg });
+      })
+      .catch(function (error) {
+        const errorMsg =
+          "Une erreur s'est produite lors de l'envoi de votre message!";
+        res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/passwordReset/:token/:cli_id", async (req, res) => {
+  res.locals.titre = " changer de mot de passe";
+  const { cli_id, token } = req.params;
+  res.render("connexion/passwordReset", { cli_id, token });
+});
+router.post("/passwordReset", async (req, res) => {
+  res.locals.titre = "mot de passe oublié";
+  const { cli_mail, cli_pwd, cli_id, token } = req.body;
+  var lastCartExistsInCommande;
+  try {
+    const oldClient = await Client.findOne({ where: { cli_mail } });
+    if (oldClient.cli_id != cli_id) {
+      const errorMsg = "ce client n'existe pas";
+      return res.render("connexion/passwordReset", { token, cli_id, errorMsg });
+    }
+    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    const now = moment().unix();
+
+    if (now > decode.exp) {
+      const errorMsg = "votre token a expiré";
+      return res.render("connexion/passwordReset", { token, cli_id, errorMsg });
+    }
+    const newPassword = await bcrypt.hash(cli_pwd, 10);
+    const id = parseInt(cli_id);
+    await Client.update({ cli_pwd: newPassword }, { where: { cli_id: id } });
+    const client = await Client.findOne({ where: { cli_id: id } });
+    var panier = await Panier.findOne({
+      where: { cli_id: client.cli_id },
+      order: [["pan_id", "DESC"]],
+    });
+
+    if (panier) {
+      lastCartExistsInCommande = await Commande.findOne({
+        where: { pan_id: panier.pan_id },
+      });
+      if (lastCartExistsInCommande) {
+        panier = await Panier.create({
+          cli_id: client.cli_id,
+        });
+      }
+    } else {
+      panier = await Panier.create({
+        cli_id: client.cli_id,
+      });
+    }
+    req.session.panierId = panier.pan_id;
+    req.session.userId = client.cli_id;
+    res.locals.user = client;
+    req.session.userId = client.cli_id;
+    return res.redirect("/mon-compte");
+  } catch (error) {
+    console.log(error);
+  }
 });
 module.exports = router;
