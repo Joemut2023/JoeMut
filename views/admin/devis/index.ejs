@@ -132,11 +132,11 @@
                             <td><%= commande.Client.cli_prenom %></td>
                             <td><%= commande.Client.cli_nom %></td>
                             <td><%= commande.com_adr_livraison.adr_structure %></td>
-                            <td><%= moment(commande.com_date).format('D/MM, YYYY')%> </td>
+                            <td><%= moment(commande.com_date).format('D/MM/YY')%> </td>
                             <td class="td-modal-container"><span style="display: inline-block; text-align: center;" data-commande="<%= commande.com_id %>" data-panier="<%= commande.pan_id %>"><%= commande.Panier.Panier_details.length %></span></td>
                             <% let sum = 0 %>
                             <% commande.Panier.Panier_details.forEach(pad => { %>
-                              <% sum += (pad.pad_ttc * pad.pad_qte) %>
+                              <% sum += (pad.pad_ht * pad.pad_qte) %>
                             <% }) %>
                             <td><%= sum.toFixed(2).toString().replace('.',',') %>€</td>
                             <td class="data-livraison">
@@ -147,11 +147,11 @@
                             </td>
                             <td class="data-spectacle">
                               <div>
-                                <p><%= moment(commande.com_debut_spectacle).format('D/MM/YYYY') %></p>
-                                <p><%= moment(commande.com_fin_spectacle).format('D/MM/YYYY') %></p>
+                                <p><%= moment(commande.com_debut_spectacle).format('D/MM/YY') %></p>
+                                <p><%= moment(commande.com_fin_spectacle).format('D/MM/YY') %></p>
                               </div>
                             </td>
-                            <td><%= moment(commande.Essayages[0].ess_repetition).format('D/MM/YYYY') %></td>
+                            <td><%= moment(commande.Essayages[0].ess_repetition).format('D/MM/YY') %></td>
                             <td>
                               <%= commande.Chronologies[0].Statut_commande.stc_libelle %>
                             </td>
