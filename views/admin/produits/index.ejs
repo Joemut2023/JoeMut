@@ -107,41 +107,41 @@
     <nav>
       <ul class="pagination">
         <li class="page-item nav-item">
-          <a class="page-link nav-link " href="/admin/produits/?&page=1&active=true" id="1">1</a>
+          <a class="page-link nav-link <%= pageActive === 1 ? 'active' : '' %>" href="/admin/produits/?&page=1&active=true" id="1">1</a>
         </li>
         <% if (pageActive === 1 || pageActive ===2) { %>
         <li class="page-item nav-item">
-          <a class="page-link nav-link" href="/admin/produits/?&page=2" id="2">2</a>
+          <a class="page-link nav-link <%= pageActive === 2 ? 'active' : '' %>" href="/admin/produits/?&page=2" id="2">2</a>
         </li>
         <li class="page-item nav-item">
-          <a class="page-link nav-link" href="/admin/produits/?&page=3" id="3">3</a>
+          <a class="page-link nav-link <%= pageActive === 3 ? 'active' : '' %>" href="/admin/produits/?&page=3" id="3">3</a>
         </li>
         <% } else if (pageActive !== nbrPages && pageActive !== nbrPages-1) { %>
         <li class="page-item nav-item">
           <a
-            class="page-link nav-link"
+            class="page-link nav-link <%= pageActive === (pageActive - 1) ? 'active' : '' %>"
             href="/admin/produits/?&page=<%= pageActive -1 %>" id="<%= pageActive -1 %>"
             ><%= pageActive-1 %></a
           >
         </li>
-        <li class="page-item nav-item">
+        <li class="page-item nav-item <%= pageActive === pageActive ? 'active' : '' %>">
           <a class="page-link nav-link navbar-brand" href="/admin/produits/?&page=<%= pageActive %>" id="<%= pageActive %>"
             ><%= pageActive %></a
           >
         </li>
-        <li class="page-item nav-item">
+        <li class="page-item nav-item <%= pageActive === (pageActive + 1) ? 'active' : '' %>">
           <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+1 %>" id="<%= pageActive+1 %>"
             ><%= pageActive+1 %></a
           >
         </li>
-        <li class="page-item nav-item">
+        <li class="page-item nav-item <%= pageActive === (pageActive + 2) ? 'active' : '' %>">
           <a class="page-link nav-link" href="/admin/produits/?&page=<%= pageActive+2 %>" id="<%= pageActive+1 %>"
             ><%= pageActive+2 %></a
           >
         </li>
         <li class="page-item nav-item">...</li>
         <% } %>
-        <li class="page-item nav-item">
+        <li class="page-item nav-item <%= pageActive === nbrPages ? 'active' : '' %>">
           <a class="page-link nav-link"  href="/admin/produits/?&page=<%= nbrPages %>" id="<%= pageActive+1 %>"
             ><%= nbrPages %></a
           >

@@ -75,6 +75,9 @@ router.get("/:id", async (req, res, next) => {
               [Op.not]: ref_produit,
             },
           },
+          {
+            pro_statut:true
+          }
         ],
       },
     });

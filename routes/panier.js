@@ -20,7 +20,12 @@ router.get("/", async (req, res, next) => {
   let quantiteOfEachProduct = [];
   
   try {
-    const allproducts = await Produit.findAll();
+    const allproducts = await Produit.findAll({
+      where:{
+        pro_statut:true
+      }
+    });
+    
     const produitsPopulaires = await Produit.findAll({
       limit: 16,
       include: [
@@ -28,7 +33,14 @@ router.get("/", async (req, res, next) => {
         { model: Tarif, attributes: ["tar_ttc"] },
       ],
       where: {
-        pro_en_avant: 1,
+        [Op.and]: [
+          {
+            pro_en_avant: 1,
+          },
+          {
+            pro_statut:true
+          }
+        ],
       },
     });
     for (let index = 0; index < allproducts.length; index++) {

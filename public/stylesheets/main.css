@@ -6210,6 +6210,9 @@
 #admin-page-produits .page-item .page-link:marker {
   background-color: blue;
 }
+#admin-page-produits .page-item .page-link.active {
+  background: rgb(41, 144, 228);
+}
 
 #admin-page-clients .menu-bar {
   background-color: #fff;
