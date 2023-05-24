@@ -96,19 +96,8 @@ router.get("/edit/:id", async function (req, res, next) {
 
 router.post("/edit/:id", async (req, res) => {
     const { frp_debut, frp_fin, frp_actif, frp_default, frp_ht, frp_ttc, frp_libelle, frp_description } = req.body
-
     try {
-
-        if (frp_debut == "" || frp_fin == "" || frp_actif == "" || frp_default == "" || frp_ht == "" || frp_ttc == "" || frp_libelle == "" || frp_description == "") {
-            {
-                return res.render({
-                    error: true,
-                    errorMsg: "Veillez remplir tout les champs",
-                });
-            }
-        }
-
-        const updatedFrais = await Frais_port.update({
+        await Frais_port.update({
             frp_debut: frp_debut,
             frp_fin: frp_fin,
             frp_actif: frp_actif,
@@ -123,10 +112,7 @@ router.post("/edit/:id", async (req, res) => {
             }
         })
 
-        return res.render("fraisPort/editer", {
-            success: true,
-            updatedFrais
-        })
+        return res.redirect("/admin/frais-port")
 
 
     } catch (error) {
@@ -139,5 +125,21 @@ router.post("/edit/:id", async (req, res) => {
         );
     }
 })
+
+router.get("/delete/:id", async (req, res) => {
+    try {
+        await Frais_port.destroy({
+            where: {
+                frp_id: req.params.id,
+            },
+        });
+        const listeType = await Frais_port.findAll();
+        return res.redirect("/admin/frais-port");
+    } catch (error) {
+        return res.render("fraisPort/index", {
+            error: "une erreur est survenue",
+        });
+    }
+});
 
 module.exports = router
