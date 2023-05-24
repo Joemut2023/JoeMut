@@ -16,34 +16,36 @@ btn_minus_petit.addEventListener("click", function () {
   btn_plus_petit.style.display = "block";
 });
 
-btn_plus_moyen.addEventListener("click", function () {
-  btn_minus_moyen.style.display = "block";
-  btn_plus_moyen.style.display = "none";
-});
-btn_minus_moyen.addEventListener("click", function () {
-  btn_minus_moyen.style.display = "none";
-  btn_plus_moyen.style.display = "block";
-});
+// btn_plus_moyen.addEventListener("click", function () {
+//   btn_minus_moyen.style.display = "block";
+//   btn_plus_moyen.style.display = "none";
+// });
+// btn_minus_moyen.addEventListener("click", function () {
+//   btn_minus_moyen.style.display = "none";
+//   btn_plus_moyen.style.display = "block";
+// });
 
-btn_plus_acc.addEventListener("click", function () {
-  btn_minus_acc.style.display = "block";
-  btn_plus_acc.style.display = "none";
-});
-btn_minus_acc.addEventListener("click", function () {
-  btn_minus_acc.style.display = "none";
-  btn_plus_acc.style.display = "block";
-});
-btn_plus_grand.addEventListener("click", function () {
-  btn_minus_grand.style.display = "block";
-  btn_plus_grand.style.display = "none";
-});
-btn_minus_grand.addEventListener("click", function () {
-  btn_minus_grand.style.display = "none";
-  btn_plus_grand.style.display = "block";
-});
+// btn_plus_acc.addEventListener("click", function () {
+//   btn_minus_acc.style.display = "block";
+//   btn_plus_acc.style.display = "none";
+// });
+// btn_minus_acc.addEventListener("click", function () {
+//   btn_minus_acc.style.display = "none";
+//   btn_plus_acc.style.display = "block";
+// });
+// btn_plus_grand.addEventListener("click", function () {
+//   btn_minus_grand.style.display = "block";
+//   btn_plus_grand.style.display = "none";
+// });
+// btn_minus_grand.addEventListener("click", function () {
+//   btn_minus_grand.style.display = "none";
+//   btn_plus_grand.style.display = "block";
+// });
+
+
 
 //SELECT
-var input_choix = document.getElementById("input");
+var input_choix = document.querySelector("#input")
 var choix = document.querySelector("#choix");
 var content = document.getElementById("content");
 var item_select = document.querySelectorAll(".item-choice");
@@ -51,6 +53,7 @@ var item_select = document.querySelectorAll(".item-choice");
 input_choix.addEventListener("click", function () {
   content.classList.toggle("content-hide");
   content.classList.add("content");
+  // console.log(input_choix,"ok");
 });
 
 // item_select.forEach(function (element) {
