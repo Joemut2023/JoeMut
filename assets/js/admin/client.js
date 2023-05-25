@@ -12,7 +12,6 @@ const updateClient = async (data) => {
     });
   } catch (error) {}
 };
-console.log(inputActivation[0]);
 inputActivation.forEach((element) => {
   element.addEventListener("change", async (event) => {
     let data = {

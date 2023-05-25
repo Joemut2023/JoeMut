@@ -127,7 +127,7 @@ router.post("/add", async (req, res) => {
     const pwd = await bcrypt.hash(cli_pwd, 10);
     const newClient = await Client.create({
       cli_prenom,
-      cli_nom : cli_nom.toUpperCase(),
+      cli_nom: cli_nom.toUpperCase(),
       cli_pwd: pwd,
       cli_mail,
       cli_activation,
@@ -191,7 +191,7 @@ router.post("/update", async (req, res) => {
     const update = await Client.update(
       {
         cli_prenom,
-        cli_nom : cli_nom.toUpperCase(),
+        cli_nom: cli_nom.toUpperCase(),
         cli_num,
         cli_mail,
         cli_activation: activate,
@@ -228,7 +228,6 @@ router.post("/updateByCheckbox", async (req, res) => {
       },
       { where: { cli_id } }
     );
-    console.log(update, "update");
     if (update[0] == 1) {
       return res
         .status(200)
@@ -236,7 +235,6 @@ router.post("/updateByCheckbox", async (req, res) => {
     }
     return res.status(200).send("requette echouée");
   } catch (error) {
-    console.log(error);
     res.send(error);
   }
 });
@@ -245,10 +243,10 @@ router.get("/search", async (req, res) => {
   let clients;
   try {
     const titres = await Titre.findAll();
-    if (req.query.cli_prenom) {
+    if (req.query.tit_id) {
       clients = await Client.findAll({
         include: [{ model: Titre, attributes: ["tit_libelle"] }],
-        where: { cli_prenom: { [Op.substring]: req.query.cli_prenom } },
+        where: { tit_id: req.query.tit_id },
       });
       return res.render("client/index", {
         clients,
@@ -257,10 +255,10 @@ router.get("/search", async (req, res) => {
         choix: choix,
         clientsNbr: clients.length,
       });
-    } else if (req.query.cli_id) {
+    } else if (req.query.cli_prenom) {
       clients = await Client.findAll({
         include: [{ model: Titre, attributes: ["tit_libelle"] }],
-        where: { cli_id: req.query.cli_id },
+        where: { cli_prenom: { [Op.substring]: req.query.cli_prenom } },
       });
       return res.render("client/index", {
         clients,
@@ -305,10 +303,10 @@ router.get("/search", async (req, res) => {
         choix: choix,
         clientsNbr: clients.length,
       });
-    } else if (req.query.tit_id) {
+    } else if (req.query.cli_fonction) {
       clients = await Client.findAll({
         include: [{ model: Titre, attributes: ["tit_libelle"] }],
-        where: { tit_id: req.query.tit_id },
+        where: { cli_fonction: { [Op.substring]: req.query.cli_fonction } },
       });
       return res.render("client/index", {
         clients,
@@ -357,11 +355,35 @@ router.get("/search", async (req, res) => {
         clientsNbr: clients.length,
       });
     } else if (req.query.cli_debut <= req.query.cli_fin) {
+      if (req.query.cli_debut == req.query.cli_fin) {
+        const debutDate = new Date(req.query.cli_debut);
+        const finDate = debutDate.setDate(debutDate.getDate() + 1);
+        const datefin = new Date(finDate);
+
+        clients = await Client.findAll({
+          include: [{ model: Titre, attributes: ["tit_libelle"] }],
+          where: {
+            cli_inscription: {
+              [Op.between]: [req.query.cli_debut, datefin],
+            },
+          },
+        });
+        return res.render("client/index", {
+          clients,
+          titres,
+          moment,
+          choix: choix,
+          clientsNbr: clients.length,
+        });
+      }
+      let finDate = new Date(req.query.cli_fin);
+      finDate = finDate.setDate(finDate.getDate() + 1);
+      const datefin = new Date(finDate);
       clients = await Client.findAll({
         include: [{ model: Titre, attributes: ["tit_libelle"] }],
         where: {
           cli_inscription: {
-            [Op.between]: [req.query.cli_debut, req.query.cli_fin],
+            [Op.between]: [req.query.cli_debut, datefin],
           },
         },
       });
