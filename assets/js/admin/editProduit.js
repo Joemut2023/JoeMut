@@ -415,6 +415,7 @@ btnEnregistrer.addEventListener("click", async function () {
       });
     }
     formWithImage.submit();
+    window.location.reload();
   } else messageError.style.display = "flex";
 });
 

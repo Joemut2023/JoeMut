@@ -257,7 +257,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 33;
+          _context9.next = 34;
           break;
         }
         messageError.style.display = "none";
@@ -424,11 +424,12 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           });
         }
         formWithImage.submit();
-        _context9.next = 34;
+        window.location.reload();
+        _context9.next = 35;
         break;
-      case 33:
-        messageError.style.display = "flex";
       case 34:
+        messageError.style.display = "flex";
+      case 35:
       case "end":
         return _context9.stop();
     }
