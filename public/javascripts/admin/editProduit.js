@@ -98,7 +98,7 @@ inputImage.addEventListener("change", function () {
 function displayImages() {
   var images = "";
   imagesArray.forEach(function (image, index) {
-    images += "<div class=\"item\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span style=\"cursor:pointer;\" onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n                </div>");
+    images += "<div class=\"item\">\n                  <img src=\"".concat(URL.createObjectURL(image), "\" alt=\"image\">\n                  <span style=\"cursor:pointer;\" onclick=\"deleteImage(").concat(index, ")\"><i class=\"fa-solid fa-xmark\"></i></span>\n              \n                </div>");
   });
   // output.style.display = "flex";
   output.innerHTML = images;

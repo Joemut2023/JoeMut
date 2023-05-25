@@ -107,6 +107,7 @@ function displayImages() {
     images += `<div class="item">
                   <img src="${URL.createObjectURL(image)}" alt="image">
                   <span style="cursor:pointer;" onclick="deleteImage(${index})"><i class="fa-solid fa-xmark"></i></span>
+              
                 </div>`;
   });
   // output.style.display = "flex";

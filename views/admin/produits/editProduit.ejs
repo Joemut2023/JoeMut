@@ -172,8 +172,13 @@
                     <img src=/images/produits/<%= element.med_ressource %>
                     alt="" srcset="">
                     <% if (element.med_cover===true) { %>
-                        <div>
+                        <div class="cover">
                           <p>Image couverture</p>
+                        </div>
+                    <% } %>
+                     <% if (element.med_cover===false) { %>
+                        <div class="delete-image">
+                           <span><i class="fa fa-trash btn-delete-image" aria-hidden="true"></i></span>
                         </div>
                     <% } %>
                     
