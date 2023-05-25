@@ -28,7 +28,7 @@
                   <div class="col-auto">
                     <label class="form-label" for="total">Statut devis</label>
                     <select name="stc_id" class="form-select" aria-label="Default select example">
-                      <option value="">Statut devis</option>
+                      <option value="1">Statut devis</option>
                       <% statut_commandes.forEach(stc => { %>
                         <option value="<%= stc.stc_id %>"><%= stc.stc_libelle %></option>
                       <% }) %>
