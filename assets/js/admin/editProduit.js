@@ -107,6 +107,7 @@ function displayImages() {
     images += `<div class="item">
                   <img src="${URL.createObjectURL(image)}" alt="image">
                   <span style="cursor:pointer;" onclick="deleteImage(${index})"><i class="fa-solid fa-xmark"></i></span>
+              
                 </div>`;
   });
   // output.style.display = "flex";
@@ -207,6 +208,36 @@ selectCategorie.addEventListener("change", async function () {
 
   listCategorie(categorie);
 });
+
+const btn_delete_image = document.querySelectorAll(".btn-delete-image");
+
+
+Array.from(btn_delete_image,(item)=>{
+ item.addEventListener("click", async function () {
+    const Myproduct = await await axios.get(
+      `${SITE_URL}/admin/produits/one/${pro_ref.name}`,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+
+      const media = await axios.delete(
+        `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${item.id}`,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+    window.location.reload();
+ });
+});
+
+
+
+
 
 const btn_close_error = document.querySelector(".close-error");
 btn_close_error.addEventListener("click", function () {

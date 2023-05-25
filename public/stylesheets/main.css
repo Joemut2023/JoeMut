@@ -8952,6 +8952,7 @@ body {
   min-width: 110px;
   height: 15vh;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .image-add {
   display: flex;
@@ -8971,7 +8972,7 @@ body {
   height: 100%;
   object-fit: contain;
 }
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image div {
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image .cover {
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -8979,12 +8980,33 @@ body {
   padding: 0 2px;
   background-color: rgba(0, 0, 0, 0.4);
 }
-#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image div p {
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image .cover p {
   font-size: 11px;
   font-weight: 500;
   text-align: center;
   color: white;
   margin-bottom: 0;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image:hover .delete-image {
+  opacity: 1;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image .delete-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+}
+#page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .cover-image .delete-image span {
+  font-size: 2rem;
+  color: rgb(218, 66, 66);
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .img .block-image .images .image-container {
   display: flex;
