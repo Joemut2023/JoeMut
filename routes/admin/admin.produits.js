@@ -32,6 +32,8 @@ router.get("/", async (req, res) => {
         { model: Categorie, attributes: ["cat_libelle"] },
       ],
     });
+
+    const categorie = await Categorie.findAll();
     const allProduits = await Produit.findAll({
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
@@ -61,6 +63,7 @@ router.get("/", async (req, res) => {
       pageActive: page,
       start,
       end,
+      categorie,
       produitsNbr: allProduits.length,
       checkSearch,
     });
@@ -80,7 +83,7 @@ router.get("/search", async (req, res) => {
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   let checkSearch = true;
- 
+  
   try {
     const allProduits = await Produit.findAll({
       include: [
@@ -198,6 +201,7 @@ router.get("/search", async (req, res) => {
       },
     });
 
+    const categorie = await Categorie.findAll();
    
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
@@ -222,6 +226,7 @@ router.get("/search", async (req, res) => {
       end,
       produitsNbr: allProduits.length,
       produits,
+      categorie,
       libelle,
       ref,
       cat,
@@ -251,6 +256,26 @@ router.delete("/:id", async function (req, res) {
     console.log(error.message);
   }
 });
+
+//delete Media 
+router.delete('/media/:pro_id/:med_id',async function(req,res){
+   const med_id = req.params.med_id;
+   try {
+     const produit = await Produit.findOne({
+       where: { pro_id: req.params.pro_id },
+     });
+    const media = await Media.destroy({
+      where: {
+        [Op.and]: [{ pro_id: produit.pro_id }, { med_id: med_id }],
+      },
+    });
+
+    res.status(200).json({ media, msg: true });
+    
+   } catch (error) {
+     console.log(error.message);
+   }
+})
 
 router.get("/add/tailles", async (req, res) => {
   try {
