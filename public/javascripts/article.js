@@ -100,3 +100,26 @@ stars.forEach(function (element) {
     element.classList.toggle("star-color");
   });
 });
+var swiper = new Swiper(".carousel", {
+  loop: true,
+  slidesPerView: 3,
+  spaceBetween: 15,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2
+    },
+    576: {
+      slidesPerView: 3
+    },
+    768: {
+      slidesPerView: 3
+    },
+    1020: {
+      slidesPerView: 3
+    }
+  }
+});
