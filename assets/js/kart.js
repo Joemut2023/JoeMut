@@ -314,7 +314,7 @@ class Kart {
         <div class="total">
           <span>Livraison</span>
         </div>
-        <div class="price-total">
+        <div class="price-total" id="frais-livraison">
         <span>${new Decimal(fraisPort).toFixed(2).toString().replace(".",",")} €</span> 
         </div>
       </div>
