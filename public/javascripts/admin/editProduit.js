@@ -198,11 +198,31 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
 var btn_delete_image = document.querySelectorAll(".btn-delete-image");
 Array.from(btn_delete_image, function (item) {
   item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var Myproduct, media;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          console.log(item.id, "trigo");
-        case 1:
+          _context4.next = 2;
+          return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
+            headers: {
+              "X-Requested-With": "XMLHttpRequest"
+            }
+          });
+        case 2:
+          _context4.next = 4;
+          return _context4.sent;
+        case 4:
+          Myproduct = _context4.sent;
+          _context4.next = 7;
+          return axios["delete"]("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(item.id), {
+            headers: {
+              "X-Requested-With": "XMLHttpRequest"
+            }
+          });
+        case 7:
+          media = _context4.sent;
+          window.location.reload();
+        case 9:
         case "end":
           return _context4.stop();
       }

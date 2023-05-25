@@ -214,7 +214,24 @@ const btn_delete_image = document.querySelectorAll(".btn-delete-image");
 
 Array.from(btn_delete_image,(item)=>{
  item.addEventListener("click", async function () {
-   console.log(item.id, "trigo");
+    const Myproduct = await await axios.get(
+      `${SITE_URL}/admin/produits/one/${pro_ref.name}`,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      }
+    );
+
+      const media = await axios.delete(
+        `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${item.id}`,
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+    window.location.reload();
  });
 });
 
