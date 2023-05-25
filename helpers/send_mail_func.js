@@ -9,25 +9,33 @@ const ejs = require("ejs");
  */
 module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
     try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: "myindavictoire@gmail.com",
-              pass: process.env.PASSWORD_NODEMAILER,
-            },
-          });
+        // const transporter = nodemailer.createTransport({
+        //     service: "gmail",
+        //     auth: {
+        //       user: "myindavictoire@gmail.com",
+        //       pass: process.env.PASSWORD_NODEMAILER,
+        //     },
+        //   });
+
+            const transporter = nodemailer.createTransport({
+              name: "wcg-rdc.com",
+              host: "SSL0.OVH.NET",
+              port: 465,
+              secure: true,
+              auth: {
+                user: "aes@wcg-rdc.com",
+                pass: process.env.PASSWORD_OVH,
+              },
+            });
           const mailOptions = {
-            from: "myindavictoire@gmail.com",
+            from: "aes@wcg-rdc.com",
             to: `${cli_mail}`,
             subject: subject,
             html: html,
             attachments: [
               {
                 filename: `${document_name}.pdf`,
-                path: path.join(
-                  __dirname,
-                  document_path
-                ),
+                path: path.join(__dirname, document_path),
               },
             ],
           };
