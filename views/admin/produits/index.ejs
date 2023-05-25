@@ -25,30 +25,37 @@
           <td></td>
           <td></td>
           <td class="reference">
-            <input class="research top-align" name="ref" value="<%= (typeof ref !==
+            <input class="research" name="ref" value="<%= (typeof ref !==
             "undefined") ? ref:'' %>" type="text" placeholder="chercher" >
           </td>
           <td>
-            <input class="research top-align" name="libelle" value="<%= (typeof
-            libelle !== "undefined") ? libelle:'' %>" type="text"
-            placeholder="chercher" >
+            <input class="research" name="libelle" value="<%= (typeof libelle
+            !== "undefined") ? libelle:'' %>" type="text" placeholder="chercher"
+            >
           </td>
           <td>
-            <input class="research top-align" name="cat" value="<%= (typeof cat !==
-            "undefined") ? cat:'' %>" type="text" placeholder="chercher" >
+            <select class="research" name="cat">
+              <option value="" selected>choisir </option>
+              <% categorie.forEach(element => { %>
+                  <option value="<%= element.cat_libelle %>">
+                    <%= element.cat_libelle %>
+                      </option>
+                    <% }) %>
+            </select>
           </td>
           <td class="plage">
             <input class="research" name="tarHtUp" value="<%= (typeof tarHtUp
-            !== "undefined") ? tarHtUp:'' %>" type="number" placeholder="min"> <input
-            class="research" name="tarHtDown" value="<%= (typeof tarHtDown !==
-            "undefined") ? tarHtDown:'' %>" type="number" placeholder="max">
+            !== "undefined") ? tarHtUp:'' %>" type="number" placeholder="min">
+            <input class="research" name="tarHtDown" value="<%= (typeof
+            tarHtDown !== "undefined") ? tarHtDown:'' %>" type="number"
+            placeholder="max">
           </td>
           <td class="plage-ttc"></td>
           <td class="plage">
             <input class="research" name="qtyUp" value="<%= (typeof qtyUp !==
-            "undefined") ? qtyUp:'' %>" type="text" placeholder="min"> <input class="research"
-            name="qtydDown" value="<%= (typeof qtydDown !== "undefined") ?
-            qtydDown:'' %>" type="text" placeholder="max">
+            "undefined") ? qtyUp:'' %>" type="text" placeholder="min"> <input
+            class="research" name="qtydDown" value="<%= (typeof qtydDown !==
+            "undefined") ? qtydDown:'' %>" type="text" placeholder="max">
           </td>
           <td>
             <button type="submit" class="btn btn-info">
