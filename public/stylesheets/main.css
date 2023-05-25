@@ -6287,6 +6287,7 @@
 #admin-page-produits .table-fixed tbody {
   max-height: 1024px;
   overflow-y: hidden !important;
+  overflow-x: auto;
 }
 #admin-page-produits .table td,
 #admin-page-produits .table th {
@@ -6299,10 +6300,14 @@
 #admin-page-produits .table .dropdown-menu {
   inset: 5px 0px auto auto;
 }
-#admin-page-produits .table .research-line {
-  text-align: center;
+#admin-page-produits .table .research-line .plage-ttc {
+  min-width: 75px;
+}
+#admin-page-produits .table .research-line td {
+  vertical-align: text-top;
 }
 #admin-page-produits .table .research-line .plage {
+  min-width: 75px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6310,12 +6315,17 @@
   gap: 3px;
 }
 #admin-page-produits .table .research-line .research {
-  width: 80px;
+  align-self: flex-start;
+  width: 100%;
   padding: 5px 10px;
   font-size: 13px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+}
+#admin-page-produits .table .research-line select {
+  background: white;
+  padding: 7px 10px !important;
 }
 #admin-page-produits .table .research-line button {
   display: flex;
@@ -6326,6 +6336,9 @@
   font-size: 13px;
   color: white;
   padding: 5px 10px;
+}
+#admin-page-produits .table .reference {
+  min-width: 30px;
 }
 #admin-page-produits .page-item .page-link {
   font-size: 1rem;

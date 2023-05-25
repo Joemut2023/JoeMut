@@ -32,6 +32,8 @@ router.get("/", async (req, res) => {
         { model: Categorie, attributes: ["cat_libelle"] },
       ],
     });
+
+    const categorie = await Categorie.findAll();
     const allProduits = await Produit.findAll({
       include: [
         { model: Quantite, attributes: ["qua_nbre"] },
@@ -61,6 +63,7 @@ router.get("/", async (req, res) => {
       pageActive: page,
       start,
       end,
+      categorie,
       produitsNbr: allProduits.length,
       checkSearch,
     });
@@ -198,6 +201,7 @@ router.get("/search", async (req, res) => {
       },
     });
 
+    const categorie = await Categorie.findAll();
    
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
@@ -222,6 +226,7 @@ router.get("/search", async (req, res) => {
       end,
       produitsNbr: allProduits.length,
       produits,
+      categorie,
       libelle,
       ref,
       cat,
