@@ -83,7 +83,7 @@ router.get("/search", async (req, res) => {
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   let checkSearch = true;
- 
+  
   try {
     const allProduits = await Produit.findAll({
       include: [
