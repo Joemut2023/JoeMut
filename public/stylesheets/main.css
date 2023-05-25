@@ -6323,6 +6323,10 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
+#admin-page-produits .table .research-line select {
+  background: white;
+  padding: 7px 10px !important;
+}
 #admin-page-produits .table .research-line button {
   display: flex;
   flex-direction: row;

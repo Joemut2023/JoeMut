@@ -35,7 +35,9 @@
           </td>
           <td>
             <select class="research" name="cat">
-              <option value="" selected>choisir </option>
+              <option value="<%= (typeof cat
+            !== "undefined") ? cat:'' %> "> <%= (typeof cat
+            !== "undefined") ? cat:'choisir' %> </option>
               <% categorie.forEach(element => { %>
                   <option value="<%= element.cat_libelle %>">
                     <%= element.cat_libelle %>
