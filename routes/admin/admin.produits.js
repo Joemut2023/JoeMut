@@ -257,6 +257,26 @@ router.delete("/:id", async function (req, res) {
   }
 });
 
+//delete Media 
+router.delete('/media/:pro_id/:med_id',async function(req,res){
+   const med_id = req.params.med_id;
+   try {
+     const produit = await Produit.findOne({
+       where: { pro_id: req.params.pro_id },
+     });
+    const media = await Media.destroy({
+      where: {
+        [Op.and]: [{ pro_id: produit.pro_id }, { med_id: med_id }],
+      },
+    });
+
+    res.status(200).json({ media, msg: true });
+    
+   } catch (error) {
+     console.log(error.message);
+   }
+})
+
 router.get("/add/tailles", async (req, res) => {
   try {
     const taille = await Taille.findAll();
