@@ -6393,8 +6393,6 @@
 #admin-page-clients .table td,
 #admin-page-clients .table th,
 #admin-page-clients .table tr {
-  text-align: center;
-  vertical-align: middle;
   font-size: 0.8rem;
 }
 #admin-page-clients .table .dropdown :hover > .dropdown-menu {
