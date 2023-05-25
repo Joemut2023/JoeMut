@@ -13,23 +13,12 @@
          .table-fixed  tbody{
             max-height: 1024px;
             overflow-y:hidden !important;
+            overflow-x: auto;
         
          }
 
     .table {
-        // overflow: auto,;
-       
-        // thead tr th,tr td{
-        //     background-color: red;
-        //     position: sticky;
-        //     top: 0;
-        //     z-index: 1;
-        //     overflow-y: hidden;
-        // }
-    //    tbody{
-    //     max-height: 1024px;
-    //     overflow-y: scroll;
-    //    }
+        
         td,
         th {
             vertical-align: middle;
@@ -44,8 +33,16 @@
             inset: 5px 0px auto auto;
         }
         .research-line{
-            text-align: center;
+            // text-align: center;
+        
+        .plage-ttc{
+            min-width: 75px;
+        }
+        td{
+            vertical-align: text-top;
+        }
         .plage{
+            min-width: 75px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -53,13 +50,16 @@
             gap: 3px;
         }
          .research{
-            width: 80px;
+            align-self: flex-start;
+            width: 100%;
             padding: 5px 10px;
             font-size: 13px;
             outline: none;
             border: 1px solid rgba(0,0,0,0.3);
             border-radius: 5px;
          }
+         
+
          button{
             display: flex;
             flex-direction: row;
@@ -71,6 +71,10 @@
              padding: 5px 10px;
             //  cursor: not-allowed;
          }
+        }
+
+        .reference{
+            min-width: 30px;
         }
     }
     .page-item{
