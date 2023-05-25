@@ -195,14 +195,28 @@ selectCategorie.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__
     }
   }, _callee3, this);
 })));
+var btn_delete_image = document.querySelectorAll(".btn-delete-image");
+Array.from(btn_delete_image, function (item) {
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
+        case 0:
+          console.log(item.id, "trigo");
+        case 1:
+        case "end":
+          return _context4.stop();
+      }
+    }, _callee4);
+  })));
+});
 var btn_close_error = document.querySelector(".close-error");
 btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
 });
-btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
-  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-    while (1) switch (_context8.prev = _context8.next) {
+  return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+    while (1) switch (_context9.prev = _context9.next) {
       case 0:
         cat_id = listCat ? listCat.value : 1;
         pro_new_collect = collect.checked ? true : false;
@@ -211,19 +225,19 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         tar_ht = parseFloat(Number(ht.value.replace(",", ".")));
         tar_ttc = parseFloat(Number(ttc.value.replace(",", ".")));
         formWithImage = document.querySelector(".form-submit-image-edit");
-        _context8.next = 9;
+        _context9.next = 9;
         return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 9:
-        _context8.next = 11;
-        return _context8.sent;
+        _context9.next = 11;
+        return _context9.sent;
       case 11:
-        Myproduct = _context8.sent;
+        Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context8.next = 33;
+          _context9.next = 33;
           break;
         }
         messageError.style.display = "none";
@@ -237,46 +251,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context8.next = 17;
+        _context9.next = 17;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
       case 17:
-        produit = _context8.sent;
+        produit = _context9.sent;
         // console.log(produit.data.product[0])
 
         imagesArrayCover.map( /*#__PURE__*/function () {
-          var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
-            var dataMedia, media;
-            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-              while (1) switch (_context4.prev = _context4.next) {
-                case 0:
-                  dataMedia = {
-                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
-                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-                  };
-                  _context4.next = 3;
-                  return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
-                    headers: {
-                      "X-Requested-With": "XMLHttpRequest"
-                    }
-                  });
-                case 3:
-                  media = _context4.sent;
-                case 4:
-                case "end":
-                  return _context4.stop();
-              }
-            }, _callee4);
-          }));
-          return function (_x) {
-            return _ref5.apply(this, arguments);
-          };
-        }());
-        resultMedia = [];
-        imagesArray.map( /*#__PURE__*/function () {
           var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(image) {
             var dataMedia, media;
             return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -284,33 +269,62 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                 case 0:
                   dataMedia = {
                     med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
-                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
-                    med_cover: false
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
                   };
                   _context5.next = 3;
-                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
+                  return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
                   });
                 case 3:
                   media = _context5.sent;
-                  if (!media.data.med_ressource) {
-                    _context5.next = 6;
-                    break;
-                  }
-                  return _context5.abrupt("return", resultMedia.push(media.data.msgMedia));
-                case 6:
+                case 4:
                 case "end":
                   return _context5.stop();
               }
             }, _callee5);
           }));
-          return function (_x2) {
+          return function (_x) {
             return _ref6.apply(this, arguments);
           };
         }());
-        _context8.next = 23;
+        resultMedia = [];
+        imagesArray.map( /*#__PURE__*/function () {
+          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(image) {
+            var dataMedia, media;
+            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+              while (1) switch (_context6.prev = _context6.next) {
+                case 0:
+                  dataMedia = {
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+                    med_cover: false
+                  };
+                  _context6.next = 3;
+                  return axios.post("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id), dataMedia, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  media = _context6.sent;
+                  if (!media.data.med_ressource) {
+                    _context6.next = 6;
+                    break;
+                  }
+                  return _context6.abrupt("return", resultMedia.push(media.data.msgMedia));
+                case 6:
+                case "end":
+                  return _context6.stop();
+              }
+            }, _callee6);
+          }));
+          return function (_x2) {
+            return _ref7.apply(this, arguments);
+          };
+        }());
+        _context9.next = 23;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -320,40 +334,12 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           }
         });
       case 23:
-        tarif = _context8.sent;
+        tarif = _context9.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
         Array.from(selectTailles, /*#__PURE__*/function () {
-          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(item) {
-            var dataselect;
-            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-              while (1) switch (_context6.prev = _context6.next) {
-                case 0:
-                  dataselect = {
-                    tai_id: item.value,
-                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
-                  };
-                  _context6.next = 3;
-                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
-                    headers: {
-                      "X-Requested-With": "XMLHttpRequest"
-                    }
-                  });
-                case 3:
-                  qty = _context6.sent;
-                case 4:
-                case "end":
-                  return _context6.stop();
-              }
-            }, _callee6);
-          }));
-          return function (_x3) {
-            return _ref7.apply(this, arguments);
-          };
-        }());
-        Array.from(selectTailleExist, /*#__PURE__*/function () {
           var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(item) {
-            var dataselect, qty;
+            var dataselect;
             return _regeneratorRuntime().wrap(function _callee7$(_context7) {
               while (1) switch (_context7.prev = _context7.next) {
                 case 0:
@@ -362,7 +348,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                     qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
                   };
                   _context7.next = 3;
-                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                  return axios.post("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
                     headers: {
                       "X-Requested-With": "XMLHttpRequest"
                     }
@@ -375,8 +361,36 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               }
             }, _callee7);
           }));
-          return function (_x4) {
+          return function (_x3) {
             return _ref8.apply(this, arguments);
+          };
+        }());
+        Array.from(selectTailleExist, /*#__PURE__*/function () {
+          var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(item) {
+            var dataselect, qty;
+            return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+              while (1) switch (_context8.prev = _context8.next) {
+                case 0:
+                  dataselect = {
+                    tai_id: item.value,
+                    qua_nbre: parseInt(item.parentNode.parentNode.parentNode.children[1].children[1].children[0].value)
+                  };
+                  _context8.next = 3;
+                  return axios.put("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id), dataselect, {
+                    headers: {
+                      "X-Requested-With": "XMLHttpRequest"
+                    }
+                  });
+                case 3:
+                  qty = _context8.sent;
+                case 4:
+                case "end":
+                  return _context8.stop();
+              }
+            }, _callee8);
+          }));
+          return function (_x4) {
+            return _ref9.apply(this, arguments);
           };
         }());
         message = document.querySelector(".parent-message");
@@ -390,46 +404,46 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           });
         }
         formWithImage.submit();
-        _context8.next = 34;
+        _context9.next = 34;
         break;
       case 33:
         messageError.style.display = "flex";
       case 34:
       case "end":
-        return _context8.stop();
+        return _context9.stop();
     }
-  }, _callee8);
+  }, _callee9);
 })));
 
 //delete taille
 Array.from(btns_delete, function (item) {
-  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+  item.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
     var Myproduct, qty_id, qty;
-    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-      while (1) switch (_context9.prev = _context9.next) {
+    return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+      while (1) switch (_context10.prev = _context10.next) {
         case 0:
           lines.removeChild(this.parentNode);
-          _context9.next = 3;
+          _context10.next = 3;
           return axios.get("".concat(SITE_URL, "/admin/produits/one/").concat(pro_ref.name), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 3:
-          Myproduct = _context9.sent;
+          Myproduct = _context10.sent;
           qty_id = item.previousElementSibling.children[1].children[0].name;
-          _context9.next = 7;
+          _context10.next = 7;
           return axios["delete"]("".concat(SITE_URL, "/admin/produits/qty/").concat(Myproduct.data.pro_id, "/").concat(qty_id), {
             headers: {
               "X-Requested-With": "XMLHttpRequest"
             }
           });
         case 7:
-          qty = _context9.sent;
+          qty = _context10.sent;
         case 8:
         case "end":
-          return _context9.stop();
+          return _context10.stop();
       }
-    }, _callee9, this);
+    }, _callee10, this);
   })));
 });

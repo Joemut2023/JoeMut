@@ -209,6 +209,19 @@ selectCategorie.addEventListener("change", async function () {
   listCategorie(categorie);
 });
 
+const btn_delete_image = document.querySelectorAll(".btn-delete-image");
+
+
+Array.from(btn_delete_image,(item)=>{
+ item.addEventListener("click", async function () {
+   console.log(item.id, "trigo");
+ });
+});
+
+
+
+
+
 const btn_close_error = document.querySelector(".close-error");
 btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
