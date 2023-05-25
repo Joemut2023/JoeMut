@@ -8084,10 +8084,11 @@ body {
   vertical-align: center;
   width: 2rem;
   height: 2rem;
-  background: #a0b21f;
+  background: rgb(41, 144, 228);
   padding-top: 0.3rem;
   font-size: 1rem;
   border-radius: 50%;
+  color: white;
 }
 #page-admin-ajoutProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
   margin: 10px 0px;
@@ -9325,10 +9326,11 @@ body {
   vertical-align: center;
   width: 2rem;
   height: 2rem;
-  background: #a0b21f;
+  background: rgb(41, 144, 228);
   padding-top: 0.3rem;
   font-size: 1rem;
   border-radius: 50%;
+  color: white;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .product .left .produit .title {
   margin: 10px 0px;
