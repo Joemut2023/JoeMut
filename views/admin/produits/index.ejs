@@ -26,18 +26,18 @@
           <td></td>
           <td class="reference">
             <input class="research" name="ref" value="<%= (typeof ref !==
-            "undefined") ? ref:'' %>" type="text" placeholder="chercher" >
+            "undefined") ? ref:'' %>" type="text" placeholder="référence" >
           </td>
           <td>
             <input class="research" name="libelle" value="<%= (typeof libelle
-            !== "undefined") ? libelle:'' %>" type="text" placeholder="chercher"
+            !== "undefined") ? libelle:'' %>" type="text" placeholder="nom"
             >
           </td>
           <td>
             <select class="research" name="cat">
               <option value="<%= (typeof cat
-            !== "undefined") ? cat:'' %> "> <%= (typeof cat
-            !== "undefined") ? cat:'choisir' %> </option>
+                !== "undefined") ? cat:'' %>"> <%= (typeof cat
+                !== "undefined") ? cat:'choisir' %> </option>
               <% categorie.forEach(element => { %>
                   <option value="<%= element.cat_libelle %>">
                     <%= element.cat_libelle %>
