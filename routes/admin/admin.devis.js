@@ -131,7 +131,7 @@ router.post('/search',async (req,res)=>{
   let {page, start, end} = check_admin_paginate_value(req);
   var {com_num,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
     cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
-    com_fin_spectacle,adr_structure,stc_id} = req.body
+    com_fin_spectacle,adr_structure,stc_id,adr_societe} = req.body
     
     const check_value_date_start = (data)=>{
       if (data == '') {
@@ -243,9 +243,19 @@ router.post('/search',async (req,res)=>{
             required:true,
             where:
             {
-              adr_structure:{
-                  [Op.like]:check_value(adr_structure)
-              },
+              [Op.or]:[
+                {
+                  adr_structure:{
+                    [Op.like]:check_value(adr_structure)
+                  }
+                },
+                {
+                  adr_societe:{
+                    [Op.like]:check_value(adr_societe)
+                  }
+                }
+              ]
+              ,
             }
           },
           {
@@ -304,7 +314,10 @@ router.post('/search',async (req,res)=>{
         start,
         end,
         nbrPages,
-        statut_commandes
+        statut_commandes,
+        com_num,doc_date,doc_date_2,ess_repetition,ess_repetition_2,cli_nom,
+        cli_prenom,pro_ref,com_debut_spectacle,exp_depart,exp_depart_2,
+        com_fin_spectacle,adr_structure,stc_id,adr_societe
       });
     } catch (error) {
       res.render('devis/index',{

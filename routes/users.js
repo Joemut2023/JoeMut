@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const { Adresse, Client, Commande } = require("../models");
+const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_commande,Document,Type_document,Facturation } = require("../models");
 var moment = require("moment");
+const { where } = require("sequelize");
+const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -241,28 +243,57 @@ router.get("/donnee", function (req, res, next) {
 
 router.get("/historique", async function (req, res, next) {
   res.locals.titre = "historique";
-
   const clientId = req.session.userId;
-
   try {
     const commandeByUser = await Commande.findAll({
+      include:[
+      {
+        model:Panier,
+        attributes:['pan_id'],
+        include:[{
+          model:Panier_detail,
+          attributes:['pad_ht','pad_qte','pad_ttc']
+        }]
+      },
+      {
+        model:Chronologie,
+        attributes:['chr_id','com_id','chr_date'],
+        include:[
+          {
+            model:Statut_commande
+          }
+        ],
+        order:[['chr_date','DESC']]
+      },
+      {
+        model:Document,
+        attributes:['doc_id','doc_libelle','doc_ref','doc_date'],
+        include:[
+          {
+            model:Type_document
+          }
+        ],
+        where:{
+          tdo_id:TYPE_DOCUMENT_DEVIS
+        },
+        order:[['doc_date','DESC']]
+      },
+      {
+        model:Facturation,
+        attributes:['fac_id','fac_date']
+      }
+    ],
       where: {
         cli_id: clientId,
       },
     });
-
-    if (commandeByUser.length === 0) {
-      return res.render("users/historique", {
-        error: true,
-      });
-    } else {
-      return res.render("users/historique", {
-        error: false,
-        commandeByUser,
-        moment: moment,
-      });
-    }
+    return res.render("users/historique", {
+      commandeByUser,
+      moment: moment,
+    });
+    
   } catch (error) {
+    console.log(error);
     const errorMessage = "Erreur interne du serveur";
     return res.render("users/historique", {
       error: errorMessage,

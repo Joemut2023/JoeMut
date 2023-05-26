@@ -99,17 +99,17 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col" class="text-center w-25">#</th>
-          <th scope="col" class="text-center w-25">Titre</th>
-          <th scope="col" class="text-center">Prénom</th>
-          <th scope="col" class="text-center">Nom</th>
-          <th scope="col" class="text-center">Téléphone</th>
-          <th scope="col" class="text-center">Adresse e-mail</th>
-          <th scope="col" class="text-center">Fonction</th>
-          <th scope="col" class="text-center w-25">Activé</th>
-          <th scope="col" class="text-center w-25">Newsletter</th>
-          <th scope="col" class="text-center w-25">Partenaires</th>
-          <th scope="col" class="text-center">Inscription</th>
+          <th scope="col" class=" w-25">#</th>
+          <th scope="col" class=" w-25">Titre</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col">Adresse e-mail</th>
+          <th scope="col">Fonction</th>
+          <th scope="col" class=" w-25">Activé</th>
+          <th scope="col" class=" w-25">Newsletter</th>
+          <th scope="col" class=" w-25">Partenaires</th>
+          <th scope="col">Inscription</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -124,13 +124,6 @@
             /> -->
           </td>
           <td>
-            <input
-              type="number"
-              class="form-control"
-              id="input-search-id"
-              aria-describedby="nomHelp"
-              name="cli_id"
-            />
           </td>
           <td>
             <select
@@ -226,7 +219,7 @@
             </select>
           </td>
           <td>
-            <div class="d-flex justify-content-center gap-2">
+            <div class="d-flex gap-2">
               <input
                 type="date"
                 class="form-control w-50"
@@ -236,7 +229,7 @@
               />
               <label for="" class="mt-2">Du</label>
             </div>
-            <div class="d-flex justify-content-center gap-2">
+            <div class="d-flex gap-2">
               <input
                 type="date"
                 class="form-control mt-1 w-50"
@@ -320,7 +313,7 @@
             %>
           </td>
           <td>
-            <div class="d-flex justify-content-center gap-2">
+            <div class="d-flex  gap-2">
               <form method="get" action="/admin/adresse/?cli_id">
                 <input
                   type="hidden"

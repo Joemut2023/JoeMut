@@ -29,16 +29,17 @@
           <img
             src="/images/produits/<%= article.Media[0].med_ressource %>"
             alt=""
+            class="img_grand_carousel"
           />
           <div class="search-icon">
             <span><i class="fa-solid fa-magnifying-glass"></i></span>
           </div>
         </div>
 
-        <div id="carouselImages" class="carousel slide">
-          <div class="carousel-inner">
+        <div id="carouselImages" class="swiper carousel slide">
+          <div class="swiper-wrapper carousel-inner">
             <% article.Media.forEach(element => { %>
-            <div class="carousel-item active">
+            <div class="swiper-slide carousel-item active">
               <img
                 src="/images/produits/<%= element.med_ressource %>"
                 class="img-fluid small_carousel"
@@ -46,24 +47,8 @@
             </div>
             <% }) %>
           </div>
-          <% if (article.Media.length > 1) { %>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselImages"
-            data-bs-slide="prev"
-          >
-            <span class="icon"><i class="fa-solid fa-chevron-left"></i></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselImages"
-            data-bs-slide="next"
-          >
-            <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
-          </button>
-          <% } %>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
 

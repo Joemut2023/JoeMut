@@ -17,7 +17,11 @@
   }
 
   .content {
+    margin-bottom: 3rem;
     .left-content {
+      @include breakpoint(tablette) {
+        margin-bottom: 2rem;
+      }
       .image-content {
         width: 80%;
         margin: 0 auto;
@@ -64,10 +68,12 @@
           .carousel-inner {
             .carousel-item {
               width: 20%;
-              height: 250px;
+              height: 110px;
 
               img {
                 width: 100%;
+                height: 100%;
+                object-fit: contain;
                 cursor: pointer;
                 @include breakpoint(mobil) {
                   width: 70%;
@@ -78,21 +84,40 @@
               }
             }
           }
-          .carousel-control-prev,
-          .carousel-control-next {
-            margin-left: -30px;
-            margin-top: -100px;
-            @include breakpoint(mobil) {
-              margin-top: -140px;
-            }
-            @include breakpoint(tablette) {
-              margin-top: -120px;
-            }
+          // .carousel-control-prev,
+          // .carousel-control-next {
+          //   margin-left: -30px;
+          //   margin-top: -100px;
+          //   @include breakpoint(mobil) {
+          //     margin-top: -140px;
+          //   }
+          //   @include breakpoint(tablette) {
+          //     margin-top: -120px;
+          //   }
+          // }
+          // .icon,
+          // .icon {
+          //   font-size: 16px;
+          //   color: $color-primary;
+          // }
+
+          .swiper-button-next::after,
+          .swiper-button-prev::after {
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
           }
-          .icon,
-          .icon {
-            font-size: 16px;
-            color: $color-primary;
+
+          .swiper-button-next,
+          .swiper-button-prev {
+            // margin: 0rem;
+            background: $color-primary;
+            width: 2rem;
+            height: 2rem;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 50%;
           }
         }
       }
@@ -309,7 +334,8 @@
   .others-like {
     h5 {
       font-size: 16px;
-      margin-bottom: 20px;
+      font-weight: 500;
+      margin-bottom: 30px;
     }
 
     .items {
@@ -400,17 +426,31 @@
       padding: 25px 0px;
       margin-bottom: 20px;
 
+       @include breakpoint(mobil) {
+         padding: 10px 0px;
+        }
+
       .content {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         cursor: pointer;
-
         margin: 0 auto;
         padding: 5px 15px;
         background-color: #598794;
-        width: max-content;
+        width: 40%;
         height: max-content;
+
+        @include breakpoint(mobil) {
+          width: 98%;
+          font-size: 0.7rem;
+        }
+
+        @include breakpoint(tablette) {
+          width: 80%;
+        }
+
         &:hover {
           background-color: #3c4d52;
         }

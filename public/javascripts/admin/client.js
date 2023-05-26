@@ -30,7 +30,6 @@ var updateClient = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-console.log(inputActivation[0]);
 inputActivation.forEach(function (element) {
   element.addEventListener("change", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {

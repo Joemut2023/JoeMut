@@ -10,24 +10,25 @@
             <form id="devis-search-Form" method="post" action="/admin/devis/search">
                 <div class="row ref_bloc">
                   <div class="col-auto">
-                    <label class="form-label" for="reference">Réf. devis</label>
-                    <input name="com_num" class="form-control" id="reference" type="text" placeholder="Référence"/>
+                    <label class="form-label" for="reference">Réf. devis</label> 
+                    <input name="com_num" class="form-control" id="reference" type="text" placeholder="Référence" value="<%= typeof com_num != 'undefined'? com_num: ''  %>"/>
                   </div>
                   <div class="col-auto">
                     <label class="form-label" for="refProduits">Réf. produit</label>
-                    <input name="pro_ref" class="form-control" id="refProduits" type="text" placeholder="Réf produits"/>
+                    <input name="pro_ref" class="form-control" id="refProduits" type="text" placeholder="Réf produits" value="<%= typeof pro_ref != 'undefined'? pro_ref: ''  %>"/>
                   </div>
                   <div class="col-auto">
                     <label class="form-label" for="structure">Structure</label>
-                    <input name="adr_structure" class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
+                    <input name="adr_structure" class="form-control" id="structure" type="text" placeholder="Structure" value="<%= typeof adr_structure != 'undefined'? adr_structure: ''  %>" />
                   </div>
                   <div class="col-auto">
-                    <label class="form-label" for="structure">Société</label>
-                    <input name="adr_societe" class="form-control" id="structure" type="text" placeholder="Structure" data-sb-validations="" />
+                    <label class="form-label" for="societe">Société</label>
+                    <input name="adr_societe" class="form-control" id="societe" type="text" placeholder="Societé" value="<%= typeof adr_societe != 'undefined'? adr_societe: ''  %>" />
                   </div>
                   <div class="col-auto">
                     <label class="form-label" for="total">Statut devis</label>
                     <select name="stc_id" class="form-select" aria-label="Default select example">
+                      <option value="1">Statut devis</option>
                       <% statut_commandes.forEach(stc => { %>
                         <option value="<%= stc.stc_id %>"><%= stc.stc_libelle %></option>
                       <% }) %>
@@ -38,30 +39,30 @@
                   <div class="col-md-3 client_bloc">
                     <span>Client</span>
                     <div>
-                      <input name="cli_nom" class="form-control mb-1" id="client" type="text" placeholder="client"/>
-                      <input name="cli_prenom" class="form-control" id="prenom" type="text" placeholder="Prénom"/>
+                      <input name="cli_nom" class="form-control mb-1" id="client" type="text" placeholder="Nom" value="<%= typeof cli_nom != 'undefined'? cli_nom: ''  %>"/>
+                      <input name="cli_prenom" class="form-control" id="prenom" type="text" placeholder="Prénom" value="<%= typeof cli_prenom != 'undefined'? cli_prenom: ''  %>"/>
                     </div>
                   </div>
                   <div class="col-md-6 date_bloc">
                     <div>
                       <label class="form-label" for="livraison">Date devis</label>
-                      <input name="doc_date" class="form-control" id="livraison" type="date" placeholder="Livraison" data-sb-validations="" />
-                      <input name="doc_date_2" class="form-control mt-1" id="livraison" type="date"  placeholder="Livraison" data-sb-validations="" />
+                      <input name="doc_date" class="form-control" id="livraison" type="date" value="<%= typeof doc_date != 'undefined'? doc_date: ''  %>"/>
+                      <input name="doc_date_2" class="form-control mt-1" id="livraison" type="date"  value="<%= typeof doc_date_2 != 'undefined'? doc_date_2: ''  %>"/>
                     </div>
                     <div>
                       <label class="form-label" for="repetition">Date Répétition</label>
-                      <input name="ess_repetition" class="form-control" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
-                      <input name="ess_repetition_2" class="form-control mt-1" id="repetition" type="date" placeholder="Répétition" data-sb-validations="" />
+                      <input name="ess_repetition" class="form-control" id="repetition" type="date" value="<%= typeof ess_repetition != 'undefined'? ess_repetition: ''  %>"/>
+                      <input name="ess_repetition_2" class="form-control mt-1" id="repetition" type="date" value="<%= typeof ess_repetition_2 != 'undefined'? ess_repetition_2: ''  %>"/>
                     </div>
                     <div>
                       <label class="form-label" for="debut">Date livraison</label>
-                      <input name="exp_depart" class="form-control" id="debut" type="date" placeholder="Début" data-sb-validations="" />
-                      <input name="exp_depart_2" class="form-control mt-1" id="debut" type="date" placeholder="Début" data-sb-validations="" />
+                      <input name="exp_depart" class="form-control" id="debut" type="date" value="<%= typeof exp_depart != 'undefined'? exp_depart: ''  %>"/>
+                      <input name="exp_depart_2" class="form-control mt-1" id="debut" type="date" value="<%= typeof exp_depart_2 != 'undefined'? exp_depart_2: ''  %>"/>
                     </div>
                     <div>
                       <label class="form-label" for="debut">Spectacle</label>
-                      <input name="com_debut_spectacle" class="form-control mb-1" id="debut" type="date" placeholder="Début" data-sb-validations="" />
-                      <input name="com_fin_spectacle" class="form-control" id="fin" type="date" placeholder="Fin" data-sb-validations="" />
+                      <input name="com_debut_spectacle" class="form-control mb-1" id="debut" type="date" value="<%= typeof com_debut_spectacle != 'undefined'? com_debut_spectacle: ''  %>"/>
+                      <input name="com_fin_spectacle" class="form-control" id="fin" type="date" value="<%= typeof com_fin_spectacle != 'undefined'? com_fin_spectacle: ''  %>"/>
                     </div>
                   </div>
                 </div>

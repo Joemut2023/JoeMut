@@ -165,18 +165,17 @@ router.post('/add-panier-detail',async (req,res)=>{
     panierDetails.forEach(panierDetail => {
       somme_commande_ht += panierDetail.pad_ht * pad_qte
     });
-    // let somme_commande_ht = await Panier_detail.sum("pad_ht",{
-    //   where: { pan_id },
-    // });
+
     let somme_commande_ttc = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
     let updatedCommande = await Commande.update({
       com_ht:somme_commande_ht,
       com_ttc:somme_commande_ttc
     },{where:{com_id}});
+    req.session.flash = {message:"Ajouté avec succés",type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
-    console.log(error);
-  //  res.redirect(`/admin/devis/view/${com_id}`);
+    req.session.flash = {message:"Une erreur s'est produite, assurez vous d'avoir renseigné les champs nécessaire et entré un produit existant",type:"danger"};
+    res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
 router.post('/add-remise',async (req,res)=>{
