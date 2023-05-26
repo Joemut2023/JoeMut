@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       Adresse.hasMany(models.Commande,{
         foreignKey:"com_adr_liv"
       })
-        Adresse.hasMany(models.Commande, {
-          foreignKey: "com_adr_fac",
-        });
+      Adresse.hasMany(models.Commande, {
+        foreignKey: "com_adr_fac",
+      });
     }
   }
   Adresse.init(

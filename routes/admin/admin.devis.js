@@ -243,9 +243,19 @@ router.post('/search',async (req,res)=>{
             required:true,
             where:
             {
-              adr_structure:{
-                  [Op.like]:check_value(adr_structure)
-              },
+              [Op.or]:[
+                {
+                  adr_structure:{
+                    [Op.like]:check_value(adr_structure)
+                  }
+                },
+                {
+                  adr_societe:{
+                    [Op.like]:check_value(adr_societe)
+                  }
+                }
+              ]
+              ,
             }
           },
           {
