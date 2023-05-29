@@ -50,10 +50,16 @@
             flex-direction: column;
             padding-top:30px; 
         }
+        .produit{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
-   <div id="page-user-info" style="width: 100%;padding: 20px 20px;">
+   <div id="page-user-info" style="width: 100%;padding: 20px 20px 40px 20px;">
     <div class="logo-date" style="display: flex;flex-direction: row;">
           <div class="logo">
               <img src="http://aes.wcg-rdc.tech/images/logo.png" class="logo-img img-fluid" alt="" srcset="" />
@@ -172,6 +178,39 @@
           <td>Aucune Commande</td>
         </tr>
     </table>
+
+</div>
+<div class="adresse paniers">
+    <h2 class="titre">Paniers</h2>
+    <table class="table" style="border: 1px solid #dcdcdc ;"  >
+        <tr style="background-color: #dcdcdc;">
+            <th>ID</th>
+            <th class="w-75 text-center">Nombre total de produits</th>
+            <th>Date</th>
+        </tr>
+          <tr>
+            <td>#45</td>
+            <td class="w-75 text-center">7</td>
+            <td>2023-05-29 11:23:09</td>
+           
+        </tr>
+    </table>
+    <div class="produit" style="display: flex; width: 100%;">
+        <h5 style="font-size: .9rem;">Produit(s) dans le panier <span>#45</span> : </h5>
+        <table style="width: 80%;border:1px solid #dcdcdc ">
+            <tr style="background-color: #dcdcdc;">
+                <th> <i>Référence</i> </th>
+                <th class="w-75 text-center"> <i>Nom</i></th>
+                <th> <i>Quantité</i></th>
+             </tr>
+               <tr>
+                <td> <i>R-6</i> </td>
+                <td class="w-75 text-center"> <i>jsk</i></td>
+                <td> <i>6</i></td>
+             </tr>
+
+        </table>
+    </div>
 
 </div>
    </div>
