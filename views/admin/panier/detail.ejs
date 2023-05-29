@@ -5,8 +5,8 @@
     <div class="montant">
       <h4>Total du panier</h4>
       <h5>PANIER N° <%= panier.pan_id %></h5>
-      <h6><% if (panier.Commande) { %>
-       <%= parseFloat(panier.Commande.com_ttc).toFixed(2).toString().replace(".",",")%>€
+      <h6><% if (somme_ht) { %>
+       <%= parseFloat(somme_ht).toFixed(2).toString().replace(".",",")%>€
       <% } %></h6>
     </div>
   </div>
@@ -63,13 +63,13 @@
 
           <td scope="row">
             <% if (element.pad_ttc) { %>
-              <%= element.pad_ttc.toFixed(2).toString().replace(".",",") %></td>
+              <%= element.pad_ht.toFixed(2).toString().replace(".",",") %></td>
             <% } %>
           <td scope="row"><%= element?.pad_qte%></td>
           <td scope="row"><%= sumQty?.find(item=>item.id === element.Produit.pro_id).qty %></td>
           <td scope="row">
               <% if (element.pad_ttc) { %>
-              <%= (element.pad_ttc * element.pad_qte ).toFixed(2).toString().replace(".",",")%></td>
+              <%= (element.pad_ht * element.pad_qte ).toFixed(2).toString().replace(".",",")%></td>
             <% } %>
           <td></td>
           <td scope="row"></td>
@@ -84,8 +84,8 @@
     <table class="w-100">
       <tr class="d-flex flex-row justify-content-between">
         <td>Total produits :</td>
-        <td> <% if (somme_ttc) { %>
-          <%= somme_ttc?.toFixed(2).toString().replace(".",",") %> €</td>
+        <td> <% if (somme_ht) { %>
+          <%= somme_ht?.toFixed(2).toString().replace(".",",") %> €</td>
         <% } %>
           
       </tr>
@@ -113,16 +113,16 @@
       <tr class="d-flex flex-row justify-content-between">
         <th class="">Total : </td>
           <th>    <% if (panier.Commande) { %>
-    <%= (panier.Commande.Frais_port.frp_ttc + somme_ttc).toFixed(2).toString().replace(".",",")%> €
+          <%= (panier.Commande.Frais_port.frp_ttc + somme_ht).toFixed(2).toString().replace(".",",")%> €
       <% } %></th>
       </tr>
     </table>
     <hr>
   </div>
-  <div class="message pt-4">
+  <!-- <div class="message pt-4">
      <p>
         <span><i class="fa fa-exclamation-triangle danger" aria-hidden="true"></i></span>
      Pour ce groupe de clients , les prix sont affichés : <span class="fw-bold">TTC</span>
-   </p>    
+   </p>   --> 
   </div>
 </div>

@@ -72,11 +72,11 @@ router.get('/:id',async function(req,res){
         },
         {
           model: Panier_detail,
-          attributes: ["pad_ttc"],
+          attributes: ["pad_ttc","pad_ht","pad_qte"],
         },
         {
           model: Commande,
-          attributes: ["com_id", "com_ttc", "com_date"],
+          attributes: ["com_id", "com_ttc", "com_date","com_port","com_frais","com_tva"],
           include: {
             model: Frais_port,
             attributes: ["frp_libelle","frp_ttc"],
@@ -102,9 +102,15 @@ router.get('/:id',async function(req,res){
       ],
     });
 
-    const somme_ttc = await Panier_detail.sum("pad_ttc", {
-      where: { pan_id: id },
-    });
+    var somme_ttc = 0;
+    var somme_ht = 0;
+    panier_detail.forEach(pad=>{
+      somme_ht += pad.pad_ht * pad.pad_qte;
+      somme_ttc += (pad.pad_ht * pad.pad_qte) + panier.Commande?.com_tva + panier.Commande?.com_port + panier.Commande?.com_frais
+    })
+    // const somme_ttc = await Panier_detail.sum("pad_ttc", {
+    //   where: { pan_id: id },
+    // });
      
     let sumQty = [];
     for (let index = 0; index < panier_detail.length; index++) {
@@ -118,14 +124,18 @@ router.get('/:id',async function(req,res){
     }
     //  res.json(sumQty);
     // return res.json(panier_detail[0]);
+    console.log("=============",somme_ttc);
     return res.render("panier/detail", {
       titre,
       panier,
       panier_detail,
       somme_ttc,
+      somme_ht,
       sumQty
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 });
 router.post('/add-panier-detail',async (req,res)=>{
   const {pro_id,pan_id,com_id,pad_qte} = req.body;
@@ -167,6 +177,7 @@ router.post('/add-panier-detail',async (req,res)=>{
     });
 
     let somme_commande_ttc = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
+    //let somme_commande_ht = somme_commande_ht + commande?.com_tva + commande?.com_port + commande?.com_frais
     let updatedCommande = await Commande.update({
       com_ht:somme_commande_ht,
       com_ttc:somme_commande_ttc
