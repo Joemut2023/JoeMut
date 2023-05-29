@@ -4,7 +4,8 @@
       <h1>Erreur interne du serveur</h1>
      </div>
   <% } else{ %>
-    <div id="admin-blocs-panierHeader" class="border-bottom p-2">
+    <% if (typeof commande.Panier !== 'undefined') { %>
+      <div id="admin-blocs-panierHeader" class="border-bottom p-2">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -26,929 +27,932 @@
           </div>
         <% } %>
         
-    </div>
-    <div class="actions">
-        <form action="/admin/devis/commande/update-statut" method="post" class="row g-3">
-            <div class="select-etat">
-              <select class="form-select" aria-label="Default select" name="stc_id">
-                  <option selected>Statut commande</option>
-                  <% statutCommandes.forEach((statutCommande,index) => { %>
-                    <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
-                  <% }) %>
-              </select>
+      </div>
+      <div class="actions">
+          <form action="/admin/devis/commande/update-statut" method="post" class="row g-3">
+              <div class="select-etat">
+                <select class="form-select" aria-label="Default select" name="stc_id">
+                    <option selected>Statut commande</option>
+                    <% statutCommandes.forEach((statutCommande,index) => { %>
+                      <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
+                    <% }) %>
+                </select>
+              </div>
+            <div class="btns">
+              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+              <button class="btn btn-primary">Mettre à jour l'état</button>
             </div>
-          <div class="btns">
+          </form> 
+          <a target="_blank" href="/pdf/devis/<%= last_document_devis[0].doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
+          <form action="/admin/documents/devis-mail" method="post">
             <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-            <button class="btn btn-primary">Mettre à jour l'état</button>
-          </div>
-        </form> 
-        <a target="_blank" href="/pdf/devis/<%= last_document_devis[0].doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
-        <form action="/admin/documents/devis-mail" method="post">
+            <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Dévis</button>
+          </form>
+          <a target="_blank" href="/pdf/bon_livraison/<%= last_document_livraison[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Bon de livraison</a>
+          <form action="/admin/documents/bon-livraison-pdf" method="post">
+            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+            <input type="hidden" name="doc_id" value="<%= last_document_livraison[0]?.doc_id %>">
+            <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>bon de livraison</button>
+          </form>
+        <a target="_blank" class="btn btn-light shadow" href="/pdf/bon_essayage/<%= last_document_essayage[0]?.doc_ref %>.pdf"><i class="fa-solid fa-print"></i>Bon d'essayage</a>
+        <form action="/admin/documents/bon-essayage-pdf" method="post">
           <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Dévis</button>
+          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Bon d'essayage</button>
         </form>
-        <a target="_blank" href="/pdf/bon_livraison/<%= last_document_livraison[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Bon de livraison</a>
-        <form action="/admin/documents/bon-livraison-pdf" method="post">
-          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-          <input type="hidden" name="doc_id" value="<%= last_document_livraison[0]?.doc_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>bon de livraison</button>
-        </form>
-       <a target="_blank" class="btn btn-light shadow" href="/pdf/bon_essayage/<%= last_document_essayage[0]?.doc_ref %>.pdf"><i class="fa-solid fa-print"></i>Bon d'essayage</a>
-       <form action="/admin/documents/bon-essayage-pdf" method="post">
-        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-        <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Bon d'essayage</button>
-       </form>
-        <form action="/admin/documents/facture" method="post">
-          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-          <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Facture</button>
-        </form>
-    </div>
-    <div class="content">
-        <div class="left">
-            <div class="card shadow bloc-client">
-                <h3 class="bloc-client-title">Client</h3>
-                <div class="bloc-client-name">
-                    <p><i class="fa-solid fa-id-card"></i> <span><%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></span></p>
-                    <a href="/admin/clients/infos/?cli_id=<%= commande.Client.cli_id %>">Plus de details</a>
-                </div>
-                <div class="row bloc-client-info">
-                    <div class="col-md-12">
-                        <div>
-                            <h2>E-mail :</h2>
-                            <p><%= commande.Client.cli_mail %></p>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div>
-                            <h2>Commande validées :</h2>
-                            <p><%= total_commande.length %></p>
-                        </div>
-                        
-                        <div>
-                            <h2>Total dépensé depuis inscription :</h2>
-                            <% let total_depense_client = 0 %>
-                            <% commande_client.Commandes.forEach(commande => { %>
-                                <% commande.Documents.forEach(document => { %>
-                                  <% if (Array.isArray(document.Paiements)) { %>
-                                    <% document.Paiements.forEach(paiement => { %>
-                                      <% total_depense_client += paiement.pai_montant %>
-                                    <% }) %>
-                                  <% } %>
-                                <% }) %>
-                            <% }) %>
-                            <p><%= total_depense_client %> €</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row bloc-client-adresse">
-                    <div class="col-md-5 adresse-item">
-                        <div>
-                            <h2>
-                                <span>Adresse de livraison</span>
-                                <div class="dropdown">
-                                    <i
-                                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                    id="dropdownadress-1"
-                                  ></i>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
-                                      <li class="btn-update-exist-adresse-livraison" data-adresse="<%= adresse_livraion.adr_id %>" data-commande="<%= commande.com_id %>">
-                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
-                                      </li>
-                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-livraison"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
-                                    </ul>
-                                </div>
-                            </h2>
-                            <p><%= adresse_livraion.adr_nom %></p>
-                            <p><%= adresse_livraion.adr_adresse %></p>
-                        </div>
-                    </div>
-                    <div class="col-md-5 offset-2 adresse-item">
-                        <div>
-                            <h2>
-                                <span>Adresse de facturation</span>
-                                <div class="dropdown">
-                                    <i
-                                    class="fa-solid dropdown-toggle fa-ellipsis-vertical"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                    id="dropdownadress-2"
-                                  ></i>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
-                                      <li class="btn-update-exist-adresse-facturation" data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>">
-                                        <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
-                                      </li>
-                                      <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-facturation"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
-                                    </ul>
-                                </div>
-                            </h2>
-                            <p><%= adresse_facturation.adr_nom %></p>
-                            <p><%= adresse_facturation.adr_adresse %></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bloc-client-commentaire">
-                    <h2>Commentaire privé</h2>
-                    <p><i class="fa-solid fa-plus"></i></p>
-                </div>
-            </div>
-            <div class="card shadow bloc-adresse">
-                <h2 class="bloc-adresse-title">Dates</h2>
-                <div class="bloc-adresse-content">
-                    <div class="bloc-adresse-content-spectacle">
-                        <h2>Date de spectacle</h2>
-                        <div class="date-spectacle-debut" data-bs-toggle="modal" data-bs-target="#modal-update-date-debut-commande">
+          <form action="/admin/documents/facture" method="post">
+            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+            <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-money-bill"></i>Facture</button>
+          </form>
+      </div>
+      <div class="content">
+          <div class="left">
+              <div class="card shadow bloc-client">
+                  <h3 class="bloc-client-title">Client</h3>
+                  <div class="bloc-client-name">
+                      <p><i class="fa-solid fa-id-card"></i> <span><%= commande.Client.Titre.tit_libelle %> <%= commande.Client.cli_nom %></span></p>
+                      <a href="/admin/clients/infos/?cli_id=<%= commande.Client.cli_id %>">Plus de details</a>
+                  </div>
+                  <div class="row bloc-client-info">
+                      <div class="col-md-12">
                           <div>
-                            <p><%= commande.com_debut_spectacle %> (début) <i class="fa-solid fa-pencil"></i></p>
+                              <h2>E-mail :</h2>
+                              <p><%= commande.Client.cli_mail %></p>
                           </div>
-                        </div>
-                        <div class="date-spectacle-fin" data-bs-toggle="modal" data-bs-target="#modal-update-date-fin-commande">
+                      </div>
+                      <div class="col-md-12">
                           <div>
-                            <p><%= commande.com_fin_spectacle %> (fin) <i class="fa-solid fa-pencil"></i></p>
+                              <h2>Commande validées :</h2>
+                              <p><%= total_commande.length %></p>
                           </div>
-                        </div>
-                    </div>
-                    <div class="bloc-adresse-content-repetition">
-                        <h2  data-bs-toggle="modal" data-bs-target="#modal-add-essayage">
-                            <span>Date de répétition</span>
-                            <span><i class="fa-solid fa-plus"></i></span>
-                        </h2>
-                        <% commande.Essayages?.forEach(date_essayage => { %>
-                            <div class="date-repetition-item">
-                                <span><%= date_essayage.ess_repetition %></span>
-                                <form action="/admin/devis/commande/delete/essayage" method="post">
-                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                    <input type="hidden" name="ess_id" value="<%= date_essayage.ess_id %>">
-                                    <button type="submit" class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></button>
-                                </form>
+                          
+                          <div>
+                              <h2>Total dépensé depuis inscription :</h2>
+                              <% let total_depense_client = 0 %>
+                              <% commande_client.Commandes.forEach(commande => { %>
+                                  <% commande.Documents.forEach(document => { %>
+                                    <% if (Array.isArray(document.Paiements)) { %>
+                                      <% document.Paiements.forEach(paiement => { %>
+                                        <% total_depense_client += paiement.pai_montant %>
+                                      <% }) %>
+                                    <% } %>
+                                  <% }) %>
+                              <% }) %>
+                              <p><%= total_depense_client %> €</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row bloc-client-adresse">
+                      <div class="col-md-5 adresse-item">
+                          <div>
+                              <h2>
+                                  <span>Adresse de livraison</span>
+                                  <div class="dropdown">
+                                      <i
+                                      class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                                      type="button"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                      id="dropdownadress-1"
+                                    ></i>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownadress-1">
+                                        <li class="btn-update-exist-adresse-livraison" data-adresse="<%= adresse_livraion.adr_id %>" data-commande="<%= commande.com_id %>">
+                                          <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                        </li>
+                                        <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-livraison"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      </ul>
+                                  </div>
+                              </h2>
+                              <p><%= adresse_livraion.adr_nom %></p>
+                              <p><%= adresse_livraion.adr_adresse %></p>
+                          </div>
+                      </div>
+                      <div class="col-md-5 offset-2 adresse-item">
+                          <div>
+                              <h2>
+                                  <span>Adresse de facturation</span>
+                                  <div class="dropdown">
+                                      <i
+                                      class="fa-solid dropdown-toggle fa-ellipsis-vertical"
+                                      type="button"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                      id="dropdownadress-2"
+                                    ></i>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownadress-2">
+                                        <li class="btn-update-exist-adresse-facturation" data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>">
+                                          <a data-adresse="<%= adresse_facturation.adr_id %>" data-commande="<%= commande.com_id %>" class="dropdown-item" href="#">Modifier une adresse existante</a>
+                                        </li>
+                                        <li data-bs-toggle="modal" data-bs-target="#modal-list-adresse-facturation"><a class="dropdown-item" href="#">Sélectionner une autre adresse</a></li>
+                                      </ul>
+                                  </div>
+                              </h2>
+                              <p><%= adresse_facturation.adr_nom %></p>
+                              <p><%= adresse_facturation.adr_adresse %></p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="bloc-client-commentaire">
+                      <h2>Commentaire privé</h2>
+                      <p><i class="fa-solid fa-plus"></i></p>
+                  </div>
+              </div>
+              <div class="card shadow bloc-adresse">
+                  <h2 class="bloc-adresse-title">Dates</h2>
+                  <div class="bloc-adresse-content">
+                      <div class="bloc-adresse-content-spectacle">
+                          <h2>Date de spectacle</h2>
+                          <div class="date-spectacle-debut" data-bs-toggle="modal" data-bs-target="#modal-update-date-debut-commande">
+                            <div>
+                              <p><%= commande.com_debut_spectacle %> (début) <i class="fa-solid fa-pencil"></i></p>
                             </div>
-                        <% }) %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="right">
-            <div class="card shadow produit-list">
-                <h2 class="produit-list-title">Produit (<%= commande.Panier.Panier_details.length %>)</h2>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Produit</th>
-                        <th scope="col">Statut</th>
-                        <th scope="col">Prix unitaire</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Disponible</th>
-                        <th scope="col">Remise</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <% totalCommande = 0 %>
-                        <% commande.Panier.Panier_details.forEach(panier_detail => { %>
-                            <tr>
-                                <th scope="row" class="tr-th-produit">
-                                    <div>
-                                        <div class="tr-th-produit-img">
-                                            <img src="/images/produits/<%= panier_detail.Produit.Media[0].med_ressource  %>" alt="">
-                                        </div>
-                                        <div class="tr-th-produit-text">
-                                            <p><%= panier_detail.Produit.pro_libelle  %></p>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>
-                                  <div class="form-check form-switch">
-                                    <% if (panier_detail.Produit.pro_statut === true) { %>
-                                      <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" checked disabled>
-                                    <% } else { %>
-                                      <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" disabled>
-                                    <% } %>
-                                    
-                                  </div>
-                                </td>
-                                <td><%= panier_detail.pad_ht?.toString().replace('.', ',') %>€</td>
-                                <% var total_qte_disponible = 0 %>
-                                <% panier_detail.Produit.Quantites?.forEach(qte => total_qte_disponible = total_qte_disponible + qte['qua_nbre'])%>
-                                <td class="td-produit-qte">
-                                  <div>
-                                    <span class="<%= panier_detail.pad_qte > total_qte_disponible ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
-                                  </div>
-                                </td>
-                                <td><%= total_qte_disponible %></td>
-                                <td>
-                                    <% if (panier_detail.Produit.Applies.length === 0) { %>
-                                        <span class="btn btn-remise-prod" data-pad="<%= panier_detail.pad_id %>">
-                                            Ajouter une remise sur le produit
-                                        </span>
-                                    <% } else { %>
-                                        <span><%= panier_detail.pad_remise %> €</span>
-                                    <% } %>
-                                </td>
-                                <td>
-                                  <% if (panier_detail.Produit.Applies.length === 0) { %>
-                                    <% totalCommande +=  panier_detail.pad_ht * panier_detail.pad_qte %>
-                                    <%= (panier_detail.pad_ht * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
-                                <% } else { %>
-                                  <% totalCommande += (panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise %>
-                                  <%= ((panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
-                                <% } %>
-                                </td>
-                                <td class="td-produit-actions">
-                                    <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
-                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil btn-edit-prod"></i>
-                                    </button>
-                                    <form action="/admin/devis/commande/delete-panier-detail" method="post">
+                          </div>
+                          <div class="date-spectacle-fin" data-bs-toggle="modal" data-bs-target="#modal-update-date-fin-commande">
+                            <div>
+                              <p><%= commande.com_fin_spectacle %> (fin) <i class="fa-solid fa-pencil"></i></p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="bloc-adresse-content-repetition">
+                          <h2  data-bs-toggle="modal" data-bs-target="#modal-add-essayage">
+                              <span>Date de répétition</span>
+                              <span><i class="fa-solid fa-plus"></i></span>
+                          </h2>
+                          <% commande.Essayages?.forEach(date_essayage => { %>
+                              <div class="date-repetition-item">
+                                  <span><%= date_essayage.ess_repetition %></span>
+                                  <form action="/admin/devis/commande/delete/essayage" method="post">
                                       <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                      <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
-                                      <button type="submit" class="btn btn-danger btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
-                                        <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-trash"></i>
-                                      </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
-                                <td colspan="8" class="form-edit-prod" >
+                                      <input type="hidden" name="ess_id" value="<%= date_essayage.ess_id %>">
+                                      <button type="submit" class="date-repetition-item-trash"><i class="fa-solid fa-trash"></i></button>
+                                  </form>
+                              </div>
+                          <% }) %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="right">
+              <div class="card shadow produit-list">
+                  <h2 class="produit-list-title">Produit (<%= commande.Panier.Panier_details.length %>)</h2>
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Produit</th>
+                          <th scope="col">Statut</th>
+                          <th scope="col">Prix unitaire</th>
+                          <th scope="col">Quantité</th>
+                          <th scope="col">Disponible</th>
+                          <th scope="col">Remise</th>
+                          <th scope="col">Total</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <% totalCommande = 0 %>
+                          <% commande.Panier.Panier_details.forEach(panier_detail => { %>
+                              <tr>
+                                  <th scope="row" class="tr-th-produit">
+                                      <div>
+                                          <div class="tr-th-produit-img">
+                                              <img src="/images/produits/<%= panier_detail.Produit.Media[0].med_ressource  %>" alt="">
+                                          </div>
+                                          <div class="tr-th-produit-text">
+                                              <p><%= panier_detail.Produit.pro_libelle  %></p>
+                                          </div>
+                                      </div>
+                                  </th>
+                                  <td>
+                                    <div class="form-check form-switch">
+                                      <% if (panier_detail.Produit.pro_statut === true) { %>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" checked disabled>
+                                      <% } else { %>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="checkbox-prostatut" disabled>
+                                      <% } %>
+                                      
+                                    </div>
+                                  </td>
+                                  <td><%= panier_detail.pad_ht?.toString().replace('.', ',') %>€</td>
+                                  <% var total_qte_disponible = 0 %>
+                                  <% panier_detail.Produit.Quantites?.forEach(qte => total_qte_disponible = total_qte_disponible + qte['qua_nbre'])%>
+                                  <td class="td-produit-qte">
                                     <div>
-                                        <form action="/admin/devis/commande/update-panier-detail" method="post" class="row g-3">
+                                      <span class="<%= panier_detail.pad_qte > total_qte_disponible ? 'span-colored' : '' %>"><%= panier_detail.pad_qte %></span>
+                                    </div>
+                                  </td>
+                                  <td><%= total_qte_disponible %></td>
+                                  <td>
+                                      <% if (panier_detail.Produit.Applies.length === 0) { %>
+                                          <span class="btn btn-remise-prod" data-pad="<%= panier_detail.pad_id %>">
+                                              Ajouter une remise sur le produit
+                                          </span>
+                                      <% } else { %>
+                                          <span><%= panier_detail.pad_remise %> €</span>
+                                      <% } %>
+                                  </td>
+                                  <td>
+                                    <% if (panier_detail.Produit.Applies.length === 0) { %>
+                                      <% totalCommande +=  panier_detail.pad_ht * panier_detail.pad_qte %>
+                                      <%= (panier_detail.pad_ht * panier_detail.pad_qte).toFixed(2).toString().replace('.',',') %>€
+                                  <% } else { %>
+                                    <% totalCommande += (panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise %>
+                                    <%= ((panier_detail.pad_ht * panier_detail.pad_qte) - panier_detail.pad_remise).toFixed(2).toString().replace('.',',') %>€
+                                  <% } %>
+                                  </td>
+                                  <td class="td-produit-actions">
+                                      <button class="btn btn-primary btn-edit-prod" data-pad="<%= panier_detail.pad_id %>" title="modifier">
+                                          <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-pencil btn-edit-prod"></i>
+                                      </button>
+                                      <form action="/admin/devis/commande/delete-panier-detail" method="post">
+                                        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                        <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                        <button type="submit" class="btn btn-danger btn-delete-prod mt-1" data-pad="<%= panier_detail.pad_id %>" title="supprimer">
+                                          <i data-pad="<%= panier_detail.pad_id %>" class="fa-solid fa-trash"></i>
+                                        </button>
+                                      </form>
+                                  </td>
+                              </tr>
+                              <tr class="tr-form-edit-prod <%= "tr-form-edit-prod-"+panier_detail.pad_id%> ">
+                                  <td colspan="8" class="form-edit-prod" >
+                                      <div>
+                                          <form action="/admin/devis/commande/update-panier-detail" method="post" class="row g-3">
+                                              <div class="col-auto">
+                                                <input type="text" class="form-control" placeholder="quantité" name="pad_qte">
+                                              </div>
+                                              <div class="col-auto">
+                                                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                                <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                                <button type="submit" class="btn btn-primary mb-3">Modifier</button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr class="tr-form-remise-prod <%= "tr-form-remise-prod-"+panier_detail.pad_id%>">
+                                <td colspan="8">
+                                  <div>
+                                    <form action="/admin/paniers/add-remise" method="post" class="row g-3">
+                                      <div class="col-auto">
+                                        <select class="form-select" aria-label="Default select" name="type_promo">
+                                          <option selected>Type</option>
+                                          <option value="1">Pourcentage</option>
+                                          <option value="2">Valeur</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-auto">
+                                        <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
+                                      </div>
+                                      <div class="col-auto">
+                                        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                        <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
+                                        <input type="hidden" name="pro_id" value="<%= panier_detail.Produit.pro_id %>">
+                                        <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </td>
+                              </tr>
+                          <% }) %>
+                      </tbody>
+                  </table>
+                  <div class="form-add-panier-detail-container">
+                    <form action="/admin/paniers/add-panier-detail" autocomplete="off" method="post" class="row g-3">
+                      <div class="col-auto autocomplete" style="width:300px;">
+                        <input id="myInput" type="text" name="pro_libelle" placeholder="Tapez le nom d'un produit" class="form-control add-panier-detail-input-name">
+                      </div>
+                      <div class="col-auto">
+                        <input type="number" class="form-control" placeholder="Quantité" name="pad_qte">
+                      </div>
+                      <div class="col-auto">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                        <input type="hidden" name="pan_id" value="<%= commande.Panier.pan_id %>">
+                        <input type="hidden" name="pro_id" class="hidden-input-pro-id-add-panier_detail">
+                        <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                        <button class="btn btn-secondary mb-3 btn-disable-add-panier-detail">annuler</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="form-add-commande-remise-container">
+                    <form action="/admin/paniers/add-commande-remise" method="post" class="row g-3">
+                      <div class="col-auto">
+                        <input type="text" class="form-control" placeholder="Code promo" name="prm_name">
+                      </div>
+                      <div class="col-auto">
+                        <select class="form-select" aria-label="Default select" name="type_promo">
+                          <option selected>Type</option>
+                          <option value="1">Pourcentage</option>
+                          <option value="2">Valeur</option>
+                        </select>
+                      </div>
+                      <div class="col-auto">
+                        <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
+                      </div>
+                      <div class="col-auto">
+                        <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                        <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
+                        <button class="btn btn-secondary btn-disable-add-remise-form mb-3">Annuler</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="table-actions">
+                      <div class="item-par-page">
+                          <p>Elements par page : </p>
+                          <div class="input-group">
+                              <input type="number" class="form-control" value="50">
+                          </div>
+                      </div>
+                      <div class="buttons">
+                          <button type="button" class="btn btn-light btn-add-panier-detail"><i class="fa-solid fa-plus"></i>Ajouter un produit</button>
+                          <button type="button" class="btn btn-light btn-add-commande-reduction"><i class="fa-solid fa-plus"></i>Ajouter une reduction</button>
+                      </div>
+                  </div>
+                  <div class="table-resume">
+                      <div>
+                          <h2>Produits</h2>
+                          <p><%= totalCommande.toFixed(2).toString().replace('.',',') %> €</p>
+                      </div>
+                      <div>
+                          <h2>Réductions</h2>
+                          <% if (commande.com_remise ) { %>
+                            <p>-<%= commande?.com_remise %> €</p>
+                          <% } else { %>
+                            <p>0 €</p>
+                          <% } %>
+                      </div>
+                      <div>
+                          <h2>Livraison</h2>
+                          <p><%= commande.com_port %> €</p>
+                      </div>
+                      <div>
+                          <h2>Autres Frais</h2>
+                          <p><%= commande.com_frais  %></p>
+                      </div>
+                      <div>
+                          <h2>Taxes</h2>
+                          <% tva = (totalCommande * 20) / 100  %>
+                          <p><%= tva.toFixed(2).toString().replace('.',',') %> €</p>
+                      </div>
+                      <div>
+                          <h2>Total</h2>
+                          <% if (commande.com_remise) { %>
+                            <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais - commande.com_remise).toFixed(2).toString().replace('.',',')%> €</p>
+                          <% } else { %>
+                            <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais).toFixed(2).toString().replace('.',',') %> €</p>
+                          <% } %>
+                      </div>
+                  </div>
+              </div>
+              <div class="devis-note">
+                  <h2>Note de devis</h2>
+                  <form action="">
+                      <div class="mb-3">
+                          <textarea class="simplemde" id="devis-note-textarea" cols="30" rows="5"></textarea>
+                      </div>
+                      <div class="devis-note-form-action">
+                          <p>Afficher cette note de commande sur la facture <input type="checkbox" name="" id=""></p>
+                          <button class="btn btn-light">Sauver</button>
+                      </div>
+                  </form>
+              </div>
+              <div class="commande-tabs">
+                  <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                          <button class="nav-link active" id="nav-etat-tab" data-bs-toggle="tab" data-bs-target="#nav-etat" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa-solid fa-clock-rotate-left"></i>Etat</button>
+                          <button class="nav-link" id="nav-document-tab" data-bs-toggle="tab" data-bs-target="#nav-document" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-file"></i> Documents (<%= commande.Documents.length %>)</button>
+                          <button class="nav-link" id="nav-transporteur-tab" data-bs-toggle="tab" data-bs-target="#nav-transporteur" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-truck"></i> Transporteurs (<% if (Array.isArray(expeditions)) { %>
+                          <%= expeditions.length %>
+                          <% } %>)</button>
+                          <button class="nav-link" id="nav-retour-tab" data-bs-toggle="tab" data-bs-target="#nav-retour" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-arrow-rotate-left"></i> Retour produits</button>
+                      </div>
+                  </nav>
+                  <div class="tab-content card" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="nav-etat" role="tabpanel" aria-labelledby="nav-etat-tab">
+                          <div class="nav-etat-items">
+                            <% commande.Chronologies.forEach(chronologie => { %>
+                              <div class="nav-etat-item">
+                                <div class="etat-label">
+                                    <p><%= chronologie.Statut_commande.stc_libelle %></p>
+                                </div>
+                                <div class="etat-user">
+                                    <p><%= chronologie.User.usr_prenom %> <%= chronologie.User.usr_nom %></p>
+                                </div>
+                                <div class="etat-date">
+                                    <p><%= moment(chronologie.chr_date).format('D/MM/YYYY') %></p>
+                                </div>
+                                <div class="etat-action">
+                                    <form action="/admin/devis/commande-delete-statut" method="post">
+                                      <input type="hidden" name="chr_id" value="<%= chronologie.chr_id %>">
+                                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </div>
+                              </div>
+                            <% }) %>
+                          </div>
+                          <form action="/admin/devis/commande/update-statut" method="post">
+                            <div class="nav-etat-actions">
+                                  <div class="select-etat">
+                                    <select class="form-select" aria-label="Default select" name="stc_id">
+                                        <option selected>Statut commande</option>
+                                        <% statutCommandes.forEach((statutCommande,index) => { %>
+                                          <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                <button class="btn btn-primary">Mettre à jour</button>
+                            </div>
+                          </form>
+                      </div>
+                      <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Document</th>
+                                  <th scope="col">Numéro</th>
+                                  <th scope="col">Montant</th>
+                                  <th scope="col">Note</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% commande.Documents.forEach(document => { %>
+                                  <tr>
+                                    <th scope="row"><%= moment(document.doc_date).format('D/MM, YYYY') %></th>
+                                    <td><%= document.Type_document.tdo_libelle %></td>
+                                    <td><%= document.doc_ref %></td>
+                                    <% if (document.Paiements.length !== 0) { %>
+                                      <td><%= document.Paiements[0].pai_montant %> €</td>
+                                    <% } else { %>
+                                      <td></td>
+                                    <% } %>
+                                    <td><%= document.doc_comment %></td>
+                                    <td>
+                                        <div>
+                                          <% if (document.Type_document.tdo_id === 2) { %>
+                                            <button class="btn btn-primary btn-form-doc-paiement" data-document="<%= document.doc_id %>">Saisir un paiement</button>
+                                          <% } %>
+                                            <button class="btn btn-primary btn-form-doc-note" data-document="<%= document.doc_id %>">Saisir une note</button>
+                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr class="tr-form-note tr-form-note-<%= document.doc_id %>">
+                                    <td colspan="5">
+                                        <form class="row g-3" method="post" action="/admin/devis/commande-add-doc-comment">
                                             <div class="col-auto">
-                                              <input type="text" class="form-control" placeholder="quantité" name="pad_qte">
+                                                <textarea name="doc_comment" class="form-control" id="" cols="30" rows="10"></textarea>
                                             </div>
                                             <div class="col-auto">
                                               <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                              <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
-                                              <button type="submit" class="btn btn-primary mb-3">Modifier</button>
+                                              <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
+                                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
                                             </div>
                                         </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="tr-form-remise-prod <%= "tr-form-remise-prod-"+panier_detail.pad_id%>">
-                              <td colspan="8">
-                                <div>
-                                  <form action="/admin/paniers/add-remise" method="post" class="row g-3">
-                                    <div class="col-auto">
-                                      <select class="form-select" aria-label="Default select" name="type_promo">
-                                        <option selected>Type</option>
-                                        <option value="1">Pourcentage</option>
-                                        <option value="2">Valeur</option>
-                                      </select>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                      <input type="hidden" name="pad_id" value="<%= panier_detail.pad_id %>">
-                                      <input type="hidden" name="pro_id" value="<%= panier_detail.Produit.pro_id %>">
-                                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-                <div class="form-add-panier-detail-container">
-                  <form action="/admin/paniers/add-panier-detail" autocomplete="off" method="post" class="row g-3">
-                    <div class="col-auto autocomplete" style="width:300px;">
-                      <input id="myInput" type="text" name="pro_libelle" placeholder="Tapez le nom d'un produit" class="form-control add-panier-detail-input-name">
-                    </div>
-                    <div class="col-auto">
-                      <input type="number" class="form-control" placeholder="Quantité" name="pad_qte">
-                    </div>
-                    <div class="col-auto">
-                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                      <input type="hidden" name="pan_id" value="<%= commande.Panier.pan_id %>">
-                      <input type="hidden" name="pro_id" class="hidden-input-pro-id-add-panier_detail">
-                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
-                      <button class="btn btn-secondary mb-3 btn-disable-add-panier-detail">annuler</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="form-add-commande-remise-container">
-                  <form action="/admin/paniers/add-commande-remise" method="post" class="row g-3">
-                    <div class="col-auto">
-                      <input type="text" class="form-control" placeholder="Code promo" name="prm_name">
-                    </div>
-                    <div class="col-auto">
-                      <select class="form-select" aria-label="Default select" name="type_promo">
-                        <option selected>Type</option>
-                        <option value="1">Pourcentage</option>
-                        <option value="2">Valeur</option>
-                      </select>
-                    </div>
-                    <div class="col-auto">
-                      <input type="number" class="form-control" placeholder="Valeur" name="prm_valeur">
-                    </div>
-                    <div class="col-auto">
-                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                      <button type="submit" class="btn btn-primary mb-3">Ajouter</button>
-                      <button class="btn btn-secondary btn-disable-add-remise-form mb-3">Annuler</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="table-actions">
-                    <div class="item-par-page">
-                        <p>Elements par page : </p>
-                        <div class="input-group">
-                            <input type="number" class="form-control" value="50">
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="btn btn-light btn-add-panier-detail"><i class="fa-solid fa-plus"></i>Ajouter un produit</button>
-                        <button type="button" class="btn btn-light btn-add-commande-reduction"><i class="fa-solid fa-plus"></i>Ajouter une reduction</button>
-                    </div>
-                </div>
-                <div class="table-resume">
-                    <div>
-                        <h2>Produits</h2>
-                        <p><%= totalCommande.toFixed(2).toString().replace('.',',') %> €</p>
-                    </div>
-                    <div>
-                        <h2>Réductions</h2>
-                        <% if (commande.com_remise ) { %>
-                          <p>-<%= commande?.com_remise %> €</p>
-                        <% } else { %>
-                          <p>0 €</p>
-                        <% } %>
-                    </div>
-                    <div>
-                        <h2>Livraison</h2>
-                        <p><%= commande.com_port %> €</p>
-                    </div>
-                    <div>
-                        <h2>Autres Frais</h2>
-                        <p><%= commande.com_frais  %></p>
-                    </div>
-                    <div>
-                        <h2>Taxes</h2>
-                        <% tva = (totalCommande * 20) / 100  %>
-                        <p><%= tva.toFixed(2).toString().replace('.',',') %> €</p>
-                    </div>
-                    <div>
-                        <h2>Total</h2>
-                        <% if (commande.com_remise) { %>
-                          <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais - commande.com_remise).toFixed(2).toString().replace('.',',')%> €</p>
-                        <% } else { %>
-                          <p><%= (totalCommande + commande.com_port + tva + commande?.com_frais).toFixed(2).toString().replace('.',',') %> €</p>
-                        <% } %>
-                    </div>
-                </div>
-            </div>
-            <div class="devis-note">
-                <h2>Note de devis</h2>
-                <form action="">
-                    <div class="mb-3">
-                        <textarea class="simplemde" id="devis-note-textarea" cols="30" rows="5"></textarea>
-                    </div>
-                    <div class="devis-note-form-action">
-                        <p>Afficher cette note de commande sur la facture <input type="checkbox" name="" id=""></p>
-                        <button class="btn btn-light">Sauver</button>
-                    </div>
-                </form>
-            </div>
-            <div class="commande-tabs">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-etat-tab" data-bs-toggle="tab" data-bs-target="#nav-etat" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa-solid fa-clock-rotate-left"></i>Etat</button>
-                        <button class="nav-link" id="nav-document-tab" data-bs-toggle="tab" data-bs-target="#nav-document" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-file"></i> Documents (<%= commande.Documents.length %>)</button>
-                        <button class="nav-link" id="nav-transporteur-tab" data-bs-toggle="tab" data-bs-target="#nav-transporteur" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-truck"></i> Transporteurs (<% if (Array.isArray(expeditions)) { %>
-                         <%= expeditions.length %>
-                        <% } %>)</button>
-                        <button class="nav-link" id="nav-retour-tab" data-bs-toggle="tab" data-bs-target="#nav-retour" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa-solid fa-arrow-rotate-left"></i> Retour produits</button>
-                    </div>
-                </nav>
-                <div class="tab-content card" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-etat" role="tabpanel" aria-labelledby="nav-etat-tab">
-                        <div class="nav-etat-items">
-                          <% commande.Chronologies.forEach(chronologie => { %>
-                            <div class="nav-etat-item">
-                              <div class="etat-label">
-                                  <p><%= chronologie.Statut_commande.stc_libelle %></p>
-                              </div>
-                              <div class="etat-user">
-                                  <p><%= chronologie.User.usr_prenom %> <%= chronologie.User.usr_nom %></p>
-                              </div>
-                              <div class="etat-date">
-                                  <p><%= moment(chronologie.chr_date).format('D/MM/YYYY') %></p>
-                              </div>
-                              <div class="etat-action">
-                                  <form action="/admin/devis/commande-delete-statut" method="post">
-                                    <input type="hidden" name="chr_id" value="<%= chronologie.chr_id %>">
-                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                  </form>
-                              </div>
-                            </div>
-                          <% }) %>
-                        </div>
-                        <form action="/admin/devis/commande/update-statut" method="post">
-                          <div class="nav-etat-actions">
-                                <div class="select-etat">
-                                  <select class="form-select" aria-label="Default select" name="stc_id">
-                                      <option selected>Statut commande</option>
-                                      <% statutCommandes.forEach((statutCommande,index) => { %>
-                                        <option value="<%= statutCommande.stc_id %>"><%= statutCommande.stc_libelle %></option>
-                                      <% }) %>
-                                  </select>
-                              </div>
-                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                              <button class="btn btn-primary">Mettre à jour</button>
-                          </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="nav-document" role="tabpanel" aria-labelledby="nav-document-tab">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Document</th>
-                                <th scope="col">Numéro</th>
-                                <th scope="col">Montant</th>
-                                <th scope="col">Note</th>
-                                <th scope="col">Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% commande.Documents.forEach(document => { %>
-                                <tr>
-                                  <th scope="row"><%= moment(document.doc_date).format('D/MM, YYYY') %></th>
-                                  <td><%= document.Type_document.tdo_libelle %></td>
-                                  <td><%= document.doc_ref %></td>
-                                  <% if (document.Paiements.length !== 0) { %>
-                                    <td><%= document.Paiements[0].pai_montant %> €</td>
-                                  <% } else { %>
-                                    <td></td>
-                                  <% } %>
-                                  <td><%= document.doc_comment %></td>
-                                  <td>
-                                      <div>
-                                        <% if (document.Type_document.tdo_id === 2) { %>
-                                          <button class="btn btn-primary btn-form-doc-paiement" data-document="<%= document.doc_id %>">Saisir un paiement</button>
-                                        <% } %>
-                                          <button class="btn btn-primary btn-form-doc-note" data-document="<%= document.doc_id %>">Saisir une note</button>
-                                          <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                      </div>
-                                  </td>
-                                </tr>
-                                <tr class="tr-form-note tr-form-note-<%= document.doc_id %>">
-                                  <td colspan="5">
-                                      <form class="row g-3" method="post" action="/admin/devis/commande-add-doc-comment">
-                                          <div class="col-auto">
-                                              <textarea name="doc_comment" class="form-control" id="" cols="30" rows="10"></textarea>
-                                          </div>
-                                          <div class="col-auto">
-                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                            <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
-                                            <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                                          </div>
-                                      </form>
-                                  </td>
-                                </tr>
-                                <tr class="tr-form-paiement tr-form-paiement-<%= document.doc_id %>">
-                                  <td colspan="5">
-                                      <form class="row g-3" method="post" action="/admin/devis/commande-add-paiement-for-document">
-                                          <div class="col-auto">
-                                            <select name="mop_id" id="" class="form-control">
-                                              <option selected>Moyen paiement</option>
-                                              <% moyen_paiements.forEach(moyen_paiement => { %>
-                                                <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
-                                              <% }) %>
-                                            </select>
-                                          </div>
-                                          <div class="col-auto">
-                                            <input type="text" name="pai_ref" class="form-control" placeholder="ref paiement">
-                                          </div>
-                                          <div class="col-auto">
-                                            <input type="text" name="pai_montant" class="form-control" placeholder="montant">
-                                          </div>
-                                          <div class="col-auto">
-                                            <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
-                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                            <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                                          </div>
-                                      </form>
-                                  </td>
-                                </tr>
-                              <% }) %>     
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Transporteur</th>
-                                <th scope="col">Poids</th>
-                                <th scope="col">Frais  d'expedition</th>
-                                <th scope="col">Numéro de suivi</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% if (Array.isArray(expeditions)) { %>
-                                <% expeditions.forEach(expedition => { %>
-                                  <tr>
-                                    <th scope="row"><%= moment(expedition.exp_depart).format('D/MM, YYYY') %></th>
-                                    <td><%= expedition.Transporteur.trs_libelle %></td>
-                                    <td><%= expedition.exp_poids %></td>
-                                    <td><%= expedition.exp_cout %></td>
-                                    <td><%= expedition.exp_suivi %></td>
-                                    <td>
-                                      <button class="btn btn-primary btn-edit-expedition" data-id="<%= expedition.exp_id %>"><i class="fa-solid fa-pencil"></i></button>
                                     </td>
                                   </tr>
-                                  <tr class="tr-form-expedition tr-form-expedition-<%= expedition.exp_id %>">
-                                    <td colspan="6">
-                                      <div>
-                                        <form method="post" action="/admin/devis/commande-update-transporteur" class="row g-3">
-                                          <div class="col-auto">
-                                            <input required type="text" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
-                                          </div>
-                                          <div class="col-auto">
-                                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                            <input type="hidden" name="exp_id" value="<%= expedition.exp_id %>">
-                                            <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                                          </div>
+                                  <tr class="tr-form-paiement tr-form-paiement-<%= document.doc_id %>">
+                                    <td colspan="5">
+                                        <form class="row g-3" method="post" action="/admin/devis/commande-add-paiement-for-document">
+                                            <div class="col-auto">
+                                              <select name="mop_id" id="" class="form-control">
+                                                <option selected>Moyen paiement</option>
+                                                <% moyen_paiements.forEach(moyen_paiement => { %>
+                                                  <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
+                                                <% }) %>
+                                              </select>
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="text" name="pai_ref" class="form-control" placeholder="ref paiement">
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="text" name="pai_montant" class="form-control" placeholder="montant">
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="hidden" name="doc_id" value="<%= document.doc_id %>">
+                                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                            </div>
                                         </form>
-                                      </div>
                                     </td>
                                   </tr>
-                                  <% }) %>
-                              <% } %>
-                            </tbody>
-                        </table>
-                        <div style="padding-left: 5px;" class="mb-4">
-                          <button class="btn btn-primary btn-show-tab-transporteur-form-container">Ajouter</button>
-                        </div>
-                        <div class="tab-transporteur-form-container">
-                          <form class="row g-3" method="post" action="/admin/devis/commande-add-transporteur">
-                            <div class="col-auto">
-                                <input type="text" class="form-control" name="exp_suivi" id="" placeholder="Numéro de suivi">
-                            </div>
-                            <div class="col-auto">
-                              <select name="trs_id" class="form-select" aria-label="Default select example">
-                                  <option selected>Transporteur</option>
-                                  <% transporteurs.forEach(transporteur => { %>
-                                   <option value="<%= transporteur.trs_id %>"><%= transporteur.trs_libelle %></option>
-                                  <% }) %>
-                              </select>
-                          </div>
-                            <div class="col-auto">
-                                <input type="number" class="form-control" name="exp_poids" id="" placeholder="Poids en Kg">
-                            </div>
-                            <div class="col-auto">
-                                <input type="number" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
-                            </div>
-                            <div class="col-auto">
-                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                            </div>
-                          </form>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">  
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Produit</th>
-                                <th scope="col" class="th-quantite">
-                                    <div>
-                                        <p>Quantité</p>
-                                        <div>
-                                            <p>En location</p>
-                                            <p>En retour</p>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th scope="col">Etat</th>
-                                <th scope="col">Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% if (Array.isArray(expeditions)) { %>
-                                <% if (expeditions.length > 0) { %>
-                                  <% expeditions.forEach(expedition => { %>
-                                   <% expedition.Detail_expeditions.forEach(detail_exp => { %>
-                                      <% detail_exp.Retours.forEach(retour => { %>
-                                        <tr>
-                                          <th scope="row"><%= moment(retour.ret_date).format('DD/MM/YYYY') %></th>
-                                          <td><%=  detail_exp.Produit.pro_libelle %></td>
-                                          <td>
-                                            <div style="display: flex; flex-direction: row; justify-content: space-between;text-align: center;">
-                                              <span style="text-align: center;"><%= detail_exp.dex_nbre%></span>
-                                              <span style="text-align: center;"><%= retour.ret_nbre %></span>
-                                            </div>
-                                          </td>
-                                          <td><%= retour.ret_comment %></td>
-                                          <td>
-                                            <button class="btn btn-primary btn-edit-retour" data-id="<%= retour.ret_id %>"><i class="fa-solid fa-pencil"></i></button>
-                                            <button class="btn btn-secondary btn-add-note-retour" data-id="<%= retour.ret_id %>">Ajouter une note</button>
-                                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                          </td>
-                                        </tr>
-                                        <tr class="tr-form-retour tr-form-retour-<%= retour.ret_id %>">
-                                          <td colspan="6">
-                                            <div>
-                                              <form method="post" action="/admin/devis/commande-update-retour-nbr" class="row g-3">
-                                                <div class="col-auto">
-                                                  <input type="text" class="form-control" name="dex_nbre" placeholder="En location">
-                                                </div>
-                                                <div class="col-auto">
-                                                  <input type="text" class="form-control" name="ret_nbre" placeholder="En retour">
-                                                </div>
-                                                <div class="col-auto">
-                                                  <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                                  <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
-                                                  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                                                </div>
-                                              </form>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="tr-form-retour-note tr-form-retour-note-<%= retour.ret_id %>">
-                                          <td colspan="6">
-                                            <div>
-                                              <form method="post" action="/admin/devis/commande-update-retour-comment" class="row g-3">
-                                                <div class="col-auto">
-                                                  <textarea class="form-control" name="ret_comment" id="" cols="30" rows="10"></textarea>
-                                                </div>
-                                                <div class="col-auto">
-                                                  <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                                                  <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
-                                                  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                                                </div>
-                                              </form>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                      <% }) %>
-                                   <% }) %>
-                                  <% }) %>
-                                <% } %>
-                              <% } %>
-                              
-                            </tbody>
-                        </table>
-                        <div class="tab-retour-form-container-btn-container mb-4">
-                          <button class="btn btn-primary btn-show-tab-retour-form">Ajouter</button>
-                        </div>
-                        <div class="tab-retour-form-container">
-                          <form class="row g-3" method="post" action="/admin/devis/commande-retour">
-                            <div class="col-auto">
-                                <input type="text" class="form-control" autocomplete="off" id="form-autocomplete-retour-produit" placeholder="Produit">
-                            </div>
-                            <div class="col-auto">
-                                <input type="number" class="form-control" name="ret_nbre" id="" placeholder="Nombre élèments retourné">
-                            </div>
-                            <div class="col-auto">
-                                <input type="date" class="form-control" name="ret_date" id="" placeholder="Date">
-                            </div>
-                            <div class="col-auto">
-                              <select name="frp_id" class="form-select" aria-label="Default select example">
-                                  <option selected>Etat</option>
-                              </select>
-                            </div>
-                            <div class="col-auto">
-                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                              <input type="hidden" name="pro_id" class="hidden-input-pro-id-retour" value="">
-                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                            </div>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="paiements-bloc card shadow">
-                <h2>Paiement (<%= paiements.length %>)</h2>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Moyen de paiement</th>
-                        <th scope="col">ID de la transaction</th>
-                        <th scope="col">Montant</th>
-                        <th scope="col">Facture</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if (typeof paiements != 'undefined') { %>
-                        <% paiements.forEach(paiement => { %>
-                          <tr>
-                            <th scope="row"><%= moment(paiement.pai_date).format('D/MM/YYYY') %></th>
-                            <td><%= paiement.Moyen_paiement.mop_libelle %></td>
-                            <td><%= paiement.pai_ref %></td>
-                            <td><%= paiement.pai_montant %></td>
-                            <td><%= paiement.Document.doc_libelle%> (<%= paiement.Document.Type_document.tdo_libelle %>)</td>
-                          </tr>
-                        <% }) %>
-                      <% }else{ %>
-                        <tr>
-                          <td colspan="5">
-                          </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-                <div class="form-bloc-paiement">
-                    <form class="row g-3" method="post" action="/admin/devis/commande-add-facture-paiement">
-                        <div class="col-auto">
-                            <input type="date" class="form-control" name="pai_date" id="">
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-select" name="mop_id" aria-label="Default select example">
-                                <option selected>Moyen de paiement</option>
-                                <% moyen_paiements.forEach(moyen_paiement => { %>
-                                  <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
-                                <% }) %>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="pai_ref" id="" placeholder="reference de la facture">
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="pai_montant" id="" placeholder="Montant">
-                        </div>
-                        <div class="col-auto">
-                            <select name="doc_id" class="form-select" aria-label="Default select example">
-                                <option selected>Facture</option>
-                                <% factures.forEach(facture => { %>
-                                 <option value="<%= facture.doc_id %>"><%= facture.doc_libelle %></option>
-                                <% }) %>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                          <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-                          <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/admin/devis/commande/add-essayage" method="post">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="input-add-adresse" class="form-label">date</label>
-                        <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
-                        <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                                <% }) %>     
+                              </tbody>
+                          </table>
                       </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>   
-    <!-- modal pour adresse livraison -->
-    <div class="modal modal-lg fade" id="modal-update-adresse-livraion" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-content-form">
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/admin/devis/commande/update-adresse-livraison" method="post">
-                <div class="modal-body modal-list-adresse">
-                    <% adresses.forEach(adresse => { %>
-                    <div class="mb-3">
-                        <label for="radio-adresse-livraison-<%= adresse.adr_id %>">
-                            <div>
-                                <p><%= adresse.adr_structure %></p>
-                                <p><%= adresse.adr_nom %></p>
-                                <p><%= adresse.adr_societe %></p>
-                                <p><%= adresse.adr_adresse %></p>
+                      <div class="tab-pane fade" id="nav-transporteur" role="tabpanel" aria-labelledby="nav-transporteur-tab">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Transporteur</th>
+                                  <th scope="col">Poids</th>
+                                  <th scope="col">Frais  d'expedition</th>
+                                  <th scope="col">Numéro de suivi</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% if (Array.isArray(expeditions)) { %>
+                                  <% expeditions.forEach(expedition => { %>
+                                    <tr>
+                                      <th scope="row"><%= moment(expedition.exp_depart).format('D/MM, YYYY') %></th>
+                                      <td><%= expedition.Transporteur.trs_libelle %></td>
+                                      <td><%= expedition.exp_poids %></td>
+                                      <td><%= expedition.exp_cout %></td>
+                                      <td><%= expedition.exp_suivi %></td>
+                                      <td>
+                                        <button class="btn btn-primary btn-edit-expedition" data-id="<%= expedition.exp_id %>"><i class="fa-solid fa-pencil"></i></button>
+                                      </td>
+                                    </tr>
+                                    <tr class="tr-form-expedition tr-form-expedition-<%= expedition.exp_id %>">
+                                      <td colspan="6">
+                                        <div>
+                                          <form method="post" action="/admin/devis/commande-update-transporteur" class="row g-3">
+                                            <div class="col-auto">
+                                              <input required type="text" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
+                                            </div>
+                                            <div class="col-auto">
+                                              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                              <input type="hidden" name="exp_id" value="<%= expedition.exp_id %>">
+                                              <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                            </div>
+                                          </form>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <% }) %>
+                                <% } %>
+                              </tbody>
+                          </table>
+                          <div style="padding-left: 5px;" class="mb-4">
+                            <button class="btn btn-primary btn-show-tab-transporteur-form-container">Ajouter</button>
+                          </div>
+                          <div class="tab-transporteur-form-container">
+                            <form class="row g-3" method="post" action="/admin/devis/commande-add-transporteur">
+                              <div class="col-auto">
+                                  <input type="text" class="form-control" name="exp_suivi" id="" placeholder="Numéro de suivi">
+                              </div>
+                              <div class="col-auto">
+                                <select name="trs_id" class="form-select" aria-label="Default select example">
+                                    <option selected>Transporteur</option>
+                                    <% transporteurs.forEach(transporteur => { %>
+                                    <option value="<%= transporteur.trs_id %>"><%= transporteur.trs_libelle %></option>
+                                    <% }) %>
+                                </select>
                             </div>
-                            <input type="radio" name="adresse" id="radio-adresse-livraison-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
-                        </label>
-                    </div>
-                    <% }) %>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <!--modal pour adresse facturation-->
-    <div class="modal modal-lg fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-content-form">
-              
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="/admin/devis/commande/update-adresse-facturation" method="post">
-                <div class="modal-body modal-list-adresse">
-                    <% adresses.forEach(adresse => { %>
-                    <div class="mb-3">
-                        <label for="radio-adresse-facturation-<%= adresse.adr_id %>">
-                            <div>
-                                <p><%= adresse.adr_structure %></p>
-                                <p><%= adresse.adr_nom %></p>
-                                <p><%= adresse.adr_societe %></p>
-                                <p><%= adresse.adr_adresse %></p>
-                            </div>
-                            <input type="radio" name="adresse" id="radio-adresse-facturation-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
-                        </label>
-                    </div>
-                    <% }) %>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-update-date-debut-commande" tabindex="-1" aria-labelledby="modal-update-date-debut-commande-Label" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-update-date-debut-commande-Label">Modifier la date de début</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="/admin/devis/commande/update-date-debut">
-              <div class="mb-3">
-                <label for="date_inp" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date_inp" name="com_debut_spectacle" aria-describedby="date de début">
+                              <div class="col-auto">
+                                  <input type="number" class="form-control" name="exp_poids" id="" placeholder="Poids en Kg">
+                              </div>
+                              <div class="col-auto">
+                                  <input type="number" class="form-control" name="exp_cout" id="" placeholder="Coût de l'expedition">
+                              </div>
+                              <div class="col-auto">
+                                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="nav-retour" role="tabpanel" aria-labelledby="nav-retour-tab">  
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Produit</th>
+                                  <th scope="col" class="th-quantite">
+                                      <div>
+                                          <p>Quantité</p>
+                                          <div>
+                                              <p>En location</p>
+                                              <p>En retour</p>
+                                          </div>
+                                      </div>
+                                  </th>
+                                  <th scope="col">Etat</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% if (Array.isArray(expeditions)) { %>
+                                  <% if (expeditions.length > 0) { %>
+                                    <% expeditions.forEach(expedition => { %>
+                                    <% expedition.Detail_expeditions.forEach(detail_exp => { %>
+                                        <% detail_exp.Retours.forEach(retour => { %>
+                                          <tr>
+                                            <th scope="row"><%= moment(retour.ret_date).format('DD/MM/YYYY') %></th>
+                                            <td><%=  detail_exp.Produit.pro_libelle %></td>
+                                            <td>
+                                              <div style="display: flex; flex-direction: row; justify-content: space-between;text-align: center;">
+                                                <span style="text-align: center;"><%= detail_exp.dex_nbre%></span>
+                                                <span style="text-align: center;"><%= retour.ret_nbre %></span>
+                                              </div>
+                                            </td>
+                                            <td><%= retour.ret_comment %></td>
+                                            <td>
+                                              <button class="btn btn-primary btn-edit-retour" data-id="<%= retour.ret_id %>"><i class="fa-solid fa-pencil"></i></button>
+                                              <button class="btn btn-secondary btn-add-note-retour" data-id="<%= retour.ret_id %>">Ajouter une note</button>
+                                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                            </td>
+                                          </tr>
+                                          <tr class="tr-form-retour tr-form-retour-<%= retour.ret_id %>">
+                                            <td colspan="6">
+                                              <div>
+                                                <form method="post" action="/admin/devis/commande-update-retour-nbr" class="row g-3">
+                                                  <div class="col-auto">
+                                                    <input type="text" class="form-control" name="dex_nbre" placeholder="En location">
+                                                  </div>
+                                                  <div class="col-auto">
+                                                    <input type="text" class="form-control" name="ret_nbre" placeholder="En retour">
+                                                  </div>
+                                                  <div class="col-auto">
+                                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                                    <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
+                                                    <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                                  </div>
+                                                </form>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <tr class="tr-form-retour-note tr-form-retour-note-<%= retour.ret_id %>">
+                                            <td colspan="6">
+                                              <div>
+                                                <form method="post" action="/admin/devis/commande-update-retour-comment" class="row g-3">
+                                                  <div class="col-auto">
+                                                    <textarea class="form-control" name="ret_comment" id="" cols="30" rows="10"></textarea>
+                                                  </div>
+                                                  <div class="col-auto">
+                                                    <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                                    <input type="hidden" name="ret_id" value="<%= retour.ret_id %>">
+                                                    <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                                                  </div>
+                                                </form>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        <% }) %>
+                                    <% }) %>
+                                    <% }) %>
+                                  <% } %>
+                                <% } %>
+                                
+                              </tbody>
+                          </table>
+                          <div class="tab-retour-form-container-btn-container mb-4">
+                            <button class="btn btn-primary btn-show-tab-retour-form">Ajouter</button>
+                          </div>
+                          <div class="tab-retour-form-container">
+                            <form class="row g-3" method="post" action="/admin/devis/commande-retour">
+                              <div class="col-auto">
+                                  <input type="text" class="form-control" autocomplete="off" id="form-autocomplete-retour-produit" placeholder="Produit">
+                              </div>
+                              <div class="col-auto">
+                                  <input type="number" class="form-control" name="ret_nbre" id="" placeholder="Nombre élèments retourné">
+                              </div>
+                              <div class="col-auto">
+                                  <input type="date" class="form-control" name="ret_date" id="" placeholder="Date">
+                              </div>
+                              <div class="col-auto">
+                                <select name="frp_id" class="form-select" aria-label="Default select example">
+                                    <option selected>Etat</option>
+                                </select>
+                              </div>
+                              <div class="col-auto">
+                                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                                <input type="hidden" name="pro_id" class="hidden-input-pro-id-retour" value="">
+                                <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-              <button type="submit" class="btn btn-primary">Modifier</button>
-            </form>
+              <div class="paiements-bloc card shadow">
+                  <h2>Paiement (<%= paiements.length %>)</h2>
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Moyen de paiement</th>
+                          <th scope="col">ID de la transaction</th>
+                          <th scope="col">Montant</th>
+                          <th scope="col">Facture</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if (typeof paiements != 'undefined') { %>
+                          <% paiements.forEach(paiement => { %>
+                            <tr>
+                              <th scope="row"><%= moment(paiement.pai_date).format('D/MM/YYYY') %></th>
+                              <td><%= paiement.Moyen_paiement.mop_libelle %></td>
+                              <td><%= paiement.pai_ref %></td>
+                              <td><%= paiement.pai_montant %></td>
+                              <td><%= paiement.Document.doc_libelle%> (<%= paiement.Document.Type_document.tdo_libelle %>)</td>
+                            </tr>
+                          <% }) %>
+                        <% }else{ %>
+                          <tr>
+                            <td colspan="5">
+                            </td>
+                          </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+                  <div class="form-bloc-paiement">
+                      <form class="row g-3" method="post" action="/admin/devis/commande-add-facture-paiement">
+                          <div class="col-auto">
+                              <input type="date" class="form-control" name="pai_date" id="">
+                          </div>
+                          <div class="col-auto">
+                              <select class="form-select" name="mop_id" aria-label="Default select example">
+                                  <option selected>Moyen de paiement</option>
+                                  <% moyen_paiements.forEach(moyen_paiement => { %>
+                                    <option value="<%= moyen_paiement.mop_id %>"><%= moyen_paiement.mop_libelle %></option>
+                                  <% }) %>
+                              </select>
+                          </div>
+                          <div class="col-auto">
+                              <input type="text" class="form-control" name="pai_ref" id="" placeholder="reference de la facture">
+                          </div>
+                          <div class="col-auto">
+                              <input type="text" class="form-control" name="pai_montant" id="" placeholder="Montant">
+                          </div>
+                          <div class="col-auto">
+                              <select name="doc_id" class="form-select" aria-label="Default select example">
+                                  <option selected>Facture</option>
+                                  <% factures.forEach(facture => { %>
+                                  <option value="<%= facture.doc_id %>"><%= facture.doc_libelle %></option>
+                                  <% }) %>
+                              </select>
+                          </div>
+                          <div class="col-auto">
+                            <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                            <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="modal-add-essayage" tabindex="-1" aria-labelledby="modal-essayage-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-essayage-label">Ajouter une date d'essayage pour cette commande</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="/admin/devis/commande/add-essayage" method="post">
+                  <div class="modal-body">
+                      <div class="mb-3">
+                          <label for="input-add-adresse" class="form-label">date</label>
+                          <input type="date" name="ess_repetition" class="form-control" id="input-add-adresse">
+                          <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>   
+      <!-- modal pour adresse livraison -->
+      <div class="modal modal-lg fade" id="modal-update-adresse-livraion" tabindex="-1" aria-labelledby="modal-update-adresse-livraions-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-update-adresse-livraions-label">Modification adresse de livraison</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-content-form">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal fade" id="modal-list-adresse-livraison" tabindex="-1" aria-labelledby="modal-list-adresse-livraison-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-list-adresse-livraison-label">Selectionnez une adresse de livraison</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="/admin/devis/commande/update-adresse-livraison" method="post">
+                  <div class="modal-body modal-list-adresse">
+                      <% adresses.forEach(adresse => { %>
+                      <div class="mb-3">
+                          <label for="radio-adresse-livraison-<%= adresse.adr_id %>">
+                              <div>
+                                  <p><%= adresse.adr_structure %></p>
+                                  <p><%= adresse.adr_nom %></p>
+                                  <p><%= adresse.adr_societe %></p>
+                                  <p><%= adresse.adr_adresse %></p>
+                              </div>
+                              <input type="radio" name="adresse" id="radio-adresse-livraison-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
+                          </label>
+                      </div>
+                      <% }) %>
+                  </div>
+                  <div class="modal-footer">
+                      <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>
+      <!--modal pour adresse facturation-->
+      <div class="modal modal-lg fade" id="modal-update-adresse-facturation" tabindex="-1" aria-labelledby="modal-update-adresse-facturation-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-update-adresse-facturation-label">Modification adresse de livraison</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-content-form">
+                
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal fade" id="modal-list-adresse-facturation" tabindex="-1" aria-labelledby="modal-list-adresse-facturation-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-list-adresse-facturation-label">Selectionnez une adresse de facturation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="/admin/devis/commande/update-adresse-facturation" method="post">
+                  <div class="modal-body modal-list-adresse">
+                      <% adresses.forEach(adresse => { %>
+                      <div class="mb-3">
+                          <label for="radio-adresse-facturation-<%= adresse.adr_id %>">
+                              <div>
+                                  <p><%= adresse.adr_structure %></p>
+                                  <p><%= adresse.adr_nom %></p>
+                                  <p><%= adresse.adr_societe %></p>
+                                  <p><%= adresse.adr_adresse %></p>
+                              </div>
+                              <input type="radio" name="adresse" id="radio-adresse-facturation-<%= adresse.adr_id %>" value="<%= adresse.adr_id %>">
+                          </label>
+                      </div>
+                      <% }) %>
+                  </div>
+                  <div class="modal-footer">
+                      <input type="hidden" name="com_id" value="<%= commande.com_id  %>">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>
+      <div class="modal fade" id="modal-update-date-debut-commande" tabindex="-1" aria-labelledby="modal-update-date-debut-commande-Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-date-debut-commande-Label">Modifier la date de début</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/devis/commande/update-date-debut">
+                <div class="mb-3">
+                  <label for="date_inp" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date_inp" name="com_debut_spectacle" aria-describedby="date de début">
+                </div>
+                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="modal fade" id="modal-update-date-fin-commande" tabindex="-1" aria-labelledby="modal-update-date-fin-commande-Label" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-update-date-fin-commande-Label">Modifier date de din</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="/admin/devis/commande/update-date-fin">
-              <div class="mb-3">
-                <label for="date_inp" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date_inp" aria-describedby="date de fin" name="com_fin_spectacle">
-              </div>
-              <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-              <button type="submit" class="btn btn-primary">Modifier</button>
-            </form>
+      <div class="modal fade" id="modal-update-date-fin-commande" tabindex="-1" aria-labelledby="modal-update-date-fin-commande-Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-update-date-fin-commande-Label">Modifier date de din</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/devis/commande/update-date-fin">
+                <div class="mb-3">
+                  <label for="date_inp" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date_inp" aria-describedby="date de fin" name="com_fin_spectacle">
+                </div>
+                <input type="hidden" name="com_id" value="<%= commande.com_id %>">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% }else{ %>
+      <div class="alert">
+        <h1>Cette commande n'a pas un panier valide.</h1>
+      </div>
+    <% } %>
   <% }%>
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>
