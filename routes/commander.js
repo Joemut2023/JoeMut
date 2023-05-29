@@ -81,7 +81,7 @@ router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
 
-  let { frais, adresse, commande, essayages } = req.body;
+  let { frais, adresse, commande, essayages, prm_code } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande

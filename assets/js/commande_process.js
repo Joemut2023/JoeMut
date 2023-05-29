@@ -35,6 +35,7 @@
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
         let adresse = document.querySelector('[name=radio_adresse]').value;
         let dates_essayages = [com_date_essayage,com_date_essayage_autre]
+        let code_promo = document.querySelector(".code_promo").value;
         let params = {
             frais:frais,
             commande:{
@@ -45,7 +46,8 @@
                 com_compl
             },
             adresse:adresse,
-            essayages:dates_essayages
+            essayages:dates_essayages,
+            prm_code:code_promo
         }
         console.log(params);
         let panier = await axios.post('/commander',params,{

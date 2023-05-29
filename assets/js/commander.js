@@ -34,6 +34,10 @@ const finalisationBg = document.querySelector(".finalisation-bg");
 const btn_info_client_connected = document.querySelector(
   ".btn_info_client_connected"
 );
+const radioConfirmDevis = document.querySelector("#confirm_devis");
+const checkConditionsGeneral = document.querySelector("#flexCheckDefault");
+const btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
+
 
 //for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");

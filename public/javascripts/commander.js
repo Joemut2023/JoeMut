@@ -38,6 +38,9 @@ var livraisonBg = document.querySelector(".livraison-bg");
 var codePromoBg = document.querySelector(".codePromo-bg");
 var finalisationBg = document.querySelector(".finalisation-bg");
 var btn_info_client_connected = document.querySelector(".btn_info_client_connected");
+var radioConfirmDevis = document.querySelector("#confirm_devis");
+var checkConditionsGeneral = document.querySelector("#flexCheckDefault");
+var btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 
 //for class tabs
 var navlink_one = document.querySelector(".btn-tab-one");

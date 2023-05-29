@@ -52,7 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, params, panier;
+      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -65,6 +65,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
             adresse = document.querySelector('[name=radio_adresse]').value;
             dates_essayages = [com_date_essayage, com_date_essayage_autre];
+            code_promo = document.querySelector(".code_promo").value;
             params = {
               frais: frais,
               commande: {
@@ -75,20 +76,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 com_compl: com_compl
               },
               adresse: adresse,
-              essayages: dates_essayages
+              essayages: dates_essayages,
+              prm_code: code_promo
             };
             console.log(params);
-            _context2.next = 13;
+            _context2.next = 14;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 13:
+          case 14:
             panier = _context2.sent;
             localStorage.setItem('storedItems', JSON.stringify([]));
             window.location.replace('/confirmation-commande');
-          case 16:
+          case 17:
           case "end":
             return _context2.stop();
         }
