@@ -41,13 +41,13 @@ const textPromo = document.querySelector(".text-promo");
 const ifCodePromo = document.querySelector("#if-codepromo");
 
 ifCodePromo.addEventListener("click", () => {
-  formPromo.style.display = "block";
-  textPromo.style.display = "none";
+  // formPromo.style.display = "block";
+  // textPromo.style.display = "none";
 });
 
 closeForme.addEventListener("click", () => {
-  formPromo.style.display = "none";
-  textPromo.style.display = "block";
+  // formPromo.style.display = "none";
+  // textPromo.style.display = "block";
 });
 
 const eventAccordeonForm = (

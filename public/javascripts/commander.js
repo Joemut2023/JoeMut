@@ -44,12 +44,12 @@ var closeForme = document.querySelector("#close-form");
 var textPromo = document.querySelector(".text-promo");
 var ifCodePromo = document.querySelector("#if-codepromo");
 ifCodePromo.addEventListener("click", function () {
-  formPromo.style.display = "block";
-  textPromo.style.display = "none";
+  // formPromo.style.display = "block";
+  // textPromo.style.display = "none";
 });
 closeForme.addEventListener("click", function () {
-  formPromo.style.display = "none";
-  textPromo.style.display = "block";
+  // formPromo.style.display = "none";
+  // textPromo.style.display = "block";
 });
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) {
   nextDiv.style.display = "block";
