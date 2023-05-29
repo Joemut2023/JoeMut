@@ -28,6 +28,7 @@ var confirmationCommandeRouter = require("./routes/confirmationCommande");
 var devisRouter = require("./routes/devis");
 var panierDetailRouter = require("./routes/panierDetail");
 var codePromoRouter = require("./routes/codepromo");
+const personalDataRouter = require('./routes/personnal_data');
 // const AdminJS = require("adminjs");
 // const AdminJSExpress = require("@adminjs/express");
 // const AdminJSSequelize = require("@adminjs/sequelize");
@@ -90,7 +91,7 @@ app.use("/panierDetail", [auth, layout], panierDetailRouter);
 app.use("/mail", [layout], mailRouter);
 app.use("/admin", [layout], adminRouter);
 app.use("/codePromo", [layout], codePromoRouter);
-
+app.use('/personal_data', personalDataRouter);
 // AdminJS.registerAdapter({
 //   Resource: AdminJSSequelize.Resource,
 //   Database: AdminJSSequelize.Database,

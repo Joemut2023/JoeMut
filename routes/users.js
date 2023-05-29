@@ -20,6 +20,7 @@ const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
 const ejs = require("ejs");
 const fs = require("fs");
 const path = require("path");
+const generate_pdf_func = require("../helpers/generate_pdf_func");
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -262,43 +263,45 @@ router.get("/historique", async function (req, res, next) {
   const clientId = req.session.userId;
   try {
     const commandeByUser = await Commande.findAll({
-      include:[
-      {
-        model:Panier,
-        attributes:['pan_id'],
-        include:[{
-          model:Panier_detail,
-          attributes:['pad_ht','pad_qte','pad_ttc']
-        }]
-      },
-      {
-        model:Chronologie,
-        attributes:['chr_id','com_id','chr_date'],
-        include:[
-          {
-            model:Statut_commande
-          }
-        ],
-        order:[['chr_date','DESC']]
-      },
-      {
-        model:Document,
-        attributes:['doc_id','doc_libelle','doc_ref','doc_date'],
-        include:[
-          {
-            model:Type_document
-          }
-        ],
-        where:{
-          tdo_id:TYPE_DOCUMENT_DEVIS
+      include: [
+        {
+          model: Panier,
+          attributes: ["pan_id"],
+          include: [
+            {
+              model: Panier_detail,
+              attributes: ["pad_ht", "pad_qte", "pad_ttc"],
+            },
+          ],
         },
-        order:[['doc_date','DESC']]
-      },
-      {
-        model:Facturation,
-        attributes:['fac_id','fac_date']
-      }
-    ],
+        {
+          model: Chronologie,
+          attributes: ["chr_id", "com_id", "chr_date"],
+          include: [
+            {
+              model: Statut_commande,
+            },
+          ],
+          order: [["chr_date", "DESC"]],
+        },
+        {
+          model: Document,
+          attributes: ["doc_id", "doc_libelle", "doc_ref", "doc_date"],
+          include: [
+            {
+              model: Type_document,
+            },
+          ],
+          where: {
+            tdo_id: TYPE_DOCUMENT_DEVIS,
+          },
+          order: [["doc_date", "DESC"]],
+        },
+        {
+          model: Facturation,
+          attributes: ["fac_id", "fac_date"],
+        },
+      ],
       where: {
         cli_id: clientId,
       },
@@ -307,7 +310,6 @@ router.get("/historique", async function (req, res, next) {
       commandeByUser,
       moment: moment,
     });
-    
   } catch (error) {
     console.log(error);
     const errorMessage = "Erreur interne du serveur";
@@ -339,34 +341,26 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/myInfo",async (req,res)=>{
+//generate pdf
+router.post("/myInfo", async (req, res) => {
+  const user_id = req.session.userId;
   try {
-    const client = await Client.findOne({include:[{model:Adresse},{model:Commande},{model:Titre}],
-      where: { cli_id: req.session.userId },
+    const user = await Client.findOne({
+      where: { cli_id: user_id },
     });
-    const panier = await Panier.findAll({
-      include: [
-        {
-          model: Panier_detail,
-          include: [{ model: Produit, attributes: ["pro_ref","pro_libelle"] }],
-        },
-      ],
-      where: { cli_id: req.session.userId },
-    });
- 
-   
-
-    // res.json(client);
-   let view = await ejs.renderFile(
-        path.join(__dirname, "../mailTemplate/user_info.ejs"),{
-          client,
-          panier
-        })
-
-    res.send(view)
+    const DOCUMENT_NAME = `personnal_data_${user.cli_id}`;
+    await generate_pdf_func(
+      `${process.env.APP_URL}personal_data/myinfo/${user.cli_id}`,
+      `../public/pdf/clients_data/${DOCUMENT_NAME}.pdf`
+    );
+    var data = fs.readFileSync(
+      path.join(__dirname, `../public/pdf/clients_data/${DOCUMENT_NAME}.pdf`)
+    );
+    res.contentType("application/pdf");
+    res.send(data);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
-})
+});
 
 module.exports = router;
