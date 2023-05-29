@@ -12,8 +12,170 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Document</title>
+    <style>
+        #page-user-info{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+        }
+       #page-user-info .logo-date{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       }
+        #page-user-info .logo-date .date{
+            color: gray;
+            font-size: 1.2rem;
+        }
+        #page-user-info .info-gen{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-top:50px;
+        }
+        .titre{
+            font-size: 1.5rem;
+        }
+        #page-user-info .info-gen .info-gen-user{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap:15%;
+        }
+        #page-user-info .adresse{
+           width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-top:30px; 
+        }
+    </style>
 </head>
 <body>
-    <h2>maman</h2>
+   <div id="page-user-info" style="width: 100%;padding: 20px 20px;">
+    <div class="logo-date" style="display: flex;flex-direction: row;">
+          <div class="logo">
+              <img src="http://aes.wcg-rdc.tech/images/logo.png" class="logo-img img-fluid" alt="" srcset="" />
+          </div>
+          <div class="date">
+            <span>29/05/2023</span> <br>
+            <span>Pathy Mavuba</span>
+          </div>
+    </div>
+
+    <div class="info-gen">
+        <h2 class="titre">Informations générales</h2>
+        <div class="info-gen-user">
+            <table class="table " style="width: 60%; border: 1px solid #dcdcdc;">
+                <tr>
+                    <td style="background-color: #dcdcdc;">Sexe</td>
+                    <td>M</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Nom</td>
+                    <td>Pathy Mavuba</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Date de naissance</td>
+                    <td>0000-00-00</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Age</td>
+                    <td>0</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Email</td>
+                    <td>Pathy@gmail.com</td>
+                </tr>
+                 <tr>
+                    <td style="background-color:#dcdcdc;">Langue</td>
+                    <td>Français</td>
+                </tr>
+            </table>
+
+            <table class="table" style="width: 60%;border: 1px solid #dcdcdc;">
+                <tr >
+                    <td style="background-color: #dcdcdc;">Date de création de compte</td>
+                    <td>2023-03-31 19:19:52</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Dernière visite</td>
+                    <td>2023-05-29 11:22:40</td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Siret</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Entreprise</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Site web</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td style="background-color: #dcdcdc;">Ape</td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+
+   </div>
+
+<div class="adresse">
+    <h2 class="titre">Adresses</h2>
+    <table class="table" style="border: 1px solid #dcdcdc ;"  >
+        <tr style="background-color: #dcdcdc;">
+            <th>Alias</th>
+            <th>Entreprise</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Téléphone(s)</th>
+            <th>Pays</th>
+            <th>Date</th>
+        </tr>
+          <tr>
+            <td>Alias</td>
+            <td>Entreprise</td>
+            <td>Nom</td>
+            <td>Adresse</td>
+            <td>Téléphone(s)</td>
+            <td>Pays</td>
+            <td>Date</td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="adresse commande">
+    <h2 class="titre">Commandes</h2>
+    <table class="table" style="border: 1px solid #dcdcdc ;"  >
+        <tr style="background-color: #dcdcdc;">
+            <th>Référence</th>
+            <th>Paiement</th>
+            <th>Statut de commande</th>
+            <th>Montant total payé</th>
+            <th>Date</th>
+        </tr>
+
+        <!-- <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr> -->
+        <tr>
+          <td>Aucune Commande</td>
+        </tr>
+    </table>
+
+</div>
+   </div>
+
+ 
 </body>
 </html>
