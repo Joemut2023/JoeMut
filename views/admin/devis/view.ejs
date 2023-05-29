@@ -43,7 +43,7 @@
               <button class="btn btn-primary">Mettre à jour l'état</button>
             </div>
           </form> 
-          <a target="_blank" href="/pdf/devis/<%= last_document_devis[0].doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
+          <a target="_blank" href="/pdf/devis/<%= last_document_devis[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
           <form action="/admin/documents/devis-mail" method="post">
             <input type="hidden" name="com_id" value="<%= commande.com_id %>">
             <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Dévis</button>
@@ -89,7 +89,7 @@
                               <h2>Total dépensé depuis inscription :</h2>
                               <% let total_depense_client = 0 %>
                               <% commande_client.Commandes.forEach(commande => { %>
-                                  <% commande.Documents.forEach(document => { %>
+                                  <% commande.Documents?.forEach(document => { %>
                                     <% if (Array.isArray(document.Paiements)) { %>
                                       <% document.Paiements.forEach(paiement => { %>
                                         <% total_depense_client += paiement.pai_montant %>
