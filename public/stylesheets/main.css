@@ -4212,7 +4212,8 @@
 }
 #page-commander .row .bloc-1 #divFinalisation,
 #page-commander .row .bloc-1 #divLivraison,
-#page-commander .row .bloc-1 #divAdress {
+#page-commander .row .bloc-1 #divAdress,
+#page-commander .row .bloc-1 #divCodePromo {
   display: none;
 }
 #page-commander .row .bloc-1 .finalisation-cursor,
