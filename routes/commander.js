@@ -12,6 +12,7 @@ const {
   Essayage,
   Client,
   Chronologie,
+  Promo,
 } = require("../models");
 const createadress = require("../helpers/createadress");
 const user_subscribe = require("../helpers/user_subscribe");
@@ -45,7 +46,8 @@ router.get("/", async (req, res) => {
     });
     if (newadress) {
       return res.render("commander/index", {
-        mode_livraisons: mode_livraisons,produits
+        mode_livraisons: mode_livraisons,
+        produits,
       });
     }
     if (userId) {
@@ -56,12 +58,14 @@ router.get("/", async (req, res) => {
       });
       if (adresses.length === 0) {
         return res.render("commander/index", {
-          mode_livraisons: mode_livraisons,produits
+          mode_livraisons: mode_livraisons,
+          produits,
         });
       } else {
         return res.render("commander/index", {
           adresses,
-          mode_livraisons: mode_livraisons,produits
+          mode_livraisons: mode_livraisons,
+          produits,
         });
       }
     } else {
@@ -92,14 +96,20 @@ router.post("/", async (req, res) => {
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
     let today = new Date();
+    let remise;
+
     const autres_frais = await Autre_frais.findAll({
       where: {
-        [Op.and]:[{auf_actif: true},{auf_debut: {[Op.lte]:today}},{auf_fin: {[Op.gte]:today}}]
-      }
+        [Op.and]: [
+          { auf_actif: true },
+          { auf_debut: { [Op.lte]: today } },
+          { auf_fin: { [Op.gte]: today } },
+        ],
+      },
     });
     var total_autres_frais = 0;
-    autres_frais.forEach(auf => {
-      total_autres_frais += auf.auf_ttc
+    autres_frais.forEach((auf) => {
+      total_autres_frais += auf.auf_ttc;
     });
     let commande_item = await Commande.create({
       frp_id: frais.frp_id,
@@ -118,6 +128,54 @@ router.post("/", async (req, res) => {
         panier.pan_id
       }-${new Date().getFullYear()}`,
     });
+
+    if (prm_code !== "") {
+      const codePromo = await Promo.findOne({
+        where: {
+          [Op.and]: [
+            {
+              prm_code: prm_code,
+            },
+            {
+              prm_actif: true,
+            },
+            {
+              prm_debut: {
+                [Op.lte]: new Date(new Date().setDate(new Date().getDate())),
+              },
+            },
+            {
+              prm_fin: {
+                [Op.gte]: new Date(new Date().setDate(new Date().getDate())),
+              },
+            },
+            {
+              prm_commande: true,
+            },
+          ],
+        },
+      });
+
+      if (codePromo) {
+        if (codePromo.prm_pourcent) {
+          remise = codePromo.prm_pourcent;
+          remise = parseFloat(
+            parseFloat(commande_item.com_ht) * (remise / 100)
+          ).toFixed(2);
+        } else if (codePromo.prm_valeur) {
+          remise = codePromo.prm_valeur;
+        }
+        await Commande.update(
+          {
+            com_remise: remise,
+            com_code_promo: prm_code,
+          },
+          { where: { com_id: commande_item.com_id } }
+        );
+        //update
+      }
+    }
+
     let chronologie = await Chronologie.create({
       stc_id: STATUT_COMMANDE_FINALISATION_DEVIS,
       com_id: commande_item.com_id,
