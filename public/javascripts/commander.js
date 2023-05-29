@@ -64,6 +64,20 @@ var ifCodePromo = document.querySelector("#if-codepromo");
 //   textPromo.style.display = "block";
 // });
 
+radioConfirmDevis.addEventListener("change", function () {
+  checkConditionsGeneral.removeAttribute("disabled");
+});
+checkConditionsGeneral.addEventListener("change", function (e) {
+  if (e.target.checked) {
+    btn_finaliser_devis.removeAttribute("disabled");
+    btn_finaliser_devis.style.backgroundColor = "#a0b21f";
+    btn_finaliser_devis.style.cursor = "pointer";
+  } else {
+    btn_finaliser_devis.setAttribute("disabled", "true");
+    btn_finaliser_devis.style.backgroundColor = "#eee";
+    btn_finaliser_devis.style.cursor = "not-allowed";
+  }
+});
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) {
   nextDiv.style.display = "block";
   currentDiv.style.display = "none";

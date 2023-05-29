@@ -38,7 +38,6 @@ const radioConfirmDevis = document.querySelector("#confirm_devis");
 const checkConditionsGeneral = document.querySelector("#flexCheckDefault");
 const btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 
-
 //for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");
 const navlink_two = document.querySelector(".btn-tab-two");
@@ -60,6 +59,22 @@ const ifCodePromo = document.querySelector("#if-codepromo");
 //   formPromo.style.display = "none";
 //   textPromo.style.display = "block";
 // });
+
+radioConfirmDevis.addEventListener("change", () => {
+  checkConditionsGeneral.removeAttribute("disabled");
+})
+
+checkConditionsGeneral.addEventListener("change", (e) => {
+  if (e.target.checked){
+     btn_finaliser_devis.removeAttribute("disabled");
+     btn_finaliser_devis.style.backgroundColor = "#a0b21f";
+     btn_finaliser_devis.style.cursor = "pointer";
+  }else{
+    btn_finaliser_devis.setAttribute("disabled","true");
+    btn_finaliser_devis.style.backgroundColor = "#eee";
+    btn_finaliser_devis.style.cursor = "not-allowed";
+  }
+});
 
 const eventAccordeonForm = (
   nextDiv,
@@ -184,7 +199,7 @@ livraisonForm.addEventListener("submit", (event) => {
 });
 
 codePromoForm.addEventListener("submit", (event) => {
-  event.preventDefault()
+  event.preventDefault();
   eventAccordeonForm(
     finalisationDiv,
     codePromoDiv,
@@ -194,8 +209,8 @@ codePromoForm.addEventListener("submit", (event) => {
     checkCodePromo,
     cursorcodePromo,
     finalisationBg
-  )
-})
+  );
+});
 
 btnModiferlivraison.addEventListener("click", (event) => {
   event.preventDefault();
@@ -210,8 +225,8 @@ btnModiferlivraison.addEventListener("click", (event) => {
   codePromoBg.style.border = "1px solid grey";
 });
 
-btnModifiercodePromo.addEventListener("click", (event)=>{
-  event.preventDefault()
+btnModifiercodePromo.addEventListener("click", (event) => {
+  event.preventDefault();
   finalisationDiv.style.display = "none";
   codePromoDiv.style.display = "block";
   codePromoBg.style.color = "white";
@@ -221,7 +236,7 @@ btnModifiercodePromo.addEventListener("click", (event)=>{
   finalisationBg.style.color = "grey";
   finalisationBg.style.backgroundColor = "white";
   finalisationBg.style.border = "1px solid grey";
-})
+});
 
 //event hide/show password on form
 btn?.addEventListener("click", function (e) {

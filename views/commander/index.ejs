@@ -805,11 +805,11 @@
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
                 />
-                <div class="input-group-append btn-add">
+                <!-- <div class="input-group-append btn-add">
                   <span class="input-group-text btn" id="basic-addon2"
                     >Ajouter</span
                   >
-                </div>
+                </div> -->
               </div>
               <div class="button btn col-md-6 btn-codePromo">
                 <button type="submit">Continuer</button>
@@ -847,6 +847,7 @@
                   type="radio"
                   value=""
                   id="confirm_devis"
+                  required
                 />
                 <label class="form-check-label" for="confirm_devis">
                   Confirmez votre devis
@@ -859,6 +860,7 @@
                   value=""
                   id="flexCheckDefault"
                   required
+                  disabled
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   J'ai lu les conditions générales de vente et j'y adheres sans
@@ -867,7 +869,7 @@
               </div>
 
               <div class="button col-md-6">
-                <button class="btn_finaliser_devis">Finaliser le devis</button>
+                <button class="btn_finaliser_devis" disabled>Finaliser le devis</button>
               </div>
             </form>
           </div>
