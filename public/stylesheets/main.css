@@ -4777,6 +4777,10 @@
 }
 #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button {
   margin-left: -170px;
+  background: #eee;
+}
+#page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button:hover {
+  cursor: not-allowed;
 }
 @media (max-width: 680px) {
   #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div button {

@@ -667,12 +667,20 @@
         .finalisation-contents
         .finalisation-content
         .form-check
+
         label {
         color: $color-primary;
       }
 
+
       .finalisations .finalisation-contents .finalisation-content div button {
         margin-left: -170px;
+        background: #eee;
+
+        
+        &:hover{
+          cursor: not-allowed;
+        }
 
         @include breakpoint(mobil) {
           margin-left: 3%;
