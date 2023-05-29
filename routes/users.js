@@ -1,6 +1,18 @@
 var express = require("express");
 var router = express.Router();
-const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_commande,Document,Type_document,Facturation } = require("../models");
+const {
+  Adresse,
+  Client,
+  Commande,
+  Panier_detail,
+  Panier,
+  Chronologie,
+  Statut_commande,
+  Document,
+  Type_document,
+  Facturation,
+  Produit,
+} = require("../models");
 var moment = require("moment");
 const { where } = require("sequelize");
 const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
@@ -241,48 +253,71 @@ router.get("/donnee", function (req, res, next) {
   res.render("users/donnee");
 });
 
+router.get("/detailsCommande/:pan_id", async (req, res) => {
+  res.locals.titre = "details commandes";
+  const { pan_id } = req.params;
+  try {
+    const panierDetails = await Panier_detail.findAll({
+      include: [{ model: Produit, attributes: ["pro_ref", "pro_libelle"] }],
+      where: { pan_id },
+    });
+    const commande = await Commande.findOne({ where: { pan_id } });
+    res.render("users/detailsCommande", {
+      panierDetails,
+      com_num: commande.com_num,
+    });
+  } catch (error) {
+    const errorMessage = "Erreur interne du serveur";
+    return res.render("users/detailsCommande", {
+      error: errorMessage,
+    });
+  }
+});
+
 router.get("/historique", async function (req, res, next) {
   res.locals.titre = "historique";
   const clientId = req.session.userId;
   try {
     const commandeByUser = await Commande.findAll({
-      include:[
-      {
-        model:Panier,
-        attributes:['pan_id'],
-        include:[{
-          model:Panier_detail,
-          attributes:['pad_ht','pad_qte','pad_ttc']
-        }]
-      },
-      {
-        model:Chronologie,
-        attributes:['chr_id','com_id','chr_date'],
-        include:[
-          {
-            model:Statut_commande
-          }
-        ],
-        order:[['chr_date','DESC']]
-      },
-      {
-        model:Document,
-        attributes:['doc_id','doc_libelle','doc_ref','doc_date'],
-        include:[
-          {
-            model:Type_document
-          }
-        ],
-        where:{
-          tdo_id:TYPE_DOCUMENT_DEVIS
+      include: [
+        {
+          model: Panier,
+          attributes: ["pan_id"],
+          include: [
+            {
+              model: Panier_detail,
+              attributes: ["pad_ht", "pad_qte", "pad_ttc"],
+            },
+          ],
         },
-        order:[['doc_date','DESC']]
-      },
-      {
-        model:Facturation,
-        attributes:['fac_id','fac_date']
-      }
-    ],
+        {
+          model: Chronologie,
+          attributes: ["chr_id", "com_id", "chr_date"],
+          include: [
+            {
+              model: Statut_commande,
+            },
+          ],
+          order: [["chr_date", "DESC"]],
+        },
+        {
+          model: Document,
+          attributes: ["doc_id", "doc_libelle", "doc_ref", "doc_date"],
+          include: [
+            {
+              model: Type_document,
+            },
+          ],
+          where: {
+            tdo_id: TYPE_DOCUMENT_DEVIS,
+          },
+          order: [["doc_date", "DESC"]],
+        },
+        {
+          model: Facturation,
+          attributes: ["fac_id", "fac_date"],
+        },
+      ],
       where: {
         cli_id: clientId,
       },
@@ -291,9 +326,7 @@ router.get("/historique", async function (req, res, next) {
       commandeByUser,
       moment: moment,
     });
-    
   } catch (error) {
-    console.log(error);
     const errorMessage = "Erreur interne du serveur";
     return res.render("users/historique", {
       error: errorMessage,
