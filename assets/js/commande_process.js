@@ -26,6 +26,11 @@
     // });
     form_finalisation.addEventListener('submit',async (e)=>{
         e.preventDefault();
+        let btn_finaliser_devis = document.getElementById('btn_finaliser_devis');
+        btn_finaliser_devis.removeAttribute("disabled");
+        btn_finaliser_devis.setAttribute("disabled","true");
+        btn_finaliser_devis.style.backgroundColor = "#eee";
+        btn_finaliser_devis.style.cursor = "not-allowed";
         let commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
         let com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
         let com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
@@ -49,13 +54,21 @@
             essayages:dates_essayages,
             prm_code:code_promo
         }
-        console.log(params);
-        let panier = await axios.post('/commander',params,{
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            },
-        });
-        localStorage.setItem('storedItems',JSON.stringify([]));
-        window.location.replace('/confirmation-commande')
+        try {
+            let panier = await axios.post('/commander',params,{
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+            });
+            if (panier.data != false) {
+                localStorage.setItem('storedItems',JSON.stringify([]));
+                window.location.replace('/confirmation-commande') 
+            }else{
+                window.location.replace('/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
     });
 })();

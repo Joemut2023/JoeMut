@@ -90,117 +90,136 @@ router.post("/", async (req, res) => {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande
 
-    let panier = await Panier.findByPk(pan_id);
+    let panier = await Panier.findByPk(pan_id,{
+      include:[{
+        model:Panier_detail,
+        attributes:['pad_id']
+      }]
+    });
     let adress_item = await Adresse.findByPk(parseInt(adresse));
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
     let today = new Date();
     let remise;
-
-    const autres_frais = await Autre_frais.findAll({
-      where: {
-        [Op.and]: [
-          { auf_actif: true },
-          { auf_debut: { [Op.lte]: today } },
-          { auf_fin: { [Op.gte]: today } },
-        ],
-      },
+    let if_commande_exist = await Commande.findOne({
+      where:{pan_id}
     });
-    var total_autres_frais = 0;
-    autres_frais.forEach((auf) => {
-      total_autres_frais += auf.auf_ttc;
-    });
-    let commande_item = await Commande.create({
-      frp_id: frais.frp_id,
-      cli_id: userId,
-      com_debut_spectacle: commande.commande_debut,
-      com_fin_spectacle: commande.com_fin_spectacle,
-      com_comment: commande.com_compl,
-      com_adr_liv: adress_item.adr_id,
-      com_adr_fac: adress_item.adr_id,
-      pan_id: panier.pan_id,
-      com_ht: somme_ht,
-      com_ttc: somme_ttc,
-      com_port: frais.frais_port,
-      com_frais: total_autres_frais,
-      com_num: `${user.cli_nom.substring(0, 3).toUpperCase()}-${
-        panier.pan_id
-      }-${new Date().getFullYear()}`,
-    });
-
-    if (prm_code !== "") {
-      const codePromo = await Promo.findOne({
-        where: {
-          [Op.and]: [
-            {
-              prm_code: prm_code,
-            },
-            {
-              prm_actif: true,
-            },
-            {
-              prm_debut: {
-                [Op.lte]: new Date(new Date().setDate(new Date().getDate())),
-              },
-            },
-            {
-              prm_fin: {
-                [Op.gte]: new Date(new Date().setDate(new Date().getDate())),
-              },
-            },
-            {
-              prm_commande: true,
-            },
-          ],
-        },
+    if (if_commande_exist) {
+      let new_panier = await Panier.create({
+        cli_id: userId,
       });
-
-      if (codePromo) {
-        if (codePromo.prm_pourcent) {
-          remise = codePromo.prm_pourcent;
-          remise = parseFloat(
-            parseFloat(commande_item.com_ht) * (remise / 100)
-          ).toFixed(2);
-        } else if (codePromo.prm_valeur) {
-          remise = codePromo.prm_valeur;
-        }
-        await Commande.update(
-          {
-            com_remise: remise,
-            com_code_promo: prm_code,
+      await new_panier.save();
+      req.session.panierId = new_panier.pan_id;
+      return res.json(false);
+    } else {
+      if (panier.Panier_details.length === 0) {
+        return res.json(false);
+      } else {
+        const autres_frais = await Autre_frais.findAll({
+          where: {
+            [Op.and]: [
+              { auf_actif: true },
+              { auf_debut: { [Op.lte]: today } },
+              { auf_fin: { [Op.gte]: today } },
+            ],
           },
-          { where: { com_id: commande_item.com_id } }
-        );
-        //update
-      }
-    }
-
-    let chronologie = await Chronologie.create({
-      stc_id: STATUT_COMMANDE_FINALISATION_DEVIS,
-      com_id: commande_item.com_id,
-      usr_id: DEFAULT_ADMIN_USER_ID,
-      chr_date: new Date(new Date().setDate(new Date().getDate())),
-    });
-    for (let i = 0; i < essayages.length; i++) {
-      if (essayages[i] !== "") {
-        let essayage = await Essayage.create({
-          com_id: commande_item.com_id,
-          ess_repetition: essayages[i],
         });
+        var total_autres_frais = 0;
+        autres_frais.forEach((auf) => {
+          total_autres_frais += auf.auf_ttc;
+        });
+        let commande_item = await Commande.create({
+          frp_id: frais.frp_id,
+          cli_id: userId,
+          com_debut_spectacle: commande.commande_debut,
+          com_fin_spectacle: commande.com_fin_spectacle,
+          com_comment: commande.com_compl,
+          com_adr_liv: adress_item.adr_id,
+          com_adr_fac: adress_item.adr_id,
+          pan_id: panier.pan_id,
+          com_ht: somme_ht,
+          com_ttc: somme_ttc,
+          com_port: frais.frais_port,
+          com_frais: total_autres_frais,
+          com_num: `${user.cli_nom.substring(0, 3).toUpperCase()}-${
+            panier.pan_id
+          }-${new Date().getFullYear()}`,
+        });
+        if (prm_code !== "") {
+          const codePromo = await Promo.findOne({
+            where: {
+              [Op.and]: [
+                {
+                  prm_code: prm_code,
+                },
+                {
+                  prm_actif: true,
+                },
+                {
+                  prm_debut: {
+                    [Op.lte]: new Date(new Date().setDate(new Date().getDate())),
+                  },
+                },
+                {
+                  prm_fin: {
+                    [Op.gte]: new Date(new Date().setDate(new Date().getDate())),
+                  },
+                },
+                {
+                  prm_commande: true,
+                },
+              ],
+            },
+          });
+          if (codePromo) {
+            if (codePromo.prm_pourcent) {
+              remise = codePromo.prm_pourcent;
+              remise = parseFloat(
+                parseFloat(commande_item.com_ht) * (remise / 100)
+              ).toFixed(2);
+            } else if (codePromo.prm_valeur) {
+              remise = codePromo.prm_valeur;
+            }
+            await Commande.update(
+              {
+                com_remise: remise,
+                com_code_promo: prm_code,
+              },
+              { where: { com_id: commande_item.com_id } }
+            );
+            //update
+          }
+        }
+        let chronologie = await Chronologie.create({
+          stc_id: STATUT_COMMANDE_FINALISATION_DEVIS,
+          com_id: commande_item.com_id,
+          usr_id: DEFAULT_ADMIN_USER_ID,
+          chr_date: new Date(new Date().setDate(new Date().getDate())),
+        });
+        for (let i = 0; i < essayages.length; i++) {
+          if (essayages[i] !== "") {
+            let essayage = await Essayage.create({
+              com_id: commande_item.com_id,
+              ess_repetition: essayages[i],
+            });
+          }
+        }
+        // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
+        let new_panier = await Panier.create({
+          cli_id: userId,
+        });
+        await new_panier.save();
+        req.session.panierId = new_panier.pan_id;
+        req.session.commandeId = commande_item.com_id;
+        return res.json(new_panier);
       }
+      
     }
-    // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
-    let new_panier = await Panier.create({
-      cli_id: userId,
-    });
-    await new_panier.save();
-    req.session.panierId = new_panier.pan_id;
-    req.session.commandeId = commande_item.com_id;
-    return res.json(new_panier);
+   
   } catch (error) {
-    console.log(error);
-    return res.status(500).json(error);
+    //console.log(error);
+    return res.json(error);
   }
 });
 router.post("/add-adresse", async (req, res) => {

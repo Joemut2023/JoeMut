@@ -52,11 +52,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, code_promo, params, panier;
+      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
+            btn_finaliser_devis = document.getElementById('btn_finaliser_devis');
+            btn_finaliser_devis.removeAttribute("disabled");
+            btn_finaliser_devis.setAttribute("disabled", "true");
+            btn_finaliser_devis.style.backgroundColor = "#eee";
+            btn_finaliser_devis.style.cursor = "not-allowed";
             commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
             com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
             com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
@@ -79,22 +84,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               essayages: dates_essayages,
               prm_code: code_promo
             };
-            console.log(params);
-            _context2.next = 14;
+            _context2.prev = 16;
+            _context2.next = 19;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 14:
+          case 19:
             panier = _context2.sent;
-            localStorage.setItem('storedItems', JSON.stringify([]));
-            window.location.replace('/confirmation-commande');
-          case 17:
+            if (panier.data != false) {
+              localStorage.setItem('storedItems', JSON.stringify([]));
+              window.location.replace('/confirmation-commande');
+            } else {
+              window.location.replace('/');
+            }
+            _context2.next = 26;
+            break;
+          case 23:
+            _context2.prev = 23;
+            _context2.t0 = _context2["catch"](16);
+            console.log(_context2.t0);
+          case 26:
           case "end":
             return _context2.stop();
         }
-      }, _callee2);
+      }, _callee2, null, [[16, 23]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);
