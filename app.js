@@ -40,6 +40,7 @@ const getPanierDetail = require("./middleware/getPanierDetail");
 const layout = require("./middleware/layout");
 var app = express();
 var adminRouter = require("./routes/admin/admin.router");
+const flashMidleware = require("./middleware/admin/admin.flash");
 require("./config/db").sync();
 const oneDay = 1000 * 60 * 60 * 24;
 // view engine setup
@@ -67,7 +68,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/images/produits", express.static("images/produits"));
 app.use(setAuthorizedUser);
 app.use(getPanierDetail);
-app.use("/", [layout], indexRouter);
+app.use("/", [layout,flashMidleware], indexRouter);
 app.use("/creation", [layout], creationRouter);
 app.use("/contact", [layout], contactRouter);
 app.use("/catalogue", [layout], catalogueRouter);

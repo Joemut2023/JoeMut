@@ -260,12 +260,18 @@
         mail
       </p>
     </div>
-    <div class="form">
+    <form class="form" action="/newsletter" method="post">
       <div class="input">
-        <input type="text" placeholder="Votre adresse e-mail" />
-        <button><i class="fa-solid fa-paper-plane"></i></button>
+        <input type="text" placeholder="Votre adresse e-mail" name="cli_mail"/>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
-    </div>
+      <% if (typeof flash != 'undefined') { %>
+        <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
+          <%= flash.message %>
+          <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+    </form>
   </div>
   <div class="section-testimonials">
     <h1>LES TÉMOIGNAGES</h1>

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 var nodemailer = require("nodemailer");
-const { Produit, Media, Tarif, Quantite } = require("../models");
+const { Produit, Media, Tarif, Quantite, Client } = require("../models");
+const { where } = require("sequelize");
 
 
 
@@ -17,10 +18,10 @@ router.get("/", async (req, res, next) => {
       { model: Media, attributes: ["med_id", "med_ressource"] },
       { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
     ],
-    where:{pro_statut:true}
+    where: { pro_statut: true }
   });
 
-  
+
   for (let index = 0; index < produits.length; index++) {
     const quantiteInitial = await Quantite.sum("qua_nbre", {
       where: {
@@ -43,7 +44,7 @@ router.get("/", async (req, res, next) => {
 //send form contact 
 router.post("/", async function (req, res, next) {
   const { email, file, textarea } = req.body;
-   let quantiteOfEachProduct = [];
+  let quantiteOfEachProduct = [];
   const produits = await Produit.findAll({
     limit: 10,
     order: [["pro_id", "DESC"]],
@@ -54,32 +55,32 @@ router.post("/", async function (req, res, next) {
   });
 
   try {
-       for (let index = 0; index < produits.length; index++) {
-         const quantiteInitial = await Quantite.sum("qua_nbre", {
-           where: {
-             pro_id: produits[index].pro_id,
-           },
-         });
-         quantiteOfEachProduct.push({
-           id: produits[index].pro_id,
-           qty: quantiteInitial,
-         });
-       }
+    for (let index = 0; index < produits.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: produits[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: produits[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
     if (email === "" || textarea === "") {
       return res.status(404).render("default/index", {
         error: true,
         errorMsg: "remplissez les champs necessaires",
         produits,
-       
+
       });
     }
     else {
 
       const transporter = nodemailer.createTransport({
-        name:"wcg-rdc.com",
+        name: "wcg-rdc.com",
         host: "SSL0.OVH.NET",
         port: 465,
-        secure : true,
+        secure: true,
         auth: {
           user: "aes@wcg-rdc.com",
           pass: process.env.PASSWORD_OVH
@@ -135,11 +136,26 @@ router.post("/", async function (req, res, next) {
 });
 
 
+router.get("/newsletter", async (req, res) => {
+  res.render("default/index")
+})
 
+router.post("/newsletter", async (req, res) => {
+  const { cli_mail } = req.body
+  try {
+    
+    const checkIfClientExist = await Client.findOne({ where: { cli_mail: cli_mail } })
+    if (checkIfClientExist) {
+      const updateNewsLetter = checkIfClientExist.update({ cli_newsletter: true}, { where: { cli_mail: cli_mail } })
+      req.session.flash = {message:"Enregistrement à la newsletter réussi!",type:"success"} 
+    }else{
+      req.session.flash = {message:"Ce client n'existe pas",type:"danger"}
+    }
+    res.redirect('/')
+  } catch (error) {
+    req.session.flash = {message:"Erreur lors de l'enregistrement de l'utilisateur dans la newsletter",type:"danger"}
+    //res.redirect('/')
+  }
+})
 
-
-
-
-
-
-module.exports = router;
+  module.exports = router;
