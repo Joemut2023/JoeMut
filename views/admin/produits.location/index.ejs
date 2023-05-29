@@ -15,6 +15,34 @@
           </div>
           
         <div class="card">
+            <h2>Rechercher un costume</h2>
+            <form class="row gx-3 gy-2 align-items-center" method="post" action="/admin/produits-en-location/search">
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label class="form-label" for="ref_produit">Réf. produits</label>
+                        <input name="pro_ref" type="text" class="form-control" id="ref_produit" placeholder="Ref produit">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label class="form-label" for="ref_commande">Réf. commande</label>
+                        <input value="<%= typeof com_num != 'undefined' ? com_num : ''%>"  name="com_num" type="text" class="form-control" id="ref_commande" placeholder="réf commande">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label for="">Client</label>
+                    <input type="text" name="cli_nom" class="form-control" placeholder="nom">
+                    <input type="text" name="cli_prenom" class="form-control" placeholder="prenom">
+                </div>
+                <div class="col-auto">
+                    <label for="">Date location</label>
+                    <input type="date" name="exp_date" class="form-control mb-1">
+                    <input type="date" name="exp_date_2" class="form-control">
+                </div>
+                <div class="col-auto btn-container">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+            </form>
             <table class="table table-striped">
                 <thead>
                   <tr>
@@ -45,26 +73,26 @@
                 </thead>
                 <tbody>
                     <% if (detail_expeditions.length > 0) { %>
-                       <% detail_expeditions.forEach(dex => { %>
+                       <% detail_expeditions?.forEach(dex => { %>
                         <tr>
                             <th scope="row"><%= dex.dex_id %></th>
-                            <td><%= dex.Expedition.Commande.com_num %></td>
+                            <td><%= dex.Expedition?.Commande.com_num %></td>
                             <td><%= dex.Produit.pro_ref %></td>
                             <td>
                                 <div>
-                                    <p><%= dex.Expedition.Commande.Client.cli_nom %></p>
-                                    <p><%= dex.Expedition.Commande.Client.cli_prenom %></p>
+                                    <p><%= dex.Expedition?.Commande.Client.cli_nom %></p>
+                                    <p><%= dex.Expedition?.Commande.Client.cli_prenom %></p>
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    <p><%= moment(dex.Expedition.exp_depart).format('DD/MM/YYYY') %></p>
-                                    <p><%= moment(dex.Expedition.Commande.com_fin_spectacle).format('DD/MM/YYYY') %></p>
+                                    <p><%= moment(dex.Expedition?.exp_depart).format('DD/MM/YYYY') %></p>
+                                    <p><%= moment(dex.Expedition?.Commande.com_fin_spectacle).format('DD/MM/YYYY') %></p>
                                 </div>
                             </td>
                             <td><%= dex.dex_nbre %></td>
                             <td><button class="btn btn-primary"><i class="fa fa-search"></i></button></td>
-                          </tr>
+                        </tr>
                        <% }) %>
                     <% } %>
                   <tr></tr>
