@@ -9,26 +9,33 @@ var infoFormInscription = document.querySelector(".info-form-inscription");
 var infoFormConnexion = document.querySelector(".info-form-connexion");
 var adresseForm = document.querySelector("#adresse-form");
 var livraisonForm = document.querySelector("#livraison-form");
+var codePromoForm = document.querySelector("#codepromo-form");
 var infoContent = document.querySelector("#info-content");
 var adresseDiv = document.querySelector("#divAdress");
 var livraisonDiv = document.querySelector("#divLivraison");
 var finalisationDiv = document.querySelector("#divFinalisation");
+var codePromoDiv = document.querySelector("#divCodePromo");
 var adresseContainer = document.querySelector("#adresse");
 var livraisonContainer = document.querySelector("#livraison");
+var codePromoContainer = document.querySelector("#codePromo");
 var finalisationContainer = document.querySelector("#finalisation");
 var btnModiferInfo = document.querySelector("#info-mod-btn");
 var btnModiferAdresse = document.querySelector("#adresse-mod-btn");
 var btnModiferlivraison = document.querySelector("#livraison-mod-btn");
+var btnModifiercodePromo = document.querySelector("#codePromo-mod-btn");
 var btnModiferfinalisation = document.querySelector("#finalisation-mod-btn");
 var checkSuccess = document.querySelector(".check-success");
 var checkAdresse = document.querySelector(".check-adresse");
 var checkLivraison = document.querySelector(".check-livraison");
+var checkCodePromo = document.querySelector(".check-codePromo");
 var cursorAdresse = document.querySelector(".adresse-cursor");
 var cursorfinalisation = document.querySelector(".finalisation-cursor");
 var cursorLivraison = document.querySelector(".livraison-cursor");
+var cursorcodePromo = document.querySelector(".codePromo-cursor");
 var borderNumber = document.querySelector(".border-number");
 var adresseBg = document.querySelector(".adresse-bg");
 var livraisonBg = document.querySelector(".livraison-bg");
+var codePromoBg = document.querySelector(".codePromo-bg");
 var finalisationBg = document.querySelector(".finalisation-bg");
 var btn_info_client_connected = document.querySelector(".btn_info_client_connected");
 
@@ -43,14 +50,17 @@ var formPromo = document.querySelector(".form-promo");
 var closeForme = document.querySelector("#close-form");
 var textPromo = document.querySelector(".text-promo");
 var ifCodePromo = document.querySelector("#if-codepromo");
-ifCodePromo.addEventListener("click", function () {
-  formPromo.style.display = "block";
-  textPromo.style.display = "none";
-});
-closeForme.addEventListener("click", function () {
-  formPromo.style.display = "none";
-  textPromo.style.display = "block";
-});
+
+// ifCodePromo.addEventListener("click", () => {
+//   formPromo.style.display = "block";
+//   textPromo.style.display = "none";
+// });
+
+// closeForme.addEventListener("click", () => {
+//   formPromo.style.display = "none";
+//   textPromo.style.display = "block";
+// });
+
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) {
   nextDiv.style.display = "block";
   currentDiv.style.display = "none";
@@ -112,16 +122,32 @@ btnModiferAdresse.addEventListener("click", function (event) {
 //change events on livraisonForm
 livraisonForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  eventAccordeonForm(finalisationDiv, livraisonDiv, btnModiferlivraison, finalisationContainer, livraisonBg, checkLivraison, cursorfinalisation, finalisationBg);
+  eventAccordeonForm(codePromoDiv, livraisonDiv, btnModiferlivraison, codePromoContainer, livraisonBg, checkLivraison, cursorfinalisation, codePromoBg);
+});
+codePromoForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  eventAccordeonForm(finalisationDiv, codePromoDiv, btnModifiercodePromo, finalisationContainer, codePromoBg, checkCodePromo, cursorcodePromo, finalisationBg);
 });
 btnModiferlivraison.addEventListener("click", function (event) {
   event.preventDefault();
-  finalisationDiv.style.display = "none";
+  codePromoDiv.style.display = "none";
   livraisonDiv.style.display = "block";
   livraisonBg.style.color = "white";
   livraisonBg.style.backgroundColor = "#61ce70";
   livraisonBg.style.border = "1px solid #61ce70";
   checkLivraison.style.display = "none";
+  codePromoBg.style.color = "grey";
+  codePromoBg.style.backgroundColor = "white";
+  codePromoBg.style.border = "1px solid grey";
+});
+btnModifiercodePromo.addEventListener("click", function (event) {
+  event.preventDefault();
+  finalisationDiv.style.display = "none";
+  codePromoDiv.style.display = "block";
+  codePromoBg.style.color = "white";
+  codePromoBg.style.backgroundColor = "#61ce70";
+  codePromoBg.style.border = "1px solid #61ce70";
+  checkCodePromo.style.display = "none";
   finalisationBg.style.color = "grey";
   finalisationBg.style.backgroundColor = "white";
   finalisationBg.style.border = "1px solid grey";

@@ -594,6 +594,7 @@
           <% } %>
         </div>
       </div>
+
       <div class="adresses livraisons" id="livraison">
         <div class="big-title livraison-cursor row">
           <div class="border-number livraison-bg col-2">3</div>
@@ -609,7 +610,6 @@
           </div>
         </div>
         <hr />
-
         <div class="livraison-content" id="divLivraison">
           <div class="text-contents">
             <div class="text-1">
@@ -773,9 +773,60 @@
         </div>
       </div>
 
+      <div class="adresses codePromo" id="codePromo">
+        <div class="big-title codePromo-cursor row">
+          <div class="border-number codePromo-bg col-2">4</div>
+          <div class="check-success check-codePromo col-1">
+            <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
+          </div>
+          <div class="title-h4 col-7">
+            <h4>CODE PROMO</h4>
+          </div>
+          <div class="btn btn-modif col-md-2" id="codePromo-mod-btn">
+            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+            <span>Modfier</span>
+          </div>
+        </div>
+        <hr />
+        <div class="codePromo-content" id="divCodePromo">
+          <form class="codepromo-content" id="codepromo-form">
+            <div class="text-promo">
+              <p id="if-codepromo">
+                Entrer uniquement le code promo pour un produit.
+              </p>
+            </div>
+            <div class="form-promo">
+              <div class="input-group mb-3 form-codepromo">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Code promo"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append btn-add">
+                  <span class="input-group-text btn" id="basic-addon2"
+                    >Ajouter</span
+                  >
+                </div>
+              </div>
+              <div class="button btn col-md-6 btn-codePromo">
+                <button type="submit">Continuer</button>
+              </div>
+              <!-- <div class="text">
+                <p id="close-form">
+                  Vous n'avez pas de code promo ? <span>Passer</span>
+                </p>
+              </div> -->
+            </div>
+          </form>
+          <!-- <hr /> -->
+        </div>
+      </div>
+
       <div class="adresses finalisations" id="finalisation">
         <div class="big-title finalisation-cursor row">
-          <div class="border-number finalisation-bg col-2">4</div>
+          <div class="border-number finalisation-bg col-2">5</div>
           <div class="check-success col-1">
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>
@@ -829,7 +880,7 @@
         <span id="article">article</span>
       </div>
 
-      <div  class="hidden-detail">
+      <div class="hidden-detail">
         <div id="hidden-detail">
           <span> afficher les details</span
           ><span><i class="fa-solid fa-chevron-down"></i></span>
@@ -846,8 +897,9 @@
 
             <div class="w-80 d-flex flex-column">
               <p><%= produit.Produit.pro_libelle %></p>
-              <p> <%=  produit.pad_qte %> x
-                <%= produit.pad_ttc.toFixed(2).toString().replace(".",",") %> €
+              <p>
+                <%= produit.pad_qte %> x <%=
+                produit.pad_ttc.toFixed(2).toString().replace(".",",") %> €
               </p>
             </div>
           </div>
@@ -877,7 +929,7 @@
         <div class="price" id="total-price">38, 00$</div>
       </div>
 
-      <div class="codepromo-content">
+      <!-- <div class="codepromo-content">
         <div class="text-promo">
           <p id="if-codepromo">Vous avez un code promo ?</p>
         </div>
@@ -900,7 +952,7 @@
             <p id="close-form">Fermer</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

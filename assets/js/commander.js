@@ -3,26 +3,33 @@ const infoFormInscription = document.querySelector(".info-form-inscription");
 const infoFormConnexion = document.querySelector(".info-form-connexion");
 const adresseForm = document.querySelector("#adresse-form");
 const livraisonForm = document.querySelector("#livraison-form");
+const codePromoForm = document.querySelector("#codepromo-form");
 const infoContent = document.querySelector("#info-content");
 const adresseDiv = document.querySelector("#divAdress");
 const livraisonDiv = document.querySelector("#divLivraison");
 const finalisationDiv = document.querySelector("#divFinalisation");
+const codePromoDiv = document.querySelector("#divCodePromo");
 const adresseContainer = document.querySelector("#adresse");
 const livraisonContainer = document.querySelector("#livraison");
+const codePromoContainer = document.querySelector("#codePromo");
 const finalisationContainer = document.querySelector("#finalisation");
 const btnModiferInfo = document.querySelector("#info-mod-btn");
 const btnModiferAdresse = document.querySelector("#adresse-mod-btn");
 const btnModiferlivraison = document.querySelector("#livraison-mod-btn");
+const btnModifiercodePromo = document.querySelector("#codePromo-mod-btn");
 const btnModiferfinalisation = document.querySelector("#finalisation-mod-btn");
 const checkSuccess = document.querySelector(".check-success");
 const checkAdresse = document.querySelector(".check-adresse");
 const checkLivraison = document.querySelector(".check-livraison");
+const checkCodePromo = document.querySelector(".check-codePromo");
 const cursorAdresse = document.querySelector(".adresse-cursor");
 const cursorfinalisation = document.querySelector(".finalisation-cursor");
 const cursorLivraison = document.querySelector(".livraison-cursor");
+const cursorcodePromo = document.querySelector(".codePromo-cursor");
 const borderNumber = document.querySelector(".border-number");
 const adresseBg = document.querySelector(".adresse-bg");
 const livraisonBg = document.querySelector(".livraison-bg");
+const codePromoBg = document.querySelector(".codePromo-bg");
 const finalisationBg = document.querySelector(".finalisation-bg");
 const btn_info_client_connected = document.querySelector(
   ".btn_info_client_connected"
@@ -40,15 +47,15 @@ const closeForme = document.querySelector("#close-form");
 const textPromo = document.querySelector(".text-promo");
 const ifCodePromo = document.querySelector("#if-codepromo");
 
-ifCodePromo.addEventListener("click", () => {
-  formPromo.style.display = "block";
-  textPromo.style.display = "none";
-});
+// ifCodePromo.addEventListener("click", () => {
+//   formPromo.style.display = "block";
+//   textPromo.style.display = "none";
+// });
 
-closeForme.addEventListener("click", () => {
-  formPromo.style.display = "none";
-  textPromo.style.display = "block";
-});
+// closeForme.addEventListener("click", () => {
+//   formPromo.style.display = "none";
+//   textPromo.style.display = "block";
+// });
 
 const eventAccordeonForm = (
   nextDiv,
@@ -115,6 +122,7 @@ btnModiferInfo.addEventListener("click", (event) => {
   adresseBg.style.backgroundColor = "white";
   adresseBg.style.border = "1px solid grey";
 });
+
 btn_info_client_connected?.addEventListener("click", (event) => {
   eventAccordeonForm(
     adresseDiv,
@@ -160,29 +168,56 @@ btnModiferAdresse.addEventListener("click", (event) => {
 livraisonForm.addEventListener("submit", (event) => {
   event.preventDefault();
   eventAccordeonForm(
-    finalisationDiv,
+    codePromoDiv,
     livraisonDiv,
     btnModiferlivraison,
-    finalisationContainer,
+    codePromoContainer,
     livraisonBg,
     checkLivraison,
     cursorfinalisation,
-    finalisationBg
+    codePromoBg
   );
 });
 
+codePromoForm.addEventListener("submit", (event) => {
+  event.preventDefault()
+  eventAccordeonForm(
+    finalisationDiv,
+    codePromoDiv,
+    btnModifiercodePromo,
+    finalisationContainer,
+    codePromoBg,
+    checkCodePromo,
+    cursorcodePromo,
+    finalisationBg
+  )
+})
+
 btnModiferlivraison.addEventListener("click", (event) => {
   event.preventDefault();
-  finalisationDiv.style.display = "none";
+  codePromoDiv.style.display = "none";
   livraisonDiv.style.display = "block";
   livraisonBg.style.color = "white";
   livraisonBg.style.backgroundColor = "#61ce70";
   livraisonBg.style.border = "1px solid #61ce70";
   checkLivraison.style.display = "none";
+  codePromoBg.style.color = "grey";
+  codePromoBg.style.backgroundColor = "white";
+  codePromoBg.style.border = "1px solid grey";
+});
+
+btnModifiercodePromo.addEventListener("click", (event)=>{
+  event.preventDefault()
+  finalisationDiv.style.display = "none";
+  codePromoDiv.style.display = "block";
+  codePromoBg.style.color = "white";
+  codePromoBg.style.backgroundColor = "#61ce70";
+  codePromoBg.style.border = "1px solid #61ce70";
+  checkCodePromo.style.display = "none";
   finalisationBg.style.color = "grey";
   finalisationBg.style.backgroundColor = "white";
   finalisationBg.style.border = "1px solid grey";
-});
+})
 
 //event hide/show password on form
 btn?.addEventListener("click", function (e) {
@@ -262,6 +297,7 @@ function toggle_visibility(id) {
     });
   });
 })();
+
 const hiddenDetailsBtn = document.querySelector("#hidden-detail");
 const detailItem = document.querySelector(".detail-items");
 

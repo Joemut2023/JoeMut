@@ -4212,12 +4212,14 @@
 }
 #page-commander .row .bloc-1 #divFinalisation,
 #page-commander .row .bloc-1 #divLivraison,
-#page-commander .row .bloc-1 #divAdress {
+#page-commander .row .bloc-1 #divAdress,
+#page-commander .row .bloc-1 #divCodePromo {
   display: none;
 }
 #page-commander .row .bloc-1 .finalisation-cursor,
 #page-commander .row .bloc-1 .adresse-cursor,
-#page-commander .row .bloc-1 .livraison-cursor {
+#page-commander .row .bloc-1 .livraison-cursor,
+#page-commander .row .bloc-1 .codePromo-cursor {
   cursor: not-allowed;
 }
 #page-commander .row .bloc-1 .informations .big-title .border-number {
@@ -4737,6 +4739,36 @@
     margin-left: 30%;
   }
 }
+#page-commander .row .bloc-1 .codePromo .codepromo-content {
+  width: 70%;
+  padding: 10px;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .text-promo p {
+  text-decoration: none;
+  color: #a0b21f;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .form-codepromo {
+  margin-top: 10px;
+  width: 80%;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .form-codepromo input,
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .form-codepromo span {
+  border-radius: 0px;
+  padding: 10px 15px;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .form-codepromo .btn-add span {
+  background-color: #a0b21f;
+  color: #fff;
+  cursor: pointer;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .text p {
+  color: #7a7a7a;
+  cursor: pointer;
+}
+#page-commander .row .bloc-1 .codePromo .codepromo-content .form-promo .text p span {
+  color: #a0b21f;
+  cursor: pointer;
+}
 #page-commander .row .bloc-1 .finalisations .finalisation-contents .finalisation-content div {
   margin-top: 30px;
 }
@@ -4790,36 +4822,6 @@
 #page-commander .bloc-2 .total div {
   font-size: larger;
   color: #232323;
-}
-#page-commander .bloc-2 .codepromo-content .text-promo p {
-  text-decoration: none;
-  text-align: center;
-  color: #a0b21f;
-  cursor: pointer;
-  padding-top: 10px;
-}
-#page-commander .bloc-2 .codepromo-content .form-promo {
-  display: none;
-}
-#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo {
-  margin-top: 10px;
-  width: 80%;
-  margin: auto;
-}
-#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo input,
-#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo span {
-  border-radius: 0px;
-  padding: 10px;
-}
-#page-commander .bloc-2 .codepromo-content .form-promo .form-codepromo .btn-add span {
-  background-color: #a0b21f;
-  color: #fff;
-  cursor: pointer;
-}
-#page-commander .bloc-2 .codepromo-content .form-promo .text p {
-  text-align: center;
-  color: #a0b21f;
-  cursor: pointer;
 }
 #page-commander .detail-produit-img {
   width: 20%;
