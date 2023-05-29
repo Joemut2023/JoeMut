@@ -1,6 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_commande,Document,Type_document,Facturation } = require("../models");
+const {
+  Adresse,
+  Client,
+  Commande,
+  Panier_detail,
+  Panier,
+  Chronologie,
+  Statut_commande,
+  Document,
+  Type_document,
+  Facturation,
+  Produit,
+  Titre,
+} = require("../models");
 var moment = require("moment");
 const { where } = require("sequelize");
 const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
@@ -328,8 +341,27 @@ router.get("/logout", (req, res) => {
 
 router.get("/myInfo",async (req,res)=>{
   try {
+    const client = await Client.findOne({include:[{model:Adresse},{model:Commande},{model:Titre}],
+      where: { cli_id: req.session.userId },
+    });
+    const panier = await Panier.findAll({
+      include: [
+        {
+          model: Panier_detail,
+          include: [{ model: Produit, attributes: ["pro_ref","pro_libelle"] }],
+        },
+      ],
+      where: { cli_id: req.session.userId },
+    });
+ 
+   
+
+    // res.json(client);
    let view = await ejs.renderFile(
-        path.join(__dirname, "../mailTemplate/user_info.ejs"))
+        path.join(__dirname, "../mailTemplate/user_info.ejs"),{
+          client,
+          panier
+        })
 
     res.send(view)
   } catch (error) {
