@@ -28,7 +28,8 @@
       }
       #page-user-info .logo-date .date {
         color: gray;
-        font-size: 1.2rem;
+        font-size:.9rem;
+        opacity: .7;
       }
       #page-user-info .info-gen {
         width: 100%;
@@ -37,7 +38,8 @@
         padding-top: 50px;
       }
       .titre {
-        font-size: 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
       }
       #page-user-info .info-gen .info-gen-user {
         width: 100%;
@@ -57,6 +59,9 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+      }
+      .tab-text{
+        font-size: .8rem;
       }
       .page-pied{
         width: 100%;
@@ -88,7 +93,7 @@
       <div class="info-gen">
         <h2 class="titre">Informations générales</h2>
         <div class="info-gen-user">
-          <table class="table" style="width: 60%; border: 1px solid #dcdcdc">
+          <table class="table tab-text " style="width: 60%; border: 1px solid #dcdcdc">
             <tr>
               <td style="background-color: #dcdcdc">Sexe</td>
                  <td><%= client.Titre.tit_libelle === "M" ? "M" : "F"  %></td>
@@ -115,7 +120,7 @@
             </tr>
           </table>
 
-          <table class="table" style="width: 60%; border: 1px solid #dcdcdc">
+          <table class="table tab-text" style="width: 60%; border: 1px solid #dcdcdc">
             <!-- <tr>
               <td style="background-color: #dcdcdc">
                 Date de création de compte
@@ -148,7 +153,7 @@
 
       <div class="adresse">
         <h2 class="titre">Adresses</h2>
-        <table class="table" style="border: 1px solid #dcdcdc">
+        <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
           <tr style="background-color: #dcdcdc">
             <th>Alias</th>
             <th>Entreprise</th>
@@ -172,7 +177,7 @@
 
       <div class="adresse commande">
         <h2 class="titre">Commandes</h2>
-        <table class="table" style="border: 1px solid #dcdcdc">
+        <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
           <tr style="background-color: #dcdcdc">
             <th>Référence</th>
             <th>Paiement</th>
@@ -195,7 +200,7 @@
       </div>
       <div class="adresse paniers">
         <h2 class="titre">Paniers</h2>
-        <table class="table" style="border: 1px solid #dcdcdc">
+        <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
           <tr style="background-color: #dcdcdc">
             <th>ID</th>
             <th class="w-75 text-center">Nombre total de produits</th>
@@ -208,10 +213,10 @@
           </tr>
         </table>
         <div class="produit" style="display: flex; width: 100%">
-          <h5 style="font-size: 0.9rem">
+          <h5 style="font-size: 0.6rem">
             Produit(s) dans le panier <span>45</span> :
           </h5>
-          <table style="width: 80%; border: 1px solid #dcdcdc">
+          <table class="table table-striped tab-text" style="width: 80%; border: 1px solid #dcdcdc">
             <tr style="background-color: #dcdcdc">
               <th><i>Référence</i></th>
               <th class="w-75 text-center"><i>Nom</i></th>
