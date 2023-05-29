@@ -4,6 +4,9 @@ const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_comman
 var moment = require("moment");
 const { where } = require("sequelize");
 const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
+const ejs = require("ejs");
+const fs = require("fs");
+const path = require("path");
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -322,5 +325,16 @@ router.get("/logout", (req, res) => {
   delete res.locals.user;
   res.redirect("/");
 });
+
+router.get("/myInfo",async (req,res)=>{
+  try {
+   let view = await ejs.renderFile(
+        path.join(__dirname, "../mailTemplate/user_info.ejs"))
+
+    res.send(view)
+  } catch (error) {
+    console.log(error.message);
+  }
+})
 
 module.exports = router;
