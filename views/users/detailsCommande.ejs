@@ -1,0 +1,60 @@
+<div id="page-historique" class="container">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+        <li class="breadcrumb-item">
+          <a href="/mon-compte/#page-mon-compte">Mon compte</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Historique</li>
+      </ol>
+    </nav>
+  </div>
+  <% if (typeof error !== 'undefined') { %>
+  <div class="row">
+    <div class="msg-error">
+      <div class="alert alert-danger" role="alert"><%= error %></div>
+    </div>
+  </div>
+  <% } else { %>
+  <h2>Historique de vos commandes :</h2>
+  <div class="row row-list">
+    <div class="msg">
+      <h6>
+        Vous trouverez ici les produits contenus dans votre commande
+        <span> <%= com_num %></span>
+      </h6>
+      <div class="commande-liste">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Référence</th>
+              <th scope="col">Libelle</th>
+              <th scope="col">Prix unitaire (€)</th>
+              <th scope="col">Quantité</th>
+              <th scope="col">Total (€)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% panierDetails && panierDetails.forEach(function(panierDetail) {
+            %>
+            <tr>
+              <td><%= panierDetail.Produit.pro_ref %></td>
+              <td><%= panierDetail.Produit.pro_libelle %></td>
+              <td>
+                <%= panierDetail.pad_ht.toFixed(2).toString().replace('.',',')%>
+              </td>
+              <td><%= panierDetail.pad_qte %></td>
+              <td>
+                <%= (panierDetail.pad_ttc *
+                panierDetail.pad_qte).toFixed(2).toString().replace('.',',') %>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
