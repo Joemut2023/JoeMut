@@ -1,21 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const {
-  Adresse,
-  Client,
-  Commande,
-  Panier_detail,
-  Panier,
-  Chronologie,
-  Statut_commande,
-  Document,
-  Type_document,
-  Facturation,
-  Produit,
-} = require("../models");
+const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_commande,Document,Type_document,Facturation } = require("../models");
 var moment = require("moment");
 const { where } = require("sequelize");
 const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
+const ejs = require("ejs");
+const fs = require("fs");
+const path = require("path");
+const generate_pdf_func = require("../helpers/generate_pdf_func");
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -279,17 +271,12 @@ router.get("/historique", async function (req, res, next) {
   const clientId = req.session.userId;
   try {
     const commandeByUser = await Commande.findAll({
-      include: [
-        {
           model: Panier,
           attributes: ["pan_id"],
-          include: [
-            {
-              model: Panier_detail,
-              attributes: ["pad_ht", "pad_qte", "pad_ttc"],
-            },
-          ],
-        },
+          include: [{
+          model: Panier_detail,
+          attributes: ["pad_ht", "pad_qte", "pad_ttc"],
+        }, 
         {
           model: Chronologie,
           attributes: ["chr_id", "com_id", "chr_date"],
@@ -316,12 +303,12 @@ router.get("/historique", async function (req, res, next) {
         {
           model: Facturation,
           attributes: ["fac_id", "fac_date"],
-        },
-      ],
+        }]
+      ,
       where: {
         cli_id: clientId,
-      },
-    });
+      }});
+      
     return res.render("users/historique", {
       commandeByUser,
       moment: moment,
@@ -354,6 +341,28 @@ router.get("/logout", (req, res) => {
   req.session.destroy();
   delete res.locals.user;
   res.redirect("/");
+});
+
+//generate pdf
+router.post("/myInfo", async (req, res) => {
+  const user_id = req.session.userId;
+  try {
+    const user = await Client.findOne({
+      where: { cli_id: user_id },
+    });
+    const DOCUMENT_NAME = `personnal_data_${user.cli_id}`;
+    await generate_pdf_func(
+      `${process.env.APP_URL}personal_data/myinfo/${user.cli_id}`,
+      `../public/pdf/clients_data/${DOCUMENT_NAME}.pdf`
+    );
+    var data = fs.readFileSync(
+      path.join(__dirname, `../public/pdf/clients_data/${DOCUMENT_NAME}.pdf`)
+    );
+    res.contentType("application/pdf");
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

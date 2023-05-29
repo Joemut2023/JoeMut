@@ -66,5 +66,6 @@ config/config.json
 public/images/produits
 public/pdf/devis/*
 public/pdf/bon_essage/*
+public/pdf/clients_data/*
 assets/js/url.js
 public/pdf/bon_livraison/*
