@@ -15,6 +15,34 @@
           </div>
           
         <div class="card">
+            <h2>Rechercher un costume</h2>
+            <form class="row gx-3 gy-2 align-items-center">
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label class="form-label" for="ref_produit">Réf. produits</label>
+                        <input name="pro_ref" type="text" class="form-control" id="ref_produit" placeholder="Ref produit">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label class="form-label" for="ref_commande">Réf. commande</label>
+                        <input name="com_num" type="text" class="form-control" id="ref_commande" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label for="">Client</label>
+                    <input type="text" name="cli_nom" class="form-control">
+                    <input type="text" name="cli_prenom" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <label for="">Date location</label>
+                    <input type="date" name="exp_date" class="form-control mb-1">
+                    <input type="date" name="exp_date_2" class="form-control">
+                </div>
+                <div class="col-auto btn-container">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+            </form>
             <table class="table table-striped">
                 <thead>
                   <tr>
