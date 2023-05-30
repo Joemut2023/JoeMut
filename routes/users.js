@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 const { Adresse, Client, Commande,Panier_detail,Panier,Chronologie,Statut_commande,Document,Type_document,Facturation } = require("../models");
 var moment = require("moment");
-const { where } = require("sequelize");
 const { TYPE_DOCUMENT_DEVIS } = require("../helpers/utils_const");
 const ejs = require("ejs");
 const fs = require("fs");

@@ -23,12 +23,12 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
               port: 465,
               secure: true,
               auth: {
-                user: "aes@wcg-rdc.com",
+                user: process.env.MAIL_ADRESSE,
                 pass: process.env.PASSWORD_OVH,
               },
             });
           const mailOptions = {
-            from: "aes@wcg-rdc.com",
+            from: process.env.MAIL_ADRESSE,
             to: `${cli_mail}`,
             subject: subject,
             html: html,
