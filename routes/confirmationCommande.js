@@ -65,6 +65,7 @@ router.get("/", async (req, res, next) => {
           commande,
           adresseLiv,
           adresseFac,
+          sous_total,
           sous_totalCmd: sous_totalCmd,
           produitsPopulaires: produitsPopulaires,
           totalCmd: totalCmd,

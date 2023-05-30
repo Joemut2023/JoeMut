@@ -20,7 +20,7 @@ class CommandeCalcul{
      */
     calculPanierTTC(){
         let total_panier_detail_ttc = 0
-        for (let index = 0; index < this.panier_details.length; index++) {
+        for (let index = 0; index < this.panier_details; index++) {
             total_panier_detail_ttc +=this.panier_details[index].pad_ttc * this.panier_details[index].pad_qte;
         }
         this.panierDetailTTC = total_panier_detail_ttc;
