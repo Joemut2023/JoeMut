@@ -154,48 +154,60 @@
       <div class="adresse">
         <h2 class="titre">Adresses</h2>
         <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
-          <tr style="background-color: #dcdcdc">
+              <tr style="background-color: #dcdcdc">
             <th>Alias</th>
             <th>Entreprise</th>
             <th>Nom</th>
             <th>Adresse</th>
             <th>Téléphone(s)</th>
             <th>Pays</th>
-            <th>Date</th>
+            <!-- <th>Date</th> -->
           </tr>
-          <tr>
-            <td>Alias</td>
-            <td>Entreprise</td>
-            <td>Nom</td>
-            <td>Adresse</td>
-            <td>Téléphone(s)</td>
-            <td>Pays</td>
-            <td>Date</td>
+          <% client.Adresses.forEach(element => { %>
+             <tr>
+            <td><%= element.adr_nom %></td>
+            <td><%= element.adr_societe %></td>
+            <td><%= element.prenom %>  <%= element.adr_nom %></td>
+            <td><%= element.adr_adresse %></td>
+            <td><%= element.adr_phone %></td>
+            <td><%= element.adr_pays %></td>
+            <!-- <td>Date</td> -->
           </tr>
+          <% }) %>
         </table>
       </div>
 
       <div class="adresse commande">
         <h2 class="titre">Commandes</h2>
         <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
-          <tr style="background-color: #dcdcdc">
-            <th>Référence</th>
-            <th>Paiement</th>
-            <th>Statut de commande</th>
-            <th>Montant total payé</th>
-            <th>Date</th>
-          </tr>
+             <tr style="background-color: #dcdcdc">
+              <th>Référence</th>
+              <!-- <th>Paiement</th>
+              <th>Statut de commande</th> -->
+              <th>Montant total payé ( € )</th>
+              <th>Date</th>
+            </tr>
+          <% if (client.Commandes.length !== 0) { %>
+            <% client.Commandes.forEach(element => { %>
 
-          <!-- <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> -->
           <tr>
+            <td><%= element.com_num %></td>
+            <!-- <td></td>
+            <td></td> -->
+            <td> <%= (element.com_ttc + element.com_frais + element.com_port).toFixed(2).toString().replace(".",",")%></td>
+            <td><%= (element.com_date).toLocaleDateString('fr-fr')%>  <%= (element.com_date).getHours()%>:<%=(element.com_date).getMinutes()%>:<%= (element.com_date).getSeconds() %></td>
+        </tr>
+            <% }) %>
+
+            
+            <% } else { %>
+               <tr>
             <td>Aucune Commande</td>
           </tr>
+          <% } %>
+      
+
+         
         </table>
       </div>
       <div class="adresse paniers">
