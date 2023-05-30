@@ -89,7 +89,7 @@ router.post('/bon-essayage',async (req,res)=>{
                 doc_libelle:`ESS-${document.doc_id}-${commande.com_num.trim()}`
             },{where:{doc_id:document.doc_id}});
         });
-        req.session.flash = {message:"Bon d'essayage crée avec succée",type:"success"}
+        req.session.flash = {message:"Bon d'essayage crée avec succée, le pdf sera généré lors de l'envoi du mail au client",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
         req.session.flash = {message:erroMsg,type:"danger"}
@@ -106,7 +106,7 @@ router.post('/bon-livraison',async (req,res)=>{
                 doc_libelle:`LIV-${document.doc_id}-${commande.com_num.trim()}`
             },{where:{doc_id:document.doc_id}});
         });
-        req.session.flash = {message:"Bon de livraison créé",type:"success"}
+        req.session.flash = {message:"Bon de livraison créé, le pdf sera généré lors de l'envoi du mail au client",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
         req.session.flash = {message:erroMsg,type:"danger"}
@@ -262,7 +262,7 @@ router.post('/bon-livraison-pdf',async (req,res)=>{
             res.redirect(`/admin/devis/view/${com_id}`);   
         }
     } catch (error) {
-        console.log(error);
+       // console.log(error);
         req.session.flash = {message:erroMsg,type:"danger"}
         res.redirect(`/admin/devis/view/${com_id}`);
     }
