@@ -199,7 +199,7 @@
         </tr>
             <% }) %>
 
-            
+
             <% } else { %>
                <tr>
             <td>Aucune Commande</td>
@@ -215,32 +215,54 @@
         <table class="table table-striped tab-text" style="border: 1px solid #dcdcdc">
           <tr style="background-color: #dcdcdc">
             <th>ID</th>
-            <th class="w-75 text-center">Nombre total de produits</th>
+            <th class="">Nombre total de produits</th>
+             <th>Référence</th>
+              <th class="w-25">Nom</th>
+              <th>Prix HT ( € )</th>
+              <!-- <th>Quantité</th> -->
             <th>Date</th>
           </tr>
-          <tr>
-            <td>#45</td>
-            <td class="w-75 text-center">7</td>
-            <td>2023-05-29 11:23:09</td>
+          <% panier?.forEach(element => { %>
+             <tr>
+            <td>#<%= element.pan_id %></td>
+            <td class=""><%= element.Panier_details?.length %></td>
+            <td> <% element.Panier_details?.forEach(item => { %>
+              <span><%= item.Produit.pro_ref %></span> <br>
+            <% }) %> </td>
+             <td class="w-25"> <% element.Panier_details?.forEach(item => { %>
+              <span><%= item.Produit.pro_libelle %></span> <br>
+            <% }) %> </td>
+              <td><% element.Panier_details?.forEach(item => { %>
+              <span><%= (item.Produit.Tarifs[0].tar_ht).toFixed(2).toString().replace(".",",") %></span> <br>
+            <% }) %></td>
+              <!-- <td><% element.Panier_details?.forEach(item => { %>
+              <span><%= (item.Produit.Quantites[0].qua_nbre) %></span> <br>
+            <% }) %></td> -->
+            <td><%= (element.pan_date).toLocaleDateString('fr-fr')%>  <%= (element.pan_date).getHours()%>:<%=(element.pan_date).getMinutes()%>:<%= (element.pan_date).getSeconds() %></td>
           </tr>
+          <% }) %>
+        
         </table>
-        <div class="produit" style="display: flex; width: 100%">
-          <h5 style="font-size: 0.6rem">
+        <!-- <div class="produit" style="display: flex; width: 100%">
+          <h5 style="font-size: 0.7rem">
             Produit(s) dans le panier <span>45</span> :
           </h5>
           <table class="table table-striped tab-text" style="width: 80%; border: 1px solid #dcdcdc">
             <tr style="background-color: #dcdcdc">
               <th><i>Référence</i></th>
               <th class="w-75 text-center"><i>Nom</i></th>
+              <th>Prix HT ( € )</th>
               <th><i>Quantité</i></th>
             </tr>
+         
             <tr>
               <td><i>R-6</i></td>
               <td class="w-75 text-center"><i>jsk</i></td>
+              <td><i></i></td>
               <td><i>6</i></td>
             </tr>
           </table>
-        </div>
+        </div> -->
       </div>
 
       <div class="page-pied">
