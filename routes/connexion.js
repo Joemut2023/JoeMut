@@ -9,7 +9,6 @@ const {
   Media,
 } = require("../models");
 var nodemailer = require("nodemailer");
-let { Op } = require("sequelize");
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
 let moment = require("moment");
@@ -134,13 +133,13 @@ router.post("/password", async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "aes@wcg-rdc.com",
+        user: process.env.MAIL_ADRESSE,
         pass: process.env.PASSWORD_OVH,
       },
     });
     const mailOptions = {
       to: client.cli_mail,
-      from: "aes@wcg-rdc.com",
+      from: process.env.MAIL_ADRESSE,
       subject: "Réinitialisation du mot de passe",
       html: `<div> <p>Veillez cliquer sur ce  <a href="${link}">lien</a> pour réinitialiser votre mot de passe </p></div>`,
     };
