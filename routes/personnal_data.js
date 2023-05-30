@@ -1,6 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { Client, Panier, Panier_detail,Produit,Adresse,Commande,Titre } = require("../models");
+const {
+  Client,
+  Panier,
+  Panier_detail,
+  Produit,
+  Adresse,
+  Commande,
+  Titre,
+  Tarif,
+  Quantite,
+} = require("../models");
 const ejs = require("ejs");
 const fs = require("fs");
 const path = require("path");
@@ -15,13 +25,13 @@ router.get("/myInfo/:cli_id", async (req, res) => {
       include: [
         {
           model: Panier_detail,
-          include: [{ model: Produit, attributes: ["pro_ref", "pro_libelle"] }],
+          include: [{ model: Produit, attributes: ["pro_ref", "pro_libelle"],include:[{model:Tarif,attributes:["tar_ht"]},{model:Quantite,attributes:["qua_nbre"]}] }],
         },
       ],
       where: { cli_id: cli_id },
     });
 
-    // res.json(client);
+    // res.json(panier);
     let view = await ejs.renderFile(
       path.join(__dirname, "../mailTemplate/user_info.ejs"),
       {
