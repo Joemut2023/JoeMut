@@ -248,7 +248,7 @@
         display:flex;
         flex-direction:row;
         column-gap:2rem;
-        row-gap:6rem;
+        row-gap:5rem;
       }
       .produit {
         width: 25%;
@@ -266,11 +266,11 @@
           width:40%;
         }
         .image-cadre {
-          width: 100%;
-          height: 70%;
+          width: 180px;
+          height:200px;
           @include breakpoint(mobil){
-            width: 100%;
-            height:90%;
+            width: 120px;
+            height:140px;
             
           }
           img {
@@ -288,7 +288,7 @@
         }
         .bar{
           height: 5px;
-          padding: 10px 0px 0px 0px;
+          padding: 5px 0px 0px 0px;
           margin-bottom: 5px;
         }
         .detail {
