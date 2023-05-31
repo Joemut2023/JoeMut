@@ -2535,13 +2535,13 @@
   }
 }
 #nouvelleCollection .catalogue .cat-body .produit .image-cadre {
-  width: 100%;
-  height: 70%;
+  width: 180px;
+  height: 200px;
 }
 @media (max-width: 680px) {
   #nouvelleCollection .catalogue .cat-body .produit .image-cadre {
-    width: 100%;
-    height: 90%;
+    width: 120px;
+    height: 140px;
   }
 }
 #nouvelleCollection .catalogue .cat-body .produit .image-cadre img {
@@ -2557,7 +2557,7 @@
 }
 #nouvelleCollection .catalogue .cat-body .produit .bar {
   height: 5px;
-  padding: 10px 0px 0px 0px;
+  padding: 5px 0px 0px 0px;
   margin-bottom: 5px;
 }
 #nouvelleCollection .catalogue .cat-body .produit .detail {
