@@ -18,9 +18,9 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
         //   });
 
             const transporter = nodemailer.createTransport({
-              name: "wcg-rdc.com",
-              host: "SSL0.OVH.NET",
-              port: 465,
+              name: process.env.NAME_EMAIL,
+              host: process.env.HOST_EMAIL,
+              port: process.env.PORT_EMAIL,
               secure: true,
               auth: {
                 user: process.env.MAIL_ADRESSE,
