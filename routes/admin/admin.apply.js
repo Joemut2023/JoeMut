@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Op, STRING } = require("sequelize");
 const { Promo, Apply, Produit, Media } = require("../../models");
+const Logger = require("../../helpers/Logger")
 
 router.get("/", async (req, res) => {
   try {
@@ -27,6 +28,7 @@ router.get("/", async (req, res) => {
     });
     res.render("apply/index", { applies });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -43,6 +45,7 @@ router.get("/add", async (req, res) => {
     const produits = await Produit.findAll();
     res.render("apply/add", { promos, produits });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -80,6 +83,7 @@ router.post("/add", async (req, res) => {
 
     return res.render("apply/add", { promos, succesMsg });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -113,6 +117,7 @@ router.post("/delete", async (req, res) => {
     const succesMsg = "Promo sur le produit supprimé avec succès";
     res.render("apply/index", { applies, succesMsg });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -138,6 +143,7 @@ router.get("/update", async (req, res) => {
     const allPromos = await Promo.findAll();
     res.render("apply/update", { promos, allPromos });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -194,6 +200,7 @@ router.post("/update", async (req, res) => {
     const nothingMsg = "aucune nouvelle information trouvée ";
     res.render("apply/update", { promos, allPromos, nothingMsg });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("apply/update", {
       error: true,
       errorMsg: "une erreur est survenue ",

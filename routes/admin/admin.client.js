@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
+const Logger = require("../../helpers/Logger")
 const {
   Client,
   Titre,
@@ -69,6 +70,7 @@ router.get("/", async (req, res) => {
       clientsNbr: AllClients.length,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -81,6 +83,7 @@ router.post("/delete", async (req, res) => {
     await Client.destroy({ where: { cli_id } });
     res.redirect("/admin/clients");
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -93,6 +96,7 @@ router.get("/add", async (req, res) => {
     const titres = await Titre.findAll();
     res.render("client/addClient", { titres });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -144,6 +148,7 @@ router.post("/add", async (req, res) => {
       return res.render("client/addClient", { titres, succesMsg });
     }
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/addClient", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -160,6 +165,7 @@ router.get("/update", async (req, res) => {
     });
     res.render("client/updateClient", { titres, clients });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/updateClient", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -210,6 +216,7 @@ router.post("/update", async (req, res) => {
     const nothingMsg = "aucune nouvelle information trouvée ";
     res.render("client/updateClient", { titres, clients, nothingMsg });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/updateClient", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -235,6 +242,7 @@ router.post("/updateByCheckbox", async (req, res) => {
     }
     return res.status(200).send("requette echouée");
   } catch (error) {
+    Logger.error(error.stack)
     res.send(error);
   }
 });
@@ -396,6 +404,7 @@ router.get("/search", async (req, res) => {
       });
     }
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -429,6 +438,7 @@ router.get("/infos", async (req, res) => {
       totalCommandes,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("client/details", {
       error: true,
       errorMsg: "une erreur est survenue ",
