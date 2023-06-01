@@ -8,7 +8,7 @@ const {
   Quantite,
   Taille,
   Categorie,
-  Type_categorie
+  Type_categorie,
 } = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth");
@@ -32,11 +32,16 @@ router.get("/:id", async (req, res, next) => {
           // },
         },
         {
-          model:Categorie,include:{model:Type_categorie}
-        }
+          model: Categorie,
+          include: { model: Type_categorie },
+        },
       ],
     });
-    
+    if (!article) {
+      const errorArticle = "Aucun article correspondant";
+      return res.render("article/index", {errorArticle});
+    }
+
     const taillesQuantites = await Taille.findAll({
       include: [
         {
@@ -49,11 +54,11 @@ router.get("/:id", async (req, res, next) => {
       order: [["tai_ordre", "ASC"]],
     });
 
-    const quantiteInitial = await Quantite.sum('qua_nbre',{
-      where:{
-        pro_id:req.params.id
-      }
-    })
+    const quantiteInitial = await Quantite.sum("qua_nbre", {
+      where: {
+        pro_id: req.params.id,
+      },
+    });
     const ref_produit = article.pro_ref;
     const ref_produit_caractere = ref_produit.slice(0, ref_produit.length - 1);
 
@@ -76,12 +81,12 @@ router.get("/:id", async (req, res, next) => {
             },
           },
           {
-            pro_statut:true
-          }
+            pro_statut: true,
+          },
         ],
       },
     });
-   
+
     for (let index = 0; index < produits_similaires.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -125,7 +130,7 @@ router.get("/:id", async (req, res, next) => {
       quantiteOfEachProduct,
     });
   } catch (error) {
-    Logger.error('article/index : '+error.stack)
+    Logger.error("article/index : " + error.stack);
     res.status(500).render("article/index", {
       error: true,
       errorMsg: "une erreur est survenue",
@@ -152,7 +157,7 @@ router.post("/:id", async (req, res, next) => {
       res.redirect(301, `/connexion`);
     }
   } catch (error) {
-    Logger.error('article/index : '+error.stack)
+    Logger.error("article/index : " + error.stack);
     res.render("article/index", {
       error: true,
       errorMsg: "Une erreur est survenue!",
