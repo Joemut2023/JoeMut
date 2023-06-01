@@ -3,7 +3,6 @@ var nodemailer = require("nodemailer");
 var router = express.Router();
 
 router.get("/", function (req, res, next) {
-
   res.locals.titre = "contact";
   res.render("default/contact");
 });
