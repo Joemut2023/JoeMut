@@ -15,6 +15,7 @@ const {
 } = require("../models");
 const { TVA } = require("../helpers/utils_const");
 const CommandeCalcul = require("./commandeData");
+const Logger = require("./Logger");
 module.exports = async (commandeId, callback) => {
   let quantiteOfEachProduct = [];
   try {
@@ -109,6 +110,7 @@ module.exports = async (commandeId, callback) => {
       refCommande
     );
   } catch (error) {
-    console.log(error);
+    Logger.error(error.stack)
+   // console.log(error);
   }
 };

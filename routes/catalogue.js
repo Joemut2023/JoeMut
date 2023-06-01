@@ -11,6 +11,7 @@ const {
 } = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 const check_paginate_value = require("../helpers/check_paginate_value");
+const Logger = require("../helpers/Logger");
 /**
  * @Route renvois tout
  */
@@ -95,6 +96,7 @@ router.get("/", async function (req, res, next) {
       quantiteOfEachProduct: quantiteOfEachProduct,
     });
   } catch (error) {
+    Logger.error(error.stack);
     res.status(500).render("error/serverError", {
       error: true,
       errorMsg: "Une erreur est survenue!",
@@ -189,6 +191,7 @@ router.get("/:id", async (req, res) => {
       quantiteOfEachProduct,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("error/serverError", {
       error: true,
       errorMsg: "Une erreur est survenue!",
@@ -285,6 +288,7 @@ router.get("/type/:id", async (req, res) => {
       quantiteOfEachProduct,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("error/serverError", {
       error: true,
       errorMsg: "Une erreur est survenue!",

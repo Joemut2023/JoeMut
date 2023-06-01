@@ -22,6 +22,7 @@ const {
   STATUT_COMMANDE_FINALISATION_DEVIS,
   DEFAULT_ADMIN_USER_ID,
 } = require("../helpers/utils_const");
+const Logger = require("../helpers/Logger");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "commander";
@@ -219,6 +220,7 @@ router.post("/", async (req, res) => {
    
   } catch (error) {
     //console.log(error);
+    Logger.error('/commander: ' + error.stack)
     return res.json(error);
   }
 });

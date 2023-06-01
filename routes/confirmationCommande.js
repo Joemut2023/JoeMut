@@ -75,7 +75,8 @@ router.get("/", async (req, res, next) => {
       }
     );
   } catch (error) {
-    console.error(error);
+    Logger.error('/confirmation_commande: ' + error.stack);
+    res.redirect('/');
   }
 });
 

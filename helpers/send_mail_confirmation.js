@@ -7,6 +7,7 @@ const { Document } = require("../models");
 const { DEVIS } = require("./utils_const");
 const generate_pdf_func = require("./generate_pdf_func");
 const send_mail_func = require("./send_mail_func");
+const Logger = require("./Logger");
 
 module.exports = async (
   res,
@@ -56,6 +57,7 @@ module.exports = async (
     await send_mail_func(DOCUMENT_NAME,`../public/pdf/devis/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,"[AIGUILLE EN SCENE] Confirmation de commande",html);
 
   } catch (error) {
-    console.log(error);
+    Logger.error('send_mail : ' + error.stack)
+    //console.log(error);
   }
 };
