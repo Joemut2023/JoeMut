@@ -3,12 +3,9 @@ var nodemailer = require("nodemailer");
 var router = express.Router();
 
 router.get("/", function (req, res, next) {
-
   res.locals.titre = "contact";
   res.render("default/contact");
 });
-
-
 
 router.post("/", async function (req, res, next) {
   const { cont_service, cont_email, cont_file, cont_msg } = req.body;
@@ -62,7 +59,7 @@ router.post("/", async function (req, res, next) {
 
         })
         .catch(function (error) {
-          console.log(error);
+          Logger.error(+error.stack);
           res.status(400).render("default/contact", {
             error: true,
             errorMsg:
@@ -75,7 +72,7 @@ router.post("/", async function (req, res, next) {
 
 
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
     return res.status(500).render("default/contact", {
 
       error: true,

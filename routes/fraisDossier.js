@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
       },
     });
     return res.json(autreFrais);
-  } catch (error) {}
+  } catch (error) {
+    Logger.error(+error.stack);
+  }
 });
 
 module.exports = router;

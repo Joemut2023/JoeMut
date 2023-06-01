@@ -65,6 +65,7 @@ router.post("/", async (req, res) => {
     req.session.userId = client.cli_id;
     return res.redirect("/mon-compte");
   } catch (error) {
+    Logger.error("connexion/index : " + error.stack);
     return res.render("connexion/index", {
       error: true,
       errorMsg: "Erreur serveur",
@@ -90,7 +91,7 @@ router.get("/panier-details/:pan_id", async (req, res) => {
     });
     return res.json(Panier_details);
   } catch (error) {
-    console.log(error);
+    Logger.error("connexion/index : " + error.stack);
     return res.status(500).json(error);
   }
 });
@@ -103,7 +104,6 @@ router.get("/password", async (req, res) => {
   res.locals.titre = "mot de pass oublié";
   res.render("connexion/forgetPassWord");
 });
-
 router.post("/password", async (req, res) => {
   res.locals.titre = "mot de pass oublié";
   const { cli_mail } = req.body;
@@ -128,9 +128,9 @@ router.post("/password", async (req, res) => {
     const typeMsg = "success";
     // return res.redirect(`/connexion/passwordReset/${resetToken}/${cli_id}`);
     const transporter = nodemailer.createTransport({
-      name: "wcg-rdc.com",
-      host: "SSL0.OVH.NET",
-      port: 465,
+      name: process.env.NAME_EMAIL,
+      host: process.env.HOST_EMAIL,
+      port: process.env.PORT_EMAIL,
       secure: true,
       auth: {
         user: process.env.MAIL_ADRESSE,
@@ -147,21 +147,20 @@ router.post("/password", async (req, res) => {
     transporter
       .sendMail(mailOptions)
       .then(function (info) {
-        
         const successMsg =
           "Un message de réinitialisation vous a été envoyé par mail";
         res.render("connexion/forgetPassWord", { successMsg, typeMsg });
       })
       .catch(function (error) {
+        Logger.error(+error.stack);
         const errorMsg =
           "Une erreur s'est produite lors de l'envoi de votre message!";
         res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
       });
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
   }
 });
-
 router.get("/passwordReset/:token/:cli_id", async (req, res) => {
   res.locals.titre = " changer de mot de passe";
   const { cli_id, token } = req.params;
@@ -213,7 +212,7 @@ router.post("/passwordReset", async (req, res) => {
     req.session.userId = client.cli_id;
     return res.redirect("/mon-compte");
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
   }
 });
 module.exports = router;
