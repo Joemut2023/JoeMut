@@ -11,34 +11,38 @@ const Logger = require("../helpers/Logger");
 router.get("/", async (req, res, next) => {
   res.locals.titre = "Accueil";
   let quantiteOfEachProduct = [];
-
-  const produits = await Produit.findAll({
-    limit: 8,
-    order: [["pro_id", "DESC"]],
-    include: [
-      { model: Media, attributes: ["med_id", "med_ressource"] },
-      { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
-    ],
-    where: { pro_statut: true }
-  });
-
-
-  for (let index = 0; index < produits.length; index++) {
-    const quantiteInitial = await Quantite.sum("qua_nbre", {
-      where: {
-        pro_id: produits[index].pro_id,
-      },
+try {
+    const produits = await Produit.findAll({
+      limit: 8,
+      order: [["pro_id", "DESC"]],
+      include: [
+        { model: Media, attributes: ["med_id", "med_ressource"] },
+        { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+      ],
+      where: { pro_statut: true },
     });
-    quantiteOfEachProduct.push({
-      id: produits[index].pro_id,
-      qty: quantiteInitial,
-    });
-  }
 
-  res.render("default/index", {
-    produits: produits,
-    quantiteOfEachProduct,
-  });
+    for (let index = 0; index < produits.length; index++) {
+      const quantiteInitial = await Quantite.sum("qua_nbre", {
+        where: {
+          pro_id: produits[index].pro_id,
+        },
+      });
+      quantiteOfEachProduct.push({
+        id: produits[index].pro_id,
+        qty: quantiteInitial,
+      });
+    }
+
+    res.render("default/index", {
+      produits: produits,
+      quantiteOfEachProduct,
+    });
+  
+} catch (error) {
+  Logger.error("/newsletter : " + error.stack);
+}
+
 });
 
 
@@ -112,7 +116,7 @@ router.post("/", async function (req, res, next) {
 
         })
         .catch(function (error) {
-          Logger.error('/contact : '+error.stack)
+          Logger.error('/emailcontact : '+error.stack)
           res.status(400).render("default/index", {
             error: true,
             errorMsg:
@@ -126,9 +130,8 @@ router.post("/", async function (req, res, next) {
 
 
   } catch (error) {
-    console.log(error);
+   Logger.error("default/index : " + error.stack);
     return res.status(500).render("default/index", {
-
       error: true,
       errorMsg: "Une erreur est survenue! : " + error,
       produits
@@ -154,7 +157,7 @@ router.post("/newsletter", async (req, res) => {
     }
     res.redirect('/')
   } catch (error) {
-    Logger.error('/ : '+error.stack)
+    Logger.error('/newsletter : '+error.stack)
     req.session.flash = {message:"Erreur lors de l'enregistrement de l'utilisateur dans la newsletter",type:"danger"}
     //res.redirect('/')
   }

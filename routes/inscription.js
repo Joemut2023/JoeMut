@@ -5,6 +5,7 @@ const { Client, Panier, Produit, Panier_detail, Tarif } = require("../models");
 const { Op } = require("sequelize");
 let bcrypt = require("bcryptjs");
 const { ACTIF } = require("../helpers/utils_const");
+const Logger = require("../helpers/Logger");
 router.get("/", (req, res, next) => {
   res.locals.titre = "inscription";
   res.render("inscription/index");
@@ -95,6 +96,7 @@ router.post("/", async (req, res, next) => {
     res.locals.user = client;
     res.redirect(301, `/mon-compte`);
   } catch (error) {
+     Logger.error("/inscription : " + error.stack);
     res.status(500).render("error/serverError", {
       error: true,
       errorMsg: "Une erreur est survenue!",

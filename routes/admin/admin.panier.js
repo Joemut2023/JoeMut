@@ -16,6 +16,7 @@ const {
 } = require("../../models");
 const { PAGINATION_LIMIT_ADMIN, TYPE_PROMO_POURCENTAGE } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+const Logger = require("../../helpers/Logger");
 
 router.get("/", async function (req, res) {
   let { page, start, end } = check_admin_paginate_value(req);
@@ -56,7 +57,9 @@ let nbrPages = Math.ceil(allPaniers.length / PAGINATION_LIMIT_ADMIN);
       panierNbr: allPaniers.length,
     });
     
-  } catch (error) {}
+  } catch (error) {
+    Logger.error("/panierback : " + error.stack);
+  }
   
 });
 router.get('/:id',async function(req,res){
@@ -134,7 +137,8 @@ router.get('/:id',async function(req,res){
       sumQty
     });
   } catch (error) {
-    console.log(error);
+    Logger.error("/panierDetailback : " + error.stack);
+    
   }
 });
 router.post('/add-panier-detail',async (req,res)=>{
@@ -185,6 +189,7 @@ router.post('/add-panier-detail',async (req,res)=>{
     req.session.flash = {message:"Ajouté avec succés",type:"success"};
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
+    Logger.error("/addpanierDetail : " + error.stack);
     req.session.flash = {message:"Une erreur s'est produite, assurez vous d'avoir renseigné les champs nécessaire et entré un produit existant",type:"danger"};
     res.redirect(`/admin/devis/view/${com_id}`);
   }
@@ -226,6 +231,7 @@ router.post('/add-remise',async (req,res)=>{
     res.redirect(`/admin/devis/view/${com_id}`);
   } catch (error) {
     //console.log(error);
+    Logger.error("/addremise : " + error.stack);
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
@@ -264,7 +270,7 @@ router.post('/add-commande-remise',async (req,res)=>{
     },{where:{com_id:com_id}});
 
   } catch (error) {
-    
+    Logger.error("/addcommanderemise : " + error.stack);
   }
  res.redirect(`/admin/devis/view/${com_id}`);
 })

@@ -10,6 +10,7 @@ const {
   Quantite,
   Produit,
 } = require("../models");
+const Logger = require("../helpers/Logger");
 
 router.post("/", async (req, res, next) => {
   const { pro_id, pad_qte } = req.body;
@@ -112,7 +113,9 @@ router.post("/", async (req, res, next) => {
 
     return res.status(404).send("aucun produit ajouté");
   } catch (error) {
+    Logger.error("/panierDetail : " + error.stack);
     res.status(500).json({ error: error });
+     
   }
 });
 
@@ -134,7 +137,7 @@ router.get("/", async (req, res, next) => {
     //if (Produits.length !== 0) return res.status(200).send(Produits);
     return res.status(200).send(produits);
   } catch (error) {
-    console.log(error);
+    Logger.error("/panierDetail : " + error.stack);
     return res.status(500).json({ error: error });
   }
 });
@@ -163,6 +166,7 @@ router.delete("/", async (req, res) => {
     }
     return res.status(202).send("Aucun produit supprimé");
   } catch (error) {
+    Logger.error("/panierDetail : " + error.stack);
     return res.status(500).json({ error: error });
   }
 });
@@ -201,7 +205,7 @@ router.put("/", async (req, res) => {
     }
     return res.status(200).json(panierDetail);
   } catch (error) {
-    console.log(error);
+    Logger.error("/panierDetail : " + error.stack);
     return res.status(500).json({ error: error });
   }
 });

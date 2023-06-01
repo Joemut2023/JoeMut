@@ -14,6 +14,7 @@ const {
   Commande,
 } = require("../models");
 const { ACTIF } = require("../helpers/utils_const");
+const Logger = require("../helpers/Logger");
 
 router.get("/", async (req, res, next) => {
   res.locals.titre = "panier";
@@ -59,7 +60,9 @@ router.get("/", async (req, res, next) => {
       produitsPopulaires,
       quantiteOfEachProduct,
     });
-  } catch (error) {}
+  } catch (error) {
+     Logger.error("/panier : " + error.stack);
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -149,6 +152,7 @@ router.post("/", async (req, res) => {
       }
       res.status(201).json(panier);
     } catch (error) {
+       Logger.error("/panier : " + error.stack);
       res.status(500).json(error);
     }
   } else {
