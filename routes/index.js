@@ -76,19 +76,19 @@ router.post("/", async function (req, res, next) {
     }
     else {
 
-      const transporter = nodemailer.createTransport({
-        name: "wcg-rdc.com",
-        host: "SSL0.OVH.NET",
-        port: 465,
-        secure: true,
-        auth: {
-          user: "aes@wcg-rdc.com",
-          pass: process.env.PASSWORD_OVH
-        },
-      });
+       const transporter = nodemailer.createTransport({
+         name: process.env.NAME_EMAIL,
+         host: process.env.HOST_EMAIL,
+         port: process.env.PORT_EMAIL,
+         secure: true,
+         auth: {
+           user: process.env.MAIL_ADRESSE,
+           pass: process.env.PASSWORD_OVH,
+         },
+       });
       const mailOptions = {
         from: email,
-        to: "aes@wcg-rdc.com",
+        to: process.env.MAIL_ADRESSE,
         subject: "Message du client depuis le site",
         html: `<div>  <p>Email: ${email}</p> <p>File :${file}</p> <p>Message:${textarea}</p></div>`,
       };
