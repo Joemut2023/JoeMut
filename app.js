@@ -5,7 +5,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+//var logger = require("morgan");
 const ejsLayout = require("express-ejs-layouts");
 var indexRouter = require("./routes/index");
 var catalogueRouter = require("./routes/catalogue");
@@ -29,6 +29,24 @@ var devisRouter = require("./routes/devis");
 var panierDetailRouter = require("./routes/panierDetail");
 var codePromoRouter = require("./routes/codepromo");
 const personalDataRouter = require('./routes/personnal_data');
+const winston = require('winston');
+const logConfiguration = {
+  'transports': [
+      new winston.transports.File({
+        filename:'logs/app.log'
+      })
+  ],
+  format: winston.format.combine(
+    winston.format.label({
+        label: `Label🏷️`
+    }),
+    winston.format.timestamp({
+       format: 'MMM-DD-YYYY HH:mm:ss'
+   }),
+    winston.format.printf(info => `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`),
+  )
+};
+const logger = winston.createLogger(logConfiguration);
 // const AdminJS = require("adminjs");
 // const AdminJSExpress = require("@adminjs/express");
 // const AdminJSSequelize = require("@adminjs/sequelize");
@@ -53,7 +71,7 @@ app.use(ejsLayout);
 //app.set("layout", path.join(__dirname, "views/layout/layout"));
 //app.set("layout extractStyles", true);
 //app.set("layout extractScripts", true);
-app.use(logger("dev"));
+//app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(

@@ -12,6 +12,7 @@ const {
 } = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth");
+const Logger = require("../helpers/Logger");
 
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -125,9 +126,10 @@ router.get("/:id", async (req, res, next) => {
       quantiteOfEachProduct,
     });
   } catch (error) {
+    Logger.error('article/index : '+error.stack)
     res.status(500).render("article/index", {
       error: true,
-      errorMsg: "une erreur est survenue ",
+      errorMsg: "une erreur est survenue",
     });
   }
 });
@@ -151,6 +153,7 @@ router.post("/:id", async (req, res, next) => {
       res.redirect(301, `/connexion`);
     }
   } catch (error) {
+    Logger.error('article/index : '+error.stack)
     res.render("article/index", {
       error: true,
       errorMsg: "Une erreur est survenue!",

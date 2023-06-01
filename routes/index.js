@@ -3,6 +3,7 @@ const router = express.Router();
 var nodemailer = require("nodemailer");
 const { Produit, Media, Tarif, Quantite, Client } = require("../models");
 const { where } = require("sequelize");
+const Logger = require("../helpers/Logger");
 
 
 
@@ -111,7 +112,7 @@ router.post("/", async function (req, res, next) {
 
         })
         .catch(function (error) {
-          console.log(error);
+          Logger.error('/contact : '+error.stack)
           res.status(400).render("default/index", {
             error: true,
             errorMsg:
@@ -153,6 +154,7 @@ router.post("/newsletter", async (req, res) => {
     }
     res.redirect('/')
   } catch (error) {
+    Logger.error('/ : '+error.stack)
     req.session.flash = {message:"Erreur lors de l'enregistrement de l'utilisateur dans la newsletter",type:"danger"}
     //res.redirect('/')
   }

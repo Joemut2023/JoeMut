@@ -2,6 +2,7 @@ var nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
+const Logger = require("./Logger");
 /**
  * Envois mail devis
  * @param {*} document_name 
@@ -45,7 +46,8 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
             console.log(error);
           });
     } catch (error) {
-        console.log(error);
-        console.log("erreur lors de l'envois du mail");
+        // console.log(error);
+        // console.log("erreur lors de l'envois du mail");
+        Logger.error(error.stack)
     }
 }
