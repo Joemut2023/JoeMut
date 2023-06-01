@@ -4,6 +4,7 @@ const { Taille } = require("../../models");
 const { Op } = require("sequelize");
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
+const Logger = require("../../helpers/Logger")
 
 router.get("/", async (req, res) => {
   let { page, start, end } = check_admin_paginate_value(req);
@@ -23,6 +24,7 @@ router.get("/", async (req, res) => {
       taillesNbr: Alltailles.length,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("article/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -34,6 +36,7 @@ router.get("/add", async (req, res) => {
   try {
     res.render("tailles/add");
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("transporteur/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -62,6 +65,7 @@ router.post("/add", async (req, res) => {
       succesMsg,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("tailles/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -80,6 +84,7 @@ router.get("/update", async (req, res) => {
       tailles,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("tailles/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -112,6 +117,7 @@ router.post("/update", async (req, res) => {
       tailles,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("tailles/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -140,6 +146,7 @@ router.get("/search", async (req, res) => {
       taillesNbr: Alltailles.length,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("tailles/index", {
       error: true,
       errorMsg: "une erreur est survenue ",

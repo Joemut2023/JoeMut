@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Adresse, Client } = require("../../models");
+const Logger = require("../../helpers/Logger")
 
 router.get("/", async (req, res) => {
   const { cli_id } = req.query;
@@ -11,6 +12,7 @@ router.get("/", async (req, res) => {
       cli_id
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("addresses/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -63,6 +65,7 @@ router.post("/add/:id", async (req, res) => {
     //res.render("adresses/index", { clients: clients });
       res.redirect(`/admin/adresse/?cli_id=${clients.cli_id}`);
   } catch (error) {
+    Logger.error(error.stack)
     return res.render("adresses/ajoutAdresse",{message :"Erreur interne du serveur"});
   }
 });
@@ -126,6 +129,7 @@ router.post("/edit/:id", async (req, res) => {
     return res.redirect(`/admin/adresse/?cli_id=${ clients.cli_id}`)
       
   } catch (error) {
+    Logger.error(error.stack)
     return res.render("adresses/editAdresse",{message :"Erreur interne du serveur"});
   }
 });
@@ -143,6 +147,7 @@ router.get("/byAjax/:id", async (req, res) => {
       res.status(200).json(adresse);
     }
   } catch (error) {
+    Logger.error(error.stack)
     res.json(error);
   }
 });
@@ -185,7 +190,8 @@ router.post("/update-from-commande", async (req, res) => {
       }
     );
     res.redirect(`/admin/devis/view/${com_id}`);
-  } catch (err) {
+  } catch (error) {
+    Logger.error(error.stack)
     res.redirect(`/admin/devis/view/${com_id}`);
   }
 });

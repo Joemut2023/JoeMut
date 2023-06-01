@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Type_categorie, Categorie } = require("../../models");
+const Logger = require("../../helpers/Logger")
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
@@ -18,6 +19,7 @@ router.get('/:id', async (req, res) => {
         });
 
     } catch (error) {
+        Logger.error(error.stack)
         console.error(error);
         res.status(500).render("categories/index",
             {
@@ -55,6 +57,7 @@ router.post("/ajout", async (req, res) => {
         // }
 
     } catch (error) {
+        Logger.error(error.stack)
         console.error(error);
         res.status(500).render("categories/addCat",
             { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
@@ -77,6 +80,7 @@ router.get("/edit/:id", async (req, res) => {
             findCat
         })
     } catch (error) {
+        Logger.error(error.stack)
         console.error(error);
         res.status(500).render("categories/editCat",
             { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
@@ -106,6 +110,7 @@ router.post("/edit/:id", async (req, res) => {
         }, { where: { cat_id: req.params.id } })
         return res.redirect(`/admin/categories/${typeCat.tyc_id}`)
     } catch (error) {
+        Logger.error(error.stack)
         console.error(error);
         res.status(500).render("categories/editCat",
             { message: 'Une erreur est survenue lors de la récupération des types de catégories.', error }
@@ -131,6 +136,7 @@ router.get("/delete/:id", async (req, res, next) => {
         });
         return res.redirect(`/admin/categories/${typeCat.tyc_id}`);
     } catch (error) {
+        Logger.error(error.stack)
         return res.render("typeCategories/index", {
             error: "une erreur est survenue",
         });

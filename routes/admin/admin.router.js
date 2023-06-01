@@ -36,6 +36,7 @@ const produitLocationRouter = require("./admin.produits.location");
 const documentRouter = require("./admin.document");
 const ejs = require("ejs");
 const path = require("path");
+const Logger = require("../../helpers/Logger")
 
 router.use("/login", loginRouter);
 router.use("/devis", [adminLayout, adminIsAuth, FlashMidleware], devisRouter);
@@ -103,6 +104,7 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
     );
     return res.send(view);
   } catch (error) {
+    Logger.error(error.stack)
     console.log("erreur rendue bon essayage");
   }
 });
@@ -143,6 +145,7 @@ router.get('/bon-livraison/:doc_id',async (req,res)=>{
     );
     return res.send(view);
   } catch (error) {
+    Logger.error(error.stack)
     console.log(error);
   }
  
