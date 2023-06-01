@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Frais_port, Mode_liv_essayage, Mode_liv_spectacle } = require("../../models");
 const { PAGINATION_LIMIT } = require("../../helpers/utils_const");
+const Logger = require("../../helpers/Logger");
 
 router.get("/", async (req, res) => {
     const mle_id = req.query.mle_id
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
             success: true
         });
     } catch (error) {
-        console.error(error);
+        Logger.error("/fraisPortBack : " + error.stack);
         res.status(500).render("fraisPort/index", {
             message: 'Une erreur est survenue lors de la récupération des types de catégories.',
             error,
@@ -65,7 +66,7 @@ router.post("/ajouter", async (req, res) => {
 
 
     } catch (error) {
-        console.error(error);
+         Logger.error("/fraisPortBack : " + error.stack);
         return res.status(500).render("fraisPort/ajouter", {
             message: 'Une erreur est survenue lors de la récupération des types de catégories.',
             error,
@@ -87,6 +88,7 @@ router.get("/edit/:id", async function (req, res, next) {
             fraisPortId,
         });
     } catch (error) {
+         Logger.error("/fraisPortBack : " + error.stack);
         error = "une erreur est survenue";
         return res.render("fraisPort/editer", {
             error,
@@ -116,7 +118,7 @@ router.post("/edit/:id", async (req, res) => {
 
 
     } catch (error) {
-        console.error(error);
+         Logger.error("/fraisPortBack : " + error.stack);
         return res.status(500).render("fraisPort/editer", {
             message: 'Une erreur est survenue lors de la récupération des types de catégories.',
             error,
@@ -136,6 +138,7 @@ router.get("/delete/:id", async (req, res) => {
         const listeType = await Frais_port.findAll();
         return res.redirect("/admin/frais-port");
     } catch (error) {
+         Logger.error("/fraisPortBack : " + error.stack);
         return res.render("fraisPort/index", {
             error: "une erreur est survenue",
         });
