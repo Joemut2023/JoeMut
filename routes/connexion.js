@@ -104,7 +104,6 @@ router.get("/password", async (req, res) => {
   res.locals.titre = "mot de pass oublié";
   res.render("connexion/forgetPassWord");
 });
-
 router.post("/password", async (req, res) => {
   res.locals.titre = "mot de pass oublié";
   const { cli_mail } = req.body;
@@ -153,6 +152,7 @@ router.post("/password", async (req, res) => {
         res.render("connexion/forgetPassWord", { successMsg, typeMsg });
       })
       .catch(function (error) {
+        Logger.error(+error.stack);
         const errorMsg =
           "Une erreur s'est produite lors de l'envoi de votre message!";
         res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
@@ -161,7 +161,6 @@ router.post("/password", async (req, res) => {
     Logger.error(+error.stack);
   }
 });
-
 router.get("/passwordReset/:token/:cli_id", async (req, res) => {
   res.locals.titre = " changer de mot de passe";
   const { cli_id, token } = req.params;
