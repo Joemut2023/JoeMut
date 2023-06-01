@@ -13,13 +13,13 @@ const {
 const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { Op, Sequelize } = require("sequelize");
-const path = require('path');
+const path = require("path");
 
 router.get("/", async (req, res) => {
   const { search } = req.query;
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
-  let checkSearch = false
+  let checkSearch = false;
 
   try {
     const produits = await Produit.findAll({
@@ -69,6 +69,7 @@ router.get("/", async (req, res) => {
     });
     // return res.status(200).json({ produits, quantiteOfEachProduct });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("produits/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -83,7 +84,7 @@ router.get("/search", async (req, res) => {
   let quantiteOfEachProduct = [];
   let { page, start, end } = check_admin_paginate_value(req);
   let checkSearch = true;
-  
+
   try {
     const allProduits = await Produit.findAll({
       include: [
@@ -202,7 +203,7 @@ router.get("/search", async (req, res) => {
     });
 
     const categorie = await Categorie.findAll();
-   
+
     for (let index = 0; index < allProduits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -238,7 +239,7 @@ router.get("/search", async (req, res) => {
       // categorie,
     });
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
     res.status(500).render("produits/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -253,17 +254,17 @@ router.delete("/:id", async function (req, res) {
     const produit = await Produit.destroy({ where: { pro_id } });
     res.status(200).json({ produit, msg: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
-//delete Media 
-router.delete('/media/:pro_id/:med_id',async function(req,res){
-   const med_id = req.params.med_id;
-   try {
-     const produit = await Produit.findOne({
-       where: { pro_id: req.params.pro_id },
-     });
+//delete Media
+router.delete("/media/:pro_id/:med_id", async function (req, res) {
+  const med_id = req.params.med_id;
+  try {
+    const produit = await Produit.findOne({
+      where: { pro_id: req.params.pro_id },
+    });
     const media = await Media.destroy({
       where: {
         [Op.and]: [{ pro_id: produit.pro_id }, { med_id: med_id }],
@@ -271,11 +272,10 @@ router.delete('/media/:pro_id/:med_id',async function(req,res){
     });
 
     res.status(200).json({ media, msg: true });
-    
-   } catch (error) {
-     console.log(error.message);
-   }
-})
+  } catch (error) {
+    Logger.error(+error.stack);
+  }
+});
 
 router.get("/add/tailles", async (req, res) => {
   try {
@@ -283,7 +283,7 @@ router.get("/add/tailles", async (req, res) => {
     console.log("trgo");
     res.status(200).json(taille);
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -294,7 +294,7 @@ router.get("/categorie/:id", async (req, res) => {
     });
     res.json(categorie);
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -315,7 +315,7 @@ router.post("/categorie", async function (req, res) {
     });
     res.status(201).json({ msg: true, categorie });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -333,7 +333,9 @@ router.get("/add", async (req, res) => {
       taille,
       categories,
     });
-  } catch (error) {}
+  } catch (error) {
+    Logger.error(+error.stack);
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -363,12 +365,12 @@ router.post("/", async (req, res) => {
     });
     return res.status(201).json({ product, msg: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
 router.post("/media/:id", async function (req, res) {
-  const { med_libelle, med_ressource,med_cover } = req.body;
+  const { med_libelle, med_ressource, med_cover } = req.body;
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
 
@@ -383,12 +385,12 @@ router.post("/media/:id", async function (req, res) {
 
     return res.status(201).json({ media, msgMedia: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 //udpate cover image
 router.put("/media/:pro_id/:med_id", async function (req, res) {
-  const { med_libelle, med_ressource} = req.body;
+  const { med_libelle, med_ressource } = req.body;
   try {
     const produit = await Produit.findOne({
       where: { pro_id: req.params.pro_id },
@@ -400,22 +402,19 @@ router.put("/media/:pro_id/:med_id", async function (req, res) {
         tym_id: 1,
         med_libelle,
         med_ressource,
-        med_cover:true,
+        med_cover: true,
         mimetype: "image/jpeg",
       },
       {
         where: {
-          [Op.and]: [
-            { pro_id: produit.pro_id },
-            { med_id: req.params.med_id }
-          ],
+          [Op.and]: [{ pro_id: produit.pro_id }, { med_id: req.params.med_id }],
         },
       }
     );
 
     return res.status(201).json({ media, msgMedia: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -435,7 +434,7 @@ router.post("/tarif/:id", async function (req, res) {
 
     return res.status(201).json({ tarif, msgTarif: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -452,7 +451,7 @@ router.post("/qty/:id", async function (req, res) {
 
     return res.status(201).json({ qty, msgQty: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -465,6 +464,7 @@ router.get("/allbyJson", async (req, res) => {
       return res.json([]);
     }
   } catch (error) {
+    Logger.error(+error.stack);
     return res.json(error);
   }
 });
@@ -520,7 +520,7 @@ router.get("/:id", async function (req, res) {
       tailles,
     });
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
   }
 });
 
@@ -528,7 +528,9 @@ router.get("/one/:id", async function (req, res) {
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
     res.status(200).json(produit);
-  } catch (error) {}
+  } catch (error) {
+    Logger.error(+error.stack);
+  }
 });
 
 router.put("/:id", async (req, res) => {
@@ -561,7 +563,7 @@ router.put("/:id", async (req, res) => {
     );
     return res.status(200).json({ product });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -583,7 +585,7 @@ router.put("/tarif/:id", async function (req, res) {
 
     return res.status(200).json({ tarif, msgTarif: true });
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -606,7 +608,7 @@ router.put("/qty/:id", async function (req, res) {
 
     return res.status(200).json(qty);
   } catch (error) {
-    console.log(error.message);
+    Logger.error(+error.stack);
   }
 });
 
@@ -619,7 +621,7 @@ router.delete("/qty/:pro_id/:id", async function (req, res) {
     });
     res.status(200).json(qty);
   } catch (error) {
-    console.log(error);
+    Logger.error(+error.stack);
   }
 });
 
@@ -639,22 +641,26 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage });
-const upload_function = upload.array("produit-files",12)
+const upload_function = upload.array("produit-files", 12);
 //uplad-image
-router.post("/upload-images",function (req, res, next) {
-  
-  upload_function(req,res,(err)=>{
+router.post("/upload-images", function (req, res, next) {
+  upload_function(req, res, (err) => {
     var msg;
     if (err) {
-      req.session.flash = {message:"Une erreur s'est produite.",type:"danger"};
+      req.session.flash = {
+        message: "Une erreur s'est produite.",
+        type: "danger",
+      };
       // return res.redirect('/admin/produits/add');
     }
-    req.session.flash = {message:"Produit ajouté avec succès",type:"success"};
+    req.session.flash = {
+      message: "Produit ajouté avec succès",
+      type: "success",
+    };
     // return res.redirect('/admin/produits/add');
   });
   //return res.json(req.body);
-    //  console.log(JSON.stringify(req.files))
-  }
-);
+  //  console.log(JSON.stringify(req.files))
+});
 
 module.exports = router;

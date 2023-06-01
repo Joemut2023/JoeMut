@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
     const transporteurs = await Transporteur.findAll();
     res.render("transporteur/index", { transporteurs });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -17,6 +18,7 @@ router.get("/add", async (req, res) => {
   try {
     res.render("transporteur/add");
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -43,6 +45,7 @@ router.post("/add", async (req, res) => {
       succesMsg,
     });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/add", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -60,6 +63,7 @@ router.get("/update", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -92,6 +96,7 @@ router.post("/update", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/update", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -111,6 +116,7 @@ router.post("/delete", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
@@ -128,6 +134,7 @@ router.get("/search", async (req, res) => {
       transporteurs,
     });
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("transporteur/index", {
       error: true,
       errorMsg: "une erreur est survenue ",

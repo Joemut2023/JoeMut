@@ -5,6 +5,7 @@ router.get("/", async (req, res) => {
   try {
     res.render("factures/index", {});
   } catch (error) {
+    Logger.error(+error.stack);
     res.status(500).render("factures/index", {
       error: true,
       errorMsg: "une erreur est survenue ",
