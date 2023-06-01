@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const fs = require("fs");
 const path = require("path");
 const generate_pdf_func = require("../helpers/generate_pdf_func");
+const Logger = require("../helpers/Logger")
 
 // exports.index = function (req, res) {
 //   res.render('index', { moment: moment });
@@ -33,6 +34,7 @@ router.get("/identite/", async function (req, res, next) {
       clientSession,
     });
   } catch (error) {
+    Logger.error(error.stack)
     error = "une erreur est survenue";
     return res.render("users/identite", {
       error,
@@ -67,6 +69,7 @@ router.post("/identite/", async function (req, res, next) {
       });
     }
   } catch (error) {
+    Logger.error(error.stack)
     return res.render("users/identite", {
       error: "Erreur interne du serveur",
       error,
@@ -92,6 +95,7 @@ router.get("/editAdresse/:id", async function (req, res, next) {
       adressById,
     });
   } catch (error) {
+    Logger.error(error.stack)
     error = "une erreur est survenue";
     return res.render("users/adresses", {
       error,
@@ -139,6 +143,7 @@ router.post("/editAdresse/:id", async function (req, res, next) {
     success = "Modification effectuée";
     // return res.redirect(301, "/mon-compte/adresses");
   } catch (err) {
+    Logger.error(error.stack)
     error = "Erreur interne du serveur";
     return res.render("users/adresses", {
       error,
@@ -165,6 +170,7 @@ router.get("/deleteAdresse/:id", async (req, res, next) => {
       success: true,
     });
   } catch (error) {
+    Logger.error(error.stack)
     return res.render("users/adresses", {
       error: "une erreur est survenue",
     });
@@ -183,6 +189,7 @@ router.get("/adresses", async function (req, res, next) {
       getAdresses,
     });
   } catch (error) {
+    Logger.error(error.stack)
     error = "une erreur est survenue";
     return res.render("users/adresses", {
       error,
@@ -227,6 +234,7 @@ router.post("/nouvelleAdresse", async (req, res) => {
         return res.render("users/nouvelleAdresse", { success });
       }
     } catch (err) {
+      Logger.error(error.stack)
       error = "Erreur interne du serveur";
       return res.render("users/nouvelleAdresse", {
         error,
@@ -258,6 +266,7 @@ router.get("/detailsCommande/:pan_id", async (req, res) => {
       com_num: commande.com_num,
     });
   } catch (error) {
+    Logger.error(error.stack)
     const errorMessage = "Erreur interne du serveur";
     return res.render("users/detailsCommande", {
       error: errorMessage,
@@ -313,6 +322,7 @@ router.get("/historique", async function (req, res, next) {
       moment: moment,
     });
   } catch (error) {
+    Logger.error(error.stack)
     const errorMessage = "Erreur interne du serveur";
     return res.render("users/historique", {
       error: errorMessage,
@@ -360,6 +370,7 @@ router.post("/myInfo", async (req, res) => {
     res.contentType("application/pdf");
     res.send(data);
   } catch (error) {
+    Logger.error(error.stack)
     console.log(error);
   }
 });

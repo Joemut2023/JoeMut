@@ -4,6 +4,7 @@ var { Produit, Media, Tarif, Quantite } = require("../models");
 const { Op } = require("sequelize");
 const check_paginate_value = require("../helpers/check_paginate_value");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
+const Logger = require("../helpers/Logger")
 
 router.get("/", async (req, res, next) => {
   const { search, orderby } = req.query;
@@ -79,6 +80,7 @@ router.get("/", async (req, res, next) => {
       quantiteOfEachProduct,
     });
   } catch (error) {
+    Logger.error(error.stack)
     res.status(500).render("error/serverError", {
       error: true,
       errorMsg: "Une erreur est survenue!",

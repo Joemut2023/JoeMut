@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Apply, Promo, Produit, Tarif, Media } = require("../models");
 
+
 router.get("/", async (req, res) => {
   res.locals.titre = "promotion";
   const ProduitEnPromos = await Apply.findAll({

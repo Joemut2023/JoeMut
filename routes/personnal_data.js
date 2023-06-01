@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Logger = require("../helpers/Logger")
 const {
   Client,
   Panier,
@@ -42,6 +43,7 @@ router.get("/myInfo/:cli_id", async (req, res) => {
 
     res.send(view);
   } catch (error) {
+    Logger.error(error.stack)
     console.log(error.message);
   }
 });
