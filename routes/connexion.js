@@ -14,6 +14,7 @@ let bcrypt = require("bcryptjs");
 let moment = require("moment");
 const { connexion } = require("../helpers/url");
 const { ACTIF } = require("../helpers/utils_const");
+const Logger = require("../helpers/Logger");
 
 router.get("/", async (req, res) => {
   res.locals.titre = "connexion";
@@ -65,6 +66,7 @@ router.post("/", async (req, res) => {
     req.session.userId = client.cli_id;
     return res.redirect("/mon-compte");
   } catch (error) {
+    Logger.error(error.stack);
     return res.render("connexion/index", {
       error: true,
       errorMsg: "Erreur serveur",
@@ -90,7 +92,7 @@ router.get("/panier-details/:pan_id", async (req, res) => {
     });
     return res.json(Panier_details);
   } catch (error) {
-    console.log(error);
+    Logger.error(error.stack);
     return res.status(500).json(error);
   }
 });
@@ -158,7 +160,7 @@ router.post("/password", async (req, res) => {
         res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
       });
   } catch (error) {
-    console.log(error);
+    Logger.error(error.stack);
   }
 });
 
@@ -213,7 +215,7 @@ router.post("/passwordReset", async (req, res) => {
     req.session.userId = client.cli_id;
     return res.redirect("/mon-compte");
   } catch (error) {
-    console.log(error);
+    Logger.error(error.stack);
   }
 });
 module.exports = router;
