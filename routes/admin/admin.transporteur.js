@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
 const { Transporteur } = require("../../models");
+const Logger = require("../../helpers/Logger");
 router.get("/", async (req, res) => {
   try {
     const transporteurs = await Transporteur.findAll();

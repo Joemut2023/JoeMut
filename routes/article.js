@@ -36,7 +36,7 @@ router.get("/:id", async (req, res, next) => {
         }
       ],
     });
-    // res.json({article})
+    
     const taillesQuantites = await Taille.findAll({
       include: [
         {
@@ -54,7 +54,6 @@ router.get("/:id", async (req, res, next) => {
         pro_id:req.params.id
       }
     })
-    // res.json({ taillesQuantites });
     const ref_produit = article.pro_ref;
     const ref_produit_caractere = ref_produit.slice(0, ref_produit.length - 1);
 

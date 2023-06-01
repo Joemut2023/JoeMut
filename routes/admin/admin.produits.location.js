@@ -12,6 +12,7 @@ const {
 const moment = require("moment");
 const check_search_input = require("../../helpers/check_search_input");
 const { Op } = require("sequelize");
+const Logger = require("../../helpers/Logger");
 const {
   check_value_date_start,
   check_value_date_last,

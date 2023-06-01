@@ -1,6 +1,7 @@
 var express = require("express");
 var nodemailer = require("nodemailer");
 var router = express.Router();
+const Logger = require("../helpers/Logger");
 
 router.get("/", function (req, res, next) {
   res.locals.titre = "contact";

@@ -14,6 +14,7 @@ const { PAGINATION_LIMIT_ADMIN } = require("../../helpers/utils_const");
 const check_admin_paginate_value = require("../../helpers/check_admin_paginate_value");
 const { Op, Sequelize } = require("sequelize");
 const path = require("path");
+const Logger = require("../../helpers/Logger");
 
 router.get("/", async (req, res) => {
   const { search } = req.query;
