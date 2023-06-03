@@ -14,6 +14,7 @@ const path = require('path');
 const flash_message = require('../../helpers/flash_message');
 const erroMsg = "Quelque chose s'est mal passé."
 const moment = require('moment');
+const Logger = require('../../helpers/Logger');
 
 const create_document = async (tdo_id,usr_id,doc_date,com_id,callback)=>{
     let commande = await Commande.findOne({
@@ -79,34 +80,59 @@ router.post('/facture',async (req,res)=>{
         //res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
+/**
+ * Création du bon d'essayage
+ */
 router.post('/bon-essayage',async (req,res)=>{
     const {com_id} = req.body;
     const usr_id = req.session.adminId
     try {
         await create_document(TYPE_DOCUMENT_BON_ESSAYAGE,usr_id,today,com_id,async (document,commande)=>{
-            let document_updated = await Document.update({
-                doc_ref:`ESS-${document.doc_id}-${commande.com_num.trim()}`,
-                doc_libelle:`ESS-${document.doc_id}-${commande.com_num.trim()}`
-            },{where:{doc_id:document.doc_id}});
+            try {
+                let document_updated = await Document.update({
+                    doc_ref:`ESS-${document.doc_id}-${commande.com_num.trim()}`,
+                    doc_libelle:`ESS-${document.doc_id}-${commande.com_num.trim()}`
+                },{where:{doc_id:document.doc_id}});
+                let bon_essayage = await Document.findOne({
+                    where:{doc_id:document.doc_id}
+                });
+                const DOCUMENT_NAME = bon_essayage.doc_ref;
+                await generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage/${document.doc_id}`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`)
+            } catch (error) {
+                Logger.error(error.stack);
+            }
         });
-        req.session.flash = {message:"Bon d'essayage crée avec succée, le pdf sera généré lors de l'envoi du mail au client",type:"success"}
+        req.session.flash = {message:"Bon d'essayage crée avec succès",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
         req.session.flash = {message:erroMsg,type:"danger"}
         res.redirect(`/admin/devis`);
     }
 });
+/**
+ * Création du bon de livraison
+ */
 router.post('/bon-livraison',async (req,res)=>{
     const {com_id} = req.body;
     const usr_id = req.session.adminId
     try {
         await create_document(TYPE_DOCUMENT_BON_LIVRAISON,usr_id,today,com_id,async (document,commande)=>{
-            let document_updated = await Document.update({
-                doc_ref:`LIV-${document.doc_id}-${commande.com_num.trim()}`,
-                doc_libelle:`LIV-${document.doc_id}-${commande.com_num.trim()}`
-            },{where:{doc_id:document.doc_id}});
+            try {
+                let document_updated = await Document.update({
+                    doc_ref:`LIV-${document.doc_id}-${commande.com_num.trim()}`,
+                    doc_libelle:`LIV-${document.doc_id}-${commande.com_num.trim()}`
+                },{where:{doc_id:document.doc_id}});
+                let bon_livraison = await Document.findOne({
+                    where:{doc_id:document.doc_id}
+                });
+                const DOCUMENT_NAME = bon_livraison.doc_ref;
+                await generate_pdf_func(`${process.env.APP_URL}admin/bon-livraison/${document.doc_id}`,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`)
+            } catch (error) {
+                Logger.error(error.stack);
+                req.session.flash = {message:erroMsg,type:"danger"}
+            } 
         });
-        req.session.flash = {message:"Bon de livraison créé, le pdf sera généré lors de l'envoi du mail au client",type:"success"}
+        req.session.flash = {message:"Bon de livraison créé avec succès",type:"success"}
         res.redirect(`/admin/devis`);
     } catch (error) {
         req.session.flash = {message:erroMsg,type:"danger"}
@@ -166,6 +192,9 @@ router.post('/devis-mail',async (req,res)=>{
         res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
+/**
+ * Envois du bon d'essayage via Mail
+ */
 router.post('/bon-essayage-pdf',async (req,res)=>{
     const {com_id} = req.body;
     try {
@@ -173,7 +202,6 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
             attributes:['com_id','com_num'],
             include:[{model:Client,attributes:['cli_mail']}]
         },{where:{com_id},order:[['doc_date','DESC']]});
-
         let ejsFile = fs.readFileSync(
             path.join(__dirname, "../../mailTemplate/essayage.ejs"),
             "utf8"
@@ -186,16 +214,17 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
             },
             order:[['doc_date','DESC']]
         });
-        
-        if (bon_essayage_arr) { 
+        if (bon_essayage_arr.length != 0) { 
             const DOCUMENT_NAME = bon_essayage_arr[0].doc_ref;
             let bon_essayage = bon_essayage_arr[0];
-            generate_pdf_func(`${process.env.APP_URL}admin/bon-essayage/${bon_essayage.doc_id}`,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`).then(data=>{
-                send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon d'essayage AES`,html).then(()=>{
-                    req.session.flash = {message:"Le bon d'essayage vient d'être envoyé au client.",type:"success"} 
-                    res.redirect(`/admin/devis/view/${commande.com_id}`);
-                })
-            })  
+            send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_essayage/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon d'essayage AES`,html).then(()=>{
+                req.session.flash = {message:"Le bon d'essayage vient d'être envoyé au client.",type:"success"} 
+                res.redirect(`/admin/devis/view/${commande.com_id}`);
+            }).catch(err=>{
+                Logger.error(err.stack);
+                req.session.flash = {message:"Une erreur est survenu pendant l'envois du bon d'essayage, assurez vous de l'avoir généré.",type:"danger"}
+                res.redirect(`/admin/devis/view/${com_id}`);
+            })
         }else{
             req.session.flash = {message:"Cette commande n'a pas encore de bon d'essayage.",type:"danger"}
             res.redirect(`/admin/devis/view/${commande.com_id}`);   
@@ -205,6 +234,9 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
        res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
+/**
+ * Envois du bon de livraison via mail
+ */
 router.post('/bon-livraison-pdf',async (req,res)=>{
     const {com_id,doc_id} = req.body; 
     try {
@@ -246,23 +278,23 @@ router.post('/bon-livraison-pdf',async (req,res)=>{
             path.join(__dirname, "../../mailTemplate/livraison_mail_content.ejs"),
             "utf8"
         );
-        
-        if (bon_livraison_arr) { 
+        if (bon_livraison_arr.length != 0) { 
             let bon_livraison = bon_livraison_arr[0];
+            console.log(bon_livraison);
             let html = ejs.render(ejsFile,{bon_livraison,commande,moment,adresse,expedition,panierDetails});     
             const DOCUMENT_NAME = bon_livraison.doc_ref;
-            generate_pdf_func(`${process.env.APP_URL}admin/bon-livraison/${bon_livraison.doc_id}`,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`).then(data=>{
-                send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon de livraison AES`,html).then(()=>{
-                    req.session.flash = {message:"Le bon de livraison vient d'être envoyé au client.",type:"success"} 
-                    res.redirect(`/admin/devis/view/${com_id}`);
-                })
-            })  
+            send_mail_func(DOCUMENT_NAME,`../public/pdf/bon_livraison/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,`Bon de livraison AES`,html).then(()=>{
+                req.session.flash = {message:"Le bon de livraison vient d'être envoyé au client.",type:"success"} 
+                return res.redirect(`/admin/devis/view/${com_id}`);
+            }).catch(err=>{
+                Logger.error(err.stack)
+            })
         }else{
             req.session.flash = {message:"Cette commande n'a pas encore de bon de livraison.",type:"danger"}
             res.redirect(`/admin/devis/view/${com_id}`);   
         }
     } catch (error) {
-       // console.log(error);
+        console.log(error);
         req.session.flash = {message:erroMsg,type:"danger"}
         res.redirect(`/admin/devis/view/${com_id}`);
     }
