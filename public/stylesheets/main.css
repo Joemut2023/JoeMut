@@ -8580,12 +8580,16 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  gap: 20px;
   justify-content: space-between;
 }
 #admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-img {
-  width: 15%;
+  width: 25%;
   height: 50px;
+}
+#admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-img img {
+  width: 100%;
+  height: 100%;
 }
 #admin-page-viewDevis .content .right .produit-list .table .tr-th-produit div .tr-th-produit-text {
   width: 65%;

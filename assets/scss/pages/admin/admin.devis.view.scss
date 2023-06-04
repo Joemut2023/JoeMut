@@ -177,11 +177,15 @@
                             width: 100%;
                             display: flex;
                             flex-direction: row;
-                            gap: 5%;
+                            gap: 20px;
                             justify-content: space-between;
                             .tr-th-produit-img{
-                                width: 15%;
+                                width: 25%;
                                 height: 50px;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                }
                             }
                             .tr-th-produit-text{
                                 width: 65%;
