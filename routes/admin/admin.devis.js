@@ -450,6 +450,7 @@ router.get("/view/:commandeId", async (req, res) => {
         "com_tva",
         "com_ttc",
         "com_num",
+        "com_comment"
       ],
       include: [
         {

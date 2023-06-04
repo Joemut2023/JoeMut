@@ -46,7 +46,7 @@
           <a target="_blank" href="/pdf/devis/<%= last_document_devis[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
           <form action="/admin/documents/devis-mail" method="post">
             <input type="hidden" name="com_id" value="<%= commande.com_id %>">
-            <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Dévis</button>
+            <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Devis</button>
           </form>
           <a target="_blank" href="/pdf/bon_livraison/<%= last_document_livraison[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Bon de livraison</a>
           <form action="/admin/documents/bon-livraison-pdf" method="post">
@@ -217,7 +217,8 @@
                                               <img src="/images/produits/<%= panier_detail.Produit.Media[0].med_ressource  %>" alt="">
                                           </div>
                                           <div class="tr-th-produit-text">
-                                              <p><%= panier_detail.Produit.pro_libelle  %></p>
+                                            
+                                              <p><a title="Modifier le produit" href="/admin/produits/<%= panier_detail.Produit.pro_id  %>"><%= panier_detail.Produit.pro_libelle  %></a></p>
                                           </div>
                                       </div>
                                   </th>
@@ -403,6 +404,9 @@
               </div>
               <div class="devis-note">
                   <h2>Note de devis</h2>
+                  <div class="col-md-6">
+                    <%- commande?.com_comment %>
+                  </div>
                   <form action="/admin/devis/commande-add-note" method="post">
                       <div class="mb-3">
                         <textarea name="com_comment" id="editor">
