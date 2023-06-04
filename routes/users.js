@@ -278,12 +278,14 @@ router.get("/historique", async function (req, res, next) {
   res.locals.titre = "historique";
   const clientId = req.session.userId;
   try {
+    
+  
     const commandeByUser = await Commande.findAll({
+      include:[
+        {
           model: Panier,
           attributes: ["pan_id"],
-          include: [{
-          model: Panier_detail,
-          attributes: ["pad_ht", "pad_qte", "pad_ttc"],
+          include: [{ model: Panier_detail,attributes: ["pad_ht", "pad_qte", "pad_ttc"]}]
         }, 
         {
           model: Chronologie,
@@ -311,8 +313,8 @@ router.get("/historique", async function (req, res, next) {
         {
           model: Facturation,
           attributes: ["fac_id", "fac_date"],
-        }]
-      ,
+        }
+      ],
       where: {
         cli_id: clientId,
       }});

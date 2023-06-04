@@ -65,8 +65,9 @@
                 </p>
               </td>
               <td>
-                <% if (commande.Facturations.length > 0) { %> <%=
-                commande.Facturations[0].fac_date %> <% } else { %> - <% } %>
+                <% if (commande.Facturations.length > 0) { %> 
+                  <%= moment(commande.Facturations[0].fac_date).format('DD/MM/YYYY') %>
+                <% } else { %> - <% } %>
               </td>
               <td class="button">
                 <a href="/mon-compte/detailsCommande/<%= commande.pan_id %>"
