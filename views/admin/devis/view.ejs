@@ -43,7 +43,7 @@
               <button class="btn btn-primary">Mettre à jour l'état</button>
             </div>
           </form> 
-          <a target="_blank" href="/pdf/devis/<%= last_document_devis[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Dévis</a>
+          <a target="_blank" href="/pdf/devis/<%= last_document_devis[0]?.doc_ref %>.pdf" class="btn shadow"><i class="fa-solid fa-print"></i>Devis</a>
           <form action="/admin/documents/devis-mail" method="post">
             <input type="hidden" name="com_id" value="<%= commande.com_id %>">
             <button type="submit" class="btn btn-light shadow"><i class="fa-solid fa-envelope"></i>Devis</button>
