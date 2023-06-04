@@ -403,10 +403,13 @@
               </div>
               <div class="devis-note">
                   <h2>Note de devis</h2>
-                  <form action="">
+                  <form action="/admin/devis/commande-add-note" method="post">
                       <div class="mb-3">
-                          <textarea class="simplemde" id="devis-note-textarea" cols="30" rows="5"></textarea>
+                        <textarea name="com_comment" id="editor">
+                          This is some sample content.;
+                        </textarea>
                       </div>
+                      <input type="hidden" name="com_id" value="<%= commande.com_id %>">
                       <div class="devis-note-form-action">
                           <p>Afficher cette note de commande sur la facture <input type="checkbox" name="" id=""></p>
                           <button class="btn btn-light">Sauver</button>
@@ -956,3 +959,10 @@
   <% }%>
 </div>
 <script src="/javascripts/admin/devis.view.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector('#editor'))
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

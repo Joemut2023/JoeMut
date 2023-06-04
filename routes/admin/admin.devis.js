@@ -1064,4 +1064,17 @@ router.post("/commande-update-retour-nbr", async (req, res) => {
     return res.redirect(`/admin/devis/view/${com_id}`);
   }
 });
+router.post('/commande-add-note',async (req,res)=>{
+  const {com_id,com_comment} = req.body;
+ try {
+  await Commande.update({
+    com_comment
+  },{where:{com_id}});
+  req.session.flash = { message: updateMsg, type: "success" };
+ } catch (error) {
+  req.session.flash = { message: erroMsg, type: "danger" };
+  Logger.error(error.stack);
+ }
+ res.redirect(`/admin/devis/view/${com_id}`)
+});
 module.exports = router;

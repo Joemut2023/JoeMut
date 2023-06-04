@@ -30,15 +30,6 @@ var tabRetourForm = document.querySelector('.tab-retour-form-container');
 var btnsEditTransporteurs = document.querySelectorAll('.btn-edit-expedition');
 var btnsEditRetours = document.querySelectorAll('.btn-edit-retour');
 var btnsAddNoteRetours = document.querySelectorAll('.btn-add-note-retour');
-//simple MDE
-(function () {
-  var simplemde = new SimpleMDE({
-    element: document.querySelector("#devis-note-textarea"),
-    forceSync: true,
-    spellChecker: false,
-    initialValue: "Tapez ici..."
-  });
-})();
 
 /**
  * Affichage du formulaire de note de commande => Tabs (Documents)
