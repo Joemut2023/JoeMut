@@ -1,181 +1,194 @@
 <div id="page-article">
- <% if (typeof errorArticle != "undefined") { %>
-    <div class="alert alert-danger">
-      <p><%= errorArticle %></p>
-    </div>
- <% } else{%>
-    <div class="title-article">
-      <span><a href="/">Accueil</a><%= %></span>
-      <span>/ <a href="/catalogue">Catalogue</a><%= %></span>
-      <span>/ <a href="/catalogue/type/<%= article.Categorie.Type_categorie.tyc_id %>">
-      <% if (article.Categorie.Type_categorie.tyc_id===1) { %>
-        Petits
-      <% } else if (article.Categorie.Type_categorie.tyc_id===2) { %>
-          Moyens
-      <% } else if (article.Categorie.Type_categorie.tyc_id===3) { %>
-          Grands
-          <% } else { %>
-            Accessoirs
-      <% } %> 
-        
-      </a><%= %></span>
-      <span>/ <a href="/catalogue/<%=article.Categorie.cat_id %>"><%= article.Categorie.cat_libelle %></a><%= %></span>
-      <span>/ <%= article.pro_libelle %></span>
-    </div>
+  <% if (typeof errorArticle != "undefined") { %>
+  <div class="alert alert-danger">
+    <p><%= errorArticle %></p>
+  </div>
+  <% } else{%>
+  <div class="title-article">
+    <span><a href="/">Accueil</a><%= %></span>
+    <span>/ <a href="/catalogue">Catalogue</a><%= %></span>
+    <span
+      >/
+      <a href="/catalogue/type/<%= article.Categorie.Type_categorie.tyc_id %>">
+        <% if (article.Categorie.Type_categorie.tyc_id===1) { %> Petits <% }
+        else if (article.Categorie.Type_categorie.tyc_id===2) { %> Moyens <% }
+        else if (article.Categorie.Type_categorie.tyc_id===3) { %> Grands <% }
+        else { %> Accessoirs <% } %> </a
+      ><%= %></span
+    >
+    <span
+      >/
+      <a href="/catalogue/<%=article.Categorie.cat_id %>"
+        ><%= article.Categorie.cat_libelle %></a
+      ><%= %></span
+    >
+    <span>/ <%= article.pro_libelle %></span>
+  </div>
 
-    <div class="content row">
-      <div class="left-content col-md-6">
-        <div class="image-content">
-          <div
-            class="image default_img"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            <img
-              src="/images/produits/<%= article.Media[0].med_ressource %>"
-              alt=""
-              class="img_grand_carousel"
-            />
-            <div class="search-icon">
-              <span><i class="fa-solid fa-magnifying-glass"></i></span>
-            </div>
-          </div>
-
-          <div id="carouselImages" class="swiper carousel slide">
-            <div class="swiper-wrapper carousel-inner">
-              <% article.Media.forEach(element => { %>
-              <div class="swiper-slide carousel-item active">
-                <img
-                  src="/images/produits/<%= element.med_ressource %>"
-                  class="img-fluid small_carousel"
-                />
-              </div>
-              <% }) %>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+  <div class="content row">
+    <div class="left-content col-md-6">
+      <div class="image-content">
+        <div
+          class="image default_img"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <img
+            src="/images/produits/<%= article.Media[0].med_ressource %>"
+            alt=""
+            class="img_grand_carousel"
+          />
+          <div class="search-icon">
+            <span><i class="fa-solid fa-magnifying-glass"></i></span>
           </div>
         </div>
 
-        <div
-          class="modal fade modal-container"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-0">
-              <div class="modal-body">
-                <div class="images">
-                  <div class="image-grand">
-                    <img
-                      src="/images/produits/<%= article.Media[0].med_ressource %>"
-                      class="img-grand img-fluid"
-                      alt=""
-                    />
-                  </div>
-                  <div class="desc">
-                    <p class="utile">
-                      Quantité initiale : <%= quantiteInitial ? quantiteInitial : "1" %>
-                    </p>
-                    <p class="utile">Tailles disponibles :</p>
-                    <% if (taillesQuantites.length > 0) { %> <%
-                    taillesQuantites.forEach(element => { %>
-                    <p>
-                      <%= element.Quantites[0].qua_nbre %> en <%=
-                      element.tai_libelle %>
-                    </p>
-                    <% }) %> <% } %>
-                  </div>
-                </div>
+        <div id="carouselImages" class="swiper carousel slide">
+          <div class="swiper-wrapper carousel-inner">
+            <% article.Media.forEach(element => { %>
+            <div class="swiper-slide carousel-item active">
+              <img
+                src="/images/produits/<%= element.med_ressource %>"
+                class="img-fluid small_carousel"
+              />
+            </div>
+            <% }) %>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
 
-                <div class="small-images">
-                  <% article.Media.forEach(element => { %>
-                  <div class="image-card">
-                    <img
-                      src="/images/produits/<%= element.med_ressource %>"
-                      class="img-fluid img-small"
-                      alt=""
-                    />
-                  </div>
-                  <% }) %>
+      <div
+        class="modal fade modal-container"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content rounded-0">
+            <div class="modal-body">
+              <div class="images">
+                <div class="image-grand">
+                  <img
+                    src="/images/produits/<%= article.Media[0].med_ressource %>"
+                    class="img-grand img-fluid"
+                    alt=""
+                  />
                 </div>
+                <div class="desc">
+                  <p class="utile">
+                    Quantité initiale : <%= quantiteInitial ? quantiteInitial :
+                    "1" %>
+                  </p>
+                  <p class="utile">Tailles disponibles :</p>
+                  <% if (taillesQuantites.length > 0) { %> <%
+                  taillesQuantites.forEach(element => { %>
+                  <p>
+                    <%= element.Quantites[0].qua_nbre %> en <%=
+                    element.tai_libelle %>
+                  </p>
+                  <% }) %> <% } %>
+                </div>
+              </div>
+
+              <div class="small-images">
+                <% article.Media.forEach(element => { %>
+                <div class="image-card">
+                  <img
+                    src="/images/produits/<%= element.med_ressource %>"
+                    class="img-fluid img-small"
+                    alt=""
+                  />
+                </div>
+                <% }) %>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="right-content col-md-6">
-        <h1><%= article.pro_libelle %></h1>
-        <p class="ref">Référence: <%= article.pro_ref %></p>
-        <div class="price">
-          <p class="number"><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %> €</p>
-          <p class="title">TTC</p>
+    <div class="right-content col-md-6">
+      <h1><%= article.pro_libelle %></h1>
+      <p class="ref">Référence: <%= article.pro_ref %></p>
+      <div class="price">
+        <p class="number">
+          <%=
+          priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
+          %> €
+        </p>
+        <p class="title">TTC</p>
+      </div>
+      <div class="informations">
+        <div class="description">
+          <p class="utile">
+            Quantité initiale : <%= quantiteInitial ? quantiteInitial : "1" %>
+          </p>
+          <p class="utile">Tailles disponibles :</p>
+          <% if (taillesQuantites.length > 0) { %> <%
+          taillesQuantites.forEach(element => { %>
+          <p>
+            <%= element.Quantites[0].qua_nbre %> en <%= element.tai_libelle %>
+          </p>
+          <% }) %> <% } %>
         </div>
-        <div class="informations">
-          <div class="description">
-            <p class="utile">Quantité initiale : <%= quantiteInitial ? quantiteInitial : "1" %></p>
-            <p class="utile">Tailles disponibles :</p>
-            <% if (taillesQuantites.length > 0) { %> <%
-            taillesQuantites.forEach(element => { %>
-            <p>
-              <%= element.Quantites[0].qua_nbre %> en <%= element.tai_libelle %>
-            </p>
-            <% }) %> <% } %>
-          </div>
-          <span>* J’indiquerai les tailles après l’essayage</span>
-        </div>
-        <div class="actions">
-          <div class="add-cart">
-            <p>Quantité</p>
-            <div class="quantity">
-              <div class="qty-btn">
-                <input type="text" class="number-value" value="1" />
-                <div class="btns">
-                  <button class="btn-up">
-                    <span><i class="fa-solid fa-chevron-up"></i></span>
-                  </button>
-                  <button class="btn-down">
-                    <span><i class="fa-solid fa-chevron-down"></i></span>
-                  </button>
-                </div>
+        <span>* J’indiquerai les tailles après l’essayage</span>
+      </div>
+      <div class="actions">
+        <div class="add-cart">
+          <p>Quantité</p>
+          <div class="quantity">
+            <div class="qty-btn">
+              <input type="text" class="number-value" value="1" />
+              <div class="btns">
+                <button class="btn-up">
+                  <span><i class="fa-solid fa-chevron-up"></i></span>
+                </button>
+                <button class="btn-down">
+                  <span><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
               </div>
-              <button
-                class="add btn-add"
-                data-bs-toggle="modal"
-                data-bs-target="#parent_modal"
-                data-id="<%= article.pro_id %>"
-              >
-                Ajouter au panier
-              </button>
             </div>
-            <div class="alerte-qty"></div>
+            <button
+              class="add btn-add"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+              data-id="<%= article.pro_id %>"
+            >
+              Ajouter au panier
+            </button>
           </div>
+          <div class="alerte-qty"></div>
+        </div>
+        <p style="font-size:0.9rem;">
+          Quantité insuffisante ? Laissez-nous un message en précisant la
+          référence du produit, ou appelez au <a href="tel:0614299981" style="text-decoration: none;color:black;">06 14 29 99 81</a> 
+        </p>
+        <div class="socials">
+          <span>Partager</span>
+          <ul>
+            <li>
+              <a href="" title="facebook"
+                ><span><i class="fa-brands fa-facebook-f"></i></span
+              ></a>
+            </li>
+            <li>
+              <a href="" title="twitter"
+                ><span><i class="fa-brands fa-twitter"></i></span
+              ></a>
+            </li>
+            <li>
+              <a href="" title="pinterest"
+                ><span><i class="fa-brands fa-pinterest-p"></i></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      
 
-          <div class="socials">
-            <span>Partager</span>
-            <ul>
-              <li>
-                <a href="" title="facebook"
-                  ><span><i class="fa-brands fa-facebook-f"></i></span
-                ></a>
-              </li>
-              <li>
-                <a href="" title="twitter"
-                  ><span><i class="fa-brands fa-twitter"></i></span
-                ></a>
-              </li>
-              <li>
-                <a href="" title="pinterest"
-                  ><span><i class="fa-brands fa-pinterest-p"></i></span
-                ></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="tabs-container">
+        <!-- <div class="tabs-container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button
@@ -226,240 +239,252 @@
                 <%= article.pro_details %>
               </div>
             </div>
-          </div>
-        </div>
+          </div> -->
       </div>
     </div>
+  </div>
 
-    <% if (produits_similaires.length > 0) { %>
-    <div class="others-like">
-      <h5>VOUS AIMEREZ AUSSI</h5>
-      <div class="items row">
-        <% produits_similaires.forEach(element => { %>
-        <div class="item col-md-4">
-          <div class="image">
+  <% if (produits_similaires.length > 0) { %>
+  <div class="others-like">
+    <h5>VOUS AIMEREZ AUSSI</h5>
+    <div class="items row">
+      <% produits_similaires.forEach(element => { %>
+      <div class="item col-md-4">
+        <div class="image">
+          <a href="/article/<%= element.pro_id %>"
+            ><img
+              src="/images/produits/<%= element.Media[0].med_ressource %>"
+              class="img-fluid"
+              alt=""
+          /></a>
+        </div>
+        <div class="details">
+          <p class="desc">
             <a href="/article/<%= element.pro_id %>"
-              ><img
-                src="/images/produits/<%= element.Media[0].med_ressource %>"
-                class="img-fluid"
-                alt=""
-            /></a>
+              ><span><%= element.pro_libelle %></span></a
+            >
+          </p>
+          <p class="ref">Ref: <%= element.pro_ref %></p>
+          <div class="quantite">
+            <span>
+              <%= quantiteOfEachProduct.find(item => item.id ===
+              element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id
+              === element.pro_id).qty : "1" %></span
+            >
+            <%= quantiteOfEachProduct.find(item => item.id ===
+            element.pro_id).qty > 1 ? "articles" : "article" %>
           </div>
-          <div class="details">
-            <p class="desc">
-              <a href="/article/<%= element.pro_id %>"
-                ><span><%= element.pro_libelle %></span></a
-              >
+          <div>
+            <p class="price">
+              <%=
+              element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
+              %>€
             </p>
-            <p class="ref">Ref: <%= element.pro_ref %></p>
-            <div class="quantite"><span>  <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id === element.pro_id).qty : "1" %></span> <%= quantiteOfEachProduct.find(item => item.id === element.pro_id).qty > 1 ? "articles" : "article" %></div>
-            <div>
-              <p class="price"><%= element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %>€</p>
-              <p class="bar">|</p>
-              <button
-                data-id="<%= element.pro_id %>"
-                class="price btn button-ajouter"
-                data-bs-toggle="modal"
-                data-bs-target="#parent_modal"
-              >
-                Ajouter
-              </button>
-            </div>
+            <p class="bar">|</p>
+            <button
+              data-id="<%= element.pro_id %>"
+              class="price btn button-ajouter"
+              data-bs-toggle="modal"
+              data-bs-target="#parent_modal"
+            >
+              Ajouter
+            </button>
           </div>
         </div>
-        <% }) %>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="row comment">
+    <div class="title">
+      <span class="icon"><i class="fa-solid fa-message"></i></span>
+      <span>Commentaires (<%= article.pro_comment %>)</span>
+    </div>
+    <div class="avis">
+      <div
+        class="content"
+        data-bs-toggle="modal"
+        data-bs-target="#commentModalLabel"
+      >
+        <span class="icon"><i class="fa-solid fa-pen"></i></span>
+        <span class="text">soyez le premier à donner votre avis</span>
       </div>
     </div>
-    <% } %>
 
-    <div class="row comment">
-      <div class="title">
-        <span class="icon"><i class="fa-solid fa-message"></i></span>
-        <span>Commentaires (<%= article.pro_comment %>)</span>
-      </div>
-      <div class="avis">
-        <div
-          class="content"
-          data-bs-toggle="modal"
-          data-bs-target="#commentModalLabel"
-        >
-          <span class="icon"><i class="fa-solid fa-pen"></i></span>
-          <span class="text">soyez le premier à donner votre avis</span>
-        </div>
-      </div>
-
-      <div
-        class="modal fade modal-container"
-        id="commentModalLabel"
-        tabindex="-1"
-        aria-labelledby="commentModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content rounded-0">
-            <div class="modal-header">
-              <h4 class="modal-title">Donnez votre avis</h4>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row first_block">
-                <div class="col-md-2 col-sm-2 block-1">
-                  <div class="img-cover">
-                    <img
-                      src="/images/produits/<%= article.Media[0].med_ressource %>"
-                      alt=""
-                      class="img-fluid"
-                    />
-                  </div>
+    <div
+      class="modal fade modal-container"
+      id="commentModalLabel"
+      tabindex="-1"
+      aria-labelledby="commentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-0">
+          <div class="modal-header">
+            <h4 class="modal-title">Donnez votre avis</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row first_block">
+              <div class="col-md-2 col-sm-2 block-1">
+                <div class="img-cover">
+                  <img
+                    src="/images/produits/<%= article.Media[0].med_ressource %>"
+                    alt=""
+                    class="img-fluid"
+                  />
                 </div>
-                <div class="col-md-4 col-sm-4 block-2">
-                  <h3><%= article.pro_libelle %></h3>
-                  <div>
-                    <p>
-                      <strong
-                        ><span
-                          >Quantité initiale : <%= quantiteInitial %></span
-                        ></strong
-                      >
-                    </p>
-                    <p>
-                      <strong><span>Taille disponibles : </span></strong>
-                    </p>
+              </div>
+              <div class="col-md-4 col-sm-4 block-2">
+                <h3><%= article.pro_libelle %></h3>
+                <div>
+                  <p>
+                    <strong
+                      ><span
+                        >Quantité initiale : <%= quantiteInitial %></span
+                      ></strong
+                    >
+                  </p>
+                  <p>
+                    <strong><span>Taille disponibles : </span></strong>
+                  </p>
 
-                    <% if (taillesQuantites.length > 0) { %> <%
-                    taillesQuantites.forEach(element => { %>
-                    <p>
-                      <span
-                        ><%= element.Quantites[0].qua_nbre %> en <%=
-                        element.tai_libelle %></span
-                      >
-                    </p>
-                    <% }) %> <% } %>
-                    <p>
-                      <em class="small-text"
-                        >* J’indiquerai les tailles après l’essayage</em
-                      >
-                    </p>
-                  </div>
+                  <% if (taillesQuantites.length > 0) { %> <%
+                  taillesQuantites.forEach(element => { %>
+                  <p>
+                    <span
+                      ><%= element.Quantites[0].qua_nbre %> en <%=
+                      element.tai_libelle %></span
+                    >
+                  </p>
+                  <% }) %> <% } %>
+                  <p>
+                    <em class="small-text"
+                      >* J’indiquerai les tailles après l’essayage</em
+                    >
+                  </p>
                 </div>
-                <div class="col-md-6 col-sm-6 block-3">
-                  <div class="item">
-                    <label>Quality:</label>
-                    <div class="contents-starts">
-                      <div class="start-content">
-                        <span class="star"><i class="fa-solid fa-star"></i></span>
-                        <span class="star"><i class="fa-solid fa-star"></i></span>
-                        <span class="star"><i class="fa-solid fa-star"></i></span>
-                        <span class="star"><i class="fa-solid fa-star"></i></span>
-                        <span class="star"><i class="fa-solid fa-star"></i></span>
-                      </div>
+              </div>
+              <div class="col-md-6 col-sm-6 block-3">
+                <div class="item">
+                  <label>Quality:</label>
+                  <div class="contents-starts">
+                    <div class="start-content">
+                      <span class="star"><i class="fa-solid fa-star"></i></span>
+                      <span class="star"><i class="fa-solid fa-star"></i></span>
+                      <span class="star"><i class="fa-solid fa-star"></i></span>
+                      <span class="star"><i class="fa-solid fa-star"></i></span>
+                      <span class="star"><i class="fa-solid fa-star"></i></span>
                     </div>
                   </div>
                 </div>
               </div>
-              <form
-                action="/article/<%= article.pro_id %>"
-                method="post"
-                class="form"
-              >
-                <div class="row title_label">
-                  <div class="col-md-12 col-sm-12">
-                    <label for="comment_title" class="form-label"
-                      >Titre <sup class="required">*</sup></label
-                    >
-                  </div>
-                </div>
-                <div class="row title_input">
-                  <div class="col-md-12 col-sm-12 input">
-                    <input
-                      type="text"
-                      name="cmt_titre"
-                      id=""
-                      required
-                      class="titre"
-                    />
-                  </div>
-                </div>
-                <div class="row content_label">
-                  <div class="col-md-12 col-sm-12">
-                    <label for="comment_content" class="form-label"
-                      >Avis <sup class="required">*</sup></label
-                    >
-                  </div>
-                </div>
-                <div class="row content_text">
-                  <div class="col-md-12 col-sm-12 content">
-                    <textarea
-                      name="cmt_comment"
-                      id=""
-                      cols="30"
-                      rows="10"
-                      required
-                      class="contenu"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="row buttons">
-                  <div class="col-md-6 col-sm-6">
-                    <p class="required">
-                      <sup>*</sup>
-                      champs requis
-                    </p>
-                  </div>
-                  <div class="col-md-6 col-sm-6 btns">
-                    <button
-                      type="button"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                      class="btn-annuler"
-                    >
-                      Annuler
-                    </button>
-                    <button type="submit" class="btn-envoyer">Envoyer</button>
-                  </div>
-                </div>
-              </form>
             </div>
+            <form
+              action="/article/<%= article.pro_id %>"
+              method="post"
+              class="form"
+            >
+              <div class="row title_label">
+                <div class="col-md-12 col-sm-12">
+                  <label for="comment_title" class="form-label"
+                    >Titre <sup class="required">*</sup></label
+                  >
+                </div>
+              </div>
+              <div class="row title_input">
+                <div class="col-md-12 col-sm-12 input">
+                  <input
+                    type="text"
+                    name="cmt_titre"
+                    id=""
+                    required
+                    class="titre"
+                  />
+                </div>
+              </div>
+              <div class="row content_label">
+                <div class="col-md-12 col-sm-12">
+                  <label for="comment_content" class="form-label"
+                    >Avis <sup class="required">*</sup></label
+                  >
+                </div>
+              </div>
+              <div class="row content_text">
+                <div class="col-md-12 col-sm-12 content">
+                  <textarea
+                    name="cmt_comment"
+                    id=""
+                    cols="30"
+                    rows="10"
+                    required
+                    class="contenu"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="row buttons">
+                <div class="col-md-6 col-sm-6">
+                  <p class="required">
+                    <sup>*</sup>
+                    champs requis
+                  </p>
+                </div>
+                <div class="col-md-6 col-sm-6 btns">
+                  <button
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    class="btn-annuler"
+                  >
+                    Annuler
+                  </button>
+                  <button type="submit" class="btn-envoyer">Envoyer</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
 
-      <div
-        class="modal fade sendModal"
-        id="sendModalLabel"
-        tabindex="-1"
-        aria-labelledby="sendModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <div class="title">
-                <span><i class="fa-solid fa-circle-check"></i></span>
-                <h3>Avis envoyé</h3>
-              </div>
-              <p>
-                Votre commentaire a bien été enregistré. Il sera publié dès qu'un
-                modérateur l'aura approuvé.
-              </p>
-              <div class="button">
-                <button
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  class="close-avis"
-                >
-                  Ok
-                </button>
-              </div>
+    <div
+      class="modal fade sendModal"
+      id="sendModalLabel"
+      tabindex="-1"
+      aria-labelledby="sendModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="title">
+              <span><i class="fa-solid fa-circle-check"></i></span>
+              <h3>Avis envoyé</h3>
+            </div>
+            <p>
+              Votre commentaire a bien été enregistré. Il sera publié dès qu'un
+              modérateur l'aura approuvé.
+            </p>
+            <div class="button">
+              <button
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                class="close-avis"
+              >
+                Ok
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   <% } %>
 </div>
 <script src="/javascripts/article.js"></script>
