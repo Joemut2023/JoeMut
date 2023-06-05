@@ -24,7 +24,7 @@ module.exports = {
       {
         auf_libelle: "Frais de dossier",
         auf_ht: 12.92,
-        auf_ttc: 15.5,
+        auf_ttc: 15,
         auf_debut: date_debut,
         auf_fin: date_fin,
         auf_actif: 1,
