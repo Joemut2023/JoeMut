@@ -277,11 +277,11 @@ var Kart = /*#__PURE__*/function () {
                       case 0:
                         myModal = document.querySelector("#myModal");
                         myModal.style.display = "flex";
-                        if (!(res.data == "indisponible")) {
+                        if (!(res.data.msg == "indisponible")) {
                           _context6.next = 6;
                           break;
                         }
-                        return _context6.abrupt("return", Kart.RenderMaxQteModal());
+                        return _context6.abrupt("return", Kart.RenderMaxQteModal(res.data.qte));
                       case 6:
                         _qte = res.data.panierDetail.pad_qte;
                         _context6.next = 9;
@@ -606,7 +606,7 @@ var Kart = /*#__PURE__*/function () {
               fraisDivers = _context14.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n          <div id=\"produit-image-cadre\" >\n          <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n          </div>\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
               _context14.next = 11;
               return Kart.getItemNumber();
             case 11:
@@ -630,20 +630,25 @@ var Kart = /*#__PURE__*/function () {
   }, {
     key: "RenderMaxQteModal",
     value: function () {
-      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
-        var html;
+      var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(qte) {
+        var html, text;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
           while (1) switch (_context15.prev = _context15.next) {
             case 0:
-              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5>Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        ";
-              document.querySelector("#myModal .body-modal").innerHTML = html;
-            case 2:
+              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5 class=\"text-center\" id=\"add-img-text\">Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        "; //document.querySelector("#myModal .body-modal").innerHTML = html;
+              document.querySelector("#add-product").innerHTML = "Oups opération échouée";
+              document.querySelector("#add-img-icone").style.display = "none";
+              document.querySelector("#modal-loader").style.display = "none";
+              document.querySelector("#add-img-fall-icone").style.display = "block";
+              text = "Impossible d'ajouter cet article au panier, car sa quantit\xE9 disponible est de ".concat(qte, "!");
+              document.querySelector("#max-qte-text").innerHTML = text;
+            case 7:
             case "end":
               return _context15.stop();
           }
         }, _callee15);
       }));
-      function RenderMaxQteModal() {
+      function RenderMaxQteModal(_x10) {
         return _RenderMaxQteModal.apply(this, arguments);
       }
       return RenderMaxQteModal;

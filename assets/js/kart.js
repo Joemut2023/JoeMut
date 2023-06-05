@@ -128,8 +128,8 @@ class Kart {
           const myModal = document.querySelector("#myModal");
           myModal.style.display = "flex";
 
-          if (res.data == "indisponible") {
-            return Kart.RenderMaxQteModal();
+          if (res.data.msg == "indisponible") {
+            return Kart.RenderMaxQteModal(res.data.qte);
           } else {
             let qte = res.data.panierDetail.pad_qte;
             await Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
@@ -374,7 +374,9 @@ class Kart {
     const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="body-modal-detail">
-            <img src="/images/produits/${item.media}" alt="" srcset="" />
+          <div id="produit-image-cadre" >
+          <img src="/images/produits/${item.media}" alt="" srcset="" />
+          </div>
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${new Decimal(
@@ -426,13 +428,20 @@ class Kart {
       ).innerHTML = `<img src="/images/loader.gif" alt="" />`;
     });
   }
-  static async RenderMaxQteModal() {
+  static async RenderMaxQteModal(qte) {
     let html = /*html*/ `
         <div class="modal-body-commande">
-            <h5>Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
+            <h5 class="text-center" id="add-img-text">Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
         </div>
         `;
-    document.querySelector("#myModal .body-modal").innerHTML = html;
+    //document.querySelector("#myModal .body-modal").innerHTML = html;
+    document.querySelector("#add-product").innerHTML = "Oups opération échouée"
+    document.querySelector("#add-img-icone").style.display = "none";
+    document.querySelector("#modal-loader").style.display = "none"
+    document.querySelector("#add-img-fall-icone").style.display = "block";
+    const text = `Impossible d'ajouter cet article au panier, car sa quantité disponible est de ${qte}!`
+    document.querySelector("#max-qte-text").innerHTML = text;
+
   }
   static RenderMaxQteUpdateModal() {
     let myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {

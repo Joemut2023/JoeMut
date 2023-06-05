@@ -25,6 +25,10 @@
     width: 75%;
     height: 30rem;
   }
+  #add-img-fall-icone {
+    color: $color-red;
+    display: none;
+  }
   .title-modal {
     width: 100%;
     height: 4rem;
@@ -107,9 +111,16 @@
         justify-content: space-around;
         align-items: flex-start;
       }
+      #produit-image-cadre{
+        //width: 100%;
+        height: 100px;
+      } 
       img {
-        width: 30%;
-        height: 8rem;
+        // width: 30%;
+        // height: 8rem;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
         @include breakpoint(mobil) {
           width: 50%;
         }
