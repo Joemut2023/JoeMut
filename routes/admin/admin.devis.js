@@ -913,12 +913,13 @@ router.post("/commande-add-facture-paiement", async (req, res) => {
   const { com_id, pai_date, mop_id, pai_ref, pai_montant, doc_id } = req.body;
   const usr_id = req.session.adminId;
   try {
+    
     let paiement = await Paiement.create({
       doc_id,
       usr_id,
       mop_id,
       pai_ref,
-      pai_montant,
+      pai_montant:parseFloat(pai_montant.toString().replace(',',".")),
       pai_date,
       com_id,
     });
