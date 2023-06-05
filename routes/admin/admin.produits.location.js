@@ -8,6 +8,8 @@ const {
   Media,
   Expedition,
   Client,
+  Panier,
+  Panier_detail
 } = require("../../models");
 const moment = require("moment");
 const check_search_input = require("../../helpers/check_search_input");
@@ -22,45 +24,43 @@ const check_front_input = (value) => {
 };
 router.get("/", async (req, res) => {
   try {
-    let detail_expeditions = await Detail_expedition.findAll({
-      include: [
+
+    let commandes = await Commande.findAll({
+      attributes:['com_id','pan_id','com_num'],
+      include:[
         {
-          model: Retour,
-        },
-        {
-          model: Produit,
-          attributes: ["pro_libelle", "pro_ref"],
-          include: [
+          model:Panier,
+          attributes:['pan_id','cli_id',],
+          include:[
             {
-              model: Media,
-            },
-          ],
-        },
-        {
-          model: Expedition,
-          attributes: ["com_id", "exp_depart"],
-          include: [
-            {
-              model: Commande,
-              attributes: ["com_num", "com_fin_spectacle"],
-              include: [
+              model:Panier_detail,
+              attributes:['pad_id','pad_qte'],
+              include:[
                 {
-                  model: Client,
-                  attributes: ["cli_nom", "cli_prenom"],
-                },
-              ],
-            },
-          ],
+                  model:Produit,
+                  attributes:['pro_id','pro_libelle',"pro_ref"]
+                }
+              ]
+            }
+          ]
         },
-      ],
+        {
+          model:Expedition,
+          required:false,
+          attributes:['exp_id','exp_depart']
+        },
+        {
+          model:Client,
+          attributes:['cli_id','cli_nom','cli_prenom']
+        }]
     });
     res.render("produits.location/index", {
-      detail_expeditions,
+      commandes,
       moment,
       check_front_input,
     });
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
     res.render("produits.location/index", {
       error,
       check_front_input,
