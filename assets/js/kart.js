@@ -374,7 +374,9 @@ class Kart {
     const fraisPort = parseFloat(fraisDivers.frais_port);
     let html = /*html*/ `
         <div class="body-modal-detail">
-            <img src="/images/produits/${item.media}" alt="" srcset="" />
+          <div id="produit-image-cadre" >
+          <img src="/images/produits/${item.media}" alt="" srcset="" />
+          </div>
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
             <div class="product-montant">${new Decimal(

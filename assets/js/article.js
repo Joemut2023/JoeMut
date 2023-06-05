@@ -1,4 +1,5 @@
 const navlink_one = document.querySelector(".btn-tab-one");
+console.log(navlink_one,"one");
 const navlink_two = document.querySelector(".btn-tab-two");
 const input = document.querySelector(".number-value");
 const btnAjouter = document.querySelector(".btn-add");

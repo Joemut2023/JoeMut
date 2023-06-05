@@ -4089,9 +4089,13 @@
     align-items: flex-start;
   }
 }
+#myModal .body-modal .body-modal-detail #produit-image-cadre {
+  height: 100px;
+}
 #myModal .body-modal .body-modal-detail img {
-  width: 30%;
-  height: 8rem;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 @media (max-width: 680px) {
   #myModal .body-modal .body-modal-detail img {

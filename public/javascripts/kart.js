@@ -606,7 +606,7 @@ var Kart = /*#__PURE__*/function () {
               fraisDivers = _context14.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n            <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n          <div id=\"produit-image-cadre\" >\n          <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n          </div>\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
               _context14.next = 11;
               return Kart.getItemNumber();
             case 11:
