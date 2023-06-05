@@ -46,7 +46,7 @@
             <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Pro. ID</th>
                     <th scope="col">Réf. commande</th>
                     <th scope="col">Réf. produit</th>
                     <th scope="col">
@@ -72,28 +72,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <% if (detail_expeditions.length > 0) { %>
-                       <% detail_expeditions?.forEach(dex => { %>
-                        <tr>
-                            <th scope="row"><%= dex.dex_id %></th>
-                            <td><%= dex.Expedition?.Commande.com_num %></td>
-                            <td><%= dex.Produit.pro_ref %></td>
-                            <td>
-                                <div>
-                                    <p><%= dex.Expedition?.Commande.Client.cli_nom %></p>
-                                    <p><%= dex.Expedition?.Commande.Client.cli_prenom %></p>
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <p><%= moment(dex.Expedition?.exp_depart).format('DD/MM/YYYY') %></p>
-                                    <p><%= moment(dex.Expedition?.Commande.com_fin_spectacle).format('DD/MM/YYYY') %></p>
-                                </div>
-                            </td>
-                            <td><%= dex.dex_nbre %></td>
-                            <td><button class="btn btn-primary"><i class="fa fa-search"></i></button></td>
-                        </tr>
-                       <% }) %>
+                    <% if (commandes.length > 0) { %>
+                        <% commandes.forEach(commande => { %>
+                            <% commande.Panier.Panier_details?.forEach(pad => { %>
+                                <tr>
+                                    <th scope="row"><%= pad.Produit.pro_id %></th>
+                                    <td><%= commande.com_num %></td>
+                                    <td><%= pad.Produit.pro_ref %></td>
+                                    <td>
+                                        <div>
+                                            <p><%= commande.Client.cli_nom %></p>
+                                            <p><%= commande.Client.cli_prenom %></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p><%= moment(commande.Expedition?.exp_depart).format('DD/MM/YYYY') %></p>
+                                            <p><%= moment(commande.com_fin_spectacle).format('DD/MM/YYYY') %></p>
+                                        </div>
+                                    </td>
+                                    <td><%= pad.pad_qte %></td>
+                                    <td><button class="btn btn-primary"><i class="fa fa-search"></i></button></td>
+                                </tr>
+                            <% }) %>
+                        <% }) %>
                     <% } %>
                   <tr></tr>
                 </tbody>
