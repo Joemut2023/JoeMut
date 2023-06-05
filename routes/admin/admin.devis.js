@@ -39,6 +39,7 @@ const {
   TYPE_DOCUMENT_DEVIS,
   TYPE_DOCUMENT_BON_ESSAYAGE,
   TYPE_DOCUMENT_BON_LIVRAISON,
+  STATUT_COMMANDE_COM_ABANDONNE
 } = require("../../helpers/utils_const");
 const { Op, where } = require("sequelize");
 const erroMsg = "Quelque chose s'est mal passé";
@@ -124,6 +125,7 @@ router.get("/", async (req, res) => {
       end,
       nbrPages,
       statut_commandes,
+      STATUT_COMMANDE_COM_ABANDONNE
     });
   } catch (error) {
     //console.log(error);
@@ -225,6 +227,7 @@ router.post("/search", async (req, res) => {
                 {
                   model: Produit,
                   attributes: ["pro_ref"],
+                  required:true,
                   where: {
                     pro_ref: {
                       [Op.like]: check_value(pro_ref),
@@ -364,6 +367,8 @@ router.post("/search", async (req, res) => {
       adr_structure,
       stc_id,
       adr_societe,
+      STATUT_COMMANDE_COM_ABANDONNE,
+      IS_SEARCH:true
     });
   } catch (error) {
     res.render("devis/index", {
@@ -913,12 +918,13 @@ router.post("/commande-add-facture-paiement", async (req, res) => {
   const { com_id, pai_date, mop_id, pai_ref, pai_montant, doc_id } = req.body;
   const usr_id = req.session.adminId;
   try {
+    
     let paiement = await Paiement.create({
       doc_id,
       usr_id,
       mop_id,
       pai_ref,
-      pai_montant,
+      pai_montant:parseFloat(pai_montant.toString().replace(',',".")),
       pai_date,
       com_id,
     });
