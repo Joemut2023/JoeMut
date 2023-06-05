@@ -1,6 +1,6 @@
-const navlink_one = document.querySelector(".btn-tab-one");
-console.log(navlink_one,"one");
-const navlink_two = document.querySelector(".btn-tab-two");
+// const navlink_one = document.querySelector(".btn-add");
+// console.log(navlink_one,"one");
+// const navlink_two = document.querySelector(".btn-tab-two");
 const input = document.querySelector(".number-value");
 const btnAjouter = document.querySelector(".btn-add");
 const btn_envoyer = document.querySelector(".btn-envoyer");
@@ -19,15 +19,15 @@ const default_img = document.querySelector(".default_img");
 const image_grand_carousel = document.querySelector(".img_grand_carousel");
 const small_img_carousel = document.querySelectorAll(".small_carousel");
 
-navlink_one.addEventListener("click", function () {
-  navlink_one.classList.add("button-add");
-  navlink_two.classList.remove("button-add");
-});
+// navlink_one.addEventListener("click", function () {
+//   navlink_one.classList.add("button-add");
+//   navlink_two.classList.remove("button-add");
+// });
 
-navlink_two.addEventListener("click", function () {
-  navlink_two.classList.add("button-add");
-  navlink_one.classList.remove("button-add");
-});
+// navlink_two.addEventListener("click", function () {
+//   navlink_two.classList.add("button-add");
+//   navlink_one.classList.remove("button-add");
+// });
 
 btn_up.addEventListener("click", function () {
   let compteur = document.querySelector(".number-value").value;

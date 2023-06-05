@@ -91,7 +91,7 @@ router.post("/", async (req, res, next) => {
 
     if (quantite) {
       if (newQuantite > quantite) {
-        return res.status(200).send("indisponible");
+        return res.status(200).json({msg : "indisponible",qte:quantite});
       }
     }
 
