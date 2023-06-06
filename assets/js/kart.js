@@ -80,7 +80,7 @@ class Kart {
     let fraisDivers = {
       frais_port: fraisPort.data.frp_ttc,
       frais_dossier: fraisDossier.data.auf_ttc,
-      frp_id:fraisPort.data.frp_id
+      frp_id: fraisPort.data.frp_id,
     };
     //console.log(fraisPort);
     localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
@@ -160,6 +160,7 @@ class Kart {
           }
         });
     } catch (error) {
+      console.log(error);
       await Kart.RenderModal(itemForPanier, qte);
     }
   }
@@ -278,9 +279,10 @@ class Kart {
                           <div class="actions">
                               <span class="price">${
                                 produit.pad_qte
-                              } x ${new Decimal(
-          produit.pad_ttc
-        ).toFixed(2).toString().replace(".",",")} €</span>
+                              } x ${new Decimal(produit.pad_ttc)
+          .toFixed(2)
+          .toString()
+          .replace(".", ",")} €</span>
                               <button id="remove-prod" data-id="${
                                 produit.pro_id
                               }" class="btn-close"></button>
@@ -306,7 +308,10 @@ class Kart {
           <span>${kartProductQte} articles</span>
         </div>
         <div class="price">
-          <span>${new Decimal(price.kartProductPrice).toFixed(2).toString().replace(".",",")} €</span>
+          <span>${new Decimal(price.kartProductPrice)
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")} €</span>
         </div>
       </div>
 
@@ -315,7 +320,10 @@ class Kart {
           <span>Livraison</span>
         </div>
         <div class="price-total" id="frais-livraison">
-        <span>${new Decimal(fraisPort).toFixed(2).toString().replace(".",",")} €</span> 
+        <span>${new Decimal(fraisPort)
+          .toFixed(2)
+          .toString()
+          .replace(".", ",")} €</span> 
         </div>
       </div>
       <div class="kart-livraison">
@@ -323,7 +331,10 @@ class Kart {
         <span>Frais dossier</span>
       </div>
       <div class="price-total">
-        <span>${new Decimal(fraisDossier).toFixed(2).toString().replace(".",",")} €</span>
+        <span>${new Decimal(fraisDossier)
+          .toFixed(2)
+          .toString()
+          .replace(".", ",")} €</span>
       </div>
     </div>
 
@@ -332,7 +343,10 @@ class Kart {
           <span>Total</span>
         </div>
         <div class="price-total">
-          <span>${new Decimal(price.totalPrice).toFixed(2).toString().replace(".",",")} €</span>
+          <span>${new Decimal(price.totalPrice)
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")} €</span>
         </div>
       </div>
       <hr>
@@ -379,9 +393,10 @@ class Kart {
           </div>
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
-            <div class="product-montant">${new Decimal(
-              item.pad_ttc
-            ).toFixed(2).toString().replace(".",",")}€</div>
+            <div class="product-montant">${new Decimal(item.pad_ttc)
+              .toFixed(2)
+              .toString()
+              .replace(".", ",")}€</div>
             <div class="product-quantity">Quantité : <span> ${qte} </span></div>
             </div>
         </div>
@@ -391,25 +406,31 @@ class Kart {
                 <span class="sous-total-titre">Sous-total :</span>
                 <span class="sous-total-montant">${new Decimal(
                   price.kartProductPrice
-                ).toFixed(2).toString().replace(".",",")} €</span>
+                )
+                  .toFixed(2)
+                  .toString()
+                  .replace(".", ",")} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">Frais de port:</span>
-                <span class="transport-montant">${new Decimal(
-                  fraisPort
-                ).toFixed(2).toString().replace(".",",")} €</span>
+                <span class="transport-montant">${new Decimal(fraisPort)
+                  .toFixed(2)
+                  .toString()
+                  .replace(".", ",")} €</span>
             </div>
             <div class="transport">
                 <span class="transport-titre">Frais de dossier:</span>
-                <span class="transport-montant">${new Decimal(
-                  fraisDossier
-                ).toFixed(2).toString().replace(".",",")} €</span>
+                <span class="transport-montant">${new Decimal(fraisDossier)
+                  .toFixed(2)
+                  .toString()
+                  .replace(".", ",")} €</span>
             </div>
             <div class="total">
                 <span class="total-titre">Total:</span>
-                <span class="total-montant">${new Decimal(
-                  price.totalPrice
-                ).toFixed(2).toString().replace(".",",")} €</span>
+                <span class="total-montant">${new Decimal(price.totalPrice)
+                  .toFixed(2)
+                  .toString()
+                  .replace(".", ",")} €</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer"  data-bs-dismiss="modal"
@@ -421,11 +442,15 @@ class Kart {
             </div>
         </div>
         `;
+    const fall = document.querySelector("#add-img-fall-icone");
+    fall ? (fall.style.display = "none") : null;
+    const succes = document.querySelector("#add-img-icone");
+    succes ? (succes.style.display = "block") : null;
     document.querySelector("#myModal .body-modal").innerHTML = html;
     document.querySelector("#modal-btn-close").addEventListener("click", () => {
       document.querySelector(
         "#myModal .body-modal"
-      ).innerHTML = `<img src="/images/loader.gif" alt="" />`;
+      ).innerHTML = `<img src="/images/loader.gif" alt="" class="mx-auto" id="modal-loader"/> <p id="max-qte-text" class="mx-auto p-3 pt-5">Impossible d'ajouter cet article au panier ! car sa quantité disponible est de  </p>`;
     });
   }
   static async RenderMaxQteModal(qte) {
@@ -433,15 +458,16 @@ class Kart {
         <div class="modal-body-commande">
             <h5 class="text-center" id="add-img-text">Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
         </div>
+        
         `;
     //document.querySelector("#myModal .body-modal").innerHTML = html;
-    document.querySelector("#add-product").innerHTML = "Oups opération échouée"
+    document.querySelector("#add-product").innerHTML = "Oups opération échouée";
     document.querySelector("#add-img-icone").style.display = "none";
-    document.querySelector("#modal-loader").style.display = "none"
     document.querySelector("#add-img-fall-icone").style.display = "block";
-    const text = `Impossible d'ajouter cet article au panier, car sa quantité disponible est de ${qte}!`
-    document.querySelector("#max-qte-text").innerHTML = text;
-
+    const text = `Impossible d'ajouter cet article au panier, car sa quantité disponible est de ${qte}!`;
+    const paragraphText = document.querySelector("#max-qte-text");
+    paragraphText ? (paragraphText.innerHTML = text) : null;
+    document.querySelector("#modal-loader").style.display = "none";
   }
   static RenderMaxQteUpdateModal() {
     let myModal = new bootstrap.Modal(document.querySelector("#maxQteModal"), {
