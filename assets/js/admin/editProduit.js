@@ -288,8 +288,17 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArrayCover.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name,
-        med_ressource: image.name,
+        med_libelle: image.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
+
+        med_ressource: image.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
       };
       const media = await axios.put(
         `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.id}`,
@@ -307,8 +316,20 @@ btnEnregistrer.addEventListener("click", async function () {
     let resultMedia = [];
     imagesArray.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name,
-        med_ressource: image.name,
+        med_libelle: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+          .replaceAll(
+            /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+            ""
+          ),
+        med_ressource: image.name
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+          .replaceAll(
+            /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+            ""
+          ),
         med_cover: false,
       };
       const media = await axios.post(

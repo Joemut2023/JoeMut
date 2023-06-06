@@ -662,7 +662,14 @@ var storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../../public/images/produits"));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(
+      null,
+      file.originalname
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replaceAll(/\s/g, "")
+        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, "")
+    );
   },
 });
 
@@ -672,13 +679,12 @@ const upload_function = upload.array("produit-files", 12);
 //uplad-image
 router.post("/upload-images", function (req, res, next) {
   upload_function(req, res, (err) => {
-    var msg;
+    
     if (err) {
       req.session.flash = {
         message: "Une erreur s'est produite.",
         type: "danger",
       };
-      // return res.redirect('/admin/produits/add');
     }
     req.session.flash = {
       message: "Produit ajouté avec succès",
@@ -686,8 +692,24 @@ router.post("/upload-images", function (req, res, next) {
     };
     return res.redirect("/admin/produits/add");
   });
-  //return res.json(req.body);
-  //  console.log(JSON.stringify(req.files))
+});
+
+router.post("/upload-images/edit/:pro_id", function (req, res, next) {
+  const pro_id = req.params.pro_id;
+  console.log(pro_id);
+  upload_function(req, res, (err) => {
+    if (err) {
+      req.session.flash = {
+        message: "Une erreur s'est produite.",
+        type: "danger",
+      };
+    }
+    req.session.flash = {
+      message: "Produit ajouté avec succès",
+      type: "success",
+    };
+    return res.redirect(`/admin/produits/${pro_id}`);
+  });
 });
 
 module.exports = router;

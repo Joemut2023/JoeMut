@@ -292,8 +292,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name,
-                    med_ressource: image.name
+                    med_libelle: image.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
+                    med_ressource: image.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, "")
                   };
                   _context5.next = 3;
                   return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
@@ -321,8 +321,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name,
-                    med_ressource: image.name,
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").replaceAll(/[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g, ""),
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").replaceAll(/[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g, ""),
                     med_cover: false
                   };
                   _context6.next = 3;
