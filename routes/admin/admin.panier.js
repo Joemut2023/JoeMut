@@ -46,7 +46,6 @@ router.get("/", async function (req, res) {
 
     //to have length of panier
         const allPaniers = await Panier.findAll();
-    
 let nbrPages = Math.ceil(allPaniers.length / PAGINATION_LIMIT_ADMIN);
     return res.render("panier/index", {
       panier,
