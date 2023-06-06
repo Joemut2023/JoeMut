@@ -328,14 +328,15 @@ var Kart = /*#__PURE__*/function () {
                   return _ref.apply(this, arguments);
                 };
               }());
-              _context7.next = 16;
+              _context7.next = 17;
               break;
             case 12:
               _context7.prev = 12;
               _context7.t0 = _context7["catch"](8);
-              _context7.next = 16;
+              console.log(_context7.t0);
+              _context7.next = 17;
               return Kart.RenderModal(itemForPanier, qte);
-            case 16:
+            case 17:
             case "end":
               return _context7.stop();
           }
@@ -592,7 +593,7 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderModal",
     value: function () {
       var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(item, qte) {
-        var price, fraisDivers, fraisDossier, fraisPort, html;
+        var price, fraisDivers, fraisDossier, fraisPort, html, fall, succes;
         return _regeneratorRuntime().wrap(function _callee14$(_context14) {
           while (1) switch (_context14.prev = _context14.next) {
             case 0:
@@ -612,11 +613,15 @@ var Kart = /*#__PURE__*/function () {
             case 11:
               _context14.t1 = _context14.sent;
               html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(new Decimal(price.kartProductPrice).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">Frais de port:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisPort).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">Frais de dossier:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisDossier).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">Total:</span>\n                <span class=\"total-montant\">").concat(new Decimal(price.totalPrice).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
+              fall = document.querySelector("#add-img-fall-icone");
+              fall ? fall.style.display = "none" : null;
+              succes = document.querySelector("#add-img-icone");
+              succes ? succes.style.display = "block" : null;
               document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#modal-btn-close").addEventListener("click", function () {
-                document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" />";
+                document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" class=\"mx-auto\" id=\"modal-loader\"/> <p id=\"max-qte-text\" class=\"mx-auto p-3 pt-5\">Impossible d'ajouter cet article au panier ! car sa quantit\xE9 disponible est de  </p>";
               });
-            case 15:
+            case 19:
             case "end":
               return _context14.stop();
           }
@@ -631,18 +636,19 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderMaxQteModal",
     value: function () {
       var _RenderMaxQteModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(qte) {
-        var html, text;
+        var html, text, paragraphText;
         return _regeneratorRuntime().wrap(function _callee15$(_context15) {
           while (1) switch (_context15.prev = _context15.next) {
             case 0:
-              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5 class=\"text-center\" id=\"add-img-text\">Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        "; //document.querySelector("#myModal .body-modal").innerHTML = html;
+              html = /*html*/"\n        <div class=\"modal-body-commande\">\n            <h5 class=\"text-center\" id=\"add-img-text\">Vous avez d\xE9j\xE0 ajout\xE9 au panier le quantit\xE9 disponible pour cet article</h5>\n        </div>\n        \n        "; //document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#add-product").innerHTML = "Oups opération échouée";
               document.querySelector("#add-img-icone").style.display = "none";
-              document.querySelector("#modal-loader").style.display = "none";
               document.querySelector("#add-img-fall-icone").style.display = "block";
               text = "Impossible d'ajouter cet article au panier, car sa quantit\xE9 disponible est de ".concat(qte, "!");
-              document.querySelector("#max-qte-text").innerHTML = text;
-            case 7:
+              paragraphText = document.querySelector("#max-qte-text");
+              paragraphText ? paragraphText.innerHTML = text : null;
+              document.querySelector("#modal-loader").style.display = "none";
+            case 8:
             case "end":
               return _context15.stop();
           }

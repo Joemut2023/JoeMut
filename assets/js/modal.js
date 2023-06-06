@@ -1,5 +1,5 @@
-const myModal = document.getElementById("myModal");
-const close = document.getElementById("close");
+const myModal = document.querySelector("#myModal");
+const close = document.querySelector("#close");
 const btn_add = document.querySelectorAll(".button-ajouter");
 const btn_continuer = document.querySelectorAll(".continuer");
 
