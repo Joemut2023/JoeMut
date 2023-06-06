@@ -238,7 +238,7 @@ btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty;
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, domEditableElement, editorInstance, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty;
   return _regeneratorRuntime().wrap(function _callee9$(_context9) {
     while (1) switch (_context9.prev = _context9.next) {
       case 0:
@@ -261,27 +261,29 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 31;
+          _context9.next = 33;
           break;
         }
         messageError.style.display = "none";
+        domEditableElement = document.querySelector(".ck-editor__editable");
+        editorInstance = domEditableElement.ckeditorInstance;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
           pro_libelle: pro_libelle.value,
-          pro_description: pro_description.value,
+          pro_description: editorInstance.getData(),
           // pro_details:pro_details.textContent,
           pro_new_collect: pro_new_collect,
           pro_en_avant: pro_en_avant,
           pro_statut: pro_statut
         };
-        _context9.next = 17;
+        _context9.next = 19;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 17:
+      case 19:
         produit = _context9.sent;
         // console.log(produit)
 
@@ -348,7 +350,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref7.apply(this, arguments);
           };
         }());
-        _context9.next = 23;
+        _context9.next = 25;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -357,7 +359,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 23:
+      case 25:
         tarif = _context9.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
@@ -422,17 +424,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
 
         formWithImage.submit();
         // window.location.reload();
-        _context9.next = 32;
+        _context9.next = 34;
         break;
-      case 31:
+      case 33:
         messageError.style.display = "flex";
-      case 32:
+      case 34:
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth"
         });
-      case 33:
+      case 35:
       case "end":
         return _context9.stop();
     }

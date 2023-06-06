@@ -264,11 +264,14 @@ btnEnregistrer.addEventListener("click", async function () {
     validateInput(ttc.value)
   ) {
     messageError.style.display = "none";
+    const domEditableElement = document.querySelector(".ck-editor__editable");
+
+    const editorInstance = domEditableElement.ckeditorInstance;
     const data = {
       cat_id,
       pro_ref: pro_ref.value,
       pro_libelle: pro_libelle.value,
-      pro_description: pro_description.value,
+      pro_description: editorInstance.getData(),
       // pro_details:pro_details.textContent,
       pro_new_collect,
       pro_en_avant,

@@ -274,6 +274,7 @@
                         outline: none;
                         border: none;
                       "
+                      id="editor"
                     >
 <%= produit.pro_description %></textarea
                     >
@@ -1051,3 +1052,10 @@
 </div>
 
 <script src="/javascripts/admin/editProduit.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector('#editor'))
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

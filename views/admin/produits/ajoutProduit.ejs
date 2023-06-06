@@ -207,7 +207,8 @@
                 <div class="description">
                   <p class="title title-desc">Description</p>
                   <div>
-                    <textarea
+                    <textarea 
+                      id="editor"
                       class="content-recap pro-description"
                       maxlength="21844"
                     ></textarea>
@@ -984,3 +985,10 @@
 </div>
 
 <script src="/javascripts/admin/ajoutProduit.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector('#editor'))
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

@@ -272,7 +272,7 @@ btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, data, produit, tarif, selectTailles;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, domEditableElement, editorInstance, data, produit, tarif, selectTailles;
   return _regeneratorRuntime().wrap(function _callee7$(_context7) {
     while (1) switch (_context7.prev = _context7.next) {
       case 0:
@@ -287,28 +287,30 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         files = document.querySelectorAll('[type="file"]');
         formWithImage = document.querySelector(".form-submit-image");
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value) && validateInput(selectCategorie.value) && validateInput(categorieselect.value))) {
-          _context7.next = 26;
+          _context7.next = 28;
           break;
         }
         messageError.style.display = "none";
+        domEditableElement = document.querySelector(".ck-editor__editable");
+        editorInstance = domEditableElement.ckeditorInstance;
         data = {
           cat_id: cat_id,
           pro_ref: pro_ref.value,
           pro_libelle: pro_libelle.value,
-          pro_description: pro_description.value,
+          pro_description: editorInstance.getData(),
           pro_details: pro_details.value,
           pro_new_collect: pro_new_collect,
           pro_en_avant: pro_en_avant,
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context7.next = 15;
+        _context7.next = 17;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 15:
+      case 17:
         produit = _context7.sent;
         imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
@@ -368,7 +370,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        _context7.next = 20;
+        _context7.next = 22;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -377,7 +379,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 20:
+      case 22:
         tarif = _context7.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -409,17 +411,17 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           };
         }());
         formWithImage.submit();
-        _context7.next = 27;
+        _context7.next = 29;
         break;
-      case 26:
+      case 28:
         messageError.style.display = "flex";
-      case 27:
+      case 29:
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth"
         });
-      case 28:
+      case 30:
       case "end":
         return _context7.stop();
     }
