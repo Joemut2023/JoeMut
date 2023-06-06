@@ -36,6 +36,8 @@
         let com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
         let com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
         let com_compl = document.querySelector('[name=com_compl]').value;
+        let com_comment = document.querySelector('[name=com_comment]').value;
+        
        // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
         let adresse = document.querySelector('[name=radio_adresse]:checked').value;
@@ -54,7 +56,8 @@
             adresse:adresse,
             adresse_livraison:adresse_livraison,
             essayages:dates_essayages,
-            prm_code:code_promo
+            prm_code:code_promo,
+            com_comment:com_comment
         }
         try {
             let panier = await axios.post('/commander',params,{

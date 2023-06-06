@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
 
-  let { frais, adresse, commande, essayages, prm_code,adresse_livraison } = req.body;
+  let { frais, adresse, commande, essayages, prm_code,adresse_livraison,com_comment } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande
@@ -137,7 +137,7 @@ router.post("/", async (req, res) => {
           cli_id: userId,
           com_debut_spectacle: commande.commande_debut,
           com_fin_spectacle: commande.com_fin_spectacle,
-          com_comment: commande.com_compl,
+          com_comment: com_comment,
           com_adr_liv: adresse_livraison_item.adr_id,
           com_adr_fac: adress_item.adr_id,
           pan_id: panier.pan_id,
@@ -148,6 +148,7 @@ router.post("/", async (req, res) => {
           com_num: `${user.cli_nom.substring(0, 3).toUpperCase()}-${
             panier.pan_id
           }-${new Date().getFullYear()}`,
+
         });
         if (prm_code !== "") {
           const codePromo = await Promo.findOne({
