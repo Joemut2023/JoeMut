@@ -489,28 +489,18 @@
                     <div class="adresse-elmt">
                       <div class="adresse-elmt-head">
                         <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse_livraison" value="<%= adresse.adr_id %>"
-                            id="radio_adresse<%= index %>" />
+                          <input type="radio" name="radio_adresse_livraison" value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" />
+                           
                           <label for="radio_adresse_livraison<%= index %>">
                             <div class="adresse-elmnt-body">
-                              <div class="adresse-elemnt-body-1">
                                 <div class="nom"> <%= adresse.adr_nom %> </div>
                                 <div class="prenom"><%= adresse.adr_prenom %> </div>
                                  <div class="societe"><%= adresse.adr_societe %></div>
                                  <div class="adresse"><%= adresse.adr_adresse %></div>
-                              </div>
-                              <div class="adresse-elemnt-body-2">
-                                <p>
-                                  <%= adresse.adr_cp %>
-                                    <%= adresse.adr_ville %>
-                                </p>
-                                <p>
-                                  <%= adresse.adr_ville %>
-                                </p>
-                                <p>
-                                  <%= adresse.adr_phone %>
-                                </p>
-                              </div>
+                                 <div>  <%= adresse.adr_cp %></div>
+                                 <div> <%= adresse.adr_ville %></div>
+                                 <div> <%= adresse.adr_ville %></div>
+                                 <div>  <%= adresse.adr_phone %></div>
                             </div>
                           </label>
                         </div>
@@ -701,21 +691,13 @@
                     id="radio_mode_livraison<%= mode_livraison.frp_id%>"
                     <%if(mode_livraison.frp_libelle==="Tout en livraison" ) { %>checked<% } %> />
                 </div>
-                <div class="desc-img col-md-2" id="parentDiv">
-                  <% if(mode_livraison.frp_img) { %>
-                    <img src="<%= mode_livraison.frp_img %>" alt="" width="50px" height="50px" />
-                    <% } else { %>
-                      <script>
-                        document.getElementById("parentDiv").style.display = "none";
-                      </script>
-                      <% } %>
-                </div>
-                <div class="desc-retrait col-md-2">
+               
+                <div class="desc-retrait col-md-3">
                   <p>
                     <%= mode_livraison.frp_libelle %>
                   </p>
                 </div>
-                <div class="desc-essaie col-md-5">
+                <div class="desc-essaie col-md-5 offset-md-1">
                   <p style="width: 100%">
                     <%= mode_livraison.frp_description %>
                   </p>
@@ -817,7 +799,7 @@
           <form class="codepromo-content" id="codepromo-form">
             <div class="text-promo">
               <p id="if-codepromo">
-                Entrer uniquement le code promo pour un produit.
+                Entrer uniquement le code promo pour une commande.
               </p>
             </div>
             <div class="form-promo">

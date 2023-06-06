@@ -4581,11 +4581,16 @@
   text-decoration: none;
   color: #a0b21f;
 }
+#page-commander .row .bloc-1 .adresses .content .register-form form,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form {
+  margin-top: 10px;
+}
 #page-commander .row .bloc-1 .adresses .content .register-form form .row .adresse-elmt,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row .adresse-elmt {
   border: solid 2px #a0b21f;
   width: 30%;
-  margin: 2px;
+  margin: 5px;
+  align-items: center;
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions {
@@ -4722,6 +4727,8 @@
   padding: 10px;
   background-color: rgb(234, 232, 232);
   height: max-content;
+  display: flex;
+  justify-content: space-between;
 }
 #page-commander .row .bloc-1 .livraisons .livraison-content .devis .devis-1 .desc-retrait {
   color: #a0b21f;
