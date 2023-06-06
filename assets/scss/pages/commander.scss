@@ -414,10 +414,12 @@
             }
 
             form {
+              margin-top: 10px;
               .row .adresse-elmt {
                 border: solid 2px $color-primary;
                 width: 30%;
-                margin: 2px;
+                margin: 5px;
+                align-items: center; 
               }
 
               .adresse-actions {
@@ -565,9 +567,8 @@
               padding: 10px;
               background-color: rgb(234, 232, 232);
               height: max-content;
-
-              // display: flex;
-              // justify-content: space-around;
+               display: flex;
+               justify-content: space-between;
               .desc-retrait {
                 color: $color-primary;
               }
