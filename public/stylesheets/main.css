@@ -7415,6 +7415,10 @@ body {
 #admin-page-panier tr td {
   font-size: 0.8rem;
 }
+#admin-page-panier a {
+  text-decoration: none !important;
+  color: rgb(75, 83, 202) !important;
+}
 
 #admin-blocs-panierHeader {
   background-color: #fff;
