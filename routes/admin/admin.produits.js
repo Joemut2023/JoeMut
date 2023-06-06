@@ -271,10 +271,10 @@ router.delete("/media/:pro_id/:med_id", async function (req, res) {
         [Op.and]: [{ pro_id: produit.pro_id }, { med_id: med_id }],
       },
     });
-      req.session.flash = {
-        message: "Image supprimée avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "Image supprimée avec succès",
+      type: "success",
+    };
     res.status(200).json({ media, msg: true });
   } catch (error) {
     Logger.error(+error.stack);
@@ -367,10 +367,10 @@ router.post("/", async (req, res) => {
       pro_comment,
       pro_statut,
     });
-     req.session.flash = {
-       message: "Produit ajouté avec succès",
-       type: "success",
-     };
+    req.session.flash = {
+      message: "Produit ajouté avec succès",
+      type: "success",
+    };
     return res.status(201).json({ product, msg: true });
   } catch (error) {
     Logger.error(error.stack);
@@ -419,10 +419,10 @@ router.put("/media/:pro_id/:med_id", async function (req, res) {
         },
       }
     );
-      req.session.flash = {
-        message: "proudit modifié avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "proudit modifié avec succès",
+      type: "success",
+    };
 
     return res.status(201).json({ media, msgMedia: true });
   } catch (error) {
@@ -461,10 +461,10 @@ router.post("/qty/:id", async function (req, res) {
       qua_nbre,
     });
 
-      req.session.flash = {
-        message: "proudit modifié avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "proudit modifié avec succès",
+      type: "success",
+    };
     return res.status(201).json({ qty, msgQty: true });
   } catch (error) {
     Logger.error(+error.stack);
@@ -602,10 +602,10 @@ router.put("/tarif/:id", async function (req, res) {
       },
       { where: { pro_id: produit.pro_id } }
     );
-      req.session.flash = {
-        message: "proudit modifié avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "proudit modifié avec succès",
+      type: "success",
+    };
 
     return res.status(200).json({ tarif, msgTarif: true });
   } catch (error) {
@@ -629,10 +629,10 @@ router.put("/qty/:id", async function (req, res) {
         },
       }
     );
-      req.session.flash = {
-        message: "proudit modifié avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "proudit modifié avec succès",
+      type: "success",
+    };
 
     return res.status(200).json(qty);
   } catch (error) {
@@ -647,10 +647,10 @@ router.delete("/qty/:pro_id/:id", async function (req, res) {
         [Op.and]: [{ qua_id: req.params.id }, { pro_id: req.params.pro_id }],
       },
     });
-      req.session.flash = {
-        message: "Quantité supprimée avec succès",
-        type: "success",
-      };
+    req.session.flash = {
+      message: "Quantité supprimée avec succès",
+      type: "success",
+    };
     res.status(200).json(qty);
   } catch (error) {
     Logger.error(error.stack);
@@ -662,17 +662,12 @@ var storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../../public/images/produits"));
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.originalname
-        .replaceAll(/\s/g, "")
-        .replaceAll(/\d/g, "")
-        .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-    );
+    cb(null, file.originalname);
   },
 });
 
 var upload = multer({ storage });
+
 const upload_function = upload.array("produit-files", 12);
 //uplad-image
 router.post("/upload-images", function (req, res, next) {
@@ -689,7 +684,7 @@ router.post("/upload-images", function (req, res, next) {
       message: "Produit ajouté avec succès",
       type: "success",
     };
-    return res.redirect('/admin/produits/add');
+    return res.redirect("/admin/produits/add");
   });
   //return res.json(req.body);
   //  console.log(JSON.stringify(req.files))
