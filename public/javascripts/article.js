@@ -22,6 +22,7 @@ var image_small = document.querySelectorAll(".img-small");
 var default_img = document.querySelector(".default_img");
 var image_grand_carousel = document.querySelector(".img_grand_carousel");
 var small_img_carousel = document.querySelectorAll(".small_carousel");
+var btn_share_facebook = document.querySelector(".btn-share-facebook");
 
 // navlink_one.addEventListener("click", function () {
 //   navlink_one.classList.add("button-add");
@@ -103,6 +104,14 @@ stars.forEach(function (element) {
   element.addEventListener("click", function () {
     element.classList.toggle("star-color");
   });
+});
+function shareOnFacebook() {
+  var navUrl = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
+  window.open(navUrl, "_blank");
+}
+btn_share_facebook.addEventListener("click", function (e) {
+  e.preventDefault();
+  shareOnFacebook();
 });
 var swiper = new Swiper(".carousel", {
   loop: true,
