@@ -36,7 +36,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
     radio.addEventListener('click', function (e) {
       var frp_ttc = e.target.dataset.ttc;
-      console.log(frp_ttc, "commander2");
+      //console.log(document.querySelector('[name=radio_adresse_livraison]:checked').value);
       var frp_id = e.target.value;
       localStorage.setItem('fraisDivers', JSON.stringify({
         frais_port: parseFloat(frp_ttc).toFixed(2),
@@ -52,7 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, dates_essayages, code_promo, params, panier;
+      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -68,7 +68,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
             com_compl = document.querySelector('[name=com_compl]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
-            adresse = document.querySelector('[name=radio_adresse]').value;
+            adresse = document.querySelector('[name=radio_adresse]:checked').value;
+            adresse_livraison = document.querySelector('[name=radio_adresse_livraison]:checked').value;
             dates_essayages = [com_date_essayage, com_date_essayage_autre];
             code_promo = document.querySelector(".code_promo").value;
             params = {
@@ -81,17 +82,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 com_compl: com_compl
               },
               adresse: adresse,
+              adresse_livraison: adresse_livraison,
               essayages: dates_essayages,
               prm_code: code_promo
             };
-            _context2.prev = 16;
-            _context2.next = 19;
+            _context2.prev = 17;
+            _context2.next = 20;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 19:
+          case 20:
             panier = _context2.sent;
             if (panier.data != false) {
               localStorage.setItem('storedItems', JSON.stringify([]));
@@ -99,17 +101,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             } else {
               window.location.replace('/');
             }
-            _context2.next = 26;
+            _context2.next = 27;
             break;
-          case 23:
-            _context2.prev = 23;
-            _context2.t0 = _context2["catch"](16);
+          case 24:
+            _context2.prev = 24;
+            _context2.t0 = _context2["catch"](17);
             console.log(_context2.t0);
-          case 26:
+          case 27:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[16, 23]]);
+      }, _callee2, null, [[17, 24]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);

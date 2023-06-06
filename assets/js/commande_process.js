@@ -13,7 +13,7 @@
     radios?.forEach(radio=>{
         radio.addEventListener('click',(e)=>{
             let frp_ttc = e.target.dataset.ttc;
-            console.log(frp_ttc,"commander2");
+            //console.log(document.querySelector('[name=radio_adresse_livraison]:checked').value);
             let frp_id = e.target.value;
             localStorage.setItem('fraisDivers',JSON.stringify({
                 frais_port:parseFloat(frp_ttc).toFixed(2),frais_dossier:15.5,frp_id:frp_id}))
@@ -38,7 +38,8 @@
         let com_compl = document.querySelector('[name=com_compl]').value;
        // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
-        let adresse = document.querySelector('[name=radio_adresse]').value;
+        let adresse = document.querySelector('[name=radio_adresse]:checked').value;
+        let adresse_livraison = document.querySelector('[name=radio_adresse_livraison]:checked').value;
         let dates_essayages = [com_date_essayage,com_date_essayage_autre]
         let code_promo = document.querySelector(".code_promo").value;
         let params = {
@@ -51,6 +52,7 @@
                 com_compl
             },
             adresse:adresse,
+            adresse_livraison:adresse_livraison,
             essayages:dates_essayages,
             prm_code:code_promo
         }

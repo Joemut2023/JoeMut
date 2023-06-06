@@ -86,7 +86,7 @@ router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;
 
-  let { frais, adresse, commande, essayages, prm_code } = req.body;
+  let { frais, adresse, commande, essayages, prm_code,adresse_livraison } = req.body;
   try {
     // récuperation du panier du user(panier, non commande)
     //enregistrement du panier dans la commande
@@ -97,7 +97,9 @@ router.post("/", async (req, res) => {
         attributes:['pad_id']
       }]
     });
-    let adress_item = await Adresse.findByPk(parseInt(adresse));
+    let adress_item = await Adresse.findOne({where:{adr_id:parseInt(adresse)}});
+    let adresse_livraison_item = await Adresse.findOne({where:{adr_id:parseInt(adresse_livraison)}});
+    Logger.error(adresse_livraison_item.adr_id);
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
@@ -136,7 +138,7 @@ router.post("/", async (req, res) => {
           com_debut_spectacle: commande.commande_debut,
           com_fin_spectacle: commande.com_fin_spectacle,
           com_comment: commande.com_compl,
-          com_adr_liv: adress_item.adr_id,
+          com_adr_liv: adresse_livraison_item.adr_id,
           com_adr_fac: adress_item.adr_id,
           pan_id: panier.pan_id,
           com_ht: somme_ht,
@@ -215,13 +217,12 @@ router.post("/", async (req, res) => {
         req.session.commandeId = commande_item.com_id;
         return res.json(new_panier);
       }
-      
     }
    
   } catch (error) {
-    //console.log(error);
-    Logger.error('/commander: ' + error.stack)
-    return res.json(error);
+    Logger.error('/commander: ' + error.stack);
+    req.session.flash = {message:"Une erreur est survenue, veillez-vous assurer d'avoir rempli les champs requis.",type:"danger"}
+    return res.redirect('/commander');
   }
 });
 router.post("/add-adresse", async (req, res) => {

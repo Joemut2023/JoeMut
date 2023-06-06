@@ -99,7 +99,7 @@ app.use("/mon-compte", [auth, layout], usersRouter);
 app.use("/panier", [auth, layout], panierRouter);
 app.use("/inscription", [layout], inscriptionRouter);
 app.use("/connexion", [layout], connexionRouter);
-app.use("/commander", [auth, layout], commanderRouter);
+app.use("/commander", [auth, layout,flashMidleware], commanderRouter);
 app.use("/mensionLegale", [layout], mensionLegaleRouter);
 app.use("/confirmation-commande", [auth, layout], confirmationCommandeRouter);
 app.use("/devis", [layout], devisRouter);
