@@ -325,6 +325,7 @@
           }
 
           .recap {
+          
             .left {
               .title {
                 margin-bottom: 0px;
@@ -333,6 +334,7 @@
               }
 
               .content {
+                overflow-y: auto;
                 // padding: 20px 10px;
                 // border: 1px solid rgba(0, 0, 0, 0.2);
                 margin: 10px 0px;

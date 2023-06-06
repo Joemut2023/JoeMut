@@ -9159,6 +9159,7 @@ body {
   font-size: 20px;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content {
+  overflow-y: auto;
   margin: 10px 0px;
 }
 #page-admin-editProduit .tabs-container .tabs .tab-content .content-essentiel .recap .left .content .content_text {
