@@ -318,8 +318,14 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArrayCover.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name,
-        med_ressource: image.name,
+        med_libelle: image.name .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
+        med_ressource: image.name .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
         med_cover: true,
       };
       const media = await axios.post(
@@ -336,8 +342,16 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArray.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name,
-        med_ressource: image.name,
+        med_libelle: image.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
+        med_ressource: image.name
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replaceAll(/\s/g, "")
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
         med_cover: false,
       };
       const media = await axios.post(
