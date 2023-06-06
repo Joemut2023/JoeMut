@@ -18,6 +18,8 @@ const image_small = document.querySelectorAll(".img-small");
 const default_img = document.querySelector(".default_img");
 const image_grand_carousel = document.querySelector(".img_grand_carousel");
 const small_img_carousel = document.querySelectorAll(".small_carousel");
+const btn_share_facebook = document.querySelector(".btn-share-facebook");
+const btn_share_twitter = document.querySelector(".btn-share-twitter");
 
 // navlink_one.addEventListener("click", function () {
 //   navlink_one.classList.add("button-add");
@@ -96,6 +98,30 @@ stars.forEach(element => {
     element.classList.toggle("star-color");
   })
 });
+
+
+function shareOnFacebook() {
+  const navUrl =
+    "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
+  window.open(navUrl, "_blank");
+}
+
+function shareOnTwitter() {
+  const navUrl =
+    "https://twitter.com/intent/tweet?text=" + window.location.href;
+  window.open(navUrl, "_blank");
+}
+
+btn_share_facebook.addEventListener("click", function(e){
+  e.preventDefault()
+  shareOnFacebook();
+})
+
+btn_share_twitter.addEventListener("click", function (e) {
+  e.preventDefault();
+  shareOnTwitter();
+});
+
 
 
 var swiper = new Swiper(".carousel", {
