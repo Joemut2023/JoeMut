@@ -10,7 +10,7 @@ const btns_delete = document.querySelectorAll(".delete");
 const pro_libelle = document.querySelector(".pro-libelle");
 const pro_ref = document.querySelector(".pro-ref");
 const pro_description = document.querySelector(".pro-description");
-const pro_details = document.querySelector(".pro-details");
+// const pro_details = document.querySelector(".pro-details");
 const collect = document.querySelector(".pro-new-collect");
 const avant = document.querySelector(".pro-en-avant");
 const statut = document.querySelector(".pro-statut");
@@ -259,7 +259,6 @@ btnEnregistrer.addEventListener("click", async function () {
   if (
     validateInput(pro_ref.value) &&
     validateInput(pro_libelle.value) &&
-    validateInput(pro_details.value) &&
     validateInput(ht.value) &&
     validateInput(ttc.value)
   ) {

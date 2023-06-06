@@ -15,7 +15,7 @@ var btns_delete = document.querySelectorAll(".delete");
 var pro_libelle = document.querySelector(".pro-libelle");
 var pro_ref = document.querySelector(".pro-ref");
 var pro_description = document.querySelector(".pro-description");
-var pro_details = document.querySelector(".pro-details");
+// const pro_details = document.querySelector(".pro-details");
 var collect = document.querySelector(".pro-new-collect");
 var avant = document.querySelector(".pro-en-avant");
 var statut = document.querySelector(".pro-statut");
@@ -260,7 +260,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         return _context9.sent;
       case 11:
         Myproduct = _context9.sent;
-        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
+        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(ht.value) && validateInput(ttc.value))) {
           _context9.next = 33;
           break;
         }

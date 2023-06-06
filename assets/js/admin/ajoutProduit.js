@@ -289,7 +289,6 @@ btnEnregistrer.addEventListener("click", async function () {
   if (
     validateInput(pro_ref.value) &&
     validateInput(pro_libelle.value) &&
-    validateInput(pro_details.value) &&
     validateInput(ht.value) &&
     validateInput(ttc.value) &&
     validateInput(selectCategorie.value) &&
