@@ -1,4 +1,8 @@
 #page-admin-ajoutProduit {
+  .ck-editor__editable{
+    height:15rem !important;
+    overflow-y: auto;
+  }
   width: 100%;
   padding-top: 20px;
   font-family: $typograohie;

@@ -13,7 +13,7 @@ var input_file = document.querySelector(".inputfile");
 var pro_libelle = document.querySelector(".pro-libelle");
 var pro_ref = document.querySelector(".pro-ref");
 var pro_description = document.querySelector(".pro-description");
-var pro_details = document.querySelector(".pro-details");
+// const pro_details = document.querySelector(".pro-details");
 var pro_comment = document.querySelector(".pro-comment");
 var collect = document.querySelector(".pro-new-collect");
 var avant = document.querySelector(".pro-en-avant");
@@ -298,7 +298,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_ref: pro_ref.value,
           pro_libelle: pro_libelle.value,
           pro_description: editorInstance.getData(),
-          pro_details: pro_details.value,
+          // pro_details: pro_details.value,
           pro_new_collect: pro_new_collect,
           pro_en_avant: pro_en_avant,
           pro_comment: pro_comment.value,

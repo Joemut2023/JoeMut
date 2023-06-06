@@ -8,7 +8,7 @@ const input_file = document.querySelector(".inputfile");
 const pro_libelle = document.querySelector(".pro-libelle");
 const pro_ref = document.querySelector(".pro-ref");
 const pro_description = document.querySelector(".pro-description");
-const pro_details = document.querySelector(".pro-details");
+// const pro_details = document.querySelector(".pro-details");
 const pro_comment = document.querySelector(".pro-comment");
 const collect = document.querySelector(".pro-new-collect");
 const avant = document.querySelector(".pro-en-avant");
@@ -304,7 +304,7 @@ btnEnregistrer.addEventListener("click", async function () {
       pro_ref: pro_ref.value,
       pro_libelle: pro_libelle.value,
       pro_description: editorInstance.getData(),
-      pro_details: pro_details.value,
+      // pro_details: pro_details.value,
       pro_new_collect,
       pro_en_avant,
       pro_comment: pro_comment.value,

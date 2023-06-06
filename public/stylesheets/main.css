@@ -7578,6 +7578,10 @@ body {
   padding-top: 20px;
   font-family: "Manrope", sans-serif;
 }
+#page-admin-ajoutProduit .ck-editor__editable {
+  height: 15rem !important;
+  overflow-y: auto;
+}
 #page-admin-ajoutProduit .parent-message,
 #page-admin-ajoutProduit .parent-message-danger {
   position: relative;
