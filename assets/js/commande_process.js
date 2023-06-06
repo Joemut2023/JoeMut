@@ -35,7 +35,7 @@
         let com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
         let com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
         let com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
-        let com_compl = document.querySelector('[name=com_compl]').value;
+       // let com_compl = document.querySelector('[name=com_compl]').value;
        // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
         let frais = JSON.parse(localStorage.getItem('fraisDivers'));
         let adresse = document.querySelector('[name=radio_adresse]:checked').value;
@@ -49,7 +49,7 @@
                 com_fin_spectacle,
                 com_date_essayage,
                 com_date_essayage_autre,
-                com_compl
+              //  com_compl
             },
             adresse:adresse,
             adresse_livraison:adresse_livraison,

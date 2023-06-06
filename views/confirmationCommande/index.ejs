@@ -85,7 +85,7 @@
                   <tr>
                     <td>Sous-total</td>
                     <td class="price-col">
-                      <%= sous_total.toFixed(2).toString().replace(".",",") %> €
+                      <%= panier_ttc.toFixed(2).toString().replace(".",",") %> €
                     </td>
                   </tr>
                   <% if (commande.Frais_port.frp_ttc) { %>
@@ -97,9 +97,10 @@
                       %> €
                     </td>
                   </tr>
-                  <% } %> <% if (commande.com_frais) { %>
+                  <% } %> 
+                  <% if (commande.com_frais) { %>
                   <tr>
-                    <td>Autres frais</td>
+                    <td>Frais de dossier</td>
                     <td class="price-col">
                       <%=
                       commande.com_frais.toFixed(2).toString().replace(".",",")
@@ -107,10 +108,11 @@
                     </td>
                   </tr>
                   <% } %>
+                  <% total_general_commande =  totalTTC + commande?.com_frais + commande.Frais_port?.frp_ttc%>
                   <tr class="total-value">
                     <td>TOTAL TTC</td>
                     <td class="price-col">
-                      <%= totalCmd.toFixed(2).toString().replace(".",",") %> €
+                      <%= totalTTC.toFixed(2).toString().replace(".",",") %> €
                     </td>
                   </tr>
                 </tbody>

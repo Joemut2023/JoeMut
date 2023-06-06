@@ -66,11 +66,13 @@ router.get("/", async (req, res, next) => {
           adresseLiv,
           adresseFac,
           sous_total,
-          sous_totalCmd: sous_totalCmd,
+          panier_ttc: sous_totalCmd,
           produitsPopulaires: produitsPopulaires,
           totalCmd: totalCmd,
           quantiteOfEachProduct: quantiteOfEachProduct,
           refCommande,
+          totalTTC,
+          totalHT
         });
       }
     );
