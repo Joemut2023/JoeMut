@@ -20,7 +20,7 @@ class CommandeCalcul{
      */
     calculPanierTTC(){
         let total_panier_detail_ttc = 0
-        for (let index = 0; index < this.panier_details; index++) {
+        for (let index = 0; index < this.panier_details.length; index++) {
             total_panier_detail_ttc +=this.panier_details[index].pad_ttc * this.panier_details[index].pad_qte;
         }
         this.panierDetailTTC = total_panier_detail_ttc;
@@ -57,7 +57,7 @@ class CommandeCalcul{
      * @returns {number}
      */
     calculTotalCommandeTTC(){
-        return this.panierDetailHT + this.commande.com_remise + this.commande.com_frais + this.calculPanierTotalWithTVA()
+        return (this.calculTotalCommande() + this.calculPanierTotalWithTVA())- this.commande.com_remise
     }
     /**
      * 

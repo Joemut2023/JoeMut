@@ -20,7 +20,22 @@
         </p>
       </div>
       <div class="adresse" style="width: 100%; display: flex; flex-direction: row; gap: 10%; padding: 30px 35px 0 35px;">
-        <div class="livraison" style="width: 45%;margin-right: 5%;">
+        <div class="facturation" style="width: 45%;margin-right: 5%;">
+          <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
+            <i class="fa-solid fa-receipt icone" style="font-size: 20px;"></i>
+            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Adresse de facturation</h6>
+          </div>
+          <hr style="opacity: 0.4;">
+          <div class="body">
+            <h6 style="font-weight: 700; font-size: 15px;"><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></h6>
+            <p style="font-size: 15px;"><%= adresseFac.adr_adresse %></p>
+            <p style="font-size: 15px;"><%= adresseFac.adr_cp %> <%= adresseFac.adr_ville %></p>
+            <p style="font-size: 15px;"><%= adresseFac.adr_pays %></p>
+            <p style="font-size: 15px;"><%=adresseFac.adr_phone  %></p>
+          </div>
+          <hr style="opacity: 0.4;">
+        </div>
+        <div class="livraison" style="width: 45%;">
           <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
             <i class="fa-solid fa-location-dot icone" style="font-size: 20px"></i>
             <h6 style="font-weight: 700; font-size:22px;margin-bottom: 0;">Adresse de livraison</h6>
@@ -33,21 +48,6 @@
             <p style="font-size: 15px;"><%= adresseLiv.adr_cp %> <%= adresseLiv.adr_ville %></p>
             <p style="font-size: 15px;"><%= adresseLiv.adr_pays %></p>
             <p style="font-size: 15px;"><%=adresseLiv.adr_phone  %></p>
-          </div>
-          <hr style="opacity: 0.4;">
-        </div>
-        <div class="facturation" style="width: 45%;">
-          <div class="titre" style="width: 100%; display: flex; flex-direction: row;">
-            <i class="fa-solid fa-receipt icone" style="font-size: 20px;"></i>
-            <h6 style="font-weight: 700; font-size: 22px;margin-bottom: 0;">Adresse de facturation</h6>
-          </div>
-          <hr style="opacity: 0.4;">
-          <div class="body">
-            <h6 style="font-weight: 700; font-size: 15px;"><%= adresseFac.adr_prenom %> <%= adresseFac.adr_nom %></h6>
-            <p style="font-size: 15px;"><%= adresseFac.adr_adresse %></p>
-            <p style="font-size: 15px;"><%= adresseFac.adr_cp %> <%= adresseFac.adr_ville %></p>
-            <p style="font-size: 15px;"><%= adresseFac.adr_pays %></p>
-            <p style="font-size: 15px;"><%=adresseFac.adr_phone  %></p>
           </div>
           <hr style="opacity: 0.4;">
         </div>
@@ -85,7 +85,7 @@
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_remise?commande.com_remise :0.00 %> €</th>
             </tr>
             <tr>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Autres frais</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Frais de dossier</th>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.com_frais?commande.com_frais.toFixed(2).toString().replace(".",","):0.00 %> €</th>
             </tr>
             <tr>
