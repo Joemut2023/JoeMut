@@ -229,6 +229,8 @@ Array.from(btn_delete_image, (item) => {
         },
       }
     );
+   
+     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     window.location.reload();
   });
 });
@@ -425,5 +427,7 @@ Array.from(btns_delete, (item) => {
         },
       }
     );
+    window.location.reload();
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
 });

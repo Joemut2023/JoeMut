@@ -271,7 +271,10 @@ router.delete("/media/:pro_id/:med_id", async function (req, res) {
         [Op.and]: [{ pro_id: produit.pro_id }, { med_id: med_id }],
       },
     });
-
+      req.session.flash = {
+        message: "Image supprimée avec succès",
+        type: "success",
+      };
     res.status(200).json({ media, msg: true });
   } catch (error) {
     Logger.error(+error.stack);
@@ -645,7 +648,7 @@ router.delete("/qty/:pro_id/:id", async function (req, res) {
       },
     });
       req.session.flash = {
-        message: "quantité supprimée avec succès",
+        message: "Quantité supprimée avec succès",
         type: "success",
       };
     res.status(200).json(qty);

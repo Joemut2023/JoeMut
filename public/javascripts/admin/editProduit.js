@@ -220,8 +220,13 @@ Array.from(btn_delete_image, function (item) {
           });
         case 7:
           media = _context4.sent;
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
           window.location.reload();
-        case 9:
+        case 10:
         case "end":
           return _context4.stop();
       }
@@ -459,7 +464,13 @@ Array.from(btns_delete, function (item) {
           });
         case 7:
           qty = _context10.sent;
-        case 8:
+          window.location.reload();
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
+        case 10:
         case "end":
           return _context10.stop();
       }
