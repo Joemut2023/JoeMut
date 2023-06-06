@@ -148,9 +148,9 @@ btnModiferAdresse.addEventListener("click", function (event) {
   adresseBg.style.backgroundColor = "#61ce70";
   adresseBg.style.border = "1px solid #61ce70";
   checkAdresse.style.display = "none";
-  adresseLivraisonBg.style.color = "grey";
-  adresseLivraisonBg.style.backgroundColor = "white";
-  adresseLivraisonBg.style.border = "1px solid grey";
+  adresseLivBg.style.color = "grey";
+  adresseLivBg.style.backgroundColor = "white";
+  adresseLivBg.style.border = "1px solid grey";
 });
 adresseLiv === null || adresseLiv === void 0 ? void 0 : adresseLiv.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -159,7 +159,7 @@ adresseLiv === null || adresseLiv === void 0 ? void 0 : adresseLiv.addEventListe
 btnModiferAdresseLiv.addEventListener("click", function (event) {
   event.preventDefault();
   livraisonDiv.style.display = "none";
-  adresseLiv.style.display = "block";
+  adresseLivContent.style.display = "block";
   adresseLivraisonBg.style.color = "white";
   adresseLivraisonBg.style.backgroundColor = "#61ce70";
   adresseLivraisonBg.style.border = "1px solid #61ce70";
