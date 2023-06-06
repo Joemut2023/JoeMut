@@ -7,7 +7,8 @@
       #divFinalisation,
       #divLivraison,
       #divAdress,
-      #divCodePromo {
+      #divCodePromo,
+      #divAdressLiv{
         display: none;
       }
 
@@ -415,7 +416,8 @@
             form {
               .row .adresse-elmt {
                 border: solid 2px $color-primary;
-                width: 40%;
+                width: 30%;
+                margin: 2px;
               }
 
               .adresse-actions {
