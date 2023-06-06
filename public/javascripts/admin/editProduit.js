@@ -257,7 +257,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 34;
+          _context9.next = 33;
           break;
         }
         messageError.style.display = "none";
@@ -279,7 +279,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
       case 17:
         produit = _context9.sent;
-        // console.log(produit.data.product[0])
+        // console.log(produit)
 
         imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(image) {
@@ -355,6 +355,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
       case 23:
         tarif = _context9.sent;
+        console.log(tarif);
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -423,13 +424,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             window.location.reload();
           });
         }
-        formWithImage.submit();
-        window.location.reload();
-        _context9.next = 35;
+        // formWithImage.submit();
+        // window.location.reload();
+        _context9.next = 34;
         break;
-      case 34:
+      case 33:
         messageError.style.display = "flex";
-      case 35:
+      case 34:
       case "end":
         return _context9.stop();
     }

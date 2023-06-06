@@ -573,7 +573,7 @@ router.put("/tarif/:id", async function (req, res) {
   try {
     const produit = await Produit.findOne({ where: { pro_id: req.params.id } });
 
-    const tarif = await Tarif.create(
+    const tarif = await Tarif.update(
       {
         tar_debut: new Date(new Date().setDate(new Date().getDate())),
         tar_fin: null,
