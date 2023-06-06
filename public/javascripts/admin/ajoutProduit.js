@@ -193,7 +193,7 @@ function _addTaille() {
           line = document.createElement("div");
           line.classList.add("quantity", "row");
           line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select select-taille\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
-            return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
+            return "<option value=".concat(item.tai_id, ">").concat(item.tai_libelle, "</option>");
           }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete delete-add\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
           lines.appendChild(line);
         case 4:
@@ -272,7 +272,7 @@ btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, data, produit, tarif, selectTailles, message, btn_close;
+  var categorieselect, cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formData, files, formWithImage, data, produit, tarif, selectTailles;
   return _regeneratorRuntime().wrap(function _callee7$(_context7) {
     while (1) switch (_context7.prev = _context7.next) {
       case 0:
@@ -287,7 +287,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         files = document.querySelectorAll('[type="file"]');
         formWithImage = document.querySelector(".form-submit-image");
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value) && validateInput(selectCategorie.value) && validateInput(categorieselect.value))) {
-          _context7.next = 28;
+          _context7.next = 26;
           break;
         }
         messageError.style.display = "none";
@@ -329,8 +329,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
                   });
                 case 3:
                   media = _context4.sent;
-                  console.log(dataMedia);
-                case 5:
+                case 4:
                 case "end":
                   return _context4.stop();
               }
@@ -409,22 +408,18 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref7.apply(this, arguments);
           };
         }());
-        message = document.querySelector(".parent-message");
-        if (produit.data.msg === true || tarif.data.msgTarif === true) {
-          message.style.display = "flex";
-          btn_close = document.querySelector(".close");
-          btn_close.addEventListener("click", function () {
-            // window.location.href = `${SITE_URL}/admin/produits`;
-            message.style.display = "none";
-            window.location.reload();
-          });
-        }
         formWithImage.submit();
-        _context7.next = 29;
+        _context7.next = 27;
         break;
-      case 28:
+      case 26:
         messageError.style.display = "flex";
-      case 29:
+      case 27:
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      case 28:
       case "end":
         return _context7.stop();
     }

@@ -364,9 +364,13 @@ router.post("/", async (req, res) => {
       pro_comment,
       pro_statut,
     });
+     req.session.flash = {
+       message: "Produit ajouté avec succès",
+       type: "success",
+     };
     return res.status(201).json({ product, msg: true });
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
   }
 });
 
@@ -682,7 +686,7 @@ router.post("/upload-images", function (req, res, next) {
       message: "Produit ajouté avec succès",
       type: "success",
     };
-    // return res.redirect('/admin/produits/add');
+    return res.redirect('/admin/produits/add');
   });
   //return res.json(req.body);
   //  console.log(JSON.stringify(req.files))

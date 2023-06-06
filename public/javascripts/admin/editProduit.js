@@ -422,6 +422,12 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 32:
         messageError.style.display = "flex";
       case 33:
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      case 34:
       case "end":
         return _context9.stop();
     }

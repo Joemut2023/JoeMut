@@ -399,6 +399,8 @@ btnEnregistrer.addEventListener("click", async function () {
     formWithImage.submit();
     window.location.reload();
   } else messageError.style.display = "flex";
+
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 });
 
 //delete taille

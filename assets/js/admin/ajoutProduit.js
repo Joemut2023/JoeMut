@@ -197,7 +197,7 @@ async function addTaille(taille) {
                         >
                       ${taille.data.map(
                         (item) =>
-                          `<option value=${item.tai_libelle}>${item.tai_libelle}</option>`
+                          `<option value=${item.tai_id}>${item.tai_libelle}</option>`
                       )}
                         </select>
                       </div>
@@ -336,7 +336,7 @@ btnEnregistrer.addEventListener("click", async function () {
           },
         }
       );
-      console.log(dataMedia);
+      // console.log(dataMedia);
     });
 
     imagesArray.map(async (image) => {
@@ -397,19 +397,14 @@ btnEnregistrer.addEventListener("click", async function () {
         }
       );
     });
-    const message = document.querySelector(".parent-message");
-    if (produit.data.msg === true || tarif.data.msgTarif === true) {
-      message.style.display = "flex";
-      const btn_close = document.querySelector(".close");
-      btn_close.addEventListener("click", function () {
-        // window.location.href = `${SITE_URL}/admin/produits`;
-        message.style.display = "none";
-        window.location.reload();
-      });
-    }
+   
     formWithImage.submit();
   } else messageError.style.display = "flex";
+
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 });
+
+
 
 //delete taille
 Array.from(btns_delete, (item) => {
