@@ -286,7 +286,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         formData = new FormData();
         files = document.querySelectorAll('[type="file"]');
         formWithImage = document.querySelector(".form-submit-image");
-        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value) && validateInput(selectCategorie.value) && validateInput(categorieselect.value))) {
+        if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(ht.value) && validateInput(ttc.value) && validateInput(selectCategorie.value) && validateInput(categorieselect.value))) {
           _context7.next = 28;
           break;
         }
