@@ -19,7 +19,9 @@
             display: none;
         }
     }
-
+    .entrepriseChoice{
+        display: none !important;
+    }
     form {
         padding: 2% 1% 5% 1%;
         border: 0.3px solid $color-primary;

@@ -3649,6 +3649,9 @@
     display: none;
   }
 }
+#nouvelle-adresse .entrepriseChoice {
+  display: none !important;
+}
 #nouvelle-adresse form {
   padding: 2% 1% 5% 1%;
   border: 0.3px solid #a0b21f;
