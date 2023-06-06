@@ -21,19 +21,23 @@ var codePromoContainer = document.querySelector("#codePromo");
 var finalisationContainer = document.querySelector("#finalisation");
 var btnModiferInfo = document.querySelector("#info-mod-btn");
 var btnModiferAdresse = document.querySelector("#adresse-mod-btn");
+var btnModiferAdresseLiv = document.querySelector("#adresseLiv-mod-btn");
 var btnModiferlivraison = document.querySelector("#livraison-mod-btn");
 var btnModifiercodePromo = document.querySelector("#codePromo-mod-btn");
 var btnModiferfinalisation = document.querySelector("#finalisation-mod-btn");
 var checkSuccess = document.querySelector(".check-success");
 var checkAdresse = document.querySelector(".check-adresse");
+var checkAdressLiv = document.querySelector(".check-adresseLiv");
 var checkLivraison = document.querySelector(".check-livraison");
 var checkCodePromo = document.querySelector(".check-codePromo");
 var cursorAdresse = document.querySelector(".adresse-cursor");
+var cursorAdresseLiv = document.querySelector(".adresseLiv-cursor");
 var cursorfinalisation = document.querySelector(".finalisation-cursor");
 var cursorLivraison = document.querySelector(".livraison-cursor");
 var cursorcodePromo = document.querySelector(".codePromo-cursor");
 var borderNumber = document.querySelector(".border-number");
 var adresseBg = document.querySelector(".adresse-bg");
+var adresseLivBg = document.querySelector(".adresseLiv-bg");
 var livraisonBg = document.querySelector(".livraison-bg");
 var codePromoBg = document.querySelector(".codePromo-bg");
 var finalisationBg = document.querySelector(".finalisation-bg");
@@ -41,6 +45,9 @@ var btn_info_client_connected = document.querySelector(".btn_info_client_connect
 var radioConfirmDevis = document.querySelector("#confirm_devis");
 var checkConditionsGeneral = document.querySelector("#flexCheckDefault");
 var btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
+var adresseLiv = document.querySelector("#adresse-livraison");
+var adresseLivContent = document.querySelector("#divAdressLiv");
+var adresseLivraisonBg = document.querySelector(".adresseLivraisonBg");
 
 //for class tabs
 var navlink_one = document.querySelector(".btn-tab-one");
@@ -78,6 +85,18 @@ checkConditionsGeneral.addEventListener("change", function (e) {
     btn_finaliser_devis.style.cursor = "not-allowed";
   }
 });
+
+/**
+ * 
+ * @param {*} nextDiv 
+ * @param {*} currentDiv 
+ * @param {*} btnModifier 
+ * @param {*} nexDiv 
+ * @param {*} changeBorder 
+ * @param {*} iconSuccess 
+ * @param {*} eventCursor 
+ * @param {*} classAdresse 
+ */
 var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnModifier, nexDiv, changeBorder, iconSuccess, eventCursor, classAdresse) {
   nextDiv.style.display = "block";
   currentDiv.style.display = "none";
@@ -117,20 +136,34 @@ btnModiferInfo.addEventListener("click", function (event) {
 btn_info_client_connected === null || btn_info_client_connected === void 0 ? void 0 : btn_info_client_connected.addEventListener("click", function (event) {
   eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
 });
-
-//change events on adresseForm
 adresseForm === null || adresseForm === void 0 ? void 0 : adresseForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  eventAccordeonForm(livraisonDiv, adresseDiv, btnModiferAdresse, livraisonContainer, adresseBg, checkAdresse, cursorLivraison, livraisonBg);
+  eventAccordeonForm(adresseLivContent, adresseDiv, btnModiferAdresse, adresseLiv, adresseBg, checkAdresse, cursorAdresseLiv, adresseLivBg);
 });
 btnModiferAdresse.addEventListener("click", function (event) {
   event.preventDefault();
-  livraisonDiv.style.display = "none";
+  adresseLiv.style.display = "none";
   adresseDiv.style.display = "block";
   adresseBg.style.color = "white";
   adresseBg.style.backgroundColor = "#61ce70";
   adresseBg.style.border = "1px solid #61ce70";
   checkAdresse.style.display = "none";
+  adresseLivraisonBg.style.color = "grey";
+  adresseLivraisonBg.style.backgroundColor = "white";
+  adresseLivraisonBg.style.border = "1px solid grey";
+});
+adresseLiv === null || adresseLiv === void 0 ? void 0 : adresseLiv.addEventListener("submit", function (event) {
+  event.preventDefault();
+  eventAccordeonForm(livraisonDiv, adresseLivContent, btnModiferAdresseLiv, livraisonContainer, adresseLivBg, checkAdressLiv, cursorLivraison, livraisonBg);
+});
+btnModiferAdresseLiv.addEventListener("click", function (event) {
+  event.preventDefault();
+  livraisonDiv.style.display = "none";
+  adresseLiv.style.display = "block";
+  adresseLivraisonBg.style.color = "white";
+  adresseLivraisonBg.style.backgroundColor = "#61ce70";
+  adresseLivraisonBg.style.border = "1px solid #61ce70";
+  checkAdressLiv.style.display = "none";
   livraisonBg.style.color = "grey";
   livraisonBg.style.backgroundColor = "white";
   livraisonBg.style.border = "1px solid grey";

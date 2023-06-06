@@ -15,19 +15,23 @@ const codePromoContainer = document.querySelector("#codePromo");
 const finalisationContainer = document.querySelector("#finalisation");
 const btnModiferInfo = document.querySelector("#info-mod-btn");
 const btnModiferAdresse = document.querySelector("#adresse-mod-btn");
+const btnModiferAdresseLiv = document.querySelector("#adresseLiv-mod-btn");
 const btnModiferlivraison = document.querySelector("#livraison-mod-btn");
 const btnModifiercodePromo = document.querySelector("#codePromo-mod-btn");
 const btnModiferfinalisation = document.querySelector("#finalisation-mod-btn");
 const checkSuccess = document.querySelector(".check-success");
 const checkAdresse = document.querySelector(".check-adresse");
+const checkAdressLiv =  document.querySelector(".check-adresseLiv");
 const checkLivraison = document.querySelector(".check-livraison");
 const checkCodePromo = document.querySelector(".check-codePromo");
 const cursorAdresse = document.querySelector(".adresse-cursor");
+const cursorAdresseLiv = document.querySelector(".adresseLiv-cursor");
 const cursorfinalisation = document.querySelector(".finalisation-cursor");
 const cursorLivraison = document.querySelector(".livraison-cursor");
 const cursorcodePromo = document.querySelector(".codePromo-cursor");
 const borderNumber = document.querySelector(".border-number");
 const adresseBg = document.querySelector(".adresse-bg");
+const adresseLivBg = document.querySelector(".adresseLiv-bg");
 const livraisonBg = document.querySelector(".livraison-bg");
 const codePromoBg = document.querySelector(".codePromo-bg");
 const finalisationBg = document.querySelector(".finalisation-bg");
@@ -37,6 +41,10 @@ const btn_info_client_connected = document.querySelector(
 const radioConfirmDevis = document.querySelector("#confirm_devis");
 const checkConditionsGeneral = document.querySelector("#flexCheckDefault");
 const btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
+
+const adresseLiv = document.querySelector("#adresse-livraison")
+const adresseLivContent = document.querySelector("#divAdressLiv")
+const adresseLivraisonBg = document.querySelector(".adresseLivraisonBg")
 
 //for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");
@@ -76,6 +84,17 @@ checkConditionsGeneral.addEventListener("change", (e) => {
   }
 });
 
+/**
+ * 
+ * @param {*} nextDiv 
+ * @param {*} currentDiv 
+ * @param {*} btnModifier 
+ * @param {*} nexDiv 
+ * @param {*} changeBorder 
+ * @param {*} iconSuccess 
+ * @param {*} eventCursor 
+ * @param {*} classAdresse 
+ */
 const eventAccordeonForm = (
   nextDiv,
   currentDiv,
@@ -155,33 +174,60 @@ btn_info_client_connected?.addEventListener("click", (event) => {
   );
 });
 
-//change events on adresseForm
+
 adresseForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   eventAccordeonForm(
-    livraisonDiv,
+    adresseLivContent,
     adresseDiv,
     btnModiferAdresse,
-    livraisonContainer,
+    adresseLiv,
     adresseBg,
     checkAdresse,
-    cursorLivraison,
-    livraisonBg
+    cursorAdresseLiv,
+    adresseLivBg
   );
 });
-
 btnModiferAdresse.addEventListener("click", (event) => {
   event.preventDefault();
-  livraisonDiv.style.display = "none";
+  adresseLiv.style.display = "none";
   adresseDiv.style.display = "block";
   adresseBg.style.color = "white";
   adresseBg.style.backgroundColor = "#61ce70";
   adresseBg.style.border = "1px solid #61ce70";
   checkAdresse.style.display = "none";
+ adresseLivraisonBg .style.color = "grey";
+ adresseLivraisonBg .style.backgroundColor = "white";
+ adresseLivraisonBg .style.border = "1px solid grey";
+});
+
+adresseLiv?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  eventAccordeonForm(
+    livraisonDiv,
+    adresseLivContent,
+    btnModiferAdresseLiv,
+    livraisonContainer,
+    adresseLivBg,
+    checkAdressLiv,
+    cursorLivraison,
+    livraisonBg
+  );
+});
+
+btnModiferAdresseLiv.addEventListener("click", (event) => {
+  event.preventDefault();
+  livraisonDiv.style.display = "none";
+  adresseLiv.style.display = "block";
+ adresseLivraisonBg.style.color = "white";
+ adresseLivraisonBg.style.backgroundColor = "#61ce70";
+ adresseLivraisonBg.style.border = "1px solid #61ce70";
+ checkAdressLiv.style.display = "none";
   livraisonBg.style.color = "grey";
   livraisonBg.style.backgroundColor = "white";
   livraisonBg.style.border = "1px solid grey";
 });
+
 
 //change events on livraisonForm
 livraisonForm.addEventListener("submit", (event) => {

@@ -4225,7 +4225,8 @@
 #page-commander .row .bloc-1 #divFinalisation,
 #page-commander .row .bloc-1 #divLivraison,
 #page-commander .row .bloc-1 #divAdress,
-#page-commander .row .bloc-1 #divCodePromo {
+#page-commander .row .bloc-1 #divCodePromo,
+#page-commander .row .bloc-1 #divAdressLiv {
   display: none;
 }
 #page-commander .row .bloc-1 .finalisation-cursor,
@@ -4583,7 +4584,8 @@
 #page-commander .row .bloc-1 .adresses .content .register-form form .row .adresse-elmt,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row .adresse-elmt {
   border: solid 2px #a0b21f;
-  width: 40%;
+  width: 30%;
+  margin: 2px;
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions {
