@@ -52,7 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // });
   form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
+      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_compl, com_comment, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -66,7 +66,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
             com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
             com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value;
-            com_compl = document.querySelector('[name=com_compl]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
+            com_compl = document.querySelector('[name=com_compl]').value;
+            com_comment = document.querySelector('[name=com_comment]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem('fraisDivers'));
             adresse = document.querySelector('[name=radio_adresse]:checked').value;
             adresse_livraison = document.querySelector('[name=radio_adresse_livraison]:checked').value;
@@ -84,16 +85,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               adresse: adresse,
               adresse_livraison: adresse_livraison,
               essayages: dates_essayages,
-              prm_code: code_promo
+              prm_code: code_promo,
+              com_comment: com_comment
             };
-            _context2.prev = 17;
-            _context2.next = 20;
+            _context2.prev = 18;
+            _context2.next = 21;
             return axios.post('/commander', params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 20:
+          case 21:
             panier = _context2.sent;
             if (panier.data != false) {
               localStorage.setItem('storedItems', JSON.stringify([]));
@@ -101,17 +103,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             } else {
               window.location.replace('/');
             }
-            _context2.next = 27;
+            _context2.next = 28;
             break;
-          case 24:
-            _context2.prev = 24;
-            _context2.t0 = _context2["catch"](17);
+          case 25:
+            _context2.prev = 25;
+            _context2.t0 = _context2["catch"](18);
             console.log(_context2.t0);
-          case 27:
+          case 28:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[17, 24]]);
+      }, _callee2, null, [[18, 25]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);
