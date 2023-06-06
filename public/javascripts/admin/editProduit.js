@@ -108,11 +108,10 @@ function deleteImage(index) {
   displayImages();
 }
 function addTaille(taille) {
-  console.log("FONCTIONNE");
   var line = document.createElement("div");
   line.classList.add("quantity", "row");
   line.innerHTML = "\n     <div class=\"col-md-5 qty-left\">\n                      <div class=\"form-group\">\n                        <select\n                          class=\"form-select select-taille\"\n                          aria-label=\"Default select example\"\n                        >\n                      ".concat(taille.data.map(function (item) {
-    return "<option value=".concat(item.tai_libelle, ">").concat(item.tai_libelle, "</option>");
+    return "<option value=".concat(item.tai_id, ">").concat(item.tai_libelle, "</option>");
   }), "\n                        </select>\n                      </div>\n                    </div>\n                    <div class=\"col-md-5 qty-right\">\n                      <div class=\"title-qty\"></div>\n                      <div class=\"form-group\">\n                        <input type=\"number\" value=\"0\" class=\"form-control\" />\n                      </div>\n                    </div>\n                    <div class=\"col-md-2 delete delete-add\">\n                      <span><i class=\"fa-solid fa-trash\"></i></span>\n                    </div>\n                  </div>\n  ");
   lines.appendChild(line);
 }
@@ -234,7 +233,7 @@ btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
-  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty, message, btn_close;
+  var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty;
   return _regeneratorRuntime().wrap(function _callee9$(_context9) {
     while (1) switch (_context9.prev = _context9.next) {
       case 0:
@@ -257,7 +256,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 33;
+          _context9.next = 32;
           break;
         }
         messageError.style.display = "none";
@@ -355,7 +354,6 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
       case 23:
         tarif = _context9.sent;
-        console.log(tarif);
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -414,23 +412,16 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref9.apply(this, arguments);
           };
         }());
-        message = document.querySelector(".parent-message");
-        if (produit.data.product[0] === 1 || tarif.data.msgTarif === true || resultMedia[0] === true) {
-          message.style.display = "flex";
-          btn_close = document.querySelector(".close");
-          btn_close.addEventListener("click", function () {
-            // window.location.href = `${SITE_URL}/admin/produits`;
-            message.style.display = "none";
-            window.location.reload();
-          });
-        }
-        // formWithImage.submit();
-        // window.location.reload();
-        _context9.next = 34;
+
+        // const message = document.querySelector(".parent-message");
+
+        formWithImage.submit();
+        window.location.reload();
+        _context9.next = 33;
         break;
-      case 33:
+      case 32:
         messageError.style.display = "flex";
-      case 34:
+      case 33:
       case "end":
         return _context9.stop();
     }

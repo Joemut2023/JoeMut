@@ -120,9 +120,8 @@ function deleteImage(index) {
 }
 
 function addTaille(taille) {
-  console.log("FONCTIONNE");
   const line = document.createElement("div");
-  line.classList.add("quantity", "row");
+  line.classList.add("quantity","row");
 
   line.innerHTML = `
      <div class="col-md-5 qty-left">
@@ -133,7 +132,7 @@ function addTaille(taille) {
                         >
                       ${taille.data.map(
                         (item) =>
-                          `<option value=${item.tai_libelle}>${item.tai_libelle}</option>`
+                          `<option value=${item.tai_id}>${item.tai_libelle}</option>`
                       )}
                         </select>
                       </div>
@@ -350,7 +349,6 @@ btnEnregistrer.addEventListener("click", async function () {
         },
       }
     );
-    console.log(tarif);
 
     const selectTailles = document.querySelectorAll(".select-taille");
     const selectTailleExist = document.querySelectorAll(".select-taille-exist");
@@ -372,7 +370,7 @@ btnEnregistrer.addEventListener("click", async function () {
           },
         }
       );
-      // console.log(qty)
+      // console.log(qty);
     });
 
     Array.from(selectTailleExist, async (item) => {
@@ -393,25 +391,13 @@ btnEnregistrer.addEventListener("click", async function () {
           },
         }
       );
+      // console.log(qty, "update");
     });
 
-    const message = document.querySelector(".parent-message");
-    if (
-      produit.data.product[0] === 1 ||
-      tarif.data.msgTarif === true ||
-      resultMedia[0] === true
-    ) {
-      message.style.display = "flex";
-      const btn_close = document.querySelector(".close");
-
-      btn_close.addEventListener("click", function () {
-        // window.location.href = `${SITE_URL}/admin/produits`;
-        message.style.display = "none";
-        window.location.reload();
-      });
-    }
-    // formWithImage.submit();
-    // window.location.reload();
+    // const message = document.querySelector(".parent-message");
+   
+    formWithImage.submit();
+    window.location.reload();
   } else messageError.style.display = "flex";
 });
 

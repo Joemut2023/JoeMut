@@ -412,6 +412,10 @@ router.put("/media/:pro_id/:med_id", async function (req, res) {
         },
       }
     );
+      req.session.flash = {
+        message: "proudit modifié avec succès",
+        type: "success",
+      };
 
     return res.status(201).json({ media, msgMedia: true });
   } catch (error) {
@@ -450,6 +454,10 @@ router.post("/qty/:id", async function (req, res) {
       qua_nbre,
     });
 
+      req.session.flash = {
+        message: "proudit modifié avec succès",
+        type: "success",
+      };
     return res.status(201).json({ qty, msgQty: true });
   } catch (error) {
     Logger.error(+error.stack);
@@ -562,9 +570,13 @@ router.put("/:id", async (req, res) => {
       },
       { where: { pro_id: req.params.id } }
     );
+    req.session.flash = {
+      message: "proudit modifié avec succès",
+      type: "success",
+    };
     return res.status(200).json({ product });
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
   }
 });
 
@@ -583,10 +595,14 @@ router.put("/tarif/:id", async function (req, res) {
       },
       { where: { pro_id: produit.pro_id } }
     );
+      req.session.flash = {
+        message: "proudit modifié avec succès",
+        type: "success",
+      };
 
     return res.status(200).json({ tarif, msgTarif: true });
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
   }
 });
 
@@ -606,10 +622,14 @@ router.put("/qty/:id", async function (req, res) {
         },
       }
     );
+      req.session.flash = {
+        message: "proudit modifié avec succès",
+        type: "success",
+      };
 
     return res.status(200).json(qty);
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
   }
 });
 
@@ -620,9 +640,13 @@ router.delete("/qty/:pro_id/:id", async function (req, res) {
         [Op.and]: [{ qua_id: req.params.id }, { pro_id: req.params.pro_id }],
       },
     });
+      req.session.flash = {
+        message: "quantité supprimée avec succès",
+        type: "success",
+      };
     res.status(200).json(qty);
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
   }
 });
 

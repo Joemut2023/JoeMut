@@ -1,5 +1,12 @@
 <div id="page-admin-editProduit">
-  <div class="alert alert-success parent-message" role="alert">
+
+  <% if (typeof flash != 'undefined') { %>
+      <div class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2" role="alert">
+        <%= flash.message %>
+        <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  <% } %>
+  <!-- <div class="alert alert-success parent-message" role="alert">
     <span style="font-size: 1.4rem; color: #61ce70"
       ><i class="fa fa-check-circle" aria-hidden="true"></i
     ></span>
@@ -9,7 +16,7 @@
       class="close"
       ><i class="fa fa-times" aria-hidden="true"></i
     ></span>
-  </div>
+  </div> -->
     <div class="alert alert-danger parent-message-danger" role="alert">
  
     <span>Remplissez tous les champs requis</span>
