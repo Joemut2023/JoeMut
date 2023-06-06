@@ -261,7 +261,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(pro_details.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 32;
+          _context9.next = 31;
           break;
         }
         messageError.style.display = "none";
@@ -292,8 +292,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context5.prev = _context5.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
-                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
+                    med_libelle: image.name,
+                    med_ressource: image.name
                   };
                   _context5.next = 3;
                   return axios.put("".concat(SITE_URL, "/admin/produits/media/").concat(Myproduct.data.pro_id, "/").concat(inputImageCover.id), dataMedia, {
@@ -321,8 +321,8 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").split(".")[0],
-                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/\d/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+                    med_libelle: image.name,
+                    med_ressource: image.name,
                     med_cover: false
                   };
                   _context6.next = 3;
@@ -421,18 +421,18 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         // const message = document.querySelector(".parent-message");
 
         formWithImage.submit();
-        window.location.reload();
-        _context9.next = 33;
+        // window.location.reload();
+        _context9.next = 32;
         break;
-      case 32:
+      case 31:
         messageError.style.display = "flex";
-      case 33:
+      case 32:
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth"
         });
-      case 34:
+      case 33:
       case "end":
         return _context9.stop();
     }

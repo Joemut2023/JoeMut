@@ -316,15 +316,8 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArrayCover.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .split(".")[0],
-        med_ressource: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_libelle: image.name,
+        med_ressource: image.name,
         med_cover: true,
       };
       const media = await axios.post(
@@ -341,15 +334,8 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArray.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .split(".")[0],
-        med_ressource: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_libelle: image.name,
+        med_ressource: image.name,
         med_cover: false,
       };
       const media = await axios.post(
@@ -397,14 +383,12 @@ btnEnregistrer.addEventListener("click", async function () {
         }
       );
     });
-   
+
     formWithImage.submit();
   } else messageError.style.display = "flex";
 
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 });
-
-
 
 //delete taille
 Array.from(btns_delete, (item) => {

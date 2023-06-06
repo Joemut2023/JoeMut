@@ -121,7 +121,7 @@ function deleteImage(index) {
 
 function addTaille(taille) {
   const line = document.createElement("div");
-  line.classList.add("quantity","row");
+  line.classList.add("quantity", "row");
 
   line.innerHTML = `
      <div class="col-md-5 qty-left">
@@ -229,8 +229,8 @@ Array.from(btn_delete_image, (item) => {
         },
       }
     );
-   
-     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     window.location.reload();
   });
 });
@@ -288,15 +288,8 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArrayCover.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .split(".")[0],
-        med_ressource: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_libelle: image.name,
+        med_ressource: image.name,
       };
       const media = await axios.put(
         `${SITE_URL}/admin/produits/media/${Myproduct.data.pro_id}/${inputImageCover.id}`,
@@ -314,15 +307,8 @@ btnEnregistrer.addEventListener("click", async function () {
     let resultMedia = [];
     imagesArray.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .split(".")[0],
-        med_ressource: image.name
-          .replaceAll(/\s/g, "")
-          .replaceAll(/\d/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+        med_libelle: image.name,
+        med_ressource: image.name,
         med_cover: false,
       };
       const media = await axios.post(
@@ -397,9 +383,9 @@ btnEnregistrer.addEventListener("click", async function () {
     });
 
     // const message = document.querySelector(".parent-message");
-   
+
     formWithImage.submit();
-    window.location.reload();
+    // window.location.reload();
   } else messageError.style.display = "flex";
 
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
