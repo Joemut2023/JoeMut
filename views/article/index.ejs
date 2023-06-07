@@ -114,12 +114,22 @@
       <h1><%= article.pro_libelle %></h1>
       <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
-       
-       
         <p class="number">
-          <%=
+
+          
+          <% let newPriceht = 0 %>
+          <% let remise = 0 %>
+       <% if (produitEnPromo) { %>
+        <del><%=
           priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
-          %> €
+          %> €</del>
+        <% if (produitEnPromo.Promo.prm_pourcent) { %> 
+          <% remise = produitEnPromo.Promo.prm_pourcent *  priceArticle.Tarifs[0].tar_ht / 100 %>
+          <% newPriceht =  priceArticle.Tarifs[0].tar_ht - remise %>
+          <% } else { %> <% newPriceht =  priceArticle.Tarifs[0].tar_ht - produitEnPromo.Promo.prm_valeur %> <% } %>
+          <% let tva = newPriceht * 20 /100 %>
+        <%= (newPriceht + tva).toFixed(2).toString().replace(".",",")  %> €
+       <% }  else { %><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")%> €<% } %>
         </p>
         <p class="title">TTC</p>
       </div>
