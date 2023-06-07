@@ -9,6 +9,8 @@ const {
   Taille,
   Categorie,
   Type_categorie,
+  Promo,
+  Apply
 } = require("../models");
 const { Op } = require("sequelize");
 const auth = require("../middleware/auth");
@@ -41,7 +43,19 @@ router.get("/:id", async (req, res, next) => {
       const errorArticle = "Aucun article correspondant";
       return res.render("article/index", {errorArticle});
     }
-
+    const produitEnPromo = await Apply.findOne({
+      where: { pro_id: article.pro_id },
+      include: [
+        {
+          model: Promo,
+          attributes: ["prm_code", "prm_pourcent", "prm_valeur"],
+          where: {
+            prm_actif: true,
+          },
+        },
+      ],
+    });
+    console.log(produitEnPromo);
     const taillesQuantites = await Taille.findAll({
       include: [
         {
@@ -128,8 +142,10 @@ router.get("/:id", async (req, res, next) => {
       taillesQuantites: taillesQuantites,
       quantiteInitial: quantiteInitial,
       quantiteOfEachProduct,
+      produitEnPromo
     });
   } catch (error) {
+    console.log(error);
     Logger.error("article/index : " + error.stack);
     res.status(500).render("article/index", {
       error: true,

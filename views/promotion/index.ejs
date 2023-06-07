@@ -60,15 +60,17 @@
         <div class="detail">
           <a href=""><%= produit.Produit.pro_libelle %></a>
           <div>Ref: <span><%= produit.Produit.pro_ref %></span></div>
-          <% let remise = 0 %> <% if (produit.Promo.prm_pourcent) { %> <% remise
-          = `${produit.Promo.prm_pourcent} %` %> <% } else { %> <% remise =
-          `${produit.Promo.prm_valeur} €` %> <% } %>
-          <div>Remise: <span><%= remise %></span></div>
+          <% let newPriceht = 0 %>
+          <% let remise = 0 %>
+          <% if (produit.Promo.prm_pourcent) { %> 
+          <% remise = produit.Promo.prm_pourcent * produit.Produit.Tarifs[0].tar_ht / 100 %>
+          <% newPriceht = produit.Produit.Tarifs[0].tar_ht - remise %>
+          <% } else { %> <% newPriceht = produit.Produit.Tarifs[0].tar_ht - produit.Promo.prm_valeur %> <% } %>
+          <% let tva = newPriceht * 20 /100 %>
           <div class="montant">
-            <div class="ancien-prix">
-              <%=
-              produit.Produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",
-              ",") %>€
+            <div class="ancien-prix d-flex gap-3">
+              <del> <%= produit.Produit.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",") %>€</del>
+              <%= (newPriceht + tva).toFixed(2).toString().replace(".",",") %>€
             </div>
             <button
               class="btn-add button-ajouter"

@@ -7319,7 +7319,7 @@ body {
 }
 #admin-blocs-produitHeader a {
   text-decoration: none !important;
-  color: #fff !important;
+  color: #fff;
 }
 #admin-blocs-produitHeader .fil-ariane-item {
   color: #7a7a7a !important;

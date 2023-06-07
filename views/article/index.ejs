@@ -114,6 +114,8 @@
       <h1><%= article.pro_libelle %></h1>
       <p class="ref">Référence: <%= article.pro_ref %></p>
       <div class="price">
+       
+       
         <p class="number">
           <%=
           priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")

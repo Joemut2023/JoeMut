@@ -112,7 +112,7 @@
               class="img-fluid w-100 h-25 img-content"
             />
           </td>
-          <td><%= element.Produit.pro_libelle%></td>
+          <td><a href="/admin/produits/<%= element.pro_id %>" class="text-decoration-none"><%= element.Produit.pro_libelle%></a> </td>
           <td>
             <div class="d-flex gap-4">
               <form method="get" action="/admin/apply/update/?app_id">
