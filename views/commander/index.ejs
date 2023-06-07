@@ -38,7 +38,7 @@
                     <div class="adresse-elmt">
                       <div class="adresse-elmt-head">
                         <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse" value="<%= adresse.adr_id %>"
+                          <input type="radio" name="radio_adresse" required value="<%= adresse.adr_id%>"
                             id="radio_adresse<%= index %>" />
                           <label for="radio_adresse<%= index %>">
                             <div class="adresse-elmnt-body">
@@ -240,10 +240,6 @@
                 disponibilités. En vous remerciant.)
               </p>
             </div>
-            <div class="text-2">
-              L'adresse sélectionnée sera utilisée à la fois comme adresse
-              personnelle (pour la facturation) et comme adresse de livraison.
-            </div>
           </div>
           <% if (typeof adresses !="undefined" ) { %>
             <div class="register-form">
@@ -253,7 +249,7 @@
                     <div class="adresse-elmt">
                       <div class="adresse-elmt-head">
                         <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse_livraison" value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" />
+                          <input type="radio" name="radio_adresse_livraison" required value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" />
                            
                           <label for="radio_adresse_livraison<%= index %>">
                             <div class="adresse-elmnt-body">

@@ -417,12 +417,16 @@
               .row .adresse-elmt {
                 border: solid 2px $color-primary;
                 width: 30%;
-                margin: 5px;
+                margin: 3px;
+                margin-left: 12px;
                 align-items: center; 
+                border-radius: 5px;
+                cursor: pointer;
               }
 
               .adresse-actions {
                 margin-top: 10px;
+               
 
                 a {
                   text-decoration: none;
