@@ -1,247 +1,11 @@
 <div id="page-commander">
   <div class="row">
     <div class="col-md-8 bloc-1">
-      <div class="informations">
-        <div class="big-title row">
-          <div class="border-number col-2">1</div>
-          <div class="check-success col-1">
-            <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
-          </div>
-          <div class="title-h4 col-7">
-            <h4>INFORMATIONS PERSONNELLES</h4>
-          </div>
-          <div class="btn btn-modif col-2" id="info-mod-btn">
-            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <span>Modfier</span>
-          </div>
-        </div>
-        <hr />
-
-        <div class="content" id="info-content">
-          <% if (locals.user) { %>
-            <div class="user-are-loged-in">
-              <p>
-                Vous êtes déjà connecté étant que : <%= locals.user.cli_prenom %>
-                  <%= locals.user.cli_nom %>
-              </p>
-              <p>
-                Ce n'est pas vous? <a href="/mon-compte/logout">déconnexion</a>
-              </p>
-              <p>Si vous vous déconnectez maintenant, votre panier sera vidé.</p>
-            </div>
-            <div class="button">
-              <button class="btn_info_client_connected">Continuer</button>
-            </div>
-            <% } else { %>
-              <div class="tabs-container">
-                <ul class="nav nav-tabs" id="myTab" role="tablist row">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link btn-tab-one active button-add" id="home-tab" data-bs-toggle="tab"
-                      data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                      aria-selected="true">
-                      <span id="creer-compte">Creez votre compte</span>
-                      <span> | </span>
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link btn-tab-two" id="profile-tab" data-bs-toggle="tab"
-                      data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
-                      aria-selected="false">
-                      <span>Connexion</span>
-                    </button>
-                  </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                  <div class="tab-pane fade show active content-one" id="home-tab-pane" role="tabpanel"
-                    aria-labelledby="home-tab" tabindex="0">
-                    <div class="register-form">
-                      <form method="post" action="/commander/user-subscribe">
-                        <div>
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label for="" class="label">Civilité</label>
-                            </div>
-                            <div class="col-md-6 radios">
-                              <div class="radio">
-                                <input type="radio" name="tit_id" id="homme" value="M" />
-                                <label class="" for="homme ">M</label>
-                              </div>
-                              <div class="radio">
-                                <input type="radio" name="tit_id" id="femme" value="Mme" />
-                                <label class="" for="femme ">Mme</label>
-                              </div>
-                            </div>
-                            <div class="col-md-3"></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="prenom"><span>*</span>Prenom</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_prenom" id="prenom" required />
-                              <label for=" " id="label-text">Seules les lettres et le point (.), suivi d'un
-                                espace, sont autorisés.</label>
-                            </div>
-                            <div class="col-md-3"></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="nom"><span>*</span>Nom</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_nom" id="nom" required />
-                              <label for="" id="label-text">Seules les lettres et le point (.), suivi d'un
-                                espace, sont autorisés.</label>
-                            </div>
-                            <div></div>
-                          </div>
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="email"><span>*</span>E-mail</label>
-                            </div>
-                            <div class="col-md-6 input">
-                              <input type="text" name="cli_mail" id="email" required />
-                              <label for="" id="label-text"></label>
-                            </div>
-                            <div></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required label" for="password"><span>*</span>Mot de passe</label>
-                            </div>
-                            <div class="col-md-6 btn-hide">
-                              <input type="password" name="cli_pwd" id="password" class="input-password" required />
-                              <button id="btn-action" type="button" class="btn-action">
-                                Montrer
-                              </button>
-                            </div>
-                            <div></div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" id="check_msg" />
-                              </div>
-                              <div class="">
-                                <label id="check_msg">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>Conformément aux dispositions de la loi du
-                                    n°78-17 du 6 janvier 1978, vous disposez d'un
-                                    droit d'accès, de rectification et d'opposition
-                                    sur les données nominatives vous concernant.</em>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                              </div>
-                              <div class="">
-                                <label id="label-text">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>Recevoir notre newsletter Vous pouvez vous
-                                    désinscrire à tout moment. Vous trouverez pour
-                                    cela nos informations de contact dans les
-                                    conditions d'utilisation du site.
-                                  </em>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <div class="col-md-3 item">
-                              <label class="required" for="nom"><span>*</span></label>
-                            </div>
-                            <div class="col-md-6 checkWithText">
-                              <div class="">
-                                <input class="form-check-input" type="checkbox" value="" />
-                              </div>
-                              <div class="">
-                                <label id="label-text">Message concernant la confidentialité des données
-                                  clients
-                                  <br />
-                                  <em>J'accepte les conditions générales et la
-                                    politique de confidentialité
-                                  </em>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="button">
-                          <button type="submit">Continuer</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade content-two" id="profile-tab-pane" role="tabpanel"
-                    aria-labelledby="profile-tab" tabindex="0">
-                    <div class="register-form">
-                      <form method="post" action="/commander/user-login" id="form-commande-login">
-                        <%if (typeof error !=='undefined' && error==true) { %>
-                          <div class="alert alert-danger" role="alert">
-                            <%= (errorMsg) ? errorMsg : '' %>
-                          </div>
-                          <% } %>
-                            <div>
-                              <div class="form-group row">
-                                <div class="col-md-3 item">
-                                  <label class="required label" for="email"><span>*</span>E-mail</label>
-                                </div>
-                                <div class="col-md-6 input">
-                                  <input type="email" name="cli_mail" id="prenom" required />
-                                </div>
-                                <div class="col-md-3"></div>
-                              </div>
-
-                              <div class="form-group row">
-                                <div class="col-md-3 item">
-                                  <label class="required label" for="password"><span>*</span>Mot de passe</label>
-                                </div>
-                                <div class="col-md-6 btn-hide">
-                                  <input type="password" name="cli_pwd" id="password" class="input-password" required />
-                                  <button id="btn-action" type="button" class="btn-action">
-                                    Montrer
-                                  </button>
-                                </div>
-                                <div></div>
-                              </div>
-                            </div>
-                            <div class="forgot-password">
-                              <p>Mot de passe oublié ?</p>
-                            </div>
-                            <div class="btn-login">
-                              <button type="submit">Continuer</button>
-                            </div>
-                            <hr />
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% } %>
-        </div>
-      </div>
+  
 
       <div class="adresses" id="adresse">
         <div class="big-title adresse-cursor row">
-          <div class="border-number adresse-bg col-2">2</div>
+          <div class="border-number adresse-bg col-2">1</div>
           <div class="check-success check-adresse col-1">
             <i class="fa-solid fa-check iconCheck"></i>
           </div>
@@ -453,7 +217,7 @@
 
       <div class="adresses" id="adresse-livraison">
         <div class="big-title adresseLiv-cursor row">
-          <div class="border-number adresseLiv-bg col-2">3</div>
+          <div class="border-number adresseLiv-bg col-2">2</div>
           <div class="check-success check-adresseLiv col-1">
             <i class="fa-solid fa-check iconCheck"></i>
           </div>
@@ -658,7 +422,7 @@
 
       <div class="adresses livraisons" id="livraison">
         <div class="big-title livraison-cursor row">
-          <div class="border-number livraison-bg col-2">4</div>
+          <div class="border-number livraison-bg col-2">3</div>
           <div class="check-success check-livraison col-1">
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>
@@ -774,7 +538,7 @@
 
       <div class="adresses codePromo" id="codePromo">
         <div class="big-title codePromo-cursor row">
-          <div class="border-number codePromo-bg col-2">5</div>
+          <div class="border-number codePromo-bg col-2">4</div>
           <div class="check-success check-codePromo col-1">
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>
@@ -820,7 +584,7 @@
 
       <div class="adresses finalisations" id="finalisation">
         <div class="big-title finalisation-cursor row">
-          <div class="border-number finalisation-bg col-2">6</div>
+          <div class="border-number finalisation-bg col-2">5</div>
           <div class="check-success col-1">
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>

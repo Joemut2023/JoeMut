@@ -1,10 +1,7 @@
 //change for big title on bloc-form
-const infoFormInscription = document.querySelector(".info-form-inscription");
-const infoFormConnexion = document.querySelector(".info-form-connexion");
 const adresseForm = document.querySelector("#adresse-form");
 const livraisonForm = document.querySelector("#livraison-form");
 const codePromoForm = document.querySelector("#codepromo-form");
-const infoContent = document.querySelector("#info-content");
 const adresseDiv = document.querySelector("#divAdress");
 const livraisonDiv = document.querySelector("#divLivraison");
 const finalisationDiv = document.querySelector("#divFinalisation");
@@ -34,17 +31,15 @@ const adresseBg = document.querySelector(".adresse-bg");
 const adresseLivBg = document.querySelector(".adresseLiv-bg");
 const livraisonBg = document.querySelector(".livraison-bg");
 const codePromoBg = document.querySelector(".codePromo-bg");
-const finalisationBg = document.querySelector(".finalisation-bg");
-const btn_info_client_connected = document.querySelector(
-  ".btn_info_client_connected"
-);
-const radioConfirmDevis = document.querySelector("#confirm_devis");
-const checkConditionsGeneral = document.querySelector("#flexCheckDefault");
-const btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 
 const adresseLiv = document.querySelector("#adresse-livraison")
 const adresseLivContent = document.querySelector("#divAdressLiv")
 const adresseLivraisonBg = document.querySelector(".adresseLivraisonBg")
+const finalisationBg = document.querySelector(".finalisation-bg");
+
+const radioConfirmDevis = document.querySelector("#confirm_devis");
+const checkConditionsGeneral = document.querySelector("#flexCheckDefault");
+const btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 
 //for class tabs
 const navlink_one = document.querySelector(".btn-tab-one");
@@ -119,62 +114,6 @@ const eventAccordeonForm = (
   classAdresse.style.border = "1px solid #61ce70";
 };
 
-// change events on infoForm
-infoFormInscription?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  eventAccordeonForm(
-    adresseDiv,
-    infoContent,
-    btnModiferInfo,
-    adresseContainer,
-    borderNumber,
-    checkSuccess,
-    cursorAdresse,
-    adresseBg
-  );
-});
-
-infoFormConnexion?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  eventAccordeonForm(
-    adresseDiv,
-    infoContent,
-    btnModiferInfo,
-    adresseContainer,
-    borderNumber,
-    checkSuccess,
-    cursorAdresse,
-    adresseBg
-  );
-});
-
-btnModiferInfo.addEventListener("click", (event) => {
-  event.preventDefault();
-  adresseDiv.style.display = "none";
-  infoContent.style.display = "flex";
-  borderNumber.style.color = "white";
-  borderNumber.style.backgroundColor = "#61ce70";
-  borderNumber.style.border = "1px solid #61ce70";
-  checkSuccess.style.display = "none";
-  adresseBg.style.color = "grey";
-  adresseBg.style.backgroundColor = "white";
-  adresseBg.style.border = "1px solid grey";
-});
-
-btn_info_client_connected?.addEventListener("click", (event) => {
-  eventAccordeonForm(
-    adresseDiv,
-    infoContent,
-    btnModiferInfo,
-    adresseContainer,
-    borderNumber,
-    checkSuccess,
-    cursorAdresse,
-    adresseBg
-  );
-});
-
-
 adresseForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   eventAccordeonForm(
@@ -189,16 +128,15 @@ adresseForm?.addEventListener("submit", (event) => {
   );
 });
 btnModiferAdresse.addEventListener("click", (event) => {
-  event.preventDefault();
-  adresseLiv.style.display = "none";
+  adresseLivContent.style.display = "none";
   adresseDiv.style.display = "block";
-  adresseBg.style.color = "white";
-  adresseBg.style.backgroundColor = "#61ce70";
-  adresseBg.style.border = "1px solid #61ce70";
-  checkAdresse.style.display = "none";
-adresseLivBg.style.color = "grey";
-adresseLivBg.style.backgroundColor = "white";
-adresseLivBg.style.border = "1px solid grey";
+  borderNumber.style.color = "white";
+  borderNumber.style.backgroundColor = "#61ce70";
+  borderNumber.style.border = "1px solid #61ce70";
+  checkSuccess.style.display = "none";
+  adresseLivBg.style.color = "grey";
+  adresseLivBg.style.backgroundColor = "white";
+  adresseLivBg.style.border = "1px solid grey";
 });
 
 adresseLiv?.addEventListener("submit", (event) => {

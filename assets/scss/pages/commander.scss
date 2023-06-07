@@ -6,14 +6,13 @@
     .bloc-1 {
       #divFinalisation,
       #divLivraison,
-      #divAdress,
       #divCodePromo,
       #divAdressLiv{
         display: none;
       }
 
       .finalisation-cursor,
-      .adresse-cursor,
+      .adresseLiv-cursor,
       .livraison-cursor,
       .codePromo-cursor {
         cursor: not-allowed;
