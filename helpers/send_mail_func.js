@@ -45,6 +45,24 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
           }).catch(error=>{
             console.log(error);
           });
+
+          const mailOptionsAdmin = {
+            from: process.env.MAIL_ADRESSE,
+            to: process.env.MAIL_ADRESSE,
+            subject: "[AIGUILLES EN SCENE]" + " " + " Confirmation commande du client",
+            html: html,
+            attachments: [
+              {
+                filename: `${document_name}.pdf`,
+                path: path.join(__dirname, document_path),
+              },
+            ],
+          };
+          transporter.sendMail(mailOptionsAdmin).then(function (info) {
+            console.log("Email sent: " + info.response);
+          }).catch(error=>{
+            console.log(error);
+          });
     } catch (error) {
         // console.log(error);
         // console.log("erreur lors de l'envois du mail");
