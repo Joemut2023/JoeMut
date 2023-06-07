@@ -76,7 +76,7 @@ router.post("/", async (req, res, next) => {
         pad_remise: pad_remise ? pad_remise : null,
       });
       pad_ttc =
-        panierDetail.pad_ht + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
+        panierDetail.pad_ht -pad_remise + ((panierDetail.pad_ht - pad_remise) * 20) / 100;
       await Panier_detail.update(
         { pad_ttc },
         { where: { pad_id: panierDetail.pad_id } }
