@@ -260,7 +260,8 @@ var Kart = /*#__PURE__*/function () {
                 pad_ttc: item.Tarifs[0].tar_ttc,
                 pad_ht: item.Tarifs[0].tar_ht,
                 media: item.Media[0].med_ressource,
-                pro_ref: item.pro_ref
+                pro_ref: item.pro_ref,
+                pad_remise: null
               };
               _context7.prev = 8;
               axios.post("".concat(SITE_URL, "/panierDetail"), {
@@ -284,11 +285,12 @@ var Kart = /*#__PURE__*/function () {
                         return _context6.abrupt("return", Kart.RenderMaxQteModal(res.data.qte));
                       case 6:
                         _qte = res.data.panierDetail.pad_qte;
-                        _context6.next = 9;
+                        itemForPanier.pad_remise = res.data.panierDetail.pad_remise;
+                        _context6.next = 10;
                         return Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
-                      case 9:
+                      case 10:
                         if (!storedITems) {
-                          _context6.next = 19;
+                          _context6.next = 20;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -305,20 +307,20 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 16;
+                        _context6.next = 17;
                         return Kart.getItemNumber();
-                      case 16:
+                      case 17:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 24;
+                        _context6.next = 25;
                         break;
-                      case 19:
+                      case 20:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 23;
+                        _context6.next = 24;
                         return Kart.getItemNumber();
-                      case 23:
-                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
                       case 24:
+                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
+                      case 25:
                       case "end":
                         return _context6.stop();
                     }
@@ -328,15 +330,14 @@ var Kart = /*#__PURE__*/function () {
                   return _ref.apply(this, arguments);
                 };
               }());
-              _context7.next = 17;
+              _context7.next = 16;
               break;
             case 12:
               _context7.prev = 12;
               _context7.t0 = _context7["catch"](8);
-              console.log(_context7.t0);
-              _context7.next = 17;
+              _context7.next = 16;
               return Kart.RenderModal(itemForPanier, qte);
-            case 17:
+            case 16:
             case "end":
               return _context7.stop();
           }
@@ -593,7 +594,7 @@ var Kart = /*#__PURE__*/function () {
     key: "RenderModal",
     value: function () {
       var _RenderModal = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(item, qte) {
-        var price, fraisDivers, fraisDossier, fraisPort, html, fall, succes;
+        var price, fraisDivers, fraisDossier, fraisPort, remise, tva, newPrice, html, fall, succes;
         return _regeneratorRuntime().wrap(function _callee14$(_context14) {
           while (1) switch (_context14.prev = _context14.next) {
             case 0:
@@ -607,10 +608,13 @@ var Kart = /*#__PURE__*/function () {
               fraisDivers = _context14.sent;
               fraisDossier = parseFloat(fraisDivers.frais_dossier);
               fraisPort = parseFloat(fraisDivers.frais_port);
-              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n          <div id=\"produit-image-cadre\" >\n          <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n          </div>\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">").concat(new Decimal(item.pad_ttc).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
-              _context14.next = 11;
+              remise = item.pad_remise != null ? item.pad_ht - item.pad_remise : null;
+              tva = remise * 20 / 100;
+              newPrice = remise != null ? remise + tva : item.pad_ttc;
+              _context14.t0 = "\n        <div class=\"body-modal-detail\">\n          <div id=\"produit-image-cadre\" >\n          <img src=\"/images/produits/".concat(item.media, "\" alt=\"\" srcset=\"\" />\n          </div>\n            <div class=\"info-product\">\n            <h4>").concat(item.pro_libelle, "</h4>\n            <div class=\"product-montant\">\n            ").concat(new Decimal(newPrice).toFixed(2).toString().replace(".", ","), "\u20AC</div>\n            <div class=\"product-quantity\">Quantit\xE9 : <span> ").concat(qte, " </span></div>\n            </div>\n        </div>\n        <div class=\"modal-body-commande\">\n            <h5>Il y a ");
+              _context14.next = 14;
               return Kart.getItemNumber();
-            case 11:
+            case 14:
               _context14.t1 = _context14.sent;
               html = _context14.t0.concat.call(_context14.t0, _context14.t1, " articles dans votre panier.</h5>\n            <div class=\"sous-total\">\n                <span class=\"sous-total-titre\">Sous-total :</span>\n                <span class=\"sous-total-montant\">").concat(new Decimal(price.kartProductPrice).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">Frais de port:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisPort).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"transport\">\n                <span class=\"transport-titre\">Frais de dossier:</span>\n                <span class=\"transport-montant\">").concat(new Decimal(fraisDossier).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"total\">\n                <span class=\"total-titre\">Total:</span>\n                <span class=\"total-montant\">").concat(new Decimal(price.totalPrice).toFixed(2).toString().replace(".", ","), " \u20AC</span>\n            </div>\n            <div class=\"btn-achat\">\n                <button class=\"continuer\"  data-bs-dismiss=\"modal\"\n                aria-label=\"Close\">Continuer mes achats</button>\n                <a href=\"/panier/#page-panier\" class=\"finaliser\">\n                    <i class=\"fa fa-check icon-succes\"></i>\n                    <span>Finaliser le devis</span>\n                </a>\n            </div>\n        </div>\n        ");
               fall = document.querySelector("#add-img-fall-icone");
@@ -619,9 +623,9 @@ var Kart = /*#__PURE__*/function () {
               succes ? succes.style.display = "block" : null;
               document.querySelector("#myModal .body-modal").innerHTML = html;
               document.querySelector("#modal-btn-close").addEventListener("click", function () {
-                document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" class=\"mx-auto\" id=\"modal-loader\"/> <p id=\"max-qte-text\" class=\"mx-auto p-3 pt-5\">Impossible d'ajouter cet article au panier ! car sa quantit\xE9 disponible est de  </p>";
+                document.querySelector("#myModal .body-modal").innerHTML = "<img src=\"/images/loader.gif\" alt=\"\" class=\"mx-auto\" id=\"modal-loader\"/> <p id=\"max-qte-text\" class=\"mx-auto p-3 pt-5\"></p>";
               });
-            case 19:
+            case 22:
             case "end":
               return _context14.stop();
           }

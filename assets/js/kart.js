@@ -114,6 +114,7 @@ class Kart {
       pad_ht: item.Tarifs[0].tar_ht,
       media: item.Media[0].med_ressource,
       pro_ref: item.pro_ref,
+      pad_remise : null,
     };
     try {
       axios
@@ -132,6 +133,7 @@ class Kart {
             return Kart.RenderMaxQteModal(res.data.qte);
           } else {
             let qte = res.data.panierDetail.pad_qte;
+            itemForPanier.pad_remise = res.data.panierDetail.pad_remise
             await Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
           }
 
@@ -160,7 +162,6 @@ class Kart {
           }
         });
     } catch (error) {
-      console.log(error);
       await Kart.RenderModal(itemForPanier, qte);
     }
   }
@@ -386,6 +387,9 @@ class Kart {
     const fraisDivers = await Kart.addFraisDivers();
     const fraisDossier = parseFloat(fraisDivers.frais_dossier);
     const fraisPort = parseFloat(fraisDivers.frais_port);
+    const remise = item.pad_remise != null ?  item.pad_ht - item.pad_remise : null;
+    const tva = remise * 20 /100;
+    let newPrice = remise != null ? remise + tva : item.pad_ttc; 
     let html = /*html*/ `
         <div class="body-modal-detail">
           <div id="produit-image-cadre" >
@@ -393,7 +397,8 @@ class Kart {
           </div>
             <div class="info-product">
             <h4>${item.pro_libelle}</h4>
-            <div class="product-montant">${new Decimal(item.pad_ttc)
+            <div class="product-montant">
+            ${new Decimal(newPrice)
               .toFixed(2)
               .toString()
               .replace(".", ",")}€</div>
@@ -450,7 +455,7 @@ class Kart {
     document.querySelector("#modal-btn-close").addEventListener("click", () => {
       document.querySelector(
         "#myModal .body-modal"
-      ).innerHTML = `<img src="/images/loader.gif" alt="" class="mx-auto" id="modal-loader"/> <p id="max-qte-text" class="mx-auto p-3 pt-5">Impossible d'ajouter cet article au panier ! car sa quantité disponible est de  </p>`;
+      ).innerHTML = `<img src="/images/loader.gif" alt="" class="mx-auto" id="modal-loader"/> <p id="max-qte-text" class="mx-auto p-3 pt-5"></p>`;
     });
   }
   static async RenderMaxQteModal(qte) {
