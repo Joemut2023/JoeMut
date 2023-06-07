@@ -287,10 +287,9 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         files = document.querySelectorAll('[type="file"]');
         formWithImage = document.querySelector(".form-submit-image");
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(ht.value) && validateInput(ttc.value) && validateInput(selectCategorie.value) && validateInput(categorieselect.value))) {
-          _context7.next = 28;
+          _context7.next = 31;
           break;
         }
-        messageError.style.display = "none";
         domEditableElement = document.querySelector(".ck-editor__editable");
         editorInstance = domEditableElement.ckeditorInstance;
         data = {
@@ -304,13 +303,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           pro_comment: pro_comment.value,
           pro_statut: pro_statut
         };
-        _context7.next = 17;
+        _context7.next = 16;
         return axios.post("".concat(SITE_URL, "/admin/produits/"), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 17:
+      case 16:
         produit = _context7.sent;
         imagesArrayCover.map( /*#__PURE__*/function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(image) {
@@ -370,7 +369,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref6.apply(this, arguments);
           };
         }());
-        _context7.next = 22;
+        _context7.next = 21;
         return axios.post("".concat(SITE_URL, "/admin/produits/tarif/").concat(produit.data.product.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -379,7 +378,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 22:
+      case 21:
         tarif = _context7.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         Array.from(selectTailles, /*#__PURE__*/function () {
@@ -410,18 +409,22 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref7.apply(this, arguments);
           };
         }());
+        btnEnregistrer.setAttribute("disabled", "true");
+        btnEnregistrer.style.backgroundColor = "#eee";
+        btnEnregistrer.style.cursor = "not-allowed";
+        messageError.style.display = "none";
         formWithImage.submit();
-        _context7.next = 29;
+        _context7.next = 32;
         break;
-      case 28:
+      case 31:
         messageError.style.display = "flex";
-      case 29:
+      case 32:
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth"
         });
-      case 30:
+      case 33:
       case "end":
         return _context7.stop();
     }
