@@ -33,7 +33,7 @@ class CommandeCalcul{
     calculPanierHT(){
         let total_panier_detail_ht = 0;
         for (let index = 0; index < this.panier_details.length; index++) {
-            total_panier_detail_ht += this.panier_details[index].pad_ht * this.panier_details[index].pad_qte;
+            total_panier_detail_ht += (this.panier_details[index].pad_ht - this.panier_details[index]?.pad_remise ) * this.panier_details[index].pad_qte;
         }
         this.panierDetailHT = total_panier_detail_ht;
         return this.panierDetailHT;
@@ -67,11 +67,11 @@ class CommandeCalcul{
        return this.calculPanierHT() + this.calculCommandeLivraison() + this.commande.com_frais;
     }
     /**
-     * 
+     * Renvois le frais de port en TTC
      * @returns {number}
      */
     calculCommandeLivraison(){
-        return this.commande.Frais_port.frp_ht ? this.commande.Frais_port.frp_ht : 0;
+        return this.commande.Frais_port.frp_ttc ? this.commande.Frais_port.frp_ttc : 0;
     }
 }
 module.exports = CommandeCalcul;

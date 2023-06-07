@@ -90,7 +90,7 @@
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Livraison</th>
-              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ttc?commande.Frais_port.frp_ht.toFixed(2).toString().replace(".",","):0.00%> €</th>
+              <th style="border: 1px solid gray; padding: 10px; font-size: 16px;"><%= commande.Frais_port.frp_ttc?commande.Frais_port.frp_ttc.toFixed(2).toString().replace(".",","):0.00%> €</th>
             </tr>
             <tr>
               <th style="border: 1px solid gray; padding: 10px; font-size: 16px;">Incluant un total de taxes</th>

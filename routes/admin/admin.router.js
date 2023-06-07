@@ -110,7 +110,7 @@ router.get("/bon-essayage/:doc_id", async (req, res) => {
 });
 router.get('/bon-livraison/:doc_id',async (req,res)=>{
   const { doc_id } = req.params;
-  console.log("===========",doc_id);
+ // console.log("===========",doc_id);
   try {
     let document = await Document.findOne({ where: { doc_id },order:[['doc_date','DESC']] });
     let commande = await Commande.findOne({
