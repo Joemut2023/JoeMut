@@ -4224,13 +4224,12 @@
 }
 #page-commander .row .bloc-1 #divFinalisation,
 #page-commander .row .bloc-1 #divLivraison,
-#page-commander .row .bloc-1 #divAdress,
 #page-commander .row .bloc-1 #divCodePromo,
 #page-commander .row .bloc-1 #divAdressLiv {
   display: none;
 }
 #page-commander .row .bloc-1 .finalisation-cursor,
-#page-commander .row .bloc-1 .adresse-cursor,
+#page-commander .row .bloc-1 .adresseLiv-cursor,
 #page-commander .row .bloc-1 .livraison-cursor,
 #page-commander .row .bloc-1 .codePromo-cursor {
   cursor: not-allowed;

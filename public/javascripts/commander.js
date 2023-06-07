@@ -5,12 +5,9 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 //change for big title on bloc-form
-var infoFormInscription = document.querySelector(".info-form-inscription");
-var infoFormConnexion = document.querySelector(".info-form-connexion");
 var adresseForm = document.querySelector("#adresse-form");
 var livraisonForm = document.querySelector("#livraison-form");
 var codePromoForm = document.querySelector("#codepromo-form");
-var infoContent = document.querySelector("#info-content");
 var adresseDiv = document.querySelector("#divAdress");
 var livraisonDiv = document.querySelector("#divLivraison");
 var finalisationDiv = document.querySelector("#divFinalisation");
@@ -40,14 +37,13 @@ var adresseBg = document.querySelector(".adresse-bg");
 var adresseLivBg = document.querySelector(".adresseLiv-bg");
 var livraisonBg = document.querySelector(".livraison-bg");
 var codePromoBg = document.querySelector(".codePromo-bg");
-var finalisationBg = document.querySelector(".finalisation-bg");
-var btn_info_client_connected = document.querySelector(".btn_info_client_connected");
-var radioConfirmDevis = document.querySelector("#confirm_devis");
-var checkConditionsGeneral = document.querySelector("#flexCheckDefault");
-var btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 var adresseLiv = document.querySelector("#adresse-livraison");
 var adresseLivContent = document.querySelector("#divAdressLiv");
 var adresseLivraisonBg = document.querySelector(".adresseLivraisonBg");
+var finalisationBg = document.querySelector(".finalisation-bg");
+var radioConfirmDevis = document.querySelector("#confirm_devis");
+var checkConditionsGeneral = document.querySelector("#flexCheckDefault");
+var btn_finaliser_devis = document.querySelector(".btn_finaliser_devis");
 
 //for class tabs
 var navlink_one = document.querySelector(".btn-tab-one");
@@ -111,43 +107,17 @@ var eventAccordeonForm = function eventAccordeonForm(nextDiv, currentDiv, btnMod
   classAdresse.style.color = "white";
   classAdresse.style.border = "1px solid #61ce70";
 };
-
-// change events on infoForm
-infoFormInscription === null || infoFormInscription === void 0 ? void 0 : infoFormInscription.addEventListener("submit", function (event) {
-  event.preventDefault();
-  eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
-});
-infoFormConnexion === null || infoFormConnexion === void 0 ? void 0 : infoFormConnexion.addEventListener("submit", function (event) {
-  event.preventDefault();
-  eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
-});
-btnModiferInfo.addEventListener("click", function (event) {
-  event.preventDefault();
-  adresseDiv.style.display = "none";
-  infoContent.style.display = "flex";
-  borderNumber.style.color = "white";
-  borderNumber.style.backgroundColor = "#61ce70";
-  borderNumber.style.border = "1px solid #61ce70";
-  checkSuccess.style.display = "none";
-  adresseBg.style.color = "grey";
-  adresseBg.style.backgroundColor = "white";
-  adresseBg.style.border = "1px solid grey";
-});
-btn_info_client_connected === null || btn_info_client_connected === void 0 ? void 0 : btn_info_client_connected.addEventListener("click", function (event) {
-  eventAccordeonForm(adresseDiv, infoContent, btnModiferInfo, adresseContainer, borderNumber, checkSuccess, cursorAdresse, adresseBg);
-});
 adresseForm === null || adresseForm === void 0 ? void 0 : adresseForm.addEventListener("submit", function (event) {
   event.preventDefault();
   eventAccordeonForm(adresseLivContent, adresseDiv, btnModiferAdresse, adresseLiv, adresseBg, checkAdresse, cursorAdresseLiv, adresseLivBg);
 });
 btnModiferAdresse.addEventListener("click", function (event) {
-  event.preventDefault();
-  adresseLiv.style.display = "none";
+  adresseLivContent.style.display = "none";
   adresseDiv.style.display = "block";
-  adresseBg.style.color = "white";
-  adresseBg.style.backgroundColor = "#61ce70";
-  adresseBg.style.border = "1px solid #61ce70";
-  checkAdresse.style.display = "none";
+  borderNumber.style.color = "white";
+  borderNumber.style.backgroundColor = "#61ce70";
+  borderNumber.style.border = "1px solid #61ce70";
+  checkSuccess.style.display = "none";
   adresseLivBg.style.color = "grey";
   adresseLivBg.style.backgroundColor = "white";
   adresseLivBg.style.border = "1px solid grey";
