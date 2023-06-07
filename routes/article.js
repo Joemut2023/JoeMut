@@ -55,7 +55,6 @@ router.get("/:id", async (req, res, next) => {
         },
       ],
     });
-    console.log(produitEnPromo);
     const taillesQuantites = await Taille.findAll({
       include: [
         {
@@ -121,7 +120,7 @@ router.get("/:id", async (req, res, next) => {
           where: {
             pro_id: id,
           },
-          attributes: ["tar_ttc"],
+          attributes: ["tar_ttc","tar_ht"],
         },
       ],
     });
@@ -145,7 +144,6 @@ router.get("/:id", async (req, res, next) => {
       produitEnPromo
     });
   } catch (error) {
-    console.log(error);
     Logger.error("article/index : " + error.stack);
     res.status(500).render("article/index", {
       error: true,
