@@ -261,7 +261,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 33;
+          _context9.next = 37;
           break;
         }
         messageError.style.display = "none";
@@ -430,19 +430,26 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
 
         // const message = document.querySelector(".parent-message");
 
+        btnEnregistrer.setAttribute("disabled", "true");
+        btnEnregistrer.style.backgroundColor = "#eee";
+        btnEnregistrer.style.cursor = "not-allowed";
+        messageError.style.display = "none";
         formWithImage.submit();
+
         // window.location.reload();
-        _context9.next = 34;
+        _context9.next = 38;
         break;
-      case 33:
+      case 37:
         messageError.style.display = "flex";
-      case 34:
+      case 38:
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth"
         });
-      case 35:
+        // btnEnregistrer.removeAttribute("disabled");
+        // btnEnregistrer.style.cursor = "pointer";
+      case 39:
       case "end":
         return _context9.stop();
     }

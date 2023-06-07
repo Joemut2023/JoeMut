@@ -321,17 +321,17 @@ btnEnregistrer.addEventListener("click", async function () {
         med_libelle: image.name
           .replaceAll(/\s/g, "")
           .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
-          // .replaceAll(
-          //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
-          //   ""
-          // ),
+        // .replaceAll(
+        //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+        //   ""
+        // ),
         med_ressource: image.name
           .replaceAll(/\s/g, "")
           .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
-          // .replaceAll(
-          //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
-          //   ""
-          // ),
+        // .replaceAll(
+        //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+        //   ""
+        // ),
         med_cover: false,
       };
       const media = await axios.post(
@@ -407,11 +407,19 @@ btnEnregistrer.addEventListener("click", async function () {
 
     // const message = document.querySelector(".parent-message");
 
+    btnEnregistrer.setAttribute("disabled", "true");
+    btnEnregistrer.style.backgroundColor = "#eee";
+    btnEnregistrer.style.cursor = "not-allowed";
+    messageError.style.display = "none";
+
     formWithImage.submit();
+
     // window.location.reload();
   } else messageError.style.display = "flex";
 
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  // btnEnregistrer.removeAttribute("disabled");
+  // btnEnregistrer.style.cursor = "pointer";
 });
 
 //delete taille

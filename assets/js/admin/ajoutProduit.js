@@ -294,10 +294,9 @@ btnEnregistrer.addEventListener("click", async function () {
     validateInput(selectCategorie.value) &&
     validateInput(categorieselect.value)
   ) {
-    messageError.style.display = "none";
-     const domEditableElement = document.querySelector(".ck-editor__editable");
+    const domEditableElement = document.querySelector(".ck-editor__editable");
 
-     const editorInstance = domEditableElement.ckeditorInstance;
+    const editorInstance = domEditableElement.ckeditorInstance;
     const data = {
       cat_id,
       pro_ref: pro_ref.value,
@@ -318,11 +317,13 @@ btnEnregistrer.addEventListener("click", async function () {
 
     imagesArrayCover.map(async (image) => {
       const dataMedia = {
-        med_libelle: image.name .normalize("NFD")
+        med_libelle: image.name
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .replaceAll(/\s/g, "")
           .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
-        med_ressource: image.name .normalize("NFD")
+        med_ressource: image.name
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .replaceAll(/\s/g, "")
           .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_']/g, ""),
@@ -400,7 +401,13 @@ btnEnregistrer.addEventListener("click", async function () {
       );
     });
 
+    btnEnregistrer.setAttribute("disabled", "true");
+    btnEnregistrer.style.backgroundColor = "#eee";
+    btnEnregistrer.style.cursor = "not-allowed";
+    messageError.style.display = "none";
+
     formWithImage.submit();
+    
   } else messageError.style.display = "flex";
 
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
