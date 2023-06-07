@@ -26,7 +26,6 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-    console.log(applies,"applies");
     res.render("apply/index", { applies });
   } catch (error) {
     Logger.error(error.stack)
