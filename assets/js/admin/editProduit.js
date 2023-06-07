@@ -320,18 +320,18 @@ btnEnregistrer.addEventListener("click", async function () {
       const dataMedia = {
         med_libelle: image.name
           .replaceAll(/\s/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .replaceAll(
-            /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
-            ""
-          ),
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+          // .replaceAll(
+          //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+          //   ""
+          // ),
         med_ressource: image.name
           .replaceAll(/\s/g, "")
-          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "")
-          .replaceAll(
-            /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
-            ""
-          ),
+          .replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+          // .replaceAll(
+          //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+          //   ""
+          // ),
         med_cover: false,
       };
       const media = await axios.post(

@@ -323,8 +323,16 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
                   dataMedia = {
-                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").replaceAll(/[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g, ""),
-                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, "").replaceAll(/[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g, ""),
+                    med_libelle: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+                    // .replaceAll(
+                    //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+                    //   ""
+                    // ),
+                    med_ressource: image.name.replaceAll(/\s/g, "").replaceAll(/[~`!@#$%^&*()+={}\[\];:\'\"<>,\/\\\?_]/g, ""),
+                    // .replaceAll(
+                    //   /[àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]/g,
+                    //   ""
+                    // ),
                     med_cover: false
                   };
                   _context6.next = 3;
