@@ -145,40 +145,40 @@
       <nav>
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="/catalogue?page=1&orderby=<%= orderby %>#pages-catalogue">1</a>
+            <a class="page-link <%= pageActive === 1 ? 'active' : '' %>" href="/catalogue?page=1&orderby=<%= orderby %>#pages-catalogue">1</a>
           </li>
           <% if (pageActive===1 || pageActive===2) { %>
             <li class="page-item">
-              <a class="page-link" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
+              <a class="page-link <%= pageActive === 2 ? 'active' : '' %>" href="/catalogue?page=2&orderby=<%= orderby %>#pages-catalogue">2</a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
+              <a class="page-link <%= pageActive === 3 ? 'active' : '' %>" href="/catalogue?page=3&orderby=<%= orderby %>#pages-catalogue">3</a>
             </li>
             <% } else { %>
               <li class="page-item">
-                <a class="page-link" href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue">
+                <a class="page-link <%= pageActive === pageActive-1 ? 'active' : '' %>" href="/catalogue?page=<%= pageActive -1 %>&orderby=<%= orderby %>#pages-catalogue">
                   <%= pageActive-1 %>
                 </a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="/catalogue?page=<%= pageActive %>#pages-catalogue">
+                <a class="page-link <%= pageActive === pageActive ? 'active' : '' %>" href="/catalogue?page=<%= pageActive %>#pages-catalogue">
                   <%= pageActive %>
                 </a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue">
+                <a class="page-link <%= pageActive === pageActive+1 ? 'active' : '' %>" href="/catalogue?page=<%= pageActive+1 %>#pages-catalogue">
                   <%= pageActive+1 %>
                 </a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue">
+                <a class="page-link <%= pageActive === pageActive+2 ? 'active' : '' %>" href="/catalogue?page=<%= pageActive+2 %>#pages-catalogue">
                   <%= pageActive+2 %>
                 </a>
               </li>
               <li class="page-item">...</li>
               <% } %>
                 <li class="page-item">
-                  <a class="page-link" href="/catalogue?page=<%= nbrPages %>#pages-catalogue">
+                  <a class="page-link <%= pageActive === nbrPages ? 'active' : '' %>" href="/catalogue?page=<%= nbrPages %>#pages-catalogue">
                     <%= nbrPages %>
                   </a>
                 </li>
