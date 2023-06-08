@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var { Produit, Media, Tarif, Quantite } = require("../models");
+var { Produit, Media, Tarif, Quantite,Promo,Apply } = require("../models");
 const { Op } = require("sequelize");
 const check_paginate_value = require("../helpers/check_paginate_value");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
@@ -47,10 +47,25 @@ router.get("/", async (req, res, next) => {
       limit: PAGINATION_LIMIT,
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
-        { model: Tarif, attributes: ["tar_ttc"] },
+        { model: Tarif, attributes: ["tar_ttc","tar_ht"] },
       ],
       where: { pro_libelle: { [Op.substring]: search } },
       order: orderCondition,
+    });
+    const applies = await Apply.findAll({
+      include: [
+        {
+          model: Promo,
+          attributes: [
+            "prm_code",
+            "prm_pourcent",
+            "prm_valeur",
+            "prm_debut",
+            "prm_fin",
+            "prm_actif",
+          ],
+        },
+      ],
     });
     
     for (let index = 0; index < all_produits.length; index++) {
@@ -78,6 +93,7 @@ router.get("/", async (req, res, next) => {
       orderby: orderby,
       produitsNbr: all_produits.length,
       quantiteOfEachProduct,
+      applies
     });
   } catch (error) {
     Logger.error(error.stack)
