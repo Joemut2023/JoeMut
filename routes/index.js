@@ -59,16 +59,34 @@ router.get("/", async (req, res, next) => {
 router.post("/", async function (req, res, next) {
   const { email,  textarea } = req.body;
   let quantiteOfEachProduct = [];
-  const produits = await Produit.findAll({
-    limit: 10,
-    order: [["pro_id", "DESC"]],
-    include: [
-      { model: Media, attributes: ["med_id", "med_ressource"] },
-      { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
-    ],
-  });
+ 
 
   try {
+
+    const produits = await Produit.findAll({
+      limit: 10,
+      order: [["pro_id", "DESC"]],
+      include: [
+        { model: Media, attributes: ["med_id", "med_ressource"] },
+        { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
+      ],
+    });
+
+    const applies = await Apply.findAll({
+      include: [
+        {
+          model: Promo,
+          attributes: [
+            "prm_code",
+            "prm_pourcent",
+            "prm_valeur",
+            "prm_debut",
+            "prm_fin",
+            "prm_actif",
+          ],
+        },
+      ],
+    });
     for (let index = 0; index < produits.length; index++) {
       const quantiteInitial = await Quantite.sum("qua_nbre", {
         where: {
@@ -114,6 +132,7 @@ router.post("/", async function (req, res, next) {
             error: false,
             produits,
             quantiteOfEachProduct,
+            applies
           });
 
           email = "";
