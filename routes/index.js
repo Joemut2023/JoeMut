@@ -57,7 +57,7 @@ router.get("/", async (req, res, next) => {
 
 //send form contact
 router.post("/", async function (req, res, next) {
-  const { email, file, textarea } = req.body;
+  const { email,  textarea } = req.body;
   let quantiteOfEachProduct = [];
   const produits = await Produit.findAll({
     limit: 10,
@@ -101,7 +101,7 @@ router.post("/", async function (req, res, next) {
         from: email,
         to: process.env.MAIL_ADRESSE,
         subject: "Message du client depuis le site",
-        html: `<div>  <p>Email: ${email}</p> <p>File :${file}</p> <p>Message:${textarea}</p></div>`,
+        html: `<div>  <p>Email: ${email}</p> <p>Message: ${textarea}</p></div>`,
       };
 
       transporter
@@ -117,7 +117,7 @@ router.post("/", async function (req, res, next) {
           });
 
           email = "";
-          file = "";
+          // file = "";
           textarea = "";
         })
         .catch(function (error) {
