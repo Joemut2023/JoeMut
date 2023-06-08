@@ -3,13 +3,14 @@ const router = express.Router();
 const { Produit, Media, Tarif, Quantite } = require("../models");
 const { PAGINATION_LIMIT } = require("../helpers/utils_const");
 const check_paginate_value = require("../helpers/check_paginate_value");
+const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   let { page, start, end } = check_paginate_value(req);
   let orderby = req.query.orderby;
   var orderCondition;
   let choix;
-   let quantiteOfEachProduct = [];
+  let quantiteOfEachProduct = [];
 
   if (orderby === "AàZ") {
     orderCondition = [["pro_libelle", "ASC"]];
@@ -29,24 +30,24 @@ router.get("/", async (req, res) => {
   }
   try {
     res.locals.titre = "nouvelle collection";
-     const allproducts = await Produit.findAll();
+    const allproducts = await Produit.findAll();
     const nouveauProduits = await Produit.findAll({
       // offset: start,
       // limit: PAGINATION_LIMIT,
       // order: [["pro_id", "DESC"]],
-      where: { pro_new_collect: 1,pro_statut:true },
+      // where: { pro_new_collect: 1,pro_statut:true },
+      where: { [Op.and]: [{ pro_new_collect: 1 }, { pro_statut: true }] },
     });
     const produits = await Produit.findAll({
       offset: start,
       limit: PAGINATION_LIMIT,
       // order: [["pro_id", "DESC"]],
-      order:orderCondition,
+      order: orderCondition,
       include: [
         { model: Media, attributes: ["med_id", "med_ressource"] },
         { model: Tarif, attributes: ["tar_ht", "tar_ttc"] },
       ],
-      where: { pro_new_collect: 1 },
-      
+      where: { [Op.and]: [{ pro_new_collect: 1 }, { pro_statut: true }] },
     });
 
     for (let index = 0; index < allproducts.length; index++) {
