@@ -37,9 +37,10 @@
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
           <div class="content content-hide" id="content">
             <ul>
-              <li class="item-choice">Pertinente</li>
-              <li class="item-choice">Nom, A à Z</li>
-              <li class="item-choice">Nom, Z à A</li>
+              <a style="text-decoration: none;" href="/promotion/?orderby=AàZ"><li class="item-choice">Nom, A à Z</li></a>
+              <a style="text-decoration: none;" href="/promotion/?orderby=ZàA"><li class="item-choice">Nom, Z à A</li></a>
+              <a style="text-decoration: none;" href="/promotion/?orderby=PC"> <li class="item-choice">Prix, croissant</li></a>
+              <a style="text-decoration: none;" href="/promotion/?orderby=PD"><li class="item-choice">Prix, décroissant</li></a>
             </ul>
           </div>
         </div>
@@ -57,6 +58,7 @@
             />
           </a>
         </div>
+        <div class="bar"></div>
         <div class="detail">
           <a href=""><%= produit.Produit.pro_libelle %></a>
           <div>Ref: <span><%= produit.Produit.pro_ref %></span></div>
