@@ -1,4 +1,4 @@
-exports.PAGINATION_LIMIT = 40;
+exports.PAGINATION_LIMIT = 3;
 exports.PAGINATION_LIMIT_ADMIN = 30;
 exports.ACTIF = 1;
 exports.TVA = 0.2;
