@@ -9,7 +9,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  const { cont_service, cont_email, cont_file, cont_msg } = req.body;
+  const { cont_service, cont_email, cont_msg } = req.body;
 
   try {
     if (
@@ -41,7 +41,7 @@ router.post("/", async function (req, res, next) {
         from: cont_email,
         to: process.env.MAIL_ADRESSE,
         subject: "Message du client depuis le site",
-        html: `<div> <p>Service: ${cont_service}</p> <p>Email: ${cont_email}</p> <p>File :${cont_file}</p> <p>Message:${cont_msg}</p></div>`,
+        html: `<div> <p>Service: ${cont_service}</p> <p>Email: ${cont_email}</p> <p>Message: ${cont_msg}</p></div>`,
       };
 
       transporter
@@ -55,7 +55,6 @@ router.post("/", async function (req, res, next) {
           });
           cont_service = "";
           cont_email = "";
-          cont_file = "";
           cont_msg = "";
 
         })
