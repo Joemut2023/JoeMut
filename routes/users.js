@@ -232,9 +232,7 @@ router.post("/nouvelleAdresse", async (req, res) => {
     chekInput(adr_prenom) &&
     chekInput(adr_adresse) &&
     chekInput(adr_cp) &&
-    chekInput(adr_ville) &&
-    chekInput(adr_structure) &&
-    chekInput(adr_societe)
+    chekInput(adr_ville) 
   ) {
     try {
       let adresse = Adresse.create({
