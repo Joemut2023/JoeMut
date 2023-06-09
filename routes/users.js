@@ -232,7 +232,9 @@ router.post("/nouvelleAdresse", async (req, res) => {
     chekInput(adr_prenom) &&
     chekInput(adr_adresse) &&
     chekInput(adr_cp) &&
-    chekInput(adr_ville)
+    chekInput(adr_ville) &&
+    chekInput(adr_structure) &&
+    chekInput(adr_societe)
   ) {
     try {
       let adresse = Adresse.create({
@@ -251,7 +253,7 @@ router.post("/nouvelleAdresse", async (req, res) => {
           getAdresses,
         });
       }
-    } catch (err) {
+    } catch (error) {
       Logger.error(error.stack);
       error = "Erreur interne du serveur";
       return res.render("users/nouvelleAdresse", {
