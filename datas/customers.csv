@@ -1,50 +1,51 @@
-2;Faustine;ALIKIAGALELEI;faustine.bellego@g1ail.co1
-2;Anne-Cécile;ANGEL;angeannece@hot1ail.fr
-2;Eléonore;ARNOULD;eleonore.arnould@ville.angers.fr
-2;Sophie;BAUDRY;s.baudry35@free.fr
-1;Ariel;BAZIN;thierry-ariel.bazin@orange.fr
-2;Laurie;Blaise;layesoane@g1ail.co1
-2;Laetitia;BORAO;contact@l1danseetfitness.co1
-2;Benedetta;Ciurnelli;benedettaciurnelli@g1ail.co1
-2;Iliana;Coiquaud;i.coiquaud@hot1ail.fr
-2;Laura;COLIN;laura.colin@outlook.fr
-2;laura;conan;conanlaura@live.fr
-2;Su1ie;Coste;su1ie.costeoguchi42@orange.fr
-2;1arie;COUTURIER;lapetiteco1pagnie33@g1ail.co1
-2;Edwige;CROIZER;ecroizer22@g1ail.co1
-2;Sophie;Cuvillier;association-kdanse@outlook.co1
-2;Cecile;DANIEL;ceciledaniel2002@yahoo.fr
-2;Adélaïde;Darré;client@cristalid.co1
-2;Larissa;De Brissac;ldebrissac@wanadoo.fr
-2;Anne;DE LATOUR;annedegrenierdelatour@hot1ail.fr
-2;Nelly;DELOYE;nel.deloye@g1ail.co1
-2;Caroline;Douillet;caroline.douillet@g1ail.co1
-2;alexia;Dutertre;dutertrealexia@g1ail.co1
-2;Peggy;Fortin;peggy.fortin@outlook.fr
-2;1arie;GARCIA;e1ad@lafarelesoliviers.fr
-2;Enora;Garret;enora.garret@hot1ail.fr
-2;1arine;GASSER;dansons1aintenantquedillac@g1ail.co1
-2;Ingrid;GAUDRAS;artcorpsdanse34@g1ail.co1
-2;Véronique;Gauthier;7verogau@g1ail.co1
-2;Pauline;GEHIN;pauline.g1@wanadoo.fr
-2;Aurélie;GIRBAL;lilousalo1e@yahoo.fr
-2;Lenka;Grail;grail.lenka@sfr.fr
-2;Nathalie;GRAND;snakew60@g1ail.co1
-1;Frank;GRANDJEAN;technique@arpaline.net
-1;Dany;Griveau;dany.Griveau@hot1ail.fr
-1;Eric;Guer1ah;eric.guer1ah@g1ail.co1
-2;Eva;HERNANDEZ;evahernandez1996@g1ail.co1
-2;Barbara;Hoguet;contact@association-entrenous.co1
-2;Frédérique;JEHANNIN;Tatansa@orange.fr
-2;Christine;KATZ BODIOU;bodiouch@yahoo.fr
-2;Vanessa;Kervoa;vanessa.le-fustec@laposte.net
-2;Vanessa;Kervoa;kervoafa1ily@orange.fr
-2;1arine;LAGADEC;1arine-lagadec@live.fr
-2;1onique;LAHEURTE;1oniquelaheurte.danse@g1ail.co1
-1;ERIC;LA1BERT;eric.guer1ah@icloud.co1
-2;Fanny;Languillier;fannylang83@g1ail.co1
-2;Ilana;Le Breton;ilanalebreton.pro@g1ail.co1
-2;kaylie;le trionnaire;kaylieklt@g1ail.co1
-2;1arine;LEDUC;ldc.1arinepro@g1ail.co1
-2;CAROLINE;LE1AITRE;carolinele1aitre.danse@sfr.fr
-2;Sandrine;LEVEQUE;nine.leveque@orange.fr
+tit_id;cli_mail;cli_nom;cli_prenom;cli_newsletter;cli_activation;cli_pertenaire;cli_inscription
+1;faustine.bellego@gmail.com;ALIKIAGALELEI;Faustine;1;1;1;19/02/2023T16:55Z
+1;angeannece@hotmail.fr;ANGEL;Anne-Cécile;1;1;1;28/02/2023 11:07
+1;eleonore.arnould@ville.angers.fr;ARNOULD;Eléonore;1;1;1;19/02/2023 17:37
+1;kerim.balatov@sfr.fr;Balatova ;Emma;1;1;0;28/03/2023 23:17
+1;audrey.c.lefevre@gmail.com;BALDELLI;AUDREY;0;1;0;29/03/2023 15:01
+1;s.baudry35@free.fr;BAUDRY;Sophie;1;1;1;19/02/2023 10:57
+2;thierry-ariel.bazin@orange.fr;BAZIN;Ariel;1;1;1;24/02/2023 15:54
+1;manon.ninonperso@gmail.com;bertrand;manon;1;1;0;31/03/2023 09:27
+1;layesoane@gmail.com;Blaise;Laurie;0;1;0;20/03/2023 20:45
+1;contact@lmdanseetfitness.com;BORAO;Laetitia;1;1;1;19/02/2023 16:47
+1;maudgeniez22@gmail.com;Cavelan-Geniez;Maud;0;1;0;03/04/2023 14:43
+1;benedettaciurnelli@gmail.com;Ciurnelli;Benedetta;1;1;1;19/02/2023 17:43
+1;i.coiquaud@hotmail.fr;Coiquaud;Iliana;1;1;0;13/03/2023 13:44
+1;laura.colin@outlook.fr;COLIN;Laura;1;1;1;19/02/2023 13:22
+1;conanlaura@live.fr;conan;laura;0;1;0;09/03/2023 14:32
+1;sumie.costeoguchi42@orange.fr;Coste;Sumie;1;1;1;19/02/2023 17:26
+1;lapetitecompagnie33@gmail.com;COUTURIER;Marie;1;1;1;28/02/2023 10:59
+1;ecroizer22@gmail.com;CROIZER;Edwige;1;1;1;21/02/2023 17:16
+1;association-kdanse@outlook.com;Cuvillier;Sophie;1;1;0;13/03/2023 16:18
+1;ceciledaniel2002@yahoo.fr;DANIEL;Cecile;1;1;1;19/02/2023 17:29
+1;client@cristalid.com;Darré;Adélaïde;1;1;1;04/01/2023 10:00
+1;ldebrissac@wanadoo.fr;De Brissac;Larissa;1;1;1;19/02/2023 17:51
+1;annedegrenierdelatour@hotmail.fr;DE LATOUR;Anne;1;1;1;19/02/2023 17:34
+1;nel.deloye@gmail.com;DELOYE;Nelly;1;1;1;07/03/2023 15:51
+1;caroline.douillet@gmail.com;Douillet;Caroline;0;1;0;12/03/2023 23:02
+1;dutertrealexia@gmail.com;Dutertre;alexia;1;1;0;06/03/2023 19:42
+1;peggy.fortin@outlook.fr;Fortin;Peggy;0;1;0;14/03/2023 16:28
+1;emad@lafarelesoliviers.fr;GARCIA;Marie;1;1;1;19/02/2023 16:35
+1;enora.garret@hotmail.fr;Garret;Enora;1;1;1;19/02/2023 17:11
+1;dansonsmaintenantquedillac@gmail.com;GASSER;Marine;1;1;1;19/02/2023 16:04
+1;artcorpsdanse34@gmail.com;GAUDRAS;Ingrid;1;1;1;19/02/2023 16:50
+1;steve.falour@gmail.com;Gauthier;Véronique;0;1;0;22/03/2023 09:59
+1;7verogau@gmail.com;Gauthier;Véronique;0;1;0;16/03/2023 14:42
+1;pauline.g1@wanadoo.fr;GEHIN;Pauline;1;1;1;19/02/2023 17:38
+1;sarah.gerard@hotmail.fr;Gérard ;Sarah;0;1;0;06/04/2023 15:48
+1;lilousalome@yahoo.fr;GIRBAL;Aurélie;1;1;1;28/02/2023 11:14
+1;grail.lenka@sfr.fr;Grail;Lenka;1;1;1;19/02/2023 17:16
+1;snakew60@gmail.com;GRAND;Nathalie;1;1;1;28/02/2023 12:05
+2;technique@arpaline.net;GRANDJEAN;Frank;0;1;0;06/03/2023 15:07
+2;dany.Griveau@hotmail.fr;Griveau;Dany;1;1;0;06/03/2023 16:30
+2;eric.guermah@gmail.com;Guermah;Eric;1;1;1;03/01/2023 10:52
+1;evahernandez1996@gmail.com;HERNANDEZ;Eva;0;1;0;20/03/2023 11:21
+1;contact@association-entrenous.com;Hoguet ;Barbara ;0;1;0;11/03/2023 14:20
+1;Tatansa@orange.fr;JEHANNIN;Frédérique;1;1;1;24/02/2023 16:03
+2;kabasiromain@gmail.com;kabasi;Romain;0;1;0;01/04/2023 20:01
+1;bodiouch@yahoo.fr;KATZ BODIOU;Christine;1;1;1;19/02/2023 17:32
+1;vanessa.le-fustec@laposte.net;Kervoa;Vanessa;1;1;1;03/01/2023 11:56
+1;kervoafamily@orange.fr;Kervoa;Vanessa;1;1;1;14/02/2023 10:31
+2;bkiniali@wcg-rdc.com;KINIALI;Blaise;0;1;0;22/03/2023 15:22
+1;marine-lagadec@live.fr;LAGADEC;Marine;1;1;1;19/02/2023 16:08

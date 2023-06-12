@@ -14,10 +14,10 @@ module.exports = {
     */
    await queryInterface.bulkInsert("Titres", [
      {
-       tit_libelle: "M",
+       tit_libelle: "Mme",
      },
      {
-       tit_libelle:"Mme"
+       tit_libelle:"M"
      },
    ]);
   },
