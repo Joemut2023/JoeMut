@@ -25,26 +25,32 @@ router.get("/:id", async (req, res, next) => {
       produitsPopulaires,
       totalCmd
     ) => {
-      let view = await ejs.renderFile(
-        path.join(__dirname, "../mailTemplate/devis.ejs"),
-        {
-          panierDetails: panierDetails,
-          commande,
-          adresseLiv,
-          adresseFac,
-          sous_totalCmd: sous_totalCmd,
-          produitsPopulaires: produitsPopulaires,
-          totalCmd: totalCmd,
-          sous_total,
-          modeLivraison,
-          taxe,
-          totalHT,
-          totalTTC,
-          essayage,
-          moment,
-        }
-      );
-      res.send(view);
+
+      try {
+        let view = await ejs.renderFile(
+          path.join(__dirname, "../mailTemplate/devis.ejs"),
+          {
+            panierDetails: panierDetails,
+            commande,
+            adresseLiv,
+            adresseFac,
+            sous_totalCmd: sous_totalCmd,
+            produitsPopulaires: produitsPopulaires,
+            totalCmd: totalCmd,
+            sous_total,
+            modeLivraison,
+            taxe,
+            totalHT,
+            totalTTC,
+            essayage,
+            moment,
+          }
+        );
+        res.send(view);
+      } catch (error) {
+        Logger.error(error.stack);
+        res.send('erreur page de rendu puppeter')
+      }
     }
   );
 });
