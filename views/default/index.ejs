@@ -58,7 +58,7 @@
                 </div>
                 <div class="price">
                   <p>
-                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %> €</strong>
+                      <strong><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ",") %>  €</strong>
                   </p>
                   <span class="bar">|</span>
                   <span
@@ -108,18 +108,18 @@
                   <% let promotionProduct = [] %>
                   <% applies.forEach(element => { %>
                     <% if (element.pro_id == produit.pro_id) { %>
-                      <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>€</del>
+                      <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  €</del>
                      <% promotionProduct = element %>
                      <% if (promotionProduct.Promo.prm_pourcent) { %> 
                       <% remise = promotionProduct.Promo.prm_pourcent * produit.Tarifs[0].tar_ht / 100 %>
                       <% newPriceht = produit.Tarifs[0].tar_ht - remise %>
                       <% } else { %> <% newPriceht = produit.Tarifs[0].tar_ht - promotionProduct.Promo.prm_valeur %> <% } %>
                       <% let tva = newPriceht * 20 /100 %>
-                      <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %> €
+                      <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %>  €
                     <% } %> 
                   <% }) %>
                   <% if (!applies.find(element => element.pro_id == produit.pro_id)) { %>
-                   <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>€ %>
+                   <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %> € %>
                     <% } %>
                       </strong>
                     </p>
