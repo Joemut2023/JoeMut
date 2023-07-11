@@ -122,14 +122,14 @@
        <% if (produitEnPromo) { %>
         <del><%=
           priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
-          %> €</del>
+          %>  €</del>
         <% if (produitEnPromo.Promo.prm_pourcent) { %> 
           <% remise = produitEnPromo.Promo.prm_pourcent *  priceArticle.Tarifs[0].tar_ht / 100 %>
           <% newPriceht =  priceArticle.Tarifs[0].tar_ht - remise %>
           <% } else { %> <% newPriceht =  priceArticle.Tarifs[0].tar_ht - produitEnPromo.Promo.prm_valeur %> <% } %>
           <% let tva = newPriceht * 20 /100 %>
-        <%= (newPriceht + tva).toFixed(2).toString().replace(".",",")  %> €
-       <% }  else { %><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")%> €<% } %>
+        <%= (newPriceht + tva).toFixed(2).toString().replace(".",",")  %>  €
+       <% }  else { %><%= priceArticle.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")%>  €<% } %>
         </p>
         <p class="title">TTC</p>
       </div>
@@ -290,7 +290,7 @@
             <p class="price">
               <%=
               element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
-              %>€
+              %>  €
             </p>
             <p class="bar">|</p>
             <button
