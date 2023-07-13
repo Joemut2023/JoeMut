@@ -40,8 +40,8 @@
       <tr>
         <td><%= element.frp_id %></td>
         <td><%= element.frp_libelle %></td>
-        <td><%= element.frp_debut %></td>
-        <td><%= element.frp_fin %></td>
+        <td><%= new Date(element.frp_debut).toLocaleDateString('fr-fr') %></td>
+        <td><%= new Date(element.frp_fin).toLocaleDateString('fr-fr') %></td>
         <td>
           <div class="form-check form-switch">
             <input
