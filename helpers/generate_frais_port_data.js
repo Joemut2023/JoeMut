@@ -14,11 +14,11 @@ fs.createReadStream(path.resolve(__dirname, "../datas/frais_port.csv"))
     results.map(async (data) => {
 
 
-      const debut = data.frais.split(";")[8];
+      const debut = data.frais.split(";")[9];
       const dateArr = debut.split("-");
       const date_debut = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
 
-      const fin = data.frais.split(";")[9];
+      const fin = data.frais.split(";")[8];
       const finArr = fin.split("-");
       const date_fin = new Date(finArr[0], finArr[1] - 1, finArr[2]);
 
