@@ -27,16 +27,16 @@ module.exports = async (commandeId, callback) => {
       ],
     });
     let adresseLiv = await Adresse.findOne({
-      where: { adr_id: commande.com_adr_liv },
+      where: { adr_id: commande?.com_adr_liv },
     });
     let adresseFac = await Adresse.findOne({
-      where: { adr_id: commande.com_adr_fac },
+      where: { adr_id: commande?.com_adr_fac },
     });
     let essayage = await Essayage.findAll({
-      where: { com_id: commande.com_id },
+      where: { com_id: commande?.com_id },
     });
     let modeLivraison = await Frais_port.findOne({
-      where: { frp_id: commande.frp_id },
+      where: { frp_id: commande?.frp_id },
     });
 
     //create ref for a command
