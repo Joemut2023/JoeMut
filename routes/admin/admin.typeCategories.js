@@ -78,18 +78,14 @@ router.get("/edit/:id", async (req, res) => {
 
 router.post("/edit/:id", async (req, res) => {
     const { tyc_libelle, tyc_ordre } = req.body
-
     try {
         const updateTyc = await Type_categorie.update({
-            tyc_libelle: tyc_libelle,
-            tyc_order: tyc_ordre
-
+            tyc_libelle,
+            tyc_ordre
         }, { where: { tyc_id: req.params.id } })
-
-
         return res.redirect("/admin/type-categories")
     } catch (error) {
-
+      console.log(error )
     }
 })
 
