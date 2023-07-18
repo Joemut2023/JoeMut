@@ -25,10 +25,10 @@
       <tr>
         <th>Id</th>
         <th>Libellé</th>
-        <th>Date debut</th>
+        <th>Date début</th>
         <th>Date fin</th>
         <th>Actif</th>
-        <th>Default</th>
+        <th>Défaut</th>
         <th>Description</th>
         <!-- <th>Image</th> -->
         <th>HT</th>
@@ -61,7 +61,9 @@
               name="frp_default"
               value="<%= element.frp_default %>"
               type="checkbox"
-              checked
+              <% if (element.frp_default == 1 ) { %>
+                  checked
+              <% } %>
             />
           </div></td>
         <td><%= element.frp_description %></td>
