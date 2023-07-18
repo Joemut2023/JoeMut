@@ -22,23 +22,48 @@
       </div>
       <% } %>
       <form method="post" action="/admin/tailles/update">
-        <div class="mb-3 pt-3">
-          <label for="transporteur-input" class="form-label"
-            >Description de la taille</label
-          >
-          <input type="hidden" name="tai_id" value="<%= tailles.tai_id %>" />
-          <input
-            type="text"
-            name="tai_libelle"
-            class="form-control"
-            id="transporteur-input"
-            aria-describedby="transporteur nom"
-            value="<%= tailles.tai_libelle %>"
-          />
+        <div class="row">
+          <div class="mb-3 pt-3 col-6">
+            <label for="transporteur-input" class="form-label"
+              >Description de la taille</label
+            >
+            <input type="hidden" name="tai_id" value="<%= tailles.tai_id %>" />
+            <input
+              type="text"
+              name="tai_libelle"
+              class="form-control"
+              id="transporteur-input"
+              aria-describedby="transporteur nom"
+              value="<%= tailles.tai_libelle %>"
+            />
+            </div>
+
+            <div class="mb-3 pt-3 col-6">
+              <label for="transporteur-input" class="form-label"
+                >Ordre</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="categorie-input"
+                aria-describedby="categorie nom"
+                name="tai_ordre"
+                value="<%= tailles.tai_ordre %>"
+                required
+              />
+            </div>
         </div>
+       
+        <!-- </div>
         <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
         <div class="mb-4">
           <a href="/admin/tailles" class="btn btn-secondary">Annuler</a>
+        </div> -->
+       
+
+        <div style="display: flex; gap: 20px; margin-top: 20px;">
+          <button class="btn btn-secondary mb-4" ><a href="/admin/tailles"  style="color: #fff; text-decoration: none;">Retour</a></button>
+          <button type="submit" class="btn btn-primary mb-4">Mettre à jour</button>
         </div>
       </form>
     </div>

@@ -93,11 +93,13 @@ router.get("/update", async (req, res) => {
 });
 
 router.post("/update", async (req, res) => {
-  const { tai_libelle, tai_id } = req.body;
+  
+  const { tai_libelle, tai_ordre , tai_id } = req.body;
   try {
     const newTaille = await Taille.update(
       {
         tai_libelle,
+        tai_ordre
       },
       { where: { tai_id } }
     );
