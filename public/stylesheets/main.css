@@ -7343,6 +7343,9 @@ body {
 #admin-blocs-produitHeader .fil-ariane-item {
   color: #25b9d7;
 }
+#admin-blocs-produitHeader .fil-ariante-item-content {
+  color: black;
+}
 #admin-blocs-produitHeader .produit-menu {
   display: flex;
   flex-wrap: wrap;

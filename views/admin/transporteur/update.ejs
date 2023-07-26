@@ -3,13 +3,29 @@
   
   <div id="admin-blocs-produitHeader" class="mb-4">
     <div class="produit-menu">
-      <a href="/admin/transporteurs" style="color: rgb(36, 33, 33);" class="form-label">voir tous les  Transporteurs</a>
+      <div class="text">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a class="fil-ariane-item" href="#" style="color: #25b9d7;">Référentiel</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <a class="fil-ariane-item" href="/admin/transporteurs">Transporteurs</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <span>Editer</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- <a href="/admin/transporteurs" style="color: rgb(36, 33, 33);" class="form-label">voir tous les  Transporteurs</a>
       <div class="produit-menu-btn">
         <a class="btn btn-info" href="/admin/transporteurs/add">
           <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau
           transporteur
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="container-fluid">
@@ -45,7 +61,7 @@
           </div>
          
           <div class="w-100 d-flex gap-4">
-            <button type="submit" class="btn btn-primary mb-4">Modifier</button>
+            <button type="submit" class="btn btn-primary mb-4">Mettre à jour</button>
             <div class="mb-4 ">
               <a href="/admin/transporteurs" class="btn btn-secondary">Annuler</a>
             </div>

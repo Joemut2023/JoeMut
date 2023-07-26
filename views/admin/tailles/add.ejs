@@ -1,13 +1,27 @@
 <div id="admin-blocs-produitHeader">
   <div class="produit-menu pt-3">
-   <a href="/admin/tailles" style="color: rgb(36, 33, 33);" class="form-label">Voir toutes les tailles</a>
-    <div class="produit-menu-btn">
+    <div class="text">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a class="fil-ariane-item" href="#" style="color: #25b9d7;">Référentiel</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a class="fil-ariane-item" href="/admin/tailles">Tailles</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span>Ajouter</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- <div class="produit-menu-btn">
       <a href="/admin/transporteurs/add">
         <button type="button" class="btn btn-info">
           <i class="fa-solid fa-circle-plus"></i> Ajouter une nouvelle taille
         </button>
       </a>
-    </div>
+    </div> -->
   </div>
 </div>
 <div class="container-fluid mt-3">
@@ -34,10 +48,13 @@
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
-        <div class="mb-4">
-          <a href="/admin/tailles" class="btn btn-secondary">Annuler</a>
+        <div class="" style="display: flex; gap: 20px; margin-top: 20px;">
+          <button type="submit" class="btn btn-primary mb-4">Ajouter</button>
+          <div class="mb-4">
+            <a href="/admin/tailles" class="btn btn-secondary">Annuler</a>
+          </div>
         </div>
+       
       </form>
     </div>
   </div>
