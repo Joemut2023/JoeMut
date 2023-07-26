@@ -1,7 +1,19 @@
 <div id="admin-page-transporteur">
+
   <div id="admin-blocs-produitHeader">
     <div class="produit-menu">
-      <h1>Transporteur</h1>
+      <div class="text">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a class="fil-ariane-item" href="#" style="color: #25b9d7;">Référentiel</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <span>Transporteur</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
       <div class="produit-menu-btn mt-3">
         <a class="btn btn-info" href="/admin/transporteurs/add">
           <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau
@@ -16,7 +28,7 @@
   <div id="admin-page-promo">
     <div class="promo-content mt-3">
       <div class="d-flex justify-content-between p-3 pb-0">
-        <h6>Gérer les transporteurs <%= transporteurs.length %></h6>
+        <h6>Gérer les transporteurs</h6>
         <form
           class="d-flex justify-content-between gap-2"
           action="/admin/transporteurs/search/?trs_libelle"

@@ -7341,7 +7341,7 @@ body {
   color: #fff;
 }
 #admin-blocs-produitHeader .fil-ariane-item {
-  color: #7a7a7a !important;
+  color: #25b9d7;
 }
 #admin-blocs-produitHeader .produit-menu {
   display: flex;
@@ -7455,7 +7455,7 @@ body {
   color: black;
 }
 #admin-blocs-panierHeader .fil-ariane-item {
-  color: #7a7a7a !important;
+  color: #25b9d7;
 }
 #admin-blocs-panierHeader .produit-menu {
   padding: 1%;
