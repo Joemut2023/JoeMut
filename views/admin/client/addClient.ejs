@@ -1,12 +1,26 @@
 <div id="admin-blocs-ClientHeader" class="border-bottom">
-  <h6 class="pt-3"><a href="/admin/clients">Clients</a></h6>
+  <!-- <h6 class="pt-3"><a href="/admin/clients">Clients</a></h6> -->
   <div class="produit-menu">
-    <h4>Créer un nouveau client</h4>
-    <div class="produit-menu-btn">
+    <div class="text">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a class="fil-ariane-item" href="/admin/clients" style="color: #25b9d7;">Clients</a>
+          </li>
+          <!-- <li class="breadcrumb-item active" aria-current="page">
+            <a class="fil-ariane-item" href="/admin/transporteurs">Transporteurs</a>
+          </li> -->
+          <li class="breadcrumb-item active" aria-current="page">
+            <span >Ajouter</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- <div class="produit-menu-btn">
       <button type="button" class="btn btn-info">
         <i class="fa-solid fa-circle-plus"></i> Ajouter un nouveau client
       </button>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -191,10 +205,12 @@
     </div>
     <hr />
     <div class="d-flex justify-content-between p-2">
+
+      <button type="submit" class="btn btn-info">Enregistrer</button>
       <a href="/admin/clients">
         <button type="button" class="btn btn-outline-secondary">Annuler</button>
       </a>
-      <button type="submit" class="btn btn-info">Enregistrer</button>
+      
     </div>
   </form>
 </div>
