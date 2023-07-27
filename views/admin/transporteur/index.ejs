@@ -42,6 +42,7 @@
               id="transporteur-input"
               placeholder="entrer le nom d'un transporteur"
               aria-describedby="transporteur search nom"
+              value="<%= typeof trs_libelle !== "undefined"?trs_libelle:'' %>"
             />
           </div>
           <button type="submit" class="btn btn-primary mb-4">Rechercher</button>
