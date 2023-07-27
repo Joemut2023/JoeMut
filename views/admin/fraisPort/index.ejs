@@ -50,7 +50,9 @@
               name="frp_actif"
               value="<%= element.frp_actif %>"
               type="checkbox"
-              checked
+              <% if (element.frp_actif === true) { %>
+               checked
+              <% } %>
             />
           </div></td>
         <td>

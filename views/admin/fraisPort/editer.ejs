@@ -64,7 +64,10 @@
           <div class="form-check form-switch">
             <label>Actif</label>
             <input class="form-check-input" id="frp_actif" name="frp_actif" value="true" type="checkbox"
-              checked />
+            <% if (fraisPortId.frp_actif===true) { %>
+              checked
+             <% } %>
+              />
           </div> 
         </div>
 
@@ -72,7 +75,9 @@
           <div class="form-check form-switch">
             <label>Default</label>
             <input class="form-check-input" id="frp_default" name="frp_default" value="true" type="checkbox"
-              checked />
+              <% if (fraisPortId.frp_default===true) { %>
+               checked
+              <% } %> />
           </div>
         </div>
        </div>

@@ -148,8 +148,8 @@ router.post("/edit/:id", async (req, res) => {
       {
         frp_debut: frp_debut,
         frp_fin: frp_fin,
-        frp_actif: frp_actif,
-        frp_default: frp_default,
+        frp_actif: frp_actif === undefined ? false : true,
+        frp_default: frp_default === undefined ? false : true,
         frp_ht: frp_ht,
         frp_ttc: frp_ttc,
         frp_libelle: frp_libelle,
