@@ -146,6 +146,7 @@ router.get("/search", async (req, res) => {
       start,
       end,
       taillesNbr: Alltailles.length,
+      tai_libelle
     });
   } catch (error) {
     Logger.error(error.stack)
