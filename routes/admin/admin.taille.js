@@ -60,10 +60,8 @@ router.post("/add", async (req, res) => {
       tai_libelle,
       tai_ordre: tai_ordre + 1,
     });
-    const succesMsg = "Nouvelle taille ajouté avec succès";
-    res.render("tailles/add", {
-      succesMsg,
-    });
+    // const succesMsg = "Nouvelle taille ajouté avec succès";
+    res.redirect("/admin/tailles");
   } catch (error) {
     Logger.error(error.stack)
     res.status(500).render("tailles/add", {
