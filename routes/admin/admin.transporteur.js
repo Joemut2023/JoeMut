@@ -41,10 +41,8 @@ router.post("/add", async (req, res) => {
     await Transporteur.create({
       trs_libelle,
     });
-    const succesMsg = "Nouveau transporteur ajouté avec succès";
-    res.render("transporteur/add", {
-      succesMsg,
-    });
+    // const succesMsg = "Nouveau transporteur ajouté avec succès";
+    res.redirect("/admin/transporteurs",);
   } catch (error) {
     Logger.error(+error.stack);
     res.status(500).render("transporteur/add", {

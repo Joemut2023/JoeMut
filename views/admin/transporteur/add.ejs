@@ -21,11 +21,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 card shadow">
-        <% if (typeof succesMsg == 'string') { %>
-        <div class="alert alert-success mt-3 d-flex justify-content-between" role="alert">
-          <%= succesMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <% } %><% if (typeof nothingMsg == 'string') { %>
+      <% if (typeof nothingMsg == 'string') { %>
         <div class="alert alert-secondary mt-3 d-flex justify-content-between" role="alert">
           <%= nothingMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
