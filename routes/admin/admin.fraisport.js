@@ -64,9 +64,31 @@ router.post("/ajouter", async (req, res) => {
       {
         return res.render("fraisPort/ajouter", {
           error: true,
-          errorMsg: "Veillez remplir tout les champs",
+          errorMsg: "Veillez remplir tous les champs",
+          frp_debut,
+          frp_fin,
+          frp_actif,
+          frp_default,
+          frp_ht,
+          frp_ttc,
+          frp_libelle,
+          frp_description,
         });
       }
+    }
+    if(frp_debut>frp_fin){
+      const errorDate ="La date du début ne peut pas être supérieure à la date de fin";
+      return res.render("fraisPort/ajouter",{
+         errorDate,
+         frp_debut,
+         frp_fin,
+         frp_actif,
+         frp_default,
+         frp_ht,
+         frp_ttc,
+         frp_libelle,
+         frp_description,
+      })
     }
     await Frais_port.create({
       frp_debut: frp_debut,
@@ -80,7 +102,7 @@ router.post("/ajouter", async (req, res) => {
     });
     return res.redirect("/admin/frais-port");
   } catch (error) {
-    Logger.error(+error.stack);
+    Logger.error(error.stack);
     return res.status(500).render("fraisPort/ajouter", {
       message:
         "Une erreur est survenue lors de la récupération des types de catégories.",

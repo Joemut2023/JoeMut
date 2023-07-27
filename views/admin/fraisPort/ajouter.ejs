@@ -6,7 +6,7 @@
           <a class="fil-ariane-item" href="#">Referentiel</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-          <a class="fil-ariane-item" href="/admin/frais-port">Frais port</a>
+          <a class="fil-ariane-item" href="/admin/frais-port">Frais de port</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
           <span>Ajouter</span>
@@ -14,37 +14,50 @@
       </ol>
     </nav>
   </div>
+  <% if (typeof errorDate == 'string') { %>
+    <div class="alert alert-secondary mt-3 d-flex justify-content-between" role="alert">
+      <%= errorDate %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
 
+    <% if (typeof errorMsg == 'string') { %>
+      <div class="alert alert-secondary mt-3 d-flex justify-content-between" role="alert">
+        <%= errorMsg %> <button type="button" class="btn-close btn-close-flash" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% } %>
   <div class="form">
-    <div class="">Ajout de frais port</div>
+    <div class="">Ajout de frais de port</div>
     <hr>
     <form action="/admin/frais-port/ajouter" method="POST">
       <div class="row g-3 align-items-center">
         <div class="col-6">
-          <label for="date" class="col-form-label">Date debut</label>
-          <input type="date" id="date" class="form-control input-group" name="frp_debut"
-            aria-labelledby=dateHelpInline">
+          <label for="date" class="col-form-label">Date début</label>
+          <input type="date" id="date" class="form-control input-group" name="frp_debut" 
+            aria-labelledby=dateHelpInline" value="<%= typeof frp_debut !== "undefined" ? frp_debut : '' %>" />
         </div>
 
         <div class="col-6">
           <label for="date" class="col-form-label">Date fin</label>
-          <input type="date" id="date" class="form-control" aria-labelledby="passwordHelpInline" name="frp_fin" />
+          <input type="date" id="date" class="form-control" aria-labelledby="passwordHelpInline" name="frp_fin" 
+          value="<%= typeof frp_fin !== "undefined" ? frp_fin : '' %>" />
         </div>
 
         <div class="col-6">
           <label for="number" class="col-form-label">Prix HT</label>
-          <input type="number" id="date" class="form-control" name="frp_ht" aria-labelledby=dateHelpInline">
+          <input type="number" id="date" class="form-control" name="frp_ht" aria-labelledby=dateHelpInline" 
+          value="<%= typeof frp_ht !== "undefined" ? frp_ht : '' %>" />
         </div>
 
         <div class="col-6">
           <label for="date" class="col-form-label">Prix TTC</label>
-          <input type="number" id="number" class="form-control" aria-labelledby="passwordHelpInline" name="frp_ttc" />
+          <input type="number" id="number" class="form-control" aria-labelledby="passwordHelpInline" name="frp_ttc"
+          value="<%= typeof frp_ttc !== "undefined" ? frp_ttc : '' %>" />
         </div>
 
         <div class="col-6">
           <label for="libelle" class="col-form-label">libelle</label>
           <input type="texte" id="libelle" class="form-control" aria-labelledby="passwordHelpInline"
-            name="frp_libelle" />
+            name="frp_libelle" value="<%= typeof frp_libelle !== "undefined" ? frp_libelle : '' %>"  />
         </div>
         <div class="col-6">
           <label class="col-form-label">Description</label>
