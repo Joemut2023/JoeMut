@@ -49,13 +49,14 @@ router.post("/ajouter", async (req, res) => {
     frp_libelle,
     frp_description,
   } = req.body;
+  console.log(  frp_default,"okay")
 
   try {
     if (
       frp_debut == "" ||
       frp_fin == "" ||
       frp_actif == "" ||
-      frp_default == "" ||
+      // frp_default == "" ||
       frp_ht == "" ||
       frp_ttc == "" ||
       frp_libelle == "" ||
@@ -94,7 +95,7 @@ router.post("/ajouter", async (req, res) => {
       frp_debut: frp_debut,
       frp_fin: frp_fin,
       frp_actif: frp_actif,
-      frp_default: frp_default,
+      frp_default: frp_default === undefined ? false : true,
       frp_ht: frp_ht,
       frp_ttc: frp_ttc,
       frp_libelle: frp_libelle,
@@ -141,6 +142,7 @@ router.post("/edit/:id", async (req, res) => {
     frp_libelle,
     frp_description,
   } = req.body;
+ 
   try {
     await Frais_port.update(
       {
