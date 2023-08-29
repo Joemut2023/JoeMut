@@ -31,7 +31,6 @@ var panierDetailRouter = require("./routes/panierDetail");
 var codePromoRouter = require("./routes/codepromo");
 const personalDataRouter = require('./routes/personnal_data');
 const winston = require('winston');
-app.use(cors());
 const logConfiguration = {
   'transports': [
       new winston.transports.File({
@@ -60,6 +59,7 @@ const setAuthorizedUser = require("./middleware/setAuthorizedUser");
 const getPanierDetail = require("./middleware/getPanierDetail");
 const layout = require("./middleware/layout");
 var app = express();
+app.use(cors());
 var adminRouter = require("./routes/admin/admin.router");
 const flashMidleware = require("./middleware/admin/admin.flash");
 require("./config/db").sync();
