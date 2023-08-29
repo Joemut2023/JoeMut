@@ -5,6 +5,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var cors = require('cors');
 //var logger = require("morgan");
 const ejsLayout = require("express-ejs-layouts");
 var indexRouter = require("./routes/index");
@@ -30,6 +31,7 @@ var panierDetailRouter = require("./routes/panierDetail");
 var codePromoRouter = require("./routes/codepromo");
 const personalDataRouter = require('./routes/personnal_data');
 const winston = require('winston');
+app.use(cors());
 const logConfiguration = {
   'transports': [
       new winston.transports.File({
