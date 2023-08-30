@@ -74,12 +74,14 @@
                     </div>
                 </nav>
                 <h4 class="menu-button m-3">Menu</h4>
-                <div class="d-flex flex-row search-div">
-                    <i class="fa-solid fa-magnifying-glass mt-1"></i>
-                    <form action="/recherche/#page-recherche" method="get" class="form-inline my-2 my-lg-0">
+                <form class="d-flex flex-row search-div" action="/recherche/#page-recherche" method="get">
+                    <button type="submit" style="border: none; outline:none;background-color:white;">
+                        <i class="fa-solid fa-magnifying-glass mt-1"></i>
+                    </button>
+                    <div class="form-inline my-2 my-lg-0">
                         <input type="text" name="search" placeholder="Rechercher" class="search-input" />
-                    </form>
-                </div>
+                    </div>
+                </form>
                 <div class="d-flex flex-row user-div">
                     <div class="dropstart">
                         <% if (locals.user) { %>
@@ -155,11 +157,13 @@
                 </ul>
             </div>
         </nav>
-        <div class="d-flex flex-row second-search-div">
-            <i class="fa-solid fa-magnifying-glass second-glass mt-1"></i>
-            <form action="/recherche/#page-recherche" method="get" class="form-inline my-2 my-lg-0">
+        <form class="d-flex flex-row second-search-div" action="/recherche/#page-recherche" method="get">
+            <button type="submit" style="border: none; outline:none;background-color:white;">
+                <i class="fa-solid fa-magnifying-glass second-glass mt-1"></i>
+            </button>
+            <div class="form-inline my-2 my-lg-0">
                 <input type="text" name="search" placeholder="Rechercher" class="search-input" />
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
