@@ -67,6 +67,7 @@ public/images/produits
 public/pdf/devis/*
 public/pdf/bon_essage/*
 public/pdf/clients_data/*
+public/javascripts/url.js
 assets/js/url.js
 public/pdf/bon_livraison/*
 log/*

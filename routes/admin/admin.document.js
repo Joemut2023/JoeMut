@@ -146,6 +146,7 @@ router.post('/devis-mail',async (req,res)=>{
         let commande = await Commande.findOne({
             attributes:['com_id','cli_id'],
         },{where:{com_id}});
+        
         get_commande_data(com_id,async (
         commande,
         adresseLiv,
