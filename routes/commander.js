@@ -99,7 +99,6 @@ router.post("/", async (req, res) => {
     });
     let adress_item = await Adresse.findOne({where:{adr_id:parseInt(adresse)}});
     let adresse_livraison_item = await Adresse.findOne({where:{adr_id:parseInt(adresse_livraison)}});
-    Logger.error(adresse_livraison_item.adr_id);
     const somme_ttc = await Panier_detail.sum("pad_ttc", { where: { pan_id } });
     const somme_ht = await Panier_detail.sum("pad_ht", { where: { pan_id } });
     const user = await Client.findOne({ where: { cli_id: userId } });
