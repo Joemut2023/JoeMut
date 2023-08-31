@@ -1,2 +1,2 @@
-exports.M = 1 ;
-exports.MME = 2 ;
+exports.M = 2;
+exports.MME = 1 ;

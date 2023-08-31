@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 });
 router.post("/", async (req, res, next) => {
   var { credentials, panier_items } = req.body;
-  console.log(req.body, "body");
+
   credentials.tit_id = credentials.tit_id === "M" ? M : MME;
   try {
     if (
