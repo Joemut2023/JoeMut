@@ -37,6 +37,30 @@ var adresseBg = document.querySelector(".adresse-bg");
 var adresseLivBg = document.querySelector(".adresseLiv-bg");
 var livraisonBg = document.querySelector(".livraison-bg");
 var codePromoBg = document.querySelector(".codePromo-bg");
+var adresse_elements = document.querySelectorAll(".adresse-elmt-radio");
+//console.log(adresse_elements);
+
+adresse_elements.forEach(function (element) {
+  element.addEventListener("click", function (e) {
+    var label = document.querySelector("[for=".concat(e.target.name, "]"));
+    // label.style.border  = "solid 2px #a0b21f"
+    // label.classList.remove("adresse-elmt")
+    // label.classList.add("active-adresse");
+
+    //console.log(label.classList.contains('active-adresse'))
+    if (label.classList.contains("active-adresse")) {
+      label.classList.remove("active-adresse");
+      label.classList.add("adresse-elmt");
+    } else {
+      // si l'elt ne pas active
+      var getActive = document.querySelector('.active-adresse');
+      if (getActive !== null) {
+        getActive.classList.remove("active-adresse");
+      }
+      label.classList.add("active-adresse");
+    }
+  });
+});
 var adresseLiv = document.querySelector("#adresse-livraison");
 var adresseLivContent = document.querySelector("#divAdressLiv");
 var adresseLivraisonBg = document.querySelector(".adresseLivraisonBg");

@@ -35,18 +35,17 @@
               <form action="" id="adresse-form">
                 <div class="row">
                   <% adresses.forEach((adresse,index)=> { %>
-                    <div class="adresse-elmt">
-                      <div class="adresse-elmt-head">
-                        <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse" required value="<%= adresse.adr_id%>"
-                            id="radio_adresse<%= index %>" />
-                          <label for="radio_adresse<%= index %>">
+                         <div>
+                          <input type="radio" name="radio_adresse_<%= index %>"
+                            class="adresse-elmt-radio" required value="<%= adresse.adr_id%>"
+                            id="radio_adresse_<%= index %>" style="visibility: hidden;" />
+                          <label class="adresse-elmt" for="radio_adresse_<%= index %>">
                             <div class="adresse-elmnt-body">
                               <div class="adresse-elemnt-body-1">
                                 <div class="nom"> <%= adresse.adr_nom %> </div>
                                 <div class="prenom"><%= adresse.adr_prenom %> </div>
-                                 <div class="societe"><%= adresse.adr_societe %></div>
-                                 <div class="adresse"><%= adresse.adr_adresse %></div>
+                                <div class="societe"><%= adresse.adr_societe %></div>
+                                <div class="adresse"><%= adresse.adr_adresse %></div>
                               </div>
                               <div class="adresse-elemnt-body-2">
                                 <p>
@@ -62,9 +61,7 @@
                               </div>
                             </div>
                           </label>
-                        </div>
-                      </div>
-                    </div>
+                         </div>
                     <% }) %>
                 </div>
                 <div class="adresse-actions">

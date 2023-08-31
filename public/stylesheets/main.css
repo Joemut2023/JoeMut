@@ -4603,15 +4603,36 @@
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form {
   margin-top: 10px;
 }
-#page-commander .row .bloc-1 .adresses .content .register-form form .row .adresse-elmt,
-#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row .adresse-elmt {
-  border: solid 2px #a0b21f;
+#page-commander .row .bloc-1 .adresses .content .register-form form .row,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .row div,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div {
   width: 30%;
-  margin: 3px;
-  margin-left: 12px;
-  align-items: center;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .row div .adresse-elmt,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .adresse-elmt {
+  border: solid 2px #eeeeee;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
+}
+#page-commander .row .bloc-1 .adresses .content .register-form form .row div .active-adresse,
+#page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .active-adresse {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: solid 2px #a0b21f;
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions {

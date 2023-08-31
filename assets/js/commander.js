@@ -32,6 +32,36 @@ const adresseLivBg = document.querySelector(".adresseLiv-bg");
 const livraisonBg = document.querySelector(".livraison-bg");
 const codePromoBg = document.querySelector(".codePromo-bg");
 
+const adresse_elements = document.querySelectorAll(".adresse-elmt-radio");
+//console.log(adresse_elements);
+
+adresse_elements.forEach(element => {
+  element.addEventListener("click",(e)=>{
+    let label = document.querySelector(`[for=${e.target.name}]`);
+    // label.style.border  = "solid 2px #a0b21f"
+    // label.classList.remove("adresse-elmt")
+    // label.classList.add("active-adresse");
+
+    
+    //console.log(label.classList.contains('active-adresse'))
+    if (label.classList.contains("active-adresse")) {
+
+      label.classList.remove("active-adresse");
+      label.classList.add("adresse-elmt");
+
+    } else {
+      // si l'elt ne pas active
+      let getActive = document.querySelector('.active-adresse');
+      if(getActive !== null) {
+        getActive.classList.remove("active-adresse");
+      }
+      label.classList.add("active-adresse");
+
+    }
+  })
+
+});
+
 const adresseLiv = document.querySelector("#adresse-livraison")
 const adresseLivContent = document.querySelector("#divAdressLiv")
 const adresseLivraisonBg = document.querySelector(".adresseLivraisonBg")

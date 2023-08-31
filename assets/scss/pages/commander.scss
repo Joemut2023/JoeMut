@@ -414,16 +414,41 @@
 
             form {
               margin-top: 10px;
-              .row .adresse-elmt {
-                border: solid 2px $color-primary;
+              .row{
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+              }
+              .row div{
                 width: 30%;
-                margin: 3px;
-                margin-left: 12px;
-                align-items: center; 
+              }
+              .row div .adresse-elmt {
+                border: solid 2px $color-white-secondary;
+                width: 100%;
+                // margin: 3px;
+                // margin-left: 12px;
+                display: flex;
+                flex-direction: column;
+                // align-items: center; 
+                // justify-content: center;
+                padding:1rem 1.5rem;
                 border-radius: 5px;
                 cursor: pointer;
               }
-
+              .row div .active-adresse{
+                width: 100%;
+                // margin: 3px;
+                // margin-left: 12px;
+                display: flex;
+                flex-direction: column;
+                // align-items: center; 
+                // justify-content: center;
+                padding:1rem 1.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+                border: solid 2px $color-primary;
+              }
               .adresse-actions {
                 margin-top: 10px;
                
