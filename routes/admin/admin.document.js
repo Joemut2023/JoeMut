@@ -198,11 +198,14 @@ router.post('/devis-mail',async (req,res)=>{
  */
 router.post('/bon-essayage-pdf',async (req,res)=>{
     const {com_id} = req.body;
+    
     try {
         let commande = await Commande.findOne({
             attributes:['com_id','com_num'],
-            include:[{model:Client,attributes:['cli_mail']}]
-        },{where:{com_id},order:[['doc_date','DESC']]});
+            include: [{model:Client,attributes:['cli_mail']}],
+            where:{com_id: parseInt(com_id)},
+            //order:[['doc_date','DESC']]
+        });
         let ejsFile = fs.readFileSync(
             path.join(__dirname, "../../mailTemplate/essayage.ejs"),
             "utf8"
@@ -232,6 +235,7 @@ router.post('/bon-essayage-pdf',async (req,res)=>{
         }
     } catch (error) {
        req.session.flash = {message:erroMsg,type:"danger"}
+       Logger.log(error.stack)
        res.redirect(`/admin/devis/view/${com_id}`);
     }
 });
