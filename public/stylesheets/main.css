@@ -4610,9 +4610,24 @@
   justify-content: space-between !important;
   align-items: center !important;
 }
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .content .register-form form .row,
+  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
+  }
+}
 #page-commander .row .bloc-1 .adresses .content .register-form form .row div,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div {
   width: 30%;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .content .register-form form .row div,
+  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div {
+    width: 50%;
+  }
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .row div .adresse-elmt,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .adresse-elmt {
@@ -4624,6 +4639,14 @@
   border-radius: 5px;
   cursor: pointer;
 }
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .content .register-form form .row div .adresse-elmt,
+  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .adresse-elmt {
+    padding: 1rem 2rem;
+    font-size: 0.7rem;
+    width: 8rem !important;
+  }
+}
 #page-commander .row .bloc-1 .adresses .content .register-form form .row div .active-adresse,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .active-adresse {
   width: 100%;
@@ -4633,6 +4656,14 @@
   border-radius: 5px;
   cursor: pointer;
   border: solid 2px #a0b21f;
+}
+@media (max-width: 680px) {
+  #page-commander .row .bloc-1 .adresses .content .register-form form .row div .active-adresse,
+  #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .row div .active-adresse {
+    padding: 1rem 2rem;
+    font-size: 0.7rem;
+    width: 8rem !important;
+  }
 }
 #page-commander .row .bloc-1 .adresses .content .register-form form .adresse-actions,
 #page-commander .row .bloc-1 .adresses .adresse-content .register-form form .adresse-actions {

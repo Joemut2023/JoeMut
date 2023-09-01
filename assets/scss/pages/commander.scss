@@ -419,9 +419,18 @@
                 flex-direction: row !important;
                 justify-content: space-between !important;
                 align-items: center !important;
+                @include breakpoint(mobil) {
+                  width: 100%;
+                  display:grid !important;
+                  grid-template-columns: 1fr 1fr !important;
+                  grid-template-rows: 1fr 1fr !important;
+                }
               }
               .row div{
                 width: 30%;
+                @include breakpoint(mobil){
+                  width: 50%;
+                }
               }
               .row div .adresse-elmt {
                 border: solid 2px $color-white-secondary;
@@ -435,6 +444,11 @@
                 padding:1rem 1.5rem;
                 border-radius: 5px;
                 cursor: pointer;
+                @include breakpoint(mobil){
+                  padding: 1rem 2rem ;
+                  font-size: .7rem;
+                  width:8rem !important;
+                }
               }
               .row div .active-adresse{
                 width: 100%;
@@ -448,6 +462,12 @@
                 border-radius: 5px;
                 cursor: pointer;
                 border: solid 2px $color-primary;
+                @include breakpoint(mobil){
+                  padding: 1rem 2rem ;
+                  font-size: .7rem;
+                  width:8rem !important;
+                }
+               
               }
               .adresse-actions {
                 margin-top: 10px;
