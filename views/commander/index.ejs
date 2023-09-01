@@ -36,9 +36,9 @@
                 <div class="row">
                   <% adresses.forEach((adresse,index)=> { %>
                          <div>
-                          <input type="radio" name="radio_adresse_<%= index %>"
+                          <input type="radio" name="radio_adresse"
                             class="adresse-elmt-radio" required value="<%= adresse.adr_id%>"
-                            id="radio_adresse_<%= index %>" style="visibility: hidden;" />
+                            id="radio_adresse_<%= index %>" style="visibility: hidden;"  />
                           <label class="adresse-elmt" for="radio_adresse_<%= index %>">
                             <div class="adresse-elmnt-body">
                               <div class="adresse-elemnt-body-1">
@@ -46,8 +46,12 @@
                                 <div class="prenom"><%= adresse.adr_prenom %> </div>
                                 <div class="societe"><%= adresse.adr_societe %></div>
                                 <div class="adresse"><%= adresse.adr_adresse %></div>
+                                <div>  <%= adresse.adr_cp %> </div>
+                                <div></div>
+                                <div> <%= adresse.adr_ville %> </div>
+                                <div> <%= adresse.adr_phone %> </div>
                               </div>
-                              <div class="adresse-elemnt-body-2">
+                              <!-- <div class="adresse-elemnt-body-2">
                                 <p>
                                   <%= adresse.adr_cp %>
                                     <%= adresse.adr_ville %>
@@ -58,7 +62,7 @@
                                 <p>
                                   <%= adresse.adr_phone %>
                                 </p>
-                              </div>
+                              </div> -->
                             </div>
                           </label>
                          </div>
@@ -232,7 +236,7 @@
             <div class="text-1">
               <p>
                 Afin de valider votre demande, vous devez nous envoyer votre
-                devis accompagné du cheque de caution ainsi que le contrat de
+                devis accompagné du chèque de caution ainsi que le contrat de
                 prêt pour essayage (Qui vous sera envoyé apres vérification des
                 disponibilités. En vous remerciant.)
               </p>
@@ -243,12 +247,10 @@
               <form action="" id="adresse-form">
                 <div class="row">
                   <% adresses.forEach((adresse,index)=> { %>
-                    <div class="adresse-elmt">
-                      <div class="adresse-elmt-head">
-                        <div class="adresse-elmnt-head-radio">
-                          <input type="radio" name="radio_adresse_livraison" required value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" />
+                    <div>
+                          <input class="adresse-elmt-radio" type="radio" name="radio_adresse_livraison" required value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" style="visibility: hidden;" />
                            
-                          <label for="radio_adresse_livraison<%= index %>">
+                          <label class="adresse-elmt" for="radio_adresse_livraison<%= index %>">
                             <div class="adresse-elmnt-body">
                                 <div class="nom"> <%= adresse.adr_nom %> </div>
                                 <div class="prenom"><%= adresse.adr_prenom %> </div>
@@ -256,12 +258,10 @@
                                  <div class="adresse"><%= adresse.adr_adresse %></div>
                                  <div>  <%= adresse.adr_cp %></div>
                                  <div> <%= adresse.adr_ville %></div>
-                                 <div> <%= adresse.adr_ville %></div>
+                                 <!-- <div> <%= adresse.adr_ville %></div> -->
                                  <div>  <%= adresse.adr_phone %></div>
                             </div>
                           </label>
-                        </div>
-                      </div>
                     </div>
                     <% }) %>
                 </div>

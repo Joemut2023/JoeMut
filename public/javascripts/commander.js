@@ -42,12 +42,8 @@ var adresse_elements = document.querySelectorAll(".adresse-elmt-radio");
 
 adresse_elements.forEach(function (element) {
   element.addEventListener("click", function (e) {
-    var label = document.querySelector("[for=".concat(e.target.name, "]"));
-    // label.style.border  = "solid 2px #a0b21f"
-    // label.classList.remove("adresse-elmt")
-    // label.classList.add("active-adresse");
-
-    //console.log(label.classList.contains('active-adresse'))
+    // let label = document.querySelector(`[for=${e.target.name}]`);
+    var label = element.nextElementSibling;
     if (label.classList.contains("active-adresse")) {
       label.classList.remove("active-adresse");
       label.classList.add("adresse-elmt");
