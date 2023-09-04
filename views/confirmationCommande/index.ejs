@@ -97,8 +97,7 @@
                       %> €
                     </td>
                   </tr>
-                  <% } %> 
-                  <% if (commande.com_frais) { %>
+                  <% } %> <% if (commande.com_frais) { %>
                   <tr>
                     <td>Frais de dossier</td>
                     <td class="price-col">
@@ -107,8 +106,8 @@
                       %> €
                     </td>
                   </tr>
-                  <% } %>
-                  <% total_general_commande =  totalTTC + commande?.com_frais + commande.Frais_port?.frp_ttc%>
+                  <% } %> <% total_general_commande = totalTTC +
+                  commande?.com_frais + commande.Frais_port?.frp_ttc%>
                   <tr class="total-value">
                     <td>TOTAL TTC</td>
                     <td class="price-col">

@@ -1,8 +1,6 @@
 <div id="page-commander">
   <div class="row">
     <div class="col-md-8 bloc-1">
-  
-
       <div class="adresses" id="adresse">
         <div class="big-title adresse-cursor row">
           <div class="border-number adresse-bg col-2">1</div>
@@ -28,30 +26,35 @@
                 disponibilités. En vous remerciant.)
               </p>
             </div>
-        
           </div>
           <% if (typeof adresses !="undefined" ) { %>
-            <div class="register-form">
-              <form action="" id="adresse-form">
-                <div class="row">
-                  <% adresses.forEach((adresse,index)=> { %>
-                         <div>
-                          <input type="radio" name="radio_adresse"
-                            class="adresse-elmt-radio" required value="<%= adresse.adr_id%>"
-                            id="radio_adresse_<%= index %>" style="visibility: hidden;"  />
-                          <label class="adresse-elmt" for="radio_adresse_<%= index %>">
-                            <div class="adresse-elmnt-body">
-                              <div class="adresse-elemnt-body-1">
-                                <div class="nom"> <%= adresse.adr_nom %> </div>
-                                <div class="prenom"><%= adresse.adr_prenom %> </div>
-                                <div class="societe"><%= adresse.adr_societe %></div>
-                                <div class="adresse"><%= adresse.adr_adresse %></div>
-                                <div>  <%= adresse.adr_cp %> </div>
-                                <div></div>
-                                <div> <%= adresse.adr_ville %> </div>
-                                <div> <%= adresse.adr_phone %> </div>
-                              </div>
-                              <!-- <div class="adresse-elemnt-body-2">
+          <div class="register-form">
+            <form action="" id="adresse-form">
+              <div class="row">
+                <% adresses.forEach((adresse,index)=> { %>
+                <div>
+                  <input
+                    type="radio"
+                    name="radio_adresse"
+                    class="adresse-elmt-radio"
+                    required
+                    value="<%= adresse.adr_id%>"
+                    id="radio_adresse_<%= index %>"
+                    style="visibility: hidden"
+                  />
+                  <label class="adresse-elmt" for="radio_adresse_<%= index %>">
+                    <div class="adresse-elmnt-body">
+                      <div class="adresse-elemnt-body-1">
+                        <div class="nom"><%= adresse.adr_nom %></div>
+                        <div class="prenom"><%= adresse.adr_prenom %></div>
+                        <div class="societe"><%= adresse.adr_societe %></div>
+                        <div class="adresse"><%= adresse.adr_adresse %></div>
+                        <div><%= adresse.adr_cp %></div>
+                        <div></div>
+                        <div><%= adresse.adr_ville %></div>
+                        <div><%= adresse.adr_phone %></div>
+                      </div>
+                      <!-- <div class="adresse-elemnt-body-2">
                                 <p>
                                   <%= adresse.adr_cp %>
                                     <%= adresse.adr_ville %>
@@ -63,156 +66,174 @@
                                   <%= adresse.adr_phone %>
                                 </p>
                               </div> -->
-                            </div>
-                          </label>
-                         </div>
-                    <% }) %>
-                </div>
-                <div class="adresse-actions">
-                  <p>
-                    <a href="/commander/?newadress=true#page-commander">ajouter une nouvelle adresse</a>
-                  </p>
-              
-                </div>
-                <div class="button btn col-md-6">
-                  <button>Continuer</button>
-                </div>
-              </form>
-            </div>
-            <% } else { %>
-              <div class="register-form">
-                <form method="post" action="/commander/add-adresse">
-                  <% if (typeof error !=='undefined' ) { %>
-                    <div class="alert alert-danger" role="alert">
-                      <%= error %>
                     </div>
-                    <% } %>
-                      <% if (typeof success !=='undefined' ) { %>
-                        <div class="alert alert alert-success" role="alert">
-                          <%= success %>
-                        </div>
-                        <% } %>
-                          <div class="form-parent" >
-                            <div class="form-group row">
-                              <div class="col-md-3"></div>
-                            </div>
+                  </label>
+                </div>
+                <% }) %>
+              </div>
+              <div class="adresse-actions">
+                <p>
+                  <a href="/commander/?newadress=true#page-commander"
+                    >ajouter une nouvelle adresse</a
+                  >
+                </p>
+              </div>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } else { %>
+          <div class="register-form">
+            <form method="post" action="/commander/add-adresse">
+              <% if (typeof error !=='undefined' ) { %>
+              <div class="alert alert-danger" role="alert"><%= error %></div>
+              <% } %> <% if (typeof success !=='undefined' ) { %>
+              <div class="alert alert alert-success" role="alert">
+                <%= success %>
+              </div>
+              <% } %>
+              <div class="form-parent">
+                <div class="form-group row">
+                  <div class="col-md-3"></div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label"><span>*</span>Nom de la structure</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_structure" required />
-                              </div>
-                              <!-- <div class="col-md-3"></div> -->
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label"
+                      ><span>*</span>Nom de la structure</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_structure" required />
+                  </div>
+                  <!-- <div class="col-md-3"></div> -->
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="prenom"><span>*</span>Prenom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text " name="adr_prenom" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="prenom"
+                      ><span>*</span>Prenom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text " name="adr_prenom" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Nom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_nom" id="nom" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Nom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_nom" id="nom" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Société</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_societe" />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom">Société</label>
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_societe" />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Numero de TVA</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name=" adr_num_tva" id="nom" />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Numero de TVA</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name=" adr_num_tva" id="nom" />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_adresse" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_adresse" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Complement d'adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_comp" />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Complement d'adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_comp" />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Code postal</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name="adr_cp" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Code postal</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name="adr_cp" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Ville</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_ville" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Ville</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_ville" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Pays</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_pays" id="nom" required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Pays</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_pays" id="nom" required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Téléphone</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_phone " required />
-                              </div>
-                            </div>
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Téléphone</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_phone " required />
+                  </div>
+                </div>
 
-                            <div class="form-group row">
-                              <!-- <div class="col-md-3">
+                <div class="form-group row">
+                  <!-- <div class="col-md-3">
                                 <input class="form-check-input" type="checkbox" value="" id="check_facture" />
                               </div> -->
-                             <!-- <div class="col-md-6 text-label">
+                  <!-- <div class="col-md-6 text-label">
                                 <label class="required label labelWithCheck" for="check_facture">Utiliser aussi cette
                                   adresse pour la facturation</label>
                               </div>-->
-                            </div>
-                          </div>
-                          <div class="button btn col-md-6">
-                            <button>Continuer</button>
-                          </div>
-                </form>
+                </div>
               </div>
-              <% } %>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } %>
         </div>
       </div>
 
@@ -243,173 +264,210 @@
             </div>
           </div>
           <% if (typeof adresses !="undefined" ) { %>
-            <div class="register-form">
-              <form action="" id="adresse-form">
-                <div class="row">
-                  <% adresses.forEach((adresse,index)=> { %>
-                    <div>
-                          <input class="adresse-elmt-radio" type="radio" name="radio_adresse_livraison" required value="<%= adresse.adr_id %>"  id="radio_adresse_livraison<%= index %>" style="visibility: hidden;" />
-                           
-                          <label class="adresse-elmt" for="radio_adresse_livraison<%= index %>">
-                            <div class="adresse-elmnt-body">
-                                <div class="nom"> <%= adresse.adr_nom %> </div>
-                                <div class="prenom"><%= adresse.adr_prenom %> </div>
-                                 <div class="societe"><%= adresse.adr_societe %></div>
-                                 <div class="adresse"><%= adresse.adr_adresse %></div>
-                                 <div>  <%= adresse.adr_cp %></div>
-                                 <div> <%= adresse.adr_ville %></div>
-                                 <!-- <div> <%= adresse.adr_ville %></div> -->
-                                 <div>  <%= adresse.adr_phone %></div>
-                            </div>
-                          </label>
+          <div class="register-form">
+            <form action="" id="adresse-form">
+              <div class="row">
+                <% adresses.forEach((adresse,index)=> { %>
+                <div>
+                  <input
+                    class="adresse-elmt-radio"
+                    type="radio"
+                    name="radio_adresse_livraison"
+                    required
+                    value="<%= adresse.adr_id %>"
+                    id="radio_adresse_livraison<%= index %>"
+                    style="visibility: hidden"
+                  />
+
+                  <label
+                    class="adresse-elmt"
+                    for="radio_adresse_livraison<%= index %>"
+                  >
+                    <div class="adresse-elmnt-body">
+                      <div class="nom"><%= adresse.adr_nom %></div>
+                      <div class="prenom"><%= adresse.adr_prenom %></div>
+                      <div class="societe"><%= adresse.adr_societe %></div>
+                      <div class="adresse"><%= adresse.adr_adresse %></div>
+                      <div><%= adresse.adr_cp %></div>
+                      <div><%= adresse.adr_ville %></div>
+                      <!-- <div> <%= adresse.adr_ville %></div> -->
+                      <div><%= adresse.adr_phone %></div>
                     </div>
-                    <% }) %>
+                  </label>
                 </div>
-                <div class="adresse-actions">
-                  <p>
-                    <a href="/commander/?newadress=true#page-commander">ajouter une nouvelle adresse</a>
-                  </p>
-
-                </div>
-                <div class="button btn col-md-6">
-                  <button>Continuer</button>
-                </div>
-              </form>
-            </div>
-            <% } else { %>
-              <div class="register-form">
-                <form method="post" action="/commander/add-adresse">
-                  <% if (typeof error !=='undefined' ) { %>
-                    <div class="alert alert-danger" role="alert">
-                      <%= error %>
-                    </div>
-                    <% } %>
-                      <% if (typeof success !=='undefined' ) { %>
-                        <div class="alert alert alert-success" role="alert">
-                          <%= success %>
-                        </div>
-                        <% } %>
-                          <div class="form-parent">
-                            <div class="form-group row">
-                              <div class="col-md-3"></div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label"><span>*</span>Nom de la structure</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_structure" required />
-                              </div>
-                              <div class="col-md-3"></div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="prenom"><span>*</span>Prenom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text " name="adr_prenom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Nom</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_nom" id="nom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Société</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_societe" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Numero de TVA</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name=" adr_num_tva" id="nom" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_adresse" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom">Complement d'adresse</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_comp" />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Code postal</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="number" name="adr_cp" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Ville</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_ville" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Pays</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_pays" id="nom" required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3 item">
-                                <label class="required label" for="nom"><span>*</span>Téléphone</label>
-                              </div>
-                              <div class="col-md-6 input">
-                                <input type="text" name="adr_phone " required />
-                              </div>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-3">
-                                <input class="form-check-input" type="checkbox" value="" id="check_facture" />
-                              </div>
-                              <div class="col-md-6 text-label">
-                                <label class="required label labelWithCheck" for="check_facture">Utiliser aussi cette
-                                  adresse pour la facturation</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="button btn col-md-6">
-                            <button>Continuer</button>
-                          </div>
-                </form>
+                <% }) %>
+              </div>
+              <div class="adresse-actions">
+                <p>
+                  <a href="/commander/?newadress=true#page-commander"
+                    >ajouter une nouvelle adresse</a
+                  >
+                </p>
+              </div>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } else { %>
+          <div class="register-form">
+            <form method="post" action="/commander/add-adresse">
+              <% if (typeof error !=='undefined' ) { %>
+              <div class="alert alert-danger" role="alert"><%= error %></div>
+              <% } %> <% if (typeof success !=='undefined' ) { %>
+              <div class="alert alert alert-success" role="alert">
+                <%= success %>
               </div>
               <% } %>
+              <div class="form-parent">
+                <div class="form-group row">
+                  <div class="col-md-3"></div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label"
+                      ><span>*</span>Nom de la structure</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_structure" required />
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="prenom"
+                      ><span>*</span>Prenom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text " name="adr_prenom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Nom</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_nom" id="nom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom">Société</label>
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_societe" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Numero de TVA</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name=" adr_num_tva" id="nom" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_adresse" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      >Complement d'adresse</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_comp" />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Code postal</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="number" name="adr_cp" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Ville</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_ville" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Pays</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_pays" id="nom" required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3 item">
+                    <label class="required label" for="nom"
+                      ><span>*</span>Téléphone</label
+                    >
+                  </div>
+                  <div class="col-md-6 input">
+                    <input type="text" name="adr_phone " required />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="check_facture"
+                    />
+                  </div>
+                  <div class="col-md-6 text-label">
+                    <label
+                      class="required label labelWithCheck"
+                      for="check_facture"
+                      >Utiliser aussi cette adresse pour la facturation</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="button btn col-md-6">
+                <button>Continuer</button>
+              </div>
+            </form>
+          </div>
+          <% } %>
         </div>
       </div>
 
@@ -441,89 +499,125 @@
           </div>
           <div class="devis">
             <% mode_livraisons.forEach((mode_livraison,index)=> { %>
-              <div class="devis-1 row">
-                <div class="btn-checkbox col-md-1">
-                  <input class="form-check-input" type="radio" name="radio_mode_livraison"
-                    value="<%= mode_livraison.frp_id%>" data-ttc="<%= mode_livraison.frp_ttc %>"
-                    id="radio_mode_livraison<%= mode_livraison.frp_id%>"
-                    <%if(mode_livraison.frp_libelle==="Tout en livraison" ) { %>checked<% } %> />
-                </div>
-               
-                <div class="desc-retrait col-md-3">
-                  <p>
-                    <%= mode_livraison.frp_libelle %>
-                  </p>
-                </div>
-                <div class="desc-essaie col-md-5 offset-md-1">
-                  <p style="width: 100%">
-                    <%= mode_livraison.frp_description %>
-                  </p>
-                </div>
-                <div class="descprice col-md-2">
-                  <%= mode_livraison.frp_ttc.toFixed(2) %> € TTC
-                </div>
+            <div class="devis-1 row">
+              <div class="btn-checkbox col-md-1">
+                <input class="form-check-input" type="radio"
+                name="radio_mode_livraison" value="<%= mode_livraison.frp_id%>"
+                data-ttc="<%= mode_livraison.frp_ttc %>"
+                id="radio_mode_livraison<%= mode_livraison.frp_id%>"
+                <%if(mode_livraison.frp_libelle==="Tout en livraison" ) {
+                %>checked<% } %> />
               </div>
-              <% }) %>
-                <div class="commande-msg">
-                  <div class="mb-3 msg">
-                    <label for="com_comment" class="form-label">Si vous voulez nous laisser un message à propos de votre
-                      commande, merci de de bien vouloir le renseigner dans le
-                      champs ci-contre</label>
-                    <textarea name="com_comment" class="form-control" id="com_comment" rows="3"></textarea>
-                  </div>
-                </div>
 
-                <div class="date-spectacle">
-                  <div class="title">
-                    <h3>DATE SPECTACLE</h3>
-                    <hr />
-                  </div>
-                  <div class="form" id="livraison-form">
-                    <form action="">
-                      <div class="row">
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-debut" class="col-form-label">Date du debut de spectacle</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input name="com_debut_spectacle" type="date" id="date-debut" class="form-control"
-                              placeholder="Date du debut de spectacle" required />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-fin" class="col-form-label">Date de fin de spectacle</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input name="com_fin_spectacle" type="date" id="date-fin" class="form-control"
-                              placeholder="Date de fin de spectacle" required />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="date-rep" class="col-form-label">Date de répétition</label>
-                          </div>
-                          <div class="col-md-4">
-                            <input type="date" id="date-rep" name="com_date_essayage" class="form-control"
-                              placeholder="Date de repetition" required />
-                          </div>
-                        </div>
-                        <div class="row g-3 align-items-center bloc-input">
-                          <div class="col-md-4">
-                            <label for="autre_date" class="col-form-label">Site d'autres dates</label>
-                          </div>
-                          <div class="col-md-4">
-                            <textarea class="form-control" name="com_autre_date" id="autre_date" rows="3"></textarea>
-                          </div>
-                        </div>
-                      </div>
+              <div class="desc-retrait col-md-3">
+                <p><%= mode_livraison.frp_libelle %></p>
+              </div>
+              <div class="desc-essaie col-md-5 offset-md-1">
+                <p style="width: 100%"><%= mode_livraison.frp_description %></p>
+              </div>
+              <div class="descprice col-md-2">
+                <%= mode_livraison.frp_ttc.toFixed(2) %> € TTC
+              </div>
+            </div>
+            <% }) %>
+            <div class="commande-msg">
+              <div class="mb-3 msg">
+                <label for="com_comment" class="form-label"
+                  >Si vous voulez nous laisser un message à propos de votre
+                  commande, merci de de bien vouloir le renseigner dans le
+                  champs ci-contre</label
+                >
+                <textarea
+                  name="com_comment"
+                  class="form-control"
+                  id="com_comment"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
 
-                      <div class="button btn col-md-6 btn-livraison">
-                        <button type="submit">Continuer</button>
+            <div class="date-spectacle">
+              <div class="title">
+                <h3>DATE SPECTACLE</h3>
+                <hr />
+              </div>
+              <div class="form" id="livraison-form">
+                <form action="">
+                  <div class="row">
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-debut" class="col-form-label"
+                          >Date du debut de spectacle</label
+                        >
                       </div>
-                    </form>
+                      <div class="col-md-4">
+                        <input
+                          name="com_debut_spectacle"
+                          type="date"
+                          id="date-debut"
+                          class="form-control"
+                          placeholder="Date du debut de spectacle"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-fin" class="col-form-label"
+                          >Date de fin de spectacle</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          name="com_fin_spectacle"
+                          type="date"
+                          id="date-fin"
+                          class="form-control"
+                          placeholder="Date de fin de spectacle"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="date-rep" class="col-form-label"
+                          >Date de répétition</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          type="date"
+                          id="date-rep"
+                          name="com_date_essayage"
+                          class="form-control"
+                          placeholder="Date de repetition"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="row g-3 align-items-center bloc-input">
+                      <div class="col-md-4">
+                        <label for="autre_date" class="col-form-label"
+                          >Site d'autres dates</label
+                        >
+                      </div>
+                      <div class="col-md-4">
+                        <textarea
+                          class="form-control"
+                          name="com_autre_date"
+                          id="autre_date"
+                          rows="3"
+                        ></textarea>
+                      </div>
+                    </div>
                   </div>
-                </div>
+
+                  <div class="button btn col-md-6 btn-livraison">
+                    <button type="submit">Continuer</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
           <hr />
         </div>
@@ -553,8 +647,14 @@
             </div>
             <div class="form-promo">
               <div class="input-group mb-3 form-codepromo">
-                <input type="text" class="form-control code_promo" placeholder="Code promo" name="prm_code"
-                  aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                <input
+                  type="text"
+                  class="form-control code_promo"
+                  placeholder="Code promo"
+                  name="prm_code"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                />
                 <!-- <div class="input-group-append btn-add">
                   <span class="input-group-text btn" id="basic-addon2"
                     >Ajouter</span
@@ -592,13 +692,26 @@
           <div class="finalisation-content">
             <form action="">
               <div class="form-check">
-                <input class="form-check-input" type="radio" value="" id="confirm_devis" required />
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value=""
+                  id="confirm_devis"
+                  required
+                />
                 <label class="form-check-label" for="confirm_devis">
                   Confirmez votre devis
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required disabled />
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                  required
+                  disabled
+                />
                 <label class="form-check-label" for="flexCheckDefault">
                   J'ai lu les conditions générales de vente et j'y adheres sans
                   reserve.
@@ -606,7 +719,13 @@
               </div>
 
               <div class="button col-md-6">
-                <button class="btn_finaliser_devis" id="btn_finaliser_devis" disabled>Finaliser le devis</button>
+                <button
+                  class="btn_finaliser_devis"
+                  id="btn_finaliser_devis"
+                  disabled
+                >
+                  Finaliser le devis
+                </button>
               </div>
             </form>
           </div>
@@ -622,25 +741,28 @@
 
       <div class="hidden-detail">
         <div id="hidden-detail">
-          <span> afficher les details</span><span><i class="fa-solid fa-chevron-down"></i></span>
+          <span> afficher les details</span
+          ><span><i class="fa-solid fa-chevron-down"></i></span>
         </div>
         <div class="details d-flex flex-column gap-4 pt-3 detail-items">
           <% produits.forEach(produit=> { %>
 
-            <div class="d-flex gap-4">
-              <img src="/images/produits/<%=  produit.Produit.Media[0].med_ressource %> " alt=" "
-                class="img-fluid detail-produit-img" />
+          <div class="d-flex gap-4">
+            <img
+              src="/images/produits/<%=  produit.Produit.Media[0].med_ressource %> "
+              alt=" "
+              class="img-fluid detail-produit-img"
+            />
 
-              <div class="w-80 d-flex flex-column">
-                <p>
-                  <%= produit.Produit.pro_libelle %>
-                </p>
-                <p>
-                  <%= produit.pad_qte %> x <%= produit.pad_ttc.toFixed(2).toString().replace(".",",") %> €
-                </p>
-              </div>
+            <div class="w-80 d-flex flex-column">
+              <p><%= produit.Produit.pro_libelle %></p>
+              <p>
+                <%= produit.pad_qte %> x <%=
+                produit.pad_ttc.toFixed(2).toString().replace(".",",") %> €
+              </p>
             </div>
-            <% }) %>
+          </div>
+          <% }) %>
         </div>
       </div>
 
@@ -690,6 +812,12 @@
           </div>
         </div>
       </div> -->
+    </div>
+  </div>
+  <div class="preload">
+    <div class="lo">
+      <img src="/images/loader.gif" alt="" />
+       <p>Commande en cours de traitement. veuillez patienter</p>
     </div>
   </div>
 </div>

@@ -5,24 +5,24 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 (function () {
-  var radios = document.querySelectorAll('[name=radio_mode_livraison]');
-  var radios_adresses = document.querySelectorAll('[name=radio_adresse]');
-  var form_finalisation = document.querySelector('.finalisation-content form');
-  var livraison_form_el = document.querySelector('#livraison-form form');
-  var formLogin = document.querySelector('#form-commande-login');
-  localStorage.setItem('fraisDivers', JSON.stringify({
+  var radios = document.querySelectorAll("[name=radio_mode_livraison]");
+  var radios_adresses = document.querySelectorAll("[name=radio_adresse]");
+  var form_finalisation = document.querySelector(".finalisation-content form");
+  var livraison_form_el = document.querySelector("#livraison-form form");
+  var formLogin = document.querySelector("#form-commande-login");
+  localStorage.setItem("fraisDivers", JSON.stringify({
     frais_port: parseFloat("13.10"),
     frais_dossier: parseFloat("15.5"),
     frp_id: "1"
   }));
-  formLogin === null || formLogin === void 0 ? void 0 : formLogin.addEventListener('submit', /*#__PURE__*/function () {
+  formLogin === null || formLogin === void 0 ? void 0 : formLogin.addEventListener("submit", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             e.preventDefault();
             _context.next = 3;
-            return login_process('commander/#page-commander');
+            return login_process("commander/#page-commander");
           case 3:
           case "end":
             return _context.stop();
@@ -34,11 +34,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   }());
   radios === null || radios === void 0 ? void 0 : radios.forEach(function (radio) {
-    radio.addEventListener('click', function (e) {
+    radio.addEventListener("click", function (e) {
       var frp_ttc = e.target.dataset.ttc;
       //console.log(document.querySelector('[name=radio_adresse_livraison]:checked').value);
       var frp_id = e.target.value;
-      localStorage.setItem('fraisDivers', JSON.stringify({
+      localStorage.setItem("fraisDivers", JSON.stringify({
         frais_port: parseFloat(frp_ttc).toFixed(2),
         frais_dossier: 15.5,
         frp_id: frp_id
@@ -50,26 +50,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   //         console.log(e.target);
   //     })
   // });
-  form_finalisation.addEventListener('submit', /*#__PURE__*/function () {
+  form_finalisation.addEventListener("submit", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var btn_finaliser_devis, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_comment, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
+      var btn_finaliser_devis, isLoadingCmd, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_comment, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
-            btn_finaliser_devis = document.getElementById('btn_finaliser_devis');
+            btn_finaliser_devis = document.getElementById("btn_finaliser_devis");
+            isLoadingCmd = document.querySelector(".preload");
             btn_finaliser_devis.removeAttribute("disabled");
             btn_finaliser_devis.setAttribute("disabled", "true");
             btn_finaliser_devis.style.backgroundColor = "#eee";
             btn_finaliser_devis.style.cursor = "not-allowed";
-            commande_debut = document.querySelector('[name=com_debut_spectacle]').value;
-            com_fin_spectacle = document.querySelector('[name=com_fin_spectacle]').value;
-            com_date_essayage = document.querySelector('[name=com_date_essayage]').value;
-            com_date_essayage_autre = document.querySelector('[name=com_autre_date]').value; // let com_compl = document.querySelector('[name=com_compl]')?.value;
-            com_comment = document.querySelector('[name=com_comment]').value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
-            frais = JSON.parse(localStorage.getItem('fraisDivers'));
-            adresse = document.querySelector('[name=radio_adresse]:checked').value;
-            adresse_livraison = document.querySelector('[name=radio_adresse_livraison]:checked').value;
+            commande_debut = document.querySelector("[name=com_debut_spectacle]").value;
+            com_fin_spectacle = document.querySelector("[name=com_fin_spectacle]").value;
+            com_date_essayage = document.querySelector("[name=com_date_essayage]").value;
+            com_date_essayage_autre = document.querySelector("[name=com_autre_date]").value; // let com_compl = document.querySelector('[name=com_compl]')?.value;
+            com_comment = document.querySelector("[name=com_comment]").value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
+            frais = JSON.parse(localStorage.getItem("fraisDivers"));
+            adresse = document.querySelector("[name=radio_adresse]:checked").value;
+            adresse_livraison = document.querySelector("[name=radio_adresse_livraison]:checked").value;
             dates_essayages = [com_date_essayage, com_date_essayage_autre];
             code_promo = document.querySelector(".code_promo").value;
             params = {
@@ -88,32 +89,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               prm_code: code_promo,
               com_comment: com_comment
             };
-            _context2.prev = 17;
-            _context2.next = 20;
-            return axios.post('/commander', params, {
+            isLoadingCmd.style.display = "flex";
+            _context2.prev = 19;
+            _context2.next = 22;
+            return axios.post("/commander", params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 20:
+          case 22:
             panier = _context2.sent;
             if (panier.data != false) {
-              localStorage.setItem('storedItems', JSON.stringify([]));
-              window.location.replace('/confirmation-commande');
+              localStorage.setItem("storedItems", JSON.stringify([]));
+              window.location.replace("/confirmation-commande");
             } else {
-              window.location.replace('/');
+              window.location.replace("/");
             }
-            _context2.next = 27;
+            _context2.next = 29;
             break;
-          case 24:
-            _context2.prev = 24;
-            _context2.t0 = _context2["catch"](17);
+          case 26:
+            _context2.prev = 26;
+            _context2.t0 = _context2["catch"](19);
             console.log(_context2.t0);
-          case 27:
+          case 29:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[17, 24]]);
+      }, _callee2, null, [[19, 26]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);

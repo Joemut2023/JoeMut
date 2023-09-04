@@ -82,6 +82,7 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
 router.post("/", async (req, res) => {
   let userId = req.session.userId;
   let pan_id = req.session.panierId;

@@ -1,13 +1,14 @@
 #page-commander {
   padding: 6% 9%;
   font-family: $typograohie;
+  //position: relative;
 
   .row {
     .bloc-1 {
       #divFinalisation,
       #divLivraison,
       #divCodePromo,
-      #divAdressLiv{
+      #divAdressLiv {
         display: none;
       }
 
@@ -414,21 +415,21 @@
 
             form {
               margin-top: 10px;
-              .row{
+              .row {
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
                 align-items: center !important;
                 @include breakpoint(mobil) {
                   width: 100%;
-                  display:grid !important;
+                  display: grid !important;
                   grid-template-columns: 1fr 1fr !important;
                   grid-template-rows: 1fr 1fr !important;
                 }
               }
-              .row div{
+              .row div {
                 width: 30%;
-                @include breakpoint(mobil){
+                @include breakpoint(mobil) {
                   width: 50%;
                 }
               }
@@ -439,39 +440,37 @@
                 // margin-left: 12px;
                 display: flex;
                 flex-direction: column;
-                // align-items: center; 
+                // align-items: center;
                 // justify-content: center;
-                padding:1rem 1.5rem;
+                padding: 1rem 1.5rem;
                 border-radius: 5px;
                 cursor: pointer;
-                @include breakpoint(mobil){
-                  padding: 1rem 2rem ;
-                  font-size: .7rem;
-                  width:8rem !important;
+                @include breakpoint(mobil) {
+                  padding: 1rem 2rem;
+                  font-size: 0.7rem;
+                  width: 8rem !important;
                 }
               }
-              .row div .active-adresse{
+              .row div .active-adresse {
                 width: 100%;
                 // margin: 3px;
                 // margin-left: 12px;
                 display: flex;
                 flex-direction: column;
-                // align-items: center; 
+                // align-items: center;
                 // justify-content: center;
-                padding:1rem 1.5rem;
+                padding: 1rem 1.5rem;
                 border-radius: 5px;
                 cursor: pointer;
                 border: solid 2px $color-primary;
-                @include breakpoint(mobil){
-                  padding: 1rem 2rem ;
-                  font-size: .7rem;
-                  width:8rem !important;
+                @include breakpoint(mobil) {
+                  padding: 1rem 2rem;
+                  font-size: 0.7rem;
+                  width: 8rem !important;
                 }
-               
               }
               .adresse-actions {
                 margin-top: 10px;
-               
 
                 a {
                   text-decoration: none;
@@ -615,8 +614,8 @@
               padding: 10px;
               background-color: rgb(234, 232, 232);
               height: max-content;
-               display: flex;
-               justify-content: space-between;
+              display: flex;
+              justify-content: space-between;
               .desc-retrait {
                 color: $color-primary;
               }
@@ -718,18 +717,15 @@
         .finalisation-contents
         .finalisation-content
         .form-check
-
         label {
         color: $color-primary;
       }
-
 
       .finalisations .finalisation-contents .finalisation-content div button {
         margin-left: -170px;
         background: #eee;
 
-        
-        &:hover{
+        &:hover {
           cursor: not-allowed;
         }
 
@@ -856,4 +852,46 @@
     height: 250px;
     overflow: scroll;
   }
+
+  .preload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    //transition: all 2s ease;
+
+    .lo {
+      width: 50%;
+      // height: 200px;
+      background-color: #fff;
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p{
+        margin-bottom: 0;
+        // margin-top: -10px;
+        font-size: 14px;
+        background-color: $color-primary;
+        color: white;
+        padding: 5px 20px;
+      }
+
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+
+
+
 }
