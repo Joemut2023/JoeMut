@@ -134,6 +134,7 @@
     </div>
   </section>
   <div class="products">
+    <% if (produitsPopulaires.length > 0) { %>
     <div class="title"><h2>PRODUITS POPULAIRES</h2></div>
     <div class="row">
       <% produitsPopulaires.forEach(element => { %>
@@ -180,8 +181,8 @@
       </div>
       <% }) %>
     </div>
+    <% } %>
   </div>
-
   <div class="button-all">
     <a href="/catalogue"
       ><p>
