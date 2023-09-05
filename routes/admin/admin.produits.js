@@ -353,6 +353,7 @@ router.post("/", async (req, res) => {
     pro_en_avant,
     pro_comment,
     pro_statut,
+    pro_poids
   } = req.body;
 
   try {
@@ -366,6 +367,7 @@ router.post("/", async (req, res) => {
       pro_en_avant,
       pro_comment,
       pro_statut,
+      pro_poids
     });
     req.session.flash = {
       message: "Produit ajouté avec succès",

@@ -7691,7 +7691,7 @@ body {
   overflow-y: auto;
 }
 #page-admin-ajoutProduit .parent-message,
-#page-admin-ajoutProduit .parent-message-danger {
+#page-admin-ajoutProduit .parent-message-danger, #page-admin-ajoutProduit .poids-message-danger {
   position: relative;
   display: none;
   flex-direction: row;
@@ -7702,7 +7702,8 @@ body {
 #page-admin-ajoutProduit .parent-message .close,
 #page-admin-ajoutProduit .parent-message .close-error,
 #page-admin-ajoutProduit .parent-message-danger .close,
-#page-admin-ajoutProduit .parent-message-danger .close-error {
+#page-admin-ajoutProduit .parent-message-danger .close-error, #page-admin-ajoutProduit .poids-message-danger .close,
+#page-admin-ajoutProduit .poids-message-danger .close-error {
   position: absolute;
   top: 0;
   right: 8px;

@@ -7,6 +7,7 @@ const btnEnregistrer = document.querySelector(".enregistrer");
 const input_file = document.querySelector(".inputfile");
 const pro_libelle = document.querySelector(".pro-libelle");
 const pro_ref = document.querySelector(".pro-ref");
+const pro_poids = document.querySelector(".pro-poids");
 const pro_description = document.querySelector(".pro-description");
 // const pro_details = document.querySelector(".pro-details");
 const pro_comment = document.querySelector(".pro-comment");
@@ -16,6 +17,7 @@ const statut = document.querySelector(".pro-statut");
 const ht = document.querySelector(".tar-ht");
 const ttc = document.querySelector(".tar-ttc");
 const messageError = document.querySelector(".parent-message-danger");
+const poidsMessageError = document.querySelector(".poids-message-danger");
 
 const lines = document.querySelector(".lines");
 const btnAdd = document.querySelector(".btn-add-taille");
@@ -196,9 +198,9 @@ async function addTaille(taille) {
                           aria-label="Default select example"
                         >
                       ${taille.data.map(
-                        (item) =>
-                          `<option value=${item.tai_id}>${item.tai_libelle}</option>`
-                      )}
+    (item) =>
+      `<option value=${item.tai_id}>${item.tai_libelle}</option>`
+  )}
                         </select>
                       </div>
                     </div>
@@ -220,6 +222,7 @@ function validateInput(input) {
   if (input !== "") return true;
   else return false;
 }
+
 
 btnAdd.addEventListener("click", async function () {
   const taille = await axios.get(`${SITE_URL}/admin/produits/add/tailles`, {
@@ -270,8 +273,12 @@ selectCategorie.addEventListener("change", async function () {
   listCategorie(categorie);
 });
 const btn_close_error = document.querySelector(".close-error");
+const btn_close_error_poids = document.querySelector(".close-error-poids");
 btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
+});
+btn_close_error_poids.addEventListener("click", function () {
+  poidsMessageError.style.display = "none";
 });
 
 btnEnregistrer.addEventListener("click", async function () {
@@ -294,12 +301,17 @@ btnEnregistrer.addEventListener("click", async function () {
     validateInput(selectCategorie.value) &&
     validateInput(categorieselect.value)
   ) {
+    if (typeof pro_poids.value == "string") {
+      poidsMessageError.style.display = "flex";
+    }
+    console.log(typeof pro_poids.value);
     const domEditableElement = document.querySelector(".ck-editor__editable");
 
     const editorInstance = domEditableElement.ckeditorInstance;
     const data = {
       cat_id,
       pro_ref: pro_ref.value,
+      pro_poids: pro_poids.value,
       pro_libelle: pro_libelle.value,
       pro_description: editorInstance.getData(),
       // pro_details: pro_details.value,
@@ -308,7 +320,6 @@ btnEnregistrer.addEventListener("click", async function () {
       pro_comment: pro_comment.value,
       pro_statut,
     };
-
     const produit = await axios.post(`${SITE_URL}/admin/produits/`, data, {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
@@ -404,10 +415,11 @@ btnEnregistrer.addEventListener("click", async function () {
     btnEnregistrer.setAttribute("disabled", "true");
     btnEnregistrer.style.backgroundColor = "#eee";
     btnEnregistrer.style.cursor = "not-allowed";
-    messageError.style.display = "none";
+    messageError.style.display = "none"; 
+    poidsMessageError.style.display = "none";
 
     formWithImage.submit();
-    
+
   } else messageError.style.display = "flex";
 
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });

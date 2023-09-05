@@ -9,6 +9,14 @@
       ><i class="fa fa-times" aria-hidden="true"></i
     ></span>
   </div>
+  <div class="alert alert-danger poids-message-danger" role="alert">
+    <span>Renseigner le poids en nombre</span>
+    <span
+      style="font-size: 1.4rem; color: #ce6861; cursor: pointer"
+      class="close-error-poids"
+      ><i class="fa fa-times" aria-hidden="true"></i
+    ></span>
+  </div>
   <% if (typeof flash != 'undefined') { %>
   <div
     class="alert alert-<%= flash.type %> alert-dismissible fade show mt-2"
@@ -248,6 +256,18 @@
                         />
                         <span class="input-group-text">€</span>
                       </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p>Poids</p>
+                    <div class="input-group pb-3">
+                      <input
+                        type="text"
+                        class="form-control pro-poids"
+                        placeholder="0,0000"
+                        aria-label="Kilogramme amount (with dot and two decimal places)"
+                      />
+                      <span class="input-group-text">Kg</span>
                     </div>
                   </div>
                      <div class="regle">
