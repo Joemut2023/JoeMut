@@ -13,6 +13,7 @@
         <th scope="col" class="text-center">Prix HT</th>
         <th scope="col" class="text-center">Prix TTC</th>
         <th scope="col" class="text-center">Quantité</th>
+        <th scope="col" class="text-center">Poids</th>
         <th scope="col" class="text-center">Actions</th>
         <th scope="col"></th>
       </tr>
@@ -60,12 +61,16 @@
             "undefined") ? qtydDown:'' %>" type="text" placeholder="max">
           </td>
           <td>
+            <input class="research" name="poids" value="<%= (typeof poids
+            !== "undefined") ? poids:'' %>" type="text" placeholder="1"
+            >
+          </td>
+          <td>
             <button type="submit" class="btn btn-info">
               <i class="fa fa-search" aria-hidden="true"></i>
               <span>Rechercher</span>
             </button>
           </td>
-          <td></td>
         </form>
       </tr>
     </thead>
@@ -98,6 +103,9 @@
           <%= quantiteOfEachProduct.find(item => item.id ===
           element.pro_id)?.qty ? quantiteOfEachProduct.find(item => item.id ===
           element.pro_id)?.qty : "non renseignée" %>
+        </td>
+        <td class="text-center">
+          <%= element.pro_poids %>
         </td>
         <td class="text-center">
           <div class="d-flex justify-content-center gap-4">

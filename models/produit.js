@@ -64,6 +64,7 @@ module.exports = (sequelize, DataTypes) => {
       pro_comment: DataTypes.STRING,
       pro_statut: DataTypes.BOOLEAN,
       pro_position: DataTypes.INTEGER,
+      pro_poids: DataTypes.FLOAT,
     },
     {
       sequelize,
