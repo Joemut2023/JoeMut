@@ -14,6 +14,7 @@ var btnAdd = document.querySelector(".btn-add-taille");
 var btns_delete = document.querySelectorAll(".delete");
 var pro_libelle = document.querySelector(".pro-libelle");
 var pro_ref = document.querySelector(".pro-ref");
+var pro_poids = document.querySelector(".pro-poids");
 var pro_description = document.querySelector(".pro-description");
 // const pro_details = document.querySelector(".pro-details");
 var collect = document.querySelector(".pro-new-collect");
@@ -27,6 +28,7 @@ var ttc = document.querySelector(".tar-ttc");
 var btnEnregistrer = document.querySelector(".update");
 var qtyMax = document.querySelector(".qty-max");
 var messageError = document.querySelector(".parent-message-danger");
+var poidsMessageError = document.querySelector(".poidsedit-message-danger");
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
   button2.classList.remove("clicked");
@@ -234,8 +236,12 @@ Array.from(btn_delete_image, function (item) {
   })));
 });
 var btn_close_error = document.querySelector(".close-error");
+var btn_close_error_poids = document.querySelector(".poids-error");
 btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
+});
+btn_close_error_poids.addEventListener("click", function () {
+  poidsMessageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
   var cat_id, pro_new_collect, pro_en_avant, pro_statut, tar_ht, tar_ttc, formWithImage, Myproduct, domEditableElement, editorInstance, data, produit, resultMedia, tarif, selectTailles, selectTailleExist, qty;
@@ -261,9 +267,13 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
       case 11:
         Myproduct = _context9.sent;
         if (!(validateInput(pro_ref.value) && validateInput(pro_libelle.value) && validateInput(ht.value) && validateInput(ttc.value))) {
-          _context9.next = 37;
+          _context9.next = 39;
           break;
         }
+        if (typeof pro_poids.value == "string") {
+          poidsMessageError.style.display = "flex";
+        }
+        poidsMessageError.style.display = "none";
         messageError.style.display = "none";
         domEditableElement = document.querySelector(".ck-editor__editable");
         editorInstance = domEditableElement.ckeditorInstance;
@@ -275,15 +285,16 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
           // pro_details:pro_details.textContent,
           pro_new_collect: pro_new_collect,
           pro_en_avant: pro_en_avant,
-          pro_statut: pro_statut
+          pro_statut: pro_statut,
+          pro_poids: pro_poids.value
         };
-        _context9.next = 19;
+        _context9.next = 21;
         return axios.put("".concat(SITE_URL, "/admin/produits/").concat(Myproduct.data.pro_id), data, {
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 19:
+      case 21:
         produit = _context9.sent;
         // console.log(produit)
 
@@ -358,7 +369,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             return _ref7.apply(this, arguments);
           };
         }());
-        _context9.next = 25;
+        _context9.next = 27;
         return axios.put("".concat(SITE_URL, "/admin/produits/tarif/").concat(Myproduct.data.pro_id), {
           tar_ht: tar_ht,
           tar_ttc: tar_ttc
@@ -367,7 +378,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
             "X-Requested-With": "XMLHttpRequest"
           }
         });
-      case 25:
+      case 27:
         tarif = _context9.sent;
         selectTailles = document.querySelectorAll(".select-taille");
         selectTailleExist = document.querySelectorAll(".select-taille-exist");
@@ -437,11 +448,11 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         formWithImage.submit();
 
         // window.location.reload();
-        _context9.next = 38;
+        _context9.next = 40;
         break;
-      case 37:
+      case 39:
         messageError.style.display = "flex";
-      case 38:
+      case 40:
         window.scrollTo({
           top: 0,
           left: 0,
@@ -449,7 +460,7 @@ btnEnregistrer.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PU
         });
         // btnEnregistrer.removeAttribute("disabled");
         // btnEnregistrer.style.cursor = "pointer";
-      case 39:
+      case 41:
       case "end":
         return _context9.stop();
     }

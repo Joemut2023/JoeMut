@@ -9,6 +9,7 @@ const btnAdd = document.querySelector(".btn-add-taille");
 const btns_delete = document.querySelectorAll(".delete");
 const pro_libelle = document.querySelector(".pro-libelle");
 const pro_ref = document.querySelector(".pro-ref");
+const pro_poids = document.querySelector(".pro-poids");
 const pro_description = document.querySelector(".pro-description");
 // const pro_details = document.querySelector(".pro-details");
 const collect = document.querySelector(".pro-new-collect");
@@ -22,6 +23,7 @@ const ttc = document.querySelector(".tar-ttc");
 const btnEnregistrer = document.querySelector(".update");
 const qtyMax = document.querySelector(".qty-max");
 const messageError = document.querySelector(".parent-message-danger");
+const poidsMessageError = document.querySelector(".poidsedit-message-danger");
 
 button1.addEventListener("click", function () {
   button1.classList.add("clicked");
@@ -131,9 +133,9 @@ function addTaille(taille) {
                           aria-label="Default select example"
                         >
                       ${taille.data.map(
-                        (item) =>
-                          `<option value=${item.tai_id}>${item.tai_libelle}</option>`
-                      )}
+    (item) =>
+      `<option value=${item.tai_id}>${item.tai_libelle}</option>`
+  )}
                         </select>
                       </div>
                     </div>
@@ -236,8 +238,12 @@ Array.from(btn_delete_image, (item) => {
 });
 
 const btn_close_error = document.querySelector(".close-error");
+const btn_close_error_poids = document.querySelector(".poids-error");
 btn_close_error.addEventListener("click", function () {
   messageError.style.display = "none";
+});
+btn_close_error_poids.addEventListener("click", function () {
+  poidsMessageError.style.display = "none";
 });
 btnEnregistrer.addEventListener("click", async function () {
   const cat_id = listCat ? listCat.value : 1;
@@ -262,6 +268,10 @@ btnEnregistrer.addEventListener("click", async function () {
     validateInput(ht.value) &&
     validateInput(ttc.value)
   ) {
+    if( typeof pro_poids.value == "string"){
+      poidsMessageError.style.display = "flex";
+    }
+    poidsMessageError.style.display = "none";
     messageError.style.display = "none";
     const domEditableElement = document.querySelector(".ck-editor__editable");
 
@@ -275,6 +285,7 @@ btnEnregistrer.addEventListener("click", async function () {
       pro_new_collect,
       pro_en_avant,
       pro_statut,
+      pro_poids : pro_poids.value
     };
 
     const produit = await axios.put(

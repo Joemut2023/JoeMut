@@ -304,7 +304,6 @@ btnEnregistrer.addEventListener("click", async function () {
     if (typeof pro_poids.value == "string") {
       poidsMessageError.style.display = "flex";
     }
-    console.log(typeof pro_poids.value);
     const domEditableElement = document.querySelector(".ck-editor__editable");
 
     const editorInstance = domEditableElement.ckeditorInstance;

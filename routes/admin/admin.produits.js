@@ -562,6 +562,7 @@ router.put("/:id", async (req, res) => {
     pro_en_avant,
     pro_comment,
     pro_statut,
+    pro_poids
   } = req.body;
 
   try {
@@ -576,6 +577,7 @@ router.put("/:id", async (req, res) => {
         pro_en_avant,
         pro_comment,
         pro_statut,
+        pro_poids
       },
       { where: { pro_id: req.params.id } }
     );
