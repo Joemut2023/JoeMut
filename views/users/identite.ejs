@@ -2,19 +2,19 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/" class="breadcrumb-link">Accueil</a>
+        <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
         <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
-          >Votre compte</a
+          >Account</a
         >
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        Vos information personnelles
+        Your personnals informations
       </li>
     </ol>
   </nav>
-  <h4>Vos informations personnelles</h4>
+  <h4> Your personnals informations</h4>
   <form action="/mon-compte/identite" class="fom" method="POST">
     <% if (typeof error !== 'undefined') { %>
     <div class="alert alert-danger" role="alert"><%= error %></div>
@@ -22,7 +22,7 @@
     <div class="alert alert alert-success" role="alert"><%= success %></div>
     <% } %>
     <div class="row-form">
-      <label class="col-label label" for="civilite">Civilité</label>
+      <label class="col-label label" for="civilite">Civility</label>
       <div class="">
         <input
           type="radio"
@@ -31,7 +31,7 @@
           value="<%= clientSession.tit_id  %>"
           <%= clientSession.tit_id == 1 ? "checked" :""%>
         />
-        <label class="form-check-label" for="">M</label>
+        <label class="form-check-label" for="">Sir</label>
         <input
           type="radio"
           name="titre"
@@ -39,11 +39,11 @@
           value="<%= clientSession.tit_id  %>"
           <%= clientSession.tit_id == 2 ? "checked" :""%>
         />
-        <label class="form-check-label" for="">Mme</label>
+        <label class="form-check-label" for="">Mrs</label>
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span>* </span>Prenom</label>
+      <label class="col-label" for=""> <span>* </span>First name</label>
       <div class="col-input">
         <input
           class="col"
@@ -54,14 +54,10 @@
           value="<%= clientSession.cli_prenom %>"
           required
         />
-        <label for=""
-          >Seules les lettres et le point (.), suivi d'un espace, sont
-          autorisés.</label
-        >
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span>* </span>Nom</label>
+      <label class="col-label" for=""> <span>* </span>Name</label>
       <div class="col-input">
         <input
           class="col"
@@ -72,14 +68,10 @@
           value="<%= clientSession.cli_nom %>"
           required
         />
-        <label for=""
-          >Seules les lettres et le point (.), suivi d'un espace, sont
-          autorisés.</label
-        >
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span></span>Téléphone</label>
+      <label class="col-label" for=""> <span></span>Phone number</label>
       <div class="col-input">
         <input
           class="col"
@@ -92,7 +84,7 @@
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> <span>* </span>E-mail</label>
+      <label class="col-label" for=""> <span>* </span>Mail</label>
       <div class="col-input">
         <input
           class="col"
@@ -106,7 +98,7 @@
       </div>
     </div>
     <div class="row-form">
-      <label class="col-label" for=""> Nouveau mot de passe</label>
+      <label class="col-label" for=""> New password</label>
       <div class="d-flex flex-row col-input">
         <input id="password" type="password" name="cli_pwd" />
         <span class="input-group-text">
@@ -120,10 +112,9 @@
         <input class="form-check-input" type="checkbox" name="radioNewLetter"
         id="flexRadioDefault2" checked required />
         <label class="form-check-label" for=""
-          >Message concernant la confidentialité des données clients
-          Conformément aux dispositions de la loi du n°78-17 du 6 janvier 1978,
-          vous disposez d'un droit d'accès, de rectification et d'opposition sur
-          les données nominatives vous concernant.</label
+          >Message concerning the confidentiality of customer data In accordance with 
+          the provisions of law n°78-17 of January 6, 1978, you have a right of access, 
+          rectification and opposition to personal data concerning you.</label
         >
       </div>
     </div>
@@ -139,9 +130,8 @@
         %>
         />
         <label class="form-check-label" for="">
-          Recevoir notre newsletter Vous pouvez vous désinscrire à tout moment.
-          Vous trouverez pour cela nos informations de contact dans les
-          conditions d'utilisation du site.</label
+          Receive our newsletter You can unsubscribe at any time. 
+          You will find our contact information for this in the conditions of use of the site.</label
         >
       </div>
     </div>
@@ -157,23 +147,23 @@
           checked
         />
         <label class="form-check-label" for=""
-          >J'accepte les conditions générales et la politique de
-          confidentialité</label
+          >I accept the terms and conditions and privacy policy</label
         >
       </div>
     </div>
     <div class="btn-submit">
-      <button class="btn" type="submit">Enregistrer</button>
+      <button class="btn" type="submit">Save</button>
     </div>
   </form>
   <div class="link-div d-flex flex-row">
     <div>
       <a href="/mon-compte/#page-mon-compte"
-        ><i class="fa-solid fa-chevron-left"></i> Retour à votre compte
+        ><i class="fa-solid fa-chevron-left"></i>
+        Back to your account
       </a>
     </div>
     <div>
-      <a href="/"><i class="fa-solid fa-house"></i> Accueil</a>
+      <a href="/"><i class="fa-solid fa-house"></i> Home</a>
     </div>
   </div>
 </div>

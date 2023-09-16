@@ -1,18 +1,18 @@
 <div id="page-inscription">
   <div class="title-recherche">
-    <span><a href="/">Acceuil</a></span>
-    <span>/ Résultats de la recherche</span>
+    <span><a href="/">Home</a></span>
+    <span>/Register</span>
   </div>
 
   <div class="resultat">
-    <p>Créer votre compte</p>
+    <p>Create an account</p>
   </div>
 
   <div class="content">
     <div class="register-form">
       <p class="title">
-        Vous avez déjà un compte ?
-        <a href="/connexion/#page-connexion">Connectez-vous !</a>
+        Do you have an account?
+        <a href="/connexion/#page-connexion">login !</a>
       </p>
 
       <div class="alert alert-danger hide-alert" id="alert-show" role="alert">
@@ -23,16 +23,16 @@
         <div>
           <div class="form-group row">
             <div class="col-md-3 item">
-              <label for="" class="label">Civilité</label>
+              <label for="" class="label">Sex</label>
             </div>
             <div class="col-md-6 radios">
               <div class="radio">
                 <input type="radio" name="tit_id" id="homme" value="M" />
-                <label class="" for="homme">M</label>
+                <label class="" for="homme">Mr</label>
               </div>
               <div class="radio">
                 <input type="radio" name="tit_id" id="femme" value="Mme" />
-                <label class="" for="femme">Mme</label>
+                <label class="" for="femme">Mrs</label>
               </div>
             </div>
             <div class="col-md-3"></div>
@@ -40,36 +40,28 @@
           <div class="form-group row">
             <div class="col-md-3 item">
               <label class="required label" for="prenom"
-                ><span>*</span>Prénom</label
+                ><span>*</span>First name</label
               >
             </div>
             <div class="col-md-6 input">
               <input type="text" name="cli_prenom" id="prenom" required />
-              <label for=""
-                >Seules les lettres et le point (.), suivi d'un espace, sont
-                autorisés.</label
-              >
             </div>
             <div class="col-md-3"></div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-3 item">
-              <label class="required label" for="nom"><span>*</span>Nom</label>
+              <label class="required label" for="nom"><span>*</span>Last name</label>
             </div>
             <div class="col-md-6 input">
               <input type="text" name="cli_nom" id="nom" required />
-              <label for=""
-                >Seules les lettres et le point (.), suivi d'un espace, sont
-                autorisés.</label
-              >
             </div>
             <div></div>
           </div>
           <div class="form-group row">
             <div class="col-md-3 item">
               <label class="required label" for="num"
-                ><span></span>Téléphone</label
+                ><span></span>Phone  number</label
               >
             </div>
             <div class="col-md-6 input">
@@ -80,7 +72,7 @@
           <div class="form-group row">
             <div class="col-md-3 item">
               <label class="required label" for="email"
-                ><span>*</span>E-mail</label
+                ><span>*</span>Mail</label
               >
             </div>
             <div class="col-md-6 input">
@@ -93,7 +85,7 @@
           <div class="form-group row">
             <div class="col-md-3 item">
               <label class="required label" for="password"
-                ><span>*</span>Mot de passe</label
+                ><span>*</span>Password</label
               >
             </div>
             <div class="col-md-6 btn-hide">
@@ -104,7 +96,7 @@
                 class="input-password"
                 required
               />
-              <button id="btn-action" class="btn-action">Montrer</button>
+              <button id="btn-action" class="btn-action">Show</button>
             </div>
             <div></div>
           </div>
@@ -121,13 +113,11 @@
                 required
               />
               <label for="check-box" class="text"
-                >Message concernant la confidentialité des données clients
+                >Message regarding the confidentiality of customer data
                 <br />
                 <em
-                  >Conformément aux dispositions de la loi du n°78-17 du 6
-                  janvier 1978, vous disposez d'un droit d'accès, de
-                  rectification et d'opposition sur les données nominatives vous
-                  concernant.</em
+                  >
+                  In accordance with the provisions of law n°78-17 of January 6, 1978, you have a right of access, rectification and opposition to personal data concerning you.</em
                 >
               </label>
             </div>
@@ -145,13 +135,9 @@
                 name="cli_newsletter"
               />
               <label for="check-box" class="text">
-                Recevoir notre newsletter
+                Newsletter
                 <br />
-                <em
-                  >Vous pouvez vous désinscrire à tout moment. Vous trouverez
-                  pour cela nos informations de contact dans les conditions
-                  d'utilisation du site.</em
-                >
+               
               </label>
             </div>
             <div class="col-md-3"></div>
@@ -170,8 +156,8 @@
                   required
                 />
                 <label for="scales" class="text checkmark"
-                  >J'accepte les conditions générales et la politique de
-                  confidentialité
+                  >I accept the terms and conditions and policy of
+                  confidentiality
                 </label>
               </div>
             </div>
@@ -179,7 +165,7 @@
           </div>
         </div>
         <div class="btn-submit">
-          <button id="enregister">Enregistrer</button>
+          <button id="enregister">Register</button>
         </div>
       </form>
     </div>

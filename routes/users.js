@@ -183,7 +183,7 @@ router.get("/deleteAdresse/:id", async (req, res, next) => {
   } catch (error) {
     Logger.error(error.stack);
     return res.render("users/adresses", {
-      error: "une erreur est survenue",
+      error: "An error has occurred",
     });
   }
 });

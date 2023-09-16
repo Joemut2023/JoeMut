@@ -22,7 +22,7 @@ const RenderKartProduct = async () => {
       produit.Produit.pro_libelle
     }</span></a>
     </div>
-    <p class="price">${new Decimal(produit.pad_ttc).toFixed(2).toString().replace(".",",")} €</p>
+    <p class="price">${new Decimal(produit.pad_ttc).toFixed(2).toString()} $</p>
   </div>
   <div class="col-md-5 col-sm-12 col-12 prices">
     <div class="row">
@@ -43,7 +43,7 @@ const RenderKartProduct = async () => {
             </div>
           </div>
           <div class="col-md-6 col-sm-6 col-6 prx">
-            <span>${new Decimal(produit.pad_ttc).toFixed(2).toString().replace(".",",")} €</span>
+            <span>${new Decimal(produit.pad_ttc).toFixed(2).toString()} $</span>
           </div>
         </div>
       </div>
@@ -163,13 +163,13 @@ const TotalPricesProducts = async () => {
       <span class="price">${new Decimal(totalPriceht).toFixed(2).toString().replace(".",",")}  €</span>
     </div>
     <div class="item">
-      <span class="title">Livraisons</span>
+      <span class="title">Delivery</span>
       <span class="price">${new Decimal(
         storedFrais.frais_port
       ).toFixed(2).toString().replace(".",",")} €</span>
     </div>
     <div class="item">
-      <span class="title">Frais de dossier</span>
+      <span class="title">Application fees</span>
       <span class="price">${new Decimal(
         storedFrais.frais_dossier
       ).toFixed(2).toString().replace(".",",")} €</span>
@@ -182,19 +182,19 @@ const TotalPricesProducts = async () => {
 </div>
 <div class="promo">
   <div class="link">
-    <p class="btnpromo"><span>Vous avez un code promo pour un produit ?</span></p>
+    <p class="btnpromo"><span>Do you have a promo code for a product?</span></p>
   </div>
   <div class="hide-promo promo_block">
     <div class="btn-promo">
-      <input id="input-code-promo" type="text" placeholder="Code promo" />
-      <button id="btn-code-promo">Ajouter</button>
+      <input id="input-code-promo" type="text" placeholder="Promotion Code" />
+      <button id="btn-code-promo">Add</button>
     </div>
-    <p class="fermer">Fermer</p>
+    <p class="fermer">Close</p>
   </div>
 </div>
-<p id="promo-notice"><span id="promo-notice-asterics">*</span> Entrer uniquement le code promo pour un produit</p>
+<p id="promo-notice"><span id="promo-notice-asterics">*</span> Only the promo code  for product</p>
 <a href="/commander/#page-commander" class="button">
-  <button class="enable">Finaliser le Devis</button>
+  <button class="enable">Finalize the Quote</button>
 </a>
   `;
 

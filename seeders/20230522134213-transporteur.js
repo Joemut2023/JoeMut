@@ -20,9 +20,6 @@ module.exports = {
       trs_libelle:"Mazda"
     },
     {
-      trs_libelle:"Mazda"
-    },
-    {
       trs_libelle:"Fedex"
     }
    ])

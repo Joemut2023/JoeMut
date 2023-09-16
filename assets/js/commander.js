@@ -256,8 +256,8 @@ btn?.addEventListener("click", function (e) {
     password.getAttribute("type") === "password" ? "text" : "password";
   password.setAttribute("type", type);
 
-  if (password.getAttribute("type") === "password") btn.textContent = "Montrer";
-  else btn.textContent = "Cacher";
+  if (password.getAttribute("type") === "password") btn.textContent = "Show";
+  else btn.textContent = "Hide";
 });
 
 //tabs
@@ -288,26 +288,22 @@ function toggle_visibility(id) {
   const { kartProductPrice, totalPrice } = await Kart.calculTotalPrice();
   document.querySelector("#sous-total").innerHTML = `${kartProductPrice
     .toFixed(2)
-    .toString()
-    .replace(".", ",")} €`;
+    .toString()} $`;
 
   let fraisDivers = await Kart.addFraisDivers();
   document.querySelector(
     "#dossier-price"
   ).innerHTML = `${fraisDivers.frais_dossier
     .toFixed(2)
-    .toString()
-    .replace(".", ",")} €`;
+    .toString()} $`;
   document.querySelector(
     "#livraison-price"
   ).innerHTML = `${fraisDivers.frais_port
     .toFixed(2)
-    .toString()
-    .replace(".", ",")} €`;
+    .toString()} $`;
   document.querySelector("#total-price").innerHTML = `${totalPrice
     .toFixed(2)
-    .toString()
-    .replace(".", ",")} €`;
+    .toString()} $`;
   radios?.forEach((radio) => {
     radio.addEventListener("click", (e) => {
       let frp_ttc = e.target.dataset.ttc;
@@ -315,14 +311,12 @@ function toggle_visibility(id) {
         parseFloat(frp_ttc) + kartProductPrice + fraisDivers.frais_dossier;
       document.querySelector("#total-price").innerHTML = `${total
         .toFixed(2)
-        .toString()
-        .replace(".", ",")} €`;
+        .toString()} $`;
       document.querySelector("#livraison-price").innerHTML = `${parseFloat(
         frp_ttc
       )
         .toFixed(2)
-        .toString()
-        .replace(".", ",")} €`;
+        .toString()} $`;
     });
   });
 })();

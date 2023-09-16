@@ -282,8 +282,7 @@ class Kart {
                                 produit.pad_qte
                               } x ${new Decimal(produit.pad_ttc)
           .toFixed(2)
-          .toString()
-          .replace(".", ",")} €</span>
+          .toString()} $</span>
                               <button id="remove-prod" data-id="${
                                 produit.pro_id
                               }" class="btn-close"></button>
@@ -303,7 +302,7 @@ class Kart {
 
     let kartInfosData = `
     <div>
-    <p id="par-empty-data">Aucun produit dans le chariot.</p>
+    <p id="par-empty-data">No products in cart.</p>
       <div class="kart-article">
         <div class="nbr-article">
           <span>${kartProductQte} articles</span>
@@ -311,32 +310,22 @@ class Kart {
         <div class="price">
           <span>${new Decimal(price.kartProductPrice)
             .toFixed(2)
-            .toString()
-            .replace(".", ",")} €</span>
+            .toString()} $</span>
         </div>
       </div>
 
       <div class="kart-livraison">
         <div class="total">
-          <span>Livraison</span>
+          <span>delivery</span>
         </div>
         <div class="price-total" id="frais-livraison">
         <span>${new Decimal(fraisPort)
           .toFixed(2)
-          .toString()
-          .replace(".", ",")} €</span> 
+          .toString()} $</span> 
         </div>
       </div>
       <div class="kart-livraison">
-      <div class="total">
-        <span>Frais dossier</span>
-      </div>
-      <div class="price-total">
-        <span>${new Decimal(fraisDossier)
-          .toFixed(2)
-          .toString()
-          .replace(".", ",")} €</span>
-      </div>
+     
     </div>
 
       <div class="kart-total">
@@ -346,20 +335,19 @@ class Kart {
         <div class="price-total">
           <span>${new Decimal(price.totalPrice)
             .toFixed(2)
-            .toString()
-            .replace(".", ",")} €</span>
+            .toString()} $</span>
         </div>
       </div>
       <hr>
       <div class="kart-btns">
       <a href="/panier/#page-panier" class="btn-voirpanier">
         <button>
-          Voir le <br />
-          panier
+          show the <br />
+          kart
         </button>
       </a>
       <a href="/commander/#page-commander" class="btn-commander">
-        <button>Commander</button>
+        <button>order</button>
       </a>
     </div>
     </div>
@@ -401,48 +389,48 @@ class Kart {
             ${new Decimal(newPrice)
               .toFixed(2)
               .toString()
-              .replace(".", ",")}€</div>
-            <div class="product-quantity">Quantité : <span> ${qte} </span></div>
+              .replace(".", ",")}$</div>
+            <div class="product-quantity">Quantity : <span> ${qte} </span></div>
             </div>
         </div>
         <div class="modal-body-commande">
-            <h5>Il y a ${await Kart.getItemNumber()} articles dans votre panier.</h5>
+            <h5> ${await Kart.getItemNumber()} articles in the kart.</h5>
             <div class="sous-total">
-                <span class="sous-total-titre">Sous-total :</span>
+                <span class="sous-total-titre">subtotal :</span>
                 <span class="sous-total-montant">${new Decimal(
                   price.kartProductPrice
                 )
                   .toFixed(2)
                   .toString()
-                  .replace(".", ",")} €</span>
+                  .replace(".", ",")} $</span>
             </div>
             <div class="transport">
-                <span class="transport-titre">Frais de port:</span>
+                <span class="transport-titre">Shipping fees:</span>
                 <span class="transport-montant">${new Decimal(fraisPort)
                   .toFixed(2)
                   .toString()
-                  .replace(".", ",")} €</span>
+                  .replace(".", ",")} $</span>
             </div>
             <div class="transport">
-                <span class="transport-titre">Frais de dossier:</span>
+                <span class="transport-titre">Application fees:</span>
                 <span class="transport-montant">${new Decimal(fraisDossier)
                   .toFixed(2)
                   .toString()
-                  .replace(".", ",")} €</span>
+                  .replace(".", ",")} $</span>
             </div>
             <div class="total">
                 <span class="total-titre">Total:</span>
                 <span class="total-montant">${new Decimal(price.totalPrice)
                   .toFixed(2)
                   .toString()
-                  .replace(".", ",")} €</span>
+                  .replace(".", ",")} $</span>
             </div>
             <div class="btn-achat">
                 <button class="continuer"  data-bs-dismiss="modal"
-                aria-label="Close">Continuer mes achats</button>
+                aria-label="Close">Go the the site</button>
                 <a href="/panier/#page-panier" class="finaliser">
                     <i class="fa fa-check icon-succes"></i>
-                    <span>Finaliser le devis</span>
+                    <span>Finish the process</span>
                 </a>
             </div>
         </div>
@@ -461,15 +449,15 @@ class Kart {
   static async RenderMaxQteModal(qte) {
     let html = /*html*/ `
         <div class="modal-body-commande">
-            <h5 class="text-center" id="add-img-text">Vous avez déjà ajouté au panier le quantité disponible pour cet article</h5>
+            <h5 class="text-center" id="add-img-text">You have already added the quantity available for this item to your cart</h5>
         </div>
         
         `;
     //document.querySelector("#myModal .body-modal").innerHTML = html;
-    document.querySelector("#add-product").innerHTML = "Oups opération échouée";
+    document.querySelector("#add-product").innerHTML = "Oops operation failed";
     document.querySelector("#add-img-icone").style.display = "none";
     document.querySelector("#add-img-fall-icone").style.display = "block";
-    const text = `Impossible d'ajouter cet article au panier, car sa quantité disponible est de ${qte}!`;
+    const text = `Unable to add this item to cart because its available quantity is  ${qte}!`;
     const paragraphText = document.querySelector("#max-qte-text");
     paragraphText ? (paragraphText.innerHTML = text) : null;
     document.querySelector("#modal-loader").style.display = "none";

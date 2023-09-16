@@ -2,9 +2,9 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="/" class="breadcrumb-link">Accueil</a>
+                <a href="/" class="breadcrumb-link">Home</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Contactez-nous</li>
+            <li class="breadcrumb-item active" aria-current="page">Contact us</li>
         </ol>
     </nav>
     <h4>INFORMATIONS</h4>
@@ -12,14 +12,14 @@
         <div class="page-contact-informations">
             <div class="adresse-infos">
                 <i class="fa-solid fa-location-dot fa-2x"></i>
-                <p>AIGUILLES EN SCENE 5 Rue des Agaces 35650 Le Rheu France</p>
+                <p>Afrik'art workshop</p>
             </div>
             <HR />
             <div class="mail-infos">
                 <i class="fa-solid fa-envelope fa-2x"></i>
                 <p>
-                    Envoyez-nous un e-mail :
-                    <a href="mailto:contact@locationcostumesdedanse.com">contact@locationcostumesdedanse.com</a>
+                    Send us an email:
+                    <a href="mailto:kabasiromain@gmail.com">our mail</a>
                 </p>
             </div>
         </div>
@@ -35,23 +35,23 @@
                   <%= (messages) ? messages : '' %>
                 </div>
               <% } %>
-            <h5>CONTACTEZ-NOUS</h5>
+            <h5>CONTACT US</h5>
             <form id="form" method="post" action="/contact">
                 <div class="form-content">
                     <div class="form-label">
-                        <label for="">Sujet</label>
-                        <label for="">Adresse e-mail</label>
+                        <label for="">Subject</label>
+                        <label for="">mail</label>
                         <!-- <label for="">Document joint</label> -->
                         <label for="">Message</label>
                     </div>
                     <div class="form-input">
-                        <input type="text" placeholder="Service client" name="cont_service" required  id="" /><br />
-                        <input type="email" placeholder="votre@email.com" name="cont_email" required  id="" /><br />
+                        <input type="text" placeholder="client service" name="cont_service" required  id="" /><br />
+                        <input type="email" placeholder="yourmail@email.com" name="cont_email" required  id="" /><br />
                         <!-- <input class="form-control" type="file" id="formFile" name="cont_file"  /><br /> -->
-                        <textarea placeholder="Comment pouvons-nous vous aider ?" rows="3" name="cont_msg" required></textarea>
+                        <textarea placeholder="message" rows="3" name="cont_msg" required></textarea>
                     </div>
                 </div>
-                <button class="btn_envoi">Envoyer</button>
+                <button class="btn_envoi">Send</button>
             </form>
         </div>
     </div>

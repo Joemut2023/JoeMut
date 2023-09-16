@@ -2,22 +2,22 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/" class="breadcrumb-link">Accueil</a>
+        <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Votre compte</a>
+        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Your account</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
         <a href="/mon-compte/adresses" class="breadcrumb-link">Adresses</a>
       </li>
     </ol>
   </nav>
-  <h5>Vos adresses</h5>
+  <h5>Your adresses</h5>
 
   <div class="adresse-main-content">
     <% if (typeof success !== "undefined") { %>
       <div class="alert alert-success" role="alert">
-        <p>adresse supprimé</p>
+        <p>adresse removed</p>
       </div>
     <% } %>
     <% if (typeof error !== "undefined") { %>
@@ -36,8 +36,8 @@
           <p><%= element.adr_phone %></p>
           <hr />
           <div class="item-actions">
-            <a href="/mon-compte/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Mettre à jour</a>
-            <a href="/mon-compte/deleteAdresse/<%= element.adr_id %>"><i class="fa-solid fa-trash"></i> Supprimer</a>
+            <a href="/mon-compte/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Update</a>
+            <a href="/mon-compte/deleteAdresse/<%= element.adr_id %>"><i class="fa-solid fa-trash"></i> Remove</a>
           </div>
         </div>
         <% }) %>

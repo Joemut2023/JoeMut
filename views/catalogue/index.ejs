@@ -1,13 +1,13 @@
 <div id="pages-catalogue">
   <div class="group-catalogue">
     <div class="title">
-      <a class="title_accueil" href="">Accueil</a>
-      <a class="title_catalogue" href="/catalogue">/ Catalogue</a>
+      <a class="title_accueil" href="">Home</a>
+      <a class="title_catalogue" href="/catalogue">/ Catalog  </a>
     </div>
     <div class="list">
       <div class="border"></div>
       <div class="list-body">
-        <p>Catalogue</p>
+        <p>Catalog</p>
         <% typee_categories.forEach(element => { %>
           <div class="accordion-item">
             <div class="type-categorie">
@@ -41,18 +41,18 @@
   </div>
   <div class="catalogue">
     <div class="cat-title">
-      <h2>CATÉGORIE : <span>CATALOGUE</span></h2>
+      <h2>CATEGORY : <span>CATALOG</span></h2>
     </div>
     <div class="cat-filter">
-      <p>Il y a <span>
+      <p>There is <span>
           <%= allproducts.length%>
         </span> produits</p>
 
       <div class="filter">
-        <label for="">Trier par : </label>
+        <label for="">Sort by : </label>
         <div class="input" id="input">
           <span id="choix">
-            <%= choix ? choix : "Choisir" %>
+            <%= choix ? choix : "Choose" %>
           </span>
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
           <div class="content content-hide" id="content">
@@ -61,16 +61,16 @@
                 <li class="item-choice">Pertinente</li>
               </a> -->
               <a href="/catalogue/?orderby=AàZ">
-                <li class="item-choice">Nom, A à Z</li>
+                <li class="item-choice">Name, A à Z</li>
               </a>
               <a href="/catalogue/?orderby=ZàA">
-                <li class="item-choice">Nom, Z à A</li>
+                <li class="item-choice">Name, Z à A</li>
               </a>
               <a href="/catalogue/?orderby=PC">
-                <li class="item-choice">Prix, croissant</li>
+                <li class="item-choice">Price, croissant</li>
               </a>
               <a href="/catalogue/?orderby=PD">
-                <li class="item-choice">Prix, décroissant</li>
+                <li class="item-choice">Price, decreasin</li>
               </a>
             </ul>
           </div>
@@ -106,7 +106,7 @@
             <% let remise = 0 %>
             <% applies.forEach(element => { %>
               <% if (element.pro_id == produit.pro_id) { %>
-                <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  €</del>
+                <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString() %>  $</del>
                <% promotionProduct = element %>
                <% if (promotionProduct.Promo.prm_pourcent) { %> 
                 <% remise = promotionProduct.Promo.prm_pourcent * produit.Tarifs[0].tar_ht / 100 %>
@@ -117,14 +117,14 @@
               <% } %> 
             <% }) %>
             <% if (!applies.find(element => element.pro_id == produit.pro_id)) { %>
-             <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  € %>
+             <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString() %>  $ %>
               <% } %>
                
               </div>
               <span>|</span>
               <button class="button-ajouter" data-id="<%= produit.pro_id %>" data-bs-toggle="modal"
                 data-bs-target="#parent_modal">
-                Ajouter
+                Add
               </button>
             </div>
           </div>
@@ -134,7 +134,7 @@
     <div class="cat-pagination">
       <div>
         <p>
-          Affichage <span>
+          Display <span>
             <%= start %> - <%= end %>
           </span> de
           <span>

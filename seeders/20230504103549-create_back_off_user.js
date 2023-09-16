@@ -17,9 +17,9 @@ module.exports = {
     */
    await queryInterface.bulkInsert('Users',[{
       prf_id:PROFIL_ADMIN,
-      usr_nom:'Guermah',
-      usr_prenom:'Eric',
-      usr_mail:'admin@locationcostumesdedanse.com',
+      usr_nom:'Kabasi',
+      usr_prenom:'Romain',
+      usr_mail:'kabasiromain@gmail.com',
       usr_pwd:'$2a$10$I7RbpGLBrMKE0/OJSw9I0eAPxjj9zXmMl6h8Fq/CR1wQZtzTXIx36'
    }])
   },

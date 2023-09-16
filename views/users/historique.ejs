@@ -2,11 +2,11 @@
   <div class="row">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item">
-          <a href="/mon-compte/#page-mon-compte">Mon compte</a>
+          <a href="/mon-compte/#page-mon-compte">My account</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Historique</li>
+        <li class="breadcrumb-item active" aria-current="page">Historical</li>
       </ol>
     </nav>
   </div>
@@ -20,31 +20,30 @@
   <div class="row">
     <div class="msg-error">
       <div class="alert alert-danger" role="alert">
-        Vous n'avez pas encore passé de commande
+        You have not yet placed an order
       </div>
       <h6>
-        Vous trouverez ici vos commandes passées depuis la création de votre
-        compte
+        Here you will find your orders placed since the creation of your
+        account
       </h6>
     </div>
   </div>
   <% } else { %>
-  <h2>Historique de vos commandes</h2>
+  <h2>History of your orders</h2>
   <div class="row row-list">
     <div class="msg">
       <h6>
-        Vous trouverez ici vos commandes passées depuis la création de votre
-        compte
+        Here you will find your orders placed since the creation of your
+        account
       </h6>
       <div class="commande-liste">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Reference de commande</th>
+              <th scope="col">Reference of order</th>
               <th scope="col">Date</th>
-              <th scope="col">Prix total</th>
-              <th scope="col">Etat</th>
-              <th scope="col">Facture</th>
+              <th scope="col">Total price</th>
+              <th scope="col">Invoice</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -57,12 +56,7 @@
               <td><%= commande.com_num %></td>
               <td><%= moment(commande.com_date).format('DD/MM/YYYY') %></td>
               <td>
-                <%= totalCommande.toFixed(2).toString().replace('.',',') %> €
-              </td>
-              <td>
-                <p class="bg-warning text-center color-white">
-                  <%= commande.Chronologies[0].Statut_commande.stc_libelle %>
-                </p>
+                <%= totalCommande.toFixed(2).toString().replace('.',',') %> $
               </td>
               <td>
                 <% if (commande.Facturations.length > 0) { %> 
@@ -71,10 +65,10 @@
               </td>
               <td class="button">
                 <a href="/mon-compte/detailsCommande/<%= commande.pan_id %>"
-                  >Détails</a
+                  >Details</a
                 >
                 -
-                <a href="#">Commander à nouveau</a>
+                <a href="#">Order again</a>
               </td>
             </tr>
             <% }); %>

@@ -31,14 +31,14 @@ router.post("/", async (req, res) => {
     if (!client) {
       return res.render("connexion/index", {
         error: true,
-        errorMsg: "Utilisateur ou mot de passe incorect",
+        errorMsg: "User or password incorrect",
       });
     }
     const valid = await bcrypt.compare(cli_pwd, client.cli_pwd);
     if (!valid) {
       return res.render("connexion/index", {
         error: true,
-        errorMsg: "Utilisateur ou mot de passe incorect",
+        errorMsg: "User or password incorrect",
       });
     }
     var panier = await Panier.findOne({
@@ -102,17 +102,17 @@ router.get("/userStatut", async (req, res) => {
   return res.status(200).json(userStatut);
 });
 router.get("/password", async (req, res) => {
-  res.locals.titre = "mot de pass oublié";
+  res.locals.titre = "Forget password";
   res.render("connexion/forgetPassWord");
 });
 router.post("/password", async (req, res) => {
-  res.locals.titre = "mot de pass oublié";
+  res.locals.titre = "Forget password";
   const { cli_mail } = req.body;
   try {
     const client = await Client.findOne({ where: { cli_mail } });
     if (!client) {
       const typeMsg = "danger";
-      const errorMsg = "Aucun utilisateur correspondant trouvé";
+      const errorMsg = "No user found";
       return res.render("connexion/forgetPassWord", { errorMsg, typeMsg });
     }
     const payload = {

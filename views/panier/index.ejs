@@ -2,10 +2,10 @@
   <div class="row panier-content">
     <div class="panier-details col-lg-8 col-xs-12">
       <div class="title">
-        <h1>Panier</h1>
+        <h1>Basket</h1>
       </div>
       <hr />
-      <p id="empty-product-kart">Il n'y a plus d'articles dans votre panier</p>
+      <p id="empty-product-kart">There are no more items in your cart</p>
       <div class="comment">
         <img class="mx-auto  kart-loader" src="/images/loader.gif" alt=""  />
         <!-- ICI SUPP -->
@@ -53,7 +53,7 @@
         <!--   ICI REPRENDS-->
         <a href="#"
           ><span class="icon"><i class="fa-solid fa-chevron-left"></i></span
-          ><span class="link">Contineur mes achats</span></a
+          ><span class="link">Container my purchases</span></a
         >
       </div>
     </div>
@@ -97,7 +97,7 @@
   </div>
 
   <div class="products">
-    <div class="title"><h2>PRODUITS POPULAIRES</h2></div>
+    <div class="title"><h2>POPULAR PRODUCTS</h2></div>
     <div class="row">
       <% produitsPopulaires.forEach(element => { %>
       <div class="item col-sm-6 col-md-6 col-xl-4">
@@ -124,7 +124,7 @@
               data-id="<%= element.pro_id %>"
               data-bs-target="#parent_modal"
             >
-              Ajouter
+              Add
             </p>
           </div>
         </div>
@@ -133,7 +133,7 @@
     </div>
   </div>
   <div class="btns">
-    <a href="/catalogue">Voir plus</a>
+    <a href="/catalogue">See more</a>
   </div>
 </div>
 <script src="/javascripts/panier.js"></script>

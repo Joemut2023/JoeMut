@@ -11,13 +11,8 @@
 * `npm run dev`
 * `npm run css`
 * `npm run js`
-* `node node helpers/generate_clients_data.js`
-* `node helpers/generate_produits_data.js`
-* `node helpers/generate_medias_data.js`
 * `node helpers/generate_tailles_data.js`
-* `node helpers/generate_quantites_data.js`
 * `node helpers/generate_frais_port_data.js`
-* `node helpers/generate_tarif_data.js`
 * `node helpers/generate_statut_expedition_data.js`
 * `node helpers/generate_statut_commande_data.js`
 ```

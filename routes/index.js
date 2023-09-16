@@ -118,7 +118,7 @@ router.post("/", async function (req, res, next) {
       const mailOptions = {
         from: email,
         to: process.env.MAIL_ADRESSE,
-        subject: "Message du client depuis le site",
+        subject: "Customer message from the site",
         html: `<div>  <p>Email: ${email}</p> <p>Message: ${textarea}</p></div>`,
       };
 
@@ -127,7 +127,7 @@ router.post("/", async function (req, res, next) {
         .then(function (info) {
           console.log("Email sent: " + info.response);
           res.status(200).render("default/index", {
-            messages: "Votre message a été envoyé avec succès!",
+            messages: "Your message has been sent successfully!",
             info: true,
             error: false,
             produits,
@@ -144,7 +144,7 @@ router.post("/", async function (req, res, next) {
           res.status(400).render("default/index", {
             error: true,
             errorMsg:
-              "Une erreur s'est produite lors de l'envoi de votre message!" +
+              "An error occurred while sending your message!" +
               error,
             info: false,
             produits,

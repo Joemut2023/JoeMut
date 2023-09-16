@@ -1,39 +1,38 @@
 <div id="nouvelleCollection">
   <div class="group-catalogue">
     <div class="title">
-      <a href="/">Accueil</a>
-      <p style="color: gray">/ Nouvelle collection</p>
+      <a href="/">Home</a>
+      <p style="color: gray">/ New collection</p>
     </div>
     <div class="list">
       <div class="border"></div>
       <div class="list-body">
-        <p>Nouvelle collection</p>
+        <p>New collection</p>
       </div>
       <div class="border"></div>
     </div>
   </div>
   <div class="catalogue">
     <div class="cat-title">
-      <h2>
-        CATÉGORIE :
-        <span>NOUVELLE COLLECTION</span>
+      <h2> CATEGORY: 
+        <span>NEW COLLECTION</span>
       </h2>
     </div>
     <div class="cat-filter">
-      <p>Il y a <span><%= nouveauProduits.length%></span> produits.</p>
+      <p>There is <span><%= nouveauProduits.length%></span> products.</p>
 
       <div class="filter">
-        <label for="">Trier par : </label>
+        <label for="">Sort by : </label>
         <div class="input" id="input">
-          <span id="choix"><%= choix ? choix : "Choisir" %></span>
+          <span id="choix"><%= choix ? choix : "Choose" %></span>
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
           <div class="content content-hide" id="content">
             <ul>
               <!-- <a href="/nouvelleCollection"> <li class="item-choice">Pertinente</li></a> -->
-              <a href="/nouvelleCollection/?orderby=AàZ"><li class="item-choice">Nom, A à Z</li></a>
-              <a href="/nouvelleCollection/?orderby=ZàA"><li class="item-choice">Nom, Z à A</li></a>
-              <a href="/nouvelleCollection/?orderby=PC"> <li class="item-choice">Prix, croissant</li></a>
-              <a href="/nouvelleCollection/?orderby=PD"><li class="item-choice">Prix, décroissant</li></a>
+              <a href="/nouvelleCollection/?orderby=AàZ"><li class="item-choice">Name, A à Z</li></a>
+              <a href="/nouvelleCollection/?orderby=ZàA"><li class="item-choice">Name, Z à A</li></a>
+              <a href="/nouvelleCollection/?orderby=PC"> <li class="item-choice">Price, croissant</li></a>
+              <a href="/nouvelleCollection/?orderby=PD"><li class="item-choice">Price, decreasing</li></a>
             </ul>
           </div>
         </div>
