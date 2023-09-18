@@ -5,7 +5,7 @@
         <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
+        <a href="/my-account/#page-mon-compte" class="breadcrumb-link"
           >Account</a
         >
       </li>
@@ -15,7 +15,7 @@
     </ol>
   </nav>
   <h4> Your personnals informations</h4>
-  <form action="/mon-compte/identite" class="fom" method="POST">
+  <form action="/my-account/identite" class="fom" method="POST">
     <% if (typeof error !== 'undefined') { %>
     <div class="alert alert-danger" role="alert"><%= error %></div>
     <% } %> <% if (typeof success !== 'undefined') { %>
@@ -157,7 +157,7 @@
   </form>
   <div class="link-div d-flex flex-row">
     <div>
-      <a href="/mon-compte/#page-mon-compte"
+      <a href="/my-account/#page-mon-compte"
         ><i class="fa-solid fa-chevron-left"></i>
         Back to your account
       </a>

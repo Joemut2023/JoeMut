@@ -300,12 +300,12 @@
               <div class="adresse-actions">
                 <p>
                   <a href="/commander/?newadress=true#page-commander"
-                    >ajouter une nouvelle adresse</a
+                    >add new adress</a
                   >
                 </p>
               </div>
               <div class="button btn col-md-6">
-                <button>Continuer</button>
+                <button>next</button>
               </div>
             </form>
           </div>
@@ -327,7 +327,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label"
-                      ><span>*</span>Nom de la structure</label
+                      ><span>*</span>Name of company</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -339,7 +339,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="prenom"
-                      ><span>*</span>Prenom</label
+                      ><span>*</span>Last Name</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -350,7 +350,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Nom</label
+                      ><span>*</span>Name</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -360,7 +360,7 @@
 
                 <div class="form-group row">
                   <div class="col-md-3 item">
-                    <label class="required label" for="nom">Société</label>
+                    <label class="required label" for="nom">Company</label>
                   </div>
                   <div class="col-md-6 input">
                     <input type="text" name="adr_societe" />
@@ -370,7 +370,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      >Numero de TVA</label
+                      >TVA</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -381,7 +381,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Adresse</label
+                      ><span>*</span>Adress</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -392,7 +392,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      >Complement d'adresse</label
+                      >Other adress</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -403,7 +403,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Code postal</label
+                      ><span>*</span>Postal Code</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -414,7 +414,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Ville</label
+                      ><span>*</span>City</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -425,7 +425,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Pays</label
+                      ><span>*</span>Country</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -436,7 +436,7 @@
                 <div class="form-group row">
                   <div class="col-md-3 item">
                     <label class="required label" for="nom"
-                      ><span>*</span>Téléphone</label
+                      ><span>*</span>Phone</label
                     >
                   </div>
                   <div class="col-md-6 input">
@@ -457,13 +457,13 @@
                     <label
                       class="required label labelWithCheck"
                       for="check_facture"
-                      >Utiliser aussi cette adresse pour la facturation</label
+                      >Also use this address for billing</label
                     >
                   </div>
                 </div>
               </div>
               <div class="button btn col-md-6">
-                <button>Continuer</button>
+                <button>Next</button>
               </div>
             </form>
           </div>
@@ -478,11 +478,11 @@
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>
           <div class="title-h4 col-7">
-            <h4>MODE DE LIVRAISON</h4>
+            <h4>Delivery method</h4>
           </div>
           <div class="btn btn-modif col-md-2" id="livraison-mod-btn">
             <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <span>Modfier</span>
+            <span>Update</span>
           </div>
         </div>
         <hr />
@@ -490,10 +490,10 @@
           <div class="text-contents">
             <div class="text-1">
               <p>
-                Afin de valider votre demande, vous devez nous envoyer votre
-                devis accompagné du cheque de caution ainsi que le contrat de
-                prêt pour essayage (Qui vous sera envoyé apres vérification des
-                disponibilités. En vous remerciant.)
+                In order to validate your request, you must send us your
+                 quote accompanied by the deposit check as well as the contract
+                 ready for fitting (Which will be sent to you after checking the
+                 availability. Thanking you.)
               </p>
             </div>
           </div>
@@ -516,16 +516,16 @@
                 <p style="width: 100%"><%= mode_livraison.frp_description %></p>
               </div>
               <div class="descprice col-md-2">
-                <%= mode_livraison.frp_ttc.toFixed(2) %> € TTC
+                <%= mode_livraison.frp_ttc.toFixed(2) %> $ ATI
               </div>
             </div>
             <% }) %>
             <div class="commande-msg">
               <div class="mb-3 msg">
                 <label for="com_comment" class="form-label"
-                  >Si vous voulez nous laisser un message à propos de votre
-                  commande, merci de de bien vouloir le renseigner dans le
-                  champs ci-contre</label
+                  >If you want to leave us a message about your
+                  order, please kindly inform it in the
+                  fields opposite</label
                 >
                 <textarea
                   name="com_comment"
@@ -538,7 +538,7 @@
 
             <div class="date-spectacle">
               <div class="title">
-                <h3>DATE SPECTACLE</h3>
+                <h3>SHOW DATE</h3>
                 <hr />
               </div>
               <div class="form" id="livraison-form">
@@ -595,25 +595,10 @@
                         />
                       </div>
                     </div>
-                    <div class="row g-3 align-items-center bloc-input">
-                      <div class="col-md-4">
-                        <label for="autre_date" class="col-form-label"
-                          >Site d'autres dates</label
-                        >
-                      </div>
-                      <div class="col-md-4">
-                        <textarea
-                          class="form-control"
-                          name="com_autre_date"
-                          id="autre_date"
-                          rows="3"
-                        ></textarea>
-                      </div>
-                    </div>
                   </div>
 
                   <div class="button btn col-md-6 btn-livraison">
-                    <button type="submit">Continue</button>
+                    <button type="submit">Next</button>
                   </div>
                 </form>
               </div>
@@ -634,7 +619,7 @@
           </div>
           <div class="btn btn-modif col-md-2" id="codePromo-mod-btn">
             <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <span>Modfier</span>
+            <span>Update</span>
           </div>
         </div>
         <hr />
@@ -650,7 +635,7 @@
                 <input
                   type="text"
                   class="form-control code_promo"
-                  placeholder="Code promo"
+                  placeholder="PROMO Code"
                   name="prm_code"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
@@ -662,7 +647,7 @@
                 </div> -->
               </div>
               <div class="button btn col-md-6 btn-codePromo">
-                <button type="submit">Continue</button>
+                <button type="submit">Next</button>
               </div>
               <!-- <div class="text">
                 <p id="close-form">
@@ -682,9 +667,9 @@
             <i class="fa-solid fa-check iconCheck" id="checkTrue"></i>
           </div>
           <div class="title-h4 col-7">
-            <h4>FINALISATION</h4>
+            <h4>FINALIZATION</h4>
           </div>
-          <div class="btn btn-modif col-2" id="info-mod-btn">Modfier</div>
+          <div class="btn btn-modif col-2" id="info-mod-btn">Update</div>
         </div>
         <hr />
 

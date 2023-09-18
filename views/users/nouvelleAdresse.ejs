@@ -5,10 +5,10 @@
         <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Your account</a>
+        <a href="/my-account/#page-mon-compte" class="breadcrumb-link">Your account</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/adresses/#adresses" class="breadcrumb-link">Adresses</a>
+        <a href="/my-account/adresses/#adresses" class="breadcrumb-link">Adresses</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         New adresse
@@ -16,7 +16,7 @@
     </ol>
   </nav>
   <h4>New adresse</h4>
-  <form action="/mon-compte/nouvelleAdresse" class="fom" method="post">
+  <form action="/my-account/nouvelleAdresse" class="fom" method="post">
     <% if (typeof error !=='undefined' ) { %>
       <div class="alert alert-danger" role="alert">
         <%= error %>
@@ -93,7 +93,7 @@
   </form>
   <div class="link-div d-flex flex-row">
     <div>
-      <a href="/mon-compte/#page-mon-compte"><i class="fa-solid fa-chevron-left"></i> Back to your account
+      <a href="/my-account/#page-mon-compte"><i class="fa-solid fa-chevron-left"></i> Back to your account
       </a>
     </div>
     <div>

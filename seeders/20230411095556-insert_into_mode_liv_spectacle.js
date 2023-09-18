@@ -18,7 +18,7 @@ module.exports = {
         mls_libelle: "AES",
       },
       {
-        mls_libelle: "Livraison",
+        mls_libelle: "Delivery",
       },
     ]);
   },

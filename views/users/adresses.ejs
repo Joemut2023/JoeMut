@@ -5,10 +5,10 @@
         <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link">Your account</a>
+        <a href="/my-account/#page-mon-compte" class="breadcrumb-link">Your account</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/adresses" class="breadcrumb-link">Adresses</a>
+        <a href="/my-account/adresses" class="breadcrumb-link">Adresses</a>
       </li>
     </ol>
   </nav>
@@ -36,8 +36,8 @@
           <p><%= element.adr_phone %></p>
           <hr />
           <div class="item-actions">
-            <a href="/mon-compte/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Update</a>
-            <a href="/mon-compte/deleteAdresse/<%= element.adr_id %>"><i class="fa-solid fa-trash"></i> Remove</a>
+            <a href="/my-account/editAdresse/<%= element.adr_id %>"><i class="fa-solid fa-pencil"></i> Update</a>
+            <a href="/my-account/deleteAdresse/<%= element.adr_id %>"><i class="fa-solid fa-trash"></i> Remove</a>
           </div>
         </div>
         <% }) %>

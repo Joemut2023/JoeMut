@@ -60,11 +60,51 @@ router.post("/", async (req, res) => {
         cli_id: client.cli_id,
       });
     }
-    req.session.panierId = panier.pan_id;
-    req.session.userId = client.cli_id;
-    res.locals.user = client;
-    req.session.userId = client.cli_id;
-    return res.redirect("/mon-compte");
+    // send link in mail with client.cli_pwd and cli mail as params
+    const link = process.env.APP_URL + "connected/" + client.cli_pwd
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        // name: process.env.NAME_EMAIL,
+        // host: process.env.HOST_EMAIL,
+        // port: process.env.PORT_EMAIL,
+        // secure: true,
+        auth: {
+          user: process.env.MAIL_ADRESSE,
+          pass: process.env.PASSWORD_OVH,
+        },
+      });
+      const mailOptions = {
+        from: {
+          name: "African's art",
+          adress: process.env.MAIL_ADRESSE,
+        },
+        to: client.cli_mail,
+        subject: "Connexion link messsage from the site African's art",
+        html: `<div> <p>To connect to the african's art website, please click <a href="${link}">here</a></p></div>`,
+      };
+      transporter
+        .sendMail(mailOptions)
+        .then(function (info) {
+          return res.render("connexion/index", {
+            info: true,
+            message: "A connection link to the web site has been sent to your respective email",
+          });
+
+          email = "";
+          // file = "";
+          textarea = "";
+        })
+        .catch(function (error) {
+          Logger.error("/emailcontact : " + error.stack);
+          return res.render("connexion/index", {
+            error: true,
+            errorMsg: "Operation fall try again",
+          });
+  })
+    //return res.redirect("/mon-compte");
   } catch (error) {
     Logger.error(error.stack);
     return res.render("connexion/index", {

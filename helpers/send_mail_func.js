@@ -19,6 +19,7 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
         //   });
 
             const transporter = nodemailer.createTransport({
+              // service : "gmail",
               name: process.env.NAME_EMAIL,
               host: process.env.HOST_EMAIL,
               port: process.env.PORT_EMAIL,

@@ -16,6 +16,11 @@
           <%= (errorMsg) ? errorMsg : '' %>
         </div>
       <% } %>
+      <%if (typeof info !== 'undefined' && info == true) { %>
+        <div class="alert alert-success" role="alert">
+          <%= (message) ? message : '' %>
+        </div>
+      <% } %>
       <form id="form" method="post" action="/connexion">
         <div>
           <div class="form-group row">

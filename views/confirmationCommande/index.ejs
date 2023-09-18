@@ -1,7 +1,7 @@
 <div id="page-confirmation-commande">
   <div class="title-recherche">
-    <span><a href="">Acceuil</a></span>
-    <span>/ Confirmation de commande</span>
+    <span><a href="">Home</a></span>
+    <span>/ Order confirmation</span>
   </div>
 
   <section class="main">
@@ -10,11 +10,11 @@
         <div class="row">
           <div class="col-md-12">
             <h3>
-              <span><i class="fa-solid fa-check"></i></span>VOTRE COMMANDE EST
-              CONFIRMÉE
+              <span><i class="fa-solid fa-check"></i></span>YOUR ORDER IS
+              CONFIRMED
             </h3>
             <p>
-              Un e-mail vous a été envoyé à l'adresse <%=
+              An email has been sent to the address <%=
               commande.Client.cli_mail %>.
             </p>
           </div>
@@ -26,15 +26,15 @@
         <div class="row">
           <div class="order-items">
             <div class="row order-titles">
-              <h3 class="title col-md-6 col-12">articles de la commande</h3>
+              <h3 class="title col-md-6 col-12">order items</h3>
               <h3 class="title col-md-2 text-md-center _desktop-title">
-                prix unitaire
+                unit price
               </h3>
               <h3 class="title col-md-2 text-md-center _desktop-title">
-                quantité
+                quantity
               </h3>
               <h3 class="title col-md-2 text-md-center _desktop-title">
-                total produits
+                total products
               </h3>
             </div>
             <div class="order-confirmation">
@@ -61,16 +61,16 @@
                         <div class="row">
                           <div class="col-4 text-sm-center text-xs-left">
                             <%=
-                            element.pad_ttc.toFixed(2).toString().replace(".",",")
-                            %> €
+                            element.pad_ttc.toFixed(2).toString()
+                            %> $
                           </div>
                           <div class="col-4 text-sm-center text-xs-left">
                             <%= element.pad_qte %>
                           </div>
                           <div class="col-4 text-sm-center text-xs-left total">
                             <%= (element.pad_ttc *
-                            element.pad_qte).toFixed(2).toString().replace(".",",")%>
-                            €
+                            element.pad_qte).toFixed(2).toString()%>
+                            $
                           </div>
                         </div>
                       </div>
@@ -83,35 +83,35 @@
               <table>
                 <tbody>
                   <tr>
-                    <td>Sous-total</td>
+                    <td>Subtotal</td>
                     <td class="price-col">
-                      <%= panier_ttc.toFixed(2).toString().replace(".",",") %> €
+                      <%= panier_ttc.toFixed(2).toString() %> $
                     </td>
                   </tr>
                   <% if (commande.Frais_port.frp_ttc) { %>
                   <tr>
-                    <td>Frais de livraison</td>
+                    <td>Shipping cost</td>
                     <td class="price-col">
                       <%=
-                      commande.Frais_port.frp_ttc.toFixed(2).toString().replace(".",",")
-                      %> €
+                      commande.Frais_port.frp_ttc.toFixed(2).toString()
+                      %> $
                     </td>
                   </tr>
                   <% } %> <% if (commande.com_frais) { %>
                   <tr>
-                    <td>Frais de dossier</td>
+                    <td>Application fees</td>
                     <td class="price-col">
                       <%=
-                      commande.com_frais.toFixed(2).toString().replace(".",",")
-                      %> €
+                      commande.com_frais.toFixed(2).toString()
+                      %> $
                     </td>
                   </tr>
                   <% } %> <% total_general_commande = totalTTC +
                   commande?.com_frais + commande.Frais_port?.frp_ttc%>
                   <tr class="total-value">
-                    <td>TOTAL TTC</td>
+                    <td>TOTAL ATI</td>
                     <td class="price-col">
-                      <%= totalTTC.toFixed(2).toString().replace(".",",") %> €
+                      <%= totalTTC.toFixed(2).toString() %> $
                     </td>
                   </tr>
                 </tbody>
@@ -120,74 +120,17 @@
           </div>
 
           <div class="details">
-            <h1 class="title">DÉTAILS DE LA COMMANDE:</h1>
+            <h1 class="title">DETAILS OF THE ORDER:</h1>
             <p>
-              Référence de la commande : <% if (refCommande) { %> <%=
+              Order reference: <% if (refCommande) { %> <%=
               refCommande %> <% } %>
             </p>
-            <p>Moyen de paiement : Devis</p>
-            <p>Mode de livraison : <%= commande.Frais_port.frp_libelle %></p>
+            <p>Payment method: Quote</p>
+            <p>Delivery method : <%= commande.Frais_port.frp_libelle %></p>
             <p><%= commande.com_comment %></p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <div class="products">
-    <% if (produitsPopulaires.length > 0) { %>
-    <div class="title"><h2>PRODUITS POPULAIRES</h2></div>
-    <div class="row">
-      <% produitsPopulaires.forEach(element => { %>
-      <div class="item col-sm-6 col-md-6 col-xl-4">
-        <div class="image">
-          <a href="/article/<%= element.pro_id %>"
-            ><img
-              src="/images/produits/<%= element.Media[0].med_ressource %>"
-              class="img-fluid"
-              alt=""
-          /></a>
-        </div>
-        <div class="details">
-          <p class="desc">
-            <a href="#"><span><%= element.pro_libelle %></span></a>
-          </p>
-          <p class="ref">Ref: <%= element.pro_ref %></p>
-          <div class="quantite">
-            <span>
-              <%= quantiteOfEachProduct.find(item => item.id ===
-              element.pro_id).qty ? quantiteOfEachProduct.find(item => item.id
-              === element.pro_id).qty : "1" %></span
-            >
-            <%= quantiteOfEachProduct.find(item => item.id ===
-            element.pro_id).qty > 1 ? "articles" : "article" %>
-          </div>
-          <div>
-            <p class="price">
-              <%=
-              element.Tarifs[0].tar_ttc.toFixed(2).toString().replace(".",",")
-              %> €
-            </p>
-            <p class="bar">|</p>
-            <p
-              class="price btn button-ajouter"
-              data-bs-toggle="modal"
-              data-id="<%= element.pro_id %>"
-              data-bs-target="#parent_modal"
-            >
-              Ajouter
-            </p>
-          </div>
-        </div>
-      </div>
-      <% }) %>
-    </div>
-    <% } %>
-  </div>
-  <div class="button-all">
-    <a href="/catalogue"
-      ><p>
-        Tous les produits
-        <span><i class="fa-solid fa-chevron-right"></i></span></p
-    ></a>
-  </div>
 </div>

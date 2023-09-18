@@ -22,7 +22,7 @@ module.exports = {
 
     await queryInterface.bulkInsert("Autre_frais", [
       {
-        auf_libelle: "Frais de dossier",
+        auf_libelle: "Application fees",
         auf_ht: 12.92,
         auf_ttc: 15,
         auf_debut: date_debut,

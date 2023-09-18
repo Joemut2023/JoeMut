@@ -97,7 +97,7 @@ app.use("/promotion", [layout], promotionRouter);
 app.use("/recherche", [layout], rechercheRouter);
 app.use("/article", [layout], articleRouter);
 app.use("/nouvelleCollection", [layout], nouvelleCollectionRouter);
-app.use("/mon-compte", [auth, layout], usersRouter);
+app.use("/my-account", [auth, layout], usersRouter);
 app.use("/panier", [auth, layout], panierRouter);
 app.use("/inscription", [layout], inscriptionRouter);
 app.use("/connexion", [layout], connexionRouter);

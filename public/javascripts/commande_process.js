@@ -52,7 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // });
   form_finalisation.addEventListener("submit", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-      var btn_finaliser_devis, isLoadingCmd, commande_debut, com_fin_spectacle, com_date_essayage, com_date_essayage_autre, com_comment, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
+      var btn_finaliser_devis, isLoadingCmd, commande_debut, com_fin_spectacle, com_date_essayage, com_comment, frais, adresse, adresse_livraison, dates_essayages, code_promo, params, panier;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
@@ -65,21 +65,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             btn_finaliser_devis.style.cursor = "not-allowed";
             commande_debut = document.querySelector("[name=com_debut_spectacle]").value;
             com_fin_spectacle = document.querySelector("[name=com_fin_spectacle]").value;
-            com_date_essayage = document.querySelector("[name=com_date_essayage]").value;
-            com_date_essayage_autre = document.querySelector("[name=com_autre_date]").value; // let com_compl = document.querySelector('[name=com_compl]')?.value;
+            com_date_essayage = document.querySelector("[name=com_date_essayage]").value; // let com_compl = document.querySelector('[name=com_compl]')?.value;
             com_comment = document.querySelector("[name=com_comment]").value; // let panier_details = JSON.parse(localStorage.getItem('storedItems'));
             frais = JSON.parse(localStorage.getItem("fraisDivers"));
             adresse = document.querySelector("[name=radio_adresse]:checked").value;
             adresse_livraison = document.querySelector("[name=radio_adresse_livraison]:checked").value;
-            dates_essayages = [com_date_essayage, com_date_essayage_autre];
+            dates_essayages = [com_date_essayage];
             code_promo = document.querySelector(".code_promo").value;
             params = {
               frais: frais,
               commande: {
                 commande_debut: commande_debut,
                 com_fin_spectacle: com_fin_spectacle,
-                com_date_essayage: com_date_essayage,
-                com_date_essayage_autre: com_date_essayage_autre
+                com_date_essayage: com_date_essayage
                 //  com_compl
               },
 
@@ -90,14 +88,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               com_comment: com_comment
             };
             isLoadingCmd.style.display = "flex";
-            _context2.prev = 19;
-            _context2.next = 22;
+            _context2.prev = 18;
+            _context2.next = 21;
             return axios.post("/commander", params, {
               headers: {
                 "X-Requested-With": "XMLHttpRequest"
               }
             });
-          case 22:
+          case 21:
             panier = _context2.sent;
             if (panier.data != false) {
               localStorage.setItem("storedItems", JSON.stringify([]));
@@ -105,17 +103,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             } else {
               window.location.replace("/");
             }
-            _context2.next = 29;
+            _context2.next = 28;
             break;
-          case 26:
-            _context2.prev = 26;
-            _context2.t0 = _context2["catch"](19);
+          case 25:
+            _context2.prev = 25;
+            _context2.t0 = _context2["catch"](18);
             console.log(_context2.t0);
-          case 29:
+          case 28:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[19, 26]]);
+      }, _callee2, null, [[18, 25]]);
     }));
     return function (_x2) {
       return _ref2.apply(this, arguments);

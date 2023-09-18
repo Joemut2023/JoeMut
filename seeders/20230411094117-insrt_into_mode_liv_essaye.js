@@ -18,10 +18,10 @@ module.exports = {
         mle_libelle: "AES",
       },
       {
-        mle_libelle: "Livraison",
+        mle_libelle: "Delivery",
       },
       {
-        mle_libelle: "Pas d'essayage",
+        mle_libelle: "No fitting",
       },
     ]);
   },

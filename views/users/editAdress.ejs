@@ -5,12 +5,12 @@
         <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/#page-mon-compte" class="breadcrumb-link"
+        <a href="/my-account/#page-mon-compte" class="breadcrumb-link"
           >Your account</a
         >
       </li>
       <li class="breadcrumb-item" aria-current="page">
-        <a href="/mon-compte/adresses/#adresses" class="breadcrumb-link"
+        <a href="/my-account/adresses/#adresses" class="breadcrumb-link"
           >Adresses</a
         >
       </li>
@@ -21,7 +21,7 @@
   </nav>
   <h4>Update your adresse</h4>
   <form
-    action="/mon-compte/editAdresse/<%= adressById.adr_id %>"
+    action="/my-account/editAdresse/<%= adressById.adr_id %>"
     class="fom"
     method="post"
   >
@@ -158,7 +158,7 @@
   </form>
   <div class="link-div d-flex flex-row">
     <div>
-      <a href="/mon-compte/#page-mon-compte"
+      <a href="/my-account/#page-mon-compte"
         ><i class="fa-solid fa-chevron-left"></i> Retour à votre compte
       </a>
     </div>
@@ -181,7 +181,7 @@
             <h3>Adresse modifiée avec succès</h3>
           </div>
           <div class="button">
-            <a href="/mon-compte/adresses"
+            <a href="/my-account/adresses"
               ><button
                 data-bs-dismiss="modal"
                 aria-label="Close"

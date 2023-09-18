@@ -17,7 +17,7 @@ module.exports = {
        tym_libelle: "Image",
      },
      {
-       tym_libelle: "Vidéo",
+       tym_libelle: "Video",
      },
      {
        tym_libelle: "Youtube",

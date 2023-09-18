@@ -54,9 +54,6 @@
     let com_date_essayage = document.querySelector(
       "[name=com_date_essayage]"
     ).value;
-    let com_date_essayage_autre = document.querySelector(
-      "[name=com_autre_date]"
-    ).value;
     // let com_compl = document.querySelector('[name=com_compl]')?.value;
     let com_comment = document.querySelector("[name=com_comment]").value;
 
@@ -66,7 +63,7 @@
     let adresse_livraison = document.querySelector(
       "[name=radio_adresse_livraison]:checked"
     ).value;
-    let dates_essayages = [com_date_essayage, com_date_essayage_autre];
+    let dates_essayages = [com_date_essayage];
     let code_promo = document.querySelector(".code_promo").value;
     let params = {
       frais: frais,
@@ -74,7 +71,6 @@
         commande_debut,
         com_fin_spectacle,
         com_date_essayage,
-        com_date_essayage_autre,
         //  com_compl
       },
       adresse: adresse,

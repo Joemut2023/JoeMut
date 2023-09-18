@@ -14,23 +14,23 @@ module.exports = {
     */
    await queryInterface.bulkInsert('Moyen_paiements',[
     {
-      mop_libelle:'Carte bancaire',
+      mop_libelle:'Bank card',
       mop_actif:true
     },
     {
-      mop_libelle:'Chèque',
+      mop_libelle:'Check',
         mop_actif:true
     },
     {
-      mop_libelle:'Espèces',
+      mop_libelle:'Species',
         mop_actif:true
     },
     {
-      mop_libelle:'Ordre de prélèvement',
+      mop_libelle:'Collection order',
       mop_actif:true
     },
     {
-      mop_libelle:'Virement bancaire',
+      mop_libelle:'Bank transfer',
       mop_actif:true
     }
   ])
