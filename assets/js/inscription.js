@@ -52,7 +52,7 @@ btn_enregistrer.addEventListener("click", async function (e) {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    window.location.href = `${SITE_URL}/mon-compte`;
+    window.location.href = `${SITE_URL}/inscription/login`;
   } catch (error) {
     showErrorMsg(error.response.data.errorMsg);
   }

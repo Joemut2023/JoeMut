@@ -4970,6 +4970,9 @@
   padding: 8% 9%;
   font-family: "Manrope", sans-serif;
 }
+#page-inscription #hide-sucess {
+  display: none;
+}
 #page-inscription .title-recherche {
   margin-bottom: 5px;
 }

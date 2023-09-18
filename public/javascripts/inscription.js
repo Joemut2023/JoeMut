@@ -62,7 +62,7 @@ btn_enregistrer.addEventListener("click", /*#__PURE__*/function () {
             }
           });
         case 17:
-          window.location.href = "".concat(SITE_URL, "/mon-compte");
+          window.location.href = "".concat(SITE_URL, "/inscription/login");
           _context.next = 23;
           break;
         case 20:

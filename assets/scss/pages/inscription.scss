@@ -1,6 +1,9 @@
 #page-inscription {
   padding: 8% 9%;
   font-family: $typograohie;
+  #hide-sucess{
+    display: none;
+  }
   .title-recherche {
     margin-bottom: 5px;
     a {
