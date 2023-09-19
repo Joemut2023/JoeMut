@@ -87,7 +87,8 @@ router.post("/", async (req, res, next) => {
       },
       to: client.cli_mail,
       subject: "Connexion link messsage from the site African's art",
-      html: `<div> <p>Hello ${client.cli_prenom},</p> <p> To connect to the african's art website, please click <a href="${link}">here</a></p></div>`,
+      html: `<div> <p>Hello ${client.cli_prenom},</p> <p> To connect to the african's art website, please click <a href="${link}">here</a></p><p>With kind regards,<br>
+      Customer Service African's art</div>`,
     };
     transporter
       .sendMail(mailOptions)

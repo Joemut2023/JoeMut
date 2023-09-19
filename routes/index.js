@@ -126,6 +126,8 @@ router.get("/connected/:pwd", async (req, res, next) => {
     }
     req.session.panierId = panier.pan_id;
     req.session.userId = client.cli_id;
+    req.session.mail = client.cli_mail
+    req.session.name = client.cli_prenom
     res.locals.user = client;
     req.session.userId = client.cli_id;
 

@@ -3,12 +3,13 @@ const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
 const Logger = require("./Logger");
+const { log } = require("console");
 /**
  * Envois mail devis
  * @param {*} document_name 
  * @param {*} cli_mail 
  */
-module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
+module.exports = async (document_name = null,document_path= null,cli_mail,subject,html)=>{
     try {
         // const transporter = nodemailer.createTransport({
         //     service: "gmail",
@@ -37,17 +38,17 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
             to: `${cli_mail}`,
             subject: subject,
             html: html,
-            attachments: [
-              {
-                filename: `${document_name}.pdf`,
-                path: path.join(__dirname, document_path),
-              },
-            ],
+            // attachments: [
+            //   {
+            //     filename: `${document_name}.pdf`,
+            //     path: path.join(__dirname, document_path),
+            //   },
+            // ],
           };
           transporter.sendMail(mailOptions).then(function (info) {
             console.log("Email sent: " + info.response);
           }).catch(error=>{
-            console.log(error);
+            Logger.error(error.stack)
           });
 
           const mailOptionsAdmin = {
@@ -65,9 +66,10 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
           transporter.sendMail(mailOptionsAdmin).then(function (info) {
             console.log("Email sent: " + info.response);
           }).catch(error=>{
-            console.log(error);
+            Logger.error(error.stack)
           });
     } catch (error) {
+      //console.log("dssssssssssssssssssssssssssssssssss");
         // console.log(error);
         // console.log("erreur lors de l'envois du mail");
         Logger.error(error.stack)

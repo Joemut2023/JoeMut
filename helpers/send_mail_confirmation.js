@@ -53,7 +53,7 @@ module.exports = async (
     },{where:{doc_id:document.doc_id}});
 
     // CREATION DU PDF
-    await generate_pdf_func(`${process.env.APP_URL}devis/${commande.com_id}`, `../public/pdf/devis/${DOCUMENT_NAME}.pdf`);
+    //await generate_pdf_func(`${process.env.APP_URL}devis/${commande.com_id}`, `../public/pdf/devis/${DOCUMENT_NAME}.pdf`);
     await send_mail_func(DOCUMENT_NAME,`../public/pdf/devis/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,"[African's art] order confirmation",html);
 
   } catch (error) {
