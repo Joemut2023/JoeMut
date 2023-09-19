@@ -1185,6 +1185,24 @@
   display: none;
 }
 
+#cookies-div {
+  position: absolute;
+  z-index: 10;
+  top: 70vh;
+  color: white;
+}
+@media (max-width: 680px) {
+  #cookies-div {
+    top: 40vh;
+  }
+  #cookies-div .button {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    z-index: 10;
+  }
+}
+
 #page-creation {
   padding: 3% 4%;
 }

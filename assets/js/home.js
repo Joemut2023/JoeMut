@@ -4,7 +4,27 @@
 //     [].forEach.call(carousels, function(carousel) {
 //       carouselize(carousel);
 //     });
+localStorage.getItem('show') == null ? localStorage.setItem('show', false) : null
+if (localStorage.getItem('show') == "false") {
+  document.querySelector('#cookies-div').style.display = "block";
+} else {
+  document.querySelector('#cookies-div').style.display = "none";
+}
 
+
+const buttonX = document.querySelector('.btn-cookies');
+const buttonZ = document.querySelector('#btn-cookie');
+buttonX.addEventListener("click", function (e) {
+  e.preventDefault()
+  document.querySelector('#cookies-div').style.display = "none"
+  localStorage.setItem('show', true);
+  console.log(localStorage.getItem('show'));
+})
+buttonZ.addEventListener("click", function (e) {
+  e.preventDefault()
+  document.querySelector('#cookies-div').style.display = "none"
+  localStorage.setItem('show', true);
+})
 //   })();
 
 //   function carouselize(carousel) {
@@ -76,3 +96,6 @@ var swiper = new Swiper(".carousel__view", {
     },
   },
 });
+
+
+
