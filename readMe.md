@@ -1,5 +1,5 @@
 ```
-# aes (API)
+# African's art (API)
 
 * créer un fichier .env en se basant sur le fichier .env.example(renseigner les information de votre base donnés)
 * créer un fichier config/config.json  se basant sur le fichier sur config/config.example.json (renseigner les information de votre base donnés)
