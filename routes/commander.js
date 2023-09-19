@@ -209,7 +209,7 @@ router.post("/", async (req, res) => {
             });
           }
         }
-        // normalement la valeur pour com_port et com_frais doivenet être calculé en bdd
+        // nrmalement la valeur pour com_port et com_frais doivenet être calculé en bdd
         let new_panier = await Panier.create({
           cli_id: userId,
         });

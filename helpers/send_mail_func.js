@@ -19,18 +19,21 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
         //   });
 
             const transporter = nodemailer.createTransport({
-              // service : "gmail",
-              name: process.env.NAME_EMAIL,
-              host: process.env.HOST_EMAIL,
-              port: process.env.PORT_EMAIL,
-              secure: true,
+              service : "gmail",
+              //name: process.env.NAME_EMAIL,
+              host: "smtp.gmail.com",
+              port: 587,
+              secure: false,
               auth: {
                 user: process.env.MAIL_ADRESSE,
                 pass: process.env.PASSWORD_OVH,
               },
             });
           const mailOptions = {
-            from: process.env.MAIL_ADRESSE,
+            from: {
+              name : "African's art",
+              adress : process.env.MAIL_ADRESSE,
+            },
             to: `${cli_mail}`,
             subject: subject,
             html: html,
@@ -50,7 +53,7 @@ module.exports = async (document_name,document_path,cli_mail,subject,html)=>{
           const mailOptionsAdmin = {
             from: process.env.MAIL_ADRESSE,
             to: process.env.MAIL_ADRESSE,
-            subject: "[AIGUILLES EN SCENE]" + " " + " Confirmation commande du client",
+            subject: "African's art" + " " + " order confirmation",
             html: html,
             attachments: [
               {

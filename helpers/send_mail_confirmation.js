@@ -54,7 +54,7 @@ module.exports = async (
 
     // CREATION DU PDF
     await generate_pdf_func(`${process.env.APP_URL}devis/${commande.com_id}`, `../public/pdf/devis/${DOCUMENT_NAME}.pdf`);
-    await send_mail_func(DOCUMENT_NAME,`../public/pdf/devis/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,"[AIGUILLE EN SCENE] Confirmation de commande",html);
+    await send_mail_func(DOCUMENT_NAME,`../public/pdf/devis/${DOCUMENT_NAME}.pdf`,commande.Client.cli_mail,"[African's art] order confirmation",html);
 
   } catch (error) {
     Logger.error('send_mail : ' + error.stack)
