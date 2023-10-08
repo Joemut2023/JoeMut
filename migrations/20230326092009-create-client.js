@@ -25,6 +25,9 @@ module.exports = {
       cli_fonction: {
         type: Sequelize.STRING,
       },
+      cli_ticket: {
+        type: Sequelize.STRING,
+      },
     });
     await queryInterface.addConstraint("Clients", {
       name: "fk_client_titre",

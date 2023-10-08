@@ -62,7 +62,7 @@ router.get("/connected/:pwd", async (req, res, next) => {
   try {
 
     const client = await Client.findOne({
-      where: { cli_pwd: pwd },
+      where: { cli_ticket: pwd },
     });
     //console.log( client, client.cli_id,"maman");
     if (!client) {

@@ -42,7 +42,22 @@ router.post("/", async (req, res, next) => {
         errorMsg: "An existing user already exists with this email",
       });
     }
-    pwdhashed = await bcrypt.hash(credentials.cli_pwd, 10);
+    const pwdhashed = await bcrypt.hash(credentials.cli_pwd, 10);
+    const partie = (chaine) => {
+      const signes = [".", ",", "-", "_", "/"];
+      for (const signe of signes) {
+        // Recherche de la première occurrence du signe dans la chaîne
+        const index = chaine.indexOf(signe);
+
+        // Si la première occurrence du signe est trouvée
+        if (index !== -1) {
+          // Retourne la première partie de la chaîne
+          return chaine.slice(0, index);
+        }
+      }
+      return chaine;
+    }
+    const ticket = partie (pwdhashed)
     let client = await Client.create({
       tit_id: credentials.tit_id,
       cli_nom: credentials.cli_nom.toUpperCase(),
@@ -53,10 +68,11 @@ router.post("/", async (req, res, next) => {
       cli_inscription: new Date(new Date().setDate(new Date().getDate())),
       cli_activation: true,
       cli_num: credentials.cli_num,
+      cli_ticket: ticket,
     });
 
     //create for client panier
-    let panier = await Panier.create({
+    await Panier.create({
       cli_id: client.cli_id,
     });
 
@@ -65,7 +81,8 @@ router.post("/", async (req, res, next) => {
     // res.locals.user = client;
     // res.redirect(301, `/mon-compte`);
 
-    const link = process.env.APP_URL + "connected/" + client.cli_pwd
+    const link = process.env.APP_URL + "connected/" + client.cli_ticket
+    console.log(link);
     const transporter = nodemailer.createTransport({
       service: "gmail",
       host: "smtp.gmail.com",
@@ -90,10 +107,11 @@ router.post("/", async (req, res, next) => {
       html: `<div> <p>Hello ${client.cli_prenom},</p> <p> To connect to the african's art website, please click <a href="${link}">here</a></p><p>With kind regards,<br>
       Customer Service African's art</div>`,
     };
+    console.log("2", link);
     transporter
       .sendMail(mailOptions)
       .then(function (info) {
-        return res.render("inscription/index" ,{
+        return res.render("inscription/index", {
           info: true,
           message: "User created successfuly! A connection link to the web site has been sent to your respective email",
         });

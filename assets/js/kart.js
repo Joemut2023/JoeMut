@@ -76,6 +76,7 @@ class Kart {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
+    console.log(fraisDivers, "frais de dossier");
 
     let fraisDivers = {
       frais_port: fraisPort.data.frp_ttc,
@@ -126,6 +127,7 @@ class Kart {
           },
         })
         .then(async (res) => {
+          console.log(res);
           const myModal = document.querySelector("#myModal");
           myModal.style.display = "flex";
 

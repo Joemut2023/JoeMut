@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     const autreFrais = await Autre_frais.findOne({
       where: {
-        auf_libelle: "Frais de dossier",
+        auf_libelle: "Application fees",
         auf_actif: true,
       },
     });

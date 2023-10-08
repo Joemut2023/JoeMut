@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
       });
     }
     // send link in mail with client.cli_pwd and cli mail as params
-    const link = process.env.APP_URL + "connected/" + client.cli_pwd
+    const link = process.env.APP_URL + "connected/" + client.cli_ticket
       const transporter = nodemailer.createTransport({
         service: "gmail",
         host: "smtp.gmail.com",

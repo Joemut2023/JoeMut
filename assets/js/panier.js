@@ -160,25 +160,25 @@ const TotalPricesProducts = async () => {
           ? `${totalQuantity} articles`
           : `${totalQuantity} article`
       }</span>
-      <span class="price">${new Decimal(totalPriceht).toFixed(2).toString().replace(".",",")}  €</span>
+      <span class="price">${new Decimal(totalPriceht).toFixed(2).toString()}  €</span>
     </div>
     <div class="item">
       <span class="title">Delivery</span>
       <span class="price">${new Decimal(
         storedFrais.frais_port
-      ).toFixed(2).toString().replace(".",",")} €</span>
+      ).toFixed(2).toString()} €</span>
     </div>
     <div class="item">
       <span class="title">Application fees</span>
       <span class="price">${new Decimal(
         storedFrais.frais_dossier
-      ).toFixed(2).toString().replace(".",",")} €</span>
+      ).toFixed(2).toString()} €</span>
     </div>
     <hr>
   </div>
   <div class="item total">
   <span>TTC</span>
-  <span>${new Decimal(totalPoductPrice).toFixed(2).toString().replace(".",",")} €</span>
+  <span>${new Decimal(totalPoductPrice).toFixed(2).toString()} €</span>
 </div>
 <div class="promo">
   <div class="link">

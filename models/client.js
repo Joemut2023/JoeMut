@@ -27,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
       Client.hasMany(models.Suggestion, {
         foreignKey: "cli_id",
       });
-      Client.hasMany(models.Commentaire,{
-        foreignKey:"cli_id"
+      Client.hasMany(models.Commentaire, {
+        foreignKey: "cli_id"
       })
-       Client.hasMany(models.Expedition, {
-         foreignKey: "cli_id",
-       });
+      Client.hasMany(models.Expedition, {
+        foreignKey: "cli_id",
+      });
     }
   }
   Client.init(
@@ -63,6 +63,9 @@ module.exports = (sequelize, DataTypes) => {
       cli_newsletter: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
+      }
+      , cli_ticket: {
+        type: DataTypes.STRING,
       },
       cli_activation: {
         type: DataTypes.BOOLEAN,

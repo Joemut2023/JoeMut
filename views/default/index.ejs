@@ -121,14 +121,13 @@
                                               %>
                                               <% } %>
                                                 <% let tva=newPriceht * 20 /100 %>
-                                                  <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %> $
+                                                  <%= (newPriceht + tva).toFixed(2).toString()%> $
                                                     <% } %>
                                                       <% }) %>
                                                         <% if (!applies.find(element=> element.pro_id ==
                                                           produit.pro_id)) { %>
                                                           <%=
-                                                            (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", ","
-                                                            ) %> $ %>
+                                                            (produit.Tarifs[0].tar_ttc).toFixed(2).toString() %> $ %>
                                                             <% } %>
                       </strong>
                     </p>

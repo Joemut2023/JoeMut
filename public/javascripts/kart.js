@@ -175,6 +175,7 @@ var Kart = /*#__PURE__*/function () {
               });
             case 5:
               fraisDossier = _context4.sent;
+              console.log(fraisDivers, "frais de dossier");
               fraisDivers = {
                 frais_port: fraisPort.data.frp_ttc,
                 frais_dossier: fraisDossier.data.auf_ttc,
@@ -182,7 +183,7 @@ var Kart = /*#__PURE__*/function () {
               }; //console.log(fraisPort);
               localStorage.setItem("fraisDivers", JSON.stringify(fraisDivers));
               return _context4.abrupt("return", fraisDivers);
-            case 9:
+            case 10:
             case "end":
               return _context4.stop();
           }
@@ -276,21 +277,22 @@ var Kart = /*#__PURE__*/function () {
                   return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                     while (1) switch (_context6.prev = _context6.next) {
                       case 0:
+                        console.log(res);
                         myModal = document.querySelector("#myModal");
                         myModal.style.display = "flex";
                         if (!(res.data.msg == "indisponible")) {
-                          _context6.next = 6;
+                          _context6.next = 7;
                           break;
                         }
                         return _context6.abrupt("return", Kart.RenderMaxQteModal(res.data.qte));
-                      case 6:
+                      case 7:
                         _qte = res.data.panierDetail.pad_qte;
                         itemForPanier.pad_remise = res.data.panierDetail.pad_remise;
-                        _context6.next = 10;
+                        _context6.next = 11;
                         return Kart.RenderModal(itemForPanier, itemForPanier.pad_qte);
-                      case 10:
+                      case 11:
                         if (!storedITems) {
-                          _context6.next = 20;
+                          _context6.next = 21;
                           break;
                         }
                         produitFilter = storedITems.filter(function (produit) {
@@ -307,20 +309,20 @@ var Kart = /*#__PURE__*/function () {
                           storedITems.push(itemForPanier);
                         }
                         localStorage.setItem("storedItems", JSON.stringify(storedITems));
-                        _context6.next = 17;
+                        _context6.next = 18;
                         return Kart.getItemNumber();
-                      case 17:
+                      case 18:
                         document.querySelector("#cart-item-count").innerHTML = _context6.sent;
-                        _context6.next = 25;
+                        _context6.next = 26;
                         break;
-                      case 20:
+                      case 21:
                         Kart.items.push(itemForPanier);
                         localStorage.setItem("storedItems", JSON.stringify(Kart.items));
-                        _context6.next = 24;
+                        _context6.next = 25;
                         return Kart.getItemNumber();
-                      case 24:
-                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
                       case 25:
+                        document.querySelector("#cart-item-count").innerHTML = _context6.sent;
+                      case 26:
                       case "end":
                         return _context6.stop();
                     }
