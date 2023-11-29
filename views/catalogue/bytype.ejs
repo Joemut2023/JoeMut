@@ -1,13 +1,13 @@
 <div id="pages-catalogue-type">
   <div class="group-catalogue">
     <div class="title">
-     <a class="title_accueil" href="">Accueil</a>
-      <a class="title_catalogue" href="/catalogue">/ catalogue</a>
+     <a class="title_accueil" href="">Home</a>
+      <a class="title_catalogue" href="/catalogue">/ catalog</a>
     </div>
     <div class="list">
       <div class="border"></div>
       <div class="list-body">
-        <p>Catalogue</p>
+        <p>Catalog</p>
         <div class="accordion-item">
           <div class="type-categorie">
             <a href="/catalogue/type/<%= type_categorie.tyc_id %>"
@@ -29,13 +29,13 @@
   </div>
   <div class="catalogue">
     <div class="cat-title">
-      <h2>CATÉGORIE : <span><%= type_categorie.tyc_libelle %></span></h2>
+      <h2>Catalog : <span><%= type_categorie.tyc_libelle %></span></h2>
     </div>
     <div class="cat-filter">
-      <p>Il y a <span><%= totalProductBycat %></span> produits</p>
+      <p>There is <span><%= totalProductBycat %></span> products</p>
 
       <div class="filter">
-        <label for="">Trier par : </label>
+        <label for="">Filter from : </label>
         <div class="input" id="input">
           <span id="choix"><%= choix ? choix : "Choisir" %></span>
           <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
@@ -77,18 +77,18 @@
             <% let remise = 0 %>
             <% applies.forEach(element => { %>
               <% if (element.pro_id == produit.pro_id) { %>
-                <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  €</del>
+                <del><%= (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  $</del>
                <% promotionProduct = element %>
                <% if (promotionProduct.Promo.prm_pourcent) { %> 
                 <% remise = promotionProduct.Promo.prm_pourcent * produit.Tarifs[0].tar_ht / 100 %>
                 <% newPriceht = produit.Tarifs[0].tar_ht - remise %>
                 <% } else { %> <% newPriceht = produit.Tarifs[0].tar_ht - promotionProduct.Promo.prm_valeur %> <% } %>
                 <% let tva = newPriceht * 20 /100 %>
-                <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %>  €
+                <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %>  $
               <% } %> 
             <% }) %>
             <% if (!applies.find(element => element.pro_id == produit.pro_id)) { %>
-             <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  € %>
+             <%=  (produit.Tarifs[0].tar_ttc).toFixed(2).toString().replace(".", "," ) %>  $ %>
               <% } %></div>
             <span>|</span>
             <button
@@ -97,7 +97,7 @@
               data-bs-toggle="modal"
               data-bs-target="#parent_modal"
             >
-              Ajouter
+              Add
             </button>
           </div>
         </div>

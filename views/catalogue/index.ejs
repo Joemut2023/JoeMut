@@ -113,7 +113,7 @@
                 <% newPriceht = produit.Tarifs[0].tar_ht - remise %>
                 <% } else { %> <% newPriceht = produit.Tarifs[0].tar_ht - promotionProduct.Promo.prm_valeur %> <% } %>
                 <% let tva = newPriceht * 20 /100 %>
-                <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %>  €
+                <%= (newPriceht + tva).toFixed(2).toString().replace(".", "," ) %>  $
               <% } %> 
             <% }) %>
             <% if (!applies.find(element => element.pro_id == produit.pro_id)) { %>
